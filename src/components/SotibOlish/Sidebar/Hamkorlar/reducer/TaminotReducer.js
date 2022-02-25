@@ -7,7 +7,7 @@ const slice = createSlice({
     name: 'taminot',
     initialState: {
         taminot: [],
-        current:0
+        current:false
     },
     reducers: {
         getFrom: (state, action) => {
@@ -16,15 +16,15 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             console.log('SAQLANDI_TAMINOT')
-            state.current+=1
+            state.current=!state.current
         },
         editfrom: (state,action) => {
             console.log('EDITED_TAMINOT');
-            state.current+=1
+            state.current=!state.current
         },
         deletefrom:(state,action)=>{
             console.log('DELETE_TAMINOT')
-            state.current+=1
+            state.current=!state.current
         }
 
     }

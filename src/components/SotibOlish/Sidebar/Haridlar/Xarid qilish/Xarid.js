@@ -1,17 +1,31 @@
 import './xarid.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ModalBody, ModalHeader, ModalFooter, Modal} from "reactstrap";
 import {connect} from "react-redux";
-import {getXarid, saveXarid, deleteXarid, editXarid} from '../reducer/XaridReducer'
+import XaridReducer, {getXarid, saveXarid, deleteXarid, editXarid} from '../reducer/XaridReducer'
+import users from "../../../../../reducer/users";
 import {Link} from 'react-router-dom'
-import TaminotReducer,{
+import TaminotReducer, {
     deleteTaminot,
     editTaminot,
     getTaminot,
     saveTaminot
 } from "../../Hamkorlar/reducer/TaminotReducer";
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 
-function Xarid({getXarid, saveXarid,taminot, deleteXarid, editXarid}) {
+function Xarid({
+                   getXarid,
+                   saveXarid,
+                   taminot,
+                   deleteXarid,
+                   getTaminot,
+                   saveTaminot,
+                   editXarid,
+                   XaridReducer,
+                   users,
+                   TaminotReducer,
+    branchreducer,getbranch
+               }) {
 
     const [active, setActive] = useState(false);
     const [active2, setActive2] = useState(false);
@@ -218,18 +232,18 @@ function Xarid({getXarid, saveXarid,taminot, deleteXarid, editXarid}) {
     function saqla() {
         saveXarid(
             {
-                "dealerId": 2,
-                "seller": 1,
-                "purchaseStatusId": input.xaridstatusi,
-                "paymentStatusId": input.tulovusuli,
-                "branchId": 1,
-                "date": input.xaridsanasi,
-                "description": null,
-                "deliveryPrice": input.yetkazibberishnarxi,
-                "purchaseProductsDto": [
+                dealerId: input.diller,
+                seller: 1,
+                purchaseStatusId: input.xaridstatusi,
+                paymentStatusId: input.tulovusuli,
+                branchId: input.baza,
+                date: input.xaridsanasi,
+                description: input.qisqaeslatma,
+                deliveryPrice: input.yetkazibberishnarxi2,
+                purchaseProductsDto: [
                     {
-                        "purchasedQuantity": 10,
-                        "productPurchaseId": 1
+                        purchasedQuantity: 10,
+                        productPurchaseId: 1
                     }
                 ]
             }
@@ -237,201 +251,236 @@ function Xarid({getXarid, saveXarid,taminot, deleteXarid, editXarid}) {
         console.log('saaaaaaqlani');
     }
 
+    function savedealer() {
+        saveTaminot({
+            name: input.ismi,
+            phoneNumber: input.tel,
+            telegram: input.telegram,
+            supplierType: '',
+            businessId: 1,
+        })
+        input.ismi = ''
+        input.ismi = ''
+        input.telegram = ''
+        let a = {...input}
+        setInput(a)
+        toggle()
+    }
 
+    useEffect(() => {
+        getTaminot(users.businessId)
+    }, [TaminotReducer.current])
+    useEffect(() => {
+        getbranch(users.businessId)
+    },[])
 
     return (
         <div className='xaridQilishBox'>
-        <div className={'row  mt-5 '}>
-            <h5 className={'text-center mt-3'}>Xarid qilish</h5>
-            <div className="col-md-10 border mt-4 offset-1 d-flex">
-                <div className="row">
-                <div className={'col-3 col-sm-12'}>
-                    <div className={'d-flex'}>
-                        <div>
-                            <label htmlFor={'dil'}>Diller</label>
-                            <select name="" value={input.diller} onChange={diller} id={'dil'}
-                                    className={'form-control'}>
-                                {
-                                    // taminot.map(item=> <option value={item.id}>{item.name}</option>)
-                                }
-                                <option value="">Tanlash</option>
+            <div className={'row  mt-5 '}>
+                <h5 className={'text-center mt-3'}>Xarid qilish</h5>
+                <div className="col-md-10 border mt-4 offset-1 d-flex">
+                    <div className="row">
+                        <div className={'col-3 col-sm-12'}>
+                            <div className={'d-flex'}>
+                                <div>
+                                    <label htmlFor={'dil'}>Diller</label>
+                                    <select name="" value={input.diller} onChange={diller} id={'dil'}
+                                            className={'form-control'}>
+                                        <option value="">Tanlash</option>
+                                        {
+                                            TaminotReducer.taminot.map(item => <option
+                                                value={item.id}>{item.name}</option>)
+                                        }
 
+                                    </select>
+                                </div>
+                                <h4 style={{cursor: 'pointer', marginTop: '25px', fontSize: '30px'}}
+                                    onClick={toggle}>+</h4>
+                            </div>
+                        </div>
+
+                        <div className="col-3 col-sm-12">
+                            <label htmlFor={'qisqa'}>Qisqa eslatma</label>
+                            <input type="text" className={'form-control'} value={input.qisqaeslatma}
+                                   onChange={qisqaeslatma}
+                                   id={'qisqa'}/>
+                            <label htmlFor={'baza'} className={'mt-3'}>Baza</label>
+                            <select name="" id={'baza'} value={input.baza} onChange={baza} className={'form-control'}>
+                                <option value="">Tanlash</option>
+                                {
+                                    branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                                }
                             </select>
                         </div>
-                        <h4 style={{cursor: 'pointer', marginTop: '25px', fontSize: '30px'}} onClick={toggle}>+</h4>
-                    </div>
-                </div>
 
-                <div className="col-3 col-sm-12">
-                    <label htmlFor={'qisqa'}>Qisqa eslatma</label>
-                    <input type="text" className={'form-control'} value={input.qisqaeslatma} onChange={qisqaeslatma}
-                           id={'qisqa'}/>
-                    <label htmlFor={'baza'} className={'mt-3'}>Baza</label>
-                    <select name="" id={'baza'} value={input.baza} onChange={baza} className={'form-control'}>
-                        <option value="">Tanlash</option>
-                        <option value="">Shefir zavod</option>
-                        <option value="">Tanlash</option>
-                    </select>
-                </div>
-
-                <div className="col-3 col-sm-12">
-                    <label htmlFor={'sana'}>Xarid sanasi</label>
-                    <input type="date" value={input.xaridsanasi} onChange={xaridsanasi}
-                           className={'form-control'}/>
-                    <label className={'mt-3'} htmlFor={'muddat'}>To`lov muddati</label>
-                    <select name="" id={'muddat'} value={input.tulovmuddati} onChange={tulovmuddati}
-                            className={'form-control'}>
-                        <option value="">Tanlash</option>
-                        <option value="">Oy</option>
-                        <option value="">Hafta</option>
-                    </select>
-                </div>
-
-                <div className="col-3 col-sm-12 ">
-                    <label htmlFor={'status'}>Xarid statusi</label>
-                    <select name="" value={input.xaridstatusi} onChange={xaridstatusi} className={'form-control'}
-                            id={'status'}>
-                        <option value="">Tanlash</option>
-                        <option value="">Qabul qilindi</option>
-                    </select>
-                    <label htmlFor={'qosh'} className={'mt-4'}>Qo`shimcha Hujjat</label>
-                    <input type="file" value={input.qoshimchahujjat} onChange={qoshimchahujjat}
-                           className={'form-control'}/>
-                </div>
-                </div>
-
-                <Modal isOpen={active} toggle={toggle} style={{width: '90%'}}>
-                    <ModalHeader>
-                        Yangi qo`shish / taxrirlash
-                    </ModalHeader>
-                    <ModalBody>
-                        <div className={'text-center'}>
-                            <input type="radio" id={'radio1'} name={'l'} value={input.lang1} onChange={lang1}/>
-                            <label htmlFor={'radio1'}>lang_v1.induvidial</label>
-                            <input type="radio" id={'radio2'} name={'l'} value={input.dukon} onChange={dukon}/>
-                            <label htmlFor={'radio2'}>Do`kon</label>
+                        <div className="col-3 col-sm-12">
+                            <label htmlFor={'sana'}>Xarid sanasi</label>
+                            <input type="date" value={input.xaridsanasi} onChange={xaridsanasi}
+                                   className={'form-control'}/>
+                            <label className={'mt-3'} htmlFor={'muddat'}>To`lov muddati</label>
+                            <select name="" id={'muddat'} value={input.tulovmuddati} onChange={tulovmuddati}
+                                    className={'form-control'}>
+                                <option value="">Tanlash</option>
+                                <option value="">Oy</option>
+                                <option value="">Hafta</option>
+                            </select>
                         </div>
-                        <label htmlFor={'id1'}>ID Raqami</label>
-                        <input type="text" className={'form-control'} value={input.idraqam} onChange={idraqam}
-                               placeholder={'ID raqami'}/>
-                        <div className={'d-flex justify-content-between mt-3'}>
-                            <div>
-                                <label htmlFor={'log'}>Login</label>
-                                <input value={input.login} onChange={login} type="text" className={'form-control'}
-                                       id={'log'}/>
-                                <label htmlFor={'tel'}>Tel:</label>
-                                <input type="text" onChange={tel} value={input.tel} className={'form-control'}
-                                       id={'tel'}/>
-                            </div>
-                            <div>
-                                <label htmlFor={'ismi'}>Ismi</label>
-                                <input type="text" value={input.ismi} onChange={ismi} className={'form-control'}/>
-                                <label htmlFor={'ikki'}>Ikkinchi raqam</label>
-                                <input type="text" value={input.ikkinciraqam} onChange={ikkinciraqam}
-                                       className={'form-control'} id={'ikki'}/>
-                            </div>
-                        </div>
-                        <hr/>
-                        <div className={'d-flex justify-content-between mt-3'}>
-                            <div>
-                                <label htmlFor={'log2'}>Otasining ismi</label>
-                                <input type="text" className={'form-control'} value={input.otaismi} onChange={otaismi}
-                                       id={'log2'}/>
-                                <label htmlFor={'tel2'}>Telegram:</label>
-                                <input type="text" className={'form-control'} value={input.telegram} onChange={telegram}
-                                       id={'tel2'}/>
-                            </div>
-                            <div>
-                                <label htmlFor={'ismi2'}>Familiyasi</label>
-                                <input type="text" className={'form-control'} value={input.familiyasi}
-                                       onChange={familiyasi} id={'ismi2'}/>
-                                <label htmlFor={'ikkii2'}>Email</label>
-                                <input type="text" className={'form-control'} value={input.email} onChange={email}
-                                       id={'ikki2'}/>
-                            </div>
-                        </div>
-                    </ModalBody>
-                    <ModalFooter>
-                        <button className={'btn btn-outline-primary'} >Saqlash</button>
-                        <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
-                    </ModalFooter>
-                </Modal>
-            </div>
 
-            <h5 className={'text-center mt-5'}>To`lov qilish</h5>
-            <div className="col-md-10 offset-1 border p-4 d-flex">
-                <div className="row">
-                    <div className="col-6 col-sm-10">
-                        <label htmlFor={'avans'}>Avans 0 / To`lov so`mmasi</label>
-                        <input type="text" className={'form-control'} value={input.avans} onChange={avans} id={'avans'}/>
-                        <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
-                        <select name="" id={'tol'} className={'form-control'} value={input.tulovusuli}
-                                onChange={tulovusuli}>
-                            <option value="#">Naqd</option>
-                            <option value="#">Pastik</option>
-                        </select>
+                        <div className="col-3 col-sm-12 ">
+                            <label htmlFor={'status'}>Xarid statusi</label>
+                            <select name="" value={input.xaridstatusi} onChange={xaridstatusi}
+                                    className={'form-control'}
+                                    id={'status'}>
+                                <option value="1">Tanlash</option>
+                                <option value="2">Qabul qilindi</option>
+                            </select>
+                            <label htmlFor={'qosh'} className={'mt-4'}>Qo`shimcha Hujjat</label>
+                            <input type="file" value={input.qoshimchahujjat} onChange={qoshimchahujjat}
+                                   className={'form-control'}/>
+                        </div>
                     </div>
-                    <div className="col-6 col-sm-10">
-                        <label htmlFor={'paid'}>Paid on</label>
-                        <input type="date" value={input.paidon} onChange={paidon} className={'form-control'} id={'paid'}/>
-                        <label htmlFor={'area1'} className={'mt-2'}>Eslatma</label>
-                        <textarea name="" id={'area1'} cols="30" onChange={eslatma} value={input.eslatma}
-                                className={'form-control'} rows="2">
-                        </textarea>
-                    </div>
-            
-                    <div className={'col-10 col-sm-10 offset-1 mt-5 border p-2 d-flex'}>
-                        <div className="row">
-                        <div className="col-6 col-sm-12">
-                            <div className="btnBox">
-                                <label htmlFor={'yet'}>Yetkazib berish manzili</label>
-                                <input type="text" id={'yet'} value={input.yetkazibberish} onChange={yetkazibberish}
-                                    className={'form-control'}/>
-                                <button onClick={toggle2}
-                                        className={'btnAdd btn btn-primary mt-2'} >add_additional_experence
-                                </button>
+
+                    <Modal isOpen={active} toggle={toggle} style={{width: '90%'}}>
+                        <ModalHeader>
+                            Yangi qo`shish / taxrirlash
+                        </ModalHeader>
+                        <ModalBody>
+                            <div className={'text-center'}>
+                                <input type="radio" id={'radio1'} name={'l'} value={input.lang1} onChange={lang1}/>
+                                <label htmlFor={'radio1'}>lang_v1.induvidial</label>
+                                <input type="radio" id={'radio2'} name={'l'} value={input.dukon} onChange={dukon}/>
+                                <label htmlFor={'radio2'}>Do`kon</label>
                             </div>
-                            <Modal isOpen={active2} toggle={toggle2}>
-                            <ModalHeader>Yetkazib berish</ModalHeader>
-                            <ModalBody>
-                                <label htmlFor={'l1'}>additional_experence_name</label>
-                                <input type="text" value={input.langv2} onChange={langv2} className={'form-control'}
-                                    id={'l1'}/>
-                                <label htmlFor={'l2'} className={''}>Yetkazib berish narxi</label>
-                                <input type="text" className={'form-control'} value={input.yetkazibberishnarxi}
-                                    onChange={yetkazibberishnarxi} id={'l2'}/>
-                            </ModalBody>
-                            <ModalFooter>
-                                <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
-                                <button className={'btn btn-primary'} onClick={toggle2}>Chiqish</button>
-                            </ModalFooter>
-                            </Modal>
+                            <label htmlFor={'id1'}>ID Raqami</label>
+                            <input type="text" className={'form-control'} value={input.idraqam} onChange={idraqam}
+                                   placeholder={'ID raqami'}/>
+                            <div className={'d-flex justify-content-between mt-3'}>
+                                <div>
+                                    <label htmlFor={'log'}>Login</label>
+                                    <input value={input.login} onChange={login} type="text" className={'form-control'}
+                                           id={'log'}/>
+                                    <label htmlFor={'tel'}>Tel:</label>
+                                    <input type="text" onChange={tel} value={input.tel} className={'form-control'}
+                                           id={'tel'}/>
+                                </div>
+                                <div>
+                                    <label htmlFor={'ismi'}>Ismi</label>
+                                    <input type="text" value={input.ismi} onChange={ismi} className={'form-control'}/>
+                                    <label htmlFor={'ikki'}>Ikkinchi raqam</label>
+                                    <input type="text" value={input.ikkinciraqam} onChange={ikkinciraqam}
+                                           className={'form-control'} id={'ikki'}/>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className={'d-flex justify-content-between mt-3'}>
+                                <div>
+                                    <label htmlFor={'log2'}>Otasining ismi</label>
+                                    <input type="text" className={'form-control'} value={input.otaismi}
+                                           onChange={otaismi}
+                                           id={'log2'}/>
+                                    <label htmlFor={'tel2'}>Telegram:</label>
+                                    <input type="text" className={'form-control'} value={input.telegram}
+                                           onChange={telegram}
+                                           id={'tel2'}/>
+                                </div>
+                                <div>
+                                    <label htmlFor={'ismi2'}>Familiyasi</label>
+                                    <input type="text" className={'form-control'} value={input.familiyasi}
+                                           onChange={familiyasi} id={'ismi2'}/>
+                                    <label htmlFor={'ikkii2'}>Email</label>
+                                    <input type="text" className={'form-control'} value={input.email} onChange={email}
+                                           id={'ikki2'}/>
+                                </div>
+                            </div>
+                        </ModalBody>
+                        <ModalFooter>
+                            <button onClick={savedealer} className={'btn btn-outline-primary'}>Saqlash</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
+
+                <h5 className={'text-center mt-5'}>To`lov qilish</h5>
+                <div className="col-md-10 offset-1 border p-4 d-flex">
+                    <div className="row">
+                        <div className="col-6 col-sm-10">
+                            <label htmlFor={'avans'}>Avans 0 / To`lov so`mmasi</label>
+                            <input type="text" className={'form-control'} value={input.avans} onChange={avans}
+                                   id={'avans'}/>
+                            <label className={'mt-3'} htmlFor={'tol'}>To`lov statusi</label>
+                            <select name="" id={'tol'} className={'form-control'} value={input.tulovusuli}
+                                    onChange={tulovusuli}>
+                                <option value="#">Naqd</option>
+                                <option value="#">Pastik</option>
+                            </select>
                         </div>
                         <div className="col-6 col-sm-10">
-                            <label htmlFor={'yet2'}>(+)Yetkazib berish narxi</label>
-                            <input type="text" value={input.yetkazibberishnarxi2} onChange={yetkazibberishnarxi2}
-                                className={'form-control'}/>
-                        </div>
+                            <label htmlFor={'paid'}>Paid on</label>
+                            <input type="date" value={input.paidon} onChange={paidon} className={'form-control'}
+                                   id={'paid'}/>
+                            <label htmlFor={'area1'} className={'mt-2'}>Eslatma</label>
+                            <textarea name="" id={'area1'} cols="30" onChange={eslatma} value={input.eslatma}
+                                      className={'form-control'} rows="2">
+                        </textarea>
                         </div>
 
-                    </div>
-                    <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
-                        <h5>Qarz miqdori!: 0.00</h5>
-                        <Link to={'/headerthird/xaridlarRuyxati'}>
-                            <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
-                        </Link>
+                        <div className={'col-10 col-sm-10 offset-1 mt-5 border p-2 d-flex'}>
+                            <div className="row">
+                                <div className="col-6 col-sm-12">
+                                    <div className="btnBox">
+                                        <label htmlFor={'yet'}>Yetkazib berish manzili</label>
+                                        <input type="text" id={'yet'} value={input.yetkazibberish}
+                                               onChange={yetkazibberish}
+                                               className={'form-control'}/>
+                                        <button onClick={toggle2}
+                                                className={'btnAdd btn btn-primary mt-2'}>add_additional_experence
+                                        </button>
+                                    </div>
+                                    <Modal isOpen={active2} toggle={toggle2}>
+                                        <ModalHeader>Yetkazib berish</ModalHeader>
+                                        <ModalBody>
+                                            <label htmlFor={'l1'}>additional_experence_name</label>
+                                            <input type="text" value={input.langv2} onChange={langv2}
+                                                   className={'form-control'}
+                                                   id={'l1'}/>
+                                            <label htmlFor={'l2'} className={''}>Yetkazib berish narxi</label>
+                                            <input type="text" className={'form-control'}
+                                                   value={input.yetkazibberishnarxi}
+                                                   onChange={yetkazibberishnarxi} id={'l2'}/>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
+                                            <button className={'btn btn-primary'} onClick={toggle2}>Chiqish</button>
+                                        </ModalFooter>
+                                    </Modal>
+                                </div>
+                                <div className="col-6 col-sm-10">
+                                    <label htmlFor={'yet2'}>(+)Yetkazib berish narxi</label>
+                                    <input type="text" value={input.yetkazibberishnarxi2}
+                                           onChange={yetkazibberishnarxi2}
+                                           className={'form-control'}/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
+                            <h5>Qarz miqdori!: 0.00</h5>
+                            <Link to={'/headerthird/xaridlarRuyxati'}>
+                                <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     )
 }
 
-// export const a = connect((TaminotReducer),{getTaminot,saveTaminot,}) (Xarid)
-export default connect(({XaridReducer: {xaridlar}}) => ({xaridlar}), {
+export default connect((XaridReducer, users, TaminotReducer, branchreducer), {
     getXarid,
     saveXarid,
-    deleteXarid,
-    editXarid
+    editXarid,
+    getTaminot,
+    saveTaminot,
+    getbranch
 })(Xarid)
