@@ -8,7 +8,7 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
-            state.savdolar = action.payload
+            state.savdolar = action.payload.object
             console.log(action.payload);
         },
         savefrom: (state,action) => {

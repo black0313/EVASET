@@ -66,8 +66,8 @@ function XaridlarXisoboti({branchreducer,users,getbranch,TaminotReducer,getTamin
         console.log('hello');
         // getbranch(users.businessId)
         // getTaminot(users.businessId)
-        getMaxsulotRuyxati()
-        getXarid()
+        getMaxsulotRuyxati(users.businessId)
+        getXarid(users.businessId)
     },[])
 
     const [active,setActive] = useState(false)
