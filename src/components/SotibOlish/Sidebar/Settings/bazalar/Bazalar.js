@@ -135,7 +135,8 @@ export default function Bazalar() {
                         <input type="text" className={'form-control'} id={'sotuv'} placeholder={'enter character'}/>
                         <hr/>
                         <h5>To`lov usullari</h5>
-                        <table className={'table'}>
+                        <div className="table-responsive">
+                        <table className={'table table-bordered'}>
                             <thead>
                             <tr>
                                 <th>To`lov usullari</th>
@@ -156,6 +157,7 @@ export default function Bazalar() {
                             </tbody>
 
                         </table>
+                        </div>
                     </ModalBody>
                     <ModalFooter>
                         <button className={'btn btn-outline-primary'}>Saqlash</button>
