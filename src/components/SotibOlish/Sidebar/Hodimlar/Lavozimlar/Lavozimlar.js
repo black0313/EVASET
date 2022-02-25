@@ -104,8 +104,8 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                 }).map(item => <tr key={item.id}>
                                     <td>{item.name}</td>
                                     <td>
-                                        <Link to={'/headerthird/lavozimlar/taxrirlash'}>
-                                            <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
+                                        <Link to={'/headerthird/lavozimlar/taxrirlash/'+item.id}>
+                                            <button className='taxrirlash' ><img src={Edit} alt=""/> Taxrirlash</button>
                                         </Link>
                                         <button className='ochirish' onClick={() => deletel(item)}><img src={Delete} alt=""/> O'chirish
                                         </button>

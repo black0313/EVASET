@@ -53,8 +53,8 @@ export const saveLavozim=(data)=>apiCall({
 });
 
 export const editLavozim=(data)=>apiCall({
-    url: '/role',
-    method: 'post',
+    url: '/role/'+data.id,
+    method: 'put',
     data,
     onSuccess: slice.actions.editfrom.type
 });

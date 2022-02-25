@@ -77,10 +77,10 @@ function Headerthird() {
             <Switch>
 
                 <Route path={'/headerthird/hodimlarruyxati/taxrirlash/:id?'} component={Taxrirlash}/>
-                <Route path={'/headerthird/hodimlarruyxati/taxrirlash/:id?'} component={Taxrirlash}/>
                 <Route path={'/headerthird/hodimlarruyxati/taxrirlash'} component={Taxrirlash}/>
                 <Route path={'/headerthird/hodimlarruyxati/view/:name?/:login?/:email?'} component={Korish}/>
                 <Route path={'/headerthird/hodimlarruyxati'} component={HodimlarRoyhati}/>
+                <Route path={'/headerthird/lavozimlar/taxrirlash/:id?'} component={Taxrirlash2}/>
                 <Route path={'/headerthird/lavozimlar/taxrirlash'} component={Taxrirlash2}/>
                 <Route path={'/headerthird/lavozimlar'} component={Lavozimlar}/>
                 <Route path={'/headerthird/hodimulush/taxrirlash'} component={Taxrirlash}/>
