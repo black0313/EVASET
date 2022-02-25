@@ -11,6 +11,7 @@ import jami4 from '../../../img/JAmi4.svg'
 import search from '../../../img/search-normal.png'
 import bozordanqarz from '../../../img/bozordanqarzim.svg'
 import qarzdorlar from '../../../img/Qarzdorlardan.svg'
+import {Link} from 'react-router-dom'
 import evaset from '../../../img/Group.png'
 import menu from '../../../img/menu.png'
 import React, {useEffect, useRef} from 'react';
@@ -236,8 +237,12 @@ function Third({display}) {
                         </div>
                     </div>
                     <div className="col-md-3 col-sm-12 align-items-center d-flex justify-content-around">
-                        <button className={'kitchen-button'}>Xisobot</button>
-                        <button className={'kitchen-button'}>Savdo oynasi</button>
+                        <Link to={'/headerthird/foydaZarar'}>
+                            <button className={'kitchen-button'}>Xisobot</button>
+                        </Link>
+                        <Link to={'/headerthird/turliTavar'}>
+                            <button className={'kitchen-button'}>Savdo oynasi</button>
+                        </Link>
                     </div>
 
                 </div>
@@ -370,7 +375,6 @@ function Third({display}) {
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>)
                     }

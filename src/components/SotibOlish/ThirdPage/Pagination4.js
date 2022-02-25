@@ -55,7 +55,6 @@ function Pagination4() {
         return new Array(3).fill().map((_, idx) => start + idx + 1);
     };
 
-
     return (
 
         <div>
