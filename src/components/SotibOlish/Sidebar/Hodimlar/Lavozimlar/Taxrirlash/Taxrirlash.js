@@ -12,57 +12,57 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim,users}) {
             name: '',
             xBarchasinibelgilash: '',
             xodimkorish: '',
-            xodimkorishinput: '',
+            xodimkorishinput: null,
             xodimqoshish: '',
-            xodimqoshishinput: '',
+            xodimqoshishinput: null,
             xodimtaxrirlash: '',
-            xodimtaxrirlashinput: '',
+            xodimtaxrirlashinput: null,
             xodimochirish: '',
-            xodimochirishinput: '',
+            xodimochirishinput: null,
 
             lBarchasinibelgilash: '',
             lavozimkorish: '',
-            lavozimkorishinput: '',
+            lavozimkorishinput: null,
             lavozimqoshish: '',
-            lavozimqoshishinput: '',
+            lavozimqoshishinput: null,
             lavozimtaxrirlash: '',
-            lavozimtaxrirlashinput: '',
+            lavozimtaxrirlashinput: null,
             lavozimochirish: '',
-            lavozimochirishinput: '',
+            lavozimochirishinput: null,
 
             tBarchasinibelgilash: '',
             lang1: '',
-            lang1input: '',
+            lang1input: null,
             lang2: '',
-            lang2input: '',
+            lang2input: null,
             dillerqoshish: '',
-            dillerqoshishinput: '',
+            dillerqoshishinput: null,
             dillertaxrirlash: '',
-            dillertaxrirlashinput: '',
+            dillertaxrirlashinput: null,
             dillerochirish: '',
-            dillerochirishinput: '',
+            dillerochirishinput: null,
 
             mBarchasinibelgilash: '',
             lang3: '',
-            lang3input: '',
+            lang3input: null,
             lang4: '',
-            lang4input: '',
+            lang4input: null,
             lang5: '',
-            lang5input: '',
+            lang5input: null,
             lang6: '',
-            lang6input: '',
+            lang6input: null,
             lang7: '',
-            lang7input: '',
+            lang7input: null,
             lang8: '',
-            lang8input: '',
+            lang8input: null,
             lang9: '',
-            lang9input: '',
+            lang9input: null,
             mijozqoshish: '',
-            mijozqoshishinput: '',
+            mijozqoshishinput: null,
             mijoztaxrirlash: '',
-            mijoztaxrirlashinput: '',
+            mijoztaxrirlashinput: null,
             mijozochirish: '',
-            mijozochirishinput: ''
+            mijozochirishinput: null
         }
     )
 
@@ -78,14 +78,13 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim,users}) {
         changexodimtaxrirlash(e)
         console.log(input)
     }
-    // const [name,setName] = useState('')
+
     function changename(e) {
         input.name = e.target.value
         let a = {...input}
         setInput(a)
         console.log(input.name)
     }
-
     function changexodimkorish(e) {
         input.xodimkorish = e.target.checked
         let a ={...input}
@@ -101,7 +100,6 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim,users}) {
         }
         console.log(input.xodimkorishinput)
     }
-
     function changexodimqoshish(e) {
         input.xodimqoshish = e.target.checked
         let a = {...input}
@@ -117,7 +115,6 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim,users}) {
         }
         console.log(input.xodimqoshishinput)
     }
-
     function changexodimtaxrirlash(e) {
         input.xodimtaxrirlash = e.target.checked
         let a = {...input}
@@ -127,13 +124,12 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim,users}) {
             let a = {...input}
             setInput(a)
         }else {
-            input.xodimtaxrirlashinput = ''
+            input.xodimtaxrirlashinput = null
             let a = {...input}
             setInput(a)
         }
         console.log(input.xodimtaxrirlashinput)
     }
-
     function changexodimochirish(e) {
         input.xodimochirish = e.target.checked
         let a = {...input}
@@ -148,299 +144,276 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim,users}) {
         console.log(input.xodimochirishinput)
     }
 
-    const [lavozimbarcha,setlavozimbarcha] = useState('')
     function changelBarchasini(e) {
         input.lBarchasinibelgilash = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlavozimbarcha("CHECK_ALL_ROLE")
-        }else {
-            setlavozimbarcha('')
-        }
-        console.log(lavozimbarcha)
+        changelavozimqoshish(e)
+        changelavozitaxrirlash(e)
+        changelavozimkorish(e)
+        changelavozimochirish(e)
+        console.log(input)
     }
 
     function changelavozimqoshish(e) {
-        input.lavozimqoshish = e.target.checked
+        input.lavozimqoshish = "ADD_ROLE"
         let a = {...input}
         setInput(a)
         if (e.target.checked===true){
-            input.lavozimqoshishinput = e.target.value
+            input.lavozimqoshishinput = "ADD_ROLE"
         }else {
             input.lavozimqoshishinput = ''
         }
         console.log(input.lavozimqoshishinput)
 
     }
-
     function changelavozimkorish(e) {
-        input.lavozimkorish = e.target.checked
+        input.lavozimkorish =e.target.checked
         let a = {...input}
         setInput(a)
         if (e.target.checked===true){
-            input.lavozimkorishinput = e.target.value
+            input.lavozimkorishinput = "VIEW_ROLE"
         }else {
             input.lavozimkorishinput = ''
         }
         console.log(input.lavozimkorishinput)
     }
-
     function changelavozitaxrirlash(e) {
         input.lavozimtaxrirlash = e.target.checked
         let a = {...input}
         setInput(a)
         if (e.target.checked===true){
-            input.lavozimtaxrirlashinput = e.target.value
+            input.lavozimtaxrirlashinput = "EDIT_ROLE"
         }else {
             input.lavozimtaxrirlashinput =''
         }
         console.log(input.lavozimtaxrirlashinput)
     }
-
     function changelavozimochirish(e) {
         input.lavozimochirish = e.target.checked
         let a = {...input}
         setInput(a)
         if (e.target.checked===true){
-            input.lavozimochirishinput = e.target.value
+            input.lavozimochirishinput = "DELETE_ROLE"
         }else {
             input.lavozimochirishinput = ''
         }
         console.log(input.lavozimochirishinput)
     }
 
-    const [taminotbarcha,settaminotbarcha] = useState('')
     function changetBarchasi(e) {
         input.tBarchasinibelgilash = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            settaminotbarcha("CHECK_ALL_SUPPLIER")
-        }else {
-            settaminotbarcha('')
-        }
-        console.log(taminotbarcha)
+        changelang1(e)
+        changelang2(e)
+        changedillerqoshish(e)
+        changedillertaxrirlash(e)
+        changedillerochirish(e)
+        console.log(input)
     }
 
-    const [lang1,setlang1] = useState('')
     function changelang1(e) {
         input.lang1 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang1("LANG_V1")
+        if (e.target.checked===true){
+            input.lang1input = "LANG_V1"
         }else {
-            setlang1('')
+            input.lang1input=''
         }
-        console.log(lang1)
+        console.log(input.lang1input)
     }
-
-    const [lang2,setlang2] = useState('')
     function changelang2(e) {
         input.lang2 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang2("LANG_V2")
+        if (e.target.checked===true){
+            input.lang2input = "LANG_V2"
         }else {
-            setlang2('')
+            input.lang2input = ''
         }
-        console.log(lang2)
+        console.log(input.lang2input)
     }
-
-    const [dillerqoshish,setdillerqoshish] = useState('')
     function changedillerqoshish(e) {
         input.dillerqoshish = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setdillerqoshish("ADD_SUPPLIER")
+        if (e.target.checked===true){
+            input.dillerqoshishinput = "ADD_SUPPLIER"
         }else {
-            setdillerqoshish('')
+            input.dillerqoshishinput = ''
         }
-        console.log(dillerqoshish)
+        console.log(input.dillerqoshishinput)
     }
-
-    const [dillertaxrirlash,setdillertaxrirlash] = useState('')
     function changedillertaxrirlash(e) {
         input.dillertaxrirlash = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setdillertaxrirlash("EDIT_SUPPLIER")
+        if (e.target.checked===true){
+            input.dillertaxrirlashinput = "EDIT_SUPPLIER"
         }else {
-            setdillertaxrirlash('')
+            input.dillertaxrirlashinput = ''
         }
-        console.log(dillertaxrirlash)
+        console.log(input.dillertaxrirlashinput)
     }
 
-    const [deletediller,setdillerdelete] = useState('')
     function changedillerochirish(e) {
         input.dillerochirish = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setdillerdelete("DELETE_SUPPLIER")
+        if (e.target.checked===true){
+            input.dillerochirishinput = "DELETE_SUPPLIER"
         }else {
-            setdillerdelete('')
+            input.dillerochirishinput = ''
         }
-        console.log(deletediller)
+        console.log(input.dillerochirishinput)
     }
-    const [mijozbarcha,setmijozbarcha] = useState('')
+
     function changemBarchasi(e) {
         input.mBarchasinibelgilash = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setmijozbarcha("CUSTOMER_ALL")
-        }else {
-            setmijozbarcha('')
-        }
-        console.log(mijozbarcha)
+        changemlang3(e)
+        changemlang4(e)
+        changemlang5(e)
+        changemlang6(e)
+        changemlang7(e)
+        changemlang8(e)
+        changemlang9(e)
+        changemijozqoshish(e)
+        changemijoztaxrirlash(e)
+        changemijozochrish(e)
+        console.log(input)
     }
-    const [lang3,setlang3] = useState('')
+
     function changemlang3(e) {
         input.lang3 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang3("LANG_V3")
+        if (e.target.checked===true){
+            input.lang3 = "LANG_V3"
         }else {
-            setlang3('')
+            input.lang3 = ''
         }
-        console.log(lang3)
+        console.log(input.lang3input)
     }
-
-    const [lang4,setlang4] = useState('')
     function changemlang4(e) {
         input.lang4 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang4("LANG_V4")
+        if (e.target.checked===true){
+            input.lang4input = "LANG_V4"
         }else {
-            setlang4('')
+            input.lang4input = ''
         }
-        console.log(lang4)
+        console.log(input.lang4input)
     }
-
-    const [lang5,setlang5] = useState('')
     function changemlang5(e) {
         input.lang5 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang5("LANG_V5")
+        if (e.target.checked===true){
+            input.lang5input = "LANG_V5"
         }else {
-            setlang5('')
+            input.lang5input = ''
         }
-        console.log(lang5)
+        console.log(input.lang5input)
     }
-
-    const [lang6,setlang6] = useState('')
     function changemlang6(e) {
         input.lang6 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang6("LANG_V6")
+        if (e.target.checked===true){
+            input.lang6input = "LANG_V6"
         }else {
-            setlang6('')
+            input.lang6input = ''
         }
-        console.log(lang6)
+        console.log(input.lang6input)
     }
-
-    const [lang7,setlang7] = useState('')
     function changemlang7(e) {
         input.lang7 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked === false){
-            setlang7("LANG_V7")
+        if (e.target.checked === true){
+            input.lang7input = "LANG_V7"
         }else {
-            setlang7('')
+            input.lang7input = ''
         }
-        console.log(lang7)
+        console.log(input.lang7input)
     }
-
-    const [lang8,setlang8] = useState('')
     function changemlang8(e) {
         input.lang8 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang8("LANG_V8")
+        if (e.target.checked===true){
+            input.lang8input = "LANG_V8"
         }else {
-            setlang8('')
+            input.lang8input = ''
         }
-        console.log(lang8)
+        console.log(input.lang8input)
     }
-
-    const [lang9,setlang9] = useState('')
     function changemlang9(e) {
         input.lang9 = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setlang9("LANG_V9")
+        if (e.target.checked===true){
+            input.lang9input = "LANG_V9"
         }else {
-            setlang9('')
+            input.lang9input = ""
         }
-        console.log(lang9)
+        console.log(input.lang9input)
     }
-
-    const [mijozqoshish,setmijozqoshish] = useState('')
     function changemijozqoshish(e) {
         input.mijozqoshish = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setmijozqoshish("CUSTOMER_ADD")
+        if (e.target.checked===true){
+            input.mijozqoshishinput = "ADD_CUSTOMER"
         }else {
-            setmijozqoshish('')
+            input.mijozqoshishinput = ""
         }
-        console.log(mijozqoshish)
+        console.log(input.mijozqoshishinput)
     }
-
-    const [mijoztaxrirlash,setmijoztaxrirlash] = useState('')
     function changemijoztaxrirlash(e) {
         input.mijoztaxrirlash = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setmijoztaxrirlash("EDIT_CUSTOMER")
+        if (e.target.checked===true){
+            input.mijoztaxrirlashinput = "EDIT_CUSTOMER"
         }else {
-            setmijoztaxrirlash('')
+            input.mijoztaxrirlashinput = ""
         }
-        console.log(mijoztaxrirlash)
+        console.log(input.mijoztaxrirlashinput)
     }
-
-    const [deletmijoz,setdeletemijoz] = useState('')
     function changemijozochrish(e) {
         input.mijozochirish = e.target.checked
         let a = {...input}
         setInput(a)
-        if (e.target.checked===false){
-            setdeletemijoz("DELETE_CUSTOMER")
+        if (e.target.checked===true){
+            input.mijozochirishinput = "DELETE_CUSTOMER"
         }else {
-            setdeletemijoz('')
+            input.mijozochirishinput = ""
         }
-        console.log(deletmijoz)
+        console.log(input.mijozochirishinput)
     }
 
     function saqla() {
         permission.push(input.xodimkorishinput,input.xodimqoshishinput,input.xodimtaxrirlashinput,input.xodimochirishinput,input.lavozimkorishinput
-        ,)
+        ,input.lavozimqoshishinput,input.lavozimtaxrirlashinput,input.lavozimochirishinput,input.lang1input,input.lang2input,input.dillertaxrirlashinput,
+            input.dillerochirishinput,input.dillerqoshishinput,input.lang3input,input.lang4input,input.lang5input,input.lang6input,input.lang7input,input.lang8input,
+            input.lang9input,input.mijoztaxrirlashinput,input.mijozqoshishinput,input.mijozochirishinput)
+        // permission.push(input.xodimkorishinput,input.xodimqoshishinput,input.xodimtaxrirlashinput)
         let a = {...permission}
         setpermission(a)
         console.log(permission);
+
+
         saveLavozim(
             {
                 name: input.name,
                 permissions: permission,
-            description:null,
-            businessId:parseInt(users.businessId)
+            description:"ol",
         }
         )
         getLavozim(users.businessId)

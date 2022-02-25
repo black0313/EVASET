@@ -15,8 +15,7 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             console.log('saqlandi_lavozim')
-            state.lavozimlar.unshift(action.payload)
-            console.log(action.payload)
+
             state.current=0
             // toast.success('Saqlandi')
         },
