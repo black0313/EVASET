@@ -1,0 +1,31 @@
+.l1 label{
+    margin-left: 10px;
+    font-size: 18px;
+}
+.li input{
+    width: 30px;
+    height: 30px;
+    margin: 20px;
+}
+.ikki{
+    /* margin-left: 4%; */
+}
+.l1{
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin: 20px;
+    /* padding: 1rem; */
+}
+
+@media (max-width: 425.9px){
+    .l1 label{
+        margin-left: 4px;
+        font-size: 14px;
+    }
+}
+@media (min-width: 426px) and (max-width: 600px){
+    .l1 label{
+        margin-left: 4px;
+        font-size: 14px;
+    }
+}

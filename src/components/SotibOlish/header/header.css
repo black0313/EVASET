@@ -1,0 +1,116 @@
+.headerBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFF;
+    border: 1px solid #E3E6EB;
+    padding: 0px 32px 0px 24px;
+    }
+.headerBox .dashbortButton .im1{
+    cursor: pointer;
+}    
+.headerBox .two{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.headerBox .two .img2img3 .im2{
+    width: 18px;
+    height: 20px;
+    cursor: pointer;
+}
+.headerBox .two .img2img3 .notificBox{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 27px;
+    cursor: pointer;
+}
+.headerBox .two .img2img3 .notificatNum{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 11px;
+    top: -3px;
+    background: #EE5D50;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: #FFFF;
+}
+.headerBox .two .img2img3 .notificatNum p{
+    font-size: 10px;
+}
+
+.headerBox .two .img2img3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerBox .two .imgUserBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 16px;
+}
+.headerBox .two .imgUserBox select{
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+.headerBox .two .imgUserBox .imgUser{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: gray;
+    margin: 12px 4px 12px 0px;
+}
+
+/* .row .one img{
+    cursor: pointer;
+    margin-top: 2%;
+} */
+hr{
+    margin-top: 5%;
+}
+.d{
+    width: 100%;
+    height: 50px;
+    top: 0;
+    align-items: center;
+}
+.headerBox .two .img2img3 .notificBox .im3{
+    margin-right: 24px;
+}
+hr{
+    margin-top: 51%;
+}
+.padding-10{
+    padding: 0 10px !important;
+}
+.homepage2 .padding-10{
+    padding: 0 1.2rem !important;
+}
+@media  (max-width:425.9px) {
+    .headerBox .two .img2img3 .im2{
+        display: none;
+    } 
+}
+
+@media (min-width: 426px) and (max-width: 768.9px) {
+    .headerBox .two .img2img3 .im2{
+        display: none;
+    } 
+}
+
+@media screen and (max-width: 768px) {
+    .headerBox .two .img2img3 .im2{
+        display: none;
+    }
+}

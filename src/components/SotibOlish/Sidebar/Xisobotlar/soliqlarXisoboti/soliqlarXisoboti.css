@@ -1,0 +1,67 @@
+.rowStyleSoliq{
+    border-radius: 8px;
+    padding: 20px 30px 20px 30px;
+    background-color: #FFFFFF;
+    /*box-shadow: 0px 10px 20px grey;*/
+}
+.textHeaderSoliq{
+    display: flex;
+    align-items: baseline;
+}
+.textHeaderSoliq h2{
+    margin-right: 10px;
+    font-size: 24px;
+}
+.rowStyleSoliq select{
+    width: 100%;
+    height: 32px;
+    background-color:#F5F5F7;
+    padding-left: 4px;
+    font-size: 14px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.rowStyleSSS{
+    justify-content: space-between;
+    border-radius: 8px;
+    padding: 20px 30px 20px 30px;
+    box-shadow: 0px 10px 20px grey;
+    background-color: #FFFF;
+    margin-top: 32px;
+}
+
+.textHeaderSoliq{
+    display: flex;
+    align-items: baseline;
+}
+.textHeaderSoliq h2{
+    margin-right: 10px;
+    font-size: 24px;
+
+}
+
+.rowStyleSSS .sahifalar{
+    display: flex;
+    justify-content: end;
+}
+.rowStyleSSS .sahifalar :first-child{
+    border-radius: 4px 0px 0px 4px;
+    border: 1px solid #6b6363a0;
+}
+.rowStyleSSS .sahifalar button{
+    border: 1px solid #6b6363a0;
+    background-color: #FFFF;
+    color:#1f1c1ca0;
+}
+.sahifalar :last-child{
+  border-radius: 0px 4px 4px 0px;
+  
+}
+@media (max-width: 560px){
+    .textHeaderSoliq{
+        display: block;
+    }
+}

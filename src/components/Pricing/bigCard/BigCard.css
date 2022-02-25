@@ -1,0 +1,23 @@
+.row .card{
+    padding: 2rem;
+}
+
+.row .price{
+    display: flex;
+    align-items: flex-end;
+
+}
+.row .card .ch{
+    display: flex;
+    align-items: center;
+}
+@media (min-width: 769px) and (max-width:1024px){
+    .row .card{
+        padding: 1rem;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1199.9px){
+    .card p{
+        font-size: 12px;
+    }
+}

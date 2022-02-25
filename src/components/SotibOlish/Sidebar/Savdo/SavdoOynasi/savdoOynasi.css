@@ -1,0 +1,156 @@
+.colorbackj{
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 26px;
+}
+.colorbackj .navBlock .navBox1 select{
+    background: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 218px;
+    height: 30px;
+}
+.colorbackj .block2 .brendBox select{
+    background: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 218px;
+    height: 30px;
+} 
+.colorbackj .block2 .mahsulotBox img{
+    width: 20px;
+    height: 20px;
+}
+.colorbackj .block2 .mahsulotBox{
+    background: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 218px;
+    height: 30px;
+}
+.colorbackj .block2 .mahsulotBox input{
+    border: none;
+    padding: 2px;
+}
+
+
+.colorbackj .navBlock{
+   display: flex;
+   justify-content: space-between;
+   padding: 8px 0px 8px 0px;
+}
+.colorbackj .navBlock .navBox2{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+
+}
+.colorbackj .navBlock .navBox2 img{
+    margin: 0px 2px 0px 2px;
+}
+.colorbackj .navBlock .navBox1{
+    display: flex;
+    align-items: center;
+}
+.colorbackj .block2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.colorbackj .chegirmaBox{
+    display: flex;
+    justify-content: space-around;
+}
+.colorbackj .btnBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+
+@media (max-width: 425.9px ){
+    .colorbackj .navBlock{
+        display: block;
+    }
+    .colorbackj .navBlock .navBox1{
+        display: block;
+
+    }
+    .colorbackj .navBlock .navBox2{
+        width: 100%;
+        margin-top: 20px;
+    }
+    .colorbackj .block2{
+        display: block;
+        margin: 20px 0px 20px 0px;
+    }
+    .colorbackj .block2 .brendBox{
+        display: block;
+        margin: 20px 0px 20px 0px;
+    }
+    .colorbackj .chegirmaBox{
+        display: block;
+    }
+    .colorbackj .btnBox{
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 70%;
+        grid-gap: 10px;
+    }
+}
+
+@media (min-width:426px) and (max-width: 768.9px ){
+    .colorbackj .navBlock{
+        display: block;
+    }
+    .colorbackj .navBlock .navBox1{
+        display: block;
+
+    }
+    .colorbackj .navBlock .navBox2{
+        width: 100%;
+        margin-top: 20px;
+    }
+    .colorbackj .block2{
+        display: block;
+        margin: 20px 0px 20px 0px;
+    }
+    .colorbackj .block2 .brendBox{
+        display: block;
+        margin: 20px 0px 20px 0px;
+    }
+    .colorbackj .chegirmaBox{
+        display: block;
+    }
+    .colorbackj .btnBox{
+        display: grid;
+        justify-content: center;
+        grid-template-columns:40% 40%;
+        grid-gap: 10px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024.9px){
+    .colorbackj .navBlock .navBox2{
+        width: 46%;
+    
+    }
+    .colorbackj .btnBox{
+        display: grid;
+        justify-content: center;
+        grid-template-columns:30% 30% 30%;
+        grid-gap: 10px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1199px){
+    .colorbackj .btnBox{
+        display: grid;
+        justify-content: center;
+        grid-template-columns:20% 20% 20% 20%;
+        grid-gap: 10px;
+    }
+}

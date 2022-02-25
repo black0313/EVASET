@@ -1,0 +1,11 @@
+.divvv{
+    /*display: block;*/
+    margin-top: 24px;
+}
+.divvv .btns{
+    display: flex;
+    align-items: center;
+    /*border: 1px solid red;*/
+    justify-content: space-between;
+    width: 100%;
+}

@@ -1,0 +1,45 @@
+.h h6 {
+    margin-left: 10px;
+    cursor: pointer;
+    transition: 0.2s linear;
+    margin-top: 2%;
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    color: #3A3C40;
+}
+
+li{
+    list-style: disc;
+    /*border: 1px solid red;*/
+    margin-top: 5px;
+}
+.h .imgDiv{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+.h .imgDiv .right{
+    margin-left: 30%;
+}
+.right2{
+    transform: rotate(90deg);
+}
+.h .ul li{
+    color: black;
+    width: 80%;
+}
+.h .imgDiv img{
+    margin-left: 3px;
+}
+
+/*.fff{*/
+/*    transition: 1s all;*/
+/*}*/
+/*.fff:active{*/
+/*    transition: 1s all;*/
+/*    background: #0A58CA;*/
+/*}*/

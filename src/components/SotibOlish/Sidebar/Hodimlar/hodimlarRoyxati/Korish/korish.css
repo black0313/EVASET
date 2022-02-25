@@ -1,0 +1,62 @@
+.containerKorish{
+    background-color: #FFFFFF;
+    margin: 50px 16px;
+    border-radius: 8px;
+    padding: 32px 26px;
+
+}
+.containerKorish .headerBoxK{
+    display: flex;
+    justify-content: space-between;
+}
+.containerKorish .headerBoxK select{
+    border-radius: 4px;
+    width: 120px;
+}
+.containerKorish .bodyBox{
+    display: flex;
+}
+.containerKorish .bodyBox .userCardK{
+    /* width: 20%; */
+}
+.containerKorish .bodyBox .buttonBlockk{
+    width: 80%;
+    padding: 0px 24px;
+}
+.containerKorish .userCardK .card .imgUser2{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgb(236, 227, 227);
+}
+.containerKorish .card .card-header{
+    background-color: #FFFFFF;
+}
+.containerKorish .card .bCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+@media (max-width: 425.9px){
+    .containerKorish .bodyBox{
+        display: block;
+
+    }
+    .containerKorish .bodyBox .buttonBlockk{
+        width: 100%;
+        padding: 0px 12px;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 929.9px){
+    .containerKorish .bodyBox{
+        display: block;
+
+    }
+    .containerKorish .bodyBox .buttonBlockk{
+        width: 100%;
+        padding: 0px 12px;
+    }
+}

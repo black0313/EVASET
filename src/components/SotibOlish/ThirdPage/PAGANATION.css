@@ -1,0 +1,263 @@
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginationItem {
+    background: #fff;
+    border: 1px solid #82868C;
+    border-radius: 4px;
+    padding: 5px;
+    height: 35px;
+    width: 35px;
+    position: relative;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #82868C;
+}
+
+.paginationItem span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+    background: #fff;
+    border: 1px solid #82868C;
+    border-radius: 4px;
+    padding: 5px;
+    width: 45px;
+    height: 35px;
+    color: #0044FF;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.paginationItem.active {
+    border: 1px solid #0044FF;
+    background-color: #0044FF;
+    color: #ffffff;
+    pointer-events: none;
+    margin: 0 !important;
+}
+
+.prev.disabled,
+.next.disabled {
+    pointer-events: none;
+    box-shadow: none;
+    color: #82868C;
+
+}
+.pagination-img{
+
+}
+td{
+   font-size: 14px;
+}
+th{
+    font-size: 16px;
+}
+@media screen and (max-width: 425.9px){
+    td{
+        font-size: 10px;
+    }
+    th{
+        font-size: 10px;
+    }
+    .pagination-img{
+
+    }
+    .thead-padding-left{
+
+    }
+    .table{
+        width: 250% !important;
+    }
+    .table2{
+        width: 160% !important;
+    }
+    .table3{
+        width: 400% !important;
+    }
+    .paginationItem{
+        padding:5px;
+        width: 25px;
+        height: 25px;
+    }
+    .prev ,.next{
+        padding: 5px;
+        width: 30px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+}
+@media (min-width: 426px) and (max-width: 500.9px) {
+
+    .table {
+        width: 250% !important;
+    }
+
+    .table2 {
+        width: 160% !important;
+    }
+
+    .table3 {
+        width: 400% !important;
+    }
+
+    .prev, .next {
+        padding: 5px;
+        width: 30px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .paginationItem {
+        padding: 5px;
+        width: 25px;
+        height: 25px;
+    }
+
+}
+    @media (min-width: 501px) and (max-width: 767.9px){
+
+        .table{
+            width: 150% !important;
+        }
+        .table2{
+            width: 100% !important;
+        }
+        .table3{
+            width: 320% !important;
+        }
+        .prev ,.next{
+            padding: 5px;
+            width: 40px;
+            height: 30px;
+            font-size: 12px;
+        }
+        .paginationItem{
+            padding:5px;
+            width: 30px;
+            height: 30px;
+        }
+    }
+@media (min-width: 426px) and (max-width: 499.9px) {
+
+    .table {
+        width: 250% !important;
+    }
+
+    .table2 {
+        width: 160% !important;
+    }
+
+    .table3 {
+        width: 400% !important;
+    }
+
+    .prev, .next {
+        padding: 5px;
+        width: 30px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .paginationItem {
+        padding: 5px;
+        width: 25px;
+        height: 25px;
+    }
+
+}
+    @media (min-width: 500px) and (max-width: 767.9px){
+
+        .table{
+            width: 160% !important;
+        }
+        .table2{
+            width: 120% !important;
+        }
+        .table3{
+            width: 320% !important;
+        }
+        .prev ,.next{
+            padding: 5px;
+            width: 40px;
+            height: 30px;
+            font-size: 12px;
+        }
+        .paginationItem{
+            padding:5px;
+            width: 30px;
+            height: 30px;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 1023.9px){
+
+
+
+        .table3{
+            width: 200% !important;
+        }
+        .prev ,.next{
+            padding: 5px;
+            width: 42px;
+            height: 32px;
+            font-size: 14px;
+        }
+        .paginationItem{
+            padding:5px;
+            width: 32px;
+            height: 32px;
+        }
+    }
+    @media (min-width: 1024px) and (max-width: 1279.9px){
+
+
+        .homepage2 td{
+            font-size: 13px;
+        }
+        .homepage2 th{
+            font-size: 14px;
+        }
+        .prev ,.next{
+            padding: 5px;
+            width: 42px;
+            height: 32px;
+            font-size: 14px;
+        }
+        .paginationItem{
+            padding:5px;
+            width: 32px;
+            height: 32px;
+        }
+    }
+    @media (min-width: 1281px) and (max-width: 2000px){
+
+
+        .homepage2 td{
+            font-size: 13px;
+        }
+        .homepage2 th{
+            font-size: 14px;
+        }
+        .prev ,.next{
+            padding: 5px;
+            width: 42px;
+            height: 32px;
+            font-size: 14px;
+        }
+        .paginationItem{
+            padding:5px;
+            width: 32px;
+            height: 32px;
+        }
+    }
+

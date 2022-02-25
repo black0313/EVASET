@@ -1,0 +1,32 @@
+.haridlar .imgDiv{
+    display: flex;
+    margin-left: 0;
+    margin-top: 15px;
+    align-items: center;
+}
+.haridlar h6{
+    margin-left: 10px;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+.haridlar h6:hover{
+    margin-left: 10px;
+    cursor: pointer;
+    /*border-bottom: 2px solid gray;*/
+    color: #0044FF;
+}
+.haridlar .haridImg{
+    cursor: pointer;
+    margin-left: 37%;
+}
+.haridlar ul li{
+    margin-top: 5px;
+}
+.haridlar ul{
+    display: block;
+    margin-left: 15%;
+}
+.haridlar .haridClass{
+    text-decoration: none;
+    color: #3f3c3c;
+}

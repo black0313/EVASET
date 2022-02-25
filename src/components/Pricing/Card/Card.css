@@ -1,0 +1,51 @@
+.row .card .price{
+    display: flex;
+    align-items: flex-end;
+}
+.row .card .ch{
+    display: flex;
+    align-items: center;
+    line-height: 2px;
+    margin-top: 5%;
+}
+.row .card .ch p{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+.card{
+    padding: 2rem;
+    margin-top: 30%;
+    /* margin-left: -10%; */
+}
+.row .card .price p{
+    margin-left: 5%;
+    line-height: 2px;
+    margin-top: 3%;
+}
+@media (max-width: 425.9px){
+    .row .card p{
+        font-size: 12px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024.9px){
+    .card p{
+        font-size: 12px;
+
+    }
+    .row .card{
+        padding: 0px;
+        margin-top: 30%;
+    }
+    .card{
+        padding: 0px;
+    }
+    .row .card h4{
+        font-size: 18px;
+    }
+
+}
+@media (min-width: 1025px) and (max-width: 1199.9px){
+    .card p{
+        font-size: 14px;
+    }
+}

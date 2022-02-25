@@ -1,0 +1,11 @@
+.dukonCont{
+    background-color: #FFFFFF;
+    padding: 32px;
+    border-radius: 8px;
+}
+@media (max-width: 425.9px){
+    .dukonCont{
+        padding: 24px;
+        width: 100%;
+    }
+}

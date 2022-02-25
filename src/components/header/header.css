@@ -1,0 +1,135 @@
+.header-narx{
+    width: 40%;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    justify-content: space-between;
+}
+
+.colorback {
+    background: #FFFFFF;
+    border: 1px solid #E3E6EB;
+    box-sizing: border-box;
+    border-radius: 8px
+}
+.header-menu a{
+    font-family: "Montserrat",sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+}
+.header-narx select{
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.header-narx button{
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 6px 24px;
+    font-family: "Montserrat" ,sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid  #0044FF ;
+    text-align: center;
+}
+.header__ .image__{
+    align-items: center;
+    display: flex;
+}
+
+.header__ .image__ img{
+    width: 188px;
+    height: 40px;
+}
+
+.header__{
+    background-color: #ffffff;
+    position: fixed;
+    z-index: 10000;
+    padding: 28px 135px 28px 135px;
+    width: 100%;
+}
+.homebody{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media (max-width: 425.9px) {
+    .header__{
+        padding: 24px 16px 0px 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .header__ .homebody{
+        display: block;
+    }
+    .header__ .homebody .header-narx{
+        width: 100%;
+    }
+    .header__ .homebody .header-narx select{
+       font-size: 14px;
+       background-color: transparent;
+    }
+    .header__ .homebody .header-narx button{
+        background: #FFFFFF;
+        border-radius: 4px;
+        padding: 0px;
+        font-family: "Montserrat" ,sans-serif;
+        font-size: 12px;
+        display: flex;
+        padding: 4px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #0044FF ;
+        color: #0044FF;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768.9px){
+    .header__{
+        padding: 28px 4% 28px 4%;
+    }
+    .header__ .homebody .header-narx{
+        width: 50%;
+    }
+    .header__ .homebody .header-narx a{
+        font-size: 12px;
+    }
+    .header__ .homebody .header-narx select{
+        font-size: 12px;
+        background-color: transparent;
+    }
+    .header__ .homebody .header-narx button{
+        font-size: 12px;
+        padding: 4px;
+    }
+    .header__ .homebody .image__ a img{
+        width: 80%;
+        height: 80%;
+    }
+    
+
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px){
+    .header__{
+        padding: 28px 5% 28px 5% ;
+    }
+}
+    

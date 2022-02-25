@@ -1,0 +1,82 @@
+.rowStyleM{
+       border-radius: 8px;
+       padding: 20px 30px 20px 30px;
+       background-color: #FFFFFF;
+       /*box-shadow: 0px 10px 20px grey;*/
+}
+.rowStyleM .cont input{
+       border: 1px solid grey;
+}
+.rowStyleM .obuna input{
+       background-color: royalblue;
+       width: 20px;
+}
+.rowStyleM .obuna input:hover{
+       cursor: pointer;
+}
+.textHeader{
+       display: flex;
+       align-items: baseline;
+}
+
+.rowStyleM select{
+       width: 100%;
+       height: 32px;
+       background-color:#F5F5F7;
+       padding-left: 4px;
+       font-size: 14px;
+       margin-bottom: 30px;
+}
+.rowStyleM .sana input{
+       border: 1px solid grey;
+       margin-bottom: 32px;
+}
+.rowStyleM select{
+       width: 100%;
+       height: 32px;
+       background-color:#F5F5F7;
+}
+.rowStyleM select:hover{
+       cursor: pointer;
+}
+
+.rowStyle1{
+       justify-content: space-between;
+       border-radius: 8px;
+       padding: 20px 30px 20px 30px;
+       box-shadow: 0px 10px 20px grey;
+       background-color: #FFFF;
+       margin-top: 32px;
+}
+.rowStyle1 input{
+       border: 1px solid grey;
+       height: 32px;
+       background-color: #F5F5F7;
+       padding-left: 4px;
+       width: 100%;
+       font-size: 14px;
+}
+.rowStyle1 .searchIcon{
+       display: flex;
+}
+.rowStyle1 .searchIcon .iconca{
+       border: 1px solid grey;
+       width: 40px;
+       height: 32px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+}
+.rowStyle1 .searchIcon .iconca img{
+       width: 16px;
+       height: 16px;
+}
+.textHeader{
+       display: flex;
+       align-items: baseline;
+}
+.rowStyle1 .saqlash{
+      display: flex;
+      justify-content: end;
+      padding-top: 60px;
+}
