@@ -558,11 +558,11 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
             <div className="col-md-12">
                 <div className="row justify-content-center ">
                     <div className="l1 p-4 mt-5 col-sm-10 col-md-7 col-5 border">
-                        {console.log(match.params.id)}
+                        {/*{console.log(match.params.id)}*/}
                         <div>
-                            {
-                                console.log(input)
-                            }
+                            {/*{*/}
+                            {/*    console.log(input)*/}
+                            {/*}*/}
                             <label htmlFor={'l'}>Lavozim nomi</label>
                             <input type="text" className={'form-control mt-2'} value={input.name} onChange={changename}
                                    placeholder={'Lavozim nomi'}/>

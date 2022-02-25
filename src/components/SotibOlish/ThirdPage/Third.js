@@ -22,9 +22,7 @@ import Pagination2 from "./pagination2";
 import Pagination3 from "./pagination3";
 import Pagination4 from "./Pagination4";
 
-
 function Third({display}) {
-
 
     const [third, setThird] = useState('')
     const chartOptions = {
@@ -154,7 +152,7 @@ function Third({display}) {
             number: "2 400 000 so'm",
             foiz: "+10.23%",
             text: 'JAMI XARIDLAR',
-            svg: <img  className={'imgsvg'} src={shopping} alt={'shopping'}/>,
+            svg: <img className={'imgsvg'} src={shopping} alt={'shopping'}/>,
             svgfoiz: <img src={jami1} alt={'jami1'}/>
         },
         {
@@ -168,7 +166,7 @@ function Third({display}) {
             number: "2 400 000 so'm",
             foiz: "+10.23%",
             text: 'BOZORDAN QARZIM',
-            svg: <img  className={'imgsvg'} src={bozordanqarz} alt={'bozordanqarz'}/>,
+            svg: <img className={'imgsvg'} src={bozordanqarz} alt={'bozordanqarz'}/>,
             svgfoiz: <img src={jami3} alt={'jami3'}/>
         },
         {
@@ -186,7 +184,6 @@ function Third({display}) {
             setThird('third2')
         } else {
             setThird('')
-
         }
     }
 
@@ -247,7 +244,8 @@ function Third({display}) {
                 <div className="row p-0 mb-3 d-flex justify-content-between justify-content-sm-around jami">
                     {
                         jami.map((item, index) =>
-                            <div key={index} className="col-3 col-sm-12  col-md-6 cardd-2 d-flex justify-content-center margin">
+                            <div key={item.id}
+                                 className="col-3 col-sm-12  col-md-6 cardd-2 d-flex justify-content-center margin">
                                 <div className={'p-2'}>
                                     <div className="row p-0 colorback">
                                         <div className="col-12 margin">
@@ -294,8 +292,9 @@ function Third({display}) {
                     <div className="col-6 col-sm-12 pt-md-4 pt-sm-4 ps-md-4 ps-sm-2">
                         <h3 className={'diagramm-text'}>30 kunlik savdo statistikasi (so'm)</h3>
                     </div>
-                    <div className="col-4 d-sm-flex   col-sm-12  pt-md-3 p-md-4 p-sm-1 offset-md-2 justify-content-md-end offset-sm-0">
-                        <div className="row p-0 align-items-center  ">
+                    <div
+                        className="col-4 d-sm-flex   col-sm-12  pt-md-3 p-md-4 p-sm-1 offset-md-2 justify-content-md-end offset-sm-0">
+                        <div className="row p-0 align-items-center">
                             <div className="col-12 pe-3 d-flex justify-content-md-end justify-content-center">
                                 <div className={'selects-style me-sm-4'}>
                                     <select className={'selects'} form={'select'} id="select">
@@ -313,22 +312,18 @@ function Third({display}) {
                     <div className="col-12">
                     </div>
                     <div className="row justify-content-between text-end ps-4 table-responsive">
-
-
                         <Chart
                             options={chartOptions.options}
                             series={chartOptions.series}
                             type={'line'}
-                            height={windowscrenn*0.40}
+                            height={windowscrenn * 0.40}
                         />
-
                     </div>
-
                 </div>
                 <div className="row p-0 p-sm-2 p mb-3 diagramm d-flex justify-content-between">
                     {
                         shophistory.map((item, index) =>
-                            <div key={index} className="col-4 col-sm-12 col-md-12 cardd-3 spandiagram1 margin">
+                            <div key={item.id} className="col-4 col-sm-12 col-md-12 cardd-3 spandiagram1 margin">
                                 <div className={'p-md-2 p-sm-4'}>
                                     <div className="row   p-0 pe-3 colorback  rounded-3">
                                         <div className="col-6 col-sm-12 pt-3 ps-4">
@@ -355,7 +350,8 @@ function Third({display}) {
                                             <h4 className={'p-sm-0 m-sm-0'}>{item.jami}</h4>
                                             <p>{item.text}</p>
                                         </div>
-                                        <div className="col-4 col-sm-5 col-md-5 mb-5 offset-md-1 offset-lg-2  pt-sm-4 d-flex align-items-center justify-content-end">
+                                        <div
+                                            className="col-4 col-sm-5 col-md-5 mb-5 offset-md-1 offset-lg-2  pt-sm-4 d-flex align-items-center justify-content-end">
                                             {item.svg}
                                             <p className={'foizp'}>{item.foiz}</p>
                                         </div>
@@ -365,7 +361,7 @@ function Third({display}) {
 
                                                 {
                                                     diagramma.map((item, index) =>
-                                                        <div key={index} className={'col-1 spandiagram'}>
+                                                        <div key={item.id} className={'col-1 spandiagram'}>
                                                             {item.span2}
                                                             {item.span}
                                                             <p className={'fs-6 text-center'}>{item.week}</p>
@@ -374,7 +370,6 @@ function Third({display}) {
                                             </div>
                                         </div>
                                     </div>
-
 
                                 </div>
                             </div>)
@@ -417,13 +412,9 @@ function Third({display}) {
                                     <h4>Jami Summa:</h4>
                                     <p>50 352 000 so'm</p>
                                 </div>
-
                             </div>
-
-
                         </div>
                     </div>
-
 
                 </div>
                 <div className="row p-0 mb-3 d-flex justify-content-between">
@@ -435,7 +426,8 @@ function Third({display}) {
                                 </div>
                                 <div className="col-5 col-sm-11 col-md-12 col-mdd-3 pt-3 ps-3 offset-md-1 offset-lg-0">
                                     <div className="row p-0 align-items-center">
-                                        <div className="col-12 d-flex justify-content-end justify-content-center justify-content-md-end">
+                                        <div
+                                            className="col-12 d-flex justify-content-end justify-content-center justify-content-md-end">
                                             <div className={'selects-style'}>
                                                 <select className={'selects '} name="" id="">
                                                     <option value="1">Ushbu oy</option>
@@ -462,7 +454,8 @@ function Third({display}) {
                                 <div className=" col-sm-10 col-md-10 col-mdd-8 col-lg-8 pt-md-3 ps-md-3 pt-sm-2">
                                     <h3 className={'diagramm-text-one text-one pt-sm-2'}>Oz qolgan mahsulotlar</h3>
                                 </div>
-                                <div className=" col-sm-1 col-md-1 col-mdd-3 pt-md-3 col-lg-3 ps-md-3 offset-md-1 offset-lg-0">
+                                <div
+                                    className=" col-sm-1 col-md-1 col-mdd-3 pt-md-3 col-lg-3 ps-md-3 offset-md-1 offset-lg-0">
                                     <div className="row p-0 align-items-center">
                                         <div className="col-12 d-flex justify-content-end">
                                             <div className={'btn-nuqta'}>

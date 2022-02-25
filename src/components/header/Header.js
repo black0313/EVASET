@@ -8,14 +8,14 @@ function Header() {
             <div className={'header__ '}>
                 <div className="homebody">
                     <div className="image__ ">
-                        <a href="#"><img src={Logo} alt=""/></a>
+                        <a href=""><img src={Logo} alt=""/></a>
                     </div>
                     <div className="header-narx">
-                            <a href="#">Narxlar</a>
+                            <a href="Narxlar">Narxlar</a>
                             <select name="" id="" >
-                                <option value="#">Uzbekcha</option>
-                                <option value="#">Rus</option>
-                                <option value="#">English</option>
+                                <option value="uzb">Uzbekcha</option>
+                                <option value="rus">Rus</option>
+                                <option value="eng">English</option>
                             </select>
                             <button>Sotib olish</button>
                     </div>
