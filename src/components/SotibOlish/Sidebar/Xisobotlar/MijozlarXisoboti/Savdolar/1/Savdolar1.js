@@ -13,7 +13,7 @@ import {connect} from "react-redux";
 import SavdoQoshishReducer, { getSavdolar} from "../../../../Savdo/reducer/SavdoQoshishReducer";
 import XarajatlarReducer, {getXarajatlar} from "../../../../Xarajatlar/reducer/XarajatlarReducer";
 
-function Savdolar1({SavdoQoshishReducer,getMijozGurux,XarajatlarReducer,getSavdolar}){
+function Savdolar1({SavdoQoshishReducer,getMijozGurux,XarajatlarReducer,getSavdolar,users}){
 
     useEffect(()=>{
        getSavdolar()

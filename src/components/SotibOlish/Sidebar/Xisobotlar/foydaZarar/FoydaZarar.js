@@ -6,11 +6,12 @@ import MaxsulotlarRoyxariReducer, {
        deleteMaxsulotRuyxati,
        getMaxsulotRuyxati
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import users from "../../../../../reducer/users";
 import SavdoOynaReducer, {deleteSavdo, editSavdo, getSavdo, saveSavdo} from "../../Savdo/reducer/SavdoOynaReducer";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 
-function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,deleteFoydaZarar,foydazarar}) {
+function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,deleteFoydaZarar,foydazarar,users}) {
 
        const [input,setInput] = useState(
            {
@@ -48,7 +49,7 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,dele
        }
        useEffect(()=>{
               getFoydaZarar()
-              getMaxsulotRuyxati()
+              getMaxsulotRuyxati(users.businessId)
        },[])
 
 
@@ -119,4 +120,4 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,dele
        )
 }
 // export default connect(({FoydaZararReducer:{foydazarar}})=>({foydazarar}),{getFoydaZarar,saveFoydaZarar,editFoydaZarar,deleteFoydaZarar}) (FoydaZarar)
-export default connect((MaxsulotlarRoyxariReducer,FoydaZararReducer),{getFoydaZarar,saveFoydaZarar,editFoydaZarar,deleteFoydaZarar,getMaxsulotRuyxati,deleteMaxsulotRuyxati}) (FoydaZarar)
+export default connect((MaxsulotlarRoyxariReducer,FoydaZararReducer,users),{getFoydaZarar,saveFoydaZarar,editFoydaZarar,deleteFoydaZarar,getMaxsulotRuyxati,deleteMaxsulotRuyxati}) (FoydaZarar)
