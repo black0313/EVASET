@@ -436,8 +436,8 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
         let c = {...input}
         setInput(c)
         for (let i = 0; i < a.length - 1; i++) {
-            console.log(a[i])
-            switch (a[i]) {
+                 console.log(a[i])
+                 switch (a[i]) {
                 case 'ADD_USER' :
                     input.xodimqoshish = true
                     let a = {...input}

@@ -21,13 +21,16 @@ import users from "../../../reducer/users";
 function Sidebar({functionreducer,active,users}) {
 
     useEffect(()=>{
-        // permission()
+        permission()
     },[])
     function sidebaractive(){
 
     }
 
-    const [adduser,setadduser]=useState(true)
+    const [adduser,setadduser]=useState(false);
+    const [addrole,setaddrole]=useState(false);
+    const [addsupplier,setaddsupplier]=useState(false);
+    const [addcustomer,setaddcustomer]=useState(false);
 
     function permission(){
         console.log(users.users.role.permissions)
@@ -36,6 +39,17 @@ function Sidebar({functionreducer,active,users}) {
                 case "ADD_USER":;
                 setadduser(true)
                     break;
+                case "ADD_ROLE":;
+                setaddrole(true)
+                    break;
+                case "ADD_SUPPLIER":;
+                setaddsupplier(true)
+                    break; 
+                case "ADD_CUSTOMER":;
+                setaddcustomer(true)
+                    break;       
+                
+                
             }
         })
     }
@@ -63,10 +77,12 @@ function Sidebar({functionreducer,active,users}) {
                         </div>
 
                         {
-                           adduser ?  <Hodimlar/> :''
+                            adduser && addrole ?  <Hodimlar/> :''
                         }
-
-                        <Hamkorlar/>
+                        {
+                            addsupplier  ?  <Hamkorlar/> :''
+                        }
+                        
                         <Maxsulotlar/>
                         <Haridlar/>
                         <Savdo/>
