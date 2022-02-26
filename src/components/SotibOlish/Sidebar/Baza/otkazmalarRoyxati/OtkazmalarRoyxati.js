@@ -14,7 +14,7 @@ import {connect} from "react-redux";
 import {useEffect, useState} from "react";
 import {deleteOtkazma, editOtkazma, saveOtkazma, getOtkazma} from "../reducer/OtkazmaReducer";
 
-function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma}) {
+function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma,match}) {
 
     const [input, setInput] = useState(
         {

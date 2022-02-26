@@ -5,7 +5,8 @@ import {apiCall} from "../../../../../api";
 const slice = createSlice({
     name: 'xaridlar',
     initialState: {
-        xaridlar: []
+        xaridlar: [],
+        current:false
     },
     reducers: {
         getFrom: (state, action) => {
@@ -13,20 +14,13 @@ const slice = createSlice({
             console.log(action.payload.object);
         },
         savefrom: (state,action) => {
-            state.xaridlar.unshift(action.payload)
-            // toast.success('Saqlandi')
-            console.log('SAQLADNI_XARID');
+            state.current=!state.current
         },
         editfrom: (state,action) => {
-            state.xaridlar.map((item,index)=>{
-                if (item.id === action.payload.id){
-                    item.login = action.payload.login
-                }
-            })
-            // toast.success('O`zgartirildi')
+            state.current=!state.current
         },
         deletefrom:(state,action)=>{
-            // toast.info('O`chirildi')
+            state.current=!state.current
             console.log('Deleted_XArid');
         }
 

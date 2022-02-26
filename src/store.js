@@ -29,9 +29,10 @@ import MaxsulotlarRoyxariReducer from "./components/SotibOlish/Sidebar/Maxsulotl
 import SavdoQoshishReducer from "./components/SotibOlish/Sidebar/Savdo/reducer/SavdoQoshishReducer";
 import branchreducer from "./reducer/branchreducer";
 import kgreducer from "./reducer/kgreducer";
+import tolovreducer from "./reducer/tolovreducer";
 export default configureStore({
     reducer:{
-        users,functionreducer,XodimReducer,LavozimReducer,XodimSavdoReducer,TaminotReducer,
+        users,functionreducer,XodimReducer,LavozimReducer,XodimSavdoReducer,TaminotReducer,tolovreducer,
         MijozGuruxReducer,SotuvNarxiReducer,BolimReducer,FirmaReducer,XaridReducer,SavdoOynaReducer,
         OtkazmaReducer,XarajatlarReducer,XarajatTurlariReducer,FoydaZararReducer,XaridlarXisobotiReducer,
         MijozHisobotiReducer,XarajatXisobotReducer,SavdodagiTulovReducer,MaxsulotxisobotReducer,KopsotilgantovarlarReducer,
