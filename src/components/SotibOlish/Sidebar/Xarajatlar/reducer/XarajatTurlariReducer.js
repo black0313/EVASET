@@ -9,7 +9,7 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
-            state.xarajatturlari = action.payload
+            state.xarajatturlari = action.payload.object
             console.log(action.payload);
         },
         savefrom: (state,action) => {

@@ -108,6 +108,7 @@ function Headerthird() {
                 <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={Yangiotkazma}/>
                 <Route path={'/headerthird/yangiOtkazma'} component={YangiOtkazma}/>
                 <Route path={'/headerthird/xarajatRuyxati'} component={XarajatlarRoyxati}/>
+                <Route path={'/headerthird/xarajatQoshish/:id?'} component={XarajatQoshish}/>
                 <Route path={'/headerthird/xarajatQoshish'} component={XarajatQoshish}/>
                 <Route path={'/headerthird/xarajatTurlari'} component={XarajatTurlari}/>
                 <Route path={'/headerthird/foydaZarar'} component={FoydaZarar}/>
