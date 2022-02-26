@@ -12,6 +12,7 @@ const slice = createSlice({
         getFrom: (state, action) => {
             state.maxsulotlar = action.payload.object
             console.log(action.payload.object);
+            console.log(action.payload)
             console.log("OLIB_KELINDI_MAXSULOT");
         },
         savefrom: (state,action) => {
@@ -40,6 +41,17 @@ export const getMaxsulotRuyxati=(data)=>apiCall({
 
 export const getMaxsulotRuyxati2=(data)=>apiCall({
     url: '/product/get-by-barcode/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
+export const getMaxsulotRuyxati3=(data)=>apiCall({
+    url: '/product/get-by-brand/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+export const getMaxsulotRuyxatiBOLIM=(data)=>apiCall({
+    url: '/product/get-by-category/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

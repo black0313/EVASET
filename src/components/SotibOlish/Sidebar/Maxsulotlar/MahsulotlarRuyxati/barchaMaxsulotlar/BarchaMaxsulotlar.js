@@ -13,13 +13,15 @@ import KorishM from '../Taxrirlash/Korish'
 import {connect} from "react-redux";
 import MaxsulotlarRoyxariReducer, {
     getMaxsulotRuyxati,
+    getMaxsulotRuyxati3,
     saveMaxsulotRuyxati,
     editMaxsulotRuyxati,
     deleteMaxsulotRuyxati
 } from '../../reducer/MaxsulotlarRoyxariReducer'
 import users from "../../../../../../reducer/users";
+import FirmaReducer,{getFirma} from "../../reducer/FirmaReducer";
 
-function BarchaMaxsulotlar({users,getMaxsulotRuyxati, maxsulotlar,MaxsulotlarRoyxariReducer,deleteMaxsulotRuyxati,saveMaxsulotRuyxati}) {
+function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsulotlar,MaxsulotlarRoyxariReducer,deleteMaxsulotRuyxati,saveMaxsulotRuyxati,match}) {
 
     const [input, setInput] = useState(
         {
@@ -63,6 +65,10 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati, maxsulotlar,MaxsulotlarRoy
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
     }, [MaxsulotlarRoyxariReducer.current])
+
+    useEffect(()=>{
+        getFirma(users.businessId)
+    },[])
     return (
         <div>
             <div className="col-md-12">
@@ -164,9 +170,11 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati, maxsulotlar,MaxsulotlarRoy
 }
 
 
-export default connect((MaxsulotlarRoyxariReducer,users), {
+export default connect((MaxsulotlarRoyxariReducer,users,FirmaReducer), {
     getMaxsulotRuyxati,
+    getMaxsulotRuyxati3,
     saveMaxsulotRuyxati,
     deleteMaxsulotRuyxati,
-    editMaxsulotRuyxati
+    editMaxsulotRuyxati,
+    getFirma
 }) (BarchaMaxsulotlar)
