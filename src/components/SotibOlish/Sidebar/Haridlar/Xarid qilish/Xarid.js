@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {ModalBody, ModalHeader, ModalFooter, Modal} from "reactstrap";
 import {connect} from "react-redux";
 import XaridReducer, {getXarid, saveXarid, deleteXarid, editXarid} from '../reducer/XaridReducer'
+import tolovreducer,{gettolovholati} from "../../../../../reducer/tolovreducer";
 import users from "../../../../../reducer/users";
 import {Link} from 'react-router-dom'
 import TaminotReducer, {
@@ -12,6 +13,7 @@ import TaminotReducer, {
     saveTaminot
 } from "../../Hamkorlar/reducer/TaminotReducer";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import Tolovreducer from "../../../../../reducer/tolovreducer";
 
 function Xarid({
                    getXarid,
@@ -24,7 +26,7 @@ function Xarid({
                    XaridReducer,
                    users,
                    TaminotReducer,
-    branchreducer,getbranch
+    branchreducer,getbranch,tolovreducer,gettolovholati,
                }) {
 
     const [active, setActive] = useState(false);
@@ -233,16 +235,16 @@ function Xarid({
         saveXarid(
             {
                 dealerId: input.diller,
-                seller: 1,
+                seller: 2,
                 purchaseStatusId: input.xaridstatusi,
-                paymentStatusId: input.tulovusuli,
+                paymentStatusId: input.eslatma,
                 branchId: input.baza,
                 date: input.xaridsanasi,
                 description: input.qisqaeslatma,
                 deliveryPrice: input.yetkazibberishnarxi2,
                 purchaseProductsDto: [
                     {
-                        purchasedQuantity: 10,
+                        purchasedQuantity: 1,
                         productPurchaseId: 1
                     }
                 ]
@@ -272,6 +274,9 @@ function Xarid({
     }, [TaminotReducer.current])
     useEffect(() => {
         getbranch(users.businessId)
+    },[])
+    useEffect(() => {
+        gettolovholati()
     },[])
 
     return (
@@ -407,7 +412,7 @@ function Xarid({
                             <label htmlFor={'avans'}>Avans 0 / To`lov so`mmasi</label>
                             <input type="text" className={'form-control'} value={input.avans} onChange={avans}
                                    id={'avans'}/>
-                            <label className={'mt-3'} htmlFor={'tol'}>To`lov statusi</label>
+                            <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
                             <select name="" id={'tol'} className={'form-control'} value={input.tulovusuli}
                                     onChange={tulovusuli}>
                                 <option value="#">Naqd</option>
@@ -418,10 +423,16 @@ function Xarid({
                             <label htmlFor={'paid'}>Paid on</label>
                             <input type="date" value={input.paidon} onChange={paidon} className={'form-control'}
                                    id={'paid'}/>
-                            <label htmlFor={'area1'} className={'mt-2'}>Eslatma</label>
-                            <textarea name="" id={'area1'} cols="30" onChange={eslatma} value={input.eslatma}
-                                      className={'form-control'} rows="2">
-                        </textarea>
+                            <label htmlFor={'area1'} className={'mt-3'}>To'lov statusi</label>
+                        {/*    <textarea name="" id={'area1'} cols="30" onChange={eslatma} value={input.eslatma}*/}
+                        {/*              className={'form-control'} rows="2">*/}
+                        {/*</textarea>*/}
+                            <select name="" id={'area1'} className={'form-control'} value={input.eslatma}
+                                    onChange={eslatma}>
+                                {
+                                    tolovreducer.tolovholati.map(item=><option value={item.id}>{item.status}</option>)
+                                }
+                            </select>
                         </div>
 
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-2 d-flex'}>
@@ -476,11 +487,12 @@ function Xarid({
     )
 }
 
-export default connect((XaridReducer, users, TaminotReducer, branchreducer), {
+export default connect((XaridReducer, users, TaminotReducer, branchreducer,tolovreducer), {
     getXarid,
     saveXarid,
     editXarid,
     getTaminot,
     saveTaminot,
-    getbranch
+    getbranch,
+    gettolovholati
 })(Xarid)

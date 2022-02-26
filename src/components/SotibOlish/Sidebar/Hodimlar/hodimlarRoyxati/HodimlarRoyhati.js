@@ -109,6 +109,7 @@ function HodimlarRoyhati({getXodim, deleteXodim,XodimReducer,  xodimlar,users}) 
                                      <td>{item.lastName}</td>
 
                                      <td>-</td>
+                                     <td>-</td>
                                      <td>
                                                  <Link to={'/headerthird/hodimlarruyxati/taxrirlash/'+item.id}>
                                                      <button className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash</button>

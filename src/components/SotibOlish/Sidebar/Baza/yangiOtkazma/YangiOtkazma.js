@@ -1,8 +1,13 @@
 import Search from '../../../../../img/search.png'
 import './yangiOtkazma.css'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {connect} from "react-redux";
+import users from "../../../../../reducer/users";
+import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
+import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati2} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,MaxsulotlarRoyxariReducer}) {
 
-export default function YangiOtkazma() {
+
 
        const [input,setInput] = useState(
            {
@@ -46,6 +51,9 @@ export default function YangiOtkazma() {
               input.maxsulotizlash = e.target.value
               let a = {...input}
               setInput(a)
+              getMaxsulotRuyxati2(input.maxsulotizlash)
+
+
        }
        function yulhaqi(e){
               input.yulhaqi = e.target.value
@@ -57,6 +65,11 @@ export default function YangiOtkazma() {
               let a = {...input}
               setInput(a)
        }
+
+       useEffect(()=>{
+         getbranch(users.businessId)
+
+       },[])
 
        return (
               <div className="col-md-12 mt-2">
@@ -72,8 +85,9 @@ export default function YangiOtkazma() {
                                    <div className="col-md-6 col-sm-12">
                                           <h6>Status:</h6>
                                           <select name="" id="" value={input.status} onChange={status}>
-                                                 <option value="">Tanlash</option>
-                                                 <option value=""></option>
+                                                 <option value="1">Buyurtma berildi</option>
+                                                 <option value="2">Kutilmoqda</option>
+                                                 <option value="3">Qabul qilindi</option>
                                           </select>
                                    </div>
                             </div>
@@ -81,16 +95,18 @@ export default function YangiOtkazma() {
                                    <div className="col-md-6 col-sm-12">
                                           <h6>Bazadan(Amaldagi baza):</h6>
                                           <select name="" id="" value={input.bazadan} onChange={bazadan}>
-                                                 <option value="">Tanlash</option>
-                                                 <option value=""></option>
+                                                 {
+                                                        branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                                                 }
                                           </select>
                                    </div>
                                    <div className="col-md-6 col-sm-12">
                                           <h6>Bazaga(O'tkaziladigan baza):</h6>
                                           <select name="" id="" value={input.bazaga} onChange={bazaga}>
-                                                 <option value="">Tanlash</option>
-                                                 <option value="">Shifer zavod</option>
-                                          </select>
+                                                 {
+                                                        branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                                                 }
+-                                          </select>
                                    </div>
                             </div>
                             <div className="row">
@@ -128,13 +144,11 @@ export default function YangiOtkazma() {
                                                  </tr>
                                           </thead>
                                           <tbody>
-                                                 <tr>
-                                                 <td></td>
-                                                 <td></td>
-                                                 <td></td>
-                                                 <td></td>
-                                                 <td></td>
-                                                 </tr>
+                                          {
+                                                 MaxsulotlarRoyxariReducer.maxsulotlar.map(item=><tr>
+                                                        <th>{item.name}</th>
+                                                 </tr>)
+                                          }
                                           </tbody>
                                    </table>
                             </div>
@@ -157,3 +171,4 @@ export default function YangiOtkazma() {
               </div>
        )
 }
+export default connect((branchreducer,users,MaxsulotlarRoyxariReducer),{getbranch,getMaxsulotRuyxati2})  (YangiOtkazma)

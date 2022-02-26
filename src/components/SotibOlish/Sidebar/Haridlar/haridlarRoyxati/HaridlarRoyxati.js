@@ -74,12 +74,13 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
 
     function deleteX(item) {
         deleteXarid(item.id)
-        console.log('deleted_Xarid')
+            getXarid(users.businessId)
     }
 
     useEffect(() => {
         getXarid(users.businessId)
-    }, [])
+    },[XaridReducer.current])
+
     return (
         <div className="col-md-12 mt-2">
             <div className="textHeaderHarid">
@@ -177,11 +178,11 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
                                     return val
                                 }
                             }).map(item => <tr key={item.id}>
-                                <td>{item.name}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{item.date}</td>
+                                <td>{item.description}</td>
+                                <td>{item.branch.name}</td>
+                                <td>{item.dealer.name}</td>
+                                <td>{item.purchaseStatus.status}</td>
                                 <td></td>
                                 <td></td>
                                 <td>

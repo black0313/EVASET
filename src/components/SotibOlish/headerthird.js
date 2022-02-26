@@ -100,11 +100,12 @@ function Headerthird() {
                 {/*fix me xaridlar ruyxati taxrirlash*/}
                 <Route path={'/headerthird/xaridlarRuyxati/1'} component={Xarid}/>
                 <Route path={'/headerthird/barcasavdolar'} component={BarchaSavdolar}/>
+                <Route path={'/headerthird/mahsulotQoshish/:id?'} component={SavdoQoshish}/>
                 <Route path={'/headerthird/mahsulotQoshish'} component={SavdoQoshish}/>
                 <Route path={'/headerthird/turliTavar'} component={SavdoOynasi}/>
-                <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={Taxrirlash4}/>
+                <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
+                <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
                 <Route path={'/headerthird/utkazmaRuyxati'} component={OtkazmalarRoyxati}/>
-                <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={Yangiotkazma}/>
                 <Route path={'/headerthird/yangiOtkazma'} component={YangiOtkazma}/>
                 <Route path={'/headerthird/xarajatRuyxati'} component={XarajatlarRoyxati}/>
                 <Route path={'/headerthird/xarajatQoshish'} component={XarajatQoshish}/>

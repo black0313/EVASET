@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react'
-import {deleteOtkazma, editOtkazma, getOtkazma, saveOtkazma} from "../../reducer/OtkazmaReducer";
+import OtkazmaReducer, {deleteOtkazma, editOtkazma, getOtkazma, saveOtkazma} from "../../reducer/OtkazmaReducer";
 import {Link} from 'react-router-dom'
+import users from "../../../../../../reducer/users";
 import {connect} from "react-redux";
 import './taxrirlashh.css'
-function Taxrirlash({saveOtkazma,editOtkazma,getOtkazma}){
+function Taxrirlash({saveOtkazma,editOtkazma,getOtkazma,match,users,OtkazmaReducer}){
 
     const [input,setInput] = useState(
         {
@@ -59,25 +60,62 @@ function Taxrirlash({saveOtkazma,editOtkazma,getOtkazma}){
         setInput(a)
     }
 
-    function saqla(){
-        saveOtkazma(
-            {
-                shippedBranchId:1,
-                receivedBranchId:1,
-                exchangeDate:input.sana,
-                description:'ddd',
-                exchangeStatusId:1,
-                exchangeProductDTOS:[
-                    {
-                        exchangeProductQuantity:1,
-                        productExchangeId:1
-                    }
-                ],
-                businessId:1
+
+
+    function editO(){
+        if (match.params.id !==undefined){
+            getOtkazma()
+        }
+       OtkazmaReducer.otkazmalar.map(item=>{
+            if (item.id=== match.params.id){
+                input.sana = item.exchangeDate
+                let a = {...input}
+                setInput(a)
             }
-        )
+        })
+    }
+
+    function saqla(){
+        console.log(match.params);
+        if (match.params.id !== undefined){
+            editOtkazma({
+                    shippedBranchId:1,
+                    receivedBranchId:1,
+                    exchangeDate:input.sana,
+                    description:'',
+                    exchangeStatusId:1,
+                    exchangeProductDTOS:[
+                        {
+                            exchangeProductQuantity:1,
+                            productExchangeId:1
+                        }
+                    ],
+                    businessId:1
+                },console.log('edit')
+            )
+        }
+        else {
+            saveOtkazma(
+                {
+                    shippedBranchId:1,
+                    receivedBranchId:1,
+                    exchangeDate:input.sana,
+                    description:'',
+                    exchangeStatusId:1,
+                    exchangeProductDTOS:[
+                        {
+                            exchangeProductQuantity:1,
+                            productExchangeId:1
+                        }
+                    ],
+                    businessId:1
+                },
+                console.log('asdasdasd')
+            )
+        }
         console.log('ishladiii');
     }
+
 
 
     return(
@@ -144,7 +182,7 @@ function Taxrirlash({saveOtkazma,editOtkazma,getOtkazma}){
     )
         }
 
-export default connect(({OtkazmaReducer: {otkazmalar}}) => ({otkazmalar}), {
+export default connect((OtkazmaReducer,users), {
     getOtkazma,
     saveOtkazma,
     editOtkazma,
