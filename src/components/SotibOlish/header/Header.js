@@ -57,9 +57,11 @@ function Header({active,sidebarfunc,users}) {
                                 <p>2</p>
                             </div>
                         </div>
-                        {
-                            calactive ? <Calculator/> :''
-                        }
+                        <div className={'margintop'} >
+                            {
+                                calactive ? <Calculator toggle={calchange}/> :''
+                            }
+                        </div>
                     </div>
 
                     <div className="imgUserBox">
