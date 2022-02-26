@@ -48,8 +48,8 @@ export const saveSavdolar=(data)=>apiCall({
 });
 
 export const editSavdolar=(data)=>apiCall({
-    url: '/trade',
-    method: 'post',
+    url: '/trade/'+data.id,
+    method: 'put',
     data,
     onSuccess: slice.actions.editfrom.type
 });

@@ -1,5 +1,5 @@
 import {Modal,ModalFooter,ModalBody,ModalHeader} from "reactstrap";
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import LavozimReducer, {deleteLavozim, editLavozim, getLavozim, saveLavozim} from "../../Hodimlar/reducer/LavozimReducer";
 import SavdoQoshishReducer, {deleteSavdolar, editSavdolar, getSavdolar, saveSavdolar} from "../reducer/SavdoQoshishReducer";
@@ -7,7 +7,7 @@ import TaminotReducer from "../../Hamkorlar/reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
 import './savdoQoshish.css'
 
-function SavdoQoshish({saveSavdolar,deleteSavdolar,}){
+function SavdoQoshish({saveSavdolar,deleteSavdolar,match,editSavdolar,SavdoQoshishReducer}){
 
     const [input,setInput] = useState(
         {
@@ -27,6 +27,11 @@ function SavdoQoshish({saveSavdolar,deleteSavdolar,}){
             eslatma:'',
         }
     )
+    useEffect(()=>{
+       editS()
+       getSavdolar()
+    },[])
+
     function savdoqoshish(e){
         input.savdoqoshish = e.target.value
         let a = {...input}
@@ -98,9 +103,22 @@ function SavdoQoshish({saveSavdolar,deleteSavdolar,}){
         setInput(a)
     }
 
+    function editS(){
+        if(match.params.id !== undefined){
+            getSavdolar()
+        }
+        SavdoQoshishReducer.savdolar.map(item=>{
+            if (item.id==match.params.id){
+                input.mijoz = item.name
+                let a = {...input}
+                setInput(a)
+            }
+        })
+    }
+
     function saqla(){
-        saveSavdolar(
-            {
+        if (match.params.id !== undefined){
+            editSavdolar({
                 customerId:1,
                 userId:1,
                 productTraderDto:[
@@ -115,8 +133,28 @@ function SavdoQoshish({saveSavdolar,deleteSavdolar,}){
                 amountPaid:1,
                 currencyId:1,
                 addressId:1
-            }
-        )
+            },console.log('edited'))
+        }else {
+            saveSavdolar(
+                {
+                    customerId:1,
+                    userId:1,
+                    productTraderDto:[
+                        {
+                            tradedQuantity:1,
+                            productTradeId:1
+                        }
+                    ],
+                    payDate:"2020-10-10",
+                    branchId:1,
+                    payMethodId:1,
+                    amountPaid:1,
+                    currencyId:1,
+                    addressId:1
+                },
+                console.log('saved')
+            )
+        }
     }
 
     return(
@@ -125,7 +163,7 @@ function SavdoQoshish({saveSavdolar,deleteSavdolar,}){
             <div className="col-md-10">
                 <h5 className="mt-3">Savdo qo`shish</h5>
                 <select name="" value={input.savdoqoshish} onChange={savdoqoshish}>
-                    <option value="">Shefir zavod(Bl001)</option>
+                    <option value="">Tanlash</option>
                 </select>
             </div>
 

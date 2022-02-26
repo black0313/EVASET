@@ -100,6 +100,7 @@ function Headerthird() {
                 {/*fix me xaridlar ruyxati taxrirlash*/}
                 <Route path={'/headerthird/xaridlarRuyxati/1'} component={Xarid}/>
                 <Route path={'/headerthird/barcasavdolar'} component={BarchaSavdolar}/>
+                <Route path={'/headerthird/mahsulotQoshish/:id?'} component={SavdoQoshish}/>
                 <Route path={'/headerthird/mahsulotQoshish'} component={SavdoQoshish}/>
                 <Route path={'/headerthird/turliTavar'} component={SavdoOynasi}/>
                 <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={Taxrirlash4}/>
