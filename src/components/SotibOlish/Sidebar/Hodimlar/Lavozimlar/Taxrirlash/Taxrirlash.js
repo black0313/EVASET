@@ -449,7 +449,8 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                     setInput(b)
                     break;
                 case 'EDIT_USER' :
-                    input.xodimtaxrirlash = true
+             
+                input.xodimtaxrirlash = true
                     let c = {...input}
                     setInput(c)
                     break;
