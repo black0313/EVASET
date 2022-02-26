@@ -16,6 +16,21 @@ function Header({active,sidebarfunc,users}) {
         setCalactive(false)
     },[])
 
+
+    const [rasm,setrasm] = useState({
+        pic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYS4ItI44R4hI66qjzhinqY5-Miyb30PelnQ&usqp=CAU'
+    })
+
+    function imageHander(e){
+        const reader = new FileReader()
+        reader.onload = () =>{
+            if (reader.readyState===2){
+                // pic: reader.result
+            }
+        }
+        reader.readAsDataURL(e.target.files[0])
+    }
+
     const [calactive,setCalactive] = useState(false)
 
     function calchange(){
@@ -48,10 +63,13 @@ function Header({active,sidebarfunc,users}) {
                     </div>
 
                     <div className="imgUserBox">
-                        <div className="imgUser">
-
+                        {/*<div className="imgUser">*/}
+                        {/*    /!*<img src={rasm.pic} alt=""/>*!/*/}
+                        {/*</div>*/}
+                        <div className="iiii ">
+                            <img src={rasm.pic} className={'img-fluid'} alt=""/>
                         </div>
-                        <Link to={'/headerthird/profil'}> <img src={Arrow} alt="" /> </Link>
+                        <Link to={'/headerthird/profil'} > <img src={Arrow} alt="" image={imageHander} /> </Link>
                     </div>    
                 </div>
 

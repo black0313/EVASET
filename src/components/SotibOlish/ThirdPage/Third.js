@@ -211,9 +211,7 @@ function Third({display}) {
                     }
                 }
             }
-
         }
-
     }
     const series = [200000, 300000, 500000, 600000]
     const windowscrenn = window.screen.height

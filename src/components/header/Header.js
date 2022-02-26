@@ -1,10 +1,12 @@
 import React from "react";
 import Logo from '../../img/LOGO.png'
 import './header.css'
+import {useState} from "react";
+import * as url from "url";
 
 function Header() {
-    return(
 
+    return(
             <div className={'header__ '}>
                 <div className="homebody">
                     <div className="image__ ">
