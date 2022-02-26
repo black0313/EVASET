@@ -11,9 +11,17 @@ import {useState, useRef, useEffect} from "react";
 import { DateRangePickerComponent } from '@syncfusion/ej2-react-calendars'
 import {MenuItem, TextField,Select,InputLabel} from "@mui/material";
 import {connect} from "react-redux";
+import TaminotReducer from "../../Hamkorlar/reducer/TaminotReducer";
+import SavdoQoshishReducer, {
+    deleteSavdolar,
+    editSavdolar,
+    getSavdolar,
+    saveSavdolar
+} from "../reducer/SavdoQoshishReducer";
+import users from "../../../../../reducer/users";
 
 
-function BarchaSavdolar() {
+function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdolar}) {
 
     const [input,setInput] = useState(
         {
@@ -59,7 +67,8 @@ function BarchaSavdolar() {
 
     useEffect(()=>{
         // getXaridXisobot()
-    })
+        getSavdolar()
+    },[])
 
     const [active,setActive] = useState(false)
     const [selectvalue,setSelectvalue] =useState('')
@@ -67,6 +76,7 @@ function BarchaSavdolar() {
     const endValueDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 15);
     const minDateDate = new Date(new Date().getFullYear(), new Date().getMonth(), 8);
     const maxDateDate = new Date(new Date().getFullYear(), new Date().getMonth()+1, 20);
+
     function selectchange(event){
         console.log(event.isDefaultPrevented(false))
         event.isDefaultPrevented(true)
@@ -138,13 +148,12 @@ function BarchaSavdolar() {
 
                     </div>
                 </div>
-
             </div>
 
             <div className="rowStyleH2">
                 <div className="qoshish">
                     <h5>Barcha savdolar</h5>
-                    <Link to={'/third/xarajatlarRuyxati/xarajatqoshish'}><button className='btn btn-primary'>+Qo'shish</button></Link>
+                    <Link to={'/headerthird/mahsulotQoshish'}><button className='btn btn-primary'>+Qo'shish</button></Link>
                 </div>
                 <div className="izlashH2">
                     <div className="izlashBox1">
@@ -181,34 +190,33 @@ function BarchaSavdolar() {
                             <th>Qarz</th>
                             <th>Yetkazish statusi</th>
                             <th>Jami maxsulotlar</th>
-                            <th>Savdogar</th>
-                            <th>Savdo eslatmasi</th>
-                            <th>Yetkazish manzili</th>
+                            {/*<th>Savdogar</th>*/}
+                            {/*<th>Savdo eslatmasi</th>*/}
+                            {/*<th>Yetkazish manzili</th>*/}
                             <th>Amallar</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>21.23.2021</td>
-                            <td>12</td>
-                            <td>mijoz</td>
-                            <td>9098888899</td>
-                            <td>baza </td>
-                            <td>to'lov status</td>
-                            <td>naqd</td>
-                            <td>200000</td>
-                            <td>33222333</td>
-                            <td>33222333</td>
-                            <td>bir kun</td>
-                            <td>jami maxsulot</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            {/*<td>*/}
-                            {/*    <Link to={'/third/xarajatlarRuyxati/xarajatqoshish'}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>*/}
-                            {/*    <button className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>*/}
-                            {/*</td>*/}
-                        </tr>
+                        {
+                            SavdoQoshishReducer.savdolar.map(item=><tr key={item.id}>
+                                <td>{item.payDate}</td>
+                                <td>{item.branchId}</td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td>
+                                        <Link to={'/third/xarajatlarRuyxati/xarajatqoshish/'+item.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
+                                        <button className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
+                                </td>
+                            </tr>)
+                        }
                         </tbody>
                     </table>
                 </div>
@@ -223,6 +231,4 @@ function BarchaSavdolar() {
         </div>
     )
 }
-export default
-// connect(({FirmaReducer:{firmalar}})=>({firmalar}),{getXaridXisobot,saveXaridXisobot,editXaridXisobot,deleteXaridXisobot})
-(BarchaSavdolar)
+export default connect((TaminotReducer,SavdoQoshishReducer,users),{getSavdolar,saveSavdolar,editSavdolar,deleteSavdolar}) (BarchaSavdolar)
