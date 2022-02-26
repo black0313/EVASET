@@ -6,8 +6,9 @@ import SavdoQoshishReducer, {deleteSavdolar, editSavdolar, getSavdolar, saveSavd
 import TaminotReducer from "../../Hamkorlar/reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
 import './savdoQoshish.css'
+import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
 
-function SavdoQoshish({saveSavdolar,deleteSavdolar,match,editSavdolar,SavdoQoshishReducer}){
+function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match,editSavdolar,SavdoQoshishReducer,users}){
 
     const [input,setInput] = useState(
         {
@@ -29,7 +30,7 @@ function SavdoQoshish({saveSavdolar,deleteSavdolar,match,editSavdolar,SavdoQoshi
     )
     useEffect(()=>{
        editS()
-       getSavdolar()
+        getbranch(users.businessId)
     },[])
 
     function savdoqoshish(e){
@@ -164,6 +165,9 @@ function SavdoQoshish({saveSavdolar,deleteSavdolar,match,editSavdolar,SavdoQoshi
                 <h5 className="mt-3">Savdo qo`shish</h5>
                 <select name="" value={input.savdoqoshish} onChange={savdoqoshish}>
                     <option value="">Tanlash</option>
+                    {
+                        branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                    }
                 </select>
             </div>
 
@@ -260,4 +264,4 @@ function SavdoQoshish({saveSavdolar,deleteSavdolar,match,editSavdolar,SavdoQoshi
     )
 }
 
-export default connect((TaminotReducer,SavdoQoshishReducer,users),{getSavdolar,saveSavdolar,editSavdolar,deleteSavdolar}) (SavdoQoshish)
+export default connect((TaminotReducer,SavdoQoshishReducer,users,branchreducer),{getbranch,getSavdolar,saveSavdolar,editSavdolar,deleteSavdolar}) (SavdoQoshish)

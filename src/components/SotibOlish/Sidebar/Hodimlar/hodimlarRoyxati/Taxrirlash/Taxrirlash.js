@@ -1,4 +1,5 @@
 import './taxrir.css'
+
 // import {Link,Route,Switch} from "react-router-dom";
 import {Modal,ModalBody,ModalFooter,ModalHeader} from "reactstrap";
 import {useState,useEffect} from "react";
@@ -91,7 +92,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 roleId: input.roleName,
                 branchId:1,
                 businessId: 1,
-                enabled: false,
+                enabled: true,
                 photoId:1,
                 id:match.params.id
             })
@@ -101,11 +102,11 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 firstName: input.firstName,
                 lastName: input.lastName,
                 username: input.username,
-                password: input.parolTakror,
+                password: parseInt(input.parolTakror),
                 roleId: input.roleName,
                 branchId: 1,
                 businessId: 1,
-                enabled: false,
+                enabled: true,
                 photoId: 1
             })
         }

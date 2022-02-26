@@ -13,10 +13,9 @@ export const slice=createSlice({
     }
 })
 
-export const gettolovholati=(data)=>apiCall({
-    url:'/branch/get-all-by-business-id/'+data,
+export const gettolovholati=()=>apiCall({
+    url:'/paystatus',
     method:'get',
-    data,
     onSuccess:slice.actions.get.type
 })
 
