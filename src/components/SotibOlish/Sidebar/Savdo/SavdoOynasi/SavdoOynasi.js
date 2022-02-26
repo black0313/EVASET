@@ -113,10 +113,11 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
         let a = [...arr1]
         setarr1(a)
     }
+
     return(
         <div className={'row p-5 '} >
-
-            <div className={'col-md-12'}>
+        <div className={'d-flex'}>
+            <div className={'col-md-6'}>
                 <div className="brendBox">
                     <label htmlFor={'brand'}>Barcha brandlar: </label>
                     <select name="" className={'form-control'} id={'brand'} value={input.barchabrandlar} onChange={barchabrandlar}>
@@ -124,33 +125,32 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                     </select>
                 </div>
 
-                <table className={'table'}>
-                    <thead>
-                        <tr>
-                            <th>NAME :</th>
-                            <th>ICON :</th>
-                            {/*<th>X :</th>*/}
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        MaxsulotlarRoyxariReducer.maxsulotlar.map(item=><tr key={item.id}>
+                {/*<table className={'table'}>*/}
+                {/*    <thead>*/}
+                {/*        <tr>*/}
+                {/*            <th>NAME :</th>*/}
+                {/*            <th>ICON :</th>*/}
+                {/*        </tr>*/}
+                {/*    </thead>*/}
+                {/*    <tbody>*/}
+                {/*    {*/}
+                {/*        MaxsulotlarRoyxariReducer.maxsulotlar.map(item=><tr key={item.id}>*/}
 
-                                <td className={'tdd'} onClick={()=>pushesh(item.name,item.id)}>{item.name}
+                {/*                <td className={'tdd'} onClick={()=>pushesh(item.name,item.id)}>{item.name}*/}
 
-                                </td>
-                                <td>-</td>
-                                {/*<td><button onClick={()=>deleteMaxsulot(item)} className={'btn btn-outline-danger'}>Delete</button></td>*/}
+                {/*                </td>*/}
+                {/*                <td>-</td>*/}
+                {/*                /!*<td><button onClick={()=>deleteMaxsulot(item)} className={'btn btn-outline-danger'}>Delete</button></td>*!/*/}
 
-                        </tr>)
-                    }
+                {/*        </tr>)*/}
+                {/*    }*/}
 
-                    </tbody>
-                </table>
+                {/*    </tbody>*/}
+                {/*</table>*/}
 
             </div>
 
-            <div className={'colorbackj ps-4 pe-4 mt-4'}>
+            <div className={'colorbackj ps-4 pe-4 mt-4 col-md-6'}>
                 <div className="navBlock">
                     {/* <button className={'btn btn-outline-primary'}>Oxirgi savdolar</button> */}
                     <div className="navBox1">
@@ -290,8 +290,7 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                 </div>
             </div>
         </div>
+        </div>
     )
 }
 export default connect((MaxsulotlarRoyxariReducer,SavdoOynaReducer),{getSavdo,saveSavdo,editSavdo,deleteSavdo,getMaxsulotRuyxati,deleteMaxsulotRuyxati}) (SavdoOynasi)
-
-// export default connect(({SavdoOynaReducer:{savdo}})=>({savdo}),{getSavdo,saveSavdo,editSavdo,deleteSavdo}) (SavdoOynasi)

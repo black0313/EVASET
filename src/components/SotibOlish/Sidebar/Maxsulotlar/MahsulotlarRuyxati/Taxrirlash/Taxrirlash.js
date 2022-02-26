@@ -207,7 +207,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                 brandId:input.ferma,
                 categoryId:input.bolim,
                 measurementId:input.ulcovbirligi,
-                photoIds:[1],
+                photoIds:[2],
                 minQuantity:input.foydafoiz,
                 buyPrice:input.sotishnarxi,
                 salePrice:input.sotibolishnarxi,
@@ -226,7 +226,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                 brandId:   input.ferma,                      /*input.ferma,*/
                 categoryId: input.bolim,                     /*  input.bolim,*/
                 measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                photoIds:[1],
+                photoIds:[2],
                 minQuantity:   input.foydafoiz,                    /*   input.foydafoiz,*/
                 buyPrice:      input.sotishnarxi,               /*   input.sotishnarxi,*/
                 salePrice:input.sotibolishnarxi,
