@@ -1,7 +1,7 @@
 import './calculator.css'
 import {useState} from "react";
 
-function Calculator(){
+function Calculator({toggle}){
     const [data,setData] = useState('')
 
     function handleClick(e){
@@ -23,7 +23,7 @@ function Calculator(){
         }
     }
     return(
-        <div className={'calc'} >
+        <div className={'calc'} ontoggle={toggle}>
         <div className={'container'}>
             <form>
                 <input type="text" value={data} placeholder={'0'}/>

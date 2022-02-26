@@ -117,38 +117,6 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
     return(
         <div className={'row p-5 '} >
         <div className={'d-flex'}>
-            <div className={'col-md-6'}>
-                <div className="brendBox">
-                    <label htmlFor={'brand'}>Barcha brandlar: </label>
-                    <select name="" className={'form-control'} id={'brand'} value={input.barchabrandlar} onChange={barchabrandlar}>
-                        <option value="#">Barcha brandlar</option>
-                    </select>
-                </div>
-
-                {/*<table className={'table'}>*/}
-                {/*    <thead>*/}
-                {/*        <tr>*/}
-                {/*            <th>NAME :</th>*/}
-                {/*            <th>ICON :</th>*/}
-                {/*        </tr>*/}
-                {/*    </thead>*/}
-                {/*    <tbody>*/}
-                {/*    {*/}
-                {/*        MaxsulotlarRoyxariReducer.maxsulotlar.map(item=><tr key={item.id}>*/}
-
-                {/*                <td className={'tdd'} onClick={()=>pushesh(item.name,item.id)}>{item.name}*/}
-
-                {/*                </td>*/}
-                {/*                <td>-</td>*/}
-                {/*                /!*<td><button onClick={()=>deleteMaxsulot(item)} className={'btn btn-outline-danger'}>Delete</button></td>*!/*/}
-
-                {/*        </tr>)*/}
-                {/*    }*/}
-
-                {/*    </tbody>*/}
-                {/*</table>*/}
-
-            </div>
 
             <div className={'colorbackj ps-4 pe-4 mt-4 col-md-6'}>
                 <div className="navBlock">
@@ -156,8 +124,8 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                     <div className="navBox1">
                         <label htmlFor={'baza'}>BAZA : </label>
                             <select className="" value={input.baza} onChange={baza} name="" id="">
-                                <option value="">Walk in-customer</option>
-                                <option value="">Walk in-seller</option>
+                                <option value="1">Walk in-customer</option>
+                                {/*<option value="2">Walk in-seller</option>*/}
                             </select>
                     </div>
                     <div className="navBox2">
@@ -218,6 +186,7 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                                     <table className={'table'}>
                                         <thead>
                                         <tr>
+                                            <th>T/R</th>
                                             <th>Mahsulot</th>
                                             <th className={'text-center'}>Miqdori</th>
                                             <th>Jami</th>
@@ -234,6 +203,7 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                                                 }
                                             })
                                                 .map(item=><tr key={item.id}>
+                                                    <td>{item.id}</td>
                                                 <td style={{marginLeft:'10px'}}>{item.name}</td>
                                                 <td className={'d-flex justify-content-between'}>
                                                     <button onClick={()=>setCount(item.id)} className={'btn btn-outline-dark'}>+</button>
@@ -257,10 +227,12 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                                 <div style={{marginTop:'100px'}} className={'d-flex justify-content-around'}>
                                     <h6>Mahsulot soni: {
                                         arr1.map(item=><tr key={item.id}>
+                                            <td>{item.id+" > "+ item.name}</td>
                                             <td style={{fontSize:'18px'}}>{item.counter}</td>
+                                            {/*<tr><td>JAMI {item.counter}</td></tr>*/}
                                         </tr>)
                                     }</h6>
-                                    <h6>Jami:200</h6>
+                                    <h6>Jami:{0}</h6>
                                 </div>
                                 <hr/>
                                 <div className={'chegirmaBox'}>
@@ -275,12 +247,14 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                                         <img src={img4} alt=""/></p>
                                 </div>
                 </div>
-                <div className="btnBox">
+                <div className="btnBox col-md-12 ">
                     <button className={'btn btn-primary'}>Eslatma</button>
                     <button className={'btn btn-danger'}>Chegirma</button>
                     <button className={'btn btn-warning'}>Ushlab turish</button>
                     <button className={'btn btn-outline-primary'}>Kreditga sotish</button>
                     <button className={'btn btn-outline-warning'}>Turli to`lovli</button>
+                </div>
+                <div className="btnBox col-md-12">
                     <button className={'btn btn-info'}>Plastik</button>
                     <button className={'btn btn-success'}>Naqd</button>
                     <button className={'btn btn-dark'}>UzCard</button>
@@ -288,6 +262,56 @@ function SavdoOynasi({getSavdo,deleteSavdo,savdo,getMaxsulotRuyxati,MaxsulotlarR
                     <h6>Jami to`lov: 0</h6>
                     <button className={'btn btn-danger'}>Chiqish</button>
                 </div>
+            </div>
+            {/*{console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}*/}
+            <div className={'col-md-6'}>
+                <div className="brendBox">
+                    <label htmlFor={'brand'}>Barcha brandlar: </label>
+                    <select name="" className={'form-control'} id={'brand'} value={input.barchabrandlar} onChange={barchabrandlar}>
+                        <option value="">Barcha brandlar</option>
+                    </select>
+                </div>
+
+                <div className="col-md-12">
+                    <div className="block col-md-12 d-flex flex-wrap justify-content-between ">
+
+                            {
+                                MaxsulotlarRoyxariReducer.maxsulotlar.map(item=><div className={'bImg '} key={item.id}>
+
+                                    {/*<img style={{marginLeft:'15px'}} src="https://freepngimg.com/static/img/whatsapp.png"  alt="yuq"/>*/}
+                                    <div onClick={()=>pushesh(item.name,item.id)} className=" mt-2 ddd">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"  alt="yuq"/>
+                                    </div>
+                                    <div className={'bText'}>{item.name}</div>
+                                </div>)
+                            }
+
+                    </div>
+                </div>
+
+                {/*<table className={'table'}>*/}
+                {/*    <thead>*/}
+                {/*        <tr>*/}
+                {/*            <th>NAME :</th>*/}
+                {/*            <th>ICON :</th>*/}
+                {/*        </tr>*/}
+                {/*    </thead>*/}
+                {/*    <tbody>*/}
+                {/*    {*/}
+                {/*        MaxsulotlarRoyxariReducer.maxsulotlar.map(item=><tr key={item.id}>*/}
+
+                {/*                <td className={'tdd'} onClick={()=>pushesh(item.name,item.id)}>{item.name}*/}
+
+                {/*                </td>*/}
+                {/*                <td><img src={item.photo.contentType} alt=""/></td>*/}
+                {/*                /!*<td><button onClick={()=>deleteMaxsulot(item)} className={'btn btn-outline-danger'}>Delete</button></td>*!/*/}
+
+                {/*        </tr>)*/}
+                {/*    }*/}
+
+                {/*    </tbody>*/}
+                {/*</table>*/}
+
             </div>
         </div>
         </div>
