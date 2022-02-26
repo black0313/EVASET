@@ -61,11 +61,9 @@ function Pagination3() {
         return new Array(3).fill().map((_, idx) => start + idx + 1);
     };
 
-
     return (
 
         <div>
-
             <div>
                 <div className="row p-0 pb-3 ">
                     <div className={'table-responsive'}>

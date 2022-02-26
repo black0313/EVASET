@@ -521,7 +521,17 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
         let a = {...permission}
         setpermission(a)
         console.log(permission);
-        if (match.params.id !== '') {
+        if (match.params.id === undefined) {
+            saveLavozim(
+                {
+                    name: input.name,
+                    permissions: permission,
+                    description: "ol",
+                    businessId: users.businessId
+                }
+            )
+            console.log('savele')
+        } else {
             editLavozim(
                 {
                     name: input.name,
@@ -532,16 +542,6 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                 }
             )
             console.log('edit')
-        } else {
-            saveLavozim(
-                {
-                    name: input.name,
-                    permissions: permission,
-                    description: "ol",
-                    businessId: users.businessId
-                }
-            )
-            console.log('savele')
         }
 
         getLavozim(users.businessId)
@@ -558,10 +558,11 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
             <div className="col-md-12">
                 <div className="row justify-content-center ">
                     <div className="l1 p-4 mt-5 col-sm-10 col-md-7 col-5 border">
+                        {/*{console.log(match.params.id)}*/}
                         <div>
-                            {
-                                console.log(input)
-                            }
+                            {/*{*/}
+                            {/*    console.log(input)*/}
+                            {/*}*/}
                             <label htmlFor={'l'}>Lavozim nomi</label>
                             <input type="text" className={'form-control mt-2'} value={input.name} onChange={changename}
                                    placeholder={'Lavozim nomi'}/>

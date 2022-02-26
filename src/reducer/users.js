@@ -25,8 +25,6 @@ export const slice = createSlice({
                 localStorage.setItem('tokenname',action.payload.message)
                 console.log(state.payload)
 
-                console.log(state.linkhome)
-                console.log(state.linkheader)
             }
             else{
                 state.error=true

@@ -13,8 +13,7 @@ import users from "./reducer/users";
 import {ToastContainer} from "react-toastify";
 
 
-
-function App({functionreducer,active,users}) {
+function App({functionreducer, active, users}) {
 
     return (
         <div className={`app-css ${functionreducer.func.class5}`}>
@@ -23,29 +22,26 @@ function App({functionreducer,active,users}) {
                     functionreducer.func.actives ? <Sidebar/>
                         : ''
                 }
-                {console.log('feljfle')}
             </div>
             <div className={`${functionreducer.func.class2}`}>
-                {console.log(users.linkhome)}
-                {console.log(users.linkheader)}
+
                 <Switch>
                     {
                         users.linkhome ?
                             <Route path={'/home'} component={Home}/>
-                            :''
+                            : ''
                     }
                     {
-                        users.linkheader ?  <Route path={'/headerthird'} component={Headerthird}/>:''
+                        users.linkheader ? <Route path={'/headerthird'} component={Headerthird}/> : ''
 
                     }
                     {
-                        users.linkhome ?                     <Redirect to={'/home'}/>:''
+                        users.linkhome ? <Redirect to={'/home'}/> : ''
                     }
 
                     {
-                       users.linkheader ?   <Redirect to={'/headerthird'}/>:''
+                        users.linkheader ? <Redirect to={'/headerthird'}/> : ''
                     }
-
 
                 </Switch>
             </div>
@@ -54,4 +50,4 @@ function App({functionreducer,active,users}) {
     );
 }
 
-export default connect((functionreducer,users),{active})(App);
+export default connect((functionreducer, users), {active})(App);

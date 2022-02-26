@@ -22,13 +22,12 @@ function Sidebar({functionreducer,active,users}) {
 
     useEffect(()=>{
         // permission()
-
-    })
+    },[])
     function sidebaractive(){
+
     }
 
     const [adduser,setadduser]=useState(true)
-
 
     function permission(){
         console.log(users.users.role.permissions)
@@ -58,7 +57,6 @@ function Sidebar({functionreducer,active,users}) {
                                     </svg>
                                         <h4 className={'sidebar-text'}>Bosh sahifa</h4>
                                     </Link>
-
                                 </div>
                             </div>
 

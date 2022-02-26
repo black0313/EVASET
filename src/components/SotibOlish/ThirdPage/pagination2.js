@@ -34,9 +34,9 @@ function Pagination2() {
 
     function goToNextPage() {
         setCurrentPage((page) => page + 1);
-        console.log(posts)
-        console.log(pages)
-        console.log(currentPage)
+        // console.log(posts)
+        // console.log(pages)
+        // console.log(currentPage)
     }
 
     function goToPreviousPage() {
@@ -62,7 +62,6 @@ function Pagination2() {
     return (
 
         <div>
-
             <div>
                 <div className="row p-0 pb-3 table-responsive">
                     <div className={'table-responsive'}>
