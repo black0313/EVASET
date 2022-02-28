@@ -56,6 +56,12 @@ export const getMaxsulotRuyxatiBOLIM=(data)=>apiCall({
     onSuccess: slice.actions.getFrom.type
 });
 
+export const getMaxsulotRuyxatiMeasure=(data)=>apiCall({
+    url: '/product/get-by-measurement/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
 export const getCategory=()=>apiCall({
     url: '/get-by-category/1',
     method:'get',

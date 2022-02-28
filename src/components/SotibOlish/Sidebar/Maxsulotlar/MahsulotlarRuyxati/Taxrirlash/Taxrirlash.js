@@ -93,12 +93,12 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         setInput(a)
     }
     function fermabrandnomi(e){
-        input.fermabrandnomi = e.target.value
+        input.brandnomi = e.target.value
         let a = {...input}
         setInput(a)
     }
     function fermaqisqaeslatma(e){
-        input.fermaqisqaeslatma = e.target.value
+        input.qisqaeslatma = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -147,7 +147,6 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         let a = {...input}
         setInput(a)
     }
-
     function sotibolishnarxi(e){
         input.sotibolishnarxi = e.target.value
         let a = {...input}
@@ -226,7 +225,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                 brandId:   input.ferma,                      /*input.ferma,*/
                 categoryId: input.bolim,                     /*  input.bolim,*/
                 measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                photoIds:[2],
+                photoIds:[1],
                 minQuantity:   input.foydafoiz,                    /*   input.foydafoiz,*/
                 buyPrice:      input.sotishnarxi,               /*   input.sotishnarxi,*/
                 salePrice:input.sotibolishnarxi,
@@ -255,7 +254,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
             name:input.brandnomi,
             businessId:users.businessId
         })
-        toggle()
+        toggle2()
         input.brandnomi=''
         input.qisqaeslatma=''
     }

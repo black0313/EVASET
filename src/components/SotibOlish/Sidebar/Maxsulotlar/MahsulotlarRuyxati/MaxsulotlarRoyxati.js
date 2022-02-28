@@ -6,11 +6,11 @@ import React from "react";
 import {connect} from 'react-redux'
 import {useEffect,useState} from 'react'
 import users from "../../../../../reducer/users";
-import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM} from '../reducer/MaxsulotlarRoyxariReducer'
+import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure} from '../reducer/MaxsulotlarRoyxariReducer'
 import FirmaReducer,{getFirma} from "../reducer/FirmaReducer";
 import kgreducer,{getkg} from "../../../../../reducer/kgreducer";
 import BolimReducer,{getBolim} from "../reducer/BolimReducer";
-function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyxati,getCategory,users,getFirma,FirmaReducer,getMaxsulotRuyxati3,getkg,kgreducer,getMaxsulotRuyxatiBOLIM}) {
+function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyxati,getCategory,users,getFirma,FirmaReducer,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getkg,kgreducer,getMaxsulotRuyxatiMeasure}) {
 
 
 
@@ -65,7 +65,7 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
         let a = {...input}
         setInput(a)
         if (input.ulcov !== 'barchasi'){
-            getMaxsulotRuyxati3(input.ulcov)
+            getMaxsulotRuyxatiMeasure(input.ulcov)
         }
         else{
             getMaxsulotRuyxati(users.businessId)
@@ -175,4 +175,4 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
                      </div>
        )
 }
-export default connect((MaxsulotlarRoyxariReducer,users,FirmaReducer,kgreducer,BolimReducer),{getBolim,getkg,getFirma,getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM})  (MaxsulotlarRoyxati)
+export default connect((MaxsulotlarRoyxariReducer,users,FirmaReducer,kgreducer,BolimReducer),{getBolim,getkg,getFirma,getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure})  (MaxsulotlarRoyxati)
