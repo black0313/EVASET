@@ -8,7 +8,7 @@ export const api = ({dispatch}) => (next) => (action) => {
     next(action)
     const {url, method, data, onSuccess,params, onFail} = action.payload
    axios({
-        baseURL: 'http://localhost:8081/api',
+        baseURL: 'http://localhost:8080/api',
         headers:{
             Authorization:`Bearer ${localStorage.getItem('tokenname')}`
         },
@@ -28,6 +28,5 @@ export const api = ({dispatch}) => (next) => (action) => {
         console.log(err)
 
     })
-
 }
 export default api

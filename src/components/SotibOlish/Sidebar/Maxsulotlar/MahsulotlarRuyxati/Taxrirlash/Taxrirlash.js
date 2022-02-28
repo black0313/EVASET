@@ -287,7 +287,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                         <div className={'d-flex justify-content-between '}>
 
                             <select name="" id={'olcov'} onChange={ulcovbirligi} value={input.ulcovbirligi} className={'form-control'}>
-                                <option value="#">Tanlash</option>
+                                <option value="">Tanlash</option>
                                 {
                                     kgreducer.kg.map((item,index)=>
                                         <option value={item.id}>
@@ -405,8 +405,8 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                 </select>
                 <label htmlFor={'turiMah'} className={'mt-3'}>Soliqning ajratilishi</label>
                 <select name="" className={'form-control'} value={input.soliqajralishi} onChange={soliqajralishi} id={'turiMah'}>
-                    <option value="#">Narxga qo`shiladi</option>
-                    <option value="#">Narx ichida</option>
+                    <option value="">Narxga qo`shiladi</option>
+                    <option value="">Narx ichida</option>
                 </select>
                 <div className="table-responsive"> 
                 <table className={'table'}>

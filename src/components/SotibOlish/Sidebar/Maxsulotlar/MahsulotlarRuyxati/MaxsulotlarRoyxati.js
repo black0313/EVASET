@@ -1,5 +1,5 @@
 import "./maxsulotlarRoyxati.css"
-import { Link ,Switch,Route} from "react-router-dom"
+import {Link, Switch, Route, useHistory} from "react-router-dom"
 import BarchaMaxsulotlar from "../../Maxsulotlar/MahsulotlarRuyxati/barchaMaxsulotlar/BarchaMaxsulotlar"
 import QoldiqlarXisoboti from "../../Maxsulotlar/MahsulotlarRuyxati/qoldiqlarXisoboti/QoldiqlarXisoboti"
 import React from "react";
@@ -82,11 +82,13 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
         let a = {...input}
         setInput(a)
     }
+    const history = useHistory()
     useEffect(()=>{
         getMaxsulotRuyxati(users.businessId)
         getFirma(users.businessId)
         getkg(users.businessId)
         getBolim(users.businessId)
+        history.push('/headerthird/mahsulotRuyxati/barcaMahsulot')
     },[])
 
 

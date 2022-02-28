@@ -14,17 +14,23 @@ import TaminotReducer, {
 } from "../../Hamkorlar/reducer/TaminotReducer";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import Tolovreducer from "../../../../../reducer/tolovreducer";
+import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 
 function Xarid({
                    getXarid,
                    saveXarid,
                    taminot,
+                   getkg,
+    kgreducer,
                    deleteXarid,
                    getTaminot,
                    saveTaminot,
                    editXarid,
                    XaridReducer,
                    users,
+                   getMaxsulotRuyxati,
+                    MaxsulotlarRoyxariReducer,
                    TaminotReducer,
     branchreducer,getbranch,tolovreducer,gettolovholati,
                }) {
@@ -63,11 +69,63 @@ function Xarid({
             yetkazibberishnarxi: '',
             langv2: '',
             yetkazibberishnarxi2: '',
+            shtrix:'',
+            xaridmiqdori: '',
+            donanarxi:'',
+            chegirmafoiz: '',
+            birliknarxi:'',
+            jamimiqdori:'',
+            foydafoiz:'',
+            donasotish:'',
+            kg:'',
         }
     )
 
+    const [countJamiMaxsulot,setJamiMaxsulot] = useState(0)
+    const [countJamiSumma,setJamiSumma] = useState(0)
+
     function diller(e) {
         input.diller = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function xaridmiqdori(e) {
+        input.xaridmiqdori = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function donanarxi(e) {
+        input.donanarxi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function chegirmafoiz(e) {
+        input.chegirmafoiz = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function birliknarxi(e) {
+        input.birliknarxi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function jamimiqdori(e) {
+        input.jamimiqdori = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function foydafoiz(e) {
+        input.foydafoiz = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function donasotish(e) {
+        input.donasotish = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function kg(e) {
+        input.kg = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -77,63 +135,58 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
-
     function dukon(e) {
         input.dukon = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function idraqam(e) {
         input.idraqam = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function login(e) {
         input.login = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function tel(e) {
         input.tel = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function ismi(e) {
         input.ismi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function ikkinciraqam(e) {
         input.ikkinciraqam = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function otaismi(e) {
         input.otaismi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function telegram(e) {
         input.telegram = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function familiyasi(e) {
         input.familiyasi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function email(e) {
         input.email = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function shtrix(e) {
+        input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -143,86 +196,72 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
-
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function xaridsanasi(e) {
         input.xaridsanasi = e.target.value
         let a = {...input}
         setInput(a)
         console.log(input.xaridsanasi)
     }
-
     function tulovmuddati(e) {
         input.tulovmuddati = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function xaridstatusi(e) {
         input.xaridstatusi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function qoshimchahujjat(e) {
         input.qoshimchahujjat = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function avans(e) {
         input.avans = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function tulovusuli(e) {
         input.tulovusuli = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function paidon(e) {
         input.paidon = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function eslatma(e) {
         input.eslatma = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function yetkazibberish(e) {
         input.yetkazibberish = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function yetkazibberishnarxi(e) {
         input.yetkazibberishnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function langv2(e) {
         input.langv2 = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function yetkazibberishnarxi2(e) {
         input.yetkazibberishnarxi2 = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function toggle() {
         setActive(!active)
     }
@@ -230,6 +269,7 @@ function Xarid({
     function toggle2() {
         setActive2(!active2)
     }
+
 
     function saqla() {
         saveXarid(
@@ -271,6 +311,8 @@ function Xarid({
 
     useEffect(() => {
         getTaminot(users.businessId)
+        getMaxsulotRuyxati(users.businessId)
+        getkg()
     }, [TaminotReducer.current])
     useEffect(() => {
         getbranch(users.businessId)
@@ -282,7 +324,7 @@ function Xarid({
     return (
         <div className='xaridQilishBox'>
             <div className={'row  mt-5 '}>
-                <h5 className={'text-center mt-3'}>Xarid qilish</h5>
+                <h5 className={'text-center mt-3'}>XARID QILISH</h5>
                 <div className="col-md-10 border mt-4 offset-1 d-flex">
                     <div className="row">
                         <div className={'col-3 col-sm-12'}>
@@ -405,6 +447,74 @@ function Xarid({
                     </Modal>
                 </div>
 
+                <div className={'col-md-10 mt-4 offset-1'}>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <input type="number" value={input.shtrix} onChange={shtrix} className={'form-control'} placeholder={'Mahsulot shtrix kodi'}/>
+                            <table className={'table mt-3 border'}>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Mahsulot nomi</th>
+                                        <th>Xarid miqdori</th>
+                                        <th>Dona narxi</th>
+                                        <th>Chegirma foizda</th>
+                                        <th>Birlik narxi</th>
+                                        <th>Jami miqdor</th>
+                                        <th>Foyda (foiz)</th>
+                                        <th>Dona sotish narxi</th>
+                                        <th>x</th>
+                                    </tr>
+                                </thead>
+                                {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
+                                <tbody>
+                                {
+                                    MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
+                                        if (input.shtrix === ''){
+                                            return val
+                                        }else if (val.barcode.includes(input.shtrix)){
+                                            return val
+                                        }
+                                    }).map(item=><tr key={item.id}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>
+                                            <input type="number" placeholder={'xarid miqdori'} value={input.xaridmiqdori} onChange={xaridmiqdori} className={'form-control'}/>
+                                            <select name="" className={'form-control mt-3'} value={input.kg} onChange={kg} id="">
+                                                {
+                                                    kgreducer.kg.map(item=> <option value={item.id}>{item.name}</option>)
+                                                }
+                                                {console.log(kgreducer.kg)}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="number" value={input.donanarxi} onChange={donanarxi} placeholder={'dona narxi'} className={'form-control'}/>
+                                        </td>
+                                        <td>
+                                            <input type="number" value={input.chegirmafoiz} onChange={chegirmafoiz} placeholder={'chegirma %'} className={'form-control'}/>
+                                        </td>
+                                        <td>
+                                            <input type="number" value={input.birliknarxi} onChange={birliknarxi} placeholder={'birlik narxi'} className={'form-control'}/>
+                                        </td>
+                                        <td>
+                                            <input type="number" value={input.jamimiqdori} onChange={jamimiqdori} className={'form-control'} placeholder={'jami miqdor'}/>
+                                        </td>
+                                        <td>
+                                            <input type="number" value={input.foydafoiz} onChange={foydafoiz} className={'form-control'} placeholder={'foyda %'}/>
+                                        </td>
+                                        <td>
+                                            <input type="number" value={input.donasotish} onChange={donasotish} className={'form-control'} placeholder={'dona sotish'}/>
+                                        </td>
+                                    </tr>)
+                                }
+                                </tbody>
+                            </table><hr/>
+                            <h6>Jami maxsulotlar: {countJamiMaxsulot}</h6>
+                            <h6>Jami summa: {countJamiSumma}</h6>
+                        </div>
+                    </div>
+                </div>
+
                 <h5 className={'text-center mt-5'}>To`lov qilish</h5>
                 <div className="col-md-10 offset-1 border p-4 d-flex">
                     <div className="row">
@@ -487,8 +597,10 @@ function Xarid({
     )
 }
 
-export default connect((XaridReducer, users, TaminotReducer, branchreducer,tolovreducer), {
+export default connect((MaxsulotlarRoyxariReducer,XaridReducer,kgreducer, users, TaminotReducer, branchreducer,tolovreducer), {
+    getMaxsulotRuyxati,
     getXarid,
+    getkg,
     saveXarid,
     editXarid,
     getTaminot,

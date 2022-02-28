@@ -97,7 +97,7 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
                         <h6>Xarajat qildi:</h6>
                         <select name="" id="" value={input.xarajatqildi} onChange={xarajatqildi}>
                             <option value="">Barchasi</option>
-                        </select>
+                        </select>o
                     </div>
                 </div>
                 <div className="row">
