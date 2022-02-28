@@ -391,7 +391,7 @@ function Xarid({
                             </div>
                         </div>
 
-                        <div className="col-3 col-sm-12">
+                        <div className="col-3 col-sm-12 mb-4">
                             <label htmlFor={'qisqa'}>Qisqa eslatma</label>
                             <input type="text" className={'form-control'} value={input.qisqaeslatma}
                                    onChange={qisqaeslatma}
@@ -409,9 +409,9 @@ function Xarid({
                             <label htmlFor={'sana'}>Xarid sanasi</label>
                             <input type="date" value={input.xaridsanasi} onChange={xaridsanasi}
                                    className={'form-control'}/>
-                            <label className={'mt-3'} htmlFor={'muddat'}>To`lov muddati</label>
+                            <label className={'mt-3 '} htmlFor={'muddat'}>To`lov muddati</label>
                             <select name="" id={'muddat'} value={input.tulovmuddati} onChange={tulovmuddati}
-                                    className={'form-control'}>
+                                    className={'form-control mb-3'}>
                                 <option value="">Tanlash</option>
                                 <option value="">Oy</option>
                                 <option value="">Hafta</option>
@@ -497,84 +497,86 @@ function Xarid({
                         <div className="col-md-12">
                             <input type="number" value={input.shtrix} onChange={shtrix} className={'form-control'}
                                    placeholder={'Mahsulot shtrix kodi'}/>
-                            <table className={'table mt-3 border'}>
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Mahsulot nomi</th>
-                                    <th>Xarid miqdori</th>
-                                    <th>Dona narxi</th>
-                                    <th>Chegirma foizda</th>
-                                    <th>Birlik narxi</th>
-                                    <th>Jami miqdor</th>
-                                    <th>Foyda (foiz)</th>
-                                    <th>Dona sotish narxi</th>
-                                    <th>x</th>
-                                </tr>
-                                </thead>
-                                {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
-                                <tbody>
-                                {
-                                    activeshtrix ?
-                                        MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
-                                            if (input.shtrix === '') {
-                                                return ''
-                                            } else if (val.barcode == input.shtrix) {
-                                                return val
-                                            }
-                                        })
-                                            .map(item => <tr key={item.id}>
-                                                <td><h5>{item.id}</h5></td>
-                                                <td><h5>{item.name}</h5></td>
-                                                <td>
-                                                    <input type="number" placeholder={'xarid miqdori'}
-                                                           value={input.xaridmiqdori} onChange={xaridmiqdori}
-                                                           className={'form-control'}/>
-                                                    <select name="" className={'form-control mt-1'} value={input.kg}
-                                                            onChange={kg} id="">
-                                                        {
-                                                            kgreducer.kg.map(item => <option
-                                                                value={item.id}>{item.name}</option>)
-                                                        }
-                                                        {console.log(kgreducer.kg)}
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input type="number" value={input.donanarxi} onChange={donanarxi}
-                                                           placeholder={'dona narxi'} className={'form-control'}/>
-                                                </td>
-                                                <td>
-                                                    <input type="number" value={input.chegirmafoiz}
-                                                           onChange={chegirmafoiz} placeholder={'chegirma %'}
-                                                           className={'form-control'}/>
-                                                </td>
-                                                <td>
-                                                    <input type="number" value={input.birliknarxi}
-                                                           onChange={birliknarxi} placeholder={'birlik narxi'}
-                                                           className={'form-control'}/>
-                                                </td>
-                                                <td>
-                                                    <input type="number" value={input.jamimiqdori}
-                                                           onChange={jamimiqdori} className={'form-control'}
-                                                           placeholder={'jami miqdor'}/>
-                                                </td>
-                                                <td>
-                                                    <input type="number" value={input.foydafoiz} onChange={foydafoiz}
-                                                           className={'form-control'} placeholder={'foyda %'}/>
-                                                </td>
-                                                <td>
-                                                    <input type="number" value={input.donasotish} onChange={donasotish}
-                                                           className={'form-control'} placeholder={'dona sotish'}/>
-                                                </td>
-                                                <td>
-                                                    <button onClick={() => ochirish(item.id)}
-                                                            className={'btn btn-danger'}>x
-                                                    </button>
-                                                </td>
-                                            </tr>) : 'no match'
-                                }
-                                </tbody>
-                            </table>
+                            <div className="table-responsive">
+                                <table className={'table mt-3 border'}>
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Mahsulot nomi</th>
+                                        <th>Xarid miqdori</th>
+                                        <th>Dona narxi</th>
+                                        <th>Chegirma foizda</th>
+                                        <th>Birlik narxi</th>
+                                        <th>Jami miqdor</th>
+                                        <th>Foyda (foiz)</th>
+                                        <th>Dona sotish narxi</th>
+                                        <th>x</th>
+                                    </tr>
+                                    </thead>
+                                    {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
+                                    <tbody>
+                                    {
+                                        activeshtrix ?
+                                            MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
+                                                if (input.shtrix === '') {
+                                                    return ''
+                                                } else if (val.barcode == input.shtrix) {
+                                                    return val
+                                                }
+                                            })
+                                                .map(item => <tr key={item.id}>
+                                                    <td><h5>{item.id}</h5></td>
+                                                    <td><h5>{item.name}</h5></td>
+                                                    <td>
+                                                        <input type="number" placeholder={'xarid miqdori'}
+                                                            value={input.xaridmiqdori} onChange={xaridmiqdori}
+                                                            className={'form-control'}/>
+                                                        <select name="" className={'form-control mt-1'} value={input.kg}
+                                                                onChange={kg} id="">
+                                                            {
+                                                                kgreducer.kg.map(item => <option
+                                                                    value={item.id}>{item.name}</option>)
+                                                            }
+                                                            {console.log(kgreducer.kg)}
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value={input.donanarxi} onChange={donanarxi}
+                                                            placeholder={'dona narxi'} className={'form-control'}/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value={input.chegirmafoiz}
+                                                            onChange={chegirmafoiz} placeholder={'chegirma %'}
+                                                            className={'form-control'}/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value={input.birliknarxi}
+                                                            onChange={birliknarxi} placeholder={'birlik narxi'}
+                                                            className={'form-control'}/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value={input.jamimiqdori}
+                                                            onChange={jamimiqdori} className={'form-control'}
+                                                            placeholder={'jami miqdor'}/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value={input.foydafoiz} onChange={foydafoiz}
+                                                            className={'form-control'} placeholder={'foyda %'}/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value={input.donasotish} onChange={donasotish}
+                                                            className={'form-control'} placeholder={'dona sotish'}/>
+                                                    </td>
+                                                    <td>
+                                                        <button onClick={() => ochirish(item.id)}
+                                                                className={'btn btn-danger'}>x
+                                                        </button>
+                                                    </td>
+                                                </tr>) : 'no match'
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>       
                             <hr/>
                             <h6>Jami maxsulotlar: {input.xaridmiqdori}</h6>
                             <h6>Jami summa: {input.jamimiqdori}</h6>
@@ -585,18 +587,18 @@ function Xarid({
                 <h5 className={'text-center mt-5'}>To`lov qilish</h5>
                 <div className="col-md-10 offset-1 border p-4 d-flex">
                     <div className="row">
-                        <div className="col-6 col-sm-10">
+                        <div className="col-6 col-sm-12">
                             <label htmlFor={'avans'}>Avans 0 / To`lov so`mmasi</label>
                             <input type="text" className={'form-control'} value={input.avans} onChange={avans}
                                    id={'avans'}/>
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
-                            <select name="" id={'tol'} className={'form-control'} value={input.tulovusuli}
+                            <select name="" id={'tol'} className={'form-control mb-3'} value={input.tulovusuli}
                                     onChange={tulovusuli}>
                                 <option value="">Naqd</option>
                                 <option value="">Pastik</option>
                             </select>
                         </div>
-                        <div className="col-6 col-sm-10">
+                        <div className="col-6 col-sm-12">
                             <label htmlFor={'paid'}>Paid on</label>
                             <input type="date" value={input.paidon} onChange={paidon} className={'form-control'}
                                    id={'paid'}/>
@@ -610,9 +612,9 @@ function Xarid({
                             </select>
                         </div>
 
-                        <div className={'col-10 col-sm-10 offset-1 mt-5 border p-2 d-flex'}>
+                        <div className={'col-10 col-sm-11 offset-1 mt-5 border p-2 d-flex'}>
                             <div className="row">
-                                <div className="col-6 col-sm-12">
+                                <div className="col-6 col-sm-11">
                                     <div className="btnBox">
                                         <label htmlFor={'yet'}>Yetkazib berish manzili</label>
                                         <input type="text" id={'yet'} value={input.yetkazibberish}
