@@ -67,7 +67,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
 
     function editx(){
         if(match.params.id !== undefined){
-            getXodim()
+            getXodim(users.businessId)
         }
         XodimReducer.xodimlar.map(item=>{
             if(item.id == match.params.id){

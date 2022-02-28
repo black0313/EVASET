@@ -3,10 +3,12 @@
 }
 
 *{
-
 }
 body{
     background: silver;
+    height: auto;
+}
+#root{
     height: 100%;
 }
 
