@@ -65,8 +65,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         setInput(a)
     }
 
-
-    function  editx(){
+    function editx(){
         if(match.params.id !== undefined){
             getXodim()
         }

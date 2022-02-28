@@ -28,6 +28,5 @@ export const api = ({dispatch}) => (next) => (action) => {
         console.log(err)
 
     })
-
 }
 export default api

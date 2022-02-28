@@ -1,13 +1,16 @@
 import "./maxsulotlarRoyxati.css"
-import { Link ,Switch,Route} from "react-router-dom"
+import {Link, Switch, Route, useHistory} from "react-router-dom"
 import BarchaMaxsulotlar from "../../Maxsulotlar/MahsulotlarRuyxati/barchaMaxsulotlar/BarchaMaxsulotlar"
 import QoldiqlarXisoboti from "../../Maxsulotlar/MahsulotlarRuyxati/qoldiqlarXisoboti/QoldiqlarXisoboti"
 import React from "react";
 import {connect} from 'react-redux'
 import {useEffect,useState} from 'react'
 import users from "../../../../../reducer/users";
-import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory} from '../reducer/MaxsulotlarRoyxariReducer'
-function MaxsulotlarRoyxati({getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyxati,getCategory,users}) {
+import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure} from '../reducer/MaxsulotlarRoyxariReducer'
+import FirmaReducer,{getFirma} from "../reducer/FirmaReducer";
+import kgreducer,{getkg} from "../../../../../reducer/kgreducer";
+import BolimReducer,{getBolim} from "../reducer/BolimReducer";
+function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyxati,getCategory,users,getFirma,FirmaReducer,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getkg,kgreducer,getMaxsulotRuyxatiMeasure}) {
 
 
 
@@ -37,17 +40,37 @@ function MaxsulotlarRoyxati({getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyx
         input.bolim = e.target.value
         let a = {...input}
         setInput(a)
-        console.log(input.bolim)
+        if (input.bolim !== 'barchasi'){
+            getMaxsulotRuyxatiBOLIM(input.bolim)
+        }
+        else{
+            getMaxsulotRuyxati(users.businessId)
+
+        }
     }
     function changefirma(e){
         input.firma = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.firma !== 'barchasi'){
+            getMaxsulotRuyxati3(input.firma)
+        }
+        else{
+            getMaxsulotRuyxati(users.businessId)
+
+        }
     }
     function changeulcov(e){
         input.ulcov = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.ulcov !== 'barchasi'){
+            getMaxsulotRuyxatiMeasure(input.ulcov)
+        }
+        else{
+            getMaxsulotRuyxati(users.businessId)
+
+        }
     }
     function changebaza(e){
         input.baza = e.target.value
@@ -59,9 +82,16 @@ function MaxsulotlarRoyxati({getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyx
         let a = {...input}
         setInput(a)
     }
+    const history = useHistory()
     useEffect(()=>{
         getMaxsulotRuyxati(users.businessId)
+        getFirma(users.businessId)
+        getkg(users.businessId)
+        getBolim(users.businessId)
+        history.push('/headerthird/mahsulotRuyxati/barcaMahsulot')
     },[])
+
+
        return (
               <div className="col-md-12 mt-4 ">
                             <div className="textHeaderMax">
@@ -83,7 +113,11 @@ function MaxsulotlarRoyxati({getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyx
                                                     <div className="minBox">
                                                         <h6>Bo'lim:</h6>
                                                         <select value={input.bolim} onChange={changebolim} name="" id="">
-                                                            <option value="">Barchasi</option>
+                                                            <option value="barchasi">Barchasi</option>
+                                                            {
+                                                                BolimReducer.bolimlar.map(item=> <option
+                                                                    value={item.id}>{item.name}</option>)
+                                                            }
                                                         </select>
                                                     </div>                                            
                                             </div>
@@ -91,7 +125,10 @@ function MaxsulotlarRoyxati({getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyx
                                                 <div className="minBox">
                                                 <h6>O'lchov birligi:</h6>
                                                     <select name="" id="" value={input.ulcov} onChange={changeulcov}>
-                                                       <option value="">Barchasi</option>
+                                                       <option value="barchasi">Barchasi</option>
+                                                        {
+                                                            kgreducer.kg.map(item=> <option value={item.id}>{item.name}</option>)
+                                                        }
                                                     </select>
                                                 </div>
                                                 <div className="minBox">
@@ -105,7 +142,10 @@ function MaxsulotlarRoyxati({getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyx
                                                 <div className="minBox">
                                                     <h6>Firma:</h6>
                                                     <select name="" id="" onChange={changefirma} value={input.firma}>
-                                                        <option value="">Barchasi</option>
+                                                        <option value={'barchasi'}>Barchasi</option>
+                                                        {
+                                                            FirmaReducer.firmalar.map(item=> <option value={item.id}>{item.name}</option>)
+                                                        }
                                                     </select>
                                                 </div>
                                                 <div className="minBox">
@@ -126,13 +166,13 @@ function MaxsulotlarRoyxati({getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyx
                                         </div>
                                    <hr />
                                    <div className="bynBarchMax">
-                                          <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot'}><button className="btn btn-success mb-2 me-2">Barcha maxsulotlar</button></Link>
+                                          <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/'}><button className="btn btn-success mb-2 me-2">Barcha maxsulotlar</button></Link>
                                           <Link to={'/headerthird/mahsulotRuyxati/qoldiqXisobot'}><button className="btn btn-primary mb-2">Qoldiqlar xisoboti</button></Link>
                                    </div>
-                                <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot'} component={BarchaMaxsulotlar}/>
+                                <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/'} component={BarchaMaxsulotlar}/>
                                 <Route path={'/headerthird/mahsulotRuyxati/qoldiqXisobot'} component={QoldiqlarXisoboti}/>
                             </div>
                      </div>
        )
 }
-export default connect((MaxsulotlarRoyxariReducer,users),{getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory})  (MaxsulotlarRoyxati)
+export default connect((MaxsulotlarRoyxariReducer,users,FirmaReducer,kgreducer,BolimReducer),{getBolim,getkg,getFirma,getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure})  (MaxsulotlarRoyxati)

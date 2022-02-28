@@ -17,7 +17,7 @@ import {getMijozhisobot,deleteMijozhisobot,saveMijozhisobot,editMijozhisobot} fr
 import XodimReducer, {getXodim, saveXodim} from "../../Hodimlar/reducer/XodimReducer";
 import users from "../../../../../reducer/users";
 
-function MijozlarXisoboti({XodimReducer,getXodim,users}) {
+function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar}) {
 
     const [inputvalue,setinputvalue] = useState(
         {
@@ -50,7 +50,6 @@ function MijozlarXisoboti({XodimReducer,getXodim,users}) {
     }
 
     useEffect(()=>{
-        // getMijozhisobot()
         getXodim(users.businessId)
         history.push('/headerthird/mijozlarXisoboti/1')
     },[])

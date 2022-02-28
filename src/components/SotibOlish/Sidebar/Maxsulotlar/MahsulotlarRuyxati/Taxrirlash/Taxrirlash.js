@@ -93,12 +93,12 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         setInput(a)
     }
     function fermabrandnomi(e){
-        input.fermabrandnomi = e.target.value
+        input.brandnomi = e.target.value
         let a = {...input}
         setInput(a)
     }
     function fermaqisqaeslatma(e){
-        input.fermaqisqaeslatma = e.target.value
+        input.qisqaeslatma = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -147,7 +147,6 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         let a = {...input}
         setInput(a)
     }
-
     function sotibolishnarxi(e){
         input.sotibolishnarxi = e.target.value
         let a = {...input}
@@ -226,7 +225,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                 brandId:   input.ferma,                      /*input.ferma,*/
                 categoryId: input.bolim,                     /*  input.bolim,*/
                 measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                photoIds:[2],
+                photoIds:[1],
                 minQuantity:   input.foydafoiz,                    /*   input.foydafoiz,*/
                 buyPrice:      input.sotishnarxi,               /*   input.sotishnarxi,*/
                 salePrice:input.sotibolishnarxi,
@@ -255,7 +254,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
             name:input.brandnomi,
             businessId:users.businessId
         })
-        toggle()
+        toggle2()
         input.brandnomi=''
         input.qisqaeslatma=''
     }
@@ -287,7 +286,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                         <div className={'d-flex justify-content-between '}>
 
                             <select name="" id={'olcov'} onChange={ulcovbirligi} value={input.ulcovbirligi} className={'form-control'}>
-                                <option value="#">Tanlash</option>
+                                <option value="">Tanlash</option>
                                 {
                                     kgreducer.kg.map((item,index)=>
                                         <option value={item.id}>
@@ -405,8 +404,8 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                 </select>
                 <label htmlFor={'turiMah'} className={'mt-3'}>Soliqning ajratilishi</label>
                 <select name="" className={'form-control'} value={input.soliqajralishi} onChange={soliqajralishi} id={'turiMah'}>
-                    <option value="#">Narxga qo`shiladi</option>
-                    <option value="#">Narx ichida</option>
+                    <option value="">Narxga qo`shiladi</option>
+                    <option value="">Narx ichida</option>
                 </select>
                 <div className="table-responsive"> 
                 <table className={'table'}>

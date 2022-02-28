@@ -4,7 +4,8 @@ import {apiCall} from "../../../../../api";
 const slice = createSlice({
     name: 'xarajatlar',
     initialState: {
-        xarajatlar: []
+        xarajatlar: [],
+        counter:false
     },
     reducers: {
         getFrom: (state, action) => {
@@ -13,16 +14,15 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             state.xarajatlar.unshift(action.payload)
+            state.counter=!state.counter
         },
         editfrom: (state,action) => {
-            state.xarajatlar.map((item,index)=>{
-                if (item.id === action.payload.id){
-                    item.login = action.payload.login
-                }
-            })
+            state.counter=!state.counter
+
             console.log('saqlandi_xarajat');
         },
         deletefrom:(state,action)=>{
+            state.counter=!state.counter
 
             console.log('DELETEED_XARAJAT');
             // toast.info('O`chirildi')
@@ -44,8 +44,8 @@ export const saveXarajatlar=(data)=>apiCall({
 });
 
 export const editXarajatlar=(data)=>apiCall({
-    url: '/outlay',
-    method: 'post',
+    url: '/outlay/'+data.id,
+    method: 'put',
     data,
     onSuccess: slice.actions.editfrom.type
 });

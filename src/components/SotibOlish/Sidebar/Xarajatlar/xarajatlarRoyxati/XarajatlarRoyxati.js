@@ -9,9 +9,9 @@ import Delete from '../../../../../img/Delete.png'
 import './xarajatlarRoyxati.css'
 import {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import {deleteXarajatlar, editXarajatlar, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
+import XarajatlarReducer, {deleteXarajatlar, editXarajatlar, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
 
-function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xarajatlar}) {
+function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xarajatlar,XarajatlarReducer}) {
 
     const [input, setInput] = useState(
         {
@@ -37,37 +37,31 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
         let a = {...input}
         setInput(a)
     }
-
     function aloqa(e) {
         input.aloqa = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function xarajatturi(e) {
         input.xarajatturi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sana(e) {
         input.sana = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function obuna(e) {
         input.obuna = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function view(e) {
         input.view = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function izlash(e) {
         input.izlash = e.target.value
         let a = {...input}
@@ -76,7 +70,7 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
 
     useEffect(() => {
         getXarajatlar()
-    }, [])
+    }, [XarajatlarReducer.current])
 
     function deleteXarajat(item){
         deleteXarajatlar(item.id)
@@ -103,7 +97,7 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
                         <h6>Xarajat qildi:</h6>
                         <select name="" id="" value={input.xarajatqildi} onChange={xarajatqildi}>
                             <option value="">Barchasi</option>
-                        </select>
+                        </select>o
                     </div>
                 </div>
                 <div className="row">
@@ -140,7 +134,7 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
 
             <div className="rowStyleHRR2">
                 <div className="qoshish">
-                    <h5>Barcha savdolar</h5>
+                    <h5>Xarajatlar</h5>
                     <Link to={'/headerthird/xarajatQoshish'}>
                         <button className='btn btn-primary'>+Qo'shish</button>
                     </Link>
@@ -181,24 +175,35 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
                             <th>Jami maxsulotlar</th>
                             <th>Savdogar</th>
                             <th>Savdo eslatmasi</th>
-                            <th>Yetkazish manzili</th>
+                            {/*<th>Yetkazish manzili</th>*/}
                             <th>Amallar</th>
                         </tr>
                         </thead>
                         <tbody>
                         {
-                            xarajatlar.filter(val => {
+                            XarajatlarReducer.xarajatlar.filter(val => {
                                 if (input.izlash === '') {
                                     return val
                                 } else if (val.name.toUpperCase().includes(input.izlash.toUpperCase())) {
                                     return val
                                 }
                             }).map(item => <tr key={item.id}>
-                                <td>{item.qisqaeslatma}</td>
-                                <td> </td>
+                                <td>{item.date}</td>
+                                <td>-</td>
+                                {/*<td>{item.spender.firstName}</td>*/}
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>naqd</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>{item.totalSum}</td>
+                                <td>{item.description}</td>
                                 <td> </td>
                                 <td>
-                                    <Link to={'/headerthird/xarajatQoshish'}>
+                                    <Link to={'/headerthird/xarajatQoshish/'+item.id}>
                                         <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
                                     </Link>
                                     <button className='ochirish' onClick={()=>deleteXarajat(item)}><img src={Delete} alt=""/> O'chirish</button>
@@ -223,7 +228,7 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
     )
 }
 
-export default connect(({XarajatlarReducer: {xarajatlar}}) => ({xarajatlar}), {
+export default connect((XarajatlarReducer), {
     getXarajatlar,
     saveXarajatlar,
     editXarajatlar,
