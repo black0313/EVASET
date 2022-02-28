@@ -1,7 +1,163 @@
-.block{
-    border: 1px solid black;
-    margin-top: 10px;
+.savdoOynaContainers{
+    /* background-color: gray; */
+    margin: 24px 12px;
+    padding: 0px;
+    border-radius: 0px;
+
 }
+.savdoOynaContainers .savdoNavbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 16px 32px;
+    margin-bottom: 6px;
+
+}
+.savdoOynaContainers .savdoNavbar .navbarLeft h5{
+    text-align: center;
+    margin: 0px;
+}
+.savdoOynaContainers .savdoNavbar .navbarRigth{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 332px;
+
+}
+.savdoOynaContainers .savdoNavbar .navbarRigth img{
+    width: 18px;
+    height: 20px;
+    cursor: pointer;
+}
+.savdoOynaContainers .savdoNavbar .navbarRigth button{
+    width: 136px;
+    height: 32px;
+    padding: 0px 16px;
+    background-color: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: #9FA2B4;
+}
+.savdoOynaContainers .savdoBlock{
+    padding: 6px; 
+    display: flex;
+    justify-content: space-between;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockLeft {
+    background: #FFFFFF;
+    border: 1px solid rgba(159, 162, 180, 0.25);
+    border-radius: 20px;
+    padding: 24px 20px;
+    width: 49%;
+    height: 524px;
+} 
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox select{
+    background: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: #9FA2B4;
+    height: 32px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox input{
+    background: #FFFFFF;
+    width: 50%;
+    padding-left: 4px;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: #9FA2B4;
+    height: 32px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+   
+}
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .chegirmalarBox{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tbodyY{
+    height: 320px;
+    overflow-y: scroll;
+    /* position: relative; */
+}
+.tbodyY thead{
+    position: sticky;
+    top: 0px;
+    background-color: white;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockRigth{
+    background: #FFFFFF;
+    border: 1px solid rgba(159, 162, 180, 0.25);
+    border-radius: 20px;
+    padding: 24px 20px;
+    width: 49%;
+    height: 524px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockRigth .bazaBox select{
+    background-color: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: #9FA2B4;
+    height: 32px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock{
+    margin-top: 36px;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    height: 320px;
+    
+}
+.savdoOynaContainers .savdoBlock .savBtnBox{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    margin-bottom: 16px;
+}
+
+.savdoOynaContainers .savBtnBox .jamiTolov{
+    background-color: #FFFFFF;
+    width: 200px;
+    height: 36px;
+    border: 1px solid rgba(159, 162, 180, 0.5);
+    border-radius: 4px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox{
+    width: 140px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox img{
+    width: 100px;
+    height: 70px;
+    margin: 4px 24px;
+}
+
+
+.savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox h6{
+    /* overflow: hidden; */
+    margin: 0px 4px;
+    text-align: center;
+    font-size: 12px;
+    
+}
+.savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox p{
+    text-align: center;
+    font-size: 12px;
+}
+
 .ddd{
     cursor: pointer;
 }
@@ -10,68 +166,14 @@
     top: 63%;
     left: 70%;
 }
-.block .bText{
-    margin-top: 10px;
-    width: 100%;
-    height: 25%;
-    /*border: 1px solid black;*/
-    font-size: 16px;
-    text-align: center;
-}
-.colorbackj{
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    padding: 26px;
-}
-.colorbackj .navBlock .navBox1 select{
-    background: #FFFFFF;
-    border: 1px solid #9FA2B4;
-    box-sizing: border-box;
-    border-radius: 6px;
-    width: 218px;
-    height: 30px;
-}
-.colorbackj .block2 .brendBox select{
-    background: #FFFFFF;
-    border: 1px solid #9FA2B4;
-    box-sizing: border-box;
-    border-radius: 6px;
-    width: 218px;
-    height: 30px;
-} 
-.colorbackj .block2 .mahsulotBox img{
-    width: 20px;
-    height: 20px;
-}
-.colorbackj .block2 .mahsulotBox{
-    background: #FFFFFF;
-    border: 1px solid #9FA2B4;
-    box-sizing: border-box;
-    border-radius: 6px;
-    width: 218px;
-    height: 30px;
-}
-.colorbackj .block2 .mahsulotBox input{
-    border: none;
-    padding: 2px;
-}
 
 
-.colorbackj .navBlock{
-   display: flex;
-   justify-content: space-between;
-   padding: 8px 0px 8px 0px;
-}
-.colorbackj .navBlock .navBox2{
-    display: flex;
-    width: 30%;
-    justify-content: space-between;
 
-}
-.colorbackj .navBlock .navBox2 img{
-    margin: 0px 2px 0px 2px;
-}
-.colorbackj .navBlock .navBox1{
+
+
+
+
+/* .colorbackj .navBlock .navBox1{
     display: flex;
     align-items: center;
 }
@@ -91,86 +193,4 @@
     margin-bottom: 32px;
 }
 
-
-@media (max-width: 425.9px ){
-    .colorbackj .navBlock{
-        display: block;
-    }
-    .colorbackj .navBlock .navBox1{
-        display: block;
-
-    }
-    .colorbackj .navBlock .navBox2{
-        width: 100%;
-        margin-top: 20px;
-    }
-    .colorbackj .block2{
-        display: block;
-        margin: 20px 0px 20px 0px;
-    }
-    .colorbackj .block2 .brendBox{
-        display: block;
-        margin: 20px 0px 20px 0px;
-    }
-    .colorbackj .chegirmaBox{
-        display: block;
-    }
-    .colorbackj .btnBox{
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 70%;
-        grid-gap: 10px;
-    }
-}
-
-@media (min-width:426px) and (max-width: 768.9px ){
-    .colorbackj .navBlock{
-        display: block;
-    }
-    .colorbackj .navBlock .navBox1{
-        display: block;
-
-    }
-    .colorbackj .navBlock .navBox2{
-        width: 100%;
-        margin-top: 20px;
-    }
-    .colorbackj .block2{
-        display: block;
-        margin: 20px 0px 20px 0px;
-    }
-    .colorbackj .block2 .brendBox{
-        display: block;
-        margin: 20px 0px 20px 0px;
-    }
-    .colorbackj .chegirmaBox{
-        display: block;
-    }
-    .colorbackj .btnBox{
-        display: grid;
-        justify-content: center;
-        grid-template-columns:40% 40%;
-        grid-gap: 10px;
-    }
-}
-@media (min-width: 769px) and (max-width: 1024.9px){
-    .colorbackj .navBlock .navBox2{
-        width: 46%;
-    
-    }
-    .colorbackj .btnBox{
-        display: grid;
-        justify-content: center;
-        grid-template-columns:30% 30% 30%;
-        grid-gap: 10px;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1199px){
-    .colorbackj .btnBox{
-        display: grid;
-        justify-content: center;
-        grid-template-columns:20% 20% 20% 20%;
-        grid-gap: 10px;
-    }
-}
+ */
