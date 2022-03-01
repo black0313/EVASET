@@ -243,20 +243,16 @@ function SavdoOynasi({
                         </table>
                     </div>
                     <div className="maxSoniBox">
-                        {
-                            // FIX ME
-                            // FIX ME
-                            console.log(arr1)
-                        }
 
-                        <h6 className='d-flex align-items-center '>Mahsulot soni: {
+                        <h6>Maxsulot soni:200</h6>
+                        <h6>Jami:5 000 000 so'm</h6>
+                        {/* <h6 className='d-flex align-items-center '>Mahsulot soni: {
                             arr1.map(item => <tr key={item.id}>
                                 <td>{item.id + " " + item.name + " -> "} </td>
                                 <td style={{fontSize: '18px'}}>{item.counter}</td>
-                                <td>Jami:0</td>
-                                {/*<tr><td>JAMI {item.counter}</td></tr>*/}
+                                <td>Jami:0</td>ryry
                             </tr>)
-                        }</h6>
+                        }</h6> */}
                     </div>
                     <hr style={{margin: '2px'}}/>
                     <div className={'chegirmalarBox'}>
@@ -285,22 +281,24 @@ function SavdoOynasi({
                         </select>
                     </div>
                     {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
-                    <div className={' maxsulotImgBlock'}>
-                            {
-                                MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
-                                                                                       key={item.id}>
-                                    {/*<img style={{marginLeft:'15px'}} src="https://freepngimg.com/static/img/whatsapp.png"  alt="yuq"/>*/}
-                                    {/*<div onClick={() => qoshil(item.id)} style={{cursor:'pointer'}}>*/}
-                                    <div onClick={() => pushesh(item.name, item.id,item.buyPrice)} style={{cursor:'pointer'}}>
-                                        <img
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
-                                            alt="yuq"/>
-                                        <h6>{item.name}</h6>
-                                    </div>
-                                </div>)
-                            }
+                        <div className={' maxsulotImgBlock'}>
+                        
+                                {
+                                    MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
+                                                                                        key={item.id}>
+                                        {/*<img style={{marginLeft:'15px'}} src="https://freepngimg.com/static/img/whatsapp.png"  alt="yuq"/>*/}
+                                        {/*<div onClick={() => qoshil(item.id)} style={{cursor:'pointer'}}>*/}
+                                        <div onClick={() => pushesh(item.name, item.id,item.buyPrice)}>
+                                            <img
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
+                                                alt="yuq"/>
+                                            <h6>{item.name}</h6>
+                                            <p>250000</p>
+                                        </div>
+                                    </div>)
+                                }
 
-                    </div>
+                        </div>
 
                 </div>
 
@@ -310,7 +308,7 @@ function SavdoOynasi({
                 <button className={'btn btn-danger m-1'}>Chegirma</button>
                 <button className={'btn btn-warning m-1'}>Ushlab turish</button>
                 <button className={'btn btn-outline-primary m-1'}>Kreditga sotish</button>
-                <button className={'btn btn-outline-warning m-1'}>Turli to`lovli</button>
+                <button className={'btn btn-outline-warning  m-1'}>Turli to`lovli</button>
                 <button className={'btn btn-info m-1'}>Plastik</button>
                 <button className={'btn btn-success m-1'}>Naqd</button>
                 <button className={'btn btn-dark m-1'}>UzCard</button>
