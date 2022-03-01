@@ -5,8 +5,8 @@ import {useState} from 'react'
 import {Switch,Route,Link} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
-
-function Savdo({active}) {
+import {savdooynasi} from "../../../../reducer/users";
+function Savdo({active,savdooynasi}) {
 
     const [active2,setActive] = useState(false);
 
@@ -35,6 +35,11 @@ function Savdo({active}) {
             active()
         }
     }
+
+    function savdod(){
+        savdooynasi()
+        active()
+    }
     return(
         <div className={'row mahsulot'}>
             <div className="imgDiv" onClick={toggle}>
@@ -59,7 +64,7 @@ function Savdo({active}) {
                     <li><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
                     <li onClick={sidebaractive}><Link to={'/headerthird/mahsulotQoshish'} className={'li-text'}>Savdo qo`shish</Link></li>
                     {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>SAVDO</Link></li>*/}
-                    <li   onClick={sidebaractive}><Link to={'/headerthird/turliTavar'} className={'li-text'} >Savdo oynasi</Link></li>
+                    <li   onClick={savdod}><Link to={'/turliTavar'} className={'li-text'} >Savdo oynasi</Link></li>
                     {/*<li><Link to={'/mahsulotImporti'} className={'mahqosh'}>lang_v1_add_draft</Link></li>*/}
                     {/*<li><Link to={'/mavjudImport'} className={'mahqosh'}>Eslatmalar ro`yxati</Link></li>*/}
                     {/*<li><Link to={'/sotuvNarxGuruhlanishi'} className={'mahqosh'}>lang_v1.add_quotation</Link></li>*/}
@@ -72,4 +77,4 @@ function Savdo({active}) {
         </div>
     )
 }
-export default connect(({functionreducer:{func}})=>({func}),{active}) (Savdo)
+export default connect(({functionreducer:{func}})=>({func}),{active,savdooynasi}) (Savdo)

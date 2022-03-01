@@ -12,6 +12,7 @@ export const slice = createSlice({
         businessId:'',
         linkhome:true,
         linkheader:false,
+        linksavdooynasi:false,
         error:false,
         rememberme:false,
     },
@@ -39,7 +40,12 @@ export const slice = createSlice({
         },
         changeerror:(state,action)=>{
             state.error=false
+        },
+        savdooynasi:(state,action)=>{
+            state.linkheader=!state.linkheader
+            state.linksavdooynasi=!state.linksavdooynasi
         }
+
     }
 })
 
@@ -57,5 +63,5 @@ export const  getusers = () => apiCall({
     onSuccess: slice.actions.get.type
 })
 
-export const {changeerror} = slice.actions
+export const {changeerror,savdooynasi} = slice.actions
 export default slice.reducer

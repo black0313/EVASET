@@ -22,6 +22,7 @@ import Final from "./Final/Final";
 import Chegirma from "./Final/Chegirma";
 import Eslatma from "./Final/Eslatma";
 import users from "../../../../../reducer/users";
+import {savdooynasi} from "../../../../../reducer/users";
 
 function SavdoOynasi({
                          getSavdo,
@@ -30,7 +31,7 @@ function SavdoOynasi({
                          getMaxsulotRuyxati,
                          MaxsulotlarRoyxariReducer,
                          deleteMaxsulotRuyxati,
-    users
+    users,savdooynasi
                      }) {
 
     const [input, setInput] = useState(
@@ -107,7 +108,7 @@ function SavdoOynasi({
 
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
-        history.push('/headerthird/turliTavar/final')
+        // history.push('/headerthird/turliTavar/final')
     }, [])
 
     function toggle() {
@@ -156,7 +157,7 @@ function SavdoOynasi({
                     <img src={img3} onClick={openCalcul} alt=""/>
                     <img src={img4} onClick={toggle2} alt=""/>
                     <img src={img5} onClick={toggle3} alt=""/>
-                    <Link to={'/headerthird'}><img src={img6} onClick={toggle4} alt=""/></Link>
+                    <Link to={'/headerthird'}><img src={img6} onClick={savdooynasi} alt=""/></Link>
 
                     <Modal isOpen={lastTradeActive} toggle={toggle4}>
                         <ModalHeader>
@@ -313,7 +314,7 @@ function SavdoOynasi({
                 <button className={'btn btn-success m-1'}>Naqd</button>
                 <button className={'btn btn-dark m-1'}>UzCard</button>
                 <button className={'btn btn-warning m-1'}>Humo</button>
-                <button className='jamiTolov m-1'>Jami to`lov: 0</button>
+                <button className='jamiTolov m-1'>Jami to`lov: 10 200 000 000 so'm</button>
                 <button className={'btn btn-danger m-1'}>Chiqish</button>
             </div>
             <div className="">
@@ -371,5 +372,6 @@ export default connect((MaxsulotlarRoyxariReducer, users,SavdoOynaReducer), {
     editSavdo,
     deleteSavdo,
     getMaxsulotRuyxati,
-    deleteMaxsulotRuyxati
+    deleteMaxsulotRuyxati,
+    savdooynasi
 })(SavdoOynasi)

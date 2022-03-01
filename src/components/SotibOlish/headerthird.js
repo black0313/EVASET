@@ -47,6 +47,7 @@ import Dukon1 from './Sidebar/Settings/DukonSozlamalari/dukon/Dukon1'
 import Soliq from './Sidebar/Settings/DukonSozlamalari/soliq/Soliq'
 import BarchaSavdolar from "./Sidebar/Savdo/BarcaSavdolar/BarchaSavdolar";
 import Profil from "./header/Profil";
+import SavdoOyna from "./Sidebar/Settings/DukonSozlamalari/SavdoOynasi/SavdoOyna";
 function Headerthird() {
 
     const [classheader,setClassheader] = useState('classheader1')
@@ -75,7 +76,6 @@ function Headerthird() {
                 <Header sidebarfunc={sidebarheader}/>
             </div>
             <Switch>
-
                 <Route path={'/headerthird/hodimlarruyxati/taxrirlash/:id?'} component={Taxrirlash}/>
                 <Route path={'/headerthird/hodimlarruyxati/taxrirlash'} component={Taxrirlash}/>
                 <Route path={'/headerthird/hodimlarruyxati/view/:name?/:login?/:email?'} component={Korish}/>
@@ -102,7 +102,7 @@ function Headerthird() {
                 <Route path={'/headerthird/barcasavdolar'} component={BarchaSavdolar}/>
                 <Route path={'/headerthird/mahsulotQoshish/:id?'} component={SavdoQoshish}/>
                 <Route path={'/headerthird/mahsulotQoshish'} component={SavdoQoshish}/>
-                <Route path={'/headerthird/turliTavar'} component={SavdoOynasi}/>
+                {/*<Route path={'/headerthird/turliTavar'} component={SavdoOynasi}/>*/}
                 <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
                 <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
                 <Route path={'/headerthird/utkazmaRuyxati'} component={OtkazmalarRoyxati}/>

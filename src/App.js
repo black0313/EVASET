@@ -10,6 +10,7 @@ import {useHistory} from "react-router-dom";
 import functionreducer from "./reducer/functionreducer";
 import Sidebar from "./components/SotibOlish/Sidebar/Sidebar";
 import users from "./reducer/users";
+import SavdoOynasi from "./components/SotibOlish/Sidebar/Savdo/SavdoOynasi/SavdoOynasi";
 import {ToastContainer} from "react-toastify";
 
 
@@ -32,7 +33,7 @@ function App({functionreducer, active, users}) {
                             : ''
                     }
                     {
-                        users.linkheader ? <Route path={'/headerthird'} component={Headerthird}/> : ''
+                         users.linkheader ? <Route path={'/headerthird'} component={Headerthird}/> : ''
 
                     }
                     {
@@ -43,6 +44,12 @@ function App({functionreducer, active, users}) {
                         users.linkheader ? <Redirect to={'/headerthird'}/> : ''
                     }
 
+                    {
+                      users.linksavdooynasi ?  <Route path={'/turliTavar'} component={SavdoOynasi}/>:''
+                    }
+                    {
+                      users.linksavdooynasi ?  <Redirect to={'/turliTavar'}/>:''
+                    }
                 </Switch>
             </div>
         </div>

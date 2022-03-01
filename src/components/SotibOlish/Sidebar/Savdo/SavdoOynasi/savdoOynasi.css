@@ -1,9 +1,8 @@
 .savdoOynaContainers{
     /* background-color: gray; */
-    margin: 24px 12px;
     padding: 0px;
     border-radius: 0px;
-
+    height: 100vh;
 }
 .savdoOynaContainers .savdoNavbar{
     display: flex;
@@ -31,7 +30,6 @@
     cursor: pointer;
 }
 .savdoOynaContainers .savdoNavbar .navbarRigth button{
-    width: 136px;
     height: 32px;
     padding: 0px 16px;
     background-color: #FFFFFF;
@@ -41,7 +39,7 @@
     color: #9FA2B4;
 }
 .savdoOynaContainers .savdoBlock{
-    padding: 6px; 
+    padding: 6px 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -51,7 +49,7 @@
     border-radius: 20px;
     padding: 24px 20px;
     width: 49%;
-    height: 524px;
+    height: 550px;
 } 
 .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox{
     display: flex;
@@ -104,7 +102,7 @@
     border-radius: 20px;
     padding: 24px 20px;
     width: 49%;
-    height: 524px;
+    height: 550px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .bazaBox select{
     background-color: #FFFFFF;
@@ -127,6 +125,7 @@
     display: flex;
     margin-bottom: 16px;
     margin-top: 16px;
+    padding: 6px 16px;
 }
 .savdoOynaContainers .savBtnBox button{
     width: 10%;
@@ -141,9 +140,10 @@
     background-color: #FFFFFF;
     height: 36px;
     padding: 0px 6px;
-    border: 1px solid rgba(159, 162, 180, 0.5);
     border-radius: 8px;
     color: black;
+    width: 300px;
+    font-size: 14px;
     border: 1px solid rgba(37, 37, 37, 0.5);;
     line-height: 12px;
 }
