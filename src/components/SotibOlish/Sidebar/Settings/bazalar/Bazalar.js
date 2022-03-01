@@ -4,11 +4,23 @@ import Korish from '../../../../../img/Korish.png'
 import Delete from '../../../../../img/Delete.png'
 import './bazalar.css'
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {connect} from "react-redux";
+import branchreducer,{getbranch,savebranch,editbranchs,deletebranchs} from "../../../../../reducer/branchreducer";
+import users from "../../../../../reducer/users";
 import {Link} from 'react-router-dom'
-export default function Bazalar() {
+
+function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebranchs}) {
 
     const [active, setActive] = useState(false)
+    const [branchname,setbranchname]=useState('')
+    const [branchd,setbranchd]=useState('')
+
+    function nameofbranch(e){
+        console.log(e.target.value)
+        setbranchname(e.target.value)
+    }
+
     const [list, setList] = useState([
         {
             name: 'Naqd'
@@ -33,6 +45,49 @@ export default function Bazalar() {
     function toggle() {
         setActive(!active)
     }
+
+    function editbranch(id){
+        toggle()
+        branchreducer.branch.map(item=>{
+            if(item.id == id){
+                setbranchname(item.name)
+                setbranchd(id)
+            }
+        })
+    }
+
+    function saqla(){
+        if (branchd===''){
+            savebranch({
+                name:branchname,
+                addressId:1,
+                businessId:users.businessId
+            })
+        }
+        else{
+            editbranchs({
+                name:branchname,
+                addressId:1,
+                businessId:users.businessId,
+                id:branchd
+            })
+        }
+
+        setbranchname('')
+        setbranchd('')
+        toggle()
+    }
+
+    function deleteb(id){
+        deletebranchs(id)
+    }
+
+    useEffect(()=>{
+        getbranch(users.businessId)
+    },[branchreducer.current])
+
+
+
 
     return (
         <div>
@@ -61,18 +116,24 @@ export default function Bazalar() {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>boshliq</td>
-                                <td>Boshliq</td>
-                                <td>Admin</td>
-                                <td></td>
-                                <td>
-                                    <button onClick={toggle} className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash
-                                    </button>
-                                    <Link to={'/headerthird/bazaSozlama'}><button className='korish'><img src={Settings} alt=""/>Sozlamalar</button></Link>
-                                    <button className='ochirish'><img src={Delete} alt=""/>Bazani o'chirish</button>
-                                </td>
-                            </tr>
+
+                            {
+                                branchreducer.branch.map(item=>
+                                    <tr>
+                                        <td>{item.name}</td>
+                                        <td>{item.id}</td>
+                                        <td>{item.address.city}</td>
+                                        <td></td>
+                                        <td>
+                                            <button onClick={()=>editbranch(item.id)} className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash
+                                            </button>
+                                            <Link to={'/headerthird/bazaSozlama'}><button className='korish'><img src={Settings} alt=""/>Sozlamalar</button></Link>
+                                            <button className='ochirish' onClick={()=>deleteb(item.id)}><img src={Delete} alt=""/>Bazani o'chirish</button>
+                                        </td>
+                                    </tr>
+
+                                )
+                            }
                             </tbody>
                         </table>
                     </div>
@@ -91,7 +152,7 @@ export default function Bazalar() {
                     </ModalHeader>
                     <ModalBody>
                         <label htmlFor={'nomi'}>Nomi</label>
-                        <input type="text" className={'form-control'} id={'nomi'}/>
+                        <input onChange={nameofbranch} value={branchname} type="text" className={'form-control'} id={'nomi'}/>
                         <div className={'d-flex justify-content-between'}>
                             <div className="col-md-6">
                                 <label htmlFor={'bazaid'}>Baza Idsi</label>
@@ -160,7 +221,7 @@ export default function Bazalar() {
                         </div>
                     </ModalBody>
                     <ModalFooter>
-                        <button className={'btn btn-outline-primary'}>Saqlash</button>
+                        <button onClick={saqla} className={'btn btn-outline-primary'}>Saqlash</button>
                         <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
                     </ModalFooter>
                 </Modal>
@@ -168,3 +229,4 @@ export default function Bazalar() {
         </div>
     )
 }
+export default connect((branchreducer,users),{getbranch,savebranch,editbranchs,deletebranchs}) (Bazalar)
