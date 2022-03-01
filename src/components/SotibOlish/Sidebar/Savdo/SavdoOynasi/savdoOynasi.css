@@ -115,9 +115,10 @@
     height: 32px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock{
-    margin-top: 36px;
+    margin-top: 12px;
     overflow-y: scroll;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     height: 320px;
     
@@ -141,8 +142,8 @@
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox img{
     width: 100px;
-    height: 70px;
-    margin: 4px 24px;
+    height: 90px;
+    margin: 4px 12px;
 }
 
 
