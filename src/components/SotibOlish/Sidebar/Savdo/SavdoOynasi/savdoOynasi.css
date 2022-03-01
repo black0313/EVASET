@@ -118,7 +118,7 @@
     margin-top: 12px;
     overflow-y: scroll;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 25% 25% 25% 25%;
     justify-content: center;
     height: 416px;
     
@@ -151,9 +151,9 @@
     width: 140px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox img{
-    width: 100px;
-    height: 90px;
-    margin: 4px 12px;
+    width: 90px;
+    height: 80px;
+    margin: 4px 10px;
     justify-content: space-between;
 }
 
@@ -162,7 +162,9 @@
     /* overflow: hidden; */
     margin: 0px 4px;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
+    font-family: Golos;
+    color: #000000;
     
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox p{
