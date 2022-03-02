@@ -21,6 +21,7 @@ import MaxsulotlarRoyxariReducer, {
 import users from "../../../../../../reducer/users";
 import FirmaReducer,{getFirma} from "../../reducer/FirmaReducer";
 
+
 function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsulotlar,MaxsulotlarRoyxariReducer,deleteMaxsulotRuyxati,saveMaxsulotRuyxati,match}) {
 
     const [input, setInput] = useState(
@@ -69,6 +70,7 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
     useEffect(()=>{
         getFirma(users.businessId)
     },[])
+
     return (
         <div>
             <div className="col-md-12">

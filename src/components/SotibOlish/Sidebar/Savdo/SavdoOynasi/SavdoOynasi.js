@@ -23,7 +23,9 @@ import Chegirma from "./Final/Chegirma";
 import Eslatma from "./Final/Eslatma";
 import users from "../../../../../reducer/users";
 import {savdooynasi} from "../../../../../reducer/users";
-
+import ReactToPrint from 'react-to-print';
+import {useRef} from "react";
+import Print from "./Print";
 function SavdoOynasi({
                          getSavdo,
                          deleteSavdo,
@@ -43,13 +45,11 @@ function SavdoOynasi({
     )
 
     const [arr1, setarr1] = useState([
-        {
-            name: 'CR7',
-            id: '',
-            counter: 0,
-            buyPrice: ''
-        }
+
     ])
+    const componentRef = useRef(
+
+    );
 
     const [lastTradeActive, setlastTradeActive] = useState(false)
 
@@ -61,31 +61,45 @@ function SavdoOynasi({
     const [active2, setActive2] = useState(false)
     const [active3, setActive3] = useState(false)
     const [openCalc, setOpenCalc] = useState(false)
-
+    const [pushmah,setPushmah] = useState('')
+    const [pushbool,setPushbool] = useState(false)
     function openCalcul() {
         setOpenCalc(!openCalc)
     }
 
-    function pushesh(name, id,buyPrice) {
-        arr1.map(item=>{
-            if (item.id===id){
-                item.counter++
-            }else {
-                arr1.push({name: name, id: id, counter: 0,buyPrice: buyPrice})
-                let a = [...arr1]
-                setarr1(a)
-            }
-        })
-        console.log('sss');
+    function pushesh(val) {
+        if(val.id==pushmah){
+            setCount(val.id)
+        }
+        else{
+            arr1.push({...val,counter:1})
+            let a = [...arr1]
+            setarr1(a)
+        }
+        setPushmah(val.id)
     }
 
-    function deleteM(id) {
-        console.log(id);
-        console.log(arr1);
-        let a = arr1
-        a.slice(id, 1)
+
+    function setCount(id) {
+        arr1.map(item => {
+            if (item.id === id) {
+                item.counter += 1
+            }
+        })
+        let a = [...arr1]
         setarr1(a)
-        console.log(arr1);
+    }
+    const history = useHistory()
+    function sMinus(id) {
+        arr1.map(item => {
+            if (item.id === id) {
+                item.counter -= 1
+            }
+        })
+        let a = [...arr1]
+        setarr1(a)
+    }
+    function deleteM(id) {
     }
 
     function baza(e) {
@@ -122,27 +136,6 @@ function SavdoOynasi({
         setActive3(!active3)
     }
 
-    function setCount(id) {
-        arr1.map(item => {
-            if (item.id === id) {
-                item.counter += 1
-            }
-        })
-        let a = [...arr1]
-        setarr1(a)
-    }
-
-    const history = useHistory()
-
-    function sMinus(id) {
-        arr1.map(item => {
-            if (item.id === id) {
-                item.counter -= 1
-            }
-        })
-        let a = [...arr1]
-        setarr1(a)
-    }
 
     return (
         <div className={'savdoOynaContainers'}>
@@ -199,10 +192,9 @@ function SavdoOynasi({
                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
                     </div>
                     <div className="table-responsive tbodyY">
-                        <table className={'table'}>
+                        <table className={'table '} ref={componentRef}>
                             <thead>
                             <tr>
-                                <th>T/R</th>
                                 <th>Mahsulot</th>
                                 <th className={'text-center'}>Miqdori</th>
                                 <th>Jami</th>
@@ -219,7 +211,6 @@ function SavdoOynasi({
                                     }
                                 })
                                     .map(item => <tr key={item.id}>
-                                        <td>{item.id}</td>
                                         <td style={{marginLeft: '10px'}}>{item.name}</td>
                                         <td className={'d-flex justify-content-between'}>
                                             <button onClick={() => setCount(item.id)}
@@ -230,7 +221,6 @@ function SavdoOynasi({
                                                     className={'btn btn-outline-dark'}>-
                                             </button>
                                         </td>
-                                        {console.log(item.buyPrice)}
                                         <td>{item.buyPrice}</td>
                                         <td>
                                             <button onClick={() => deleteM(item.id)}
@@ -281,7 +271,6 @@ function SavdoOynasi({
                             <option value="">Barcha brendlar</option>
                         </select>
                     </div>
-                    {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
                         <div className={' maxsulotImgBlock'}>
                         
                                 {
@@ -289,7 +278,7 @@ function SavdoOynasi({
                                                                                         key={item.id}>
                                         {/*<img style={{marginLeft:'15px'}} src="https://freepngimg.com/static/img/whatsapp.png"  alt="yuq"/>*/}
                                         {/*<div onClick={() => qoshil(item.id)} style={{cursor:'pointer'}}>*/}
-                                        <div onClick={() => pushesh(item.name, item.id,item.buyPrice)}>
+                                        <div onClick={() => pushesh(item)}>
                                             <img
                                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
                                                 alt="yuq"/>
@@ -312,9 +301,18 @@ function SavdoOynasi({
                 <button className={'btn btn-outline-warning  m-1'}>Turli to`lovli</button>
                 <button className={'btn btn-info m-1'}>Plastik</button>
                 <button className={'btn btn-success m-1'}>Naqd</button>
-                <button className={'btn btn-dark m-1'}>UzCard</button>
-                <button className={'btn btn-warning m-1'}>Humo</button>
-                <button className='jamiTolov m-1'>Jami to`lov: 10 200 000 000 so'm</button>
+                <ReactToPrint
+                    trigger={() =>     <button className={'btn btn-dark m-1'}>UzCard</button>
+                    }
+                    content={() => componentRef.current}
+                />
+                <ReactToPrint
+                    trigger={() =>                    <button className={'btn btn-warning m-1'}>Humo</button>
+
+                    }
+                    content={() => componentRef.current}
+                />
+                <button className='jamiTolov m-1'>Jami to`lov: 1 200 000 000 so'm</button>
                 <button className={'btn btn-danger m-1'}>Chiqish</button>
             </div>
             <div className="">

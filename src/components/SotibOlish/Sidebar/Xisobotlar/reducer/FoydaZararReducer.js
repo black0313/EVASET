@@ -24,14 +24,13 @@ const slice = createSlice({
                     item.login = action.payload.login
                 }
             })
-            // toast.success('O`zgartirildi')
         },
         deletefrom:(state,action)=>{
             console.log("DELETETD_FOYDA");
             // toast.info('O`chirildi')
         }
-
     }
+
 });
 
 export const getFoydaZarar=()=>apiCall({

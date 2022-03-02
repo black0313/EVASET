@@ -11,17 +11,18 @@ import {useState, useRef, useEffect} from "react";
 import { DateRangePickerComponent } from '@syncfusion/ej2-react-calendars'
 import {MenuItem, TextField,Select,InputLabel} from "@mui/material";
 import {connect} from "react-redux";
-import TaminotReducer from "../../Hamkorlar/reducer/TaminotReducer";
+import TaminotReducer, {getTaminot} from "../../Hamkorlar/reducer/TaminotReducer";
 import SavdoQoshishReducer, {
     deleteSavdolar,
     editSavdolar,
-    getSavdolar,
-    saveSavdolar
+    getSavdolar, getSavdolar2, getSavdolar3,
+    saveSavdolar,
+
 } from "../reducer/SavdoQoshishReducer";
 import users from "../../../../../reducer/users";
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 
-
-function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdolar}) {
+function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,SavdoQoshishReducer,getSavdolar,getSavdolar2,users,getbranch,ditSavdolar,saveSavdolar}) {
 
     const [input,setInput] = useState(
         {
@@ -38,11 +39,19 @@ function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdol
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.baza !=='barcasi'){
+            getSavdolar3(input.baza)
+        }else {
+            getSavdolar3(users.businessId)
+        }
     }
     function diller(e){
         input.diller = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.diller !== 'barcasi'){
+
+        }
     }
     function mahsulotizlash(e){
         input.mahsulotizlash = e.target.value
@@ -67,7 +76,11 @@ function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdol
 
     useEffect(()=>{
         // getXaridXisobot()
-        getSavdolar()
+        getSavdolar(users.businessId)
+        getSavdolar2(users.businessId)
+        getbranch(users.businessId)
+        getTaminot(users.businessId)
+        getSavdolar3(users.businessId)
     },[])
 
     const [active,setActive] = useState(false)
@@ -82,7 +95,6 @@ function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdol
         event.isDefaultPrevented(true)
         event.isPropagationStopped(false)
         if(event.target.value == 20){
-
             setActive(true)
         }
         else{
@@ -96,14 +108,11 @@ function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdol
         }
     }
 
-    function toggle(){
-        setActive(!active)
-    }
 
     return (
         <div className="col-md-12 mt-2 mb-4 mt-4 ">
             <div className="textHeader">
-                <h2>Xaridlar Xisoboti</h2>
+                <h2>Barcha savdolar</h2>
             </div>
             <div className="rowStyleH">
                 <div className="qoshish">
@@ -113,15 +122,20 @@ function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdol
                     <div className="col-md-6">
                         <h6>Baza:</h6>
                         <select name="" value={input.baza} onChange={baza} id="">
-                            <option value="#">Tanlash</option>
+                            <option value="barcasi">Barchasi</option>
+                            {
+                                branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                            }
                         </select>
                     </div>
                     <div className="col-md-6">
                         <h6>Diller:</h6>
                         <select name="" value={input.diller} onChange={diller} id="" className={'form-control'}>
-                            <option value="">Mavjud emas</option>
-                            <option value="">Taminotchi</option>
-                            <option value="">(2)</option>
+                            <option value={'barcasi'}>Barchasi</option>
+                            <option value='noback'>No backend</option>
+                            {
+                                TaminotReducer.taminot.map(item=> <option value={item.id}>{item.name}</option>)
+                            }
                         </select>
                     </div>
                 </div>
@@ -231,4 +245,4 @@ function BarchaSavdolar({SavdoQoshishReducer,getSavdolar,editSavdolar,saveSavdol
         </div>
     )
 }
-export default connect((TaminotReducer,SavdoQoshishReducer,users),{getSavdolar,saveSavdolar,editSavdolar,deleteSavdolar}) (BarchaSavdolar)
+export default connect((TaminotReducer,SavdoQoshishReducer,users,branchreducer),{getSavdolar3,getbranch,getSavdolar,getTaminot,getSavdolar2,saveSavdolar,editSavdolar,deleteSavdolar}) (BarchaSavdolar)

@@ -9,13 +9,21 @@ import Delete from '../../../../../img/Delete.png'
 import './haridlarRoyxati.css'
 import {connect} from "react-redux";
 import {useEffect, useState} from "react";
-import XaridReducer, {deleteXarid, editXarid, getXarid, saveXarid} from "../reducer/XaridReducer";
-import TaminotReducer from "../../Hamkorlar/reducer/TaminotReducer";
+import XaridReducer, {
+    deleteXarid,
+    editXarid,
+    getXarid,
+    getXarid2,
+    getXarid3,
+    getXarid4,
+    saveXarid
+} from "../reducer/XaridReducer";
+import TaminotReducer, {getTaminot} from "../../Hamkorlar/reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import tolovreducer, {gettolovholati} from "../../../../../reducer/tolovreducer";
 
-function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReducer,TaminotReducer,users}) {
-
-
+function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati,tolovreducer, branchreducer,getbranch,getXarid2, deleteXarid, saveXarid,XaridReducer,TaminotReducer,users}) {
 
     const [input, setInput] = useState(
         {
@@ -34,31 +42,37 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
         let a = {...input}
         setInput(a)
     }
-
     function diller(e) {
         input.diller = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.diller !== 'barcasi'){
+            getXarid3(input.diller)
+        }
+        else{
+            getXarid3(users.businessId)
+        }
     }
-
     function xaridstatus(e) {
         input.xaridstatus = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function tulovstatus(e) {
         input.tulovstatus = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.tulovstatus !== 'to`langan'){
+            getXarid4(input.tulovstatus)
+        }else {
+            getXarid4(users.businessId)
+        }
     }
-
     function sana(e) {
         input.sana = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function view(e) {
         input.view = e.target.value
         let a = {...input}
@@ -71,7 +85,6 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
         setInput(a)
     }
 
-
     function deleteX(item) {
         deleteXarid(item.id)
             getXarid(users.businessId)
@@ -79,6 +92,10 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
 
     useEffect(() => {
         getXarid(users.businessId)
+        getTaminot(users.businessId)
+        getbranch(users.businessId)
+        gettolovholati(users.businessId)
+        getXarid4(users.businessId)
     },[XaridReducer.current])
 
     return (
@@ -94,13 +111,16 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
                     <div className="col-md-6">
                         <h6>Baza:</h6>
                         <select name="" value={input.baza} onChange={baza} id="">
-                            <option value="">Barchasi</option>
-
+                            {
+                                branchreducer.branch.map(item=><option value="barcasi">{item.name}</option>)
+                            }
                         </select>
                     </div>
                     <div className="col-md-6">
                         <h6>Diller:</h6>
+                        {console.log(TaminotReducer.taminot)}
                         <select name="" id="" value={input.diller} onChange={diller}>
+                            <option value="barcasi">Barchasi</option>
                             {
                                 TaminotReducer.taminot.map(item=> <option value={item.id}>{item.name}</option>)
                             }
@@ -117,7 +137,9 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
                     <div className="col-md-6">
                         <h6>To'lov status:</h6>
                         <select name="" value={input.tulovstatus} onChange={tulovstatus} id="">
-                            <option value="">Barchasi</option>
+                            {
+                                tolovreducer.tolovholati.map(item=><option value={item.id}>{item.status}</option>)
+                            }
                         </select>
                     </div>
                 </div>
@@ -193,7 +215,6 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
                                 </td>
                             </tr>)
                         }
-
                         </tbody>
                     </table>
                 </div>
@@ -209,11 +230,4 @@ function HaridlarRoyxati({getXarid, xaridlar, deleteXarid, saveXarid,XaridReduce
     )
 }
 
-export default connect((TaminotReducer,XaridReducer,users),{getXarid,saveXarid,editXarid,deleteXarid}) (HaridlarRoyxati)
-
-// export default connect(({XaridReducer: {xaridlar}}) => ({xaridlar}), {
-//     getXarid,
-//     saveXarid,
-//     editXarid,
-//     deleteXarid
-// })(HaridlarRoyxati)
+export default connect((TaminotReducer,XaridReducer,users,branchreducer,tolovreducer),{getXarid,getbranch,gettolovholati,getXarid4,getTaminot,getXarid2,getXarid3,saveXarid,editXarid,deleteXarid}) (HaridlarRoyxati)

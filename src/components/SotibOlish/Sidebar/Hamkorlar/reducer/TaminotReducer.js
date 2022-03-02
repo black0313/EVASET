@@ -35,6 +35,11 @@ export const getTaminot=(data)=>apiCall({
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });
+export const getTaminot2=(data)=>apiCall({
+    url: '/supplier/get-purchase-by-dealerId/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
 
 export const saveTaminot=(data)=>apiCall({
     url: '/supplier',

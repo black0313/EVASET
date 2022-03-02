@@ -48,7 +48,9 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
             sotishnarxi:'',
             mahsulotrasmi:'',
             soliqbnnarx:'',
-            sotibolishnarxi:''
+            sotibolishnarxi:'',
+            miqdorMaxsulot:''
+
         }
     )
 
@@ -92,6 +94,12 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         let a = {...input}
         setInput(a)
     }
+    function miqdorMaxsulot(e){
+        input.miqdorMaxsulot = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
     function fermabrandnomi(e){
         input.brandnomi = e.target.value
         let a = {...input}
@@ -201,7 +209,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         if(match.params.id !== undefined){
             editMaxsulotRuyxati({
                 name:input.mahsulotnomi,
-                quantity:1,
+                quantity:input.miqdorMaxsulot,
                 barcode: input.shtrixkod,
                 brandId:input.ferma,
                 categoryId:input.bolim,
@@ -220,7 +228,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         }else{
             saveMaxsulotRuyxati({
                 name:input.mahsulotnomi,
-                quantity:   1     ,                                 /*input.foydafoiz,*/
+                quantity:   input.miqdorMaxsulot     ,                                 /*input.foydafoiz,*/
                 barcode: input.shtrixkod,
                 brandId:   input.ferma,                      /*input.ferma,*/
                 categoryId: input.bolim,                     /*  input.bolim,*/
@@ -335,6 +343,8 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                         </select>
                         <label htmlFor="" className={'mt-3'}>Bazalar</label>
                         <input type="text" value={input.bazalar} onChange={bazalar} className={'form-control'}/>
+                        <label htmlFor={'ppp'} className={'mt-4'}>Miqdori</label>
+                        <input className={'form-control'} type="number" value={input.miqdorMaxsulot} onChange={miqdorMaxsulot}/>
                     </div>
                 </div>
             </div>
