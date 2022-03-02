@@ -11,13 +11,19 @@ import {MenuItem, TextField,Select,InputLabel} from "@mui/material";
 import {connect} from "react-redux";
 import './xaridxisobot.css'
 import SavdoOynaReducer, {deleteSavdo, editSavdo, getSavdo, saveSavdo} from "../../Savdo/reducer/SavdoOynaReducer";
-import XaridReducer, {deleteXarid, editXarid, getXarid, saveXarid} from "../../Haridlar/reducer/XaridReducer";
+import XaridReducer, {
+    deleteXarid,
+    editXarid,
+    getXarid,
+    getXarid2,
+    saveXarid
+} from "../../Haridlar/reducer/XaridReducer";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import users from "../../../../../reducer/users";
-import TaminotReducer, {getTaminot} from "../../Hamkorlar/reducer/TaminotReducer";
+import TaminotReducer, {getTaminot, getTaminot2} from "../../Hamkorlar/reducer/TaminotReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 
-function XaridlarXisoboti({branchreducer,users,getbranch,TaminotReducer,getTaminot,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,XaridReducer,getXarid}) {
+function XaridlarXisoboti({branchreducer,getXarid2,users,getTaminot2,getbranch,TaminotReducer,getTaminot,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,XaridReducer,getXarid}) {
 
     const [input,setInput] = useState(
         {
@@ -35,11 +41,25 @@ function XaridlarXisoboti({branchreducer,users,getbranch,TaminotReducer,getTamin
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.baza !=='barcasi'){
+            getXarid2(input.baza)
+        }else {
+            getXarid2(users.businessId)
+        }
+        console.log(
+            XaridReducer.xaridlar
+        )
     }
+
     function diller(e){
         input.diller = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.diller !=='barcasi'){
+            getXarid2(input.diller)
+        }else {
+getXarid2(users.businessId)
+        }
     }
     function mahsulotizlash(e){
         input.mahsulotizlash = e.target.value
@@ -64,10 +84,10 @@ function XaridlarXisoboti({branchreducer,users,getbranch,TaminotReducer,getTamin
 
     useEffect(()=>{
         console.log('hello');
-        // getbranch(users.businessId)
-        // getTaminot(users.businessId)
         getMaxsulotRuyxati(users.businessId)
+        getTaminot2(users.businessId)
         getXarid(users.businessId)
+        getXarid2(users.businessId)
     },[])
 
     const [active,setActive] = useState(false)
@@ -108,6 +128,7 @@ function XaridlarXisoboti({branchreducer,users,getbranch,TaminotReducer,getTamin
                         <h6>Baza:</h6>
                         <select name="" value={input.baza} onChange={baza} id="" className='inputData'>
                             {/*<option value="">Tanlash</option>*/}
+                            <option value="barcasi">Barchasi</option>
                             {
                                 branchreducer.branch.map(item=>
                                     <option value={item.id}>{item.name}</option>)
@@ -229,4 +250,4 @@ function XaridlarXisoboti({branchreducer,users,getbranch,TaminotReducer,getTamin
 }
 
 export default connect((XaridReducer,SavdoOynaReducer,branchreducer,users,TaminotReducer,MaxsulotlarRoyxariReducer),
-    {getXarid,saveXarid,editXarid,deleteXarid,getbranch,getTaminot,getMaxsulotRuyxati,}) (XaridlarXisoboti)
+    {getXarid,getXarid2,saveXarid,editXarid,deleteXarid,getbranch,getTaminot,getTaminot2,getMaxsulotRuyxati,}) (XaridlarXisoboti)

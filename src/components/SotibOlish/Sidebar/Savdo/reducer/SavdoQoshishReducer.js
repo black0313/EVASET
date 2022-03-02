@@ -40,6 +40,18 @@ export const getSavdolar=()=>apiCall({
     onSuccess: slice.actions.getFrom.type
 });
 
+export const getSavdolar2 =(data)=>apiCall({
+    url: 'trade/get-by-branchId/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
+export const getSavdolar3 =(data)=>apiCall({
+    url: 'trade/get-by-PayDate/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
 export const saveSavdolar=(data)=>apiCall({
     url: '/trade',
     method:'post',

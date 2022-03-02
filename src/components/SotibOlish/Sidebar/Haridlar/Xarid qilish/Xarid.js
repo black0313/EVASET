@@ -2,7 +2,7 @@ import './xarid.css'
 import {useEffect, useState} from "react";
 import {ModalBody, ModalHeader, ModalFooter, Modal} from "reactstrap";
 import {connect} from "react-redux";
-import XaridReducer, {getXarid, saveXarid, deleteXarid, editXarid} from '../reducer/XaridReducer'
+import XaridReducer, {getXarid, saveXarid, deleteXarid, editXarid, getXarid2} from '../reducer/XaridReducer'
 import tolovreducer, {gettolovholati} from "../../../../../reducer/tolovreducer";
 import users from "../../../../../reducer/users";
 import {Link} from 'react-router-dom'
@@ -19,6 +19,7 @@ import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 
 function Xarid({
                    getXarid,
+                   getXarid2,
                    saveXarid,
                    taminot,
                    getkg,
@@ -173,37 +174,31 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
-
     function ikkinciraqam(e) {
         input.ikkinciraqam = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function otaismi(e) {
         input.otaismi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function telegram(e) {
         input.telegram = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function familiyasi(e) {
         input.familiyasi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function email(e) {
         input.email = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function shtrix(e) {
         toggleshtrix()
         input.shtrix = e.target.value
@@ -217,7 +212,6 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
-
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
@@ -668,6 +662,7 @@ export default connect((MaxsulotlarRoyxariReducer, XaridReducer, kgreducer, user
     getMaxsulotRuyxati,
     getXarid,
     getkg,
+    getXarid2,
     saveXarid,
     editXarid,
     getTaminot,

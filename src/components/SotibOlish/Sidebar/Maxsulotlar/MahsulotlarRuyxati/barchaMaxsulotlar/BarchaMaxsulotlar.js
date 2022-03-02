@@ -70,6 +70,7 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
     useEffect(()=>{
         getFirma(users.businessId)
     },[])
+
     return (
         <div>
             <div className="col-md-12">

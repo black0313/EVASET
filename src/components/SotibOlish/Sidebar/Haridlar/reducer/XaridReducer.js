@@ -23,12 +23,28 @@ const slice = createSlice({
             state.current=!state.current
             console.log('Deleted_XArid');
         }
-
     }
 });
 
 export const getXarid=(data)=>apiCall({
     url: '/purchase/get-by-business/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
+export const getXarid2=(data)=>apiCall({
+    url: '/purchase/get-purchase-by-branch/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
+export const getXarid4=(data)=>apiCall({
+    url: 'purchase/get-purchase-by-purchaseStatus/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+export const getXarid3=(data)=>apiCall({
+    url: '/purchase/get-purchase-by-dealerId/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

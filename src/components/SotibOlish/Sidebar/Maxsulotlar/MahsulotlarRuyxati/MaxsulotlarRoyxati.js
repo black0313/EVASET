@@ -57,7 +57,6 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
         }
         else{
             getMaxsulotRuyxati(users.businessId)
-
         }
     }
     function changeulcov(e){
@@ -83,6 +82,7 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
         setInput(a)
     }
     const history = useHistory()
+
     useEffect(()=>{
         getMaxsulotRuyxati(users.businessId)
         getFirma(users.businessId)
@@ -164,7 +164,7 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
                                                 </div>
                                             </div>
                                         </div>
-                                   <hr />
+                                   <hr/>
                                    <div className="bynBarchMax">
                                           <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/'}><button className="btn btn-success mb-2 me-2">Barcha maxsulotlar</button></Link>
                                           <Link to={'/headerthird/mahsulotRuyxati/qoldiqXisobot'}><button className="btn btn-primary mb-2">Qoldiqlar xisoboti</button></Link>

@@ -8,10 +8,11 @@ import MaxsulotlarRoyxariReducer, {
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import users from "../../../../../reducer/users";
 import SavdoOynaReducer, {deleteSavdo, editSavdo, getSavdo, saveSavdo} from "../../Savdo/reducer/SavdoOynaReducer";
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 
-function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,deleteFoydaZarar,foydazarar,users}) {
+function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,branchreducer,getbranch,deleteFoydaZarar,foydazarar,users}) {
 
        const [input,setInput] = useState(
            {
@@ -19,14 +20,21 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,dele
                   firstDate:'',
                   secondDate:'',
                   name:'',
+                  branch:'',
            }
        )
 
-       const [startDate, setStartDate] = useState(new Date());
-       function bazatanlash(e){
-              input.branchId= e.target.value
+       function branch(e){
+              input.branch = e.target.value
               let a = {...input}
               setInput(a)
+              if (input.branch !=='barcasi'){
+                     getFoydaZarar(input.branch)
+                     console.log('hello')
+              }else {
+                     getFoydaZarar(users.businessId)
+                     console.log('hfagsjlkda')
+              }
        }
 
        function aniqsananibelgilash(e){
@@ -45,18 +53,15 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,dele
                      console.log(input)
                      saveFoydaZarar(input)
               }
-
        }
        useEffect(()=>{
               getFoydaZarar()
               getMaxsulotRuyxati(users.businessId)
+              getbranch(users.businessId)
        },[])
-
-
 
        return (
               <div className="col-md-12 mt-4 mb-4">
-                     {/*<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />*/}
                      <div className="textHeaderF">
                      <h2>Foyda va Zarar</h2>
                      </div>
@@ -65,8 +70,12 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,dele
                                    <div className="row">
                                           <div className="col-md-6 col-sm-10">
                                                  <h6>Baza tanlash:</h6>
-                                                 <select value={input.bazatanlash} onChange={bazatanlash} name="" id="" >
-                                                        <option value="" >Barcha bazalar</option>
+                                                 <select value={input.branch} onChange={branch} name="" id="" >
+                                                        <option value="barcasi">Barchasi</option>
+                                                        {
+                                                               branchreducer.branch.map(item=> <option
+                                                                   value={item.id}>{item.name}</option>)
+                                                        }
                                                  </select>
                                           </div>
                                           <div className="col-md-6 col-sm-10">
@@ -104,7 +113,6 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,dele
                                                  <td>{(item.salePrice-item.buyPrice) -item.tax}</td>
                                           </tr>)
                                    }
-
                                    </tbody>
                             </table>
                             </div>
@@ -119,5 +127,5 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,dele
               </div>  
        )
 }
-// export default connect(({FoydaZararReducer:{foydazarar}})=>({foydazarar}),{getFoydaZarar,saveFoydaZarar,editFoydaZarar,deleteFoydaZarar}) (FoydaZarar)
-export default connect((MaxsulotlarRoyxariReducer,FoydaZararReducer,users),{getFoydaZarar,saveFoydaZarar,editFoydaZarar,deleteFoydaZarar,getMaxsulotRuyxati,deleteMaxsulotRuyxati}) (FoydaZarar)
+
+export default connect((MaxsulotlarRoyxariReducer,FoydaZararReducer,users,branchreducer),{getbranch,getFoydaZarar,saveFoydaZarar,editFoydaZarar,deleteFoydaZarar,getMaxsulotRuyxati,deleteMaxsulotRuyxati}) (FoydaZarar)
