@@ -1,5 +1,6 @@
 #home{
     position: relative;
+    background-color: white;
 }
 .displaynone{
     display: none;

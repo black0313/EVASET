@@ -142,7 +142,7 @@ function XarajatlarXisoboti({XarajatTurlariReducer,XarajatlarReducer,getXarajatl
                         {
                             XarajatlarReducer.xarajatlar.
                             map(item=><tr key={item.id}>
-                                <td>{item.outlayCategory.title}</td>
+                                {/*<td>{item.outlayCategory.title}</td>*/}
                                 <td>{item.totalSum}</td>
                             </tr>)
                         }

@@ -21,6 +21,7 @@ import MaxsulotlarRoyxariReducer, {
 import users from "../../../../../../reducer/users";
 import FirmaReducer,{getFirma} from "../../reducer/FirmaReducer";
 
+
 function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsulotlar,MaxsulotlarRoyxariReducer,deleteMaxsulotRuyxati,saveMaxsulotRuyxati,match}) {
 
     const [input, setInput] = useState(

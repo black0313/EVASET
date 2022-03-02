@@ -30,6 +30,7 @@ body{
 .homepage1{
     transition: 1s ease;
     width: 18%;
+    background-color: white;
     }
 .homepage2 {
     transition: 1s;

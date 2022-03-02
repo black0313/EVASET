@@ -148,11 +148,13 @@
     line-height: 12px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox{
-    width: 140px;
+    width: 100%;
+    cursor: pointer;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox img{
-    width: 90px;
-    height: 80px;
+    width: 80%;
+    height: 50%;
+
     margin: 4px 10px;
     justify-content: space-between;
 }
