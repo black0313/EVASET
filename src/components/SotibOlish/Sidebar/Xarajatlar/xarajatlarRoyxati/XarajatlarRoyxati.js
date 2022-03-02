@@ -9,9 +9,10 @@ import Delete from '../../../../../img/Delete.png'
 import './xarajatlarRoyxati.css'
 import {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import XarajatlarReducer, {deleteXarajatlar, editXarajatlar, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
-
-function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xarajatlar,XarajatlarReducer}) {
+import XarajatlarReducer, {deleteXarajatlar, editXarajatlar,getXarajatlar2, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
+import users from '../../../../../reducer/users'
+import branchreducer from '../../../../../reducer/branchreducer'
+function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,getbranch, saveXarajatlar, deleteXarajatlar, xarajatlar,XarajatlarReducer}) {
 
     const [input, setInput] = useState(
         {
@@ -30,7 +31,13 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
+        if(input.baza !=='barcasi'){
+            getXarajatlar2(input.baza)
+        }else{
+            getXarajatlar2(users.businessId)
+        }
     }
+    
 
     function xarajatqildi(e) {
         input.xarajatqildi = e.target.value
@@ -70,6 +77,9 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
 
     useEffect(() => {
         getXarajatlar()
+        getXarajatlar2(users.businessId)
+        getbranch(users.businessId)
+        // getbranch(users.businessId)
     }, [XarajatlarReducer.current])
 
     function deleteXarajat(item){
@@ -90,14 +100,18 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
                     <div className="col-md-6 col-sm-12">
                         <h6>Baza:</h6>
                         <select name="" value={input.baza} onChange={baza} id="">
-                            <option value="">Barcha bazalar</option>
+                            <option value="barcasi">Barchasi</option>
+                           {
+                               branchreducer.branch.map(item=><option value={item.id}>{item.name}</option>)
+                           }
+                           {/* console.log({branchreducer.branch}); */}
                         </select>
                     </div>
                     <div className="col-md-6 col-sm-12">
                         <h6>Xarajat qildi:</h6>
                         <select name="" id="" value={input.xarajatqildi} onChange={xarajatqildi}>
                             <option value="">Barchasi</option>
-                        </select>o
+                        </select>
                     </div>
                 </div>
                 <div className="row">
@@ -228,9 +242,11 @@ function XarajatlarRoyxati({getXarajatlar, saveXarajatlar, deleteXarajatlar, xar
     )
 }
 
-export default connect((XarajatlarReducer), {
+export default connect((XarajatlarReducer,users,branchreducer), {
     getXarajatlar,
     saveXarajatlar,
     editXarajatlar,
+    // getbranch,
+    getXarajatlar2,
     deleteXarajatlar
 })(XarajatlarRoyxati)

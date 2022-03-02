@@ -35,6 +35,11 @@ export const getXarajatlar=()=>apiCall({
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });
+export const getXarajatlar2=(data)=>apiCall({
+    url: '/outlay/get-by-branchId/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
 
 export const saveXarajatlar=(data)=>apiCall({
     url: '/outlay',
