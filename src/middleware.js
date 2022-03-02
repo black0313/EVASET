@@ -19,13 +19,14 @@ export const api = ({dispatch}) => (next) => (action) => {
             type: onSuccess,
             payload: res.data
         })
-        console.log(res.data)
+        // console.log(res.data)
     }).catch(err => {
         dispatch({
             type: onFail,
             payload: {...err,success:false}
         })
         console.log(err)
+
     })
 }
 export default api
