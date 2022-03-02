@@ -26,13 +26,15 @@ import {savdooynasi} from "../../../../../reducer/users";
 import ReactToPrint from 'react-to-print';
 import {useRef} from "react";
 import Print from "./Print";
+import MijozGuruxReducer, {getMijozGurux} from "../../Hamkorlar/reducer/MijozGuruxReducer";
+import SavdoQoshishReducer,{saveSavdolar} from "../reducer/SavdoQoshishReducer";
 function SavdoOynasi({
                          getSavdo,
                          deleteSavdo,
                          savdo,
                          getMaxsulotRuyxati,
                          MaxsulotlarRoyxariReducer,
-                         deleteMaxsulotRuyxati,
+                         deleteMaxsulotRuyxati,getMijozGurux,MijozGuruxReducer,SavdoQoshishReducer,saveSavdolar,
     users,savdooynasi
                      }) {
 
@@ -41,6 +43,7 @@ function SavdoOynasi({
             baza: '',
             mahsulotnomi: '',
             barchabrandlar: '',
+
         }
     )
 
@@ -77,6 +80,7 @@ function SavdoOynasi({
             setarr1(a)
         }
         setPushmah(val.id)
+        console.log(arr1)
     }
 
 
@@ -100,6 +104,7 @@ function SavdoOynasi({
         setarr1(a)
     }
     function deleteM(id) {
+
     }
 
     function baza(e) {
@@ -119,9 +124,31 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
+    function UzcardTolov(naqd){
+        console.log('helll')
+        arr1.map(item=>{
+            saveSavdolar({
+                customerId:input.baza,
+                userId:users.businessId,
+                productTraderDto:[
+                    {
+                        tradedQuantity:item.counter,
+                        productTradeId:item.id
+                    }                ],
+                payDate:new Date().getDate(),
+                branchId:item.branch.id,
+                payMethodId:naqd,
+                amountPaid:item.salePrice*item.counter,
+                currencyId:1,
+                addressId:1,
+            })
+        })
+        setarr1([])
+    }
 
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
+        getMijozGurux(users.businessId)
         // history.push('/headerthird/turliTavar/final')
     }, [])
 
@@ -186,7 +213,10 @@ function SavdoOynasi({
                 <div className="savdoBlockLeft">
                     <div className="selectBox">
                         <select className="" value={input.baza} onChange={baza} name="" id="">
-                            <option value="1">Walk in-customer</option>
+                            <option value="walk">Walk in-customer</option>
+                            {
+                                MijozGuruxReducer.mijozgurux.map(item=> <option value={item.id}>{item.name}</option>)
+                            }
                         </select>
                         <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
@@ -300,12 +330,20 @@ function SavdoOynasi({
                 <button className={'btn btn-outline-primary m-1'}>Kreditga sotish</button>
                 <button className={'btn btn-outline-warning  m-1'}>Turli to`lovli</button>
                 <button className={'btn btn-info m-1'}>Plastik</button>
-                <button className={'btn btn-success m-1'}>Naqd</button>
-                <ReactToPrint
-                    trigger={() =>     <button className={'btn btn-dark m-1'}>UzCard</button>
-                    }
-                    content={() => componentRef.current}
-                />
+                <button onClick={()=>UzcardTolov(1)} className={'btn btn-success m-1'}>Naqd</button>
+
+
+                <button onClick={()=>UzcardTolov(2)}>
+                    <ReactToPrint
+                        trigger={() =>  <button  className={'btn btn-dark m-1'}>UzCard</button>
+                        }
+                        content={() => componentRef.current}
+                    />
+                </button>
+
+
+
+
                 <ReactToPrint
                     trigger={() =>                    <button className={'btn btn-warning m-1'}>Humo</button>
 
@@ -364,12 +402,14 @@ function SavdoOynasi({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer, users,SavdoOynaReducer), {
+export default connect((MaxsulotlarRoyxariReducer, users,SavdoOynaReducer,MijozGuruxReducer,SavdoQoshishReducer), {
     getSavdo,
     saveSavdo,
     editSavdo,
     deleteSavdo,
     getMaxsulotRuyxati,
     deleteMaxsulotRuyxati,
-    savdooynasi
+    savdooynasi,
+    getMijozGurux,
+    saveSavdolar
 })(SavdoOynasi)
