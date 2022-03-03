@@ -263,16 +263,15 @@ function SavdoOynasi({
                         </table>
                     </div>
                     <div className="maxSoniBox">
-
-                        <h6>Maxsulot soni:200</h6>
-                        <h6>Jami: 0 so`m</h6>
-                        {/* <h6 className='d-flex align-items-center '>Mahsulot soni: {
+                        {/*<h6>Maxsulot soni:200</h6>*/}
+                        {/*<h6>Jami: 0 so`m</h6>*/}
+                         <h6 className='d-flex align-items-center '>Mahsulot soni: {
                             arr1.map(item => <tr key={item.id}>
-                                <td>{item.id + " " + item.name + " -> "} </td>
-                                <td style={{fontSize: '18px'}}>{item.counter}</td>
-                                <td>Jami:0</td>ryry
+                                <div><tr><td>{item.id + " " + item.name + " -> "} </td></tr>
+                                    <tr><td style={{fontSize: '18px'}}>{item.counter}</td></tr></div>
                             </tr>)
-                        }</h6> */}
+                        }</h6>
+                        <h6>Jami:0</h6>
                     </div>
                     <hr style={{margin: '2px'}}/>
                     <div className={'chegirmalarBox'}>
