@@ -1,12 +1,8 @@
 import img1 from '../../../../../img/pause1.png'
-import img2 from '../../../../../img/maximize2.png'
 import img3 from '../../../../../img/calculator3.png'
 import img4 from '../../../../../img/note4.png'
 import img5 from '../../../../../img/clipboard-close5.png'
 import img6 from '../../../../../img/backward6.png'
-import img7 from '../../../../../img/people.svg'
-import img8 from '../../../../../img/search-normal-1.svg'
-import test from '../../../../../img/test.jpg'
 import {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import './savdoOynasi.css'
@@ -220,6 +216,9 @@ function SavdoOynasi({
                         </select>
                         <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
+                        <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'}>
+                            <h3 className={'text-center'} style={{marginLeft:'-70px',cursor:'pointer',width:'30px',height:'30px',borderRadius:'50%'}}>+</h3>
+                        </Link>
                     </div>
                     <div className="table-responsive tbodyY">
                         <table className={'table '} ref={componentRef}>
@@ -266,7 +265,7 @@ function SavdoOynasi({
                     <div className="maxSoniBox">
 
                         <h6>Maxsulot soni:200</h6>
-                        <h6>Jami:5 000 000 so'm</h6>
+                        <h6>Jami: 0 so`m</h6>
                         {/* <h6 className='d-flex align-items-center '>Mahsulot soni: {
                             arr1.map(item => <tr key={item.id}>
                                 <td>{item.id + " " + item.name + " -> "} </td>
