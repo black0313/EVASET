@@ -182,7 +182,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
     }
 
     function  editMax(){
-        console.log(match.params)
+        // console.log(match.params)
         if(match.params.id !== undefined){
             getMaxsulotRuyxati()
         }
