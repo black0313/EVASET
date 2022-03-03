@@ -17,14 +17,37 @@ import menu from '../../../img/menu.png'
 import React, {useEffect, useRef} from 'react';
 import Logo from "../../../img/Group.png";
 import {useState} from "react";
+import {connect} from "react-redux";
 import Chart from 'react-apexcharts'
 import Pagination from "./Pagination";
 import Pagination2 from "./pagination2";
 import Pagination3 from "./pagination3";
 import Pagination4 from "./Pagination4";
+import users from "../../../reducer/users";
+import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
 
-function Third({display}) {
+function Third({display,users,SavdoQoshishReducer,getSavdolar}) {
 
+    useEffect(()=>{
+        getSavdolar(users.businessId)
+        setTimeout(()=>{
+            funkjamisavdo()
+        },200)
+
+    },[])
+
+
+
+    function funkjamisavdo(){
+        let amout=0
+        SavdoQoshishReducer.savdolar.map(item=>{
+                amout+=item.amountPaid
+            },
+        )
+        setamount(amout)
+       console.log('funck2')
+    }
+    const [amount,setamount] = useState(0)
     const [third, setThird] = useState('')
     const chartOptions = {
         series: [
@@ -148,36 +171,36 @@ function Third({display}) {
         },
 
     ])
-    const [jami, setJami] = useState([
+    const jami = [
         {
-            number: "2 400 000 so'm",
+            number: "2 400 000",
             foiz: "+10.23%",
             text: 'JAMI XARIDLAR',
             svg: <img className={'imgsvg'} src={shopping} alt={'shopping'}/>,
             svgfoiz: <img src={jami1} alt={'jami1'}/>
         },
         {
-            number: "2 400 000 so'm",
+            number: amount ,
             foiz: "+10.23%",
             text: 'JAMI SAVDO',
             svg: <img className={'imgsvg'} src={jamisavdo} alt={'jamisavdo'}/>,
             svgfoiz: <img src={jami2} alt={'jami2'}/>
         },
         {
-            number: "2 400 000 so'm",
+            number: "2 400 000",
             foiz: "+10.23%",
             text: 'BOZORDAN QARZIM',
             svg: <img className={'imgsvg'} src={bozordanqarz} alt={'bozordanqarz'}/>,
             svgfoiz: <img src={jami3} alt={'jami3'}/>
         },
         {
-            number: "2 400 000 so'm",
+            number: "2 400 000",
             foiz: "+10.23%",
             text: 'QARZDORLARDAN HAQIM',
             svgfoiz: <img src={jami4} alt={'jami4'}/>,
             svg: <img src={qarzdorlar} className={'imgsvg'} alt={'qarzdorlar'}/>,
         },
-    ])
+    ]
     const [active, Setactive] = useState(false)
 
     function sidebar() {
@@ -217,7 +240,6 @@ function Third({display}) {
     const windowscrenn = window.screen.height
     const windowscrenn2 = window.screen.width
 
-
     return (
         <div className={`third  pt-md-4  ${display} ${third}`}>
             <div className="container-fluid gap">
@@ -227,6 +249,7 @@ function Third({display}) {
                             <div className="col-md-1 col-sm-3 align-items-center">
                                 <img className={'image'} src={store} alt=""/>
                             </div>
+
                             <div className="col-md-11 col-sm-9 align-items-center">
                                 <h4 className={'kitchen'}>Tokyo Kitchen</h4>
                                 <p className={'kitchen'}>Sizni shaxsiy boshqaruv panelida yana ko'rganimizdan juda
@@ -252,6 +275,8 @@ function Third({display}) {
                                 <div className={'p-2'}>
                                     <div className="row p-0 colorback">
                                         <div className="col-12 margin">
+                                            {console.log('funkw')}
+
                                             <div
                                                 className="row p-2 pb-0 d-flex marginb align-items-center justify-content-start">
                                                 <div className="col-md-1 coll-1">
@@ -266,7 +291,8 @@ function Third({display}) {
                                             <div
                                                 className="row pt-0 pb-0 d-flex align-items-center justify-content-between">
                                                 <div className="col-8 me-0 mt-3 mt-md-0">
-                                                    <p className={"raqam align-items-center"}>{item.number}</p>
+                                                    {console.log(item.number)}
+                                                    <p className={"raqam align-items-center"}>{item.number} so'm</p>
                                                 </div>
                                                 <div className="col-4 text-center align-items-center">
                                                     <div
@@ -563,6 +589,8 @@ function Third({display}) {
             </div>
         </div>
     );
+
 }
 
-export default Third;
+
+export default connect((SavdoQoshishReducer,users),{getSavdolar}) (Third);
