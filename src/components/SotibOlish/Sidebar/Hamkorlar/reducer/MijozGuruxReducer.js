@@ -20,7 +20,6 @@ const slice = createSlice({
             // toast.success('Saqlandi')
         },
         editfrom: (state,action) => {
-
             state.current+=1
             // toast.success('O`zgartirildi')
         },
