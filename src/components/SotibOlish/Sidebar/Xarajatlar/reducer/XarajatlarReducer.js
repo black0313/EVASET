@@ -40,6 +40,11 @@ export const getXarajatlar2=(data)=>apiCall({
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });
+export const getXarajatlar3=(data)=>apiCall({
+    url: '/outlay/get-by-date/'+data.date+'/'+data.id,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
 
 export const saveXarajatlar=(data)=>apiCall({
     url: '/outlay',

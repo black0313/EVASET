@@ -9,10 +9,10 @@ import Delete from '../../../../../img/Delete.png'
 import './xarajatlarRoyxati.css'
 import {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import XarajatlarReducer, {deleteXarajatlar, editXarajatlar,getXarajatlar2, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
+import XarajatlarReducer, {deleteXarajatlar, editXarajatlar,getXarajatlar2,getXarajatlar3, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
 import users from '../../../../../reducer/users'
-import branchreducer from '../../../../../reducer/branchreducer'
-function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,getbranch, saveXarajatlar, deleteXarajatlar, xarajatlar,XarajatlarReducer}) {
+import branchreducer ,{getbranch} from '../../../../../reducer/branchreducer'
+function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,branchreducer,getbranch, saveXarajatlar, deleteXarajatlar, xarajatlar,XarajatlarReducer}) {
 
     const [input, setInput] = useState(
         {
@@ -34,7 +34,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,get
         if(input.baza !=='barcasi'){
             getXarajatlar2(input.baza)
         }else{
-            getXarajatlar2(users.businessId)
+            getXarajatlar(users.businessId)
         }
     }
     
@@ -58,6 +58,11 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,get
         input.sana = e.target.value
         let a = {...input}
         setInput(a)
+        
+        getXarajatlar3({
+            date:input.sana,
+            id:input.baza
+        })
     }
     function obuna(e) {
         input.obuna = e.target.value
@@ -104,13 +109,13 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,get
                            {
                                branchreducer.branch.map(item=><option value={item.id}>{item.name}</option>)
                            }
-                           {/* console.log({branchreducer.branch}); */}
                         </select>
                     </div>
                     <div className="col-md-6 col-sm-12">
                         <h6>Xarajat qildi:</h6>
                         <select name="" id="" value={input.xarajatqildi} onChange={xarajatqildi}>
                             <option value="">Barchasi</option>
+
                         </select>
                     </div>
                 </div>
@@ -133,7 +138,10 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,get
                     <div className="col-md-6 col-sm-12">
                         <div className="sana">
                             <h6>Sanani belgilang:</h6>
-                            <input type="date" value={input.sana} onChange={sana}/>
+                           
+                           {
+                                <input type="date" value={input.sana+"/"+branchreducer.branch.id} onChange={sana}/>
+                           }
                         </div>
                     </div>
                     <div className="col-md-6 col-sm-12">
@@ -194,28 +202,31 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,get
                         </tr>
                         </thead>
                         <tbody>
-                        {
+                            {console.log(XarajatlarReducer.xarajatlar)}
+                        {   
                             XarajatlarReducer.xarajatlar.filter(val => {
                                 if (input.izlash === '') {
                                     return val
                                 } else if (val.name.toUpperCase().includes(input.izlash.toUpperCase())) {
                                     return val
                                 }
+                                
                             }).map(item => <tr key={item.id}>
                                 <td>{item.date}</td>
                                 <td>-</td>
                                 {/*<td>{item.spender.firstName}</td>*/}
                                 <td>-</td>
                                 <td>-</td>
-                                <td>-</td>
+                                <td>{item.branch.name}</td>
                                 <td>-</td>
                                 <td>naqd</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>{item.totalSum}</td>
+                                <td>-</td>
+                                <td>- </td>
                                 <td>{item.description}</td>
-                                <td> </td>
                                 <td>
                                     <Link to={'/headerthird/xarajatQoshish/'+item.id}>
                                         <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
@@ -223,6 +234,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,users,branchreducer,get
                                     <button className='ochirish' onClick={()=>deleteXarajat(item)}><img src={Delete} alt=""/> O'chirish</button>
                                 </td>
                             </tr>)
+                                                     
                         }
                         {
                             console.log(xarajatlar)
@@ -246,7 +258,8 @@ export default connect((XarajatlarReducer,users,branchreducer), {
     getXarajatlar,
     saveXarajatlar,
     editXarajatlar,
-    // getbranch,
+    getbranch,
     getXarajatlar2,
+    getXarajatlar3,
     deleteXarajatlar
 })(XarajatlarRoyxati)
