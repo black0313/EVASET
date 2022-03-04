@@ -23,10 +23,10 @@ import Pagination from "./Pagination";
 import Pagination2 from "./pagination2";
 import Pagination3 from "./pagination3";
 import Pagination4 from "./Pagination4";
-import users from "../../../reducer/users";
+import users,{savdooynasi} from "../../../reducer/users";
 import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
-
-function Third({display,users,SavdoQoshishReducer,getSavdolar}) {
+import functionreducer,{active} from "../../../reducer/functionreducer";
+function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
@@ -36,7 +36,9 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar}) {
 
     },[])
 
-
+    function savdod(){
+        savdooynasi()
+    }
 
     function funkjamisavdo(){
         let amout=0
@@ -201,7 +203,6 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar}) {
             svg: <img src={qarzdorlar} className={'imgsvg'} alt={'qarzdorlar'}/>,
         },
     ]
-    const [active, Setactive] = useState(false)
 
     function sidebar() {
         if (third === '') {
@@ -261,8 +262,8 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar}) {
                         <Link to={'/headerthird/foydaZarar'}>
                             <button className={'kitchen-button'}>Xisobot</button>
                         </Link>
-                        <Link to={'/headerthird/turliTavar'}>
-                            <button className={'kitchen-button'}>Savdo oynasi</button>
+                        <Link to={'/turliTavar'}>
+                            <button onClick={savdod} className={'kitchen-button'}>Savdo oynasi</button>
                         </Link>
                     </div>
 
@@ -593,4 +594,4 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar}) {
 }
 
 
-export default connect((SavdoQoshishReducer,users),{getSavdolar}) (Third);
+export default connect((SavdoQoshishReducer,users,functionreducer),{getSavdolar,savdooynasi,active}) (Third);

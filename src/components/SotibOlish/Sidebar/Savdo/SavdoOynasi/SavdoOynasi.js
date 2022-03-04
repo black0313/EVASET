@@ -28,10 +28,12 @@ import SavdoQoshishReducer, {saveSavdolar} from "../reducer/SavdoQoshishReducer"
 import BolimReducer, {getBolim} from "../../Maxsulotlar/reducer/BolimReducer";
 import FirmaReducer, {getFirma} from "../../Maxsulotlar/reducer/FirmaReducer";
 import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
+import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
 
 function SavdoOynasi({
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
+    getPay,PayReducer,
                          FirmaReducer, getFirma,
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
@@ -247,6 +249,7 @@ function SavdoOynasi({
         getBolim(users.businessId)
         getFirma(users.businessId)
         getkg(users.businessId)
+        getPay(users.businessId)
         // history.push('/headerthird/turliTavar/final')
     }, [])
 
@@ -307,6 +310,7 @@ function SavdoOynasi({
                     </Modal>
                 </div>
             </div>
+            {console.log(PayReducer.paymethod)}
             <div className="savdoBlock">
                 <div className="savdoBlockLeft">
                     <div className="selectBox">
@@ -520,23 +524,29 @@ function SavdoOynasi({
                 <button className={'btn btn-outline-primary m-1'}>Kreditga sotish</button>
                 <button className={'btn btn-outline-warning  m-1'}>Turli to`lovli</button>
                 <button className={'btn btn-info m-1'}>Plastik</button>
-                <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>Naqd</button>
 
-
-                <button onClick={() => UzcardTolov(2)}>
+                <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>
                     <ReactToPrint
-                        trigger={() => <button className={'btn btn-dark m-1'}>UzCard</button>
+                        trigger={() => <p className={'toprint '}>Naqd</p>
                         }
                         content={() => componentRef.current}
                     />
                 </button>
 
+                <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(2)}>
+                    <ReactToPrint
+                        trigger={() => <p className={'toprint '}>UzCard</p>
+                        }
+                        content={() => componentRef.current}
+                    />
+                </button>
+                <button onClick={()=> UzcardTolov(3)} className={'btn btn-warning m-1'}>
                 <ReactToPrint
-                    trigger={() => <button className={'btn btn-warning m-1'}>Humo</button>
+                    trigger={() => <p className={'toprint'}>Humo</p>
 
                     }
                     content={() => componentRef.current}
-                />
+                /></button>
                 <button className='jamiTolov m-1'>Jami to`lov: 1 200 000 000 so'm</button>
                 <button className={'btn btn-danger m-1'}>Chiqish</button>
             </div>
@@ -588,10 +598,11 @@ function SavdoOynasi({
         </div>
     )
 }
-
-export default connect((kgreducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer), {
+//355352081562619
+export default connect((kgreducer,PayReducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer), {
     getSavdo,
     getFirma,
+    getPay,
     getBolim,
     saveSavdo,
     editSavdo,

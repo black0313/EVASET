@@ -30,6 +30,7 @@ import SavdoQoshishReducer from "./components/SotibOlish/Sidebar/Savdo/reducer/S
 import branchreducer from "./reducer/branchreducer";
 import kgreducer from "./reducer/kgreducer";
 import tolovreducer from "./reducer/tolovreducer";
+import PayReducer from "./reducer/PayReducer";
 export default configureStore({
     reducer:{
         users,functionreducer,XodimReducer,LavozimReducer,XodimSavdoReducer,TaminotReducer,tolovreducer,
@@ -37,7 +38,7 @@ export default configureStore({
         OtkazmaReducer,XarajatlarReducer,XarajatTurlariReducer,FoydaZararReducer,XaridlarXisobotiReducer,
         MijozHisobotiReducer,XarajatXisobotReducer,SavdodagiTulovReducer,MaxsulotxisobotReducer,KopsotilgantovarlarReducer,
         OtkazmalarxisobotiReducer,QoldiqlarxisobotiReducer,SoliqlarxisobotiReducer,MaxsulotlarRoyxariReducer,branchreducer,kgreducer,SavdoQoshishReducer,
-
+        PayReducer
 
     },
         middleware:[api]

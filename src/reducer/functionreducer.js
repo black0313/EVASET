@@ -37,8 +37,6 @@ const slice1 =createSlice({
             state.func.class3='sidebar'
         }
 
-
-
     }
 })
 
