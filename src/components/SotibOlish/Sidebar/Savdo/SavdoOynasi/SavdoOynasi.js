@@ -455,11 +455,11 @@ function SavdoOynasi({
                     <div className="maxSoniBox">
                         {/*<h6>Maxsulot soni:200</h6>*/}
                         {/*<h6>Jami: 0 so`m</h6>*/}
-                        <h6 className='d-flex align-items-center '>Mahsulot soni: {
+                        <h6 className=''>Mahsulot soni: {
                             arr1.map(item => <tr key={item.id}>
                                 <div>
                                     <tr>
-                                        <td>{item.id + " " + item.name + " -> "} </td>
+                                        <td>{"ID "+ item.id } </td>
                                     </tr>
                                     <tr>
                                         <td style={{fontSize: '18px'}}>{item.counter}</td>
@@ -500,8 +500,6 @@ function SavdoOynasi({
                         {
                             MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
                                                                                    key={item.id}>
-                                {/*<img style={{marginLeft:'15px'}} src="https://freepngimg.com/static/img/whatsapp.png"  alt="yuq"/>*/}
-                                {/*<div onClick={() => qoshil(item.id)} style={{cursor:'pointer'}}>*/}
                                 <div onClick={() => pushesh(item)}>
                                     <img
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
