@@ -29,15 +29,16 @@ import BolimReducer, {getBolim} from "../../Maxsulotlar/reducer/BolimReducer";
 import FirmaReducer, {getFirma} from "../../Maxsulotlar/reducer/FirmaReducer";
 import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
+// import {disabled} from "yarn/lib/cli";
 
 function SavdoOynasi({
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
-    getPay,PayReducer,
+                         getPay, PayReducer,
                          FirmaReducer, getFirma,
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
-                         users, savdooynasi,getkg,kgreducer,
+                         users, savdooynasi, getkg, kgreducer,
                      }) {
 
     const [input, setInput] = useState(
@@ -64,31 +65,37 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
+
     function shtrix(e) {
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function ulcovbirligi(e) {
         input.ulcovbirligi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function firma(e) {
         input.firma = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function bolim(e) {
         input.bolim = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function miqdor(e) {
         input.miqdor = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function sotibolishnarxi(e) {
         input.sotibolishnarx = e.target.value
         let a = {...input}
@@ -145,6 +152,8 @@ function SavdoOynasi({
         setOpenCalc(!openCalc)
     }
 
+    let [xisob,setxisob] = useState(0)
+
     function pushesh(val) {
         if (val.id == pushmah) {
             setCount(val.id)
@@ -154,10 +163,18 @@ function SavdoOynasi({
             setarr1(a)
         }
         setPushmah(val.id)
-        console.log(arr1)
+
+        let a = 0
+        arr1.map(item =>{
+                a +=item.counter
+        })
+        setxisob(a)
+
+
     }
 
     function setCount(id) {
+        setactivebutton(!activebutton)
         arr1.map(item => {
             if (item.id === id) {
                 item.counter += 1
@@ -165,18 +182,38 @@ function SavdoOynasi({
         })
         let a = [...arr1]
         setarr1(a)
+        let b = 0
+        arr1.map(item =>{
+            b +=item.counter
+        })
+        setxisob(b)
     }
 
-    const history = useHistory()
-
+    const [activebutton,setactivebutton] = useState(false)
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
-                item.counter -= 1
+                if (item.counter>=1){
+                    item.counter -= 1
+                }else{
+                    setactivebutton(!activebutton)
+                }
             }
+
         })
         let a = [...arr1]
         setarr1(a)
+
+
+        let b = 0
+
+        arr1.map(item =>{
+            b +=item.counter
+        })
+        setxisob(b)
+
+
+
     }
 
     function deleteM(id) {
@@ -347,7 +384,8 @@ function SavdoOynasi({
                                                     value={input.ulcovbirligi} onChange={ulcovbirligi}>
                                                 {/*    FIX ME*/}
                                                 {
-                                                    kgreducer.kg.map(item=> <option value={item.id}>{item.name}</option>)
+                                                    kgreducer.kg.map(item => <option
+                                                        value={item.id}>{item.name}</option>)
                                                 }
                                             </select>
                                             <label htmlFor={'bolim'}>Bo`lim</label>
@@ -436,7 +474,7 @@ function SavdoOynasi({
                                                     className={'btn btn-outline-dark'}>+
                                             </button>
                                             {item.counter}
-                                            <button onClick={() => sMinus(item.id)}
+                                            <button disabled={activebutton} onClick={() => sMinus(item.id)}
                                                     className={'btn btn-outline-dark'}>-
                                             </button>
                                         </td>
@@ -452,20 +490,10 @@ function SavdoOynasi({
                             </tbody>
                         </table>
                     </div>
-                    <div className="maxSoniBox">
-                        {/*<h6>Maxsulot soni:200</h6>*/}
-                        {/*<h6>Jami: 0 so`m</h6>*/}
+                    <div className="maxSoniBox d-flex">
                         <h6 className=''>Mahsulot soni: {
-                            arr1.map(item => <tr key={item.id}>
-                                <div>
-                                    <tr>
-                                        <td>{"ID "+ item.id } </td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{fontSize: '18px'}}>{item.counter}</td>
-                                    </tr>
-                                </div>
-                            </tr>)
+                            // ------------------------------------------
+                            <td>{xisob}</td>
                         }</h6>
                         <h6>Jami:0</h6>
                     </div>
@@ -538,13 +566,13 @@ function SavdoOynasi({
                         content={() => componentRef.current}
                     />
                 </button>
-                <button onClick={()=> UzcardTolov(3)} className={'btn btn-warning m-1'}>
-                <ReactToPrint
-                    trigger={() => <p className={'toprint'}>Humo</p>
+                <button onClick={() => UzcardTolov(3)} className={'btn btn-warning m-1'}>
+                    <ReactToPrint
+                        trigger={() => <p className={'toprint'}>Humo</p>
 
-                    }
-                    content={() => componentRef.current}
-                /></button>
+                        }
+                        content={() => componentRef.current}
+                    /></button>
                 <button className='jamiTolov m-1'>Jami to`lov: 1 200 000 000 so'm</button>
                 <button className={'btn btn-danger m-1'}>Chiqish</button>
             </div>
@@ -562,7 +590,6 @@ function SavdoOynasi({
                     </ModalFooter>
                 </Modal>
                 {/*<img style={{cursor:'pointer'}} onClick={toggle2} src={img2} alt=""/>*/}
-
 
                 <Modal isOpen={active2} toggle={toggle2}>
                     <ModalHeader>
@@ -596,8 +623,9 @@ function SavdoOynasi({
         </div>
     )
 }
+
 //355352081562619
-export default connect((kgreducer,PayReducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer), {
+export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer), {
     getSavdo,
     getFirma,
     getPay,
