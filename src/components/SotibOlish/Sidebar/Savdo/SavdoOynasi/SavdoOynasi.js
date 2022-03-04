@@ -359,15 +359,7 @@ function SavdoOynasi({
                         </select>
                         <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
-                        {/*<Link to={''}>*/}
-                        <h3 className={'text-center'} onClick={toggle5} style={{
-                            marginLeft: '-70px',
-                            cursor: 'pointer',
-                            width: '30px',
-                            height: '30px',
-                            borderRadius: '50%'
-                        }}>+</h3>
-                        {/*</Link>*/}
+                        <button className={'addButton'} onClick={toggle5}>+</button>
                         <Modal isOpen={openModal} toggle={toggle5}>
                             <ModalHeader>
                                 Maxsulot qoshish
@@ -491,11 +483,8 @@ function SavdoOynasi({
                         </table>
                     </div>
                     <div className="maxSoniBox d-flex">
-                        <h6 className=''>Mahsulot soni: {
-                            // ------------------------------------------
-                            <td>{xisob}</td>
-                        }</h6>
-                        <h6>Jami:0</h6>
+                        <h6 className='d-flex align-items-center'>Mahsulot soni: {<td>{xisob}</td>}</h6>
+                         <h6>Jami:0</h6>
                     </div>
                     <hr style={{margin: '2px'}}/>
                     <div className={'chegirmalarBox'}>

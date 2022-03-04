@@ -55,34 +55,51 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: 8px;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox .addButton{
+    background: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    border-radius: 6px;
+    color: #9FA2B4;
+    height: 32px;
+    width: 50px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox select{
     background: #FFFFFF;
     border: 1px solid #9FA2B4;
-    box-sizing: border-box;
     border-radius: 6px;
     color: #9FA2B4;
     height: 32px;
+    width: 35%;
+    padding: 0px 6px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox input{
     background: #FFFFFF;
     width: 50%;
     padding-left: 4px;
     border: 1px solid #9FA2B4;
-    box-sizing: border-box;
     border-radius: 6px;
     color: #9FA2B4;
     height: 32px;
+    padding: 0px 8px;
 }
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox input::placeholder{
+    color: #9FA2B4;
+    opacity: 1;
+}
+
 .savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockLeft .chegirmalarBox{
     display: flex;
     justify-content: space-between;
+}
+.savdoOynaContainers .savdoBlock .savdoBlockLeft .chegirmalarBox p{
+    margin: 9px 0px 0px 0px;
 }
 
 .tbodyY{
@@ -118,12 +135,12 @@
     height: 32px;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock{
-    margin-top: 12px;
+    margin-top: 16px;
     overflow-y: scroll;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     justify-content: center;
-    height: 416px;
+    height: 60vh;
 }
 .savdoOynaContainers .savBtnBox{
     display: flex;
