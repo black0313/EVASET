@@ -40,6 +40,7 @@ function Savdo({active,savdooynasi}) {
         savdooynasi()
         active()
     }
+
     return(
         <div className={'row mahsulot'}>
             <div className="imgDiv" onClick={toggle}>

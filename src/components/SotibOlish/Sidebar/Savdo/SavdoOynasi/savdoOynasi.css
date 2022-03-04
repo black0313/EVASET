@@ -103,6 +103,12 @@
     width: 49%;
     height: 75vh;
 }
+.toprint{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .bazaBox select{
     background-color: #FFFFFF;
     border: 1px solid #9FA2B4;
@@ -124,6 +130,10 @@
     margin-bottom: 16px;
     margin-top: 16px;
     padding: 6px 16px;
+    overflow: hidden;
+}
+.savdoOynaContainers .savBtnBox {
+    background: transparent;
 }
 .savdoOynaContainers .savBtnBox button{
     width: 10%;

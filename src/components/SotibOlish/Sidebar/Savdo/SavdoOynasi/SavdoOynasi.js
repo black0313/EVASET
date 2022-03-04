@@ -9,7 +9,7 @@ import './savdoOynasi.css'
 import SavdoOynaReducer, {deleteSavdo, editSavdo, getSavdo, saveSavdo} from "../reducer/SavdoOynaReducer";
 import MaxsulotlarRoyxariReducer, {
     deleteMaxsulotRuyxati,
-    getMaxsulotRuyxati
+    getMaxsulotRuyxati, saveMaxsulotRuyxati
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import Calculator from "../../../header/Calculator/Calculator";
@@ -21,17 +21,24 @@ import users from "../../../../../reducer/users";
 import {savdooynasi} from "../../../../../reducer/users";
 import ReactToPrint from 'react-to-print';
 import {useRef} from "react";
+import MaxsulotQoshish from '../../Maxsulotlar/MahsulotlarRuyxati/Taxrirlash/Taxrirlash'
 import Print from "./Print";
 import MijozGuruxReducer, {getMijozGurux} from "../../Hamkorlar/reducer/MijozGuruxReducer";
-import SavdoQoshishReducer,{saveSavdolar} from "../reducer/SavdoQoshishReducer";
+import SavdoQoshishReducer, {saveSavdolar} from "../reducer/SavdoQoshishReducer";
+import BolimReducer, {getBolim} from "../../Maxsulotlar/reducer/BolimReducer";
+import FirmaReducer, {getFirma} from "../../Maxsulotlar/reducer/FirmaReducer";
+import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
+import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
+// import {disabled} from "yarn/lib/cli";
+
 function SavdoOynasi({
-                         getSavdo,
-                         deleteSavdo,
-                         savdo,
                          getMaxsulotRuyxati,
+                         BolimReducer, getBolim,
+                         getPay, PayReducer,
+                         FirmaReducer, getFirma,
                          MaxsulotlarRoyxariReducer,
-                         deleteMaxsulotRuyxati,getMijozGurux,MijozGuruxReducer,SavdoQoshishReducer,saveSavdolar,
-    users,savdooynasi
+                         getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
+                         users, savdooynasi, getkg, kgreducer,
                      }) {
 
     const [input, setInput] = useState(
@@ -39,16 +46,88 @@ function SavdoOynasi({
             baza: '',
             mahsulotnomi: '',
             barchabrandlar: '',
-
+            modalmahsulotnomi: '',
+            shtrix: '',
+            ulcovbirligi: '',
+            firma: '',
+            bolim: '',
+            miqdor: '',
+            soliqsiznarx: '',
+            foydafoiz: '',
+            soliqbnnarxi: '',
+            sotibolishnarx: '',
+            sotishnarxi: '',
         }
     )
 
-    const [arr1, setarr1] = useState([
+    function modalmahsulotnomi(e) {
+        input.modalmahsulotnomi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
 
-    ])
-    const componentRef = useRef(
+    function shtrix(e) {
+        input.shtrix = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
 
-    );
+    function ulcovbirligi(e) {
+        input.ulcovbirligi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function firma(e) {
+        input.firma = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function bolim(e) {
+        input.bolim = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function miqdor(e) {
+        input.miqdor = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function sotibolishnarxi(e) {
+        input.sotibolishnarx = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function sotishnarxi(e) {
+        input.sotishnarxi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function soliqsiznarx(e) {
+        input.soliqsiznarx = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function foydafoiz(e) {
+        input.foydafoiz = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function soliqbnnarxi(e) {
+        input.soliqbnnarxi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    const [arr1, setarr1] = useState([])
+    const componentRef = useRef();
 
     const [lastTradeActive, setlastTradeActive] = useState(false)
 
@@ -56,31 +135,46 @@ function SavdoOynasi({
         setlastTradeActive(!lastTradeActive)
     }
 
+    const [openModal, setOpenModal] = useState(false)
+
+    function toggle5() {
+        setOpenModal(!openModal)
+    }
+
     const [active, setActive] = useState(false)
     const [active2, setActive2] = useState(false)
     const [active3, setActive3] = useState(false)
     const [openCalc, setOpenCalc] = useState(false)
-    const [pushmah,setPushmah] = useState('')
-    const [pushbool,setPushbool] = useState(false)
+    const [pushmah, setPushmah] = useState('')
+    const [pushbool, setPushbool] = useState(false)
+
     function openCalcul() {
         setOpenCalc(!openCalc)
     }
 
+    let [xisob,setxisob] = useState(0)
+
     function pushesh(val) {
-        if(val.id==pushmah){
+        if (val.id == pushmah) {
             setCount(val.id)
-        }
-        else{
-            arr1.push({...val,counter:1})
+        } else {
+            arr1.push({...val, counter: 1})
             let a = [...arr1]
             setarr1(a)
         }
         setPushmah(val.id)
-        console.log(arr1)
+
+        let a = 0
+        arr1.map(item =>{
+                a +=item.counter
+        })
+        setxisob(a)
+
+
     }
 
-
     function setCount(id) {
+        setactivebutton(!activebutton)
         arr1.map(item => {
             if (item.id === id) {
                 item.counter += 1
@@ -88,19 +182,41 @@ function SavdoOynasi({
         })
         let a = [...arr1]
         setarr1(a)
+        let b = 0
+        arr1.map(item =>{
+            b +=item.counter
+        })
+        setxisob(b)
     }
-    const history = useHistory()
+
+    const [activebutton,setactivebutton] = useState(false)
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
-                item.counter -= 1
+                if (item.counter>=1){
+                    item.counter -= 1
+                }else{
+                    setactivebutton(!activebutton)
+                }
             }
+
         })
         let a = [...arr1]
         setarr1(a)
-    }
-    function deleteM(id) {
 
+
+        let b = 0
+
+        arr1.map(item =>{
+            b +=item.counter
+        })
+        setxisob(b)
+
+
+
+    }
+
+    function deleteM(id) {
     }
 
     function baza(e) {
@@ -120,37 +236,64 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-    function UzcardTolov(naqd){
+
+    function UzcardTolov(naqd) {
         console.log('helll')
-        arr1.map(item=>{
+        arr1.map(item => {
             saveSavdolar({
-                customerId:input.baza,
-                userId:users.businessId,
-                productTraderDto:[
+                customerId: input.baza,
+                userId: users.businessId,
+                productTraderDto: [
                     {
-                        tradedQuantity:item.counter,
-                        productTradeId:item.id
-                    }                ],
-                payDate:new Date().getDate(),
-                branchId:item.branch.id,
-                payMethodId:naqd,
-                amountPaid:item.salePrice*item.counter,
-                currencyId:1,
-                addressId:1,
+                        tradedQuantity: item.counter,
+                        productTradeId: item.id
+                    }],
+                payDate: new Date().getDate(),
+                branchId: item.branch.id,
+                payMethodId: naqd,
+                amountPaid: item.salePrice * item.counter,
+                currencyId: 1,
+                addressId: 1,
             })
         })
         setarr1([])
     }
 
+    function saqla() {
+        saveMaxsulotRuyxati({
+            name: input.modalmahsulotnomi,
+            quantity: input.miqdor,                                 /*input.foydafoiz,*/
+            barcode: input.shtrix,
+            brandId: input.firma,                      /*input.ferma,*/
+            categoryId: input.bolim,                     /*  input.bolim,*/
+            measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+            photoIds: [1],
+            minQuantity: input.foydafoiz,
+            /*   input.foydafoiz,*/
+            buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
+            salePrice: input.sotibolishnarxi,
+            tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
+            branchId: [1],
+            expireDate: null,
+            dueDate: null
+        })
+        toggle5()
+    }
+
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
         getMijozGurux(users.businessId)
+        getBolim(users.businessId)
+        getFirma(users.businessId)
+        getkg(users.businessId)
+        getPay(users.businessId)
         // history.push('/headerthird/turliTavar/final')
     }, [])
 
     function toggle() {
         setActive(!active)
     }
+
     function toggle2() {
         setActive2(!active2)
     }
@@ -158,7 +301,6 @@ function SavdoOynasi({
     function toggle3() {
         setActive3(!active3)
     }
-
 
     return (
         <div className={'savdoOynaContainers'}>
@@ -205,20 +347,106 @@ function SavdoOynasi({
                     </Modal>
                 </div>
             </div>
+            {console.log(PayReducer.paymethod)}
             <div className="savdoBlock">
                 <div className="savdoBlockLeft">
                     <div className="selectBox">
                         <select className="" value={input.baza} onChange={baza} name="" id="">
                             <option value="walk">Walk in-customer</option>
                             {
-                                MijozGuruxReducer.mijozgurux.map(item=> <option value={item.id}>{item.name}</option>)
+                                MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
                             }
                         </select>
                         <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
-                        <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'}>
-                            <h3 className={'text-center'} style={{marginLeft:'-70px',cursor:'pointer',width:'30px',height:'30px',borderRadius:'50%'}}>+</h3>
-                        </Link>
+                        {/*<Link to={''}>*/}
+                        <h3 className={'text-center'} onClick={toggle5} style={{
+                            marginLeft: '-70px',
+                            cursor: 'pointer',
+                            width: '30px',
+                            height: '30px',
+                            borderRadius: '50%'
+                        }}>+</h3>
+                        {/*</Link>*/}
+                        <Modal isOpen={openModal} toggle={toggle5}>
+                            <ModalHeader>
+                                Maxsulot qoshish
+                            </ModalHeader>
+                            <ModalBody>
+                                <div className={'col-md-12'}>
+                                    <div className={'d-flex'}>
+                                        <div className="col-md-6">
+                                            <label htmlFor={'mod'}>Mahsulot name</label>
+                                            <input type="text" value={input.modalmahsulotnomi}
+                                                   onChange={modalmahsulotnomi} id={'mod'} className={'form-control'}/>
+                                            <label htmlFor={'ol'}>O`lchov birligi</label>
+                                            <select className={'form-control'} name="" id={'ol'}
+                                                    value={input.ulcovbirligi} onChange={ulcovbirligi}>
+                                                {/*    FIX ME*/}
+                                                {
+                                                    kgreducer.kg.map(item => <option
+                                                        value={item.id}>{item.name}</option>)
+                                                }
+                                            </select>
+                                            <label htmlFor={'bolim'}>Bo`lim</label>
+                                            <select name="" id={'bolim'} className={'form-control'} value={input.bolim}
+                                                    onChange={bolim}>
+                                                {/*    FIX ME*/}
+                                                {
+                                                    BolimReducer.bolimlar.map(item => <option
+                                                        value={'item.id'}>{item.name}</option>)
+                                                }
+                                            </select>
+                                            <label htmlFor={'sot'}>Sotish narxi</label>
+                                            <input type="text" className={'form-control'} value={input.sotishnarxi}
+                                                   onChange={sotishnarxi}/>
+                                        </div>
+
+                                        <div className="col-md-6">
+                                            <label htmlFor={'shtrix'}>Shtrix kod</label>
+                                            <input type="text" className={'form-control'} value={input.shtrix}
+                                                   onChange={shtrix}/>
+                                            <label htmlFor={'firma'}>Firma</label>
+                                            <select name="" id={'firma'} className={'form-control'} value={input.firma}
+                                                    onChange={firma}>
+                                                {/*    FIX ME*/}
+                                                {
+                                                    FirmaReducer.firmalar.map(item => <option
+                                                        value={item.id}>{item.name}</option>)
+                                                }
+                                            </select>
+                                            <label htmlFor={'miqdor'}>Miqdor</label>
+                                            <input type="number" id={'miqdor'} className={'form-control'}
+                                                   value={input.miqdor} onChange={miqdor}/>
+                                        </div>
+                                    </div>
+                                    <div className={'d-flex'}>
+                                        <div className="col-md-6">
+                                            <label htmlFor={'sol'}>Soliqsiz narx</label>
+                                            <input type="text" className={'form-control'} value={input.soliqsiznarx}
+                                                   onChange={soliqsiznarx}/>
+                                            <label htmlFor={'sol'}>Soliq bn narxi</label>
+                                            <input type="text" className={'form-control'} value={input.soliqbnnarxi}
+                                                   onChange={soliqbnnarxi}/>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label htmlFor={'fo'}>Foyda foizda</label>
+                                            <input type="text" className={'form-control'} value={input.foydafoiz}
+                                                   onChange={foydafoiz}/>
+                                            <label htmlFor={''}>Sotish narxi soliqsiz</label>
+                                            <input type="text" className={'form-control'}/>
+                                            <label htmlFor={'nn'}>Sotib olish narxi</label>
+                                            <input type="text" value={input.sotibolishnarx} className={'form-control'}
+                                                   onChange={sotibolishnarxi}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ModalBody>
+                            <ModalFooter>
+                                <button className={'btn btn-outline-primary'} onClick={toggle5}>Chqish</button>
+                                <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                            </ModalFooter>
+                        </Modal>
                     </div>
                     <div className="table-responsive tbodyY">
                         <table className={'table '} ref={componentRef}>
@@ -246,7 +474,7 @@ function SavdoOynasi({
                                                     className={'btn btn-outline-dark'}>+
                                             </button>
                                             {item.counter}
-                                            <button onClick={() => sMinus(item.id)}
+                                            <button disabled={activebutton} onClick={() => sMinus(item.id)}
                                                     className={'btn btn-outline-dark'}>-
                                             </button>
                                         </td>
@@ -262,14 +490,10 @@ function SavdoOynasi({
                             </tbody>
                         </table>
                     </div>
-                    <div className="maxSoniBox">
-                        {/*<h6>Maxsulot soni:200</h6>*/}
-                        {/*<h6>Jami: 0 so`m</h6>*/}
-                         <h6 className='d-flex align-items-center '>Mahsulot soni: {
-                            arr1.map(item => <tr key={item.id}>
-                                <div><tr><td>{item.id + " " + item.name + " -> "} </td></tr>
-                                    <tr><td style={{fontSize: '18px'}}>{item.counter}</td></tr></div>
-                            </tr>)
+                    <div className="maxSoniBox d-flex">
+                        <h6 className=''>Mahsulot soni: {
+                            // ------------------------------------------
+                            <td>{xisob}</td>
                         }</h6>
                         <h6>Jami:0</h6>
                     </div>
@@ -299,24 +523,22 @@ function SavdoOynasi({
                             <option value="">Barcha brendlar</option>
                         </select>
                     </div>
-                        <div className={' maxsulotImgBlock'}>
-                        
-                                {
-                                    MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
-                                                                                        key={item.id}>
-                                        {/*<img style={{marginLeft:'15px'}} src="https://freepngimg.com/static/img/whatsapp.png"  alt="yuq"/>*/}
-                                        {/*<div onClick={() => qoshil(item.id)} style={{cursor:'pointer'}}>*/}
-                                        <div onClick={() => pushesh(item)}>
-                                            <img
-                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
-                                                alt="yuq"/>
-                                            <h6>{item.name}</h6>
-                                            <p>250000</p>
-                                        </div>
-                                    </div>)
-                                }
+                    <div className={' maxsulotImgBlock'}>
 
-                        </div>
+                        {
+                            MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
+                                                                                   key={item.id}>
+                                <div onClick={() => pushesh(item)}>
+                                    <img
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
+                                        alt="yuq"/>
+                                    <h6>{item.name}</h6>
+                                    <p>250000</p>
+                                </div>
+                            </div>)
+                        }
+
+                    </div>
 
                 </div>
 
@@ -328,26 +550,29 @@ function SavdoOynasi({
                 <button className={'btn btn-outline-primary m-1'}>Kreditga sotish</button>
                 <button className={'btn btn-outline-warning  m-1'}>Turli to`lovli</button>
                 <button className={'btn btn-info m-1'}>Plastik</button>
-                <button onClick={()=>UzcardTolov(1)} className={'btn btn-success m-1'}>Naqd</button>
 
-
-                <button onClick={()=>UzcardTolov(2)}>
+                <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>
                     <ReactToPrint
-                        trigger={() =>  <button  className={'btn btn-dark m-1'}>UzCard</button>
+                        trigger={() => <p className={'toprint '}>Naqd</p>
                         }
                         content={() => componentRef.current}
                     />
                 </button>
 
+                <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(2)}>
+                    <ReactToPrint
+                        trigger={() => <p className={'toprint '}>UzCard</p>
+                        }
+                        content={() => componentRef.current}
+                    />
+                </button>
+                <button onClick={() => UzcardTolov(3)} className={'btn btn-warning m-1'}>
+                    <ReactToPrint
+                        trigger={() => <p className={'toprint'}>Humo</p>
 
-
-
-                <ReactToPrint
-                    trigger={() =>                    <button className={'btn btn-warning m-1'}>Humo</button>
-
-                    }
-                    content={() => componentRef.current}
-                />
+                        }
+                        content={() => componentRef.current}
+                    /></button>
                 <button className='jamiTolov m-1'>Jami to`lov: 1 200 000 000 so'm</button>
                 <button className={'btn btn-danger m-1'}>Chiqish</button>
             </div>
@@ -365,7 +590,6 @@ function SavdoOynasi({
                     </ModalFooter>
                 </Modal>
                 {/*<img style={{cursor:'pointer'}} onClick={toggle2} src={img2} alt=""/>*/}
-
 
                 <Modal isOpen={active2} toggle={toggle2}>
                     <ModalHeader>
@@ -400,14 +624,19 @@ function SavdoOynasi({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer, users,SavdoOynaReducer,MijozGuruxReducer,SavdoQoshishReducer), {
+//355352081562619
+export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer), {
     getSavdo,
+    getFirma,
+    getPay,
+    getBolim,
     saveSavdo,
     editSavdo,
     deleteSavdo,
     getMaxsulotRuyxati,
     deleteMaxsulotRuyxati,
     savdooynasi,
+    getkg,
     getMijozGurux,
     saveSavdolar
 })(SavdoOynasi)
