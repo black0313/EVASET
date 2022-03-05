@@ -50,7 +50,7 @@
     padding: 24px 20px;
     width: 49%;
     height: 75vh;
-} 
+}
 .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox{
     display: flex;
     justify-content: space-between;
@@ -151,6 +151,7 @@
 }
 .savdoOynaContainers .savBtnBox {
     background: transparent;
+
 }
 .savdoOynaContainers .savBtnBox button{
     width: 10%;
@@ -171,6 +172,15 @@
     font-size: 14px;
     border: 1px solid rgba(37, 37, 37, 0.5);;
     line-height: 12px;
+}
+
+.savdoOynaContainers .savBtnBox .qchiqish{
+    height: 36px;
+    padding: 0px 4px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 12px;
+    width: 10%;
 }
 .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox{
     width: 100%;
@@ -210,6 +220,9 @@
 
 
 @media (max-width: 425.9px){
+    .savdoOynaContainers{
+        height: 100%;
+    }
     .savdoOynaContainers .savdoNavbar{
         display: block;
         justify-content: start;
@@ -223,16 +236,23 @@
         margin-bottom: 4px;
     }
     .savdoOynaContainers .savdoBlock{
+        padding: 4px 10px;
         display: block;
     }
+    .tbodyY {
+        height: 50%;
+    }
+
     .savdoOynaContainers .savdoBlock .savdoBlockLeft{
         width: 100%;
-        height: 500px;
+        height: 600px;
         margin-bottom: 24px;
+        padding: 18px 14px;
     }
     .savdoOynaContainers .savdoBlock .savdoBlockRigth{
         width: 100%;
-        height: 500px;
+        height: 600px;
+        padding: 18px 14px;
 
     }
     .savdoOynaContainers .savdoNavbar .navbarRigth button{
@@ -256,18 +276,27 @@
         display: block;
     }
     .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock{
-        height: 542px;
+        height: 90%;
         display: grid;
         grid-gap: 4px;
         grid-template-columns: 45% 45%;
         
     }
     .savdoOynaContainers .savBtnBox{
-        display: grid;
-        grid-template-columns: 48% 48%;
+        display: block;
+        padding: 0 1.2rem;
     }
     .savdoOynaContainers .savBtnBox button{
-        width: 96%;
+        width: 47%;
+    }
+    .savdoOynaContainers .savBtnBox .jamiTolov{
+        width: 97%;
+    }
+    .savdoOynaContainers .savBtnBox .qchiqish{
+        width: 97%;
+    }
+    .savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
+        display: block;
     }
     
    
@@ -331,6 +360,7 @@
     .savdoOynaContainers .savBtnBox{
         display: grid;
         grid-template-columns: 17% 17% 17% 17% 17% 17%;
+        justify-content: space-between;
     }
     .savdoOynaContainers .savBtnBox button{
         width: 96%;

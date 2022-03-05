@@ -77,7 +77,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function firma(e) {
         input.firma = e.target.value
         let a = {...input}
@@ -107,25 +106,21 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
 
@@ -153,50 +148,60 @@ function SavdoOynasi({
     }
 
     let [xisob,setxisob] = useState(0)
-
+    let [jamixisob,setjamixisob] = useState(0)
     function pushesh(val) {
-        if (val.id == pushmah) {
-            setCount(val.id)
-        } else {
-            arr1.push({...val, counter: 1})
-            let a = [...arr1]
-            setarr1(a)
-        }
-        setPushmah(val.id)
+        arr1.map(item=>{
+            if (item.id===val.id){
+                setCount(item.id)
+            }
+        })
+        arr1.push({...val,counter:1,disabled:false})
+        // if (val.id == pushmah) {
+        //     setCount(val.id)
+        // } else {
+        //     arr1.push({...val, counter: 1,disabled:false})
+        //     let a = [...arr1]
+        //     setarr1(a)
+        // }
+        // setPushmah(val.id)
 
         let a = 0
+        let c = 0
         arr1.map(item =>{
-                a +=item.counter
+            a +=item.counter
+            c +=(item.counter*item.buyPrice)
         })
         setxisob(a)
-
+        setjamixisob(c)
 
     }
 
     function setCount(id) {
-        setactivebutton(!activebutton)
         arr1.map(item => {
             if (item.id === id) {
                 item.counter += 1
+                item.disabled=false
             }
         })
         let a = [...arr1]
         setarr1(a)
         let b = 0
+        let c =0
         arr1.map(item =>{
             b +=item.counter
+            c +=(item.counter*item.buyPrice)
+
         })
         setxisob(b)
+        setjamixisob(c)
     }
-
-    const [activebutton,setactivebutton] = useState(false)
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
                 if (item.counter>=1){
                     item.counter -= 1
                 }else{
-                    setactivebutton(!activebutton)
+                    item.disabled=true
                 }
             }
 
@@ -206,37 +211,54 @@ function SavdoOynasi({
 
 
         let b = 0
-
+        let c =0
         arr1.map(item =>{
             b +=item.counter
+            c +=(item.counter*item.buyPrice)
+
         })
         setxisob(b)
+        setjamixisob(c)
 
 
 
     }
+    function deleteM(ind) {
+        arr1.map((item,index)=>{
+            if (item.id === ind){
+                arr1.splice(index,1)
+            }
+        })
+        let ad = [...arr1]
+        setarr1(ad)
 
-    function deleteM(id) {
+        let b = 0
+        let c =0
+        arr1.map(item =>{
+            b +=item.counter
+            c +=(item.counter*item.buyPrice)
+
+        })
+        setxisob(b)
+        setjamixisob(c)
     }
+
 
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function mahsulotnomi(e) {
         input.mahsulotnomi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function barchabrandlar(e) {
         input.barchabrandlar = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function UzcardTolov(naqd) {
         console.log('helll')
         arr1.map(item => {
@@ -260,24 +282,47 @@ function SavdoOynasi({
     }
 
     function saqla() {
-        saveMaxsulotRuyxati({
-            name: input.modalmahsulotnomi,
-            quantity: input.miqdor,                                 /*input.foydafoiz,*/
-            barcode: input.shtrix,
-            brandId: input.firma,                      /*input.ferma,*/
-            categoryId: input.bolim,                     /*  input.bolim,*/
-            measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-            photoIds: [1],
-            minQuantity: input.foydafoiz,
-            /*   input.foydafoiz,*/
-            buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
-            salePrice: input.sotibolishnarxi,
-            tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
-            branchId: [1],
-            expireDate: null,
-            dueDate: null
-        })
+        // saveMaxsulotRuyxati({
+        //     name: input.modalmahsulotnomi,
+        //     quantity: input.miqdor,                                 /*input.foydafoiz,*/
+        //     barcode: input.shtrix,
+        //     brandId: input.firma,                      /*input.ferma,*/
+        //     categoryId: input.bolim,                     /*  input.bolim,*/
+        //     measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+        //     photoIds: [1],
+        //     minQuantity: input.foydafoiz,
+        //     /*   input.foydafoiz,*/
+        //     buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
+        //     salePrice: input.sotibolishnarxi,
+        //     tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
+        //     branchId: [1],
+        //     expireDate: null,
+        //     dueDate: null
+        // })
+
         toggle5()
+        console.log(MaxsulotlarRoyxariReducer.maxsulotlar)
+        if (baza===''){
+            alert('XATO')
+        }else {
+            saveMaxsulotRuyxati({
+                name: input.modalmahsulotnomi,
+                quantity: input.miqdor,                                 /*input.foydafoiz,*/
+                barcode: input.shtrix,
+                brandId: input.firma,                      /*input.ferma,*/
+                categoryId: input.bolim,                     /*  input.bolim,*/
+                measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+                photoIds: [1],
+                minQuantity: input.foydafoiz,
+                /*   input.foydafoiz,*/
+                buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
+                salePrice: input.sotibolishnarxi,
+                tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
+                branchId: [1],
+                expireDate: null,
+                dueDate: null
+            })
+        }
     }
 
     useEffect(() => {
@@ -293,11 +338,9 @@ function SavdoOynasi({
     function toggle() {
         setActive(!active)
     }
-
     function toggle2() {
         setActive2(!active2)
     }
-
     function toggle3() {
         setActive3(!active3)
     }
@@ -352,7 +395,7 @@ function SavdoOynasi({
                 <div className="savdoBlockLeft">
                     <div className="selectBox">
                         <select className="" value={input.baza} onChange={baza} name="" id="">
-                            <option value="walk">Walk in-customer</option>
+                            <option value=""></option>
                             {
                                 MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
                             }
@@ -462,18 +505,20 @@ function SavdoOynasi({
                                     .map(item => <tr key={item.id}>
                                         <td style={{marginLeft: '10px'}}>{item.name}</td>
                                         <td className={'d-flex justify-content-between'}>
-                                            <button onClick={() => setCount(item.id)}
-                                                    className={'btn btn-outline-dark'}>+
-                                            </button>
-                                            {item.counter}
-                                            <button disabled={activebutton} onClick={() => sMinus(item.id)}
-                                                    className={'btn btn-outline-dark'}>-
-                                            </button>
+                                            <div className={'d-flex align-items-center justify-content-around p-0'}  style={{width:'100%'}}>
+                                                <button disabled={item.disabled} onClick={() => sMinus(item.id)}
+                                                        className={'btn btn-outline-danger rounded-circle border-3'}>-
+                                                </button>
+                                                {item.counter}
+                                                <button  onClick={() => setCount(item.id)}
+                                                         className={'btn btn-outline-primary rounded-circle border-3'}>+
+                                                </button>
+                                            </div>
                                         </td>
-                                        <td>{item.buyPrice}</td>
+                                        <td>{item.counter*item.buyPrice}</td>
                                         <td>
                                             <button onClick={() => deleteM(item.id)}
-                                                    className={'btn btn-outline-dark'}>Delete
+                                                    className={'btn btn-outline-dark border-2 rounded-circle'}>x
                                             </button>
                                         </td>
                                     </tr>)
@@ -482,9 +527,9 @@ function SavdoOynasi({
                             </tbody>
                         </table>
                     </div>
-                    <div className="maxSoniBox d-flex">
-                        <h6 className='d-flex align-items-center'>Mahsulot soni: {<td>{xisob}</td>}</h6>
-                         <h6>Jami:0</h6>
+                    <div className="maxSoniBox">
+                        <h6 className='d-flex align-items-center'>Mahsulot soni:{xisob}</h6>
+                         <h6>Jami:{jamixisob}</h6>
                     </div>
                     <hr style={{margin: '2px'}}/>
                     <div className={'chegirmalarBox'}>
@@ -532,13 +577,13 @@ function SavdoOynasi({
                 </div>
 
             </div>
-            <div className="savBtnBox">
-                <button className={'btn btn-primary m-1'}>Eslatma</button>
-                <button className={'btn btn-danger m-1'}>Chegirma</button>
-                <button className={'btn btn-warning m-1'}>Ushlab turish</button>
-                <button className={'btn btn-outline-primary m-1'}>Kreditga sotish</button>
-                <button className={'btn btn-outline-warning  m-1'}>Turli to`lovli</button>
-                <button className={'btn btn-info m-1'}>Plastik</button>
+            <div className="savBtnBox col-12">
+                <button className={'col-sm-6 btn btn-primary m-1'}>Eslatma</button>
+                <button className={'col-6 btn btn-danger m-1'}>Chegirma</button>
+                <button className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
+                <button className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
+                <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
+                <button className={'col-6 btn btn-info m-1'}>Plastik</button>
 
                 <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>
                     <ReactToPrint
@@ -563,7 +608,7 @@ function SavdoOynasi({
                         content={() => componentRef.current}
                     /></button>
                 <button className='jamiTolov m-1'>Jami to`lov: 1 200 000 000 so'm</button>
-                <button className={'btn btn-danger m-1'}>Chiqish</button>
+                <button className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
             </div>
             <div className="">
 

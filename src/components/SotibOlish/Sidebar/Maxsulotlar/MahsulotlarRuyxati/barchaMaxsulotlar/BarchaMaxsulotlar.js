@@ -128,7 +128,7 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
                                     <td>{item.branch.name}</td>
                                     <td>{item.buyPrice}</td>
                                     <td>{item.salePrice}</td>
-                                    <td></td>
+                                    <td>{item.quantity}</td>
                                     <td>{item.brand.name}</td>
                                     <td>
                                         <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/'+item.id}>
