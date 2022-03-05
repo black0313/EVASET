@@ -153,62 +153,50 @@ function SavdoOynasi({
     }
 
     let [xisob,setxisob] = useState(0)
-    let [jamixisob,setjamixisob] = useState(0)
 
     function pushesh(val) {
-        arr1.map(item=>{
-            if (item.id===val.id){
-                setCount(item.id)
-            }
-        })
-        arr1.push({...val,counter:1,disabled:false})
-        // if (val.id == pushmah) {
-        //     setCount(val.id)
-        // } else {
-        //     arr1.push({...val, counter: 1,disabled:false})
-        //     let a = [...arr1]
-        //     setarr1(a)
-        // }
-        // setPushmah(val.id)
+        if (val.id == pushmah) {
+            setCount(val.id)
+        } else {
+            arr1.push({...val, counter: 1})
+            let a = [...arr1]
+            setarr1(a)
+        }
+        setPushmah(val.id)
 
         let a = 0
-        let c = 0
         arr1.map(item =>{
                 a +=item.counter
-                c +=(item.counter*item.buyPrice)
         })
         setxisob(a)
-        setjamixisob(c)
+
 
     }
 
     function setCount(id) {
+        setactivebutton(!activebutton)
         arr1.map(item => {
             if (item.id === id) {
                 item.counter += 1
-                item.disabled=false
             }
         })
         let a = [...arr1]
         setarr1(a)
         let b = 0
-        let c =0
         arr1.map(item =>{
             b +=item.counter
-            c +=(item.counter*item.buyPrice)
-
         })
         setxisob(b)
-        setjamixisob(c)
     }
 
+    const [activebutton,setactivebutton] = useState(false)
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
                 if (item.counter>=1){
                     item.counter -= 1
                 }else{
-                    item.disabled=true
+                    setactivebutton(!activebutton)
                 }
             }
 
@@ -218,37 +206,17 @@ function SavdoOynasi({
 
 
         let b = 0
-        let c =0
+
         arr1.map(item =>{
             b +=item.counter
-            c +=(item.counter*item.buyPrice)
-
         })
         setxisob(b)
-        setjamixisob(c)
+
 
 
     }
 
-    function deleteM(ind) {
-      arr1.map((item,index)=>{
-          if (item.id === ind){
-                arr1.splice(index,1)
-              }
-      })
-        let ad = [...arr1]
-        setarr1(ad)
-
-        let b = 0
-        let c =0
-        arr1.map(item =>{
-            b +=item.counter
-            c +=(item.counter*item.buyPrice)
-
-        })
-        setxisob(b)
-        setjamixisob(c)
-
+    function deleteM(id) {
     }
 
     function baza(e) {
@@ -379,6 +347,7 @@ function SavdoOynasi({
                     </Modal>
                 </div>
             </div>
+            {console.log(PayReducer.paymethod)}
             <div className="savdoBlock">
                 <div className="savdoBlockLeft">
                     <div className="selectBox">
@@ -390,15 +359,7 @@ function SavdoOynasi({
                         </select>
                         <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
-                        {/*<Link to={''}>*/}
-                        <h3 className={'text-center'} onClick={toggle5} style={{
-                            marginLeft: '-70px',
-                            cursor: 'pointer',
-                            width: '30px',
-                            height: '30px',
-                            borderRadius: '50%'
-                        }}>+</h3>
-                        {/*</Link>*/}
+                        <button className={'addButton'} onClick={toggle5}>+</button>
                         <Modal isOpen={openModal} toggle={toggle5}>
                             <ModalHeader>
                                 Maxsulot qoshish
@@ -500,21 +461,19 @@ function SavdoOynasi({
                                 })
                                     .map(item => <tr key={item.id}>
                                         <td style={{marginLeft: '10px'}}>{item.name}</td>
-                                        <td className={'px-0'}>
-                                            <div className={'d-flex align-items-center justify-content-around p-0'}  style={{width:'100%'}}>
-                                                <button disabled={item.disabled} onClick={() => sMinus(item.id)}
-                                                        className={'btn btn-outline-danger rounded-circle border-3'}>-
-                                                </button>
-                                                {item.counter}
-                                                <button  onClick={() => setCount(item.id)}
-                                                        className={'btn btn-outline-primary rounded-circle border-3'}>+
-                                                </button>
-                                            </div>
+                                        <td className={'d-flex justify-content-between'}>
+                                            <button onClick={() => setCount(item.id)}
+                                                    className={'btn btn-outline-dark'}>+
+                                            </button>
+                                            {item.counter}
+                                            <button disabled={activebutton} onClick={() => sMinus(item.id)}
+                                                    className={'btn btn-outline-dark'}>-
+                                            </button>
                                         </td>
-                                        <td>{item.counter*item.buyPrice}</td>
+                                        <td>{item.buyPrice}</td>
                                         <td>
                                             <button onClick={() => deleteM(item.id)}
-                                                    className={'btn btn-outline-dark border-2 rounded-circle'}>X
+                                                    className={'btn btn-outline-dark'}>Delete
                                             </button>
                                         </td>
                                     </tr>)
@@ -524,9 +483,8 @@ function SavdoOynasi({
                         </table>
                     </div>
                     <div className="maxSoniBox d-flex">
-                        <h6 className=''>Mahsulot soni: {xisob}
-                        </h6>
-                        <h6>Jami:{jamixisob}</h6>
+                        <h6 className='d-flex align-items-center'>Mahsulot soni: {<td>{xisob}</td>}</h6>
+                         <h6>Jami:0</h6>
                     </div>
                     <hr style={{margin: '2px'}}/>
                     <div className={'chegirmalarBox'}>
