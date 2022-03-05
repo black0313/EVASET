@@ -25,8 +25,8 @@ import Pagination3 from "./pagination3";
 import Pagination4 from "./Pagination4";
 import users,{savdooynasi} from "../../../reducer/users";
 import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
-import functionreducer,{active} from "../../../reducer/functionreducer";
-function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active}) {
+import functionreducer,{active,activSavdo} from "../../../reducer/functionreducer";
+function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active,activSavdo}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
@@ -38,7 +38,11 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
 
     function savdod(){
         savdooynasi()
+        activSavdo()  
+        // active()
+
     }
+   
 
     function funkjamisavdo(){
         let amout=0
@@ -594,4 +598,4 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
 }
 
 
-export default connect((SavdoQoshishReducer,users,functionreducer),{getSavdolar,savdooynasi,active}) (Third);
+export default connect((SavdoQoshishReducer,users,functionreducer),{getSavdolar,savdooynasi,active,activSavdo}) (Third);
