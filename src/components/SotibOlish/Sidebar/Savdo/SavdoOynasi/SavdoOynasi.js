@@ -77,7 +77,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function firma(e) {
         input.firma = e.target.value
         let a = {...input}
@@ -107,25 +106,21 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
 
@@ -179,7 +174,6 @@ function SavdoOynasi({
         setxisob(a)
         setjamixisob(c)
 
-
     }
 
     function setCount(id) {
@@ -201,7 +195,6 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
-
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
@@ -230,7 +223,6 @@ function SavdoOynasi({
 
 
     }
-
     function deleteM(ind) {
         arr1.map((item,index)=>{
             if (item.id === ind){
@@ -251,24 +243,22 @@ function SavdoOynasi({
         setjamixisob(c)
     }
 
+
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function mahsulotnomi(e) {
         input.mahsulotnomi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function barchabrandlar(e) {
         input.barchabrandlar = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function UzcardTolov(naqd) {
         console.log('helll')
         arr1.map(item => {
@@ -292,24 +282,47 @@ function SavdoOynasi({
     }
 
     function saqla() {
-        saveMaxsulotRuyxati({
-            name: input.modalmahsulotnomi,
-            quantity: input.miqdor,                                 /*input.foydafoiz,*/
-            barcode: input.shtrix,
-            brandId: input.firma,                      /*input.ferma,*/
-            categoryId: input.bolim,                     /*  input.bolim,*/
-            measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-            photoIds: [1],
-            minQuantity: input.foydafoiz,
-            /*   input.foydafoiz,*/
-            buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
-            salePrice: input.sotibolishnarxi,
-            tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
-            branchId: [1],
-            expireDate: null,
-            dueDate: null
-        })
+        // saveMaxsulotRuyxati({
+        //     name: input.modalmahsulotnomi,
+        //     quantity: input.miqdor,                                 /*input.foydafoiz,*/
+        //     barcode: input.shtrix,
+        //     brandId: input.firma,                      /*input.ferma,*/
+        //     categoryId: input.bolim,                     /*  input.bolim,*/
+        //     measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+        //     photoIds: [1],
+        //     minQuantity: input.foydafoiz,
+        //     /*   input.foydafoiz,*/
+        //     buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
+        //     salePrice: input.sotibolishnarxi,
+        //     tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
+        //     branchId: [1],
+        //     expireDate: null,
+        //     dueDate: null
+        // })
+
         toggle5()
+        console.log(MaxsulotlarRoyxariReducer.maxsulotlar)
+        if (baza===''){
+            alert('XATO')
+        }else {
+            saveMaxsulotRuyxati({
+                name: input.modalmahsulotnomi,
+                quantity: input.miqdor,                                 /*input.foydafoiz,*/
+                barcode: input.shtrix,
+                brandId: input.firma,                      /*input.ferma,*/
+                categoryId: input.bolim,                     /*  input.bolim,*/
+                measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+                photoIds: [1],
+                minQuantity: input.foydafoiz,
+                /*   input.foydafoiz,*/
+                buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
+                salePrice: input.sotibolishnarxi,
+                tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
+                branchId: [1],
+                expireDate: null,
+                dueDate: null
+            })
+        }
     }
 
     useEffect(() => {
@@ -325,11 +338,9 @@ function SavdoOynasi({
     function toggle() {
         setActive(!active)
     }
-
     function toggle2() {
         setActive2(!active2)
     }
-
     function toggle3() {
         setActive3(!active3)
     }
@@ -384,7 +395,7 @@ function SavdoOynasi({
                 <div className="savdoBlockLeft">
                     <div className="selectBox">
                         <select className="" value={input.baza} onChange={baza} name="" id="">
-                            <option value="walk">Walk in-customer</option>
+                            <option value=""></option>
                             {
                                 MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
                             }
