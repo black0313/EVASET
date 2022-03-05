@@ -11,22 +11,16 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.maxsulotlar = action.payload.object
-            console.log(action.payload.object);
-            console.log(action.payload)
-            console.log("OLIB_KELINDI_MAXSULOT");
         },
         savefrom: (state,action) => {
-            console.log(action.payload)
             state.current=!state.current
 
-            console.log('SAQLANDI_MAXSULOT');
         },
         editfrom: (state,action) => {
             state.current=!state.current
 
         },
         deletefrom:(state,action)=>{
-            console.log('DELETED_MAXSULOTLAR');
             state.current=!state.current
 
         }

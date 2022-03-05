@@ -11,13 +11,10 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.bolimlar = action.payload.object
-            console.log(action.payload.object);
         },
         savefrom: (state,action) => {
             state.bolimlar.unshift(action.payload)
             state.current=!state.current
-            console.log('SAQLANDI_BOLIM')
-            console.log(action.payload)
         },
         editfrom: (state,action) => {
             state.current=!state.current
@@ -25,7 +22,6 @@ const slice = createSlice({
             // toast.success('O`zgartirildi')
         },
         deletefrom:(state,action)=>{
-            console.log('DELETED_BOLIM')
             state.current=!state.current
             // toast.info('O`chirildi')
         }

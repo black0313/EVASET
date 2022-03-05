@@ -9,7 +9,6 @@ export const slice=createSlice({
     },
     reducers:{
         get:(state,action)=>{
-            console.log(action.payload.object)
             state.kg=action.payload.object
         },
         save:(state,action)=>{

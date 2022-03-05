@@ -10,7 +10,6 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.sotuvnarxi = action.payload
-            console.log(action.payload);
         },
         savefrom: (state,action) => {
             state.sotuvnarxi.unshift(action.payload)
