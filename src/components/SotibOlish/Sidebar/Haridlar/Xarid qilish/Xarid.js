@@ -368,7 +368,7 @@ function Xarid({
                     <div className="row">
                         <div className={'col-3 col-sm-12'}>
                             <div className={'d-flex'}>
-                                <div>
+                                <div style={{width:'100%'}}>
                                     <label htmlFor={'dil'}>Diller</label>
                                     <select name="" value={input.diller} onChange={diller} id={'dil'}
                                             className={'form-control'}>
@@ -409,6 +409,7 @@ function Xarid({
                                 <option value="">Tanlash</option>
                                 <option value="">Oy</option>
                                 <option value="">Hafta</option>
+                                <option value="">no backend</option>
                             </select>
                         </div>
 
@@ -438,7 +439,7 @@ function Xarid({
                                 <label htmlFor={'radio2'}>Do`kon</label>
                             </div>
                             <label htmlFor={'id1'}>ID Raqami</label>
-                            <input type="text" className={'form-control'} value={input.idraqam} onChange={idraqam}
+                            <input type="number" className={'form-control'} value={input.idraqam} onChange={idraqam}
                                    placeholder={'ID raqami'}/>
                             <div className={'d-flex justify-content-between mt-3'}>
                                 <div>
@@ -446,14 +447,14 @@ function Xarid({
                                     <input value={input.login} onChange={login} type="text" className={'form-control'}
                                            id={'log'}/>
                                     <label htmlFor={'tel'}>Tel:</label>
-                                    <input type="text" onChange={tel} value={input.tel} className={'form-control'}
+                                    <input type="number" onChange={tel} value={input.tel} className={'form-control'}
                                            id={'tel'}/>
                                 </div>
                                 <div>
                                     <label htmlFor={'ismi'}>Ismi</label>
                                     <input type="text" value={input.ismi} onChange={ismi} className={'form-control'}/>
                                     <label htmlFor={'ikki'}>Ikkinchi raqam</label>
-                                    <input type="text" value={input.ikkinciraqam} onChange={ikkinciraqam}
+                                    <input type="number" value={input.ikkinciraqam} onChange={ikkinciraqam}
                                            className={'form-control'} id={'ikki'}/>
                                 </div>
                             </div>
@@ -583,13 +584,13 @@ function Xarid({
                     <div className="row">
                         <div className="col-6 col-sm-12">
                             <label htmlFor={'avans'}>Avans 0 / To`lov so`mmasi</label>
-                            <input type="text" className={'form-control'} value={input.avans} onChange={avans}
+                            <input type="number" className={'form-control'} value={input.avans} onChange={avans}
                                    id={'avans'}/>
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
                             <select name="" id={'tol'} className={'form-control mb-3'} value={input.tulovusuli}
                                     onChange={tulovusuli}>
-                                <option value="">Naqd</option>
-                                <option value="">Pastik</option>
+                                <option value="1">Naqd</option>
+                                <option value="2">Pastik</option>
                             </select>
                         </div>
                         <div className="col-6 col-sm-12">

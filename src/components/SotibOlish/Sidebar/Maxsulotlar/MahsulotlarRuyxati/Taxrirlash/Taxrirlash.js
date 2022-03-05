@@ -13,8 +13,8 @@ import kgreducer,{getkg,savekg} from "../../../../../../reducer/kgreducer";
 import users from "../../../../../../reducer/users";
 import FirmaReducer,{getFirma,saveFirma} from "../../reducer/FirmaReducer";
 import BolimReducer,{getBolim} from "../../reducer/BolimReducer";
-function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyxati,deleteMaxsulotRuyxati,getMaxsulotRuyxati,match,MaxsulotlarRoyxariReducer,kgreducer,getkg,users,savekg,FirmaReducer,getFirma,saveFirma,}) {
 
+function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyxati,deleteMaxsulotRuyxati,getMaxsulotRuyxati,match,MaxsulotlarRoyxariReducer,kgreducer,getkg,users,savekg,FirmaReducer,getFirma,saveFirma,}) {
 
     const [active, setActive] = useState(false)
     const [active2, setActive2] = useState(false)
@@ -50,7 +50,6 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
             soliqbnnarx:'',
             sotibolishnarxi:'',
             miqdorMaxsulot:''
-
         }
     )
 
@@ -331,15 +330,15 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                         </div>
                         <label className={'mt-3'} htmlFor={'bol2'}>Bo`lim ichida bolim</label>
                         <select name="" id={'bol2'} value={input.bolim2} onChange={bolim2} className={'form-control'}>
-                            <option value="">Tanlash</option>
-                            <option value="">Tanlash2</option>
+                            <option value="1">Tanlash</option>
+                            <option value="2">no backend</option>
                         </select>
                     </div>
 
                     <div className="col-4 col-sm-12">
                         <label className='mt-3' htmlFor={'shtrixKod'}>Shtrix kod turi</label>
                         <select name="" id={'shtrixKod'} onChange={shtrixkodturi} value={input.shtrixkodturi} className={'form-control'}>
-                            <option value="">Cude</option>
+                            <option value="">noBackend</option>
                         </select>
                         <label htmlFor="" className={'mt-3'}>Bazalar</label>
                         <input type="text" value={input.bazalar} onChange={bazalar} className={'form-control'}/>
