@@ -14,7 +14,7 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             state.current=!state.current
-
+            console.log('SAVED_MAXSULOT');
         },
         editfrom: (state,action) => {
             state.current=!state.current
@@ -22,7 +22,6 @@ const slice = createSlice({
         },
         deletefrom:(state,action)=>{
             state.current=!state.current
-
         }
     }
 });

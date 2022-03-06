@@ -91,7 +91,6 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
         history.push('/headerthird/mahsulotRuyxati/barcaMahsulot')
     },[])
 
-
        return (
               <div className="col-md-12 mt-4 ">
                             <div className="textHeaderMax">

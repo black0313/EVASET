@@ -1,18 +1,19 @@
 import './korish.css'
-import {Link,Route,Switch} from "react-router-dom";
+import {Link, Route, Switch, useParams} from "react-router-dom";
 import UseInfo from "./useInfo/UseInfo";
 import DocNote from "./DocNote/DocNote";
 import Activate from "./Activate/Activate";
 
-function Korish(props) {
-    const {name,login,email} = props.match.params;
-    console.log(props.match.params);
+function Korish({match}) {
+    // const {name,login,email} = useParams();
+    const {name,login,email} = match.params;
+    console.log(match.params);
     return(
         <div className={'containerKorish '}>
             <div className="headerBoxK">
                 <h4>Ko`rish</h4>
                 <select name="" id="">
-                    <option value="#" >Boshliq</option>
+                    <option value="1" >Boshliq</option>
                 </select>
             </div>
             <div className="bodyBox">
