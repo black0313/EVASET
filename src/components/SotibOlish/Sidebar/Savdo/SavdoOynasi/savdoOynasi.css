@@ -302,32 +302,85 @@
    
 }
 @media (min-width: 426px) and (max-width: 768.9px){
+    .savdoOynaContainers{
+        height: 100%;
+    }
+    .savdoOynaContainers .savdoNavbar{
+        display: block;
+        justify-content: start;
+    }
+    .savdoOynaContainers .savdoNavbar .navbarRigth{
+        width: 100%;
+    }
+    .savdoOynaContainers .savdoNavbar .navbarLeft h5{
+        display: flex;
+        justify-content: start;
+        margin-bottom: 4px;
+    }
     .savdoOynaContainers .savdoBlock{
+        padding: 4px 10px;
         display: block;
     }
+    .tbodyY {
+        height: 50%;
+    }
+
     .savdoOynaContainers .savdoBlock .savdoBlockLeft{
         width: 100%;
+        height: 600px;
         margin-bottom: 24px;
+        padding: 18px 14px;
     }
     .savdoOynaContainers .savdoBlock .savdoBlockRigth{
         width: 100%;
+        height: 600px;
+        padding: 18px 14px;
 
     }
+    .savdoOynaContainers .savdoNavbar .navbarRigth button{
+        width: 116px;
+        font-size: 12px;
+
+    }
+    .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox{
+        display: block;
+    }
+    .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox select{
+        width: 100%;
+        margin-bottom: 12px;
+        font-size: 12px;
+    }
+    .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox input{
+        width: 100%;
+        font-size: 12px;
+    }
+    .savdoOynaContainers .savdoBlock .savdoBlockLeft .chegirmalarBox{
+        display: block;
+    }
     .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock{
+        height: 90%;
         display: grid;
-        grid-template-columns: 32% 32% 32%;
-    }
-    .savdoOynaContainers .savBtnBox{
-        display: grid;
-        grid-template-columns: 33% 33% 33%;
-    }
-    .savdoOynaContainers .savBtnBox button{
-        width: 96%;
-    }
-    .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox h6{
-        font-size: 10px;
+        grid-gap: 4px;
+        grid-template-columns: 45% 45%;
         
     }
+    .savdoOynaContainers .savBtnBox{
+        display: block;
+        padding: 0 1.2rem;
+    }
+    .savdoOynaContainers .savBtnBox button{
+        width: 47%;
+    }
+    .savdoOynaContainers .savBtnBox .jamiTolov{
+        width: 97%;
+    }
+    .savdoOynaContainers .savBtnBox .qchiqish{
+        width: 97%;
+    }
+    .savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
+        display: block;
+    }
+    
 }
 @media (min-width: 769px) and (max-width: 1024.9px){
     .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock{
