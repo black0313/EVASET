@@ -24,6 +24,10 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,bran
            }
        )
 
+       const [sana,setsana] = useState(false)
+       function toggle2(){
+              setsana(!sana)
+       }
        function branch(e){
               input.branch = e.target.value
               let a = {...input}
@@ -54,6 +58,12 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,bran
                      saveFoydaZarar(input)
               }
        }
+
+       function dataPicker(){
+
+              toggle2()
+       }
+
        useEffect(()=>{
               getFoydaZarar()
               getMaxsulotRuyxati(users.businessId)
@@ -78,15 +88,23 @@ function FoydaZarar({getFoydaZarar,saveFoydaZarar,MaxsulotlarRoyxariReducer,bran
                                                         }
                                                  </select>
                                           </div>
-                                          <div className="col-md-6 col-sm-10">
-                                                 <h6>Aniq sanani belgilash:</h6>
-                                                 <select name="" id="" value={input.aniqsananibelgilash} onChange={aniqsananibelgilash}>
-                                                        <option value="" hidden> Aniq sana belgilash</option>
-                                                        <option value="">Bugun</option>
-                                                        <option value="1">Oxirgi 1 hafta</option>
-                                                        <option value="">Oxirgi 1 oy</option>
-                                                        <option value="">Istalgan sanani tanlash</option>
-                                                 </select>
+                                          <div className="col-md-6 col-sm-10 ">
+                                                 <h6 style={{cursor:'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani belgilash:</h6>
+                                                 {
+                                                        sana?<div className={'col-md-4 d1'}>
+                                                               <ul>
+                                                                      <li onClick={dataPicker} style={{cursor:'pointer'}}>Bugun</li>
+                                                                      <li>Kecha</li>
+                                                                      <li>Oxirgi 7 kun</li>
+                                                                      <li>Oxirgi 30 kun</li>
+                                                                      <li>Bu oy</li>
+                                                                      <li>O`tgan oy</li>
+                                                                      <li>Bu yil</li>
+                                                                      <li>O`tgan yil</li>
+                                                                      <li>Siz istagan sana</li>
+                                                               </ul>
+                                                        </div>:''
+                                                 }
                                           </div>
                                    </div>
                             </div>

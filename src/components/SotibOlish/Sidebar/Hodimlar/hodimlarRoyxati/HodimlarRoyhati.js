@@ -106,7 +106,6 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                     <td>{item.username}</td>
                                     <td>{item.firstName}</td>
                                     <td>{item.lastName}</td>
-
                                     <td>-</td>
                                     <td>-</td>
                                     <td>

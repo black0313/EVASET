@@ -40,4 +40,24 @@
 .sahifalar :last-child{
      border-radius: 0px 4px 4px 0px;
      
-}      
+}
+.hovFoyda{
+       transition: 0.6s all ease;
+       margin-top: 25px;
+       margin-left: 30%;
+       font-size: 24px;
+       padding: 0.3rem;
+       text-align: center;
+}
+.hovFoyda:hover{
+       background: linear-gradient(90deg,red,blue);
+       color: #cbadad;
+}
+.d1 ul li{
+       cursor: pointer;
+       transition: 0.3s ease-in-out all;
+}
+.d1 ul li:hover{
+       cursor: pointer;
+       font-size: 18px;
+}

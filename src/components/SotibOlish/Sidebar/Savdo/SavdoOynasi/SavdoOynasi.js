@@ -64,13 +64,11 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function shtrix(e) {
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function ulcovbirligi(e) {
         input.ulcovbirligi = e.target.value
         let a = {...input}
@@ -81,43 +79,36 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function bolim(e) {
         input.bolim = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function miqdor(e) {
         input.miqdor = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotibolishnarxi(e) {
         input.sotibolishnarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotishnarxi(e) {
         input.sotishnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
         let a = {...input}
@@ -126,15 +117,11 @@ function SavdoOynasi({
 
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
-
     const [lastTradeActive, setlastTradeActive] = useState(false)
-
     function toggle4() {
         setlastTradeActive(!lastTradeActive)
     }
-
     const [openModal, setOpenModal] = useState(false)
-
     function toggle5() {
         setOpenModal(!openModal)
     }
@@ -199,7 +186,6 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
-
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
@@ -227,7 +213,6 @@ function SavdoOynasi({
 
 
     }
-
     function deleteM(ind) {
         arr1.map((item, index) => {
             if (item.id === ind) {
@@ -247,8 +232,6 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
-
-
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
@@ -287,7 +270,7 @@ function SavdoOynasi({
                     addressId: 1,
                 })
             } else {
-                alert('KECIR')
+                alert('MIJOZ QOSH IN')
             }
         })
         setarr1([])
