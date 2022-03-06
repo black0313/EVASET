@@ -390,9 +390,9 @@ function SavdoOynasi({
                                 MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
                             }
                         </select>
-                        <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
-                               placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
-                        <button className={'addButton'} onClick={toggle5}>+</button>
+                            <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
+                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
+                            <button className={'addButton'} onClick={toggle5}>+</button>
                         <Modal isOpen={openModal} toggle={toggle5}>
                             <ModalHeader>
                                 Maxsulot qoshish
