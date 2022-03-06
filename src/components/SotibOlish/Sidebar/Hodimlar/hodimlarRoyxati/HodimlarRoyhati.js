@@ -115,7 +115,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                         </Link>
 
                                         <Link
-                                            to={'/headerthird/hodimlarruyxati/view/' + input.username + '/' + input.firstName + '/' + input.lastName}>
+                                            to={'/headerthird/hodimlarruyxati/view/' + item.username + '/' + item.firstName + '/' + item.lastName}>
                                             <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
                                         </Link>
                                         <Link to={'/headerthird/hodimlarruyxati'}>
