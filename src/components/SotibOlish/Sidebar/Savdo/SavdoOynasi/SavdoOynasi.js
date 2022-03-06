@@ -64,13 +64,11 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function shtrix(e) {
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function ulcovbirligi(e) {
         input.ulcovbirligi = e.target.value
         let a = {...input}
@@ -81,43 +79,36 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function bolim(e) {
         input.bolim = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function miqdor(e) {
         input.miqdor = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotibolishnarxi(e) {
         input.sotibolishnarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotishnarxi(e) {
         input.sotishnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
         let a = {...input}
@@ -126,15 +117,11 @@ function SavdoOynasi({
 
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
-
     const [lastTradeActive, setlastTradeActive] = useState(false)
-
     function toggle4() {
         setlastTradeActive(!lastTradeActive)
     }
-
     const [openModal, setOpenModal] = useState(false)
-
     function toggle5() {
         setOpenModal(!openModal)
     }
@@ -199,7 +186,6 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
-
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
@@ -227,7 +213,6 @@ function SavdoOynasi({
 
 
     }
-
     function deleteM(ind) {
         arr1.map((item, index) => {
             if (item.id === ind) {
@@ -247,8 +232,6 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
-
-
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
@@ -287,7 +270,7 @@ function SavdoOynasi({
                     addressId: 1,
                 })
             } else {
-                alert('KECIR')
+                alert('MIJOZ QOSH IN')
             }
         })
         setarr1([])
@@ -313,6 +296,7 @@ function SavdoOynasi({
         })
         console.log(MaxsulotlarRoyxariReducer.maxsulotlar)
         toggle5()
+        getMaxsulotRuyxati(users.businessId)
     }
 
     useEffect(() => {
@@ -407,6 +391,7 @@ function SavdoOynasi({
                                             <label htmlFor={'ol'}>O`lchov birligi</label>
                                             <select className={'form-control'} name="" id={'ol'}
                                                     value={input.ulcovbirligi} onChange={ulcovbirligi}>
+                                                <option value="tanlash">Tanlash</option>
                                                 {/*    FIX ME*/}
                                                 {
                                                     kgreducer.kg.map(item => <option
@@ -416,10 +401,11 @@ function SavdoOynasi({
                                             <label htmlFor={'bolim'}>Bo`lim</label>
                                             <select name="" id={'bolim'} className={'form-control'} value={input.bolim}
                                                     onChange={bolim}>
+                                                <option value="tanlash">Tanlash</option>
                                                 {/*    FIX ME*/}
                                                 {
                                                     BolimReducer.bolimlar.map(item => <option
-                                                        value={'item.id'}>{item.name}</option>)
+                                                        value={item.id}>{item.name}</option>)
                                                 }
                                             </select>
                                             <label htmlFor={'sot'}>Sotish narxi</label>
@@ -429,12 +415,13 @@ function SavdoOynasi({
 
                                         <div className="col-md-6">
                                             <label htmlFor={'shtrix'}>Shtrix kod</label>
-                                            <input type="text" className={'form-control'} value={input.shtrix}
+                                            <input type="number" className={'form-control'} value={input.shtrix}
                                                    onChange={shtrix}/>
                                             <label htmlFor={'firma'}>Firma</label>
                                             <select name="" id={'firma'} className={'form-control'} value={input.firma}
                                                     onChange={firma}>
                                                 {/*    FIX ME*/}
+                                                <option value="barchasi">Tanlash</option>
                                                 {
                                                     FirmaReducer.firmalar.map(item => <option
                                                         value={item.id}>{item.name}</option>)
