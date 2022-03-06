@@ -243,7 +243,6 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
             })
             console.log('save')
         }
-        console.log('ishladi');
     }
 
     function saqlakg(){

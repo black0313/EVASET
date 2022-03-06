@@ -15,30 +15,29 @@ import users from "../../../../../reducer/users";
 import XodimReducer, {getXodim, saveXodim, editXodim, deleteXodim} from "../reducer/XodimReducer";
 import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 
-function HodimlarRoyhati({getXodim, deleteXodim,XodimReducer,  xodimlar,users}) {
+function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users}) {
 
-    useEffect(()=>{
+    useEffect(() => {
         getXodim(users.businessId)
-    },[XodimReducer.current])
+    }, [XodimReducer.current])
 
 
-
-    const [input,setInput] = useState('')
-    const [inSearch,setinSearch] = useState(
+    const [input, setInput] = useState('')
+    const [inSearch, setinSearch] = useState(
         {
-            inputsearch:''
+            inputsearch: ''
         }
     )
 
-    function deletex(item){
+    function deletex(item) {
         deleteXodim(item.id)
-        setTimeout(()=>{
+        setTimeout(() => {
             getXodim(users.businessId)
 
-        },100)
+        }, 100)
     }
 
-    function search(e){
+    function search(e) {
         inSearch.inputsearch = e.target.value
         let a = {...inSearch}
         setinSearch(a)
@@ -46,43 +45,43 @@ function HodimlarRoyhati({getXodim, deleteXodim,XodimReducer,  xodimlar,users}) 
     }
 
     return (
-            <div className="col-md-12 pb-4 pt-4">
-                <div className="textHeaderHR">
-                    <div className="textBox">
-                        <h2>Hodimlar ro'yxati</h2>
-                        <p>Hodimlar boshqaruvi</p>
+        <div className="col-md-12 pb-4 pt-4">
+            <div className="textHeaderHR">
+                <div className="textBox">
+                    <h2>Hodimlar ro'yxati</h2>
+                    <p>Hodimlar boshqaruvi</p>
+                </div>
+            </div>
+            <div className="rowStyleHR">
+                <div className="qoshishHR">
+                    <h5>Barcha hodimlar</h5>
+                    <Link to={'/headerthird/hodimlarruyxati/taxrirlash'}>
+                        <button className={`btn btn-primary`}>+Qo'shish</button>
+                    </Link>
+                </div>
+                <div className="izlashHR">
+                    <div className="izlashBox1">
+                        <p>Ko'rsatildi</p>
+                        <select name="" id="">
+                            <option value="">25</option>
+                            <option value="">50</option>
+                            <option value="">100</option>
+                            <option value="">200</option>
+                            <option value="">500</option>
+                            <option value="">1,000</option>
+                            <option value="">All</option>
+                        </select>
+                        <button><img src={CSV} alt=""/> Export CSV</button>
+                        <button><img src={Excel} alt=""/>Export Excel</button>
+                        <button><img src={Print} alt=""/>Print</button>
+                        <button><img src={Pdf} alt=""/>Export PDF</button>
+                        <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                    </div>
+                    <div className="izlashBox2">
+                        <input type="text" onChange={search} value={inSearch.inputsearch} placeholder='Izlash...'/>
                     </div>
                 </div>
-                <div className="rowStyleHR">
-                    <div className="qoshishHR">
-                        <h5>Barcha hodimlar</h5>
-                                <Link to={'/headerthird/hodimlarruyxati/taxrirlash'}>
-                                    <button className={`btn btn-primary`}>+Qo'shish</button>
-                                </Link>
-                    </div>
-                    <div className="izlashHR">
-                        <div className="izlashBox1">
-                            <p>Ko'rsatildi</p>
-                            <select name="" id="">
-                                <option value="">25</option>
-                                <option value="">50</option>
-                                <option value="">100</option>
-                                <option value="">200</option>
-                                <option value="">500</option>
-                                <option value="">1,000</option>
-                                <option value="">All</option>
-                            </select>
-                            <button><img src={CSV} alt=""/> Export CSV</button>
-                            <button><img src={Excel} alt=""/>Export Excel</button>
-                            <button><img src={Print} alt=""/>Print</button>
-                            <button><img src={Pdf} alt=""/>Export PDF</button>
-                            <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
-                        </div>
-                        <div className="izlashBox2">
-                            <input type="text" onChange={search} value={inSearch.inputsearch} placeholder='Izlash...'/>
-                        </div>
-                        </div>
-                    <div className="table-responsive mb-4">
+                <div className="table-responsive mb-4">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
                         <tr>
@@ -95,55 +94,56 @@ function HodimlarRoyhati({getXodim, deleteXodim,XodimReducer,  xodimlar,users}) 
                         </tr>
                         </thead>
                         <tbody>
-                            {
-                                XodimReducer.xodimlar.filter(val=>{
-                                    if (inSearch.inputsearch===''){
-                                        return val
-                                    }else if (val.username.toUpperCase().includes(inSearch.inputsearch.toUpperCase())){
-                                        return val
-                                    }
-                                })
-                                 .map((item)=><tr key={item.id}>
-                                     <td>{item.username}</td>
-                                     <td>{item.firstName}</td>
-                                     <td>{item.lastName}</td>
+                        {
+                            XodimReducer.xodimlar.filter(val => {
+                                if (inSearch.inputsearch === '') {
+                                    return val
+                                } else if (val.username.toUpperCase().includes(inSearch.inputsearch.toUpperCase())) {
+                                    return val
+                                }
+                            })
+                                .map((item) => <tr key={item.id}>
+                                    <td>{item.username}</td>
+                                    <td>{item.firstName}</td>
+                                    <td>{item.lastName}</td>
 
-                                     <td>-</td>
-                                     <td>-</td>
-                                     <td>
-                                                 <Link to={'/headerthird/hodimlarruyxati/taxrirlash/'+item.id}>
-                                                     <button className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash</button>
-                                                 </Link>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>
+                                        <Link to={'/headerthird/hodimlarruyxati/taxrirlash/' + item.id}>
+                                            <button className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash</button>
+                                        </Link>
 
-                                         <Link
-                                             to={'/headerthird/hodimlarruyxati/view/' + input.username + '/' + input.firstName + '/' + input.lastName}>
-                                             <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
-                                         </Link>
-                                         <Link to={'/headerthird/hodimlarruyxati'}><button onClick={()=>deletex(item)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
-                                         </Link>
-                                     </td>
+                                        <Link
+                                            to={'/headerthird/hodimlarruyxati/view/' + input.username + '/' + input.firstName + '/' + input.lastName}>
+                                            <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
+                                        </Link>
+                                        <Link to={'/headerthird/hodimlarruyxati'}>
+                                            <button onClick={() => deletex(item)} className='ochirish'><img src={Delete}
+                                                                                                            alt=""/> O'chirish
+                                            </button>
+                                        </Link>
+                                    </td>
 
-                                 </tr>)
+                                </tr>)
 
-                            }
+                        }
 
                         </tbody>
                     </table>
-                    </div>
+                </div>
 
-                    <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                    <div className='sahifalar'>
-                        <button>Ortga</button>
-                        <button>1</button>
-                        <button>Oldinga</button>
-                    </div>
+                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
+                <div className='sahifalar'>
+                    <button>Ortga</button>
+                    <button>1</button>
+                    <button>Oldinga</button>
                 </div>
             </div>
+        </div>
     )
 }
 
 
-
-
-export default connect((XodimReducer,users),{getXodim, saveXodim, editXodim,deleteXodim})
+export default connect((XodimReducer, users), {getXodim, saveXodim, editXodim, deleteXodim})
 (HodimlarRoyhati)

@@ -29,13 +29,12 @@ import BolimReducer, {getBolim} from "../../Maxsulotlar/reducer/BolimReducer";
 import FirmaReducer, {getFirma} from "../../Maxsulotlar/reducer/FirmaReducer";
 import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
-// import {disabled} from "yarn/lib/cli";
 
 function SavdoOynasi({
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
                          getPay, PayReducer,
-                         FirmaReducer, getFirma,
+                         FirmaReducer, getFirma,saveMaxsulotRuyxati,
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
                          users, savdooynasi, getkg, kgreducer,
@@ -106,21 +105,25 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
+
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
 
@@ -147,15 +150,16 @@ function SavdoOynasi({
         setOpenCalc(!openCalc)
     }
 
-    let [xisob,setxisob] = useState(0)
-    let [jamixisob,setjamixisob] = useState(0)
+    let [xisob, setxisob] = useState(0)
+    let [jamixisob, setjamixisob] = useState(0)
+
     function pushesh(val) {
-        arr1.map(item=>{
-            if (item.id===val.id){
+        arr1.map(item => {
+            if (item.id === val.id) {
                 setCount(item.id)
             }
         })
-        arr1.push({...val,counter:1,disabled:false})
+        arr1.push({...val, counter: 1, disabled: false})
         // if (val.id == pushmah) {
         //     setCount(val.id)
         // } else {
@@ -167,9 +171,9 @@ function SavdoOynasi({
 
         let a = 0
         let c = 0
-        arr1.map(item =>{
-            a +=item.counter
-            c +=(item.counter*item.buyPrice)
+        arr1.map(item => {
+            a += item.counter
+            c += (item.counter * item.buyPrice)
         })
         setxisob(a)
         setjamixisob(c)
@@ -180,28 +184,29 @@ function SavdoOynasi({
         arr1.map(item => {
             if (item.id === id) {
                 item.counter += 1
-                item.disabled=false
+                item.disabled = false
             }
         })
         let a = [...arr1]
         setarr1(a)
         let b = 0
-        let c =0
-        arr1.map(item =>{
-            b +=item.counter
-            c +=(item.counter*item.buyPrice)
+        let c = 0
+        arr1.map(item => {
+            b += item.counter
+            c += (item.counter * item.buyPrice)
 
         })
         setxisob(b)
         setjamixisob(c)
     }
+
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
-                if (item.counter>=1){
+                if (item.counter >= 1) {
                     item.counter -= 1
-                }else{
-                    item.disabled=true
+                } else {
+                    item.disabled = true
                 }
             }
 
@@ -211,32 +216,32 @@ function SavdoOynasi({
 
 
         let b = 0
-        let c =0
-        arr1.map(item =>{
-            b +=item.counter
-            c +=(item.counter*item.buyPrice)
+        let c = 0
+        arr1.map(item => {
+            b += item.counter
+            c += (item.counter * item.buyPrice)
 
         })
         setxisob(b)
         setjamixisob(c)
 
 
-
     }
+
     function deleteM(ind) {
-        arr1.map((item,index)=>{
-            if (item.id === ind){
-                arr1.splice(index,1)
+        arr1.map((item, index) => {
+            if (item.id === ind) {
+                arr1.splice(index, 1)
             }
         })
         let ad = [...arr1]
         setarr1(ad)
 
         let b = 0
-        let c =0
-        arr1.map(item =>{
-            b +=item.counter
-            c +=(item.counter*item.buyPrice)
+        let c = 0
+        arr1.map(item => {
+            b += item.counter
+            c += (item.counter * item.buyPrice)
 
         })
         setxisob(b)
@@ -249,80 +254,65 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
+
     function mahsulotnomi(e) {
         input.mahsulotnomi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function barchabrandlar(e) {
         input.barchabrandlar = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function UzcardTolov(naqd) {
         console.log('helll')
         arr1.map(item => {
-            saveSavdolar({
-                customerId: input.baza,
-                userId: users.businessId,
-                productTraderDto: [
-                    {
-                        tradedQuantity: item.counter,
-                        productTradeId: item.id
-                    }],
-                payDate: new Date().getDate(),
-                branchId: item.branch.id,
-                payMethodId: naqd,
-                amountPaid: item.salePrice * item.counter,
-                currencyId: 1,
-                addressId: 1,
-            })
+            if (baza !== '') {
+                saveSavdolar({
+                    customerId: input.baza,
+                    userId: users.businessId,
+                    productTraderDto: [
+                        {
+                            tradedQuantity: item.counter,
+                            productTradeId: item.id
+                        }],
+                    payDate: new Date().getDate(),
+                    branchId: item.branch.id,
+                    payMethodId: naqd,
+                    amountPaid: item.salePrice * item.counter,
+                    currencyId: 1,
+                    addressId: 1,
+                })
+            } else {
+                alert('KECIR')
+            }
         })
         setarr1([])
     }
 
     function saqla() {
-        // saveMaxsulotRuyxati({
-        //     name: input.modalmahsulotnomi,
-        //     quantity: input.miqdor,                                 /*input.foydafoiz,*/
-        //     barcode: input.shtrix,
-        //     brandId: input.firma,                      /*input.ferma,*/
-        //     categoryId: input.bolim,                     /*  input.bolim,*/
-        //     measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-        //     photoIds: [1],
-        //     minQuantity: input.foydafoiz,
-        //     /*   input.foydafoiz,*/
-        //     buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
-        //     salePrice: input.sotibolishnarxi,
-        //     tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
-        //     branchId: [1],
-        //     expireDate: null,
-        //     dueDate: null
-        // })
-
-        toggle5()
+        saveMaxsulotRuyxati({
+            name: input.modalmahsulotnomi,
+            quantity: input.miqdor,                                 /*input.foydafoiz,*/
+            barcode: input.shtrix,
+            brandId: input.firma,                      /*input.ferma,*/
+            categoryId: input.bolim,                     /*  input.bolim,*/
+            measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+            photoIds: [1],
+            minQuantity: input.foydafoiz,
+            /*   input.foydafoiz,*/
+            buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
+            salePrice: input.sotibolishnarxi,
+            tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
+            branchId: [1],
+            expireDate: null,
+            dueDate: null
+        })
         console.log(MaxsulotlarRoyxariReducer.maxsulotlar)
-        if (baza===''){
-            alert('XATO')
-        }else {
-            saveMaxsulotRuyxati({
-                name: input.modalmahsulotnomi,
-                quantity: input.miqdor,                                 /*input.foydafoiz,*/
-                barcode: input.shtrix,
-                brandId: input.firma,                      /*input.ferma,*/
-                categoryId: input.bolim,                     /*  input.bolim,*/
-                measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                photoIds: [1],
-                minQuantity: input.foydafoiz,
-                /*   input.foydafoiz,*/
-                buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
-                salePrice: input.sotibolishnarxi,
-                tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
-                branchId: [1],
-                expireDate: null,
-                dueDate: null
-            })
-        }
+        toggle5()
     }
 
     useEffect(() => {
@@ -390,7 +380,7 @@ function SavdoOynasi({
                     </Modal>
                 </div>
             </div>
-            {console.log(PayReducer.paymethod)}
+            {/*{console.log(PayReducer.paymethod)}*/}
             <div className="savdoBlock">
                 <div className="savdoBlockLeft">
                     <div className="selectBox">
@@ -505,17 +495,18 @@ function SavdoOynasi({
                                     .map(item => <tr key={item.id}>
                                         <td style={{marginLeft: '10px'}}>{item.name}</td>
                                         <td className={'d-flex justify-content-between'}>
-                                            <div className={'d-flex align-items-center justify-content-around p-0'}  style={{width:'100%'}}>
+                                            <div className={'d-flex align-items-center justify-content-around p-0'}
+                                                 style={{width: '100%'}}>
                                                 <button disabled={item.disabled} onClick={() => sMinus(item.id)}
                                                         className={'btn btn-outline-danger rounded-circle border-3'}>-
                                                 </button>
                                                 {item.counter}
-                                                <button  onClick={() => setCount(item.id)}
-                                                         className={'btn btn-outline-primary rounded-circle border-3'}>+
+                                                <button onClick={() => setCount(item.id)}
+                                                        className={'btn btn-outline-primary rounded-circle border-3'}>+
                                                 </button>
                                             </div>
                                         </td>
-                                        <td>{item.counter*item.buyPrice}</td>
+                                        <td>{item.counter * item.buyPrice}</td>
                                         <td>
                                             <button onClick={() => deleteM(item.id)}
                                                     className={'btn btn-outline-dark border-2 rounded-circle'}>x
@@ -529,7 +520,7 @@ function SavdoOynasi({
                     </div>
                     <div className="maxSoniBox">
                         <h6 className='d-flex align-items-center'>Mahsulot soni:{xisob}</h6>
-                         <h6>Jami:{jamixisob}</h6>
+                        <h6>Jami:{jamixisob}</h6>
                     </div>
                     <hr style={{margin: '2px'}}/>
                     <div className={'chegirmalarBox'}>
@@ -567,7 +558,7 @@ function SavdoOynasi({
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
                                         alt="yuq"/>
                                     <h6>{item.name}</h6>
-                                    <p>250000</p>
+                                    <p>{item.buyPrice}</p>
                                 </div>
                             </div>)
                         }
@@ -663,6 +654,7 @@ export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimR
     getSavdo,
     getFirma,
     getPay,
+    saveMaxsulotRuyxati,
     getBolim,
     saveSavdo,
     editSavdo,
