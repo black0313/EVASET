@@ -4,12 +4,19 @@ import {apiCall} from "../../../../../api";
 const slice = createSlice({
     name: 'savdolar',
     initialState: {
-        savdolar: []
+        savdolar: [],
+        amount:0
     },
     reducers: {
         getFrom: (state, action) => {
             state.savdolar = action.payload.object
             console.log(action.payload);
+            let amout=0
+                action.payload.object.map(item=>{
+                        amout+=item.amountPaid
+                    },
+                )
+                state.amount=amout
         },
         savefrom: (state,action) => {
             state.savdolar.unshift(action.payload.object)

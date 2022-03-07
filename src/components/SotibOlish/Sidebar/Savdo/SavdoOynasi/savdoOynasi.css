@@ -473,6 +473,9 @@
 
 }
 @media (min-width: 1025px) and (max-width: 1119.9px){
-   
+    .savdoOynaContainers{
+    }
+    .savdoOynaContainers .savBtnBox button{
+    }
 }
 

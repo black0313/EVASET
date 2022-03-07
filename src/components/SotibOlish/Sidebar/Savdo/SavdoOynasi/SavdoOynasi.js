@@ -265,7 +265,7 @@ function SavdoOynasi({
                     payDate: new Date().getDate(),
                     branchId: item.branch.id,
                     payMethodId: naqd,
-                    amountPaid: item.salePrice * item.counter,
+                    amountPaid: item.buyPrice * item.counter,
                     currencyId: 1,
                     addressId: 1,
                 })
@@ -307,7 +307,7 @@ function SavdoOynasi({
         getkg(users.businessId)
         getPay(users.businessId)
         // history.push('/headerthird/turliTavar/final')
-    }, [])
+    }, [MaxsulotlarRoyxariReducer.current])
 
     function toggle() {
         setActive(!active)
@@ -585,7 +585,7 @@ function SavdoOynasi({
                         }
                         content={() => componentRef.current}
                     /></button>
-                <button className='jamiTolov m-1'>Jami to`lov: 1 200 000 000 so'm</button>
+                <button className='jamiTolov m-1'>Jami to`lov: {jamixisob}  so'm</button>
                 <button className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
             </div>
             <div className="">
@@ -633,6 +633,7 @@ function SavdoOynasi({
             </div>
 
         </div>
+
     )
 }
 

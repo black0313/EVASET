@@ -30,9 +30,9 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
 
     useEffect(()=>{
         getSavdolar(users.businessId)
-        setTimeout(()=>{
-            funkjamisavdo()
-        },200)
+        // setTimeout(()=>{
+        //     // funkjamisavdo()
+        // },200)
 
     },[])
 
@@ -43,16 +43,16 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
 
     }
    
-
-    function funkjamisavdo(){
-        let amout=0
-        SavdoQoshishReducer.savdolar.map(item=>{
-                amout+=item.amountPaid
-            },
-        )
-        setamount(amout)
-       console.log('funck2')
-    }
+    //
+    // function funkjamisavdo(){
+    //     let amout=0
+    //     SavdoQoshishReducer.savdolar.map(item=>{
+    //             amout+=item.amountPaid
+    //         },
+    //     )
+    //     setamount(amout)
+    //    console.log('funck2')
+    // }
     const [amount,setamount] = useState(0)
     const [third, setThird] = useState('')
     const chartOptions = {
@@ -186,7 +186,7 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
             svgfoiz: <img src={jami1} alt={'jami1'}/>
         },
         {
-            number: amount ,
+            number: SavdoQoshishReducer.amount ,
             foiz: "+10.23%",
             text: 'JAMI SAVDO',
             svg: <img className={'imgsvg'} src={jamisavdo} alt={'jamisavdo'}/>,
