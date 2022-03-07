@@ -288,8 +288,8 @@ function SavdoOynasi({
             minQuantity: input.foydafoiz,
             /*   input.foydafoiz,*/
             buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
-            salePrice: input.sotibolishnarxi,
-            tax: input.amaldagisoliq,         /* input.amaldagisoliq,*/
+            salePrice: input.sotibolishnarx,
+            tax: input.soliqbnnarxi,         /* input.amaldagisoliq,*/
             branchId: [1],
             expireDate: null,
             dueDate: null
