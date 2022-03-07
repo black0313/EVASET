@@ -124,6 +124,10 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         setActive(!active)
     }
 
+    useEffect(()=>{
+        getLavozim(users.businessId)
+    },[])
+
     return(
         <div className={' ht'}>
             <h5 className={'text-center mt-4'}>Xodim qo`shish</h5>
