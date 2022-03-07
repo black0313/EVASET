@@ -9,7 +9,7 @@ import './savdoOynasi.css'
 import SavdoOynaReducer, {deleteSavdo, editSavdo, getSavdo, saveSavdo} from "../reducer/SavdoOynaReducer";
 import MaxsulotlarRoyxariReducer, {
     deleteMaxsulotRuyxati,
-    getMaxsulotRuyxati, saveMaxsulotRuyxati
+    getMaxsulotRuyxati, getMaxsulotRuyxati2, saveMaxsulotRuyxati
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import Calculator from "../../../header/Calculator/Calculator";
@@ -34,7 +34,7 @@ function SavdoOynasi({
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
                          getPay, PayReducer,
-                         FirmaReducer, getFirma,saveMaxsulotRuyxati,
+                         FirmaReducer, getFirma, saveMaxsulotRuyxati,getMaxsulotRuyxati2,
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
                          users, savdooynasi, getkg, kgreducer,
@@ -64,51 +64,61 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
+
     function shtrix(e) {
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function ulcovbirligi(e) {
         input.ulcovbirligi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function firma(e) {
         input.firma = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function bolim(e) {
         input.bolim = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function miqdor(e) {
         input.miqdor = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function sotibolishnarxi(e) {
         input.sotibolishnarx = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function sotishnarxi(e) {
         input.sotishnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
         let a = {...input}
@@ -118,10 +128,13 @@ function SavdoOynasi({
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
     const [lastTradeActive, setlastTradeActive] = useState(false)
+
     function toggle4() {
         setlastTradeActive(!lastTradeActive)
     }
+
     const [openModal, setOpenModal] = useState(false)
+
     function toggle5() {
         setOpenModal(!openModal)
     }
@@ -186,6 +199,7 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
+
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
@@ -213,6 +227,7 @@ function SavdoOynasi({
 
 
     }
+
     function deleteM(ind) {
         arr1.map((item, index) => {
             if (item.id === ind) {
@@ -232,6 +247,7 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
+
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
@@ -242,6 +258,13 @@ function SavdoOynasi({
         input.mahsulotnomi = e.target.value
         let a = {...input}
         setInput(a)
+        MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
+            if (val.name === input.mahsulotnomi){
+                pushesh(val)
+            }else if (input.mahsulotnomi == val.barcode){
+                pushesh(val)
+            }
+        })
     }
 
     function barchabrandlar(e) {
@@ -312,9 +335,11 @@ function SavdoOynasi({
     function toggle() {
         setActive(!active)
     }
+
     function toggle2() {
         setActive2(!active2)
     }
+
     function toggle3() {
         setActive3(!active3)
     }
@@ -374,9 +399,9 @@ function SavdoOynasi({
                                 MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
                             }
                         </select>
-                            <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
-                                placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
-                            <button className={'addButton'} onClick={toggle5}>+</button>
+                        <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
+                               placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
+                        <button className={'addButton'} onClick={toggle5}>+</button>
                         <Modal isOpen={openModal} toggle={toggle5}>
                             <ModalHeader>
                                 Maxsulot qoshish
@@ -472,14 +497,7 @@ function SavdoOynasi({
                             </thead>
                             <tbody>
                             {
-                                arr1.filter(val => {
-                                    if (input.mahsulotnomi === '') {
-                                        return val
-                                    } else if (val.name.toUpperCase().includes(input.mahsulotnomi.toUpperCase())) {
-                                        return val
-                                    }
-                                })
-                                    .map(item => <tr key={item.id}>
+                                arr1.map(item => <tr key={item.id}>
                                         <td style={{marginLeft: '10px'}}>{item.name}</td>
                                         <td className={'d-flex justify-content-between'}>
                                             <div className={'d-flex align-items-center justify-content-around p-0'}
@@ -585,7 +603,7 @@ function SavdoOynasi({
                         }
                         content={() => componentRef.current}
                     /></button>
-                <button className='jamiTolov m-1'>Jami to`lov: {jamixisob}  so'm</button>
+                <button className='jamiTolov m-1'>Jami to`lov: {jamixisob} so'm</button>
                 <button className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
             </div>
             <div className="">
@@ -646,6 +664,7 @@ export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimR
     getBolim,
     saveSavdo,
     editSavdo,
+    getMaxsulotRuyxati2,
     deleteSavdo,
     getMaxsulotRuyxati,
     deleteMaxsulotRuyxati,

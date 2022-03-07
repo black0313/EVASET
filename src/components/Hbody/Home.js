@@ -92,10 +92,8 @@ function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
                                         EVASET Xush kelibsiz!
                                     </h4>
                                     <p className={'p'}>
-                                        Nulla porttitor accumsan tincidunt.
-                                        Pellentesque inipsum
-                                        id orci porta dapibus.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+                                       Biznesingiz uchun ulkan samara, Biz bilan 1000+ korxonalar hamkorlikda.
+                                        Biz bilan kelajak sari !!!
                                     </p>
                                 </div>
                             </div>

@@ -6,7 +6,7 @@ const slice = createSlice({
     name: 'maxsulotlar',
     initialState: {
         maxsulotlar: [],
-        current:false
+        current:false,
     },
     reducers: {
         getFrom: (state, action) => {
@@ -18,7 +18,6 @@ const slice = createSlice({
         },
         editfrom: (state,action) => {
             state.current=!state.current
-
         },
         deletefrom:(state,action)=>{
             state.current=!state.current
@@ -31,7 +30,6 @@ export const getMaxsulotRuyxati=(data)=>apiCall({
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });
-
 export const getMaxsulotRuyxati2=(data)=>apiCall({
     url: '/product/get-by-barcode/'+data,
     method:'get',

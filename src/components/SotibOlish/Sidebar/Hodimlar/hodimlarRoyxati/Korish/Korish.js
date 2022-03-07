@@ -3,29 +3,35 @@ import {Link, Route, Switch, useParams} from "react-router-dom";
 import UseInfo from "./useInfo/UseInfo";
 import DocNote from "./DocNote/DocNote";
 import Activate from "./Activate/Activate";
+import {useState} from "react";
 
 function Korish({match}) {
+
+
+    const [pic,setpic] = useState({
+        rasm:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYS4ItI44R4hI66qjzhinqY5-Miyb30PelnQ&usqp=CAU'
+    })
     // const {name,login,email} = useParams();
     const {name,login,email} = match.params;
     console.log(match.params);
     return(
         <div className={'containerKorish '}>
             <div className="headerBoxK">
-                <h4>Ko`rish</h4>
+                <h4 className={'text-center'}>Ko`rish</h4>
                 <select name="" id="">
                     <option value="1" >Boshliq</option>
                 </select>
             </div>
-            <div className="bodyBox">
+            <div className="bodyBox mt-3">
                 <div className="userCardK">
                     <div className="card mt-2">
                         <div className="card-header justify-content-center d-flex ">
                             <div className="carImgBox">
                                 <div className="imgUser2">
-                                    <img src="" alt="" />
+                                    <img src={pic.rasm} alt="yuq" />
                                 </div>
-                                <h5>{name}</h5>
-                                <p>{login}</p>
+                                <h5 className={'text-center'}>{name}</h5>
+                                <p className={'text-center'}>{login}</p>
                             </div>
                         </div>
                         <div className="card-body">
@@ -43,7 +49,9 @@ function Korish({match}) {
                             </div>
                         </div>
                         <div className="card-footer">
-                            <button className={'btn btn-primary'} style={{ width: '100%' }}>Taxrirlash</button>
+                            <Link to={'/headerthird/hodimlarruyxati/taxrirlash'}>
+                                <button className={'btn btn-primary'} style={{ width: '100%' }}>Taxrirlash</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
