@@ -272,7 +272,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function UzcardTolov(naqd) {
         console.log('helll')
         arr1.map(item => {
@@ -298,7 +297,6 @@ function SavdoOynasi({
         })
         setarr1([])
     }
-
     function saqla() {
         saveMaxsulotRuyxati({
             name: input.modalmahsulotnomi,
@@ -321,7 +319,6 @@ function SavdoOynasi({
         toggle5()
         getMaxsulotRuyxati(users.businessId)
     }
-
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
         getMijozGurux(users.businessId)
