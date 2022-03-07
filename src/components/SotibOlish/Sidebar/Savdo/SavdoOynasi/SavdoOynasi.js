@@ -259,7 +259,7 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
         MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
-            if (val.name.toUpperCase().includes(input.mahsulotnomi.toUpperCase())){
+            if (val.name === input.mahsulotnomi){
                 pushesh(val)
             }else if (input.mahsulotnomi == val.barcode){
                 pushesh(val)
