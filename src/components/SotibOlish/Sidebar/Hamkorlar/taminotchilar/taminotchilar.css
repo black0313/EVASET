@@ -243,3 +243,9 @@
               
        }
 }
+input.pcolor::placeholder{
+       color:red
+}
+input.pcolor2::placeholder{
+       color:gray
+}

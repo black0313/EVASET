@@ -14,6 +14,7 @@ import TaminotReducer,{getTaminot, saveTaminot, editTaminot,taminot, deleteTamin
 import users from "../../../../../reducer/users";
 import {useState} from 'react'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import { red } from "@mui/material/colors"
 
 
 function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, taminot,users,TaminotReducer}) {
@@ -37,6 +38,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
             dukon: '',
             idraqam: '',
             login: '',
+            loginplaceholder:'Mr/Mrs/Mis',
             ismi: '',
             otaismi: '',
             familiyasi: '',
@@ -75,6 +77,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         input.login = e.target.value
         let a = {...input}
         setInput(a)
+
     }
     function changeismi(e) {
         input.ismi = e.target.value
@@ -111,38 +114,49 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
             }
         })
     }
+
     function saqla(){
-        if (input.tID !== ''){
-            editTaminot(
-                {
-                    name:input.ismi,
-                    phoneNumber: input.familiyasi,
-                    telegram: input.telegram,
-                    supplierType:'',
-                    businessId: 1,
-                    id:input.tID
-                }
-            )
-            console.log('edit')
-        }
-        else{
-            saveTaminot({
-                name:input.ismi,
-                phoneNumber: input.familiyasi,
-                telegram: input.telegram,
-                supplierType:'',
-                businessId: 1,
-            })
-            console.log('save')
-        }
-        input.ismi=''
-        input.familiyasi=''
-        input.telegram=''
-        input.login=''
-        input.tID=''
-        let a ={...input}
-        setInput(a)
-        toggle()
+            if(input.login === ""){
+                input.loginplaceholder = "Ma'lumot kiriting..."
+                let a ={...input}
+                setInput(a)
+                var b = document.getElementById('log1')
+                b.classList.add('pcolor')
+            }
+            else{
+
+            }
+
+        // if (input.tID !== ''){
+        //     editTaminot(
+        //         {
+        //             name:input.ismi,
+        //             phoneNumber: input.familiyasi,
+        //             telegram: input.telegram,
+        //             supplierType:'',
+        //             businessId: 1,
+        //             id:input.tID
+        //         }
+        //     )
+        //     console.log('edit')
+        // }
+        // else{
+        //     saveTaminot({
+        //         name:input.ismi,
+        //         phoneNumber: input.familiyasi,
+        //         telegram: input.telegram,
+        //         supplierType:'',
+        //         businessId: 1,
+        //     })
+        //     console.log('save')
+        // }
+        // input.ismi=''
+        // input.familiyasi=''
+        // input.telegram=''
+        // input.login=''
+        // input.tID=''
+        // let a ={...input}
+        // setInput(a)
     }
 
     return (
@@ -265,7 +279,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 <div>
                                     <label htmlFor={'log1'}>Login</label>
                                     <input type="text" value={input.login} onChange={changelogin}
-                                           className={'form-control'} placeholder={'Mr/Mrs/Mis'}
+                                           className={'form-control'} placeholder={input.loginplaceholder}
                                            id={'log1'}/>
                                 </div>
                                 <div>

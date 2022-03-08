@@ -83,6 +83,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
     }
 
     function saqla(){
+    
         if(match.params.id !== undefined){
             editXodim({
                 firstName: input.firstName,
