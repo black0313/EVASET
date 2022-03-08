@@ -182,12 +182,14 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                         <thead>
                         <tr>
                             <th>sana</th>
-                            <th>Qisqa eslatma</th>
+
                             <th>Baza</th>
                             <th>Diller</th>
                             <th>Harid statusi</th>
-                            <th>Grand total</th>
-                            <th>Qarz miqdori</th>
+                            <th>Dona narxi</th>
+                            <th>Jami summa</th>
+                            {/*<th>Qarz miqdori</th>*/}
+                            <th>Qisqa eslatma</th>
                             <th>Amallar</th>
                         </tr>
                         </thead>
@@ -201,12 +203,13 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                                 }
                             }).map(item => <tr key={item.id}>
                                 <td>{item.date}</td>
-                                <td>{item.description}</td>
                                 <td>{item.branch.name}</td>
                                 <td>{item.dealer.name}</td>
                                 <td>{item.purchaseStatus.status}</td>
+                                {/*<td></td>*/}
                                 <td></td>
-                                <td></td>
+                                <td>{item.totalSum}</td>
+                                <td>{item.description}</td>
                                 <td>
                                     <Link to={'/headerthird/xaridlarRuyxati/1'}>
                                         <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>

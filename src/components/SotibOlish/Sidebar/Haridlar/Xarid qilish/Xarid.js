@@ -150,61 +150,95 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
-
     function idraqam(e) {
         input.idraqam = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function login(e) {
         input.login = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function tel(e) {
         input.tel = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function ismi(e) {
         input.ismi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function ikkinciraqam(e) {
         input.ikkinciraqam = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function otaismi(e) {
         input.otaismi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function telegram(e) {
         input.telegram = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function familiyasi(e) {
         input.familiyasi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function email(e) {
         input.email = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function shtrix(e) {
-        toggleshtrix()
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
+        MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
+            if (val.name === input.shtrix){
+                pushesh(val)
+                input.shtrix = ''
+                let a = {...input}
+                setInput(a)
+            }else if (input.shtrix == val.barcode){
+                pushesh(val)
+                input.shtrix = ''
+                let a = {...input}
+                setInput(a)
+            }
+        })
         console.log(input.shtrix)
+    }
+
+    function deleteM(ind) {
+        mah.map((item, index) => {
+            if (item.id === ind) {
+                mah.splice(index, 1)
+            }
+        })
+        let ad = [...mah]
+        setmah(ad)
+
+        // let b = 0
+        // let c = 0
+        // arr1.map(item => {
+        //     b += item.counter
+        //     c += (item.counter * item.buyPrice)
+        //
+        // })
+        // setxisob(b)
+        // setjamixisob(c)
     }
 
     function qisqaeslatma(e) {
@@ -212,6 +246,7 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
+
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
@@ -242,63 +277,70 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
-
     function avans(e) {
         input.avans = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function tulovusuli(e) {
         input.tulovusuli = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function paidon(e) {
         input.paidon = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function eslatma(e) {
         input.eslatma = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function yetkazibberish(e) {
         input.yetkazibberish = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function yetkazibberishnarxi(e) {
         input.yetkazibberishnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function langv2(e) {
         input.langv2 = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function yetkazibberishnarxi2(e) {
         input.yetkazibberishnarxi2 = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function toggle() {
         setActive(!active)
     }
-
     function toggle2() {
         setActive2(!active2)
     }
 
+    const [mah,setmah] = useState([])
+
+    function pushesh(val) {
+        mah.map(item => {
+            if (item.id === val.id) {
+                alert('Bu mahsulot Jadvalda bor')
+            }
+        })
+        mah.push({...val })
+
+        let a = 0
+        let c = 0
+        mah.map(item => {
+            a += item.counter
+            c += (item.counter * item.buyPrice)
+        })
+    }
 
     function saqla() {
         saveXarid(
@@ -313,17 +355,13 @@ function Xarid({
                 deliveryPrice: input.yetkazibberishnarxi2,
                 purchaseProductsDto: [
                     {
-                        purchasedQuantity: 1,
+                        purchasedQuantity: input.xaridmiqdori,
                         productPurchaseId: 1
                     }
                 ]
             }
         )
-        console.log('saaaaaaqlani');
-    }
-
-    function ochirish(id) {
-        kgreducer.kg.slice(id, 1)
+        console.log('saqlandi');
     }
 
     function savedealer() {
@@ -343,10 +381,6 @@ function Xarid({
     }
 
     const [activeshtrix, setactiveshtrix] = useState(false)
-
-    function toggleshtrix() {
-        setactiveshtrix(!activeshtrix)
-    }
 
     useEffect(() => {
         getTaminot(users.businessId)
@@ -368,7 +402,7 @@ function Xarid({
                     <div className="row">
                         <div className={'col-3 col-sm-12'}>
                             <div className={'d-flex'}>
-                                <div style={{width:'100%'}}>
+                                <div style={{width: '100%'}}>
                                     <label htmlFor={'dil'}>Diller</label>
                                     <select name="" value={input.diller} onChange={diller} id={'dil'}
                                             className={'form-control'}>
@@ -490,20 +524,16 @@ function Xarid({
                 <div className={'col-md-10 mt-4 offset-1'}>
                     <div className="row">
                         <div className="col-md-12">
-                            <input type="number" value={input.shtrix} onChange={shtrix} className={'form-control'}
-                                   placeholder={'Mahsulot shtrix kodi'}/>
+                            <input type="text" value={input.shtrix} onChange={shtrix} className={'form-control'}
+                                   placeholder={'Mahsulot shtrix kodi yoki nomi'}/>
                             <div className="table-responsive">
                                 <table className={'table mt-3 border'}>
                                     <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th>Mahsulot nomi</th>
                                         <th>Xarid miqdori</th>
                                         <th>Dona narxi</th>
-                                        <th>Chegirma foizda</th>
-                                        <th>Birlik narxi</th>
-                                        <th>Jami miqdor</th>
-                                        <th>Foyda (foiz)</th>
+                                        <th>Jami summa</th>
                                         <th>Dona sotish narxi</th>
                                         <th>x</th>
                                     </tr>
@@ -511,21 +541,13 @@ function Xarid({
                                     {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
                                     <tbody>
                                     {
-                                        activeshtrix ?
-                                            MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
-                                                if (input.shtrix === '') {
-                                                    return ''
-                                                } else if (val.barcode == input.shtrix) {
-                                                    return val
-                                                }
-                                            })
+                                            mah
                                                 .map(item => <tr key={item.id}>
-                                                    <td><h5>{item.id}</h5></td>
                                                     <td><h5>{item.name}</h5></td>
                                                     <td>
                                                         <input type="number" placeholder={'xarid miqdori'}
-                                                            value={input.xaridmiqdori} onChange={xaridmiqdori}
-                                                            className={'form-control'}/>
+                                                               value={input.xaridmiqdori} onChange={xaridmiqdori}
+                                                               className={'form-control'}/>
                                                         <select name="" className={'form-control mt-1'} value={input.kg}
                                                                 onChange={kg} id="">
                                                             {
@@ -536,42 +558,29 @@ function Xarid({
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="number" value={input.donanarxi} onChange={donanarxi}
-                                                            placeholder={'dona narxi'} className={'form-control'}/>
+                                                        <input type="number" value={input.donanarxi}
+                                                               onChange={donanarxi}
+                                                               placeholder={'dona narxi'} className={'form-control'}/>
+                                                    </td>
+
+                                                    <td>
+                                                            <h5>{input.donanarxi * input.xaridmiqdori}</h5>
                                                     </td>
                                                     <td>
-                                                        <input type="number" value={input.chegirmafoiz}
-                                                            onChange={chegirmafoiz} placeholder={'chegirma %'}
-                                                            className={'form-control'}/>
+                                                        <input type="number" value={input.donasotish}
+                                                               onChange={donasotish}
+                                                               className={'form-control'} placeholder={'dona sotish'}/>
                                                     </td>
                                                     <td>
-                                                        <input type="number" value={input.birliknarxi}
-                                                            onChange={birliknarxi} placeholder={'birlik narxi'}
-                                                            className={'form-control'}/>
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" value={input.jamimiqdori}
-                                                            onChange={jamimiqdori} className={'form-control'}
-                                                            placeholder={'jami miqdor'}/>
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" value={input.foydafoiz} onChange={foydafoiz}
-                                                            className={'form-control'} placeholder={'foyda %'}/>
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" value={input.donasotish} onChange={donasotish}
-                                                            className={'form-control'} placeholder={'dona sotish'}/>
-                                                    </td>
-                                                    <td>
-                                                        <button onClick={() => ochirish(item.id)}
+                                                        <button onClick={() => deleteM(item.id)}
                                                                 className={'btn btn-danger'}>x
                                                         </button>
                                                     </td>
-                                                </tr>) : 'no match'
+                                                </tr>)
                                     }
                                     </tbody>
                                 </table>
-                            </div>       
+                            </div>
                             <hr/>
                             <h6>Jami maxsulotlar: {input.xaridmiqdori}</h6>
                             <h6>Jami summa: {input.jamimiqdori}</h6>
