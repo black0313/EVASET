@@ -6,12 +6,19 @@ const slice = createSlice({
     name: 'xaridlar',
     initialState: {
         xaridlar: [],
-        current:false
+        current:false,
+        xaridlarjami:0
     },
     reducers: {
         getFrom: (state, action) => {
             state.xaridlar = action.payload.object
             console.log(action.payload.object);
+            let amout=0
+            action.payload.object.map(item=>{
+                    amout+=item.totalSum
+                },
+            )
+            state.xaridlarjami=amout
         },
         savefrom: (state,action) => {
             state.current=!state.current

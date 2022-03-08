@@ -160,14 +160,6 @@ function SavdoOynasi({
             }
         })
         arr1.push({...val, counter: 1, disabled: false})
-        // if (val.id == pushmah) {
-        //     setCount(val.id)
-        // } else {
-        //     arr1.push({...val, counter: 1,disabled:false})
-        //     let a = [...arr1]
-        //     setarr1(a)
-        // }
-        // setPushmah(val.id)
 
         let a = 0
         let c = 0

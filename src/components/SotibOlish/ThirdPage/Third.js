@@ -26,10 +26,12 @@ import Pagination4 from "./Pagination4";
 import users,{savdooynasi} from "../../../reducer/users";
 import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
 import functionreducer,{active,activSavdo} from "../../../reducer/functionreducer";
-function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active,activSavdo}) {
+import XaridReducer,{getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
+function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
+        getXarid(users.businessId)
         // setTimeout(()=>{
         //     // funkjamisavdo()
         // },200)
@@ -179,7 +181,7 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
     ])
     const jami = [
         {
-            number: "2 400 000",
+            number: XaridReducer.xaridlarjami,
             foiz: "+10.23%",
             text: 'JAMI XARIDLAR',
             svg: <img className={'imgsvg'} src={shopping} alt={'shopping'}/>,
@@ -598,4 +600,4 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
 }
 
 
-export default connect((SavdoQoshishReducer,users,functionreducer),{getSavdolar,savdooynasi,active,activSavdo}) (Third);
+export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer),{getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Third);
