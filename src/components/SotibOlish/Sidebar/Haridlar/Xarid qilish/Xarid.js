@@ -246,7 +246,7 @@ function Xarid({
                 let a = {...input}
                 setInput(a)
             }else if (input.shtrix == val.barcode){
-                pushesh(val)
+                pushesh({...val,quantity:'',buyPrice:'',salePrice:''})
                 input.shtrix = ''
                 let a = {...input}
                 setInput(a)
