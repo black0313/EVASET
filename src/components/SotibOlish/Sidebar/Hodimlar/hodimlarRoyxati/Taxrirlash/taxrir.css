@@ -16,3 +16,10 @@
     }
       
 }
+
+input.placecolor::placeholder{
+    color: red;
+}
+.placecolor2::placeholder{
+    color:gray;
+}
