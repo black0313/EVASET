@@ -6,6 +6,7 @@ import XaridReducer, {getXarid, saveXarid, deleteXarid, editXarid, getXarid2} fr
 import tolovreducer, {gettolovholati} from "../../../../../reducer/tolovreducer";
 import users from "../../../../../reducer/users";
 import {Link} from 'react-router-dom'
+import {toast} from "react-toastify";
 import TaminotReducer, {
     deleteTaminot,
     editTaminot,
@@ -139,31 +140,8 @@ function Xarid({
         setjamiXisob(c)
     }
 
-    function chegirmafoiz(e) {
-        input.chegirmafoiz = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function birliknarxi(e) {
-        input.birliknarxi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function jamimiqdori(e) {
-        input.jamimiqdori = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function foydafoiz(e) {
-        input.foydafoiz = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
     function donasotish(e,id) {
+        // input.donasotish = e.target.value
         input.donasotish = e.target.value
         let a = {...input}
         setInput(a)
@@ -256,23 +234,26 @@ function Xarid({
     }
 
     function shtrix(e) {
+
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
         MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
             if (val.name === input.shtrix){
-                pushesh(val)
+                console.log(val.quantity)
+                pushesh({...val,quantity:'',buyPrice:'',salePrice:''})
                 input.shtrix = ''
                 let a = {...input}
                 setInput(a)
             }else if (input.shtrix == val.barcode){
-                pushesh(val)
+                pushesh({...val,quantity:'',buyPrice:'',salePrice:''})
                 input.shtrix = ''
                 let a = {...input}
                 setInput(a)
             }
         })
         console.log(input.shtrix)
+        console.log(mah)
     }
 
     function deleteM(ind) {
@@ -379,14 +360,21 @@ function Xarid({
     }
 
     const [mah,setmah] = useState([])
+    const [funcpush,setfuncpush] = useState(true)
 
     function pushesh(val) {
+        let d = false
         mah.map(item => {
             if (item.id === val.id) {
-                alert('Bu mahsulot Jadvalda bor')
+                d = true
+                // alert('Bu mahsulot jadvalda bor!')
+                toast.warn('Bu mahsulot jadvalda bor!')
             }
         })
-        mah.push({...val })
+        if(d===false){
+            mah.push({...val })
+        }
+
 
         let a = 0
         let c = 0
@@ -422,6 +410,7 @@ function Xarid({
 
         setmah([])
         console.log('saqlandi');
+        toast.success('Xarid qilindi !')
     }
 
     function savedealer() {
@@ -497,14 +486,7 @@ function Xarid({
                             <label htmlFor={'sana'}>Xarid sanasi</label>
                             <input type="date" value={input.xaridsanasi} onChange={xaridsanasi}
                                    className={'form-control'}/>
-                            <label className={'mt-3 '} htmlFor={'muddat'}>To`lov muddati</label>
-                            <select name="" id={'muddat'} value={input.tulovmuddati} onChange={tulovmuddati}
-                                    className={'form-control mb-3'}>
-                                <option value="">Tanlash</option>
-                                <option value="">Oy</option>
-                                <option value="">Hafta</option>
-                                <option value="">no backend</option>
-                            </select>
+
                         </div>
 
                         <div className="col-3 col-sm-12 ">

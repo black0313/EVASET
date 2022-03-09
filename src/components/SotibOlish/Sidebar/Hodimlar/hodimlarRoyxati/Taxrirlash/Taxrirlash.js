@@ -9,6 +9,7 @@ import XodimReducer, {saveXodim,getXodim,editXodim} from "../../reducer/XodimRed
 import {Link} from 'react-router-dom'
 import users from "../../../../../../reducer/users";
 import branchreducer,{getbranch} from "../../../../../../reducer/branchreducer";
+import {toast} from "react-toastify";
 function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,users,match,editXodim,getbranch,branchreducer}) {
 
     useEffect(()=>{
@@ -20,12 +21,17 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
     const [input, setInput] = useState(
         {
             username: '',
+            usernameplace: 'Mr/Mrs/Miss',
             firstName: '',
+            firstNameplace: 'Ismi',
             lastName: '',
+            lastNameplace: 'Familiyasi',
             roleName:1,
             email: '',
             parol: '',
-            parolTakror:''
+            parolplace: 'Parolni kiriting',
+            parolTakror:'',
+            parolTakrorplace:'Parolni kiriting'
         }
     );
 
@@ -82,6 +88,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         })
     }
 
+    const [linksaqla,setlinksaqla] = useState('/headerthird/hodimlarruyxati/taxrirlash')
     function saqla(){
     
         if(match.params.id !== undefined){
@@ -97,22 +104,43 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 photoId:1,
                 id:match.params.id
             })
+
         }
         else {
-            saveXodim({
-                firstName: input.firstName,
-                lastName: input.lastName,
-                username: input.username,
-                password: parseInt(input.parolTakror),
-                roleId: input.roleName,
-                branchId: 1,
-                businessId: 1,
-                enabled: true,
-                photoId: 1
-            })
+            if (input.username === '' || input.firstName === '' || input.lastName==="" || input.parol === '' ){
+                alert("Login va Parolni ham to'liq kiriting")
+                    let f = document.getElementById('login1')
+                    let f2 = document.getElementById('ismi')
+                    let f3 = document.getElementById('login2')
+                    f.classList.add('placecolor')
+                    f2.classList.add('placecolor')
+                    f3.classList.add('placecolor')
+                 input.usernameplace= "Ma'lumot kiriting !"
+                 input.firstNameplace= "Ma'lumot kiriting !"
+                 input.lastNameplace= "Ma'lumot kiriting !"
+                let a ={...input}
+                setInput(a)
+                toast.warning("Login va Parolni ham to'liq kiriting")
+
+            }
+            else{
+                setlinksaqla('/headerthird/hodimlarruyxati')
+                saveXodim({
+                    firstName: input.firstName,
+                    lastName: input.lastName,
+                    username: input.username,
+                    password: parseInt(input.parolTakror),
+                    roleId: input.roleName,
+                    branchId: 1,
+                    businessId: 1,
+                    enabled: true,
+                    photoId: 1
+                })
+            }
+
+
         }
         if (input.parol === input.parolTakror){
-            toggle()
             console.log('Parol mos');
         }else {
             alert('= = - - > ERROR PAROL MOS EMAS')
@@ -135,15 +163,15 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 <div className="row">
                     <div className="col-sm-12 col-4 mb-2">
                         <label htmlFor={'login1'}>Login</label>
-                        <input type="text" id={'login1'} value={input.username} onChange={onchangeuserName} placeholder={'Mr/Mrs/Miss'} className={'form-control'}/>
+                        <input type="text" id={'login1'} value={input.username} onChange={onchangeuserName} placeholder={input.usernameplace} className={'form-control'}/>
                     </div>
                     <div className="col-sm-12 col-md-4 mb-2">
                         <label htmlFor={'ismi'} >Ismi</label>
-                        <input type="text" onChange={onchangefirstName} id={'ismi'} placeholder={'Ismi'} value={input.firstName} className={'form-control'}/>
+                        <input type="text" onChange={onchangefirstName} id={'ismi'} placeholder={input.firstNameplace} value={input.firstName} className={'form-control'}/>
                     </div>
                     <div className="col-sm-12 col-md-4 mb-2">
                         <label htmlFor={'login2'} >Familiyasi</label>
-                        <input type="text" id={'login2'} onChange={onchangelastName} value={input.lastName} placeholder={'Familiyasi'} className={'form-control'}/>
+                        <input type="text" id={'login2'} onChange={onchangelastName} value={input.lastName} placeholder={input.lastNameplace} className={'form-control'}/>
                     </div>
                 </div>
 
@@ -164,7 +192,8 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     </div>
 
                     <div className="col-6 d-flex justify-content-center">
-                        <Link to={'/headerthird/hodimlarruyxati'}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>
+                        <Link to={linksaqla}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>
+                        {/*<Link to={'/headerthird/hodimlarruyxati'}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>*/}
                     </div>
 
                     <Modal isOpen={active} toggle={toggle}>
@@ -173,9 +202,9 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                         </ModalHeader>
                         <ModalBody>
                             <label htmlFor={'log3'} className={'mt-3'}>Parol</label>
-                            <input type="text" onChange={onchangeparol} value={input.parol} className={'form-control'} id={'log3'}/>
+                            <input type="text" onChange={onchangeparol} value={input.parol} placeholder={input.parolplace} className={'form-control'} id={'log3'}/>
                             <label htmlFor={'log4'} className={'mt-3'}>Parolni takroran yozing</label>
-                            <input type="text" onChange={onchangeparolTakror} value={input.parolTakror} className={'form-control'} id={'log4'}/>
+                            <input type="text" onChange={onchangeparolTakror} value={input.parolTakror} placeholder={input.parolTakrorplace} className={'form-control'} id={'log4'}/>
                             <label htmlFor={'lavozimi'} className={'mt-3'}>Lavozimi</label>
                             <select name="" id={'lavozimi'} onChange={onchangeroleName} value={input.roleName}  className={'form-control'}>
                                 {
