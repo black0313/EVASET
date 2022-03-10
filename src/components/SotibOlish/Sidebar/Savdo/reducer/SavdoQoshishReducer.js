@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
+import {toast} from "react-toastify";
 
 const slice = createSlice({
     name: 'savdolar',
@@ -21,8 +22,7 @@ const slice = createSlice({
         savefrom: (state,action) => {
             state.savdolar.unshift(action.payload.object)
             // state.savdolar.unshift(action.payload.message)
-            console.log('SAVED_SAVDOLAR');
-            // toast.success('Saqlandi')
+            toast.success('Savdo qo`shildi')
         },
         editfrom: (state,action) => {
             state.savdolar.map((item,index)=>{
@@ -30,12 +30,11 @@ const slice = createSlice({
                     item.login = action.payload.login
                 }
             })
-            // toast.success('O`zgartirildi')
+            toast.success('Savdo tahrirlandi')
         },
         deletefrom:(state,action)=>{
 
-            console.log('DELETED_SAVDOLAR');
-            // toast.info('O`chirildi')
+            toast.info('Savdo O`chirildi')
         }
 
     }

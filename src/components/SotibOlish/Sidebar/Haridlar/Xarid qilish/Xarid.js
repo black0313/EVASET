@@ -234,7 +234,6 @@ function Xarid({
     }
 
     function shtrix(e) {
-
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
@@ -407,10 +406,8 @@ function Xarid({
                 }
             )
         })
-
         setmah([])
         console.log('saqlandi');
-        toast.success('Xarid qilindi !')
     }
 
     function savedealer() {
@@ -703,6 +700,7 @@ function Xarid({
                                 <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
                             </Link>
                         </div>
+
                     </div>
                 </div>
             </div>

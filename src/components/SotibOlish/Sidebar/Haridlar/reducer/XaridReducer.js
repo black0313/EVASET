@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
+import {toast} from "react-toastify";
 // import {toast} from "react-toastify";
 
 const slice = createSlice({
@@ -22,6 +23,7 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             state.current=!state.current
+            toast.success('Xarid qilindi !')
         },
         editfrom: (state,action) => {
             state.current=!state.current

@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
+import {toast} from "react-toastify";
 
 const slice = createSlice({
     name: 'xarajatlar',
@@ -15,17 +16,15 @@ const slice = createSlice({
         savefrom: (state,action) => {
             state.xarajatlar.unshift(action.payload)
             state.counter=!state.counter
+            toast.success('Xarajat qo`shildi')
         },
         editfrom: (state,action) => {
             state.counter=!state.counter
-
-            console.log('saqlandi_xarajat');
+            toast.success('Tahrirlandi')
         },
         deletefrom:(state,action)=>{
             state.counter=!state.counter
-
-            console.log('DELETEED_XARAJAT');
-            // toast.info('O`chirildi')
+            toast.success('Ruyhatdan o`chirildi')
         }
     }
 });

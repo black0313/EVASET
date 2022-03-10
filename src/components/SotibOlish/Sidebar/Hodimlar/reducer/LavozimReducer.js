@@ -1,5 +1,6 @@
 import {createSlice, current} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
+import {toast} from "react-toastify";
 // import {toast} from "react-toastify";
 
 const slice = createSlice({
@@ -14,10 +15,8 @@ const slice = createSlice({
             console.log(action.payload.object);
         },
         savefrom: (state,action) => {
-            console.log('saqlandi_lavozim')
-
+            toast.success('Lavozim qo`shildi')
             state.current=0
-            // toast.success('Saqlandi')
         },
         editfrom: (state,action) => {
             state.lavozimlar.map((item,index)=>{
@@ -26,16 +25,13 @@ const slice = createSlice({
                 }
             })
             state.current=0
-
+            toast.success('Lavozim tahrirlandi')
         },
         deletefrom:(state,action)=>{
-            console.log('ochirildi')
-            console.log(action.payload.object.id)
             console.log(typeof action.payload)
             state.current-=1
-
+            toast.success('Lavozim o`chirildi')
         }
-
     }
 });
 
