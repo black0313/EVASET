@@ -152,6 +152,7 @@ function Firmalar({getFirma, users, firmalar, saveFirma,editFirma, deleteFirma,F
                                 }
                             }).map(item => <tr key={item.id}>
                                 <td>{item.name}</td>
+                                <td></td>
                                 <td>
                                     <Link>
                                         <button onClick={()=>editB(item.id)} className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash

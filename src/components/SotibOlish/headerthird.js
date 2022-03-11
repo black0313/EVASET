@@ -95,10 +95,10 @@ function Headerthird() {
                 <Route path={'/headerthird/sotuvNarxGuruhlanishi'} component={SotuvNarxiniGuruxlash}/>
                 <Route path={'/headerthird/bolimlar'} component={Bolimlar}/>
                 <Route path={'/headerthird/firmalar'} component={Firmalar}/>
+                <Route path={'/headerthird/xaridQilish/:id?'} component={Xarid}/>
                 <Route path={'/headerthird/xaridQilish'} component={Xarid}/>
                 <Route path={'/headerthird/xaridlarRuyxati'} component={HaridlarRoyxati}/>
                 {/*fix me xaridlar ruyxati taxrirlash*/}
-                <Route path={'/headerthird/xaridlarRuyxati/1'} component={Xarid}/>
                 <Route path={'/headerthird/barcasavdolar'} component={BarchaSavdolar}/>
                 <Route path={'/headerthird/mahsulotQoshish/:id?'} component={SavdoQoshish}/>
                 <Route path={'/headerthird/mahsulotQoshish'} component={SavdoQoshish}/>

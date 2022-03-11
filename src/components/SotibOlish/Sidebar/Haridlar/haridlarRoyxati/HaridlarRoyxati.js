@@ -211,7 +211,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                                 <td>{item.totalSum}</td>
                                 <td>{item.description}</td>
                                 <td>
-                                    <Link to={'/headerthird/xaridlarRuyxati/1'}>
+                                    <Link to={'/headerthird/xaridQilish/'+item.id}>
                                         <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
                                     </Link>
                                     <button className='ochirish' onClick={()=>deleteX(item)}><img src={Delete} alt=""/> O'chirish</button>
