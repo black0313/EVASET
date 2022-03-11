@@ -374,7 +374,6 @@ function Xarid({
             mah.push({...val })
         }
 
-
         let a = 0
         let c = 0
         mah.map(item => {

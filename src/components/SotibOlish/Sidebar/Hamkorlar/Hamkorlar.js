@@ -30,7 +30,32 @@ function Hamkorlar({active}) {
         if(windowWidth <= 767){
             active()
         }
+        ToggleSwitch()
+        if (activeback2===true){
+            setactiveback2(!activeback2)
+        }
     }
+
+    function sidebaractive2(){
+        const windowWidth = window.innerWidth;
+        if(windowWidth <= 767){
+            active()
+        }
+        ToggleSwitch2()
+        if (activeback===true){
+            setactiveback(!activeback)
+        }
+    }
+
+    const ToggleSwitch = () =>{
+        activeback? setactiveback(false) : setactiveback(true)
+    }
+    const ToggleSwitch2 = () =>{
+        activeback2? setactiveback2(false) : setactiveback2(true)
+    }
+
+    const [activeback,setactiveback] = useState(false)
+    const [activeback2,setactiveback2] = useState(false)
 
     return(
         <div className={'row hamkor'}>
@@ -52,9 +77,9 @@ function Hamkorlar({active}) {
             </div>
             {
                 active2 ?<ul>
-                    <li onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/taminotchilar'}>Taminotchilar</Link></li>
+                    <li className={activeback?"b3":"b4"} onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/taminotchilar'}>Taminotchilar</Link></li>
                     {/*<li><Link className={'hamkorlar'} to={'/mijozlar'}>Mijozlar</Link></li>*/}
-                    <li onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Mijozlar guruxlari</Link></li>
+                    <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Mijozlar guruxlari</Link></li>
                     {/*<li><Link className={'hamkorlar'} to={'/malumotTiklash'}>Malumotlarni tiklash</Link></li>*/}
                 </ul>:''
             }
