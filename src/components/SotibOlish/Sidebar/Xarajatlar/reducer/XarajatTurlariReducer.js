@@ -31,8 +31,8 @@ const slice = createSlice({
     }
 });
 
-export const getXarajatlarTurlari=()=>apiCall({
-    url: '/outlayCategory/get-by-businessId/1',
+export const getXarajatlarTurlari=(data)=>apiCall({
+    url: '/outlayCategory/get-by-businessId/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

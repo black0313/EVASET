@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, current} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
 import {toast} from "react-toastify";
 
@@ -6,7 +6,8 @@ const slice = createSlice({
     name: 'xarajatlar',
     initialState: {
         xarajatlar: [],
-        counter:false
+        counter:false,
+        current:0
     },
     reducers: {
         getFrom: (state, action) => {
@@ -29,8 +30,8 @@ const slice = createSlice({
     }
 });
 
-export const getXarajatlar=()=>apiCall({
-    url: '/outlay/get-by-businessId/1',
+export const getXarajatlar=(data)=>apiCall({
+    url: '/outlay/get-by-businessId/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

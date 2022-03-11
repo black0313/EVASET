@@ -38,8 +38,6 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
     )
 
 
-
-
     function view(e) {
         input.view = e.target.value
         let a = {...input}

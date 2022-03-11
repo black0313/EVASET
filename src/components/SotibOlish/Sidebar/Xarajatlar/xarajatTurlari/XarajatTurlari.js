@@ -17,8 +17,12 @@ import XarajatTurlariReducer,{
     saveXarajatlarTurlari,
 
 } from "../reducer/XarajatTurlariReducer";
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import XodimReducer from "../../Hodimlar/reducer/XodimReducer";
+import users from "../../../../../reducer/users";
+import XarajatlarReducer, {editXarajatlar, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
 
-function XarajatTurlari({getXarajatlarTurlari, xarajatturlari,saveXarajatlarTurlari, deleteXarajatlarTurlari}) {
+function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branchreducer,getbranch, xarajatturlari,saveXarajatlarTurlari, deleteXarajatlarTurlari}) {
 
     const [input, setInput] = useState(
         {
@@ -34,19 +38,16 @@ function XarajatTurlari({getXarajatlarTurlari, xarajatturlari,saveXarajatlarTurl
         let a = {...input}
         setInput(a)
     }
-
     function izlash(e) {
         input.izlash = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function nomi(e) {
         input.nomi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function kodi(e) {
         input.kodi = e.target.value
         let a = {...input}
@@ -55,7 +56,7 @@ function XarajatTurlari({getXarajatlarTurlari, xarajatturlari,saveXarajatlarTurl
     }
 
     useEffect(() => {
-        getXarajatlarTurlari()
+        getXarajatlarTurlari(users.businessId)
     }, [])
 
     const [active, setActive] = useState(false)
@@ -110,14 +111,15 @@ function XarajatTurlari({getXarajatlarTurlari, xarajatturlari,saveXarajatlarTurl
                         <thead>
                         <tr>
                             <th>Bo'limlar</th>
-                            <th>Bo'lim kodi</th>
+                            {/*<th>Bo'lim kodi</th>*/}
                             <th>Qisqa malumot</th>
                             <th>Amallar</th>
                         </tr>
                         </thead>
+                        {console.log(XarajatTurlariReducer.xarajatturlari)}
                         <tbody>
                         {
-                            xarajatturlari.filter(val=>{
+                            XarajatTurlariReducer.xarajatturlari.filter(val=>{
                                 if (input.izlash===''){
                                     return val
                                 }else if (val.title.toUpperCase().includes(input.izlash.toUpperCase())){
@@ -126,6 +128,9 @@ function XarajatTurlari({getXarajatlarTurlari, xarajatturlari,saveXarajatlarTurl
                             })
                                 .map(item => <tr key={item.id}>
                                 <td>{item.title}</td>
+                                    {/*<td></td>*/}
+                                    {/*<td>{item.business.description}</td>*/}
+                                    <td>-</td>
                                 <td>
                                     <button onClick={toggle} className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
                                     </button>
@@ -164,9 +169,4 @@ function XarajatTurlari({getXarajatlarTurlari, xarajatturlari,saveXarajatlarTurl
     )
 }
 
-export default connect(({XarajatTurlariReducer: {xarajatturlari}}) => ({xarajatturlari}), {
-    getXarajatlarTurlari,
-    saveXarajatlarTurlari,
-    deleteXarajatlarTurlari,
-    editXarajatlarTurlari
-})(XarajatTurlari)
+export default connect((XarajatTurlariReducer,branchreducer, XodimReducer,users,branchreducer,XarajatlarReducer),{editXarajatlar, getXarajatlar,getXarajatlarTurlari,saveXarajatlarTurlari,editXarajatlarTurlari,getbranch,saveXarajatlar}) (XarajatTurlari)

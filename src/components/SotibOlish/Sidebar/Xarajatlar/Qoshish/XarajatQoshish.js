@@ -27,7 +27,7 @@ import XarajatTurlariReducer, {
     saveXarajatlarTurlari
 } from "../reducer/XarajatTurlariReducer";
 
-function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajatlar, XarajatlarReducer,getXarajatlarTurlari,XarajatTurlariReducer}) {
+function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXarajatlar, match, getXarajatlar, XarajatlarReducer,getXarajatlarTurlari,XarajatTurlariReducer}) {
 
     const [input, setInput] = useState(
         {
@@ -177,7 +177,7 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
                 {
                     outlayCategoryId: 1,
                     totalSum: input.jamisumma,
-                    branchId: 1,
+                    branchId: input.baza,
                     spenderId: 1,
                     description: input.qisqaeslatma,
                     date: input.sana
@@ -199,9 +199,10 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
     }
 
     useEffect(() => {
-        getXarajatlar()
+        getXarajatlar(users.businessId)
         editX()
-        getXarajatlarTurlari()
+        getXarajatlarTurlari(users.businessId)
+        getbranch(users.businessId)
     }, [])
 
     function toggle() {
@@ -218,9 +219,12 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
                 <div className="col-12 border mt-4">
                     <div className="row">
                         <div className="col-4 col-sm-12">
-                            <label htmlFor="">baza</label>
+                            <label htmlFor="">Baza</label>
                             <select className={'form-control'} value={input.baza} onChange={baza} name="">
-                                <option value="">Tanlash</option>
+                                <option value="tanlash">Tanlash</option>
+                                {
+                                    branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                                }
                             </select>
 
                             <label htmlFor={'mijoz'} className={'mt-4'}>Sana</label>
@@ -231,17 +235,18 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
                             <input type="file" id={'mijoz2'} className={'form-control'} value={input.qoshimchaxujjat}
                                    onChange={qoshimchaxujjat}/>
 
-                            <label htmlFor={'area1'}>Xarajat eslatmasi</label>
-                            <textarea name="" id={'area1'} value={input.xarajateslatmasi} onChange={xarajateslatmasi}
-                                      className={'form-control'} cols="30" rows="2">
+                        {/*    <label htmlFor={'area1'}>Xarajat eslatmasi</label>*/}
+                        {/*    <textarea name="" id={'area1'} value={input.xarajateslatmasi} onChange={xarajateslatmasi}*/}
+                        {/*              className={'form-control'} cols="30" rows="2">*/}
 
-                        </textarea>
+                        {/*</textarea>*/}
                         </div>
 
                         <div className="col-4 col-sm-12">
                             <label htmlFor={'muddat'}>Xarajat turi</label>
                             <select name="" id="" value={input.xarajatturi} onChange={xarajatturi}
                                     className={'form-control'}>
+                                <option value="tanlash">Tanlash</option>
                                 {
                                     XarajatTurlariReducer.xarajatturlari.map(item=> <option value={item.id}>{item.title}</option>)
                                 }
@@ -250,17 +255,14 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
                             <label htmlFor={'stat'} className={'mt-4'}>Xarajat qildi</label>
                             <select name="" id="" className={'form-control'} value={input.xarajatqildi}
                                     onChange={xarajatqildi}>
-                                <option value="">Tanlash</option>
-                                <option value="">Boshliq</option>
+                                <option value="tanlash">Tanlash</option>
+                                <option value="Fake">Boshliq</option>
                             </select>
 
                             <label htmlFor={'savRaqam'} className={'mt-4'}>Amaldagi soliq</label>
                             <input type="number" value={input.amaldagisoliq} onChange={amaldagisoliq}
                                    className={'form-control'} placeholder={'savdo raqami'}/>
 
-                            {/*<label className={'mt-5'} htmlFor={'lang'}>lang_v1.is_refend</label>*/}
-                            {/*<input onClick={toggle} itemID={'lang'} style={{width: '20px', height: '20px'}}*/}
-                            {/*       type="checkbox" id={'lang'}/>*/}
                         </div>
                         {/*<Modal isOpen={active} toggle={toggle}>*/}
                         {/*    <ModalHeader>*/}
@@ -294,12 +296,12 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
                             <input type="text" className={'form-control'} value={input.qisqaeslatma}
                                    onChange={qisqaeslatma}/>
 
-                            <label htmlFor={'hisobF'} className={'mt-4'}>Experence for contact</label>
-                            <select name="" id={'hisobF'} className={'form-control'} value={input.experencecontact}
-                                    onChange={experencecontact}>
-                                <option value="">Default</option>
-                                <option value="">Walk in customer</option>
-                            </select>
+                            {/*<label htmlFor={'hisobF'} className={'mt-4'}>Experence for contact</label>*/}
+                            {/*<select name="" id={'hisobF'} className={'form-control'} value={input.experencecontact}*/}
+                            {/*        onChange={experencecontact}>*/}
+                            {/*    <option value="">Default</option>*/}
+                            {/*    <option value="">Walk in customer</option>*/}
+                            {/*</select>*/}
 
                             <label htmlFor={'qoshim'} className={'mt-4'}>Jami summa</label>
                             <input type="text" value={input.jamisumma} onChange={jamisumma} className={'form-control'}
@@ -361,6 +363,7 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
                 {/*        </div>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
+
                 <div className={'col-md-10 offset-1 mt-5 border p-4'}>
                     <h5>Qarz miqdori!: 0.00</h5>
                     <Link to={'/headerthird/xarajatRuyxati'}>
@@ -373,5 +376,5 @@ function XarajatQoshish({editXarajatlar,users, saveXarajatlar, match, getXarajat
     )
 }
 
-export default connect((XarajatTurlariReducer,XodimReducer,users,branchreducer,XarajatlarReducer),{editXarajatlar,getXarajatlar,getXarajatlarTurlari,saveXarajatlarTurlari,editXarajatlarTurlari,getbranch,saveXarajatlar}) (XarajatQoshish)
+export default connect((XarajatTurlariReducer,branchreducer, XodimReducer,users,branchreducer,XarajatlarReducer),{editXarajatlar, getXarajatlar,getXarajatlarTurlari,saveXarajatlarTurlari,editXarajatlarTurlari,getbranch,saveXarajatlar}) (XarajatQoshish)
 
