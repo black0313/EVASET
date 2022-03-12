@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './PAGANATION.css';
 import RenderComponent4 from "./RenderComponent4";
+import {connect} from "react-redux";
+import SavdoQoshishReducer, {getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
+import users, {getusers, savdooynasi} from "../../../reducer/users";
+import functionreducer, {active, activSavdo} from "../../../reducer/functionreducer";
+import XaridReducer, {getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
+import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 
-function Pagination4() {
+function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdolar}) {
     useEffect(() => {
         ommabop()
+        getXarid(users.businessId)
+        getSavdolar(users.businessId)
     }, [])
 
-
     const [posts, setposts] = useState([])
-
 
     const [mahsulot, setmahsulot] = useState(
         {
@@ -72,10 +78,20 @@ function Pagination4() {
 
                             </tr>
                             </thead>
+                            {console.log(SavdoQoshishReducer.savdolar)}
                             <tbody>
-                            {getPaginatedData().map((d, idx) => (
-                                <RenderComponent4 key={idx} data={d} />
-                            ))}
+                            {
+                                SavdoQoshishReducer.savdolar.filter(val=>val.loan>0) .map(item=><tr key={item.id}>
+                                    <td>{item.trader.id}</td>
+                                    <td>{item.customer.name}</td>
+                                    <td>{item.loan}</td>
+                                    <td>
+                                        {
+                                            item.payDate
+                                        }
+                                    </td>
+                                </tr>)
+                            }
                             </tbody>
                         </table>
 
@@ -113,12 +129,8 @@ function Pagination4() {
 
                 </div>
 
-
-
-
             </div>
         </div>
     );
 }
-
-export default Pagination4;
+export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),{getMaxsulotRuyxati,getusers,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Pagination4);

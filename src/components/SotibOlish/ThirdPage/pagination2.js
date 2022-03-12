@@ -1,10 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import './PAGANATION.css';
 import RenderComponent2 from "./RenderComponent2";
+import {connect} from "react-redux";
+import SavdoQoshishReducer, {getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
+import users, {getusers, savdooynasi} from "../../../reducer/users";
+import functionreducer, {active, activSavdo} from "../../../reducer/functionreducer";
+import XaridReducer, {getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
+import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 
-function Pagination2() {
+function Pagination2({getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,users,}) {
     useEffect(() => {
         ommabop()
+        getMaxsulotRuyxati(users.businessId)
     }, [])
 
 
@@ -73,10 +80,18 @@ function Pagination2() {
                                 <th className={'border-0 '}>Qolgan mahsulot</th>
                             </tr>
                             </thead>
+                            {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
                             <tbody>
-                            {getPaginatedData().map((d, idx) => (
-                                <RenderComponent2 key={idx} data={d}/>
-                            ))}
+                            {
+                                MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>val.quantity<=10).map(item=>
+                                            <tr key={item.id}>
+                                                <td>{item.name}</td>
+                                                <td>{item.branch.name}</td>
+                                                <td>{item.quantity}</td>
+                                            </tr>
+
+                                    )
+                            }
                             </tbody>
                         </table>
 
@@ -119,5 +134,4 @@ function Pagination2() {
         </div>
     );
 }
-
-export default Pagination2;
+export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),{getMaxsulotRuyxati,getusers,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Pagination2);

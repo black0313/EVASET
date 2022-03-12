@@ -8,18 +8,45 @@ const slice = createSlice({
     initialState: {
         xaridlar: [],
         current:false,
-        xaridlarjami:0
+        xaridlarjami:0,
+        miqdor:0,
+        uzcard:0,
+        naqd:0,
+        humo:0,
     },
     reducers: {
         getFrom: (state, action) => {
             state.xaridlar = action.payload.object
             console.log(action.payload.object);
-            let amout=0
+            let amount=0
+            let uzcard=0
+            let naqd=0
+            let humo=0
+            let miqdor=0
             action.payload.object.map(item=>{
-                    amout+=item.totalSum
+                    amount+=item.totalSum
+                console.log(item.purchaseProductList[0].purchasedQuantity)
+                item.purchaseProductList.map(item=>{
+                    miqdor+=item.purchasedQuantity
+                })
+
+                console.log(item)
+                // if (item.payMethod.id===2){
+                //     uzcard+=item.totalSum
+                // }
+                // else if(item.payMethod.id===1){
+                //     naqd+=item.totalSum
+                // }
+                // else if(item.payMethod.id===3){
+                //     humo+=item.totalSum
+                // }
                 },
             )
-            state.xaridlarjami=amout
+            state.xaridlarjami=amount
+            state.miqdor=miqdor
+            state.uzcard=uzcard
+            state.humo=humo
+            state.naqd=naqd
         },
         savefrom: (state,action) => {
             state.current=!state.current
