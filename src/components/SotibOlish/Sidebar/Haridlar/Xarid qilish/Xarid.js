@@ -267,15 +267,15 @@ function Xarid({
         let ad = [...mah]
         setmah(ad)
 
-        // let b = 0
-        // let c = 0
-        // arr1.map(item => {
-        //     b += item.counter
-        //     c += (item.counter * item.buyPrice)
-        //
-        // })
-        // setxisob(b)
-        // setjamixisob(c)
+        let b = 0
+        let c = 0
+        mah.map(item => {
+            b += item.quantity
+            c += (item.quantity * item.buyPrice)
+
+        })
+        setXisob(b)
+        setjamiXisob(c)
     }
 
     function qisqaeslatma(e) {

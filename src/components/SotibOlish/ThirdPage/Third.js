@@ -202,7 +202,7 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
             svgfoiz: <img src={jami3} alt={'jami3'}/>
         },
         {
-            number: "2 400 000",
+            number: SavdoQoshishReducer.qarz,
             foiz: "+10.23%",
             text: 'QARZDORLARDAN HAQIM',
             svgfoiz: <img src={jami4} alt={'jami4'}/>,

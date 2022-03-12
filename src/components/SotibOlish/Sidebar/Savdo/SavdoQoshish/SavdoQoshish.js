@@ -7,11 +7,17 @@ import TaminotReducer from "../../Hamkorlar/reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
 import './savdoQoshish.css'
 import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
+import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import {toast} from "react-toastify";
+import MijozGuruxReducer, {getMijozGurux} from "../../Hamkorlar/reducer/MijozGuruxReducer";
+import {Link} from "react-router-dom";
+import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
 
-function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match,editSavdolar,SavdoQoshishReducer,users}){
+function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,MijozGuruxReducer,saveSavdolar,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,deleteSavdolar,match,editSavdolar,SavdoQoshishReducer,users}){
 
     const [input,setInput] = useState(
         {
+            baza:'',
             savdoqoshish:'',
             mijoz:'',
             tulovmuddati:'',
@@ -26,14 +32,18 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
             paidon:'',
             tulovusuli:'',
             eslatma:'',
+            maxmiqdor:''
         }
     )
     useEffect(()=>{
        editS()
         getbranch(users.businessId)
+        getMaxsulotRuyxati(users.businessId)
+        getMijozGurux(users.businessId)
+        getPay(users.businessId)
     },[])
 
-    function savdoqoshish(e){
+    function baza(e){
         input.savdoqoshish = e.target.value
         let a = {...input}
         setInput(a)
@@ -78,11 +88,47 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
         let a = {...input}
         setInput(a)
     }
+
+    const [xisob,setxisob] = useState(0)
+    const [jamixisob,setjamixisob] = useState(0)
+    const [mah,setmah] = useState([])
+    function pushesh(val) {
+        let d = false
+        mah.map(item => {
+            if (item.id === val.id) {
+                d = true
+                // alert('Bu mahsulot jadvalda bor!')
+                toast.warn('Bu mahsulot jadvalda bor!')
+            }
+        })
+        if(d===false){
+            mah.push({...val })
+        }
+    }
+
     function maxsulotnomishtrix(e){
         input.maxsulotnomishtrix = e.target.value
         let a = {...input}
         setInput(a)
+        {
+            console.log(MaxsulotlarRoyxariReducer.maxsulotlar)
+        }
+        MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
+            if (val.name === input.maxsulotnomishtrix){
+                console.log(val.quantity)
+                pushesh({...val,counter:''})
+                input.maxsulotnomishtrix = ''
+                let a = {...input,counter:''}
+                setInput(a)
+            }else if (input.maxsulotnomishtrix == val.barcode){
+                pushesh({...val})
+                input.maxsulotnomishtrix = ''
+                let a = {...input}
+                setInput(a)
+            }
+        })
     }
+
     function avans(e){
         input.avans = e.target.value
         let a = {...input}
@@ -103,7 +149,35 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
         let a = {...input}
         setInput(a)
     }
+    function maxmiqdor(e,id){
+        input.maxmiqdor = e.target.value
+        let b = {...input.maxmiqdor}
+        setInput(b)
+            mah.filter(item=>{
+                if (item.id==id){
+                    if (item.counter > item.quantity){
+                        item.counter= parseInt(input.maxmiqdor)
+                        toast.warn(`Bazada atigi ${item.quantity}  ${item.measurement.name} mahsulot bor`)
 
+                    }
+                    else{
+                        item.counter=parseInt(input.maxmiqdor)
+                    }
+
+                }
+            })
+        let a =[...mah]
+        setmah(a)
+        let d = 0
+        let c = 0
+        mah.map(item => {
+            d += item.counter
+            c += (item.counter * item.salePrice)
+
+        })
+        setxisob(d)
+        setjamixisob(c)
+    }
     function editS(){
         if(match.params.id !== undefined){
             getSavdolar()
@@ -120,7 +194,7 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
     function saqla(){
         if (match.params.id !== undefined){
             editSavdolar({
-                customerId:1,
+                customerId:input.mijoz,
                 userId:1,
                 productTraderDto:[
                     {
@@ -129,33 +203,55 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
                     }
                 ],
                 payDate:"2020-10-10",
-                branchId:1,
-                payMethodId:1,
-                amountPaid:1,
+                branchId:input.baza,
+                payMethodId:input.tulovusuli,
+                amountPaid:input.avans,
                 currencyId:1,
                 addressId:1
             },console.log('edited'))
         }else {
-            saveSavdolar(
-                {
-                    customerId:1,
-                    userId:1,
-                    productTraderDto:[
-                        {
-                            tradedQuantity:1,
-                            productTradeId:1
-                        }
-                    ],
-                    payDate:"2020-10-10",
-                    branchId:1,
-                    payMethodId:1,
-                    amountPaid:1,
-                    currencyId:1,
-                    addressId:1
-                },
-                console.log('saved')
-            )
+            mah.map(item=>{
+                saveSavdolar(
+                    {
+                        customerId:1,
+                        payDate:"2020-10-10",
+                        userId:1,
+                        productTraderDto:[
+                            {
+                                tradedQuantity:item.counter,
+                                productTradeId:1
+                            }
+                        ],
+                        branchId:item.branch.id,
+                        payMethodId:input.tulovusuli,
+                        amountPaid:input.avans,
+                        currencyId:1,
+                        addressId:1
+                    },
+                    console.log('saved')
+                )
+            })
+
         }
+    }
+    function deleteM(ind) {
+        mah.map((item, index) => {
+            if (item.id === ind) {
+                mah.splice(index, 1)
+            }
+        })
+        let ad = [...mah]
+        setmah(ad)
+
+        let b = 0
+        let c = 0
+        mah.map(item => {
+            b += item.counter
+            c += (item.counter * item.salePrice)
+
+        })
+        setxisob(b)
+        setjamixisob(c)
     }
 
     return(
@@ -163,8 +259,8 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
         <div className={'row mt-5 d-flex justify-content-center'}>
             <div className="col-md-10">
                 <h5 className="mt-3">Savdo qo`shish</h5>
-                <select name="" value={input.savdoqoshish} onChange={savdoqoshish}>
-                    <option value="">Tanlash</option>
+                <select id={input.baza} onChange={baza} className={'form-control'}>
+                    <option value={'tanlash'}>Tanlash</option>
                     {
                         branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
                     }
@@ -175,7 +271,13 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
                 <div className="row d-flex justify-content-center">
                     <div className="col-4 col-sm-12 ">
                         <label htmlFor={'mijoz'}>Mijoz</label>
-                        <input type="text" id={'mijoz'} value={input.mijoz} onChange={mijoz} className={'form-control'}/>
+                        {/*<input type="text" id={'mijoz'} value={input.mijoz} onChange={mijoz} className={'form-control'}/>*/}
+                        <select  onChange={mijoz} value={input.mijoz} className={'form-control'}>
+                            <option value="tanlash">Tanlash</option>
+                            {
+                                MijozGuruxReducer.mijozgurux.map(item=> <option value={item.id}>{item.name}</option>)
+                            }
+                        </select>
                     </div>
 
                     <div className="col-4 col-sm-12">
@@ -186,9 +288,13 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
                                 <option value="">Tanlash</option>
                             </select>
                         </div>
-                        <label htmlFor={'stat'} className={'mt-4'}>Status</label>
+                        <label htmlFor={'stat'} >Status</label>
+                        {console.log(PayReducer.paymethod)}
                         <select value={input.status} onChange={status} name="" id="" className={'form-control'}>
                             <option value="">Tanlash</option>
+                            {
+                                PayReducer.paymethod.map(item=> <option value={item.id}>{item.type}</option>)
+                            }
                         </select>
                         <label htmlFor={'savRaqam'} className={'mt-4'}>Savdo raqami</label>
                         <input type="number" value={input.savdoraqami} onChange={savdoraqami} className={'form-control'} placeholder={'savdo raqami'}/>
@@ -209,10 +315,10 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
                 </div>
             </div>
 
-            <div className="col-md-10 mt-4 border p-2">
+            <div className="col-md-10 border mt-4 p-2">
                 <div className="col-6 col-sm-6 offset-3 d-flex">
                     <input type="text" value={input.maxsulotnomishtrix} onChange={maxsulotnomishtrix} className={'form-control'} placeholder={'mahsulot nomi yoki shtrix kodini yozing'}/>
-                    <h5 style={{fontSize:'32px',cursor:'pointer'}}>+</h5>
+                    {/*<h5 style={{fontSize:'32px',cursor:'pointer'}}>+</h5>*/}
                 </div>
                 <div className="table-responsive">
                 <table className={'table mt-4'}>
@@ -221,26 +327,53 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
                             <th>Mahsulot</th>
                             <th>Miqdori</th>
                             <th>Narxi</th>
-                            <th>Discount</th>
+                            {/*<th>Discount</th>*/}
                             <th>Jami</th>
                             <th>x</th>
                         </tr>
                     </thead>
+                    <tbody>
+                    {
+                        mah
+                            .map(item => <tr key={item.id}>
+                                <td><h5>{item.name}</h5></td>
+                                <td>
+                                    <input onChange={event=>(maxmiqdor(event,item.id))} value={item.counter} type="number" placeholder={`Bazada ${item.quantity}  ${item.measurement.name} mahsulot bor`}
+                                           className={'form-control'}/>
+                                </td>
+                                <td>
+                                    {item.salePrice}
+                                </td>
+                                    <td>
+                                        {item.counter*item.salePrice}
+                                    </td>
+                                <td>
+                                    <button onClick={()=>deleteM(item.id)} className={'btn btn-danger'}>X</button>
+                                </td>
+                            </tr>)
+                    }
+                    </tbody>
                 </table>
+                    <div className={'d-flex justify-content-around'}>
+                        <div><h4>Maxsulotlar soni: {xisob}</h4></div>
+                        <div><h4>Jami: {jamixisob}</h4></div>
+                    </div>
                 </div>
             </div>
 
             <div className="col-md-10 mt-4 border p-0">
                 <h5 className={'text-center mt-5'}>To`lov qilish</h5>
-                <div className="col-md-10 offset-1 border p-0 d-flex">
+                <div className="col-md-10 offset-1  p-0 d-flex justify-content-between">
                     <div className="row">
                         <div className="col-md-6">
                             <label htmlFor={'avans'}>To`lov so`mmasi</label>
                             <input type="text" value={input.avans} onChange={avans} className={'form-control'} id={'avans'}/>
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
-                            <select name="" id={'tol'} className={'form-control'} value={input.tulovusuli} onChange={tulovusuli}>
-                                <option value="">Naqd</option>
-                                <option value="">Pastik</option>
+                            <select id={'tol'} className={'form-control'} value={input.tulovusuli} onChange={tulovusuli}>
+                                <option value="tanla">Tanlash</option>
+                                {
+                                    PayReducer.paymethod.map(item=> <option value={item.id}>{item.type}</option>)
+                                }
                             </select>
                         </div>
                         <div className="col-md-6">
@@ -255,7 +388,9 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
             </div>
             <div className={'col-md-10 offset-1 mt-5 border p-4'}>
                 <h5>Qarz miqdori!: 0.00</h5>
-                <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                <Link to={'/headerthird/barcasavdolar'}>
+                    <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                </Link>
                 <button className={'btn btn-outline-primary'}>Saqlash va chek</button>
             </div>
 
@@ -264,4 +399,4 @@ function SavdoQoshish({getbranch,branchreducer,saveSavdolar,deleteSavdolar,match
     )
 }
 
-export default connect((TaminotReducer,SavdoQoshishReducer,users,branchreducer),{getbranch,getSavdolar,saveSavdolar,editSavdolar,deleteSavdolar}) (SavdoQoshish)
+export default connect((TaminotReducer,PayReducer,MaxsulotlarRoyxariReducer,MijozGuruxReducer ,SavdoQoshishReducer,users,branchreducer),{getbranch,getPay,getMaxsulotRuyxati,getMijozGurux,getSavdolar,saveSavdolar,editSavdolar,deleteSavdolar}) (SavdoQoshish)

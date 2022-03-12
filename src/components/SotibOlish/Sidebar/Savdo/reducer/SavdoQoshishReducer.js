@@ -6,18 +6,22 @@ const slice = createSlice({
     name: 'savdolar',
     initialState: {
         savdolar: [],
-        amount:0
+        amount:0,
+        qarz:0,
     },
     reducers: {
         getFrom: (state, action) => {
             state.savdolar = action.payload.object
             console.log(action.payload);
             let amout=0
+            let qarz=0
                 action.payload.object.map(item=>{
                         amout+=item.amountPaid
+                    qarz+=item.loan
                     },
                 )
                 state.amount=amout
+            state.qarz=qarz
         },
         savefrom: (state,action) => {
             state.savdolar.unshift(action.payload.object)
