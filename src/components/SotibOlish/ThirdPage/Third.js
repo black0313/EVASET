@@ -587,7 +587,7 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
                                     </div>
                                 </div>
                                 <div className="col-12 mt-3">
-                                    <Pagination4/>
+                                    <Pagination/>
                                 </div>
                             </div>
                         </div>
