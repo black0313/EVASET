@@ -120,85 +120,104 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     }
 
     function saqla(){
-            if(input.idraqam === ""){
-                input.idplaceholder = "ID kiriting..."
-                var b = document.getElementById('idRaqam')
-                let a = {...input}
-                setInput(a)
-                b.classList.add('pcolor')
-            }
-            else if(input.login === ""){
-                input.loginplaceholder = "Ma'lumot kiriting..."
-                var b = document.getElementById('log1')
-                let a ={...input}
-                setInput(a)
-                b.classList.add('pcolor')
-            }
-            else if(input.ismi === ""){
+            // if(input.idraqam === ""){
+            //     input.idplaceholder = "ID kiriting..."
+            //     var b = document.getElementById('idRaqam')
+            //     let a = {...input}
+            //     setInput(a)
+            //     console.log(input);
+            //     b.classList.add('pcolor')
+            // }
+            //  if(input.login === ""){
+            //     input.loginplaceholder = "Ma'lumot kiriting..."
+            //     var b = document.getElementById('log1')
+            //     let a ={...input}
+            //     setInput(a)
+            //     b.classList.add('pcolor')
+            // }
+            if(input.ismi === "" || input.telegram === "" || input.familiyasi === ""){
                 input.ismplaceholder = "Ism kiriting..."
                 var b = document.getElementById('ism')
-                let a = {...input}
-                setInput(a)
-                b.classList.add('pcolor')
-            }
-            else if(input.telegram === ""){
+                input.telefonRaqamPlaceholder = "Telefon raqam kiriting..."
+                var c = document.getElementById('telefon')
                 input.telegramLinkPlaceholder = "Link kiriting..."
-                var b = document.getElementById('telegram')
+                var d = document.getElementById('telegram')
                 let a = {...input}
                 setInput(a)
                 b.classList.add('pcolor')
+                c.classList.add('pcolor')
+                d.classList.add('pcolor')
             }
-            else if(input.tele === ""){
-                input.telegramLinkPlaceholder = "Link kiriting..."
-                var b = document.getElementById('telegram')
-                let a = {...input}
-                setInput(a)
-                b.classList.add('pcolor')
-            }
+            // else if(input.telegram === ""){
+            //     input.telegramLinkPlaceholder = "Link kiriting..."
+            //     var b = document.getElementById('telegram')
+            //     let a = {...input}
+            //     setInput(a)
+            //     b.classList.add('pcolor')
+            // }
+            // else if(input.familiyasi === ""){
+            //     input.telefonRaqamPlaceholder = "Telefon raqam kiriting..."
+            //     var b = document.getElementById('telefon')
+            //     let a = {...input}
+            //     setInput(a)
+            //     b.classList.add('pcolor')
+            // }
             
            
             else{
+            
+                if (input.tID !== ''){
+                    editTaminot(
+                        {
+                            name:input.ismi,
+                            phoneNumber: input.familiyasi,
+                            telegram: input.telegram,
+                            supplierType:'',
+                            businessId: 1,
+                            id:input.tID
+                        }
+                    )
+                    console.log('edit')
+                }
+                else{
+                    saveTaminot({
+                        name:input.ismi,
+                        phoneNumber: input.familiyasi,
+                        telegram: input.telegram,
+                        supplierType:'',
+                        businessId: 1,
+                    })
+                    console.log('save')
+                }
+              
                 toggle()
                 let a ={...input}
                 setInput(a)
-               
-                console.log(input.login);
-
+                console.log(input);
+                let v = {...input}
+                setInput({
+                    langv1: '',
+                    telegram:'',
+                    dukon: '',
+                    idraqam: '',
+                    login: '',
+                    idplaceholder:'ID raqami',
+                    loginplaceholder:'Mr/Mrs/Mis',
+                    ismplaceholder:'Ismi',
+                    telegramLinkPlaceholder:'Telegram link',
+                    telefonRaqamPlaceholder:'Telefon raqam',
+                    ismi: '',
+                    otaismi: '',
+                    familiyasi: '',
+                    inputsearch: '',
+                    tID: '',
+                })
             }
         
 
 
 
-        // if (input.tID !== ''){
-        //     editTaminot(
-        //         {
-        //             name:input.ismi,
-        //             phoneNumber: input.familiyasi,
-        //             telegram: input.telegram,
-        //             supplierType:'',
-        //             businessId: 1,
-        //             id:input.tID
-        //         }
-        //     )
-        //     console.log('edit')
-        // }
-        // else{
-        //     saveTaminot({
-        //         name:input.ismi,
-        //         phoneNumber: input.familiyasi,
-        //         telegram: input.telegram,
-        //         supplierType:'',
-        //         businessId: 1,
-        //     })
-        //     console.log('save')
-        // }
-        // input.ismi=''
-        // input.familiyasi=''
-        // input.telegram=''
-        // input.login=''
-        // input.tID=''
-        // let a ={...input}
-        // setInput(a)
+        
     }
 
     return (
@@ -339,7 +358,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 <div className={'mt-3'}>
                                     <label htmlFor={'ot'}>Telefon raqam</label>
                                     <input value={input.familiyasi} onChange={changefamiliyasi} type="number"
-                                           placeholder={input.telefonRaqamPlaceholder} className={'form-control'}/>
+                                           placeholder={input.telefonRaqamPlaceholder} id={'telefon'} className={'form-control'}/>
                                 </div>
                             </div>
 
