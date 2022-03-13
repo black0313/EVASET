@@ -41,9 +41,6 @@ function Pagination2({getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,users,}) {
 
     function goToNextPage() {
         setCurrentPage((page) => page + 1);
-        // console.log(posts)
-        // console.log(pages)
-        // console.log(currentPage)
     }
 
     function goToPreviousPage() {
