@@ -116,16 +116,20 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     }
 
     function saqla(){
-            if(input.login === ""){
-                input.loginplaceholder = "Ma'lumot kiriting..."
-                let a ={...input}
-                setInput(a)
-                var b = document.getElementById('log1')
-                b.classList.add('pcolor')
-            }
-            else{
+            // if(input.login === ""){
+            //     input.loginplaceholder = "Ma'lumot kiriting..."
+            //     let a ={...input}
+            //     setInput(a)
+            //     var b = document.getElementById('log1')
+            //     b.classList.add('pcolor')
+            // }
+            // else{
 
-            }
+            // }
+
+            toggle()
+
+
 
         // if (input.tID !== ''){
         //     editTaminot(
@@ -284,8 +288,8 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 </div>
                                 <div>
                                     <label htmlFor={'ism'}>Ismi</label>
-                                    <input onChange={changeismi} value={input.ismi} type="text" id={'ism'}
-                                           placeholder={'Ismi'} className={'form-control'}/>
+                                    <input onChange={changeismi}  value={input.ismi} type="text" id={'ism'}
+                                           placeholder={'Ismi'} className={'form-control'} required="required"/>
                                 </div>
                             </div>
                             <div className="in d-flex">
