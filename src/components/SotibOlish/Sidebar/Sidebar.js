@@ -82,7 +82,6 @@ function Sidebar({functionreducer,active,users}) {
                         {
                             addsupplier  ?  <Hamkorlar/> :''
                         }
-                        
                         <Maxsulotlar/>
                         <Haridlar/>
                         <Savdo/>

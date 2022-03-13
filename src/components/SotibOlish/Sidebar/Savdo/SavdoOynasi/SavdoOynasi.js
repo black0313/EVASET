@@ -159,8 +159,7 @@ function SavdoOynasi({
                 setCount(item.id)
             }
         })
-        arr1.push({...val, counter: 1, disabled: false})
-
+        arr1.push({...val, counter: 1, disabled: false,})
         let a = 0
         let c = 0
         arr1.map(item => {
@@ -253,8 +252,14 @@ function SavdoOynasi({
         MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
             if (val.name === input.mahsulotnomi){
                 pushesh(val)
+                input.mahsulotnomi = ''
+                let a = {...input}
+                setInput(a)
             }else if (input.mahsulotnomi == val.barcode){
                 pushesh(val)
+                input.mahsulotnomi = ''
+                let a = {...input}
+                setInput(a)
             }
         })
     }

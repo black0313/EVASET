@@ -2,7 +2,7 @@ import './xarid.css'
 import {useEffect, useState} from "react";
 import {ModalBody, ModalHeader, ModalFooter, Modal} from "reactstrap";
 import {connect} from "react-redux";
-import XaridReducer, {getXarid, saveXarid, deleteXarid, editXarid, getXarid2} from '../reducer/XaridReducer'
+import XaridReducer, {getXarid,getXarid5, saveXarid, deleteXarid, editXarid, getXarid2} from '../reducer/XaridReducer'
 import tolovreducer, {gettolovholati} from "../../../../../reducer/tolovreducer";
 import users from "../../../../../reducer/users";
 import {Link} from 'react-router-dom'
@@ -20,6 +20,7 @@ import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 
 function Xarid({
                    getXarid,
+                   getXarid5,
                    getXarid2,
                    saveXarid,
                    taminot,
@@ -31,6 +32,7 @@ function Xarid({
                    editXarid,
                    XaridReducer,
                    users,
+    match,
                    getMaxsulotRuyxati,
                    MaxsulotlarRoyxariReducer,
                    TaminotReducer,
@@ -42,6 +44,7 @@ function Xarid({
 
     const [input, setInput] = useState(
         {
+            taxririd:'',
             diller: '',
             lang1: '',
             dukon: '',
@@ -234,7 +237,6 @@ function Xarid({
     }
 
     function shtrix(e) {
-
         input.shtrix = e.target.value
         let a = {...input}
         setInput(a)
@@ -265,15 +267,15 @@ function Xarid({
         let ad = [...mah]
         setmah(ad)
 
-        // let b = 0
-        // let c = 0
-        // arr1.map(item => {
-        //     b += item.counter
-        //     c += (item.counter * item.buyPrice)
-        //
-        // })
-        // setxisob(b)
-        // setjamixisob(c)
+        let b = 0
+        let c = 0
+        mah.map(item => {
+            b += item.quantity
+            c += (item.quantity * item.buyPrice)
+
+        })
+        setXisob(b)
+        setjamiXisob(c)
     }
 
     function qisqaeslatma(e) {
@@ -375,7 +377,6 @@ function Xarid({
             mah.push({...val })
         }
 
-
         let a = 0
         let c = 0
         mah.map(item => {
@@ -385,32 +386,79 @@ function Xarid({
         setXisob(a)
         setjamiXisob(c)
     }
+    useEffect(()=>{
+    },[])
 
+    function editX(){
+        console.log(XaridReducer.xaridlar)
+       if(match.params.id !== undefined){
+           getXarid(users.businessId)
+       }
+       XaridReducer.xaridlar.map(item=>{
+           if(item.id == match.params.id){
+               input.diller = item.dealer.id
+               input.qisqaeslatma = item.description
+               input.xaridsanasi = item.date
+               input.baza = item.branch.id
+               input.eslatma=item.paymentStatus.id
+               input.yetkazibberishnarxi2=item.deliveryPrice
+               input.xaridstatusi=item.purchaseStatus.id
+               let a ={...input}
+               setInput(a)
+               console.log(item.purchaseProductList[0].product)
+               pushesh({...item.purchaseProductList[0].product,quantity:item.purchaseProductList[0].purchasedQuantity})
+           }
+       })
+
+    }
     function saqla() {
-        mah.map(item=>{
-            saveXarid(
-                {
-                    dealerId: input.diller,
-                    seller: 2,
-                    purchaseStatusId: input.xaridstatusi,
-                    paymentStatusId: input.eslatma,
-                    branchId: input.baza,
-                    date: input.xaridsanasi,
-                    description: input.qisqaeslatma,
-                    deliveryPrice: input.yetkazibberishnarxi2,
-                    purchaseProductsDto: [
-                        {
-                            purchasedQuantity: item.quantity,
-                            productPurchaseId: item.id
-                        }
-                    ]
-                }
-            )
-        })
-
+        if (match.params.id === undefined){
+            mah.map(item=>{
+                saveXarid(
+                    {
+                        dealerId: input.diller,
+                        seller: 2,
+                        purchaseStatusId: input.xaridstatusi,
+                        paymentStatusId: input.eslatma,
+                        branchId: input.baza,
+                        date: input.xaridsanasi,
+                        description: input.qisqaeslatma,
+                        deliveryPrice: input.yetkazibberishnarxi2,
+                        purchaseProductsDto: [
+                            {
+                                purchasedQuantity: item.quantity,
+                                productPurchaseId: item.id
+                            }
+                        ]
+                    }
+                )
+            })
+        }
+        else{
+            mah.map(item=>{
+                editXarid(
+                    {
+                        dealerId: input.diller,
+                        seller: 2,
+                        purchaseStatusId: input.xaridstatusi,
+                        paymentStatusId: input.eslatma,
+                        branchId: input.baza,
+                        date: input.xaridsanasi,
+                        description: input.qisqaeslatma,
+                        deliveryPrice: input.yetkazibberishnarxi2,
+                        purchaseProductsDto: [
+                            {
+                                purchasedQuantity: item.quantity,
+                                productPurchaseId: item.id
+                            }
+                        ],
+                        id:match.params.id
+                    }
+                )
+            })
+        }
         setmah([])
         console.log('saqlandi');
-        toast.success('Xarid qilindi !')
     }
 
     function savedealer() {
@@ -435,6 +483,7 @@ function Xarid({
         getTaminot(users.businessId)
         getMaxsulotRuyxati(users.businessId)
         getkg(users.businessId)
+        editX()
     }, [TaminotReducer.current])
     useEffect(() => {
         getbranch(users.businessId)
@@ -580,7 +629,6 @@ function Xarid({
                                         <th>x</th>
                                     </tr>
                                     </thead>
-                                    {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
                                     <tbody>
                                     {
                                             mah
@@ -703,6 +751,7 @@ function Xarid({
                                 <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
                             </Link>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -715,6 +764,7 @@ export default connect((MaxsulotlarRoyxariReducer, XaridReducer, kgreducer, user
     getXarid,
     getkg,
     getXarid2,
+    getXarid5,
     saveXarid,
     editXarid,
     getTaminot,

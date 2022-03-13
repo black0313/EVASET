@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
+import {toast} from "react-toastify";
 // import {toast} from "react-toastify";
 
 const slice = createSlice({
@@ -14,13 +15,15 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             state.current=!state.current
-            console.log('SAVED_MAXSULOT');
+            toast.success('Mahsulot qo`shildi')
         },
         editfrom: (state,action) => {
             state.current=!state.current
+            toast.success('Mahsulot tahrirlandi')
         },
         deletefrom:(state,action)=>{
             state.current=!state.current
+            toast.success('Mahsulot o`chirildi')
         }
     }
 });

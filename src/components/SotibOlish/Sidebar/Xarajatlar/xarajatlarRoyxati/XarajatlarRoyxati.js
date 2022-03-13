@@ -81,11 +81,11 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
     }
 
     useEffect(() => {
-        getXarajatlar()
+        getXarajatlar(users.businessId)
         getXarajatlar2(users.businessId)
         getbranch(users.businessId)
         // getbranch(users.businessId)
-    }, [XarajatlarReducer.current])
+    }, [XarajatlarReducer.counter])
 
     function deleteXarajat(item){
         deleteXarajatlar(item.id)
@@ -185,16 +185,14 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                         <tr>
                             <th>sana</th>
                             <th>Savdo raqami</th>
-                            <th>Mijoz</th>
-                            <th>Telefon raqami</th>
                             <th>Baza</th>
                             <th>To'lov statusi</th>
-                            <th>To'lov usuli</th>
-                            <th>Jami summa</th>
+                            {/*<th>To'lov usuli</th>*/}
+                            {/*<th>Jami summa</th>*/}
                             <th>To'langan summa</th>
                             <th>Qarz</th>
-                            <th>Yetkazish statusi</th>
-                            <th>Jami maxsulotlar</th>
+                            {/*<th>Yetkazish statusi</th>*/}
+                            <th>Jami summa</th>
                             <th>Savdogar</th>
                             <th>Savdo eslatmasi</th>
                             {/*<th>Yetkazish manzili</th>*/}
@@ -213,18 +211,16 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                                 
                             }).map(item => <tr key={item.id}>
                                 <td>{item.date}</td>
-                                <td>-</td>
-                                {/*<td>{item.spender.firstName}</td>*/}
-                                <td>-</td>
-                                <td>-</td>
-                                <td>{item.branch.name}</td>
-                                <td>-</td>
-                                <td>naqd</td>
+                                <td>{item.id}</td>
+                                {console.log(item.branch)}
+                                {/*<td>{item.branch}</td>*/}
+                                {/*<td>-</td>*/}
+                                {/*<td>-</td>*/}
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>{item.totalSum}</td>
-                                <td>-</td>
+                                {/*<td>{item.spender.firstName}</td>*/}
                                 <td>- </td>
                                 <td>{item.description}</td>
                                 <td>

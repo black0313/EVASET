@@ -6,7 +6,6 @@ import Data from '../../../../../img/Data.png'
 import Pdf from '../../../../../img/PDF.png'
 import './xaridxisobot.css'
 import {useState, useRef, useEffect} from "react";
-import { DateRangePickerComponent } from '@syncfusion/ej2-react-calendars'
 import {MenuItem, TextField,Select,InputLabel} from "@mui/material";
 import {connect} from "react-redux";
 import './xaridxisobot.css'
@@ -153,16 +152,16 @@ getXarid2(users.businessId)
                         <h6>Sanani belgilang:</h6>
                         <input type="date" className={'inputData'} value={input.sananibelgilash} onChange={sananibelgilash}/>
                             {
-                                active?     <DateRangePickerComponent placeholder="Enter Date Range"
-                                                                      startDate={startValueDate}
-                                                                      endDate={endValueDate}
-                                                                      min={minDateDate}
-                                                                      max={maxDateDate}
-                                                                      minDays={1}
-                                                                      maxDays={10000}
-                                                                      format="dd-MMM-yy"
-
-                                ></DateRangePickerComponent>:''
+                                // active?     <DateRangePickerComponent placeholder="Enter Date Range"
+                                //                                       startDate={startValueDate}
+                                //                                       endDate={endValueDate}
+                                //                                       min={minDateDate}
+                                //                                       max={maxDateDate}
+                                //                                       minDays={1}
+                                //                                       maxDays={10000}
+                                //                                       format="dd-MMM-yy"
+                                //
+                                // ></DateRangePickerComponent>:''
                             }
 
                     </div>
@@ -195,44 +194,43 @@ getXarid2(users.businessId)
                         <thead>
                         <tr>
                             <td>Maxsulot</td>
-                            <td>Shtrix kod</td>
+                            {/*<td>Shtrix kod</td>*/}
                             <td>Diller</td>
-                            <td>Qisqa eslatma</td>
-                            <td>Sana</td>
-                            <td>Miqdori</td>
-                            <td>Jami</td>
-                            <td>Sotib olish narxi</td>
-                            <td>Jami</td>
+                            <td>Qarzi qancha</td>
+                            <td>
+                                Qarzni to`lash
+                            </td>
+                            {/*<td>Sana</td>*/}
+                            {/*<td>Miqdori</td>*/}
+                            {/*<td>Jami</td>*/}
+                            {/*<td>Sotib olish narxi</td>*/}
+                            {/*<td>Jami</td>*/}
                         </tr>
                         </thead>
-                        {/*{console.log(XaridReducer.xaridlar)}*/}
-                        {/*{console.log(XaridReducer.xaridlar[0].purchaseProductList)}*/}
-
+                        {console.log(XaridReducer.xaridlar)}
                         <tbody>
                         {
-                            // console.log(MaxsulotlarRoyxariReducer.maxsulotlar)
-                           // XaridReducer.xaridlar.map(item => <tr key={item.id}>
-                           //     {
-                           //         item.purchaseProductList.map(item=><td key={item.id}>{item.product.name}</td>)
-                           //
-                           //     }
-                           //     {
-                           //         item.purchaseProductList.map(item=><td key={item.id}>{item.product.barcode}</td>)
-                           //     }
-                           //
-                           //     <td>{item.dealer.name}</td>
-                           //     <td>{item.description}</td>
-                           //     <td>{item.date}</td>
-                           //     {
-                           //         item.purchaseProductList.map(item=><td key={item.id}>{item.product.quantity}</td>)
-                           //     }
-                           //     {/*<td>{item.totalSum}</td>*/}
-                           //     <td>-</td>
-                           //     {
-                           //         item.purchaseProductList.map(item=><td key={item.id}>{item.product.buyPrice}</td>)
-                           //     }
-                           //     <td>{item.totalSum}</td>
-                           //  </tr>)
+                            XaridReducer.xaridlar.map(item=><tr key={item.id}>
+
+                                    {
+                                        item.purchaseProductList.map(item=><td key={item.id}>
+                                            {item.product.name}
+                                        </td>)
+                                    }
+                                    {/*{console.log(item.purchaseProductList[0].product.name)}*/}
+
+                                <td>
+                                    {item.dealer.name}
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <button className={'btn btn-success'}>
+                                        Qarzni to`lash
+                                    </button>
+                                </td>
+                            </tr>)
                         }
                         </tbody>
                     </table>

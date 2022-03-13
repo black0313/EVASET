@@ -27,7 +27,8 @@ import users,{savdooynasi} from "../../../reducer/users";
 import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
 import functionreducer,{active,activSavdo} from "../../../reducer/functionreducer";
 import XaridReducer,{getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
-function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
+import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
@@ -114,7 +115,7 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
         },
         {
             name: 'Xaridlar',
-            jami: '579',
+            jami: XaridReducer.miqdor,
             text: "Jami haridlar",
             foiz: '8% oshdi',
             svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -202,7 +203,7 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
             svgfoiz: <img src={jami3} alt={'jami3'}/>
         },
         {
-            number: "2 400 000",
+            number: SavdoQoshishReducer.qarz,
             foiz: "+10.23%",
             text: 'QARZDORLARDAN HAQIM',
             svgfoiz: <img src={jami4} alt={'jami4'}/>,
@@ -219,7 +220,7 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
     }
 
     const options = {
-        series: [200000, 300000, 500000, 600000],
+        series: [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0],
         chart: {
             type: 'donut'
         },
@@ -243,7 +244,12 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
             }
         }
     }
-    const series = [200000, 300000, 500000, 600000]
+
+    useEffect(()=>{
+        getMaxsulotRuyxati(users.businessId)
+    },[])
+
+    const series = [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0]
     const windowscrenn = window.screen.height
     const windowscrenn2 = window.screen.width
 
@@ -316,9 +322,7 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>)
                     }
@@ -335,8 +339,6 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
                                 <div className={'selects-style me-sm-4'}>
                                     <select className={'selects'} form={'select'} id="select">
                                         <option value="1">Ushbu oy</option>
-                                        <option value="2">O'tgan oy</option>
-                                        <option value="3">Bugun</option>
                                     </select>
                                 </div>
                                 <div className={'btn-nuqta'}>
@@ -588,16 +590,13 @@ function Third({display,users,SavdoQoshishReducer,getSavdolar,savdooynasi,active
                                     <Pagination4/>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );
-
 }
 
 
-export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer),{getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Third);
+export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),{getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Third);

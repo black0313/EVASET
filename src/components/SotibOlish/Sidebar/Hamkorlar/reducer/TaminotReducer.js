@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
 // import {toast} from "react-toastify";
 import {useEffect,useState} from "react";
+import {toast} from "react-toastify";
 
 const slice = createSlice({
     name: 'taminot',
@@ -15,15 +16,15 @@ const slice = createSlice({
             console.log(action.payload.object);
         },
         savefrom: (state,action) => {
-            console.log('SAQLANDI_TAMINOT')
+            toast.success('Diller saqlandi!')
             state.current=!state.current
         },
         editfrom: (state,action) => {
-            console.log('EDITED_TAMINOT');
+            toast.success('Diller tahrirlandi')
             state.current=!state.current
         },
         deletefrom:(state,action)=>{
-            console.log('DELETE_TAMINOT')
+            toast.success('Diller o`chirildi!')
             state.current=!state.current
         }
 

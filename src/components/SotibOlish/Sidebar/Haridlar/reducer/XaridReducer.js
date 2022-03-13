@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
+import {toast} from "react-toastify";
 // import {toast} from "react-toastify";
 
 const slice = createSlice({
@@ -7,24 +8,54 @@ const slice = createSlice({
     initialState: {
         xaridlar: [],
         current:false,
-        xaridlarjami:0
+        xaridlarjami:0,
+        miqdor:0,
+        uzcard:0,
+        naqd:0,
+        humo:0,
     },
     reducers: {
         getFrom: (state, action) => {
             state.xaridlar = action.payload.object
             console.log(action.payload.object);
-            let amout=0
+            let amount=0
+            let uzcard=0
+            let naqd=0
+            let humo=0
+            let miqdor=0
             action.payload.object.map(item=>{
-                    amout+=item.totalSum
+                    amount+=item.totalSum
+                console.log(item.purchaseProductList[0].purchasedQuantity)
+                item.purchaseProductList.map(item=>{
+                    miqdor+=item.purchasedQuantity
+                })
+
+                console.log(item)
+                // if (item.payMethod.id===2){
+                //     uzcard+=item.totalSum
+                // }
+                // else if(item.payMethod.id===1){
+                //     naqd+=item.totalSum
+                // }
+                // else if(item.payMethod.id===3){
+                //     humo+=item.totalSum
+                // }
                 },
             )
-            state.xaridlarjami=amout
+            state.xaridlarjami=amount
+            state.miqdor=miqdor
+            state.uzcard=uzcard
+            state.humo=humo
+            state.naqd=naqd
         },
         savefrom: (state,action) => {
             state.current=!state.current
+            toast.success('Xarid qilindi !')
         },
         editfrom: (state,action) => {
             state.current=!state.current
+            toast.success('Xarid taxrirlandi !')
+
         },
         deletefrom:(state,action)=>{
             state.current=!state.current
@@ -35,6 +66,12 @@ const slice = createSlice({
 
 export const getXarid=(data)=>apiCall({
     url: '/purchase/get-by-business/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
+export const getXarid5=(data)=>apiCall({
+    url: '/purchase/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });
@@ -64,8 +101,8 @@ export const saveXarid=(data)=>apiCall({
 });
 
 export const editXarid=(data)=>apiCall({
-    url: '/purchase',
-    method: 'post',
+    url: '/purchase/'+data.id,
+    method: 'put',
     data,
     onSuccess: slice.actions.editfrom.type
 });

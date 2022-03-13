@@ -1,28 +1,50 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
+import {toast} from "react-toastify";
 
 const slice = createSlice({
     name: 'savdolar',
     initialState: {
         savdolar: [],
-        amount:0
+        amount:0,
+        qarz:0,
+        uzcard:0,
+        naqd:0,
+        humo:0,
     },
     reducers: {
         getFrom: (state, action) => {
             state.savdolar = action.payload.object
             console.log(action.payload);
-            let amout=0
+            let amount=0
+            let qarz=0
+            let uzcard=0
+            let naqd=0
+            let humo=0
                 action.payload.object.map(item=>{
-                        amout+=item.amountPaid
+                        amount+=item.amountPaid
+                    qarz+=item.loan
+                    if (item.payMethod.id===2){
+                        uzcard+=item.amountPaid
+                    }
+                    else if(item.payMethod.id===1){
+                        naqd+=item.amountPaid
+                    }
+                    else if(item.payMethod.id===3){
+                        humo+=item.amountPaid
+                    }
                     },
                 )
-                state.amount=amout
+                state.amount=amount
+            state.qarz=qarz
+            state.uzcard=uzcard
+            state.humo=humo
+            state.naqd=naqd
         },
         savefrom: (state,action) => {
             state.savdolar.unshift(action.payload.object)
             // state.savdolar.unshift(action.payload.message)
-            console.log('SAVED_SAVDOLAR');
-            // toast.success('Saqlandi')
+            toast.success('Savdo qo`shildi')
         },
         editfrom: (state,action) => {
             state.savdolar.map((item,index)=>{
@@ -30,12 +52,11 @@ const slice = createSlice({
                     item.login = action.payload.login
                 }
             })
-            // toast.success('O`zgartirildi')
+            toast.success('Savdo tahrirlandi')
         },
         deletefrom:(state,action)=>{
 
-            console.log('DELETED_SAVDOLAR');
-            // toast.info('O`chirildi')
+            toast.info('Savdo O`chirildi')
         }
 
     }

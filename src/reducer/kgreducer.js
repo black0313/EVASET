@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../api";
+import {toast} from "react-toastify";
 
 export const slice=createSlice({
     name:'kg',
@@ -13,6 +14,7 @@ export const slice=createSlice({
         },
         save:(state,action)=>{
             state.current+=1
+            toast.success('SaqLandi')
         }
     }
 })

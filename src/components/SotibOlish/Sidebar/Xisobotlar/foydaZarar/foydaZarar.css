@@ -1,3 +1,4 @@
+/*@import url("https://cdn.syncfusion.com/ej2/material.css");*/
 .rowStyleF{
        justify-content: space-between;
        border-radius: 8px;
@@ -50,8 +51,9 @@
        text-align: center;
 }
 .hovFoyda:hover{
-       background: linear-gradient(90deg,red,blue);
+       background: linear-gradient(90deg,red,green);
        color: #cbadad;
+       border-radius: 10px;
 }
 .d1 ul li{
        cursor: pointer;

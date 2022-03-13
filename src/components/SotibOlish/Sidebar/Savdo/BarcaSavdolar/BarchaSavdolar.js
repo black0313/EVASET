@@ -8,7 +8,6 @@ import Edit from '../../../../../img/Edit.png'
 import Delete from '../../../../../img/Delete.png'
 import './barcasavdolar.css'
 import {useState, useRef, useEffect} from "react";
-import { DateRangePickerComponent } from '@syncfusion/ej2-react-calendars'
 import {MenuItem, TextField,Select,InputLabel} from "@mui/material";
 import {connect} from "react-redux";
 import TaminotReducer, {getTaminot} from "../../Hamkorlar/reducer/TaminotReducer";
@@ -148,16 +147,16 @@ function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,Sa
                         <h6>Sanani belgilang:</h6>
                         <input type="date" className={'form-control'} value={input.sananibelgilash} onChange={sananibelgilash}/>
                         {
-                            active?     <DateRangePickerComponent placeholder="Enter Date Range"
-                                                                  startDate={startValueDate}
-                                                                  endDate={endValueDate}
-                                                                  min={minDateDate}
-                                                                  max={maxDateDate}
-                                                                  minDays={1}
-                                                                  maxDays={10000}
-                                                                  format="dd-MMM-yy"
-
-                            ></DateRangePickerComponent>:''
+                            // active?     <DateRangePickerComponent placeholder="Enter Date Range"
+                            //                                       startDate={startValueDate}
+                            //                                       endDate={endValueDate}
+                            //                                       min={minDateDate}
+                            //                                       max={maxDateDate}
+                            //                                       minDays={1}
+                            //                                       maxDays={10000}
+                            //                                       format="dd-MMM-yy"
+                            //
+                            // ></DateRangePickerComponent>:''
                         }
 
                     </div>
@@ -202,7 +201,7 @@ function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,Sa
                             <th>Jami summa</th>
                             <th>To'langan summa</th>
                             <th>Qarz</th>
-                            <th>Yetkazish statusi</th>
+                            {/*<th>Yetkazish statusi</th>*/}
                             <th>Jami maxsulotlar</th>
                             {/*<th>Savdogar</th>*/}
                             {/*<th>Savdo eslatmasi</th>*/}
@@ -210,21 +209,22 @@ function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,Sa
                             <th>Amallar</th>
                         </tr>
                         </thead>
+                        {console.log(SavdoQoshishReducer.savdolar)}
                         <tbody>
                         {
                             SavdoQoshishReducer.savdolar.map(item=><tr key={item.id}>
                                 <td>{item.payDate}</td>
-                                <td>{item.branchId}</td>
+                                <td>{item.branch.id}</td>
+                                <td>{item.customer.name}</td>
+                                <td> -</td>
+                                <td>{item.branch.name}</td>
+                                <td>{item.paymentStatus.status}</td>
+                                <td>{item.payMethod.type}</td>
+                                <td>{item.totalSum}</td>
+                                <td>{item.amountPaid}</td>
+                                <td>{item.loan}</td>
                                 <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
+                                {/*<td> </td>*/}
                                 <td>
                                         <Link to={'/third/xarajatlarRuyxati/xarajatqoshish/'+item.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
                                         <button className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>

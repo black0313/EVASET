@@ -29,3 +29,13 @@
     text-decoration: none;
     color: #3f3c3c;
 }
+
+.b3{
+    color: #ce0b0b;
+    font-size: 20px;
+    transition: 0.3s all;
+}
+.b4{
+    background: transparent;
+    transition: 0.3s all;
+}

@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../api";
+import {toast} from "react-toastify";
 
 const slice = createSlice({
     name: 'paymethod',
@@ -13,13 +14,15 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             state.current=!state.current
+            toast.success('Saqlandi')
         },
         editfrom: (state,action) => {
             state.current=!state.current
+            toast.success('Tahrirlandi')
         },
         deletefrom:(state,action)=>{
             state.current=!state.current
-
+            toast.success('Ruyhatdan o`chirildi')
         }
     }
 });
