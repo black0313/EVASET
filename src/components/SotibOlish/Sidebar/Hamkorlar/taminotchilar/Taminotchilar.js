@@ -38,7 +38,11 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
             dukon: '',
             idraqam: '',
             login: '',
+            idplaceholder:'ID raqami',
             loginplaceholder:'Mr/Mrs/Mis',
+            ismplaceholder:'Ismi',
+            telegramLinkPlaceholder:'Telegram link',
+            telefonRaqamPlaceholder:'Telefon raqam',
             ismi: '',
             otaismi: '',
             familiyasi: '',
@@ -116,18 +120,52 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     }
 
     function saqla(){
-            // if(input.login === ""){
-            //     input.loginplaceholder = "Ma'lumot kiriting..."
-            //     let a ={...input}
-            //     setInput(a)
-            //     var b = document.getElementById('log1')
-            //     b.classList.add('pcolor')
-            // }
-            // else{
+            if(input.idraqam === ""){
+                input.idplaceholder = "ID kiriting..."
+                var b = document.getElementById('idRaqam')
+                let a = {...input}
+                setInput(a)
+                b.classList.add('pcolor')
+            }
+            else if(input.login === ""){
+                input.loginplaceholder = "Ma'lumot kiriting..."
+                var b = document.getElementById('log1')
+                let a ={...input}
+                setInput(a)
+                b.classList.add('pcolor')
+            }
+            else if(input.ismi === ""){
+                input.ismplaceholder = "Ism kiriting..."
+                var b = document.getElementById('ism')
+                let a = {...input}
+                setInput(a)
+                b.classList.add('pcolor')
+            }
+            else if(input.telegram === ""){
+                input.telegramLinkPlaceholder = "Link kiriting..."
+                var b = document.getElementById('telegram')
+                let a = {...input}
+                setInput(a)
+                b.classList.add('pcolor')
+            }
+            else if(input.tele === ""){
+                input.telegramLinkPlaceholder = "Link kiriting..."
+                var b = document.getElementById('telegram')
+                let a = {...input}
+                setInput(a)
+                b.classList.add('pcolor')
+            }
+            
+           
+            else{
+                toggle()
+                let a ={...input}
+                setInput(a)
+               
+                console.log(input.login);
 
-            // }
-
-            toggle()
+            }
+        
 
 
 
@@ -277,7 +315,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                             </div>
                             <label htmlFor={'idRaqam'}>ID Raqami</label>
                             <input value={input.idraqam} onChange={changeidraqam} type="text" id={'idRaqam'}
-                                   placeholder={'ID Raqami'} className={'form-control'}/>
+                                   placeholder={input.idplaceholder} className={'form-control'}/>
                             lang_v1.leave_empty_to_autogenerate
                             <div className="in d-flex mt-3">
                                 <div>
@@ -289,19 +327,19 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 <div>
                                     <label htmlFor={'ism'}>Ismi</label>
                                     <input onChange={changeismi}  value={input.ismi} type="text" id={'ism'}
-                                           placeholder={'Ismi'} className={'form-control'} required="required"/>
+                                           placeholder={input.ismplaceholder} className={'form-control'} required="required"/>
                                 </div>
                             </div>
                             <div className="in d-flex">
                                 <div className={'mt-3'}>
                                     <label htmlFor={'ot'}>Telegram link</label>
-                                    <input value={input.telegram} onChange={changeotaismi} type="text"
-                                           className={'form-control'} placeholder={'Telegram link'}/>
+                                    <input value={input.telegram} onChange={changeotaismi} id={'telegram'} type="text"
+                                           className={'form-control'} placeholder={input.telegramLinkPlaceholder}/>
                                 </div>
                                 <div className={'mt-3'}>
                                     <label htmlFor={'ot'}>Telefon raqam</label>
                                     <input value={input.familiyasi} onChange={changefamiliyasi} type="number"
-                                           placeholder={'Telefon raqam'} className={'form-control'}/>
+                                           placeholder={input.telefonRaqamPlaceholder} className={'form-control'}/>
                                 </div>
                             </div>
 
