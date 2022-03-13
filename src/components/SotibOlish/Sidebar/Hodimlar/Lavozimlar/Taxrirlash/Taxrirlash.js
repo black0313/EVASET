@@ -10,6 +10,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
     const [input, setInput] = useState(
         {
             name: '',
+            namePlacholder: 'Lavozim nomi',
             xBarchasinibelgilash: '',
             xodimkorish: '',
             xodimkorishinput: null,
@@ -514,38 +515,47 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
     }
 
     function saqla() {
-        permission.push(input.xodimkorishinput, input.xodimqoshishinput, input.xodimtaxrirlashinput, input.xodimochirishinput, input.lavozimkorishinput
-            , input.lavozimqoshishinput, input.lavozimtaxrirlashinput, input.lavozimochirishinput, input.lang1input, input.lang2input, input.dillertaxrirlashinput,
-            input.dillerochirishinput, input.dillerqoshishinput, input.lang3input, input.lang4input, input.lang5input, input.lang6input, input.lang7input, input.lang8input,
-            input.lang9input, input.mijoztaxrirlashinput, input.mijozqoshishinput, input.mijozochirishinput)
-
-        let a = {...permission}
-        setpermission(a)
-        console.log(permission);
-        if (match.params.id === undefined) {
-            saveLavozim(
-                {
-                    name: input.name,
-                    permissions: permission,
-                    description: "ol",
-                    businessId: users.businessId
-                }
-            )
-            console.log('savele')
-        } else {
-            editLavozim(
-                {
-                    name: input.name,
-                    permissions: permission,
-                    description: "ol",
-                    id: match.params.id,
-                    businessId: users.businessId
-                }
-            )
-            console.log('edit')
+        if(input.name===""){
+            input.namePlacholder = 'Lavozim nomini kiriting...'
+            var b = document.getElementById('inputValudesion')
+            let a  = {...input}
+            setInput(a)
+            b.classList.add('inputValudetion')
         }
-
-        getLavozim(users.businessId)
+        else{
+            permission.push(input.xodimkorishinput, input.xodimqoshishinput, input.xodimtaxrirlashinput, input.xodimochirishinput, input.lavozimkorishinput
+                , input.lavozimqoshishinput, input.lavozimtaxrirlashinput, input.lavozimochirishinput, input.lang1input, input.lang2input, input.dillertaxrirlashinput,
+                input.dillerochirishinput, input.dillerqoshishinput, input.lang3input, input.lang4input, input.lang5input, input.lang6input, input.lang7input, input.lang8input,
+                input.lang9input, input.mijoztaxrirlashinput, input.mijozqoshishinput, input.mijozochirishinput)
+    
+            let a = {...permission}
+            setpermission(a)
+            console.log(permission);
+            if (match.params.id === undefined) {
+                saveLavozim(
+                    {
+                        name: input.name,
+                        permissions: permission,
+                        description: "ol",
+                        businessId: users.businessId
+                    }
+                )
+                console.log('savele')
+            } else {
+                editLavozim(
+                    {
+                        name: input.name,
+                        permissions: permission,
+                        description: "ol",
+                        id: match.params.id,
+                        businessId: users.businessId
+                    }
+                )
+                console.log('edit')
+            }
+    
+            getLavozim(users.businessId)
+        }
     }
 
     useEffect(() => {
@@ -565,8 +575,8 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                             {/*    console.log(input)*/}
                             {/*}*/}
                             <label htmlFor={'l'}>Lavozim nomi</label>
-                            <input type="text" className={'form-control mt-2'} value={input.name} onChange={changename}
-                                   placeholder={'Lavozim nomi'}/>
+                            <input type="text" className={'form-control mt-2'} id={'inputValudesion'} value={input.name} onChange={changename}
+                                   placeholder={input.namePlacholder}/>
                             <div className="ruxsat mt-4">
                                 <h5>Ruxsatnomalar</h5>
                                 <label htmlFor={'ch'}>Barchasini belgilash</label>
@@ -737,9 +747,16 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                                 <label htmlFor={'tax2'}>O`chirish</label>
                             </div>
                         </div>
-                        <Link to={'/headerthird/lavozimlar'}>
+
+                        {
+                            input.name==="" ?
+                            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
+                            :
+                            <Link to={'/headerthird/lavozimlar'}>
                             <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
                         </Link>
+                        }
+                        
 
                     </div>
                 </div>

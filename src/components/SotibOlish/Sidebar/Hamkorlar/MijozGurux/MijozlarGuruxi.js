@@ -95,6 +95,7 @@ function Mijozlarguruxi({
     }
 
     function saqla() {
+        
         if (input.mId !== '') {
             editMijozGurux({
                 name: input.guruhnomi,

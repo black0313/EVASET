@@ -2,6 +2,9 @@
     margin-left: 10px;
     font-size: 18px;
 }
+input.inputValudetion::placeholder{
+    color: red;
+}
 .li input{
     width: 30px;
     height: 30px;
