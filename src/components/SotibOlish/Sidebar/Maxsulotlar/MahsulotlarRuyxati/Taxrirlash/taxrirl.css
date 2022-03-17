@@ -11,6 +11,9 @@
 .cont input{
     height: 40px;
 }
-.cont button{
+.cont button {
     width: 120px;
+}
+.mahcolor::placeholder{
+    color: red;
 }

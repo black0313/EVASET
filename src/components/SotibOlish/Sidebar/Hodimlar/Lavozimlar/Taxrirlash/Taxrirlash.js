@@ -749,7 +749,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                         </div>
 
                         {
-                            input.name==="" ?
+                            input.name === "" ?
                             <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
                             :
                             <Link to={'/headerthird/lavozimlar'}>

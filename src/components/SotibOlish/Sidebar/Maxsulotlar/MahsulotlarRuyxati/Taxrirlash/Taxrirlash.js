@@ -98,7 +98,6 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
         let a = {...input}
         setInput(a)
     }
-
     function fermabrandnomi(e){
         input.brandnomi = e.target.value
         let a = {...input}
@@ -225,7 +224,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
             })
             console.log('edit')
         }else{
-            saveMaxsulotRuyxati({
+           saveMaxsulotRuyxati({
                 name:input.mahsulotnomi,
                 quantity:   input.miqdorMaxsulot     ,                                 /*input.foydafoiz,*/
                 barcode: input.shtrixkod,

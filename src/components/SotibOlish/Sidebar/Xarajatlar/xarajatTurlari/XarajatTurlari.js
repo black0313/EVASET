@@ -20,7 +20,7 @@ import XarajatTurlariReducer,{
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import XodimReducer from "../../Hodimlar/reducer/XodimReducer";
 import users from "../../../../../reducer/users";
-import XarajatlarReducer, {editXarajatlar, getXarajatlar, saveXarajatlar} from "../reducer/XarajatlarReducer";
+import XarajatlarReducer, {editXarajatlar, getXarajatlar, saveXarajatlar,} from "../reducer/XarajatlarReducer";
 
 function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branchreducer,getbranch, xarajatturlari,saveXarajatlarTurlari, deleteXarajatlarTurlari}) {
 
@@ -57,7 +57,7 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
 
     useEffect(() => {
         getXarajatlarTurlari(users.businessId)
-    }, [])
+    }, [XarajatTurlariReducer.counter])
 
     const [active, setActive] = useState(false)
 
@@ -74,6 +74,10 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
         )
         console.log(xarajatturlari);
         toggle()
+    }
+
+    function deletet(item){
+        deleteXarajatlarTurlari(item.id)
     }
 
     return (
@@ -119,13 +123,14 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                         {console.log(XarajatTurlariReducer.xarajatturlari)}
                         <tbody>
                         {
-                            XarajatTurlariReducer.xarajatturlari.filter(val=>{
-                                if (input.izlash===''){
-                                    return val
-                                }else if (val.title.toUpperCase().includes(input.izlash.toUpperCase())){
-                                    return val
-                                }
-                            })
+                            XarajatTurlariReducer.xarajatturlari
+                            //     .filter(val=>{
+                            //     if (input.izlash===''){
+                            //         return val
+                            //     }else if (val.title.toUpperCase().includes(input.izlash.toUpperCase())){
+                            //         return val
+                            //     }
+                            // })
                                 .map(item => <tr key={item.id}>
                                 <td>{item.title}</td>
                                     {/*<td></td>*/}
@@ -134,7 +139,7 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                                 <td>
                                     <button onClick={toggle} className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
                                     </button>
-                                    <button className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
+                                    <button onClick={()=>deletet(item)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
                                 </td>
                             </tr>)
                         }
@@ -169,4 +174,4 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
     )
 }
 
-export default connect((XarajatTurlariReducer,branchreducer, XodimReducer,users,branchreducer,XarajatlarReducer),{editXarajatlar, getXarajatlar,getXarajatlarTurlari,saveXarajatlarTurlari,editXarajatlarTurlari,getbranch,saveXarajatlar}) (XarajatTurlari)
+export default connect((XarajatTurlariReducer,branchreducer, XodimReducer,users,branchreducer,XarajatlarReducer),{editXarajatlar, getXarajatlar,getXarajatlarTurlari, saveXarajatlarTurlari,editXarajatlarTurlari,deleteXarajatlarTurlari,  getbranch,saveXarajatlar}) (XarajatTurlari)

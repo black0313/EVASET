@@ -4,8 +4,11 @@ import {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import users from "../../../../../reducer/users";
 import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
-import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati2} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
-function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,MaxsulotlarRoyxariReducer}) {
+import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import OtkazmaReducer,{saveOtkazma} from "../reducer/OtkazmaReducer";
+import {toast} from "react-toastify";
+import {Link} from "react-router-dom";
+function YangiOtkazma({branchreducer,getbranch,users,saveOtkazma,OtkazmaReducer,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer}) {
 
 
 
@@ -18,9 +21,38 @@ function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,Maxsulo
                   sana:'',
                   maxsulotizlash:'',
                   yulhaqi:'',
-                  qisqaeslatmaarea:''
+                  qisqaeslatmaarea:'',
+                  miqdor:'',
+                  narx:'',
            }
        )
+
+       function changemiqdor(e,id){
+              input.miqdor = e.target.value
+              let a = {...input}
+              setInput(a)
+
+              mah.map(val=>{
+                     if (id == val.id){
+                            val.quantity = parseInt(input.miqdor)
+                     }
+              })
+              let b = [...mah]
+              setmah(b)
+       }
+       function changenarx(e,id){
+              input.naxr = e.target.value
+              let a = {...input}
+              setInput(a)
+
+              mah.map(val=>{
+                     if (id == val.id){
+                            val.salePrice = parseInt(input.naxr)
+                     }
+              })
+              let b = [...mah]
+              setmah(b)
+       }
 
        function qisqaeslatma(e){
               input.qisqaeslatma = e.target.value
@@ -47,13 +79,46 @@ function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,Maxsulo
               let a = {...input}
               setInput(a)
        }
+       const [mah,setmah] = useState([])
        function maxsulotizlash(e){
               input.maxsulotizlash = e.target.value
               let a = {...input}
               setInput(a)
-              getMaxsulotRuyxati2(input.maxsulotizlash)
 
+              MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
+                            if (val.name === input.maxsulotizlash){
+                                   console.log(val.quantity)
+                                   pushesh({...val,quantity:'',buyPrice:'',salePrice:''})
+                                   input.maxsulotizlash = ''
+                                   let a = {...input}
+                                   setInput(a)
+                            }else if (input.maxsulotizlash == val.barcode){
+                                   pushesh({...val,quantity:'',buyPrice:'',salePrice:''})
+                                   input.maxsulotizlash = ''
+                                   let a = {...input}
+                                   setInput(a)
+                            }})
 
+       }
+       function pushesh(val) {
+              let d = false
+              mah.map(item => {
+                     if (item.id === val.id) {
+                            d = true
+                            // alert('Bu mahsulot jadvalda bor!')
+                            toast.warn('Bu mahsulot jadvalda bor!')
+                     }
+              })
+              if(d===false){
+                     mah.push({...val })
+              }
+
+              let a = 0
+              let c = 0
+              mah.map(item => {
+                     a += item.quantity
+                     c += (item.quantity * item.buyPrice)
+              })
        }
        function yulhaqi(e){
               input.yulhaqi = e.target.value
@@ -66,9 +131,56 @@ function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,Maxsulo
               setInput(a)
        }
 
+
+       useEffect(()=>{
+              getMaxsulotRuyxati(users.businessId)
+       },[])
+
+       function saqla(){
+              mah.map(item=>{
+                     saveOtkazma({
+                            shippedBranchId:input.bazadan,
+                            receivedBranchId:input.bazaga,
+                            exchangeDate:input.sana,
+                            description:input.qisqaeslatma,
+                            exchangeStatusId:input.status,
+                            yolkira:input.yulhaqi,
+                            exchangeProductDTOS:[
+                                   {
+                                          exchangeProductQuantity:item.quantity,
+                                          productExchangeId:item.id
+                                   }
+                            ],
+                            businessId:users.businessId
+
+                     })
+              })
+       }
+
+
+
+       function deleteM(ind) {
+              mah.map((item, index) => {
+                     if (item.id === ind) {
+                            mah.splice(index, 1)
+                     }
+              })
+              let ad = [...mah]
+              setmah(ad)
+
+              // let b = 0
+              // let c = 0
+              // mah.map(item => {
+              //        b += item.quantity
+              //        c += (item.quantity * item.buyPrice)
+              //
+              // })
+              // setXisob(b)
+              // setjamiXisob(c)
+       }
+
        useEffect(()=>{
          getbranch(users.businessId)
-
        },[])
 
        return (
@@ -95,6 +207,7 @@ function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,Maxsulo
                                    <div className="col-md-6 col-sm-12">
                                           <h6>Bazadan(Amaldagi baza):</h6>
                                           <select name="" id="" value={input.bazadan} onChange={bazadan}>
+                                                 <option value="">Baza tanlash</option>
                                                  {
                                                         branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
                                                  }
@@ -103,6 +216,8 @@ function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,Maxsulo
                                    <div className="col-md-6 col-sm-12">
                                           <h6>Bazaga(O'tkaziladigan baza):</h6>
                                           <select name="" id="" value={input.bazaga} onChange={bazaga}>
+                                                 <option value="">Baza tanlash</option>
+
                                                  {
                                                         branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
                                                  }
@@ -145,8 +260,12 @@ function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,Maxsulo
                                           </thead>
                                           <tbody>
                                           {
-                                                 MaxsulotlarRoyxariReducer.maxsulotlar.map(item=><tr>
+                                                 mah.map(item=><tr>
                                                         <th>{item.name}</th>
+                                                        <th><input onChange={event => changemiqdor(event,item.id)} value={item.quantity} type="number" className={'form-control'}/></th>
+                                                        <th><input onChange={event => changenarx(event,item.id)} value={item.salePrice} type="number" className={'form-control'}/></th>
+                                                        <th>{item.quantity*item.salePrice}</th>
+                                                        <th> <button onClick={()=>deleteM(item.id)} className={'btn btn-danger'}>X</button></th>
                                                  </tr>)
                                           }
                                           </tbody>
@@ -165,10 +284,13 @@ function YangiOtkazma({branchreducer,getbranch,users,getMaxsulotRuyxati2,Maxsulo
                             </div>
 
                             <div className='saqlash'>
-                                   <button className='btn btn-primary'>Saqlash</button>
+                                   <Link to={'/headerthird/utkazmaRuyxati'}>
+                                          <button className='btn btn-primary' onClick={saqla}>Saqlash</button>
+                                   </Link>
+
                             </div>
                      </div>
               </div>
        )
 }
-export default connect((branchreducer,users,MaxsulotlarRoyxariReducer),{getbranch,getMaxsulotRuyxati2})  (YangiOtkazma)
+export default connect((branchreducer,users,MaxsulotlarRoyxariReducer,OtkazmaReducer),{getbranch,getMaxsulotRuyxati,saveOtkazma})  (YangiOtkazma)

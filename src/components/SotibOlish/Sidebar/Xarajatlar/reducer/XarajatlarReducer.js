@@ -7,7 +7,6 @@ const slice = createSlice({
     initialState: {
         xarajatlar: [],
         counter:false,
-        current:0
     },
     reducers: {
         getFrom: (state, action) => {

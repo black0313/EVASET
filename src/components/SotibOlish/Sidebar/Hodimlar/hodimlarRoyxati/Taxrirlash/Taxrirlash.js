@@ -88,7 +88,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         })
     }
 
-    const [linksaqla,setlinksaqla] = useState('/headerthird/hodimlarruyxati/taxrirlash')
+
     function saqla(){
     
         if(match.params.id !== undefined){
@@ -124,7 +124,6 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
 
             }
             else{
-                setlinksaqla('/headerthird/hodimlarruyxati')
                 saveXodim({
                     firstName: input.firstName,
                     lastName: input.lastName,
@@ -192,7 +191,12 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     </div>
 
                     <div className="col-6 d-flex justify-content-center">
-                        <Link to={linksaqla}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>
+                        {
+                            input.username === '' || input.firstName === '' || input.lastName==="" || input.parol === '' ?
+                                <button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button> :
+                                <Link to={'/headerthird/hodimlarruyxati'}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>
+                        }
+
                         {/*<Link to={'/headerthird/hodimlarruyxati'}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>*/}
                     </div>
 

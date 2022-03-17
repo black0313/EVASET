@@ -12,9 +12,10 @@ import Arrow from '../../../../../img/arrowIcon.png'
 import './otkazmalarRoyxati.css'
 import {connect} from "react-redux";
 import {useEffect, useState} from "react";
-import {deleteOtkazma, editOtkazma, saveOtkazma, getOtkazma} from "../reducer/OtkazmaReducer";
+import OtkazmaReducer, {deleteOtkazma, editOtkazma, saveOtkazma, getOtkazma} from "../reducer/OtkazmaReducer";
+import users from "../../../../../reducer/users";
 
-function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma,match}) {
+function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma,match,users,OtkazmaReducer}) {
 
     const [input, setInput] = useState(
         {
@@ -36,12 +37,13 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma,m
     }
 
     useEffect(() => {
-        getOtkazma()
-    }, [])
+        getOtkazma(users.businessId)
+    }, [OtkazmaReducer.counter])
 
-    function deleteOt(item) {
-        deleteOtkazma(item.id)
+    function deleteOt(item){
         console.log('deleteed')
+        deleteOtkazma(item.id)
+
     }
 
     return (
@@ -90,7 +92,7 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma,m
                         </thead>
                         <tbody>
                         {
-                            otkazmalar.filter(val=>{
+                            OtkazmaReducer.otkazmalar.filter(val=>{
                                 if (input.search===''){
                                     return val
                                 }else if (val.name.toUpperCase().includes(input.search.toUpperCase())){
@@ -98,12 +100,24 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma,m
                                 }
                             })
                                 .map(item => <tr key={item.id}>
-                                <td>{item.date}</td>
+                                <td>{item.exchangeDate}</td>
+                                    {/*{*/}
+                                    {/*    item.shippedBranch.map(val=><td>{val.name}</td>)*/}
+                                    {/*}*/}
+                                    <td>{item.shippedBranch?.name}</td>
+                                    <td>{item.receivedBranch?.name}</td>
+                                    {/*<td>{item["receivedBranch"]['name']}</td>*/}
+                                    {/*<td>{item['exchangeStatus'].status}</td>*/}
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{item.description}</td>
                                 <td>
                                     <Link to={'/headerthird/utkazmaRuyxati/taxrirlash'}>
                                         <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
                                     </Link>
-                                    <button className='ochirish'><img onClick={()=>deleteOt(item)} src={Delete} alt=""/> O'chirish</button>
+                                    <button onClick={()=>deleteOt(item)} className='ochirish'><img  src={Delete} alt=""/> O'chirish</button>
                                 </td>
                             </tr>)
                         }
@@ -125,7 +139,7 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma,m
     )
 }
 
-export default connect(({OtkazmaReducer: {otkazmalar}}) => ({otkazmalar}), {
+export default connect((OtkazmaReducer,users), {
     getOtkazma,
     saveOtkazma,
     editOtkazma,

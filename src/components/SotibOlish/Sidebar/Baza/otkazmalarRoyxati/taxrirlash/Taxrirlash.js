@@ -100,7 +100,7 @@ function Taxrirlash({saveOtkazma,editOtkazma,getOtkazma,match,users,OtkazmaReduc
                     shippedBranchId:1,
                     receivedBranchId:1,
                     exchangeDate:input.sana,
-                    description:'',
+                    description:'elsa',
                     exchangeStatusId:1,
                     exchangeProductDTOS:[
                         {

@@ -9,3 +9,6 @@
     border-radius: 4px;
     
 }
+.redclass{
+    border: 2px solid red !important;
+}

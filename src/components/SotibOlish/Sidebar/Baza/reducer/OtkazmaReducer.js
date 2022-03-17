@@ -6,7 +6,8 @@ import {toast} from "react-toastify";
 const slice = createSlice({
     name: 'otkazmalar',
     initialState: {
-        otkazmalar: []
+        otkazmalar: [],
+        counter:false
     },
     reducers: {
         getFrom: (state, action) => {
@@ -16,6 +17,7 @@ const slice = createSlice({
         savefrom: (state,action) => {
             state.otkazmalar.unshift(action.payload)
             toast.success('Otkazma saqlandi')
+            state.counter=!state.counter
         },
         editfrom: (state,action) => {
             state.otkazmalar.map((item,index)=>{
@@ -24,15 +26,19 @@ const slice = createSlice({
                 }
             })
             toast.success('Otkazma tahrirlandi')
+            state.counter=!state.counter
+
         },
         deletefrom:(state,action)=>{
             toast.success('Otkazma o`chirildi')
+            state.counter=!state.counter
+
         }
     }
 });
 
-export const getOtkazma=()=>apiCall({
-    url: '/exchange-product-branch/get-by-shipped-branch/1',
+export const getOtkazma=(data)=>apiCall({
+    url: '/exchange-product-branch/get-by-shipped-branch/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

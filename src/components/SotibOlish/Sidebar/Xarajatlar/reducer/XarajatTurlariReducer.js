@@ -6,7 +6,8 @@ import {toast} from "react-toastify";
 const slice = createSlice({
     name: 'xarajatturlari',
     initialState: {
-        xarajatturlari: []
+        xarajatturlari: [],
+        counter:false
     },
     reducers: {
         getFrom: (state, action) => {
@@ -16,6 +17,7 @@ const slice = createSlice({
         savefrom: (state,action) => {
             state.xarajatturlari.unshift(action.payload)
             toast.success('Saqlandi')
+            state.counter=!state.counter
         },
         editfrom: (state,action) => {
             state.xarajatturlari.map((item,index)=>{
@@ -24,9 +26,12 @@ const slice = createSlice({
                 }
             })
             toast.success('Tahrirlandi')
+            state.counter=!state.counter
+
         },
         deletefrom:(state,action)=>{
             toast.success('Ruyhatdan o`chirildi')
+            state.counter=!state.counter
         }
     }
 });
