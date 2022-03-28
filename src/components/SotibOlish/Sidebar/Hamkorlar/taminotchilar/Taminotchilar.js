@@ -15,6 +15,7 @@ import users from "../../../../../reducer/users";
 import {useState} from 'react'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {red} from "@mui/material/colors"
+// import {ccc} from '../../../../../img/flash-1.svg'
 
 
 function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, taminot, users, TaminotReducer}) {
@@ -222,6 +223,12 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         }
     }
 
+    const [ismi,setismi] = useState(true)
+    const [telraqam,settelraqam] = useState(true)
+    const [telegram,settelegram] = useState(true)
+    const [suplier,setsuplier] = useState(true)
+    const [amallar,setamallar] = useState(true)
+
     const [headlist, setheadlist] = useState([
         {
             name: 'Ismi',
@@ -232,8 +239,8 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         }
     ])
 
-    function malumotkamay() {
-
+    function malumotkamayname() {
+        setismi(!ismi)
     }
 
     function toggle2() {
@@ -272,11 +279,11 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
 
                             {
                                 malkamay ? headlist.map(item => <ul className={'ul2'} key={item.id}>
-                                    <li className={'li2'}>{item.name}</li>
-                                    <li className={'li2'}>{item.phone}</li>
-                                    <li className={'li2'}>{item.telegram}</li>
-                                    <li className={'li2'}>{item.supplier}</li>
-                                    <li className={'li2'}>{item.amallar}</li>
+                                    <li onClick={malumotkamayname} className={'li2'}>{ismi? item.name: item.name+' <-'}</li>
+                                    <li onClick={()=>settelraqam(!telraqam)} className={'li2'}>{telraqam? item.phone:'Tel raqam '+' <-'}</li>
+                                    <li onClick={()=>settelegram(!telegram)} className={'li2'}>{telegram? item.telegram:item.telegram+' <-'}</li>
+                                    <li onClick={()=>setsuplier(!suplier)} className={'li2'}>{suplier? item.supplier:'Taminotchi '+' <-'}</li>
+                                    <li onClick={()=>setamallar(!amallar)} className={'li2'}>{amallar?item.amallar:item.amallar+ ' <-'}</li>
                                 </ul>) : ''
                             }
 
@@ -286,7 +293,6 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                    placeholder='Izlash...'/>
                         </div>
 
-
                     </div>
                     <div className="table-responsive">
                         <table className='table table-striped table-bordered mt-4'>
@@ -294,20 +300,24 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                             {/*<tr>*/}
                             {
                                 headlist.map(item => <tr key={item.id}>
-                                    <th>{item.name}</th>
-                                    <th>{item.phone}</th>
-                                    <th>{item.telegram}</th>
-                                    <th>{item.supplier}</th>
-                                    <th className={'text-center'}>{item.amallar}</th>
+                                    {
+                                        ismi?<th>{item.name}</th>:''
+                                    }
+                                    {
+                                        telraqam?<th>{item.phone}</th>:''
+                                    }
+                                    {
+                                        telegram?<th>{item.telegram}</th>:''
+                                    }
+                                    {
+                                        suplier?<th>{item.supplier}</th>:''
+                                    }
+                                    {
+                                        amallar?<th className={'text-center'}>{item.amallar}</th>:''
+                                    }
                                 </tr>)
                             }
 
-                            {/*<th>Ismi</th>*/}
-                            {/*<th>Telefon raqam</th>*/}
-                            {/*<th>Telegram</th>*/}
-                            {/*<th>Taminotchi turi</th>*/}
-                            {/*<th className={'text-center'}>Amallar</th>*/}
-                            {/*</tr>*/}
                             </thead>
                             <tbody>
                             {
@@ -318,26 +328,36 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                         return val
                                     }
                                 }).map(item => <tr key={item.id}>
-                                    <td>{item.name}</td>
-                                    <td>{item.phoneNumber}</td>
-                                    <td>{item.telegram}</td>
-                                    <td>{item.supplierType}</td>
-                                    <td className={'text-center'}>
-                                        <Link to={'/headerthird/taminotchilar/taxrirlash'}>
-                                            <button onClick={() => editt(item.id)} className='taxrirlash'><img
-                                                src={Edit}
-                                                alt=""/> Taxrirlash
+                                    {
+                                        ismi?<td>{item.name}</td>:''
+                                    }
+                                    {
+                                        telraqam?<td>{item.phoneNumber}</td>:''
+                                    }
+                                    {
+                                        telegram?<td>{item.telegram}</td>:''
+                                    }
+                                    {
+                                        suplier?<td>{item.supplierType}</td>:''
+                                    }
+                                    {
+                                        amallar?<td className={'text-center'}>
+                                            <Link to={'/headerthird/taminotchilar/taxrirlash'}>
+                                                <button onClick={() => editt(item.id)} className='taxrirlash'><img
+                                                    src={Edit}
+                                                    alt=""/> Taxrirlash
+                                                </button>
+                                            </Link>
+                                            <Link
+                                                to={'/headerthird/taminotchilar/view/' + input.name + '/' + input.tel + '/' + input.telegram + '/' + input.taminot}>
+                                                <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
+                                            </Link>
+                                            <button onClick={() => deleteTaminot2(item)} className='ochirish'><img
+                                                src={Delete} alt=""/> O'chirish
                                             </button>
-                                        </Link>
-                                        <Link
-                                            to={'/headerthird/taminotchilar/view/' + input.name + '/' + input.tel + '/' + input.telegram + '/' + input.taminot}>
-                                            <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
-                                        </Link>
-                                        <button onClick={() => deleteTaminot2(item)} className='ochirish'><img
-                                            src={Delete} alt=""/> O'chirish
-                                        </button>
 
-                                    </td>
+                                        </td>:''
+                                    }
 
                                 </tr>)
                             }
