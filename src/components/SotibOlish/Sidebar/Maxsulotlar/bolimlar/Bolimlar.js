@@ -25,6 +25,14 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
             bId:'',
         }
     )
+
+    const [placeholders,setPlaceholders] = useState(
+        {
+            bolimNomiPlaceholder:''
+        }
+    )
+
+
     function view(e) {
         input.view = e.target.value
         let a = {...input}
@@ -66,29 +74,50 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
     }
 
     function saqla() {
-        if(input.bId !== '') {
-            editBolim(
-                {
+
+        if(input.bolimnomi !==""){
+            if(input.bId !== '') {
+                editBolim(
+                    {
+                        name: input.bolimnomi,
+                        businessId: users.businessId,
+                        id: input.bId
+                    }
+                )
+    
+            }
+            else{
+                saveBolim({
                     name: input.bolimnomi,
                     businessId: users.businessId,
-                    id: input.bId
+                })
+            }
+
+            
+            input.bolimkodi = ''
+            input.bolimnomi = ''
+            input.qisqacamalumot = ''
+            input.bId = ''
+            let a = {...input}
+            setInput(a)
+
+            setPlaceholders(
+                {
+                    bolimNomiPlaceholder:""
                 }
             )
 
+            toggle()
+
+
         }
         else{
-            saveBolim({
-                name: input.bolimnomi,
-                businessId: users.businessId,
-            })
+            setPlaceholders(
+                {
+                    bolimNomiPlaceholder:"Bo'lim nomini kiriting..."
+                }
+            )
         }
-        input.bolimkodi = ''
-        input.bolimnomi = ''
-        input.qisqacamalumot = ''
-        input.bId = ''
-        let a = {...input}
-        setInput(a)
-        toggle()
     }
 
 
@@ -99,6 +128,22 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
 
     function toggle() {
         setActive(!active)
+        setInput(
+            {
+                view: '',
+                search: '',
+                bolimnomi: '',
+                bolimkodi: '',
+                qisqacamalumot: '',
+                bId:'',
+            }
+        )
+
+        setPlaceholders(
+            {
+                bolimNomiPlaceholder:""
+            }
+        )
     }
 
 
@@ -189,8 +234,8 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
                     </ModalHeader>
                     <ModalBody>
                         <label htmlFor={'bnomi'}>Bo`lim nomi</label>
-                        <input type="text" className={'form-control'} id={'bnomi'} onChange={bolimnomi}
-                               value={input.bolimnomi}/>
+                        <input type="text" className={'form-control '} placeholder={placeholders.bolimNomiPlaceholder} id={'bnomi'} onChange={bolimnomi}
+                               value={input.bolimnomi} />
                         <label className={'mt-4'} htmlFor={'bkodi'}>Bo`lim kodi</label>
                         <input type="text" className={'form-control'} value={input.bolimkodi} onChange={bolimkodi}
                                id={'bkodi'}/>

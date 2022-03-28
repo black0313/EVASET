@@ -6,6 +6,9 @@
        background-color: #FFFF;
 }
 
+#l::placeholder{
+       color: red;
+}
 .textHeaderFR{
        display: flex;
        align-items: baseline;
