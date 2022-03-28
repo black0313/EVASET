@@ -9,7 +9,7 @@ import './savdoOynasi.css'
 import SavdoOynaReducer, {deleteSavdo, editSavdo, getSavdo, saveSavdo} from "../reducer/SavdoOynaReducer";
 import MaxsulotlarRoyxariReducer, {
     deleteMaxsulotRuyxati,
-    getMaxsulotRuyxati, getMaxsulotRuyxati2, saveMaxsulotRuyxati
+    getMaxsulotRuyxati, getMaxsulotRuyxati2, saveMaxsulotRuyxati,getMaxsulotRuyxatibranch,getMaxsulotRuyxati3
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import Calculator from "../../../header/Calculator/Calculator";
@@ -29,15 +29,15 @@ import BolimReducer, {getBolim} from "../../Maxsulotlar/reducer/BolimReducer";
 import FirmaReducer, {getFirma} from "../../Maxsulotlar/reducer/FirmaReducer";
 import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
-
+import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
 function SavdoOynasi({
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
                          getPay, PayReducer,
-                         FirmaReducer, getFirma, saveMaxsulotRuyxati,getMaxsulotRuyxati2,
+                         FirmaReducer, getFirma, saveMaxsulotRuyxati,getMaxsulotRuyxati3,
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
-                         users, savdooynasi, getkg, kgreducer,
+                         users, savdooynasi, getkg, kgreducer,branchreducer,getbranch,getMaxsulotRuyxatibranch
                      }) {
 
     const [input, setInput] = useState(
@@ -56,6 +56,8 @@ function SavdoOynasi({
             soliqbnnarxi: '',
             sotibolishnarx: '',
             sotishnarxi: '',
+            branch:'',
+            brand:'',
         }
     )
 
@@ -125,6 +127,31 @@ function SavdoOynasi({
         setInput(a)
     }
 
+    function setbranch(e){
+        input.branch = e.target.value
+        let a = {...input}
+        setInput(a)
+        if (input.branch !== 'barchasi'){
+            getMaxsulotRuyxatibranch(input.branch)
+        }
+        else{
+            getMaxsulotRuyxati(users.businessId)
+
+        }
+    }
+    function setbrand(e){
+        input.brand = e.target.value
+        let a = {...input}
+        setInput(a)
+        if (input.brand !== 'barchasi'){
+            getMaxsulotRuyxati3(input.brand)
+        }
+        else{
+            getMaxsulotRuyxati(users.businessId)
+
+        }
+    }
+
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
     const [lastTradeActive, setlastTradeActive] = useState(false)
@@ -154,6 +181,7 @@ function SavdoOynasi({
     function openCalcul() {
         setOpenCalc(!openCalc)
     }
+
 
     let [xisob, setxisob] = useState(0)
     let [jamixisob, setjamixisob] = useState(0)
@@ -340,6 +368,7 @@ function SavdoOynasi({
         getMaxsulotRuyxati(users.businessId)
     }
     useEffect(() => {
+        getbranch(users.businessId)
         getMaxsulotRuyxati(users.businessId)
         getMijozGurux(users.businessId)
         getBolim(users.businessId)
@@ -399,8 +428,16 @@ function SavdoOynasi({
             </div>
             <div className={'savdoOynaContainers'}>
                 <div className="savdoNavbar">
-                    <div className="navbarLeft">
+                    <div className="navbarLeft d-flex">
                         <h5>Baza</h5>
+                        <select name="" id="" onChange={setbranch} value={input.branch}>
+                            <option value="barchasi">Barchasi</option>
+                            {
+                                branchreducer.branch.map(item=> <option key={item.id} value={item.id}>
+                                    {item.name}
+                                </option>)
+                            }
+                        </select>
                     </div>
                     <div className="navbarRigth">
                         <button onClick={toggle4}>Oxirgi savdolar</button>
@@ -604,8 +641,13 @@ function SavdoOynasi({
 
                     <div className="savdoBlockRigth">
                         <div className="bazaBox">
-                            <select name="" id="">
-                                <option value="">Barcha brendlar</option>
+                            <select name="" id="" onChange={setbrand} value={input.brand}>
+                                <option value="barchasi">Barcha brendlar</option>
+                                {
+                                    FirmaReducer.firmalar.map(item=> <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>)
+                                }
                             </select>
                         </div>
                         <div className={' maxsulotImgBlock'}>
@@ -712,7 +754,7 @@ function SavdoOynasi({
 }
 
 //355352081562619
-export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer), {
+export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
     getSavdo,
     getFirma,
     getPay,
@@ -727,5 +769,8 @@ export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimR
     savdooynasi,
     getkg,
     getMijozGurux,
-    saveSavdolar
+    saveSavdolar,
+    getbranch,
+    getMaxsulotRuyxatibranch,
+    getMaxsulotRuyxati3
 })(SavdoOynasi)

@@ -56,6 +56,12 @@ export const getMaxsulotRuyxatiMeasure=(data)=>apiCall({
     onSuccess: slice.actions.getFrom.type
 });
 
+export const getMaxsulotRuyxatibranch=(data)=>apiCall({
+    url: '/product/get-by-branch/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFrom.type
+});
+
 export const getCategory=()=>apiCall({
     url: '/get-by-category/1',
     method:'get',
