@@ -20,6 +20,20 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
     const [active2, setActive2] = useState(false)
     const [active3, setActive3] = useState(false)
 
+    const [placeholders,setPlaseholders] = useState(
+        {
+            maxsulotNomiPlaceholder:'',
+            shtrixKodPlaceholder:'',
+            bazalarPlaceholder:'',
+            miqdorPlaceholder:'',
+            soliqsizNarxPlaceholder:'',
+            soliqbilanNarxPlaceholder:'',
+            foydaPlaceholder:'',
+            sotishNarxiPlaceholder:'',
+            sotibOlishNarxiPlaceholder:'',
+        }
+    )
+
     const [input,setInput] = useState(
         {
             mahsulotnomi:'',
@@ -203,44 +217,79 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
     }
 
 
+    // input.mahsulotnomi ==="" || input.shtrixkod==="" ||
+    // input.bazalar==="" || input.miqdorMaxsulot==="" ||
+    // input.soliqsiznarx==="" || input.soliqbnnarx==="" || input.foydafoiz==="" || 
+    //input.sotishnarxi==="" || input.sotibolishnarxi===""
+
     function saqla(){
-        if(match.params.id !== undefined){
-            editMaxsulotRuyxati({
-                name:input.mahsulotnomi,
-                quantity:input.miqdorMaxsulot,
-                barcode: input.shtrixkod,
-                brandId:input.ferma,
-                categoryId:input.bolim,
-                measurementId:input.ulcovbirligi,
-                photoIds:[2],
-                minQuantity:input.foydafoiz,
-                buyPrice:input.sotishnarxi,
-                salePrice:input.sotibolishnarxi,
-                tax:input.amaldagisoliq,
-                branchId:[1],
-                expireDate:null,
-                dueDate:null,
-                id:match.params.id,
-            })
-            console.log('edit')
-        }else{
-           saveMaxsulotRuyxati({
-                name:input.mahsulotnomi,
-                quantity:   input.miqdorMaxsulot     ,                                 /*input.foydafoiz,*/
-                barcode: input.shtrixkod,
-                brandId:   input.ferma,                      /*input.ferma,*/
-                categoryId: input.bolim,                     /*  input.bolim,*/
-                measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                photoIds:[1],
-                minQuantity:   input.foydafoiz,                    /*   input.foydafoiz,*/
-                buyPrice:      input.sotishnarxi,               /*   input.sotishnarxi,*/
-                salePrice:input.sotibolishnarxi,
-                tax:input.amaldagisoliq,               /* input.amaldagisoliq,*/
-                branchId:[1],
-                expireDate: null,
-                dueDate:null
-            })
-            console.log('save')
+        if(input.mahsulotnomi !=="" && input.shtrixkod !=="" && input.bazalar !=="" && input.miqdorMaxsulot !=="" && input.soliqsiznarx !=="" && input.soliqbnnarx !=="" && input.foydafoiz !=="" && input.sotishnarxi !=="" && input.sotibolishnarxi !==""){
+            if(match.params.id !== undefined){
+                editMaxsulotRuyxati({
+                    name:input.mahsulotnomi,
+                    quantity:input.miqdorMaxsulot,
+                    barcode: input.shtrixkod,
+                    brandId:input.ferma,
+                    categoryId:input.bolim,
+                    measurementId:input.ulcovbirligi,
+                    photoIds:[2],
+                    minQuantity:input.foydafoiz,
+                    buyPrice:input.sotishnarxi,
+                    salePrice:input.sotibolishnarxi,
+                    tax:input.amaldagisoliq,
+                    branchId:[1],
+                    expireDate:null,
+                    dueDate:null,
+                    id:match.params.id,
+                })
+                console.log('edit')
+            }else{
+               saveMaxsulotRuyxati({
+                    name:input.mahsulotnomi,
+                    quantity:   input.miqdorMaxsulot     ,                                 /*input.foydafoiz,*/
+                    barcode: input.shtrixkod,
+                    brandId:   input.ferma,                      /*input.ferma,*/
+                    categoryId: input.bolim,                     /*  input.bolim,*/
+                    measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+                    photoIds:[1],
+                    minQuantity:   input.foydafoiz,                    /*   input.foydafoiz,*/
+                    buyPrice:      input.sotishnarxi,               /*   input.sotishnarxi,*/
+                    salePrice:input.sotibolishnarxi,
+                    tax:input.amaldagisoliq,               /* input.amaldagisoliq,*/
+                    branchId:[1],
+                    expireDate: null,
+                    dueDate:null
+                })
+            }
+
+            setPlaseholders(
+                {
+                    maxsulotNomiPlaceholder:'',
+                    shtrixKodPlaceholder:'',
+                    bazalarPlaceholder:'',
+                    miqdorPlaceholder:'',
+                    soliqsizNarxPlaceholder:'',
+                    soliqbilanNarxPlaceholder:'',
+                    foydaPlaceholder:'',
+                    sotishNarxiPlaceholder:'',
+                    sotibOlishNarxiPlaceholder:'',
+                }
+            )
+        }
+        else{
+            setPlaseholders(
+                {
+                    maxsulotNomiPlaceholder:'Mahsulot nomini kiriting...',
+                    shtrixKodPlaceholder:'Shtrix kodni kiriting...',
+                    bazalarPlaceholder:'Baza nomini kiriting...',
+                    miqdorPlaceholder:'Miqdor kiriting...',
+                    soliqsizNarxPlaceholder:'Soliqsiz narxini kiriting...',
+                    soliqbilanNarxPlaceholder:'Soliq bilan narxini kiriting...',
+                    foydaPlaceholder:'Foydani kiriting...',
+                    sotishNarxiPlaceholder:'Sotish narxini kiriting..',
+                    sotibOlishNarxiPlaceholder:'Sotib olish narxini kiriting...',
+                }
+            )
         }
     }
 
@@ -279,13 +328,13 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
     },[FirmaReducer.current])
 
     return (
-        <div className={'row mt-5 contanerT'}>
+        <div className={'mt-5 contanerT'}>
             <h4 className={'text-center'}>Mahsulot qo`shish / Taxrirlash</h4>
             <div className="col-10 col-sm-10 border p-4 justify-content-center offset-1 d-flex" >
                 <div className="row">
                     <div className="inputs col-4 col-sm-12">
                         <label className='mt-3' htmlFor={'maxNomi'}>Mahsulot nomi</label>
-                        <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi} id={'maxNomi'} className={'form-control'}/>
+                        <input type="text" value={input.mahsulotnomi} placeholder={placeholders.maxsulotNomiPlaceholder}  onChange={mahsulotnomi} id={'maxNomi'} className={'form-control '}/>
 
                         <label className={'mt-3'} htmlFor={'olcov'}>O`lchov birligi</label>
                         <div className={'d-flex justify-content-between '}>
@@ -313,7 +362,7 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
 
                     <div className="col-4 col-sm-12">
                         <label className='mt-3' htmlFor={'shtrixKod'}>Shtrix kod</label>
-                        <input type="number" id={'shtrixKod'} value={input.shtrixkod} onChange={shtrixkod} className={'form-control'}/>
+                        <input type="number" id={'shtrixKod'} value={input.shtrixkod} placeholder={placeholders.shtrixKodPlaceholder} onChange={shtrixkod} className={'form-control'}/>
 
                         <label className='mt-3' htmlFor={'firma'}>Firma</label>
                         <div className={'d-flex'}>
@@ -339,9 +388,9 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                             <option value="">noBackend</option>
                         </select>
                         <label htmlFor="" className={'mt-3'}>Bazalar</label>
-                        <input type="text" value={input.bazalar} onChange={bazalar} className={'form-control'}/>
+                        <input type="text" id='bazalar' value={input.bazalar} placeholder={placeholders.bazalarPlaceholder} onChange={bazalar} className={'form-control taxrirlashInputValudetion'}/>
                         <label htmlFor={'ppp'} className={'mt-4'}>Miqdori</label>
-                        <input className={'form-control'} type="number" value={input.miqdorMaxsulot} onChange={miqdorMaxsulot}/>
+                        <input className={'form-control taxrirlashInputValudetion'} type="number" value={input.miqdorMaxsulot} id='miqdor' placeholder={placeholders.miqdorPlaceholder} onChange={miqdorMaxsulot}/>
                     </div>
                 </div>
             </div>
@@ -429,23 +478,23 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                         <tr>
                             <td>
                                 <label htmlFor={'soliqszNarx'}>Soliqsiz narx </label>
-                                <input type="number" value={input.soliqsiznarx} onChange={soliqsiznarx} id={'soliqszNarx'} style={{border:'2px solid gray'}}/><br/><p></p>
+                                <input type="number" value={input.soliqsiznarx} placeholder={placeholders.soliqsizNarxPlaceholder} className='taxrirlashInputValudetion' onChange={soliqsiznarx} id={'soliqszNarx'} style={{border:'2px solid gray'}}/><br/><p></p>
                                <label htmlFor={'soliqszNarx2'}>Soliq bn narx </label>
-                                <input type="number" id={'soliqszNarx2'} value={input.soliqbnnarx} onChange={soliqbnnarx} style={{border:'2px solid gray'}}/>
+                                <input type="number" id={'soliqszNarx2'} value={input.soliqbnnarx} placeholder={placeholders.soliqbilanNarxPlaceholder} className='taxrirlashInputValudetion' onChange={soliqbnnarx} style={{border:'2px solid gray'}}/>
                             </td>
                             <td>
                                 <label htmlFor={'foy'}>Foyda foizda</label><br/>
-                                <input type="text" id={'foy'} placeholder={'foyda'} value={input.foydafoiz} onChange={foydafoiz}
+                                <input type="text" id={'foy'} placeholder={placeholders.foydaPlaceholder} className='taxrirlashInputValudetion' value={input.foydafoiz} onChange={foydafoiz}
                                        style={{border:'1px solid gray',padding:'10px'}}/>
                             </td>
                             <td>
                                 <label htmlFor={''}>Sotish narxi</label><br/>
-                                <input type="text" placeholder={'soliqsiz narxi'} value={input.sotishnarxi} onChange={sotishnarxi}
+                                <input type="text" id='sotishNarxi' placeholder={placeholders.sotishNarxiPlaceholder} className='taxrirlashInputValudetion' value={input.sotishnarxi} onChange={sotishnarxi}
                                        style={{border:'1px solid gray',padding:'10px'}}/>
                             </td>
                             <td>
                                 <label htmlFor={''}>Sotib olish narxi</label><br/>
-                                <input type="text" placeholder={'soliqsiz narxi'} value={input.sotibolishnarxi} onChange={sotibolishnarxi}
+                                <input type="text" id='sotibOlishNarxi' placeholder={placeholders.sotibOlishNarxiPlaceholder} value={input.sotibolishnarxi}  onChange={sotibolishnarxi}
                                        style={{border:'1px solid gray',padding:'10px'}}/>
                             </td>
                             <td>
@@ -457,7 +506,12 @@ function Taxrirlash({editMaxsulotRuyxati,BolimReducer,getBolim, saveMaxsulotRuyx
                 </table>
                 </div>
                 <div className='d-flex justify-content-end'>
-                    <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot'}><button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button></Link>
+                    {
+                        (input.mahsulotnomi ==="" || input.shtrixkod==="" || input.bazalar==="" || input.miqdorMaxsulot==="" || input.soliqsiznarx==="" || input.soliqbnnarx==="" || input.foydafoiz==="" || input.sotishnarxi==="" || input.sotibolishnarxi==="") ? 
+                        <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button> :
+                        <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot'}><button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button></Link>
+
+                    }   
                 </div>
             </div>
         </div>

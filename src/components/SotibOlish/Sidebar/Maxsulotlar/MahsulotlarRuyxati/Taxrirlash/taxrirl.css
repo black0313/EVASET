@@ -17,3 +17,30 @@
 .mahcolor::placeholder{
     color: red;
 }
+#maxNomi::placeholder{
+    color: red;
+}
+#shtrixKod::placeholder{
+    color: red;
+}
+#miqdor::placeholder{
+    color: red;
+}
+#bazalar::placeholder{
+    color: red;
+}
+#soliqszNarx::placeholder{
+    color: red;
+}
+#soliqszNarx2::placeholder{
+    color: red;
+}
+#foy::placeholder{
+    color: red;
+}
+#sotishNarxi::placeholder{
+    color: red;
+}
+#sotibOlishNarxi::placeholder{
+    color: red;
+}
