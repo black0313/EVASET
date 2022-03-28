@@ -88,7 +88,23 @@ function Xarid({
 
     const [xisob,setXisob]=useState(0)
     const [jamixisob,setjamiXisob]=useState(0)
+
     function diller(e) {
+        // if (input.diller === ''){
+        //     // TaminotReducer.taminot.map(item=> input.diller = 1 )
+        //     // let a = {...input}
+        //     // setInput(a)
+        //     input.diller = TaminotReducer.taminot[0]
+        //     let a = {...input}
+        //     setInput(a)
+        //     console.log(input.diller+' s2/')
+        // }else {
+        //     input.diller = e.target.value
+        //     let a = {...input}
+        //     setInput(a)
+        //     console.log(input.diller+ 's7')
+        // }
+
         input.diller = e.target.value
         let a = {...input}
         setInput(a)
@@ -118,7 +134,6 @@ function Xarid({
         setXisob(d)
         setjamiXisob(c)
     }
-
     function donanarxi(e,id) {
         input.donanarxi = e.target.value
         let a = {...input}
@@ -142,7 +157,6 @@ function Xarid({
         setXisob(d)
         setjamiXisob(c)
     }
-
     function donasotish(e,id) {
         // input.donasotish = e.target.value
         input.donasotish = e.target.value
@@ -167,19 +181,16 @@ function Xarid({
         setXisob(d)
         setjamiXisob(c)
     }
-
     function kg(e) {
         input.kg = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function lang1(e) {
         input.lang1 = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function dukon(e) {
         input.dukon = e.target.value
         let a = {...input}
@@ -205,37 +216,31 @@ function Xarid({
         let a = {...input}
         setInput(a)
     }
-
     function ikkinciraqam(e) {
         input.ikkinciraqam = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function otaismi(e) {
         input.otaismi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function telegram(e) {
         input.telegram = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function familiyasi(e) {
         input.familiyasi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function email(e) {
         input.email = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function shtrix(e) {
         input.shtrix = e.target.value
         let a = {...input}
@@ -257,7 +262,6 @@ function Xarid({
         console.log(input.shtrix)
         console.log(mah)
     }
-
     function deleteM(ind) {
         mah.map((item, index) => {
             if (item.id === ind) {
@@ -277,38 +281,32 @@ function Xarid({
         setXisob(b)
         setjamiXisob(c)
     }
-
     function qisqaeslatma(e) {
         input.qisqaeslatma = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function xaridsanasi(e) {
         input.xaridsanasi = e.target.value
         let a = {...input}
         setInput(a)
         console.log(input.xaridsanasi)
     }
-
     function tulovmuddati(e) {
         input.tulovmuddati = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function xaridstatusi(e) {
         input.xaridstatusi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function qoshimchahujjat(e) {
         input.qoshimchahujjat = e.target.value
         let a = {...input}
@@ -387,6 +385,8 @@ function Xarid({
         setjamiXisob(c)
     }
     useEffect(()=>{
+        // diller()
+        // console.log(TaminotReducer.taminot.map(item=><div>{item.id}</div>) +' nimadir')
     },[])
 
     function editX(){
@@ -502,15 +502,17 @@ function Xarid({
                             <div className={'d-flex'}>
                                 <div style={{width: '100%'}}>
                                     <label htmlFor={'dil'}>Diller</label>
-                                    <select name="" value={input.diller} onChange={diller} id={'dil'}
-                                            className={'form-control'}>
-                                        <option value="">Tanlash</option>
-                                        {
-                                            TaminotReducer.taminot.map(item => <option
-                                                value={item.id}>{item.name}</option>)
-                                        }
-
-                                    </select>
+                                    {
+                                        <select name="" value={input.diller} onChange={diller} id={'dil'}
+                                                className={'form-control'}>
+                                            {/*<option value="">Tanlash</option>*/}
+                                            {
+                                                TaminotReducer.taminot.map(item =>
+                                                    input.diller==''?input.diller = item.id
+                                                    :<option value={item.id}>{item.name}</option>)
+                                            }
+                                        </select>
+                                    }
                                 </div>
                                 <h4 style={{cursor: 'pointer', marginTop: '25px', fontSize: '30px'}}
                                     onClick={toggle}>+</h4>
@@ -524,9 +526,11 @@ function Xarid({
                                    id={'qisqa'}/>
                             <label htmlFor={'baza'} className={'mt-3'}>Baza</label>
                             <select name="" id={'baza'} value={input.baza} onChange={baza} className={'form-control'}>
-                                <option value="">Tanlash</option>
+                                {/*<option value="">Tanlash</option>*/}
                                 {
-                                    branchreducer.branch.map(item => <option value={item.id}>{item.name}</option>)
+                                    branchreducer.branch.map(item =>
+                                        input.baza==''?input.baza = item.id:
+                                        <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
                         </div>
@@ -535,7 +539,6 @@ function Xarid({
                             <label htmlFor={'sana'}>Xarid sanasi</label>
                             <input type="date" value={input.xaridsanasi} onChange={xaridsanasi}
                                    className={'form-control'}/>
-
                         </div>
 
                         <div className="col-3 col-sm-12 ">
@@ -544,6 +547,9 @@ function Xarid({
                                     className={'form-control'}
                                     id={'status'}>
                                 <option value="1">Tanlash</option>
+                                {/*TaminotReducer.taminot.map(item =>*/}
+                                {/*input.diller==''?input.diller = item.id*/}
+                                {/*:<option value={item.id}>{item.name}</option>)*/}
                                 <option value="2">Qabul qilindi</option>
                             </select>
                             <label htmlFor={'qosh'} className={'mt-4'}>Qo`shimcha Hujjat</label>
