@@ -150,6 +150,24 @@ function Mijozlarguruxi({
        }
     }
 
+    const [nomi,setnomi] = useState(true)
+    const [telraqam,settelraqam] = useState(true)
+    const [foizda,setfoizda] = useState(true)
+    const [telegram,settelegram] = useState(true)
+    const [amallar,setamallar] = useState(true)
+
+    const [headlist, setheadlist] = useState([
+        {
+            name: 'Nomi',
+            phone: 'Tel raqami',
+            foiz:'Foiz %',
+            telegram: 'Telegram',
+            amallar: 'Amallar'
+        }
+    ])
+
+    const [malkamay,setmalkamay] = useState(false)
+
     function toggle() {
         setActive(!active)
         setInput(
@@ -175,6 +193,7 @@ function Mijozlarguruxi({
     useEffect(() => {
         getMijozGurux()
     }, [MijozGuruxReducer.current])
+
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
             <div className="textHeaderMIG">
@@ -198,7 +217,17 @@ function Mijozlarguruxi({
                         <button><img src={Excel} alt=""/> Export Excel</button>
                         <button><img src={Print} alt=""/> Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                        <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+
+                        {
+                            malkamay ? headlist.map(item => <ul className={'ul2'} key={item.id}>
+                                <li onClick={()=>setnomi(!nomi)} className={'li2'}>{nomi? item.name: item.name+' <-'}</li>
+                                <li onClick={()=>settelraqam(!telraqam)} className={'li2'}>{telraqam? item.phone:'Tel raqam '+' <-'}</li>
+                                <li onClick={()=>setfoizda(!foizda)} className={'li2'}>{foizda? item.foiz:item.foiz+' <-'}</li>
+                                <li onClick={()=>settelegram(!telegram)} className={'li2'}>{telegram? item.telegram:item.telegram+' <-'}</li>
+                                <li onClick={()=>setamallar(!amallar)} className={'li2'}>{amallar?item.amallar:item.amallar+ ' <-'}</li>
+                            </ul>) : ''
+                        }
                     </div>
                     <div className="izlashBox2">
                         <input type="text" value={input.inputsearch} onChange={search} placeholder='Izlash...'/>
@@ -207,13 +236,25 @@ function Mijozlarguruxi({
                 <div className="table-responsive">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
-                        <tr>
-                            <th>Nomi</th>
-                            <th>Tel raqam</th>
-                            <th>Foizda(%)</th>
-                            <th>Telegram</th>
-                            <th>Amallar</th>
-                        </tr>
+                        {
+                            headlist.map(item=><tr key={item.id}>
+                                {
+                                    nomi?<th>{item.name}</th>:''
+                                }
+                                {
+                                    telraqam?<th>{item.phone}</th>:''
+                                }
+                                {
+                                    foizda?<th>{item.foiz}</th>:''
+                                }
+                                {
+                                    telegram?<th>{item.telegram}</th>:''
+                                }
+                                {
+                                    amallar?<th className={'text-center'}>{item.amallar}</th>:''
+                                }
+                            </tr>)
+                        }
                         </thead>
                         <tbody>
                         {
@@ -225,18 +266,28 @@ function Mijozlarguruxi({
                                 }
                             })
                                 .map(item => <tr key={item.id}>
-                                    <td>{item.name}</td>
-                                    <td>{item.phoneNumber}</td>
-                                    <td></td>
-                                    <td>{item.telegram}</td>
-                                    <td>
-                                        <button className={'btn btn-outline-primary m-1'}
-                                                onClick={() => editM(item.id)}>Taxrirlash
-                                        </button>
-                                        <button className={'btn btn-outline-primary m-1'}
-                                                onClick={() => deleteM(item)}>O`chirish
-                                        </button>
-                                    </td>
+                                    {
+                                        nomi?<td>{item.name}</td>:''
+                                    }
+                                    {
+                                        telraqam?<td>{item.phoneNumber}</td>:''
+                                    }
+                                    {
+                                        foizda?<td></td>:''
+                                    }
+                                    {
+                                        telegram?<td>{item.telegram}</td>:''
+                                    }
+                                    {
+                                        amallar?<td>
+                                            <button className={'btn btn-outline-primary m-1'}
+                                                    onClick={() => editM(item.id)}>Taxrirlash
+                                            </button>
+                                            <button className={'btn btn-outline-primary m-1'}
+                                                    onClick={() => deleteM(item)}>O`chirish
+                                            </button>
+                                        </td>:''
+                                    }
                                 </tr>)
                         }
                         </tbody>
