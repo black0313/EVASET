@@ -164,7 +164,7 @@ function SavdoOynasi({
                 setCount(item.id)
             }
         })
-        arr1.push({...val, counter: 1, disabled: false,})
+        arr1.push({...val, counter: 1, disabled: false,active:false})
         let a = 0
         let c = 0
         arr1.map(item => {
@@ -179,8 +179,17 @@ function SavdoOynasi({
     function setCount(id) {
         arr1.map(item => {
             if (item.id === id) {
-                item.counter += 1
-                item.disabled = false
+                if(item.counter >= item.quantity){
+                    item.active = true
+                    item.disabled = false
+                }
+                else{
+                    item.counter += 1
+                    item.disabled = false
+                    item.active = false
+
+                }
+
             }
         })
         let a = [...arr1]
@@ -201,8 +210,12 @@ function SavdoOynasi({
             if (item.id === id) {
                 if (item.counter >= 1) {
                     item.counter -= 1
+                    item.active = false
+
                 } else {
                     item.disabled = true
+                    item.active = false
+
                 }
             }
 
@@ -538,7 +551,7 @@ function SavdoOynasi({
                                 {
                                     arr1.map(item => <tr key={item.id}>
                                         <td style={{marginLeft: '10px'}}>{item.name}</td>
-                                        <td className={'d-flex justify-content-between'}>
+                                        <td className={''}>
                                             <div className={'d-flex align-items-center justify-content-around p-0'}
                                                  style={{width: '100%'}}>
                                                 <button disabled={item.disabled} onClick={() => sMinus(item.id)}
@@ -549,6 +562,9 @@ function SavdoOynasi({
                                                         className={'btn btn-outline-primary rounded-circle border-3'}>+
                                                 </button>
                                             </div>
+                                            {
+                                                item.active ? <p className={'text-danger text-center fw-2'}>Only {item.quantity} available !</p>:''
+                                            }
                                         </td>
                                         <td>{item.counter * item.buyPrice}</td>
                                         <td>
