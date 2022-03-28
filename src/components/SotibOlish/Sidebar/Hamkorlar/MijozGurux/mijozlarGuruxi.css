@@ -131,6 +131,16 @@
      
 }
 
+#nomi::placeholder{
+       color: red;
+}
+#phoneNumberInput::placeholder{
+       color: red;
+}
+#foizda::placeholder{
+       color: red;
+}
+
 @media (max-width: 425.9px){
        .textHeaderMIG{
               display: block;

@@ -31,6 +31,14 @@ function Mijozlarguruxi({
 
     const [active, setActive] = useState(false);
 
+    const [plaseholders,setPlaseholders] = useState(
+        {
+            guruhNomiPlaseholders:'',
+            phonePlaseholders:'',
+            telegramPlaseholders:'',
+        }
+    )
+
     const [input, setInput] = useState(
         {
             guruhnomi: '',
@@ -95,7 +103,8 @@ function Mijozlarguruxi({
     }
 
     function saqla() {
-        
+       if(input.guruhnomi !=="" && input.phone !=="" && input.foizda !==""){
+         
         if (input.mId !== '') {
             editMijozGurux({
                 name: input.guruhnomi,
@@ -112,6 +121,14 @@ function Mijozlarguruxi({
                 businessId: 1
             })
         }
+        setPlaseholders(
+            {
+                guruhNomiPlaseholders:'',
+                phonePlaseholders:'',
+                telegramPlaseholders:''
+            }
+        )
+        
         input.guruhnomi = ''
         input.phone = ''
         input.selectfoiz = ''
@@ -120,10 +137,39 @@ function Mijozlarguruxi({
         let a ={...input}
         setInput(a)
         toggle()
+       }
+       else{
+        setPlaseholders(
+            {
+                guruhNomiPlaseholders:'Guruh nomini kiriting...',
+                phonePlaseholders:'Telefon raqam kiriting...',
+                telegramPlaseholders:'Telegram guruh nomi... '
+            }
+        )
+        
+       }
     }
 
     function toggle() {
         setActive(!active)
+        setInput(
+            {
+                guruhnomi: '',
+                selectfoiz: '',
+                foizda: '',
+                inputsearch: '',
+                phone: '',
+                mId: ''
+            }
+        )
+        setPlaseholders(
+            {
+                guruhNomiPlaseholders:'',
+                phonePlaseholders:'',
+                telegramPlaseholders:''
+            }
+        )
+        
     }
 
     useEffect(() => {
@@ -212,16 +258,16 @@ function Mijozlarguruxi({
                     <ModalBody>
                         <label htmlFor={'nomi'}>Nomi</label>
                         <input value={input.guruhnomi} onChange={changeguruxnomi} id={'nomi'} type="text"
-                               className={'form-control'}/>
-                        <label htmlFor={'lang'}>lang_v1.price_calculation_type</label>
-                        <select value={input.selectfoiz} onChange={changeselectfoiz} className={'form-control mt-3'}
+                              placeholder={plaseholders.guruhNomiPlaseholders}  className={'form-control mb-3 mt-1'}/>
+                        <label htmlFor={'lang'}>price_calculation_type</label>
+                        <select value={input.selectfoiz} onChange={changeselectfoiz} className={'form-control mb-3 mt-1'}
                                 name="" id="">
                             <option value="#">Foizda</option>
                         </select>
-                        <label htmlFor={'tel'}>Tel raqam</label>
-                        <input type="text" className={'form-control mt-2'} value={input.phone} onChange={phone}/>
-                        <label htmlFor={'foizda'} className={'mt-3'}>Telegram</label>
-                        <input type="text" value={input.foizda} onChange={changefoizda} className={'form-control'}
+                        <label htmlFor={'tel'}>Telefon raqam</label>
+                        <input type="text" id='phoneNumberInput' placeholder={plaseholders.phonePlaseholders} className={'form-control mb-3 mt-1'} value={input.phone} onChange={phone}/>
+                        <label htmlFor={'foizda'}>Telegram</label>
+                        <input type="text" value={input.foizda}  placeholder={plaseholders.telegramPlaseholders} onChange={changefoizda} className={'form-control mb-3 mt-1'}
                                id={'foizda'}/>
                     </ModalBody>
                     <ModalFooter>
