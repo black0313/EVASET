@@ -31,6 +31,8 @@ function Hodimlar({active,activemedia}) {
             active()
         }
     }
+
+
     return(
         <div className={'row h'}>
 

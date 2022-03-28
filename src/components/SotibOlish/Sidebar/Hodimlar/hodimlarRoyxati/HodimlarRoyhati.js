@@ -44,6 +44,27 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
         console.log(inSearch.inputsearch)
     }
 
+    const [login,setlogin] = useState(true)
+    const [ism,setism] = useState(true)
+    const [familiyasi,setfamiliyasi] = useState(true)
+    const [lavozim,setlavozim] = useState(true)
+    const [email,setemail] = useState(true)
+    const [amallar,setamallar] = useState(true)
+
+    const [headlist,setheadlist] = useState([
+        {
+            login: 'Login',
+            name: 'Ism',
+            lastName: 'Familiyasi',
+            lavozim: 'Lavozim',
+            email:' Email',
+            amallar:' Amallar'
+        }
+    ])
+
+    const [malkamay, setmalkamay] = useState(false)
+
+
     return (
         <div className="col-md-12 pb-4 pt-4">
             <div className="textHeaderHR">
@@ -75,7 +96,18 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                         <button><img src={Excel} alt=""/>Export Excel</button>
                         <button><img src={Print} alt=""/>Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                        <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+
+                        {
+                            malkamay ? headlist.map(item => <ul className={'ul2'} key={item.id}>
+                                <li onClick={()=>setlogin(!login)} className={'li2'}>{login? item.login: item.login+' <-'}</li>
+                                <li onClick={()=>setism(!ism)} className={'li2'}>{ism? item.name:item.name +' <-'}</li>
+                                <li onClick={()=>setfamiliyasi(!familiyasi)} className={'li2'}>{familiyasi? item.lastName:item.lastName+' <-'}</li>
+                                <li onClick={()=>setlavozim(!lavozim)} className={'li2'}>{lavozim? item.lavozim:item.lavozim+' <-'}</li>
+                                <li onClick={()=>setemail(!email)} className={'li2'}>{email? item.email:item.email+' <-'}</li>
+                                <li onClick={()=>setamallar(!amallar)} className={'li2'}>{amallar?item.amallar:item.amallar+ ' <-'}</li>
+                            </ul>) : ''
+                        }
                     </div>
                     <div className="izlashBox2">
                         <input type="text" onChange={search} value={inSearch.inputsearch} placeholder='Izlash...'/>
@@ -84,14 +116,28 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                 <div className="table-responsive mb-4">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
-                        <tr>
-                            <th>Login</th>
-                            <th>Ism</th>
-                            <th>Familiyasi</th>
-                            <th>Lavozim</th>
-                            <th>Email</th>
-                            <th>Amal</th>
-                        </tr>
+                        {
+                            headlist.map(item=><tr key={item.id}>
+                                {
+                                    login?<th>{item.login}</th>:''
+                                }
+                                {
+                                    ism?<th>{item.name}</th>:''
+                                }
+                                {
+                                    familiyasi?<th>{item.lastName}</th>:''
+                                }
+                                {
+                                    lavozim?<th>{item.lavozim}</th>:''
+                                }
+                                {
+                                    email?<th>{item.email}</th>:''
+                                }
+                                {
+                                    amallar?<th>{item.amallar}</th>:''
+                                }
+                            </tr>)
+                        }
                         </thead>
                         <tbody>
                         {
@@ -103,26 +149,38 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                 }
                             })
                                 .map((item) => <tr key={item.id}>
-                                    <td>{item.username}</td>
-                                    <td>{item.firstName}</td>
-                                    <td>{item.lastName}</td>
-                                    <td>{item.role?.name}</td>
-                                    <td>-</td>
-                                    <td>
-                                        <Link to={'/headerthird/hodimlarruyxati/taxrirlash/' + item.id}>
-                                            <button className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash</button>
-                                        </Link>
+                                    {
+                                        login?<td>{item.username}</td>:''
+                                    }
+                                    {
+                                        ism?<td>{item.firstName}</td>:''
+                                    }
+                                    {
+                                        familiyasi?<td>{item.lastName}</td>:''
+                                    }
+                                    {
+                                        lavozim?<td>{item.role?.name}</td>:''
+                                    }
+                                    {
+                                        email?<td>-</td>:''
+                                    }
+                                    {
+                                        amallar?<td>
+                                            <Link to={'/headerthird/hodimlarruyxati/taxrirlash/' + item.id}>
+                                                <button className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash</button>
+                                            </Link>
 
-                                        <Link
-                                            to={'/headerthird/hodimlarruyxati/view/' + item.username + '/' + item.firstName + '/' + item.lastName}>
-                                            <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
-                                        </Link>
-                                        <Link to={'/headerthird/hodimlarruyxati'}>
-                                            <button onClick={() => deletex(item)} className='ochirish'><img src={Delete}
-                                                                                                            alt=""/> O'chirish
-                                            </button>
-                                        </Link>
-                                    </td>
+                                            <Link
+                                                to={'/headerthird/hodimlarruyxati/view/' + item.username + '/' + item.firstName + '/' + item.lastName}>
+                                                <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
+                                            </Link>
+                                            <Link to={'/headerthird/hodimlarruyxati'}>
+                                                <button onClick={() => deletex(item)} className='ochirish'><img src={Delete}
+                                                                                                                alt=""/> O'chirish
+                                                </button>
+                                            </Link>
+                                        </td>:''
+                                    }
 
                                 </tr>)
 
