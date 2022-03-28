@@ -294,6 +294,7 @@ function SavdoOynasi({
         })
         setarr1([])
     }
+
     function saqla() {
         saveMaxsulotRuyxati({
             name: input.modalmahsulotnomi,

@@ -33,9 +33,6 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
     useEffect(()=>{
         getSavdolar(users.businessId)
         getXarid(users.businessId)
-        // setTimeout(()=>{
-        //     // funkjamisavdo()
-        // },200)
 
     },[])
 
@@ -45,17 +42,7 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
         // active()
 
     }
-   
-    //
-    // function funkjamisavdo(){
-    //     let amout=0
-    //     SavdoQoshishReducer.savdolar.map(item=>{
-    //             amout+=item.amountPaid
-    //         },
-    //     )
-    //     setamount(amout)
-    //    console.log('funck2')
-    // }
+
     const [amount,setamount] = useState(0)
     const [third, setThird] = useState('')
     const chartOptions = {

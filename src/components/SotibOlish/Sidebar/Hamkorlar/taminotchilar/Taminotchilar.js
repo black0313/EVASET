@@ -10,14 +10,14 @@ import Korish from '../../../../../img/Korish.png'
 import Delete from '../../../../../img/Delete.png'
 import {useEffect} from "react";
 import {connect} from "react-redux";
-import TaminotReducer,{getTaminot, saveTaminot, editTaminot,taminot, deleteTaminot} from "../reducer/TaminotReducer";
+import TaminotReducer, {getTaminot, saveTaminot, editTaminot, taminot, deleteTaminot} from "../reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
 import {useState} from 'react'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import { red } from "@mui/material/colors"
+import {red} from "@mui/material/colors"
 
 
-function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, taminot,users,TaminotReducer}) {
+function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, taminot, users, TaminotReducer}) {
 
     useEffect(() => {
         getTaminot(users.businessId)
@@ -30,19 +30,18 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     }
 
 
-
     const [input, setInput] = useState(
         {
             langv1: '',
-            telegram:'',
+            telegram: '',
             dukon: '',
             idraqam: '',
             login: '',
-            idplaceholder:'ID raqami',
-            loginplaceholder:'Mr/Mrs/Mis',
-            ismplaceholder:'Ismi',
-            telegramLinkPlaceholder:'Telegram link',
-            telefonRaqamPlaceholder:'Telefon raqam',
+            idplaceholder: 'ID raqami',
+            loginplaceholder: 'Mr/Mrs/Mis',
+            ismplaceholder: 'Ismi',
+            telegramLinkPlaceholder: 'Telegram link',
+            telefonRaqamPlaceholder: 'Telefon raqam',
             ismi: '',
             otaismi: '',
             familiyasi: '',
@@ -57,97 +56,106 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         setInput(a)
         console.log(input.inputsearch)
     }
+
     function changelangv1(e) {
         input.langv1 = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function changedukon(e) {
         input.dukon = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function changeidraqam(e) {
         input.idraqam = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function TELEGRAM(e) {
         input.telegram = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function changelogin(e) {
         input.login = e.target.value
         let a = {...input}
         setInput(a)
 
     }
+
     function changeismi(e) {
         input.ismi = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function changeotaismi(e) {
         input.telegram = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function changefamiliyasi(e) {
         input.familiyasi = e.target.value
         let a = {...input}
         setInput(a)
     }
-    function deleteTaminot2(item){
+
+    function deleteTaminot2(item) {
         console.log(item)
         deleteTaminot(item.id)
         getTaminot(users.businessId)
     }
 
-    function  editt(id){
+    function editt(id) {
         toggle()
-        TaminotReducer.taminot.map(item=>{
-            if(item.id === id){
+        TaminotReducer.taminot.map(item => {
+            if (item.id === id) {
                 input.ismi = item.name
                 input.familiyasi = item.phoneNumber
                 input.telegram = item.telegram
                 input.login = item.login
-                input.tID=id
-                let a ={...input}
+                input.tID = id
+                let a = {...input}
                 setInput(a)
             }
         })
     }
 
-    function saqla(){
-            // if(input.idraqam === ""){
-            //     input.idplaceholder = "ID kiriting..."
-            //     var b = document.getElementById('idRaqam')
-            //     let a = {...input}
-            //     setInput(a)
-            //     console.log(input);
-            //     b.classList.add('pcolor')
-            // }
-            //  if(input.login === ""){
-            //     input.loginplaceholder = "Ma'lumot kiriting..."
-            //     var b = document.getElementById('log1')
-            //     let a ={...input}
-            //     setInput(a)
-            //     b.classList.add('pcolor')
-            // }
-            if(input.ismi === "" || input.telegram === "" || input.familiyasi === ""){
-                input.ismplaceholder = "Ism kiriting..."
-                var b = document.getElementById('ism')
-                input.telefonRaqamPlaceholder = "Telefon raqam kiriting..."
-                var c = document.getElementById('telefon')
-                input.telegramLinkPlaceholder = "Link kiriting..."
-                var d = document.getElementById('telegram')
-                let a = {...input}
-                setInput(a)
-                b.classList.add('pcolor')
-                c.classList.add('pcolor')
-                d.classList.add('pcolor')
-            }
+    function saqla() {
+        // if(input.idraqam === ""){
+        //     input.idplaceholder = "ID kiriting..."
+        //     var b = document.getElementById('idRaqam')
+        //     let a = {...input}
+        //     setInput(a)
+        //     console.log(input);
+        //     b.classList.add('pcolor')
+        // }
+        //  if(input.login === ""){
+        //     input.loginplaceholder = "Ma'lumot kiriting..."
+        //     var b = document.getElementById('log1')
+        //     let a ={...input}
+        //     setInput(a)
+        //     b.classList.add('pcolor')
+        // }
+        if (input.ismi === "" || input.telegram === "" || input.familiyasi === "") {
+            input.ismplaceholder = "Ism kiriting..."
+            var b = document.getElementById('ism')
+            input.telefonRaqamPlaceholder = "Telefon raqam kiriting..."
+            var c = document.getElementById('telefon')
+            input.telegramLinkPlaceholder = "Link kiriting..."
+            var d = document.getElementById('telegram')
+            let a = {...input}
+            setInput(a)
+            b.classList.add('pcolor')
+            c.classList.add('pcolor')
+            d.classList.add('pcolor')
+        }
             // else if(input.telegram === ""){
             //     input.telegramLinkPlaceholder = "Link kiriting..."
             //     var b = document.getElementById('telegram')
@@ -161,64 +169,78 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
             //     let a = {...input}
             //     setInput(a)
             //     b.classList.add('pcolor')
-            // }
-            
-           
-            else{
-            
-                if (input.tID !== ''){
-                    editTaminot(
-                        {
-                            name:input.ismi,
-                            phoneNumber: input.familiyasi,
-                            telegram: input.telegram,
-                            supplierType:'',
-                            businessId: 1,
-                            id:input.tID
-                        }
-                    )
-                    console.log('edit')
-                }
-                else{
-                    saveTaminot({
-                        name:input.ismi,
+        // }
+
+
+        else {
+
+            if (input.tID !== '') {
+                editTaminot(
+                    {
+                        name: input.ismi,
                         phoneNumber: input.familiyasi,
                         telegram: input.telegram,
-                        supplierType:'',
+                        supplierType: '',
                         businessId: 1,
-                    })
-                    console.log('save')
-                }
-              
-                toggle()
-                let a ={...input}
-                setInput(a)
-                console.log(input);
-                let v = {...input}
-                setInput({
-                    langv1: '',
-                    telegram:'',
-                    dukon: '',
-                    idraqam: '',
-                    login: '',
-                    idplaceholder:'ID raqami',
-                    loginplaceholder:'Mr/Mrs/Mis',
-                    ismplaceholder:'Ismi',
-                    telegramLinkPlaceholder:'Telegram link',
-                    telefonRaqamPlaceholder:'Telefon raqam',
-                    ismi: '',
-                    otaismi: '',
-                    familiyasi: '',
-                    inputsearch: '',
-                    tID: '',
+                        id: input.tID
+                    }
+                )
+                console.log('edit')
+            } else {
+                saveTaminot({
+                    name: input.ismi,
+                    phoneNumber: input.familiyasi,
+                    telegram: input.telegram,
+                    supplierType: '',
+                    businessId: 1,
                 })
+                console.log('save')
             }
-        
 
-
-
-        
+            toggle()
+            let a = {...input}
+            setInput(a)
+            console.log(input);
+            let v = {...input}
+            setInput({
+                langv1: '',
+                telegram: '',
+                dukon: '',
+                idraqam: '',
+                login: '',
+                idplaceholder: 'ID raqami',
+                loginplaceholder: 'Mr/Mrs/Mis',
+                ismplaceholder: 'Ismi',
+                telegramLinkPlaceholder: 'Telegram link',
+                telefonRaqamPlaceholder: 'Telefon raqam',
+                ismi: '',
+                otaismi: '',
+                familiyasi: '',
+                inputsearch: '',
+                tID: '',
+            })
+        }
     }
+
+    const [headlist, setheadlist] = useState([
+        {
+            name: 'Ismi',
+            phone: 'Telefon raqami',
+            telegram: 'Telegram',
+            supplier: 'Taminotchi turi',
+            amallar: 'Amallar'
+        }
+    ])
+
+    function malumotkamay() {
+
+    }
+
+    function toggle2() {
+        setmalkamay(!malkamay)
+    }
+
+    const [malkamay, setmalkamay] = useState(false)
 
     return (
 
@@ -246,57 +268,82 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                             <button><img src={Excel} alt=""/> Export Excel</button>
                             <button><img src={Print} alt=""/> Print</button>
                             <button><img src={Pdf} alt=""/>Export PDF</button>
-                            <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                            <button className={'posrel'} onClick={toggle2}><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+
+                            {
+                                malkamay ? headlist.map(item => <ul className={'ul2'} key={item.id}>
+                                    <li className={'li2'}>{item.name}</li>
+                                    <li className={'li2'}>{item.phone}</li>
+                                    <li className={'li2'}>{item.telegram}</li>
+                                    <li className={'li2'}>{item.supplier}</li>
+                                    <li className={'li2'}>{item.amallar}</li>
+                                </ul>) : ''
+                            }
+
                         </div>
                         <div className="izlashBox2">
-                            <input type="text" value={input.inputsearch} onChange={changeizlash} placeholder='Izlash...'/>
+                            <input type="text" value={input.inputsearch} onChange={changeizlash}
+                                   placeholder='Izlash...'/>
                         </div>
 
-                    
+
                     </div>
                     <div className="table-responsive">
-                    <table className='table table-striped table-bordered mt-4'>
-                        <thead>
-                        <tr>
-                            <th>Ismi</th>
-                            <th>Telefon raqam</th>
-                            <th>Telegram</th>
-                            <th>Taminotchi turi</th>
-                            <th className={'text-center'}>Amallar</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            TaminotReducer.taminot.filter(val => {
-                                if (input.inputsearch === '') {
-                                    return val
-                                } else if (val.name.toUpperCase().includes(input.inputsearch.toUpperCase())) {
-                                    return val
-                                }
-                            }).map(item => <tr key={item.id}>
-                                <td>{item.name}</td>
-                                <td>{item.phoneNumber}</td>
-                                <td>{item.telegram}</td>
-                                <td>{item.supplierType}</td>
-                                <td className={'text-center'}>
-                                    <Link to={'/headerthird/taminotchilar/taxrirlash'}>
-                                        <button onClick={()=>editt(item.id)}  className='taxrirlash'><img src={Edit}
-                                                                                             alt=""/> Taxrirlash
+                        <table className='table table-striped table-bordered mt-4'>
+                            <thead>
+                            {/*<tr>*/}
+                            {
+                                headlist.map(item => <tr key={item.id}>
+                                    <th>{item.name}</th>
+                                    <th>{item.phone}</th>
+                                    <th>{item.telegram}</th>
+                                    <th>{item.supplier}</th>
+                                    <th className={'text-center'}>{item.amallar}</th>
+                                </tr>)
+                            }
+
+                            {/*<th>Ismi</th>*/}
+                            {/*<th>Telefon raqam</th>*/}
+                            {/*<th>Telegram</th>*/}
+                            {/*<th>Taminotchi turi</th>*/}
+                            {/*<th className={'text-center'}>Amallar</th>*/}
+                            {/*</tr>*/}
+                            </thead>
+                            <tbody>
+                            {
+                                TaminotReducer.taminot.filter(val => {
+                                    if (input.inputsearch === '') {
+                                        return val
+                                    } else if (val.name.toUpperCase().includes(input.inputsearch.toUpperCase())) {
+                                        return val
+                                    }
+                                }).map(item => <tr key={item.id}>
+                                    <td>{item.name}</td>
+                                    <td>{item.phoneNumber}</td>
+                                    <td>{item.telegram}</td>
+                                    <td>{item.supplierType}</td>
+                                    <td className={'text-center'}>
+                                        <Link to={'/headerthird/taminotchilar/taxrirlash'}>
+                                            <button onClick={() => editt(item.id)} className='taxrirlash'><img
+                                                src={Edit}
+                                                alt=""/> Taxrirlash
+                                            </button>
+                                        </Link>
+                                        <Link
+                                            to={'/headerthird/taminotchilar/view/' + input.name + '/' + input.tel + '/' + input.telegram + '/' + input.taminot}>
+                                            <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
+                                        </Link>
+                                        <button onClick={() => deleteTaminot2(item)} className='ochirish'><img
+                                            src={Delete} alt=""/> O'chirish
                                         </button>
-                                    </Link>
-                                    <Link
-                                        to={'/headerthird/taminotchilar/view/' + input.name + '/' + input.tel + '/' + input.telegram + '/' + input.taminot}>
-                                        <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
-                                    </Link>
-                                    <button onClick={()=>deleteTaminot2(item)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
 
-                                </td>
+                                    </td>
 
-                            </tr>)
-                        }
+                                </tr>)
+                            }
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </div>
 
                     <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
@@ -345,8 +392,9 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 </div>
                                 <div>
                                     <label htmlFor={'ism'}>Ismi</label>
-                                    <input onChange={changeismi}  value={input.ismi} type="text" id={'ism'}
-                                           placeholder={input.ismplaceholder} className={'form-control'} required="required"/>
+                                    <input onChange={changeismi} value={input.ismi} type="text" id={'ism'}
+                                           placeholder={input.ismplaceholder} className={'form-control'}
+                                           required="required"/>
                                 </div>
                             </div>
                             <div className="in d-flex">
@@ -358,7 +406,8 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 <div className={'mt-3'}>
                                     <label htmlFor={'ot'}>Telefon raqam</label>
                                     <input value={input.familiyasi} onChange={changefamiliyasi} type="number"
-                                           placeholder={input.telefonRaqamPlaceholder} id={'telefon'} className={'form-control'}/>
+                                           placeholder={input.telefonRaqamPlaceholder} id={'telefon'}
+                                           className={'form-control'}/>
                                 </div>
                             </div>
 
@@ -374,7 +423,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     )
 }
 
-export default connect((TaminotReducer,users), {
+export default connect((TaminotReducer, users), {
     getTaminot,
     saveTaminot,
     editTaminot,

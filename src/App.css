@@ -2,12 +2,11 @@
     --color:"aqua"
 }
 
-*{
-}
 body{
     background: silver;
     height: auto;
 }
+
 #root{
     height: 100%;
 }
@@ -20,9 +19,11 @@ body{
     height: 100%;
     background-color: silver;
 }
+
 .display-none{
     display: none;
 }
+
 .homebody{
     width: 100%;
 }

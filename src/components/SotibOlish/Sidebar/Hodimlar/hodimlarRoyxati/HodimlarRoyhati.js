@@ -106,7 +106,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                     <td>{item.username}</td>
                                     <td>{item.firstName}</td>
                                     <td>{item.lastName}</td>
-                                    <td>-</td>
+                                    <td>{item.role?.name}</td>
                                     <td>-</td>
                                     <td>
                                         <Link to={'/headerthird/hodimlarruyxati/taxrirlash/' + item.id}>

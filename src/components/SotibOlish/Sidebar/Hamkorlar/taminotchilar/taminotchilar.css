@@ -5,7 +5,26 @@
        /*box-shadow: 0px 10px 20px grey;*/
        background-color: #FFFF;
 }
-
+.li2{
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s all ease-in-out;
+}
+.li2:hover{
+    cursor: pointer;
+    font-size: 14.7px;
+    color: #2d2daf;
+}
+.ul2{
+    position: absolute;
+    top: 28%;
+    left: 43.2%;
+    height: 180px;
+    background: #4c4ca0;
+}
+.posrel{
+    position: relative;
+}
 .textHeaderTM{
        display: flex;
        align-items: baseline;

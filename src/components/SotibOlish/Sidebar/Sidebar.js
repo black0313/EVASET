@@ -47,9 +47,7 @@ function Sidebar({functionreducer,active,users}) {
                     break; 
                 case "ADD_CUSTOMER":;
                 setaddcustomer(true)
-                    break;       
-                
-                
+                    break;
             }
         })
     }

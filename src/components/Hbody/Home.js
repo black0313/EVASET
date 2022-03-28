@@ -9,8 +9,7 @@ import {connect} from "react-redux";
 import {active} from "../../reducer/functionreducer";
 import SecondPage from "../Pricing/SecondPage/SecondPage";
 import users ,{saveusers,getusers,changeerror}from "../../reducer/users";
-import {idID} from "@mui/material/locale";
-
+// import {idID} from "@mui/material/locale";
 
 function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
 
@@ -20,27 +19,14 @@ function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
     const [inputparol, setparol] = useState('')
     const [disabled, setdisabled] = useState(false)
     const [checked, setchecked] = useState(false)
-    const [placeclass, setplaceclass] = useState('')
 
     function login(event) {
         setLogin(event.target.value)
-        // if (inputparol === '' || inputlogin === '') {
-        //     setdisabled(true)
-        // } else (
-        //     setdisabled(false)
-        // )
-        // console.log(inputlogin)
         changeerror()
     }
 
     function parol(event) {
         setparol(event.target.value)
-        // if (inputlogin === '' || inputparol === '') {
-        //     setdisabled(true)
-        // } else (
-        //     setdisabled(false)
-        // )
-        // console.log(inputparol)
         changeerror()
     }
 
@@ -64,16 +50,9 @@ function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
         }
     }
 
-
-
-
-
     function testusers() {
         saveusers({username:inputlogin,password:inputparol})
     }
-
-
-
 
     return (
         <div>
@@ -97,7 +76,6 @@ function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
                                     </p>
                                 </div>
                             </div>
-
 
                         <div className="home-enter">
                             <div className="kirish-text">
@@ -127,11 +105,11 @@ function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
                                     </label>
                                     <div className="login">
                                         <h4>Meni eslab qol</h4>
-                                        <a href="#">Parolni unutdingizmi?</a>
+                                        <a href="">Parolni unutdingizmi?</a>
                                     </div>
                                 
                                 </div>
-                            <button onClick={testusers}  disabled={disabled} className={'btn btn-primary form-control kirish'}>Kirish </button>
+                            <button onClick={testusers} disabled={disabled} className={'btn btn-primary form-control kirish'}>Kirish </button>
                             </div>
                         </div>
                     </div>
