@@ -1,8 +1,19 @@
+.shopping{
+    width: 100%;
+    position: absolute;
+}
 .savdoOynaContainers{
-    /* background-color: gray; */
-    padding: 0px;
-    border-radius: 0px;
-    height: 100%;
+    width: 100%;
+     background-color: silver;
+    padding: 5px 0 0 0;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+
+}
+
+.shoppingmodal{
+
 }
 .savdoOynaContainers .savdoNavbar{
     display: flex;
@@ -221,7 +232,8 @@
 
 @media (max-width: 425.9px){
     .savdoOynaContainers{
-        height: 100%;
+        width: 100%;
+
     }
     .savdoOynaContainers .savdoNavbar{
         display: block;
@@ -304,7 +316,8 @@
 }
 @media (min-width: 426px) and (max-width: 768.9px){
     .savdoOynaContainers{
-        height: 100%;
+        width: 100%;
+
     }
     .savdoOynaContainers .savdoNavbar{
         display: block;
@@ -398,7 +411,7 @@
 }
 @media (min-width: 769px) and (max-width: 1024.9px){
     .savdoOynaContainers{
-        height: 100%;
+        width: 100%;
     }
     .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox{
         display: block;
@@ -472,6 +485,7 @@
     }
 
 }
+
 @media (min-width: 1025px) and (max-width: 1119.9px){
     .savdoOynaContainers{
     }

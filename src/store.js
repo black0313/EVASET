@@ -31,9 +31,10 @@ import branchreducer from "./reducer/branchreducer";
 import kgreducer from "./reducer/kgreducer";
 import tolovreducer from "./reducer/tolovreducer";
 import PayReducer from "./reducer/PayReducer";
+import photoreducer from "./reducer/photoreducer";
 export default configureStore({
     reducer:{
-        users,functionreducer,XodimReducer,LavozimReducer,XodimSavdoReducer,TaminotReducer,tolovreducer,
+        users,functionreducer,XodimReducer,LavozimReducer,XodimSavdoReducer,TaminotReducer,tolovreducer,photoreducer,
         MijozGuruxReducer,SotuvNarxiReducer,BolimReducer,FirmaReducer,XaridReducer,SavdoOynaReducer,
         OtkazmaReducer,XarajatlarReducer,XarajatTurlariReducer,FoydaZararReducer,XaridlarXisobotiReducer,
         MijozHisobotiReducer,XarajatXisobotReducer,SavdodagiTulovReducer,MaxsulotxisobotReducer,KopsotilgantovarlarReducer,

@@ -42,7 +42,7 @@ function SavdoOynasi({
 
     const [input, setInput] = useState(
         {
-            baza: '',
+            baza: "",
             mahsulotnomi: '',
             barchabrandlar: '',
             modalmahsulotnomi: '',
@@ -128,6 +128,11 @@ function SavdoOynasi({
     const [arr1, setarr1] = useState([])
     const componentRef = useRef();
     const [lastTradeActive, setlastTradeActive] = useState(false)
+    const [printactive,setprintactive] = useState(false)
+
+    function printtoggle(){
+        setprintactive(!printactive)
+    }
 
     function toggle4() {
         setlastTradeActive(!lastTradeActive)
@@ -218,7 +223,6 @@ function SavdoOynasi({
 
 
     }
-
     function deleteM(ind) {
         arr1.map((item, index) => {
             if (item.id === ind) {
@@ -238,7 +242,6 @@ function SavdoOynasi({
         setxisob(b)
         setjamixisob(c)
     }
-
     function baza(e) {
         input.baza = e.target.value
         let a = {...input}
@@ -271,6 +274,7 @@ function SavdoOynasi({
     }
     function UzcardTolov(naqd) {
         console.log('helll')
+        printtoggle()
         arr1.map(item => {
             if (baza !== '') {
                 saveSavdolar({
@@ -293,6 +297,11 @@ function SavdoOynasi({
             }
         })
         setarr1([])
+
+
+
+        setxisob(0)
+        setjamixisob(0)
     }
 
     function saqla() {
@@ -340,159 +349,194 @@ function SavdoOynasi({
     }
 
     return (
-        <div className={'savdoOynaContainers'}>
-            <div className="savdoNavbar">
-                <div className="navbarLeft">
-                    <h5>Baza</h5>
+        <div className={"shopping"}>
+            <div className={'shoppingmodal p-5'} ref={componentRef}>
+                <h1 className={'text-center'}>Shifer Zavod</h1>
+                <h6 className={'text-center'}>adress</h6>
+                <br/>
+                <h2 className={'text-center'}>Invoice</h2>
+                <div className={'d-flex justify-content-between'}>
+                    <div className={'d-flex justify-content-around'}><strong>Invoice No.</strong> <p> 0025</p></div>
+                    <div className={'d-flex justify-content-around'}><strong>Date</strong>  <p className={'ms-2'}> 03/28/2022 15:57</p></div>
                 </div>
-                <div className="navbarRigth">
-                    <button onClick={toggle4}>Oxirgi savdolar</button>
-                    <img src={img1} onClick={toggle} alt=""/>
-                    {/*<img src={img2} onClick={toggle} alt="" />*/}
-                    <img src={img3} onClick={openCalcul} alt=""/>
-                    <img src={img4} onClick={toggle2} alt=""/>
-                    <img src={img5} onClick={toggle3} alt=""/>
-                    <Link to={'/headerthird'}><img src={img6} onClick={savdooynasi} alt=""/></Link>
+                <div className={'d-flex'}><strong>Customer</strong> <p className={'ms-2'}> HOtel</p></div>
+                <div className={'table-responsive'}>
+                    <table className={'table'}>
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Subtotal</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            arr1.map(item=> <tr>
+                                <td>{item.name}</td>
+                                <td>{item.counter}  {item.measurement.name}</td>
+                                <td>{item.buyPrice}</td>
+                                <td>{item.counter*item.buyPrice}</td>
+                            </tr>)
+                        }
+                        </tbody>
+                    </table>
+                </div>
 
-                    <Modal isOpen={lastTradeActive} toggle={toggle4}>
-                        <ModalHeader>
-                            <p>OXIRGI SAVDOLAR</p>
-                        </ModalHeader>
-                        <ModalBody>
-                            <div className={'col-md-12 '}>
-                                <div className={'d-flex justify-content-between'}>
-                                    <Link to={'/headerthird/turliTavar/final'}>
-                                        <button className={'btn btn-success'}>Final</button>
-                                    </Link>
-                                    <Link to={'/headerthird/turliTavar/chegirma'}>
-                                        <button className={'btn btn-success'}>Chegirma</button>
-                                    </Link>
-                                    <Link to={'/headerthird/turliTavar/eslatma'}>
-                                        <button className={'btn btn-success'}>Eslatma</button>
-                                    </Link>
-                                </div>
-                                <Switch>
-                                    <Route path={'/headerthird/turliTavar/final'} component={Final}/>
-                                    <Route path={'/headerthird/turliTavar/chegirma'} component={Chegirma}/>
-                                    <Route path={'/headerthird/turliTavar/eslatma'} component={Eslatma}/>
-                                </Switch>
-                            </div>
-                        </ModalBody>
-                        <ModalFooter>
-                            <button onClick={toggle4} className={'btn btn-outline-primary'}>Chiqish</button>
-                        </ModalFooter>
-                    </Modal>
-                </div>
             </div>
-            {/*{console.log(PayReducer.paymethod)}*/}
-            <div className="savdoBlock">
-                <div className="savdoBlockLeft">
-                    <div className="selectBox">
-                        <select className="" value={input.baza} onChange={baza} name="" id="">
-                            <option value=""></option>
-                            {
-                                MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
-                            }
-                        </select>
-                        <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
-                               placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
-                        <button className={'addButton'} onClick={toggle5}>+</button>
-                        <Modal isOpen={openModal} toggle={toggle5}>
+            <div className={'savdoOynaContainers'}>
+                <div className="savdoNavbar">
+                    <div className="navbarLeft">
+                        <h5>Baza</h5>
+                    </div>
+                    <div className="navbarRigth">
+                        <button onClick={toggle4}>Oxirgi savdolar</button>
+                        <img src={img1} onClick={toggle} alt=""/>
+                        {/*<img src={img2} onClick={toggle} alt="" />*/}
+                        <img src={img3} onClick={openCalcul} alt=""/>
+                        <img src={img4} onClick={toggle2} alt=""/>
+                        <img src={img5} onClick={toggle3} alt=""/>
+                        <Link to={'/headerthird'}><img src={img6} onClick={savdooynasi} alt=""/></Link>
+
+                        <Modal isOpen={lastTradeActive} toggle={toggle4}>
                             <ModalHeader>
-                                Maxsulot qoshish
+                                <p>OXIRGI SAVDOLAR</p>
                             </ModalHeader>
                             <ModalBody>
-                                <div className={'col-md-12'}>
-                                    <div className={'d-flex'}>
-                                        <div className="col-md-6">
-                                            <label htmlFor={'mod'}>Mahsulot name</label>
-                                            <input type="text" value={input.modalmahsulotnomi}
-                                                   onChange={modalmahsulotnomi} id={'mod'} className={'form-control'}/>
-                                            <label htmlFor={'ol'}>O`lchov birligi</label>
-                                            <select className={'form-control'} name="" id={'ol'}
-                                                    value={input.ulcovbirligi} onChange={ulcovbirligi}>
-                                                <option value="tanlash">Tanlash</option>
-                                                {/*    FIX ME*/}
-                                                {
-                                                    kgreducer.kg.map(item => <option
-                                                        value={item.id}>{item.name}</option>)
-                                                }
-                                            </select>
-                                            <label htmlFor={'bolim'}>Bo`lim</label>
-                                            <select name="" id={'bolim'} className={'form-control'} value={input.bolim}
-                                                    onChange={bolim}>
-                                                <option value="tanlash">Tanlash</option>
-                                                {/*    FIX ME*/}
-                                                {
-                                                    BolimReducer.bolimlar.map(item => <option
-                                                        value={item.id}>{item.name}</option>)
-                                                }
-                                            </select>
-                                            <label htmlFor={'sot'}>Sotish narxi</label>
-                                            <input type="text" className={'form-control'} value={input.sotishnarxi}
-                                                   onChange={sotishnarxi}/>
-                                        </div>
-
-                                        <div className="col-md-6">
-                                            <label htmlFor={'shtrix'}>Shtrix kod</label>
-                                            <input type="number" className={'form-control'} value={input.shtrix}
-                                                   onChange={shtrix}/>
-                                            <label htmlFor={'firma'}>Firma</label>
-                                            <select name="" id={'firma'} className={'form-control'} value={input.firma}
-                                                    onChange={firma}>
-                                                {/*    FIX ME*/}
-                                                <option value="barchasi">Tanlash</option>
-                                                {
-                                                    FirmaReducer.firmalar.map(item => <option
-                                                        value={item.id}>{item.name}</option>)
-                                                }
-                                            </select>
-                                            <label htmlFor={'miqdor'}>Miqdor</label>
-                                            <input type="number" id={'miqdor'} className={'form-control'}
-                                                   value={input.miqdor} onChange={miqdor}/>
-                                        </div>
+                                <div className={'col-md-12 '}>
+                                    <div className={'d-flex justify-content-between'}>
+                                        <Link to={'/headerthird/turliTavar/final'}>
+                                            <button className={'btn btn-success'}>Final</button>
+                                        </Link>
+                                        <Link to={'/headerthird/turliTavar/chegirma'}>
+                                            <button className={'btn btn-success'}>Chegirma</button>
+                                        </Link>
+                                        <Link to={'/headerthird/turliTavar/eslatma'}>
+                                            <button className={'btn btn-success'}>Eslatma</button>
+                                        </Link>
                                     </div>
-                                    <div className={'d-flex'}>
-                                        <div className="col-md-6">
-                                            <label htmlFor={'sol'}>Soliqsiz narx</label>
-                                            <input type="text" className={'form-control'} value={input.soliqsiznarx}
-                                                   onChange={soliqsiznarx}/>
-                                            <label htmlFor={'sol'}>Soliq bn narxi</label>
-                                            <input type="text" className={'form-control'} value={input.soliqbnnarxi}
-                                                   onChange={soliqbnnarxi}/>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <label htmlFor={'fo'}>Foyda foizda</label>
-                                            <input type="text" className={'form-control'} value={input.foydafoiz}
-                                                   onChange={foydafoiz}/>
-                                            <label htmlFor={''}>Sotish narxi soliqsiz</label>
-                                            <input type="text" className={'form-control'}/>
-                                            <label htmlFor={'nn'}>Sotib olish narxi</label>
-                                            <input type="text" value={input.sotibolishnarx} className={'form-control'}
-                                                   onChange={sotibolishnarxi}/>
-                                        </div>
-                                    </div>
+                                    <Switch>
+                                        <Route path={'/headerthird/turliTavar/final'} component={Final}/>
+                                        <Route path={'/headerthird/turliTavar/chegirma'} component={Chegirma}/>
+                                        <Route path={'/headerthird/turliTavar/eslatma'} component={Eslatma}/>
+                                    </Switch>
                                 </div>
                             </ModalBody>
                             <ModalFooter>
-                                <button className={'btn btn-outline-primary'} onClick={toggle5}>Chqish</button>
-                                <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                                <button onClick={toggle4} className={'btn btn-outline-primary'}>Chiqish</button>
                             </ModalFooter>
                         </Modal>
                     </div>
-                    <div className="table-responsive tbodyY">
-                        <table className={'table '} ref={componentRef}>
-                            <thead>
-                            <tr>
-                                <th>Mahsulot</th>
-                                <th className={'text-center'}>Miqdori</th>
-                                <th>Jami</th>
-                                <th>. . .</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                arr1.map(item => <tr key={item.id}>
+                </div>
+                {/*{console.log(PayReducer.paymethod)}*/}
+                <div className="savdoBlock">
+                    <div className="savdoBlockLeft">
+                        <div className="selectBox">
+                            {console.log(MijozGuruxReducer.mijozgurux[0]?.id)}
+                            <select className="" value={input.baza} onChange={baza} name="" id="">
+                                {
+                                    MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
+                                }
+                            </select>
+                            <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
+                                   placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
+                            <button className={'addButton'} onClick={toggle5}>+</button>
+                            <Modal isOpen={openModal} toggle={toggle5}>
+                                <ModalHeader>
+                                    Maxsulot qoshish
+                                </ModalHeader>
+                                <ModalBody>
+                                    <div className={'col-md-12'}>
+                                        <div className={'d-flex'}>
+                                            <div className="col-md-6">
+                                                <label htmlFor={'mod'}>Mahsulot name</label>
+                                                <input type="text" value={input.modalmahsulotnomi}
+                                                       onChange={modalmahsulotnomi} id={'mod'} className={'form-control'}/>
+                                                <label htmlFor={'ol'}>O`lchov birligi</label>
+                                                <select className={'form-control'} name="" id={'ol'}
+                                                        value={input.ulcovbirligi} onChange={ulcovbirligi}>
+                                                    <option value="tanlash">Tanlash</option>
+                                                    {/*    FIX ME*/}
+                                                    {
+                                                        kgreducer.kg.map(item => <option
+                                                            value={item.id}>{item.name}</option>)
+                                                    }
+                                                </select>
+                                                <label htmlFor={'bolim'}>Bo`lim</label>
+                                                <select name="" id={'bolim'} className={'form-control'} value={input.bolim}
+                                                        onChange={bolim}>
+                                                    <option value="tanlash">Tanlash</option>
+                                                    {/*    FIX ME*/}
+                                                    {
+                                                        BolimReducer.bolimlar.map(item => <option
+                                                            value={item.id}>{item.name}</option>)
+                                                    }
+                                                </select>
+                                                <label htmlFor={'sot'}>Sotish narxi</label>
+                                                <input type="text" className={'form-control'} value={input.sotishnarxi}
+                                                       onChange={sotishnarxi}/>
+                                            </div>
+
+                                            <div className="col-md-6">
+                                                <label htmlFor={'shtrix'}>Shtrix kod</label>
+                                                <input type="number" className={'form-control'} value={input.shtrix}
+                                                       onChange={shtrix}/>
+                                                <label htmlFor={'firma'}>Firma</label>
+                                                <select name="" id={'firma'} className={'form-control'} value={input.firma}
+                                                        onChange={firma}>
+                                                    {/*    FIX ME*/}
+                                                    <option value="barchasi">Tanlash</option>
+                                                    {
+                                                        FirmaReducer.firmalar.map(item => <option
+                                                            value={item.id}>{item.name}</option>)
+                                                    }
+                                                </select>
+                                                <label htmlFor={'miqdor'}>Miqdor</label>
+                                                <input type="number" id={'miqdor'} className={'form-control'}
+                                                       value={input.miqdor} onChange={miqdor}/>
+                                            </div>
+                                        </div>
+                                        <div className={'d-flex'}>
+                                            <div className="col-md-6">
+                                                <label htmlFor={'sol'}>Soliqsiz narx</label>
+                                                <input type="text" className={'form-control'} value={input.soliqsiznarx}
+                                                       onChange={soliqsiznarx}/>
+                                                <label htmlFor={'sol'}>Soliq bn narxi</label>
+                                                <input type="text" className={'form-control'} value={input.soliqbnnarxi}
+                                                       onChange={soliqbnnarxi}/>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <label htmlFor={'fo'}>Foyda foizda</label>
+                                                <input type="text" className={'form-control'} value={input.foydafoiz}
+                                                       onChange={foydafoiz}/>
+                                                <label htmlFor={''}>Sotish narxi soliqsiz</label>
+                                                <input type="text" className={'form-control'}/>
+                                                <label htmlFor={'nn'}>Sotib olish narxi</label>
+                                                <input type="text" value={input.sotibolishnarx} className={'form-control'}
+                                                       onChange={sotibolishnarxi}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <button className={'btn btn-outline-primary'} onClick={toggle5}>Chqish</button>
+                                    <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                                </ModalFooter>
+                            </Modal>
+                        </div>
+                        <div className="table-responsive tbodyY">
+                            <table className={'table '}>
+                                <thead>
+                                <tr>
+                                    <th>Mahsulot</th>
+                                    <th className={'text-center'}>Miqdori</th>
+                                    <th>Jami</th>
+                                    <th>. . .</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    arr1.map(item => <tr key={item.id}>
                                         <td style={{marginLeft: '10px'}}>{item.name}</td>
                                         <td className={'d-flex justify-content-between'}>
                                             <div className={'d-flex align-items-center justify-content-around p-0'}
@@ -513,139 +557,140 @@ function SavdoOynasi({
                                             </button>
                                         </td>
                                     </tr>)
+                                }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="maxSoniBox">
+                            <h6 className='d-flex align-items-center'>Mahsulot soni:{xisob}</h6>
+                            <h6>Jami:{jamixisob}</h6>
+                        </div>
+                        <hr style={{margin: '2px'}}/>
+                        <div className={'chegirmalarBox'}>
+                            <div className='d-flex'>
+                                <p>Chegirma:</p>
+                                <img src="" alt=""/>
+                                <p>0.00</p>
+                            </div>
+                            <div className='d-flex'>
+                                <p>Soliq:</p>
+                                <img src="" alt=""/>
+                                <p>0.00</p>
+                            </div>
+                            <div className='d-flex'>
+                                <p>Yetkazib berish:</p>
+                                <img src="" alt=""/>
+                                <p>0.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="savdoBlockRigth">
+                        <div className="bazaBox">
+                            <select name="" id="">
+                                <option value="">Barcha brendlar</option>
+                            </select>
+                        </div>
+                        <div className={' maxsulotImgBlock'}>
+
+                            {
+                                MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
+                                                                                       key={item.id}>
+                                    <div onClick={() => pushesh(item)}>
+                                        <img
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
+                                            alt="yuq"/>
+                                        <h6>{item.name}</h6>
+                                        <p>{item.buyPrice}</p>
+                                    </div>
+                                </div>)
                             }
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="maxSoniBox">
-                        <h6 className='d-flex align-items-center'>Mahsulot soni:{xisob}</h6>
-                        <h6>Jami:{jamixisob}</h6>
-                    </div>
-                    <hr style={{margin: '2px'}}/>
-                    <div className={'chegirmalarBox'}>
-                        <div className='d-flex'>
-                            <p>Chegirma:</p>
-                            <img src="" alt=""/>
-                            <p>0.00</p>
                         </div>
-                        <div className='d-flex'>
-                            <p>Soliq:</p>
-                            <img src="" alt=""/>
-                            <p>0.00</p>
-                        </div>
-                        <div className='d-flex'>
-                            <p>Yetkazib berish:</p>
-                            <img src="" alt=""/>
-                            <p>0.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="savdoBlockRigth">
-                    <div className="bazaBox">
-                        <select name="" id="">
-                            <option value="">Barcha brendlar</option>
-                        </select>
-                    </div>
-                    <div className={' maxsulotImgBlock'}>
-
-                        {
-                            MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
-                                                                                   key={item.id}>
-                                <div onClick={() => pushesh(item)}>
-                                    <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
-                                        alt="yuq"/>
-                                    <h6>{item.name}</h6>
-                                    <p>{item.buyPrice}</p>
-                                </div>
-                            </div>)
-                        }
 
                     </div>
 
                 </div>
+                <div className="savBtnBox col-12">
+                    <button className={'col-sm-6 btn btn-primary m-1'}>Eslatma</button>
+                    <button className={'col-6 btn btn-danger m-1'}>Chegirma</button>
+                    <button className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
+                    <button className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
+                    <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
+                    <button className={'col-6 btn btn-info m-1'}>Plastik</button>
 
+                    <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>
+                        <ReactToPrint
+                            trigger={() => <p className={'toprint '}>Naqd</p>
+                            }
+                            content={() => componentRef.current}
+                        />
+                    </button>
+
+                    <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(2)}>
+                        <ReactToPrint
+                            trigger={() => <p className={'toprint '}>UzCard</p>
+                            }
+                            content={() => componentRef.current}
+                        />
+                    </button>
+                    <button onClick={() => UzcardTolov(3)} className={'btn btn-warning m-1'}>
+                        <ReactToPrint
+                            trigger={() => <p className={'toprint'}>Humo</p>
+
+                            }
+                            content={() => componentRef.current}
+                        /></button>
+                    <button className='jamiTolov m-1'>Jami to`lov: {jamixisob} so'm</button>
+                    <button className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
+                </div>
+                <div className="">
+
+                    <Modal isOpen={active} toggle={toggle}>
+                        <ModalHeader>
+                            USHLAB TURISH
+                        </ModalHeader>
+                        <ModalBody>
+                            Manba Topilmadi !!!
+                        </ModalBody>
+                        <ModalFooter>
+                            <button className={'btn btn-outline-primary'} onClick={toggle}>'Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
+                    {/*<img style={{cursor:'pointer'}} onClick={toggle2} src={img2} alt=""/>*/}
+
+                    <Modal isOpen={active2} toggle={toggle2}>
+                        <ModalHeader>
+                            Smenadagi xisobot
+                        </ModalHeader>
+                        <ModalBody>
+                            Manba Topilmadi !!!
+                        </ModalBody>
+                        <ModalFooter>
+                            <button className={'btn btn-outline-primary'} onClick={toggle2}>'Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
+                    <Modal isOpen={active3} toggle={toggle3}>
+                        <ModalHeader>
+                            Currency
+                        </ModalHeader>
+                        <ModalBody>
+                            Manba Topilmadi !!!
+                        </ModalBody>
+                        <ModalFooter>
+                            <button className={'btn btn-outline-primary'} onClick={toggle3}>'Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
+                <div className={'bbb'}>
+                    {
+                        openCalc ? <Calculator/> : ''
+                    }
+                </div>
             </div>
-            <div className="savBtnBox col-12">
-                <button className={'col-sm-6 btn btn-primary m-1'}>Eslatma</button>
-                <button className={'col-6 btn btn-danger m-1'}>Chegirma</button>
-                <button className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
-                <button className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
-                <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
-                <button className={'col-6 btn btn-info m-1'}>Plastik</button>
-
-                <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>
-                    <ReactToPrint
-                        trigger={() => <p className={'toprint '}>Naqd</p>
-                        }
-                        content={() => componentRef.current}
-                    />
-                </button>
-
-                <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(2)}>
-                    <ReactToPrint
-                        trigger={() => <p className={'toprint '}>UzCard</p>
-                        }
-                        content={() => componentRef.current}
-                    />
-                </button>
-                <button onClick={() => UzcardTolov(3)} className={'btn btn-warning m-1'}>
-                    <ReactToPrint
-                        trigger={() => <p className={'toprint'}>Humo</p>
-
-                        }
-                        content={() => componentRef.current}
-                    /></button>
-                <button className='jamiTolov m-1'>Jami to`lov: {jamixisob} so'm</button>
-                <button className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
-            </div>
-            <div className="">
-
-                <Modal isOpen={active} toggle={toggle}>
-                    <ModalHeader>
-                        USHLAB TURISH
-                    </ModalHeader>
-                    <ModalBody>
-                        Manba Topilmadi !!!
-                    </ModalBody>
-                    <ModalFooter>
-                        <button className={'btn btn-outline-primary'} onClick={toggle}>'Chiqish</button>
-                    </ModalFooter>
-                </Modal>
-                {/*<img style={{cursor:'pointer'}} onClick={toggle2} src={img2} alt=""/>*/}
-
-                <Modal isOpen={active2} toggle={toggle2}>
-                    <ModalHeader>
-                        Smenadagi xisobot
-                    </ModalHeader>
-                    <ModalBody>
-                        Manba Topilmadi !!!
-                    </ModalBody>
-                    <ModalFooter>
-                        <button className={'btn btn-outline-primary'} onClick={toggle2}>'Chiqish</button>
-                    </ModalFooter>
-                </Modal>
-                <Modal isOpen={active3} toggle={toggle3}>
-                    <ModalHeader>
-                        Currency
-                    </ModalHeader>
-                    <ModalBody>
-                        Manba Topilmadi !!!
-                    </ModalBody>
-                    <ModalFooter>
-                        <button className={'btn btn-outline-primary'} onClick={toggle3}>'Chiqish</button>
-                    </ModalFooter>
-                </Modal>
-            </div>
-            <div className={'bbb'}>
-                {
-                    openCalc ? <Calculator/> : ''
-                }
-            </div>
-
         </div>
+
 
     )
 }

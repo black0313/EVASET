@@ -1,15 +1,45 @@
 import './profil.css'
 import {useState} from 'react'
-function Profil({image,params,match}) {
+import {connect} from "react-redux";
+import photoreducer ,{savephoto} from "../../../reducer/photoreducer";
+import users from "../../../reducer/users";
+function Profil({image,savephoto}) {
 
     const [viber,setviber] = useState({
-        pic: ''
+        pic: {}
     })
-    const {imageHander} = match.params
+
+
+    const [selectfile,setSelectfile] = useState([])
+
     function vib(e){
-        viber.pic = e.target.value
+        console.log(e.target.files[0])
+        // setSelectfile([])
+        // if(e.target.files){
+        //     const filesArray = Array.from(e.target.files).map((file)=>URL.createObjectURL(file));
+        //     setSelectfile((prev=>prev.concat(filesArray)))
+        //     Array.from(e.target.files).map(
+        //         (file)=>URL.revokeObjectURL(file)
+        //     );
+        // }
+        viber.pic = e.target.files[0]
         let a = {...viber}
         setviber(a)
+    }
+
+
+    const renderPhotos = (source) => {
+            return source.map((photo)=>{
+                return <img src={photo} alt={''} key={photo} style={{width:"300px",height:"400px"}}/>;
+            });
+    }
+
+
+
+    function saqla(){
+            savephoto(
+                viber.pic
+            )
     }
 
   return (
@@ -29,9 +59,17 @@ function Profil({image,params,match}) {
             </div>
         </div>
         <div className="row">
-            <input type="file" value={vib.pic} onChange={vib} onClick={imageHander}/>
+            <input type="file" value={vib.pic} id={'file'} name={'file[]'}  multiple={true} onChange={vib}/>
+        </div>
+        <div className="row mt-2">
+            <div className="col-md-3"><button onClick={saqla} className={'btn btn-primary'}>Saqlash</button>
+            </div>
+            <div className="col-md-3">
+                <div className="conic">
+                </div>
+            </div>
         </div>
     </div>
   )
 }
-export default Profil
+export default connect((users,photoreducer),{savephoto}) (Profil)
