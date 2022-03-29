@@ -208,6 +208,7 @@ function SavdoOynasi({
         arr1.map(item => {
             if (item.id === id) {
                 if(item.counter >= item.quantity){
+                    item.counter += 1
                     item.active = true
                     item.disabled = false
                 }

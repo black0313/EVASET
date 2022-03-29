@@ -32,7 +32,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
             paidon:'',
             tulovusuli:'',
             eslatma:'',
-            maxmiqdor:'',
+            maxmiqdor:''
         }
     )
     useEffect(()=>{
@@ -213,7 +213,8 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
             mah.map(item=>{
                 saveSavdolar(
                     {
-                        customerId:input.mijoz,
+                        customerId:1,
+                        payDate:"2020-10-10",
                         userId:1,
                         productTraderDto:[
                             {
@@ -221,7 +222,6 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                                 productTradeId:1
                             }
                         ],
-                        payDate:"2022-03-11",
                         branchId:item.branch.id,
                         payMethodId:input.tulovusuli,
                         amountPaid:input.avans,
@@ -231,7 +231,6 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                     console.log('saved')
                 )
             })
-
         }
     }
     function deleteM(ind) {
@@ -259,13 +258,10 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
         <div className={'row mt-5 d-flex justify-content-center'}>
             <div className="col-md-10">
                 <h5 className="mt-3">Savdo qo`shish</h5>
-                <label htmlFor={'ba'}>Baza</label>
                 <select id={input.baza} onChange={baza} className={'form-control'}>
-
+                    <option value={'tanlash'}>Tanlash</option>
                     {
-                        branchreducer.branch.map(item =>
-                            input.baza==''?input.baza = item.id:
-                                <option value={item.id}>{item.name}</option>)
+                        branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
                     }
                 </select>
             </div>
@@ -276,11 +272,9 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         <label htmlFor={'mijoz'}>Mijoz</label>
                         {/*<input type="text" id={'mijoz'} value={input.mijoz} onChange={mijoz} className={'form-control'}/>*/}
                         <select  onChange={mijoz} value={input.mijoz} className={'form-control'}>
-
+                            <option value="tanlash">Tanlash</option>
                             {
-                                MijozGuruxReducer.mijozgurux.map(item=>
-                                    input.mijoz==''?input.mijoz=item.id:
-                                    <option value={item.id}>{item.name}</option>)
+                                MijozGuruxReducer.mijozgurux.map(item=> <option value={item.id}>{item.name}</option>)
                             }
                         </select>
                     </div>
@@ -309,10 +303,10 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         <label htmlFor={'savOyna'}>Savdo oynasi</label>
                         <input type="date" value={input.savdooynasisana} onChange={savdooynasisana} className={'form-control'}/>
 
-                        {/*<label htmlFor={'hisobF'} className={'mt-4'}>Xisob Faktura sxemasi</label>*/}
-                        {/*<select name="" value={input.xisobfakturasxemasi} onChange={xisobfakturasxemasi} id={'hisobF'} className={'form-control'}>*/}
-                        {/*    <option value="">Default</option>*/}
-                        {/*</select>*/}
+                        <label htmlFor={'hisobF'} className={'mt-4'}>Xisob Faktura sxemasi</label>
+                        <select name="" value={input.xisobfakturasxemasi} onChange={xisobfakturasxemasi} id={'hisobF'} className={'form-control'}>
+                            <option value="">Default</option>
+                        </select>
 
                         <label htmlFor={'qoshim'} className={'mt-4'}>Qo`shimcha hujjat</label>
                         <input type="file" value={input.qoshimchaxujjat} onChange={qoshimchaxujjat} className={'form-control'} id={'qoshim'}/>
@@ -393,9 +387,9 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
             </div>
             <div className={'col-md-10 offset-1 mt-5 border p-4'}>
                 <h5>Qarz miqdori!: 0.00</h5>
-                {/*<Link to={'/headerthird/barcasavdolar'}>*/}
+                <Link to={'/headerthird/barcasavdolar'}>
                     <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
-                {/*</Link>*/}
+                </Link>
                 <button className={'btn btn-outline-primary'}>Saqlash va chek</button>
             </div>
 

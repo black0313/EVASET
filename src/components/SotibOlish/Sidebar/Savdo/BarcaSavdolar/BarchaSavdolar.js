@@ -79,7 +79,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
         getSavdolar2(users.businessId)
         getbranch(users.businessId)
         getTaminot(users.businessId)
-        getSavdolar3(users.businessId)
+        // getSavdolar3(users.businessId)
     },[])
 
     const [active,setActive] = useState(false)
