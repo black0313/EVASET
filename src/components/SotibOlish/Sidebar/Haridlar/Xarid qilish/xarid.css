@@ -12,3 +12,9 @@
 .redclass{
     border: 2px solid red !important;
 }
+#qisqa::placeholder{
+    color: red;
+}
+#xaridMiqdor::placeholder{
+    color: red;
+}
