@@ -216,9 +216,7 @@ function SavdoOynasi({
                     item.counter += 1
                     item.disabled = false
                     item.active = false
-
                 }
-
             }
         })
         let a = [...arr1]
@@ -228,7 +226,6 @@ function SavdoOynasi({
         arr1.map(item => {
             b += item.counter
             c += (item.counter * item.buyPrice)
-
         })
         setxisob(b)
         setjamixisob(c)
@@ -315,7 +312,6 @@ function SavdoOynasi({
         setInput(a)
     }
     function UzcardTolov(naqd) {
-        console.log('helll')
         printtoggle()
         arr1.map(item => {
             if (baza !== '') {
@@ -335,12 +331,10 @@ function SavdoOynasi({
                     addressId: 1,
                 })
             } else {
-                alert('MIJOZ QOSH IN')
+                alert('MIJOZ QOSHIN')
             }
         })
         setarr1([])
-
-
 
         setxisob(0)
         setjamixisob(0)
@@ -394,15 +388,24 @@ function SavdoOynasi({
     return (
         <div className={"shopping"}>
             <div className={'shoppingmodal p-5'} ref={componentRef}>
-                <h1 className={'text-center'}>Shifer Zavod</h1>
-                <h6 className={'text-center'}>adress</h6>
+                <h1 className={'text-center'}>Chek</h1>
+                <h6 className={'text-center'}>Tekshiruv qog`ozi</h6>
                 <br/>
                 <h2 className={'text-center'}>Invoice</h2>
                 <div className={'d-flex justify-content-between'}>
                     <div className={'d-flex justify-content-around'}><strong>Invoice No.</strong> <p> 0025</p></div>
-                    <div className={'d-flex justify-content-around'}><strong>Date</strong>  <p className={'ms-2'}> 03/28/2022 15:57</p></div>
+                    <div className={'d-flex justify-content-around'}><strong>Date</strong>  <p className={'ms-2'}>
+                        {
+                            Date.now()
+                        }
+                    </p></div>
                 </div>
-                <div className={'d-flex'}><strong>Customer</strong> <p className={'ms-2'}> HOtel</p></div>
+                <div className={'d-flex'}><strong>Customer</strong> <p className={'ms-2'}>
+                    HOtel
+                    {/*{*/}
+                    {/*    MijozGuruxReducer.mijozgurux.map(item=><p key={item.id}>{item.name}</p>)*/}
+                    {/*}*/}
+                </p></div>
                 <div className={'table-responsive'}>
                     <table className={'table'}>
                         <thead>
@@ -483,10 +486,12 @@ function SavdoOynasi({
                 <div className="savdoBlock">
                     <div className="savdoBlockLeft">
                         <div className="selectBox">
-                            {console.log(MijozGuruxReducer.mijozgurux[0]?.id)}
+                            {/*{console.log(MijozGuruxReducer.mijozgurux[0]?.id)}*/}
                             <select className="" value={input.baza} onChange={baza} name="" id="">
                                 {
-                                    MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
+                                    MijozGuruxReducer.mijozgurux.map(item =>
+                                        input.baza==''?input.baza = item.id:
+                                        <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
                             <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
@@ -675,7 +680,14 @@ function SavdoOynasi({
                     <button className={'col-sm-6 btn btn-primary m-1'}>Eslatma</button>
                     <button className={'col-6 btn btn-danger m-1'}>Chegirma</button>
                     <button className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
-                    <button className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
+                    <button onClick={()=> UzcardTolov(4)} className={'col-6 btn btn-outline-primary m-1'}>
+                        <ReactToPrint
+                            trigger={() => <p className={'toprint '}>Kreditga sotish</p>
+                            }
+                            content={() => componentRef.current}
+                        />
+                    </button>
+
                     <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
                     <button className={'col-6 btn btn-info m-1'}>Plastik</button>
 
