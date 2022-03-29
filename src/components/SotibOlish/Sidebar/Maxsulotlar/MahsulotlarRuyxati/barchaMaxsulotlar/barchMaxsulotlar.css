@@ -3,6 +3,28 @@
        border-radius: 8px;
        padding: 40px 30px 40px 30px;
 }
+
+.li2{
+       cursor: pointer;
+       font-size: 14px;
+       color: #fff;
+       transition: 0.2s all ease-in-out;
+}
+.li2:hover{
+       cursor: pointer;
+       font-size: 14.7px;
+       color: #67c41e;
+}
+.ul3{
+       position: absolute;
+       top: 98%;
+       left: 58%;
+       height: 180px;
+       width: 150px;
+       background: #4c4ca0;
+       opacity: 0.9;
+}
+
 .rowStyleBR .qoshish{
        display: flex;
        justify-content: space-between;

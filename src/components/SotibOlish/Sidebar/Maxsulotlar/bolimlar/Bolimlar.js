@@ -13,7 +13,7 @@ import {connect} from "react-redux";
 import BolimReducer, {deleteBolim, bolimlar, editBolim, getBolim, saveBolim,} from "../reducer/BolimReducer";
 import users from "../../../../../reducer/users";
 
-function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users}) {
+function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users}) {
 
     const [input, setInput] = useState(
         {
@@ -22,13 +22,13 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
             bolimnomi: '',
             bolimkodi: '',
             qisqacamalumot: '',
-            bId:'',
+            bId: '',
         }
     )
 
-    const [placeholders,setPlaceholders] = useState(
+    const [placeholders, setPlaceholders] = useState(
         {
-            bolimNomiPlaceholder:''
+            bolimNomiPlaceholder: ''
         }
     )
 
@@ -38,17 +38,20 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
         let a = {...input}
         setInput(a)
     }
+
     function search(e) {
         input.search = e.target.value
         let a = {...input}
         setInput(a)
     }
+
     function bolimnomi(e) {
         input.bolimnomi = e.target.value
         let a = {...input}
         setInput(a)
         console.log(input.bolimnomi)
     }
+
     function bolimkodi(e) {
         input.bolimkodi = e.target.value
         let a = {...input}
@@ -60,7 +63,9 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
         let a = {...input}
         setInput(a)
     }
+
     const [active, setActive] = useState(false)
+
     function editB(id) {
         toggle()
         BolimReducer.bolimlar.map(item => {
@@ -75,8 +80,8 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
 
     function saqla() {
 
-        if(input.bolimnomi !==""){
-            if(input.bId !== '') {
+        if (input.bolimnomi !== "") {
+            if (input.bId !== '') {
                 editBolim(
                     {
                         name: input.bolimnomi,
@@ -84,16 +89,15 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
                         id: input.bId
                     }
                 )
-    
-            }
-            else{
+
+            } else {
                 saveBolim({
                     name: input.bolimnomi,
                     businessId: users.businessId,
                 })
             }
 
-            
+
             input.bolimkodi = ''
             input.bolimnomi = ''
             input.qisqacamalumot = ''
@@ -103,23 +107,21 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
 
             setPlaceholders(
                 {
-                    bolimNomiPlaceholder:""
+                    bolimNomiPlaceholder: ""
                 }
             )
 
             toggle()
 
 
-        }
-        else{
+        } else {
             setPlaceholders(
                 {
-                    bolimNomiPlaceholder:"Bo'lim nomini kiriting..."
+                    bolimNomiPlaceholder: "Bo'lim nomini kiriting..."
                 }
             )
         }
     }
-
 
     function deleteB(item) {
         deleteBolim(item.id)
@@ -135,13 +137,13 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
                 bolimnomi: '',
                 bolimkodi: '',
                 qisqacamalumot: '',
-                bId:'',
+                bId: '',
             }
         )
 
         setPlaceholders(
             {
-                bolimNomiPlaceholder:""
+                bolimNomiPlaceholder: ""
             }
         )
     }
@@ -151,6 +153,21 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
         getBolim(users.businessId)
     }, [BolimReducer.current])
 
+    const [headlist,setheadlist] = useState([
+        {
+            bolim: 'Bo`limlar',
+            bolimkod:'Bo`lim kodi',
+            qisqa: 'Qisqa malumot',
+            amallar:'Amallar'
+        }
+    ])
+
+    const [bolimlar2, setbolimlar2] = useState(true)
+    const [bolimkodi2, setbolimkodi2] = useState(true)
+    const [qisqa, setbqisqa] = useState(true)
+    const [amallar, setamallar] = useState(true)
+
+    const [malkamay, setmalkamay] = useState(false)
 
     return (
         <div className="col-md-12 mt-4 mb-4">
@@ -176,7 +193,22 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
                         <button><img src={Excel} alt=""/> Export Excel</button>
                         <button><img src={Print} alt=""/> Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                        <button onClick={() => setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish
+                        </button>
+
+                        {
+                            malkamay ? headlist.map(item => <ul className={'ul2'} key={item.id}>
+                                <li onClick={()=>setbolimlar2(!bolimlar2)}
+                                    className={'li2'}>{bolimlar2 ? item.bolim : item.bolim + ' <-'}</li>
+                                <li onClick={() => setbolimkodi2(!bolimkodi2)}
+                                    className={'li2'}>{bolimkodi2 ? item.bolimkod : 'Bo`lim kod ' + ' <-'}</li>
+                                <li onClick={() => setbqisqa(!qisqa)}
+                                    className={'li2'}>{qisqa ? item.qisqa : item.qisqa + ' <-'}</li>
+                                <li onClick={() => setamallar(!amallar)}
+                                    className={'li2'}>{amallar ? item.amallar : item.amallar + ' <-'}</li>
+                            </ul>) : ''
+                        }
+
                     </div>
                     <div className="izlashBox2">
                         <input type="text" placeholder='Izlash...' onChange={search} value={input.search}/>
@@ -185,15 +217,24 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
                 <div className="table-responsive mb-4">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
-                        <tr>
-                            <th>Bo'limlar</th>
-                            <th>Bo'lim kodi</th>
-                            <th>Qisqa malumot</th>
-                            <th>Amallar</th>
-                        </tr>
+                        {
+                            headlist.map(item=><tr key={item.id}>
+                                {
+                                    bolimlar2?<th>{item.bolim}</th>:''
+                                }
+                                {
+                                    bolimkodi2?<th>{item.bolimkod}</th>:''
+                                }
+                                {
+                                    qisqa?<th>{item.qisqa}</th>:''
+                                }
+                                {
+                                    amallar?<th>{item.amallar}</th>:''
+                                }
+                            </tr>)
+                        }
                         </thead>
                         <tbody>
-
                         {
                             BolimReducer.bolimlar.filter(val => {
                                 if (input.search === '') {
@@ -202,19 +243,27 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
                                     return val
                                 }
                             }).map(item => <tr key={item.id}>
-                                <td>{item.name}</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <Link>
-                                        <button onClick={()=>editB(item.id)} className='taxrirlash'><img src={Edit}
-                                                                                             alt=""/> Taxrirlash
+                                {
+                                    bolimlar2?<td>{item.name}</td>:''
+                                }
+                                {
+                                    bolimkodi2?<td></td>:''
+                                }
+                                {
+                                    qisqa?<td></td>:''
+                                }
+                                {
+                                    amallar?<td>
+                                        <Link>
+                                            <button onClick={() => editB(item.id)} className='taxrirlash'><img src={Edit}
+                                                                                                               alt=""/> Taxrirlash
+                                            </button>
+                                        </Link>
+                                        <button className='ochirish' onClick={() => deleteB(item)}><img src={Delete}
+                                                                                                        alt=""/> O'chirish
                                         </button>
-                                    </Link>
-                                    <button className='ochirish' onClick={() => deleteB(item)}><img src={Delete}
-                                                                                                    alt=""/> O'chirish
-                                    </button>
-                                </td>
+                                    </td>:''
+                                }
                             </tr>)
                         }
 
@@ -234,8 +283,9 @@ function Bolimlar({editBolim,getBolim, bolimlar, saveBolim, deleteBolim, BolimRe
                     </ModalHeader>
                     <ModalBody>
                         <label htmlFor={'bnomi'}>Bo`lim nomi</label>
-                        <input type="text" className={'form-control '} placeholder={placeholders.bolimNomiPlaceholder} id={'bnomi'} onChange={bolimnomi}
-                               value={input.bolimnomi} />
+                        <input type="text" className={'form-control '} placeholder={placeholders.bolimNomiPlaceholder}
+                               id={'bnomi'} onChange={bolimnomi}
+                               value={input.bolimnomi}/>
                         <label className={'mt-4'} htmlFor={'bkodi'}>Bo`lim kodi</label>
                         <input type="text" className={'form-control'} value={input.bolimkodi} onChange={bolimkodi}
                                id={'bkodi'}/>

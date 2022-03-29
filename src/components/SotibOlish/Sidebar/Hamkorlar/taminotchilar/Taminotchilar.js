@@ -242,7 +242,6 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     function malumotkamayname() {
         setismi(!ismi)
     }
-
     function toggle2() {
         setmalkamay(!malkamay)
     }

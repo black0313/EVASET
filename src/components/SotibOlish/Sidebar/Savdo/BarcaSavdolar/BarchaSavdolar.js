@@ -21,7 +21,7 @@ import SavdoQoshishReducer, {
 import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 
-function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,SavdoQoshishReducer,getSavdolar,getSavdolar2,users,getbranch,ditSavdolar,saveSavdolar}) {
+function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,TaminotReducer,SavdoQoshishReducer,getSavdolar,getSavdolar2,users,getbranch,ditSavdolar,saveSavdolar}) {
 
     const [input,setInput] = useState(
         {
@@ -107,6 +107,12 @@ function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,Sa
         }
     }
 
+    function deleteS(item){
+        deleteSavdolar(item.id)
+        setTimeout(()=>{
+            getSavdolar(users.businessId)
+        },100)
+    }
 
     return (
         <div className="col-md-12 mt-2 mb-4 mt-4 ">
@@ -146,18 +152,6 @@ function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,Sa
                     <div className="col-md-6">
                         <h6>Sanani belgilang:</h6>
                         <input type="date" className={'form-control'} value={input.sananibelgilash} onChange={sananibelgilash}/>
-                        {
-                            // active?     <DateRangePickerComponent placeholder="Enter Date Range"
-                            //                                       startDate={startValueDate}
-                            //                                       endDate={endValueDate}
-                            //                                       min={minDateDate}
-                            //                                       max={maxDateDate}
-                            //                                       minDays={1}
-                            //                                       maxDays={10000}
-                            //                                       format="dd-MMM-yy"
-                            //
-                            // ></DateRangePickerComponent>:''
-                        }
 
                     </div>
                 </div>
@@ -227,7 +221,7 @@ function BarchaSavdolar({getSavdolar3,branchreducer,getTaminot,TaminotReducer,Sa
                                 {/*<td> </td>*/}
                                 <td>
                                         <Link to={'/third/xarajatlarRuyxati/xarajatqoshish/'+item.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
-                                        <button className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
+                                        <button onClick={()=>deleteS(item)} className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
                                 </td>
                             </tr>)
                         }
