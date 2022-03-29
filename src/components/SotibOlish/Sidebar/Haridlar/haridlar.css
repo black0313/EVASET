@@ -4,6 +4,12 @@
     margin-top: 15px;
     align-items: center;
 }
+.ttt{
+    /*background: #0cd3c6;*/
+}
+.ttt2{
+    background: #4caf50;
+}
 .haridlar h6{
     margin-left: 10px;
     cursor: pointer;
