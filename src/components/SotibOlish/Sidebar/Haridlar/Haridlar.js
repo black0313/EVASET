@@ -50,8 +50,8 @@ function Mahsulotlar({active}) {
                 </svg>
             </div>
             {
-                active2?<ul>
-                    <li onClick={sidebaractive}><Link   to={'/headerthird/xaridlarRuyxati'} className={'li-text'}>Xaridlar ruyxati</Link></li>
+                active2?<ul className={'tran'}>
+                    <li className={`${sidebaractive?'ttt':'ttt2'}`} onClick={sidebaractive}><Link  to={'/headerthird/xaridlarRuyxati'} className={'li-text'}>Xaridlar ruyxati</Link></li>
                     <li onClick={sidebaractive}><Link  to={'/headerthird/xaridQilish'} className={'li-text'}>Xarid qilish</Link></li>
                     {/*<li><Link to={'/headerthird/qaytganXarid'} className={'haridClass'}>Qaytarilgan Xaridlar</Link></li>*/}
                 </ul>:''

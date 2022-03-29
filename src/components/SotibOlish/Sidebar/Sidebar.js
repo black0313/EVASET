@@ -52,6 +52,8 @@ function Sidebar({functionreducer,active,users}) {
         })
     }
 
+    const [xaridruyxat,setxaridruyxat] = useState(true)
+
     return (
                 <div className={`col-md-12 sidebar ${functionreducer.func.class3} ${functionreducer.func.class4}`}>
                     <div className="sidehead d-flex justify-content-center">
@@ -81,6 +83,11 @@ function Sidebar({functionreducer,active,users}) {
                             addsupplier  ?  <Hamkorlar/> :''
                         }
                         <Maxsulotlar/>
+                        {/*{*/}
+                        {/*       xaridruyxat?<div className={'hhh'}>*/}
+                        {/*           <div className={'hhh2'}><Haridlar/></div>*/}
+                        {/*       </div>:''*/}
+                        {/*}*/}
                         <Haridlar/>
                         <Savdo/>
                         <Baza/>
@@ -89,9 +96,7 @@ function Sidebar({functionreducer,active,users}) {
                         <Xirsobotlar/>
                         <Sozlamalar/>
                     </div>
-
                 </div>
-
 
     )
 }

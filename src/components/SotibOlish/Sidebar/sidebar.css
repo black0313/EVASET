@@ -7,6 +7,16 @@
     object-fit: cover;
     padding-top: 1px !important;
 }
+.tran{
+
+}
+.hhh{
+    /*background: #0cd3c6;*/
+    transition: 0.5s all;
+}
+.hhh2{
+
+}
 .sidebar2{
     transition: 1s linear;
     transform: translateX(0);
@@ -51,7 +61,7 @@
 }
 .imgDiv:hover .sidebar-text{
     color: #0044FF;
-
+    /*color: yellow;*/
 }
 .imgDiv:checked img{
     transform: rotate(180deg);
