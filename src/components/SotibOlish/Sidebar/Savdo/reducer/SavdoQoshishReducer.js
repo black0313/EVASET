@@ -55,7 +55,6 @@ const slice = createSlice({
             toast.success('Savdo tahrirlandi')
         },
         deletefrom:(state,action)=>{
-
             toast.info('Savdo O`chirildi')
         }
 

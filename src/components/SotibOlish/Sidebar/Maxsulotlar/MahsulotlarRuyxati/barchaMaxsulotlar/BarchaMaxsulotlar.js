@@ -43,24 +43,19 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
         let a = {...input}
         setInput(a)
     }
-
     function izlash(e) {
         input.izlash = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     const [active, setActive] = useState(false)
-
     function toggle() {
         setActive(!active)
     }
-
     function deleteM(item) {
         deleteMaxsulotRuyxati(item.id)
         console.log('deleted')
     }
-
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
     }, [MaxsulotlarRoyxariReducer.current])
@@ -68,6 +63,28 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
     useEffect(()=>{
         getFirma(users.businessId)
     },[])
+
+    const [mahsulot,setmahsulot] = useState(true)
+    const [baza,setbaza] = useState(true)
+    const [buy,setbuy] = useState(true)
+    const [sell,setsell] = useState(true)
+    const [qolgan,setqolgan] = useState(true)
+    const [firma,setfirma] = useState(true)
+    const [amallar,setamallar] = useState(true)
+
+    const [headlist,setheadlist] = useState([
+        {
+            product: 'Mahsulot',
+            baza:'Baza',
+            buyPrice:'Sotib olish narxi',
+            salePrice:'Sotish narxi',
+            qolganmahsulot:'Qolgan mahsulot',
+            firma:'Firma',
+            amallar:'Amallar'
+        }
+    ])
+
+    const [malkamay,setmalkamay] = useState(false)
 
     return (
         <div>
@@ -90,7 +107,18 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
                             <button><img src={Excel} alt=""/> Export Excel</button>
                             <button><img src={Print} alt=""/> Print</button>
                             <button><img src={Pdf} alt=""/>Export PDF</button>
-                            <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                            <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+
+                            {
+                                malkamay ? headlist.map(item => <ul className={'ul3'} key={item.id}>
+                                    <li onClick={()=>setmahsulot(!mahsulot)} className={'li2'}>{mahsulot? item.product: item.product+' <-'}</li>
+                                    <li onClick={()=>setbaza(!baza)} className={'li2'}>{baza? item.baza:'Baza '+' <-'}</li>
+                                    <li onClick={()=>setbuy(!buy)} className={'li2'}>{buy? item.buyPrice:item.buyPrice+' <-'}</li>
+                                    <li onClick={()=>setsell(!sell)} className={'li2'}>{sell? item.salePrice:item.salePrice +' <-'}</li>
+                                    <li onClick={()=>setamallar(!amallar)} className={'li2'}>{amallar?item.amallar:item.amallar+ ' <-'}</li>
+                                </ul>) : ''
+                            }
+
                         </div>
                         <div className="izlashBox2">
                             <input type="text" placeholder='Izlash...' value={input.izlash} onChange={izlash}/>
@@ -99,16 +127,32 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
                     <div className="table-responsive">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
-                        <tr>
-                            <th><input type="checkbox"/></th>
-                            <th>Maxsulot</th>
-                            <th>Baza</th>
-                            <th>Sotib olish narxi</th>
-                            <th>Sotish narxi</th>
-                            <th>Qolgan maxsulot</th>
-                            <th>Firma</th>
-                            <th>Amallar</th>
-                        </tr>
+                        {
+                            headlist.map(item=><tr key={item.id}>
+                                <th><input type="checkbox"/></th>
+                                {
+                                    mahsulot?<th>{item.product}</th>:''
+                                }
+                                {
+                                    baza?<th>{item.baza}</th>:''
+                                }
+                                {
+                                    buy?<th>{item.buyPrice}</th>:''
+                                }
+                                {
+                                    sell?<th>{item.salePrice}</th>:''
+                                }
+                                {
+                                    qolgan?<th>{item.qolganmahsulot}</th>:''
+                                }
+                                {
+                                    firma?<th>{item.firma}</th>:''
+                                }
+                                {
+                                    amallar?<th className={'text-center'}>{item.amallar}</th>:''
+                                }
+                            </tr>)
+                        }
                         </thead>
                         <tbody>
                         {
@@ -122,25 +166,39 @@ function BarchaMaxsulotlar({users,getMaxsulotRuyxati,getMaxsulotRuyxati3, maxsul
                             })
                                 .map(item => <tr key={item.id}>
                                     <td><input type="checkbox"/></td>
-                                    <td>{item.name}</td>
-                                    <td>{item.branch.name}</td>
-                                    <td>{item.buyPrice}</td>
-                                    <td>{item.salePrice}</td>
-                                    <td>{item.quantity}</td>
-                                    <td>{item.brand.name}</td>
-                                    <td>
-                                        <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/'+item.id}>
-                                            <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
-                                            </button>
-                                        </Link>
-                                        <Link
-                                            to={'/headerthird/mahsulotRuyxati/barcaMahsulot/view/' + input.name + '/' + input.ferma + '/' + input.pay + '/' + input.sotishNarxi + '/'}>
-                                            <button onClick={toggle} className='korish'><img src={Korish}
-                                                                                             alt=""/> Ko'rish
-                                            </button>
-                                        </Link>
-                                        <button onClick={()=>deleteM(item)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
-                                    </td>
+                                    {
+                                        mahsulot?<td>{item.name}</td>:''
+                                    }
+                                    {
+                                        baza?<td>{item.branch.name}</td>:''
+                                    }
+                                    {
+                                        buy?<td>{item.buyPrice}</td>:''
+                                    }
+                                    {
+                                        sell?<td>{item.salePrice}</td>:''
+                                    }
+                                    {
+                                        qolgan?<td>{item.quantity}</td>:''
+                                    }
+                                    {
+                                        firma?<td>{item.brand.name}</td>:''
+                                    }
+                                    {
+                                        amallar?<td>
+                                            <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/'+item.id}>
+                                                <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
+                                                </button>
+                                            </Link>
+                                            <Link
+                                                to={'/headerthird/mahsulotRuyxati/barcaMahsulot/view/' + input.name + '/' + input.ferma + '/' + input.pay + '/' + input.sotishNarxi + '/'}>
+                                                <button onClick={toggle} className='korish'><img src={Korish}
+                                                                                                 alt=""/> Ko'rish
+                                                </button>
+                                            </Link>
+                                            <button onClick={()=>deleteM(item)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
+                                        </td>:''
+                                    }
                                 </tr>)
                         }
 
