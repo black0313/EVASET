@@ -78,49 +78,41 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function firma(e) {
         input.firma = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function bolim(e) {
         input.bolim = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function miqdor(e) {
         input.miqdor = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotibolishnarxi(e) {
         input.sotibolishnarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotishnarxi(e) {
         input.sotishnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
         let a = {...input}
@@ -376,14 +368,16 @@ function SavdoOynasi({
     function toggle() {
         setActive(!active)
     }
-
     function toggle2() {
         setActive2(!active2)
     }
-
     function toggle3() {
         setActive3(!active3)
     }
+    function toggle6(){
+        settahrir(!tahrir)
+    }
+    const [tahrir,settahrir] = useState(false)
 
     return (
         <div className={"shopping"}>
@@ -396,7 +390,8 @@ function SavdoOynasi({
                     <div className={'d-flex justify-content-around'}><strong>Invoice No.</strong> <p> 0025</p></div>
                     <div className={'d-flex justify-content-around'}><strong>Date</strong>  <p className={'ms-2'}>
                         {
-                            Date.now()
+                            // Date.now()
+                            new Date().getDate()+"/ "+ new Date().getMonth()+"/ "+ new Date().getFullYear()
                         }
                     </p></div>
                 </div>
@@ -593,7 +588,33 @@ function SavdoOynasi({
                                 <tbody>
                                 {
                                     arr1.map(item => <tr key={item.id}>
-                                        <td style={{marginLeft: '10px'}}>{item.name}</td>
+                                        <td onClick={toggle6} className={'namepointer'} style={{marginLeft: '10px'}}>{item.name}</td>
+                                        <Modal isOpen={tahrir} toggle={toggle6}>
+                                            <ModalHeader>
+                                                Tahrir
+                                            </ModalHeader>
+                                            <ModalBody>
+                                                <input type="text" className={'form-control'}/>
+                                                <div className="col-md-12 d-flex justify-content-between">
+                                                    <div className="col-md-6">
+                                                        <label htmlFor={'a'}>Chegirma qilish</label>
+                                                        <select name="" id={'a'} className={'form-control'}>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label htmlFor={'m'}>Chegirma miqdori</label>
+                                                        <select className={'form-control'} name="" id={'m'}>Chegirma miqdori
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <button onClick={toggle6} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            </ModalFooter>
+                                        </Modal>
                                         <td className={''}>
                                             <div className={'d-flex align-items-center justify-content-around p-0'}
                                                  style={{width: '100%'}}>

@@ -11,6 +11,17 @@
     top: 0;
 
 }
+.namepointer{
+    transition: 0.4s all;
+    cursor: pointer;
+}
+.namepointer:hover{
+    border-bottom: 5px solid darkblue;
+    color: darkblue;
+    font-size: 17px;
+    transform: translateX(20px);
+    cursor: pointer;
+}
 
 .shoppingmodal{
 
