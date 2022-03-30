@@ -109,9 +109,9 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
 
     function deleteS(item){
         deleteSavdolar(item.id)
-        setTimeout(()=>{
-            getSavdolar(users.businessId)
-        },100)
+        // setTimeout(()=>{
+        //     getSavdolar(users.businessId)
+        // },100)
     }
 
     return (
