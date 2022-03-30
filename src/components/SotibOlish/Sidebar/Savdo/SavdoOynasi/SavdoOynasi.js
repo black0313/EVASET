@@ -30,6 +30,7 @@ import FirmaReducer, {getFirma} from "../../Maxsulotlar/reducer/FirmaReducer";
 import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
 import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
+import TradeHistory, {getSavdolarHistory} from "../reducer/TradeHistory";
 function SavdoOynasi({
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
@@ -37,7 +38,8 @@ function SavdoOynasi({
                          FirmaReducer, getFirma, saveMaxsulotRuyxati,getMaxsulotRuyxati3,
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
-                         users, savdooynasi, getkg, kgreducer,branchreducer,getbranch,getMaxsulotRuyxatibranch
+                         users, savdooynasi, getkg, kgreducer,branchreducer,getbranch,getMaxsulotRuyxatibranch,
+                         getSavdolarHistory,TradeHistory
                      }) {
 
     const [input, setInput] = useState(
@@ -294,7 +296,6 @@ function SavdoOynasi({
                        item.active = true
                     }
 
-
                 } else {
                     item.disabled = true
                     if(item.counter <= item.quantity){
@@ -482,6 +483,10 @@ function SavdoOynasi({
         setactiveModalkredit(!activeModalkredit)
     }
 
+    useEffect(()=>{
+        getSavdolarHistory(users.businessId)
+    },[])
+
     return (
         <div className={"shopping"}>
             <div className={'shoppingmodal p-5'} ref={componentRef}>
@@ -509,7 +514,6 @@ function SavdoOynasi({
 
 
                     }
-
 
                 </p></div>
                 <div className={'table-responsive'}>
@@ -580,6 +584,13 @@ function SavdoOynasi({
                                         <Route path={'/headerthird/turliTavar/chegirma'} component={Chegirma}/>
                                         <Route path={'/headerthird/turliTavar/eslatma'} component={Eslatma}/>
                                     </Switch>
+
+                                        {
+                                            TradeHistory.savdolar.map(item=><tr key={item.id}>
+                                                <td>{item.name}</td>
+                                            </tr>)
+                                        }
+
                                 </div>
                             </ModalBody>
                             <ModalFooter>
@@ -929,8 +940,9 @@ function SavdoOynasi({
 }
 
 //355352081562619
-export default connect((kgreducer, PayReducer, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
+export default connect((kgreducer, PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
     getSavdo,
+    getSavdolarHistory,
     getFirma,
     getPay,
     saveMaxsulotRuyxati,
