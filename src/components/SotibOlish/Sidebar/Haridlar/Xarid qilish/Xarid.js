@@ -85,16 +85,16 @@ function Xarid({
             kg: '',
         }
     )
-    
-    const [placeholders,setPlaceholders] = useState(
+
+    const [placeholders, setPlaceholders] = useState(
         {
-           qisqaeslatmaPlaceholder:"",
-           xaridMiqdoriPlaceholder:"xarid miqdori...",
-           donaNarxiPlaceholder:"dona narxi",
-           donaSotishNarxiPlaceholder:"dona sotish narxi",
-           tolovSummasiPlaceholder:"",
-           yetkazibBerishManziliPlaceholder:"",
-           yetkazibBerishNarxiPlaceholder:"",
+            qisqaeslatmaPlaceholder: "",
+            xaridMiqdoriPlaceholder: "xarid miqdori...",
+            donaNarxiPlaceholder: "dona narxi",
+            donaSotishNarxiPlaceholder: "dona sotish narxi",
+            tolovSummasiPlaceholder: "",
+            yetkazibBerishManziliPlaceholder: "",
+            yetkazibBerishNarxiPlaceholder: "",
         }
     )
 
@@ -424,7 +424,7 @@ function Xarid({
 
     }
     function saqla() {
-        if (input.qisqaeslatma!=="" ) {
+        if (input.qisqaeslatma !== "") {
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
@@ -473,7 +473,11 @@ function Xarid({
             setmah([])
         }
         else {
-
+            setPlaceholders(
+                {
+                    qisqaeslatmaPlaceholder: "qisqa eslatma kiriting..."
+                }
+            )
         }
     }
 
@@ -538,7 +542,7 @@ function Xarid({
                         <div className="col-3 col-sm-12 mb-4">
                             <label htmlFor={'qisqa'}>Qisqa eslatma</label>
                             <input type="text" className={'form-control'} value={input.qisqaeslatma}
-                               placeholder={placeholders.qisqaeslatmaPlaceholder} onChange={qisqaeslatma}
+                                placeholder={placeholders.qisqaeslatmaPlaceholder} onChange={qisqaeslatma}
                                 id={'qisqa'} />
                             <label htmlFor={'baza'} className={'mt-3'}>Baza</label>
                             <select name="" id={'baza'} value={input.baza} onChange={baza} className={'form-control'}>
@@ -659,7 +663,8 @@ function Xarid({
                                                     <td>
                                                         <input type="number" placeholder={placeholders.xaridMiqdoriPlaceholder}
                                                             value={item.quantity} onChange={(event) => xaridmiqdori(event, item.id)}
-                                                           id="xaridMiqdor" className={'form-control'} />
+                                                            id="xaridMiqdor" className={'form-control'} />
+
                                                         <select name="" className={'form-control mt-1'} value={input.kg}
                                                             onChange={kg} id="">
                                                             {
@@ -769,9 +774,16 @@ function Xarid({
                         </div>
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
                             <h5>Qarz miqdori!: 0.00</h5>
-                            <Link to={'/headerthird/xaridlarRuyxati'}>
-                                <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
-                            </Link>
+                            {
+                                (input.qisqaeslatma) ?
+                                    <Link to={'/headerthird/xaridlarRuyxati'}>
+                                        <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
+                                    </Link>
+                                    :
+                                    <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
+
+                            }
+
                         </div>
 
                     </div>
