@@ -79,7 +79,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
         getSavdolar2(users.businessId)
         getbranch(users.businessId)
         getTaminot(users.businessId)
-        getSavdolar3(users.businessId)
+        // getSavdolar3(users.businessId)
     },[])
 
     const [active,setActive] = useState(false)
@@ -109,9 +109,9 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
 
     function deleteS(item){
         deleteSavdolar(item.id)
-        setTimeout(()=>{
-            getSavdolar(users.businessId)
-        },100)
+        // setTimeout(()=>{
+        //     getSavdolar(users.businessId)
+        // },100)
     }
 
     return (

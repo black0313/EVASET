@@ -58,6 +58,13 @@ function SavdoOynasi({
             sotishnarxi: '',
             branch:'',
             brand:'',
+            narxi:'',
+            chegirmatartib:'',
+            chegirmamiqdor:'',
+            qisqanarx:'',
+            kun:'',
+            yil:'',
+            birincitulovkredit:''
         }
     )
 
@@ -66,9 +73,33 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
+    function narxi(e){
+        input.narxi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function chegirmatartib(e){
+        input.chegirmatartib = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function chegirmamiqdor(e){
+        input.chegirmamiqdor = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function qisqanarx(e){
+        input.qisqanarx = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
     function shtrix(e) {
         input.shtrix = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function birincitulovkredit(e) {
+        input.birincitulovkredit = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -78,51 +109,58 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function firma(e) {
         input.firma = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function bolim(e) {
         input.bolim = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function miqdor(e) {
         input.miqdor = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotibolishnarxi(e) {
         input.sotibolishnarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function sotishnarxi(e) {
         input.sotishnarxi = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqsiznarx(e) {
         input.soliqsiznarx = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function soliqbnnarxi(e) {
         input.soliqbnnarxi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function oy(e) {
+        input.oy = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function kun(e) {
+        input.kun = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function yil(e) {
+        input.yil = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -186,13 +224,25 @@ function SavdoOynasi({
     let [xisob, setxisob] = useState(0)
     let [jamixisob, setjamixisob] = useState(0)
 
+
     function pushesh(val) {
-        arr1.map(item => {
-            if (item.id === val.id) {
-                setCount(item.id)
-            }
+        let order = false
+        arr1.map(item=>{
+            if(item.id === val.id){
+                order = true
+           }
         })
-        arr1.push({...val, counter: 1, disabled: false,active:false})
+        if (order === true){
+            setCount(val.id)
+        }
+       else{
+            arr1.push({...val, counter: 1, disabled: false,active:false})
+            order = false
+        }
+       let b = [...arr1]
+        setarr1(b)
+
+
         let a = 0
         let c = 0
         arr1.map(item => {
@@ -207,7 +257,9 @@ function SavdoOynasi({
     function setCount(id) {
         arr1.map(item => {
             if (item.id === id) {
+
                 if(item.counter >= item.quantity){
+                    item.counter += 1
                     item.active = true
                     item.disabled = false
                 }
@@ -215,9 +267,7 @@ function SavdoOynasi({
                     item.counter += 1
                     item.disabled = false
                     item.active = false
-
                 }
-
             }
         })
         let a = [...arr1]
@@ -227,7 +277,6 @@ function SavdoOynasi({
         arr1.map(item => {
             b += item.counter
             c += (item.counter * item.buyPrice)
-
         })
         setxisob(b)
         setjamixisob(c)
@@ -238,11 +287,22 @@ function SavdoOynasi({
             if (item.id === id) {
                 if (item.counter >= 1) {
                     item.counter -= 1
-                    item.active = false
+                    if(item.counter <= item.quantity){
+                        item.active = false
+                    }
+                    else{
+                       item.active = true
+                    }
+
 
                 } else {
                     item.disabled = true
-                    item.active = false
+                    if(item.counter <= item.quantity){
+                        item.active = false
+                    }
+                    else{
+                        item.active = true
+                    }
 
                 }
             }
@@ -314,7 +374,10 @@ function SavdoOynasi({
         setInput(a)
     }
     function UzcardTolov(naqd) {
-        console.log('helll')
+        if (naqd == 4){
+            kredit()
+        }
+
         printtoggle()
         arr1.map(item => {
             if (baza !== '') {
@@ -334,12 +397,10 @@ function SavdoOynasi({
                     addressId: 1,
                 })
             } else {
-                alert('MIJOZ QOSH IN')
+                alert('MIJOZ QOSHIN')
             }
         })
         setarr1([])
-
-
 
         setxisob(0)
         setjamixisob(0)
@@ -381,27 +442,76 @@ function SavdoOynasi({
     function toggle() {
         setActive(!active)
     }
-
     function toggle2() {
         setActive2(!active2)
     }
-
     function toggle3() {
         setActive3(!active3)
+    }
+    function toggle6(){
+        settahrir(!tahrir)
+    }
+    const [tahrir,settahrir] = useState(false)
+
+    function clear(){
+        let a = arr1
+        a = ''
+        setarr1(a)
+    }
+
+    const [oyy,setoyy] = useState([
+        {
+            yanvar:'Yanvar',
+            fevral:'Fevral',
+            mart:'Mart',
+            aprel:'Aprel',
+            may:'May',
+            iyun:'Iyun',
+            iyul:'Iyul',
+            avgust:'Avgust',
+            sentabr:'Sentabr',
+            oktabr:'Oktabr',
+            noyabr:'Noyabr',
+            dekabr:'Dekabr'
+        }
+    ])
+
+    const [activeModalkredit,setactiveModalkredit] = useState(false)
+
+    function kredit(){
+        setactiveModalkredit(!activeModalkredit)
     }
 
     return (
         <div className={"shopping"}>
             <div className={'shoppingmodal p-5'} ref={componentRef}>
-                <h1 className={'text-center'}>Shifer Zavod</h1>
-                <h6 className={'text-center'}>adress</h6>
+                <h1 className={'text-center'}>Chek</h1>
+                <h6 className={'text-center'}>Tekshiruv qog`ozi</h6>
                 <br/>
                 <h2 className={'text-center'}>Invoice</h2>
                 <div className={'d-flex justify-content-between'}>
                     <div className={'d-flex justify-content-around'}><strong>Invoice No.</strong> <p> 0025</p></div>
-                    <div className={'d-flex justify-content-around'}><strong>Date</strong>  <p className={'ms-2'}> 03/28/2022 15:57</p></div>
+                    <div className={'d-flex justify-content-around'}><strong>Date</strong>  <p className={'ms-2'}>
+                        {
+                            // Date.now()
+                            new Date().getDate()+"/ "+ new Date().getMonth()+"/ "+ new Date().getFullYear()
+                        }
+                    </p></div>
                 </div>
-                <div className={'d-flex'}><strong>Customer</strong> <p className={'ms-2'}> HOtel</p></div>
+                <div className={'d-flex'}><strong>Customer</strong> <p className={'ms-2'}>
+                    {
+                        MijozGuruxReducer.mijozgurux.filter(val => {
+                            if (val.id == input.baza){
+                                return val
+                            }
+                        }).map(item=> <p>{item.name}</p>)
+
+
+
+                    }
+
+
+                </p></div>
                 <div className={'table-responsive'}>
                     <table className={'table'}>
                         <thead>
@@ -482,10 +592,12 @@ function SavdoOynasi({
                 <div className="savdoBlock">
                     <div className="savdoBlockLeft">
                         <div className="selectBox">
-                            {console.log(MijozGuruxReducer.mijozgurux[0]?.id)}
+                            {/*{console.log(MijozGuruxReducer.mijozgurux[0]?.id)}*/}
                             <select className="" value={input.baza} onChange={baza} name="" id="">
                                 {
-                                    MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
+                                    MijozGuruxReducer.mijozgurux.map(item =>
+                                        input.baza==''?input.baza = item.id:
+                                        <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
                             <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
@@ -587,7 +699,33 @@ function SavdoOynasi({
                                 <tbody>
                                 {
                                     arr1.map(item => <tr key={item.id}>
-                                        <td style={{marginLeft: '10px'}}>{item.name}</td>
+                                        <td onClick={toggle6} className={'namepointer'} style={{marginLeft: '10px'}}>{item.name}</td>
+                                        <Modal isOpen={tahrir} toggle={toggle6}>
+                                            <ModalHeader>
+                                                Tahrir
+                                            </ModalHeader>
+                                            <ModalBody>
+                                                <label htmlFor={'nar'}>Narxi</label>
+                                                <input id={'nar'} type="text" value={input.narxi} onChange={narxi} className={'form-control'}/>
+                                                <div className="col-md-12 d-flex ">
+                                                    <div className="col-md-6">
+                                                        <label htmlFor={'a'}>Chegirma qilish</label>
+                                                        <select name="" id={'a'} value={input.chegirmatartib} onChange={chegirmatartib} className={'form-control'}>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label htmlFor={'m'}>Chegirma miqdori</label>
+                                                        <input type="number" value={input.chegirmamiqdor} onChange={chegirmamiqdor} className={'form-control'}/>
+                                                    </div>
+                                                </div>
+                                                <label htmlFor={'te'} className={'mt-2'}>Qisqa eslatma</label>
+                                                <textarea name="" id={'te'} cols="10" rows="3" value={input.qisqanarx} onChange={qisqanarx} className={'form-control'}> </textarea>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <button onClick={toggle6} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            </ModalFooter>
+                                        </Modal>
                                         <td className={''}>
                                             <div className={'d-flex align-items-center justify-content-around p-0'}
                                                  style={{width: '100%'}}>
@@ -656,7 +794,7 @@ function SavdoOynasi({
                                 MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
                                                                                        key={item.id}>
                                     <div onClick={() => pushesh(item)}>
-                                        <img
+                                        <img className={'hoverimg'}
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
                                             alt="yuq"/>
                                         <h6>{item.name}</h6>
@@ -674,7 +812,44 @@ function SavdoOynasi({
                     <button className={'col-sm-6 btn btn-primary m-1'}>Eslatma</button>
                     <button className={'col-6 btn btn-danger m-1'}>Chegirma</button>
                     <button className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
-                    <button className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
+                    <button onClick={kredit} className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
+                    <Modal isOpen={activeModalkredit} toggle={kredit}>
+                        <ModalHeader>Kredit bo`limi </ModalHeader>
+                        <ModalBody>
+                            <h3> <strong>Jami summa:</strong>  {jamixisob} </h3>
+                            <label htmlFor={'avans'}>Birinchi to`lov</label>
+                            <input value={input.birincitulovkredit} onChange={birincitulovkredit} type="text" className={'form-control'}/>
+                            <div>  
+                                <div>
+                                    <h4>Muddatni kiriting</h4>
+                                    <div className={'d-flex justify-content-around'}>
+                                        <div className={'input-group'}>
+                                            <input type="text" className={'form-control'} value={input.yil} onChange={yil}/>
+                                            <select name="kreditsana" id="" value={input.kun} onChange={kun}  className={'form-control'}>
+                                                <option value="#">Tanlash</option>
+                                                <option value="oy">Oy</option>
+                                                <option value="yil">Yil</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </ModalBody>
+                        <ModalFooter>
+                            <button onClick={() => UzcardTolov(4)} className={'btn btn-outline-primary'}>
+                                <ReactToPrint
+                                    trigger={() => <p style={{marginBottom:0}}>Sotish (Chek)</p>
+                                    }
+                                    content={() => componentRef.current}
+                                />
+                            </button>
+                            {/*<button className={'btn btn-outline-primary'} onClick={UzcardTolov}>Sotish ( Chek )</button>*/}
+                            <button className={'btn btn-outline-primary'} onClick={kredit}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
                     <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
                     <button className={'col-6 btn btn-info m-1'}>Plastik</button>
 
@@ -701,7 +876,7 @@ function SavdoOynasi({
                             content={() => componentRef.current}
                         /></button>
                     <button className='jamiTolov m-1'>Jami to`lov: {jamixisob} so'm</button>
-                    <button className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
+                    <button onClick={clear} className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
                 </div>
                 <div className="">
 
