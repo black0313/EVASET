@@ -89,9 +89,9 @@ function Xarid({
     const [placeholders, setPlaceholders] = useState(
         {
             qisqaeslatmaPlaceholder: "",
-            xaridMiqdoriPlaceholder: "xarid miqdori...",
-            donaNarxiPlaceholder: "dona narxi",
-            donaSotishNarxiPlaceholder: "dona sotish narxi",
+            xaridMiqdoriPlaceholder: "",
+            donaNarxiPlaceholder: "",
+            donaSotishNarxiPlaceholder: "",
             tolovSummasiPlaceholder: "",
             yetkazibBerishManziliPlaceholder: "",
             yetkazibBerishNarxiPlaceholder: "",
@@ -423,8 +423,8 @@ function Xarid({
         })
 
     }
-    function saqla() {
-        if (input.qisqaeslatma !== "") {
+    function saqla() {  
+        if ((input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans && input.yetkazibberishnarxi)) {
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
@@ -475,8 +475,13 @@ function Xarid({
         else {
             setPlaceholders(
                 {
-                    qisqaeslatmaPlaceholder: "qisqa eslatma kiriting..."
-                }
+                    qisqaeslatmaPlaceholder: "qisqa eslatma kiriting...",
+                    xaridMiqdoriPlaceholder:"xarid miqdorini kiriting...",
+                    donaNarxiPlaceholder:"ma'lumot kiriting...",
+                    donaSotishNarxiPlaceholder:"ma'lumot kiritilmadi...",
+                    tolovSummasiPlaceholder:"ma'lumot kiritilmadi...",
+                    yetkazibBerishManziliPlaceholder:"ma'lumot kiritilmadi..."
+                }   
             )
         }
     }
@@ -511,8 +516,9 @@ function Xarid({
     useEffect(() => {
         gettolovholati()
     }, [])
-
+    
     return (
+        
         <div className='xaridQilishBox'>
             <div className={'row  mt-5 '}>
                 <h5 className={'text-center mt-3'}>XARID QILISH</h5>
@@ -643,6 +649,11 @@ function Xarid({
                         <div className="col-md-12">
                             <input type="text" value={input.shtrix} onChange={shtrix} className={'form-control'}
                                 placeholder={'Mahsulot shtrix kodi yoki nomi'} />
+                                {
+                                    (input.xaridmiqdori==="" && input.donanarxi==="" && input.donasotish==="") ?
+                                    <div><p style={{color:"red"}}>Mahsulot nomi yoki shtrix kodini kiriting </p></div> :
+                                    ""
+                                }
                             <div className="table-responsive">
                                 <table className={'table mt-3 border'}>
                                     <thead>
@@ -661,8 +672,9 @@ function Xarid({
                                                 .map(item => <tr key={item.id}>
                                                     <td><h5>{item.name}</h5></td>
                                                     <td>
-                                                        <input type="number" placeholder={placeholders.xaridMiqdoriPlaceholder}
+                                                        <input type="number"
                                                             value={item.quantity} onChange={(event) => xaridmiqdori(event, item.id)}
+                                                            placeholder={placeholders.xaridMiqdoriPlaceholder}
                                                             id="xaridMiqdor" className={'form-control'} />
 
                                                         <select name="" className={'form-control mt-1'} value={input.kg}
@@ -675,18 +687,18 @@ function Xarid({
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="number" value={item.buyPrice}
+                                                        <input type="number" value={item.buyPrice} id='sotibOlishInput'
                                                             onChange={(event) => donanarxi(event, item.id)}
-                                                            placeholder={'dona narxi'} className={'form-control'} />
+                                                            placeholder={placeholders.donaNarxiPlaceholder} className={'form-control'} />
                                                     </td>
 
                                                     <td>
                                                         <h5>{item.buyPrice * item.quantity}</h5>
                                                     </td>
                                                     <td>
-                                                        <input type="number" value={item.salePrice}
+                                                        <input type="number" value={item.salePrice} id='sotishNarxiInput'
                                                             onChange={(event) => donasotish(event, item.id)}
-                                                            className={'form-control'} placeholder={'dona sotish'} />
+                                                            className={'form-control'} placeholder={placeholders.donaSotishNarxiPlaceholder} />
                                                     </td>
                                                     <td>
                                                         <button onClick={() => deleteM(item.id)}
@@ -710,7 +722,7 @@ function Xarid({
                     <div className="row">
                         <div className="col-6 col-sm-12">
                             <label htmlFor={'avans'}>Avans 0 / To`lov so`mmasi</label>
-                            <input type="number" className={'form-control'} value={input.avans} onChange={avans}
+                            <input type="number" className={'form-control'} value={input.avans} placeholder={placeholders.tolovSummasiPlaceholder} onChange={avans}
                                 id={'avans'} />
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
                             <select name="" id={'tol'} className={'form-control mb-3'} value={input.tulovusuli}
@@ -738,8 +750,8 @@ function Xarid({
                                 <div className="col-6 col-sm-11">
                                     <div className="btnBox">
                                         <label htmlFor={'yet'}>Yetkazib berish manzili</label>
-                                        <input type="text" id={'yet'} value={input.yetkazibberish}
-                                            onChange={yetkazibberish}
+                                        <input type="text" id={'yet'} value={input.yetkazibberish} placeholder={placeholders.yetkazibBerishManziliPlaceholder}
+                                             onChange={yetkazibberish}
                                             className={'form-control'} />
                                         <button onClick={toggle2}
                                             className={'btnAdd btn btn-primary mt-2'}>add_additional_experence
@@ -775,7 +787,7 @@ function Xarid({
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
                             <h5>Qarz miqdori!: 0.00</h5>
                             {
-                                (input.qisqaeslatma) ?
+                                (input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans && input.yetkazibberishnarxi) ?
                                     <Link to={'/headerthird/xaridlarRuyxati'}>
                                         <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
                                     </Link>
