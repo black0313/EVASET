@@ -402,6 +402,12 @@ function SavdoOynasi({
     }
     const [tahrir,settahrir] = useState(false)
 
+    function clear(){
+        let a = arr1
+        a = ''
+        setarr1(a)
+    }
+
     return (
         <div className={"shopping"}>
             <div className={'shoppingmodal p-5'} ref={componentRef}>
@@ -758,7 +764,7 @@ function SavdoOynasi({
                             content={() => componentRef.current}
                         /></button>
                     <button className='jamiTolov m-1'>Jami to`lov: {jamixisob} so'm</button>
-                    <button className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
+                    <button onClick={clear} className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
                 </div>
                 <div className="">
 

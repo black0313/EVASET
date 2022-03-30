@@ -7,6 +7,7 @@
 }
 .hoverimg:hover{
     transform: translateY(-6px);
+    opacity: 0.8;
 }
 .savdoOynaContainers{
     width: 100%;
