@@ -219,7 +219,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         productTraderDto:[
                             {
                                 tradedQuantity:item.counter,
-                                productTradeId:1
+                                productTradeId: item.id
                             }
                         ],
                         branchId:item.branch.id,
@@ -258,10 +258,13 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
         <div className={'row mt-5 d-flex justify-content-center'}>
             <div className="col-md-10">
                 <h5 className="mt-3">Savdo qo`shish</h5>
+                <label htmlFor={'baza'}>Baza</label>
                 <select id={input.baza} onChange={baza} className={'form-control'}>
-                    <option value={'tanlash'}>Tanlash</option>
+                    {/*<option value={'tanlash'}>Tanlash</option>*/}
                     {
-                        branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                        branchreducer.branch.map(item=>
+                            input.baza==''?input.baza = item.id:
+                            <option value={item.id}>{item.name}</option>)
                     }
                 </select>
             </div>
@@ -272,9 +275,10 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         <label htmlFor={'mijoz'}>Mijoz</label>
                         {/*<input type="text" id={'mijoz'} value={input.mijoz} onChange={mijoz} className={'form-control'}/>*/}
                         <select  onChange={mijoz} value={input.mijoz} className={'form-control'}>
-                            <option value="tanlash">Tanlash</option>
                             {
-                                MijozGuruxReducer.mijozgurux.map(item=> <option value={item.id}>{item.name}</option>)
+                                MijozGuruxReducer.mijozgurux.map(item=>
+                                    input.mijoz==''?input.mijoz = item.id:
+                                    <option value={item.id}>{item.name}</option>)
                             }
                         </select>
                     </div>
@@ -290,9 +294,11 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         <label htmlFor={'stat'} >Status</label>
                         {console.log(PayReducer.paymethod)}
                         <select value={input.status} onChange={status} name="" id="" className={'form-control'}>
-                            <option value="">Tanlash</option>
+                            {/*<option value="">Tanlash</option>*/}
                             {
-                                PayReducer.paymethod.map(item=> <option value={item.id}>{item.type}</option>)
+                                PayReducer.paymethod.map(item=>
+                                    input.status==''?input.status = item.id:
+                                    <option value={item.id}>{item.type}</option>)
                             }
                         </select>
                         <label htmlFor={'savRaqam'} className={'mt-4'}>Savdo raqami</label>
@@ -369,9 +375,11 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                             <input type="text" value={input.avans} onChange={avans} className={'form-control'} id={'avans'}/>
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
                             <select id={'tol'} className={'form-control'} value={input.tulovusuli} onChange={tulovusuli}>
-                                <option value="tanla">Tanlash</option>
+                                {/*<option value="tanla">Tanlash</option>*/}
                                 {
-                                    PayReducer.paymethod.map(item=> <option value={item.id}>{item.type}</option>)
+                                    PayReducer.paymethod.map(item=>
+                                        input.tulovusuli==''?input.tulovusuli = item.id:
+                                        <option value={item.id}>{item.type}</option>)
                                 }
                             </select>
                         </div>

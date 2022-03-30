@@ -206,21 +206,21 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                         {console.log(SavdoQoshishReducer.savdolar)}
                         <tbody>
                         {
-                            SavdoQoshishReducer.savdolar.map(item=><tr key={item.id}>
-                                <td>{item.payDate}</td>
-                                <td>{item.branch.id}</td>
-                                <td>{item.customer.name}</td>
+                            SavdoQoshishReducer.savdolar.map(item=><tr key={item?.id}>
+                                <td>{item?.payDate}</td>
+                                <td>{item?.branch?.id}</td>
+                                <td>{item?.customer?.name}</td>
                                 <td> -</td>
-                                <td>{item.branch.name}</td>
-                                <td>{item.paymentStatus.status}</td>
-                                <td>{item.payMethod.type}</td>
-                                <td>{item.totalSum}</td>
-                                <td>{item.amountPaid}</td>
-                                <td>{item.loan}</td>
+                                <td>{item?.branch?.name}</td>
+                                <td>{item?.paymentStatus?.status}</td>
+                                <td>{item?.payMethod?.type}</td>
+                                <td>{item?.totalSum}</td>
+                                <td>{item?.amountPaid}</td>
+                                <td>{item?.loan}</td>
                                 <td> </td>
                                 {/*<td> </td>*/}
                                 <td>
-                                        <Link to={'/third/xarajatlarRuyxati/xarajatqoshish/'+item.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
+                                        <Link to={'/third/xarajatlarRuyxati/xarajatqoshish/'+item?.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
                                         <button onClick={()=>deleteS(item)} className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
                                 </td>
                             </tr>)
