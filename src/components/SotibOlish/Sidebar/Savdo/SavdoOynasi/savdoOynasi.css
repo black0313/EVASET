@@ -2,6 +2,12 @@
     width: 100%;
     position: absolute;
 }
+.hoverimg{
+    transition: 0.4s all;
+}
+.hoverimg:hover{
+    transform: translateY(-6px);
+}
 .savdoOynaContainers{
     width: 100%;
      background-color: silver;

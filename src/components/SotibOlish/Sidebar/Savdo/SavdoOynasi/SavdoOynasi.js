@@ -706,7 +706,7 @@ function SavdoOynasi({
                                 MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
                                                                                        key={item.id}>
                                     <div onClick={() => pushesh(item)}>
-                                        <img
+                                        <img className={'hoverimg'}
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
                                             alt="yuq"/>
                                         <h6>{item.name}</h6>
