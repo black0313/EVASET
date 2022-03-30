@@ -226,6 +226,7 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                         <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
                         <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
                     </ModalFooter>
+                    
                 </Modal>
             </div>
         </div>
