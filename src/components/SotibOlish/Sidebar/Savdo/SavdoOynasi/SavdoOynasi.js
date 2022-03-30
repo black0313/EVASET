@@ -58,6 +58,10 @@ function SavdoOynasi({
             sotishnarxi: '',
             branch:'',
             brand:'',
+            narxi:'',
+            chegirmatartib:'',
+            chegirmamiqdor:'',
+            qisqanarx:''
         }
     )
 
@@ -66,7 +70,26 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
+    function narxi(e){
+        input.narxi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function chegirmatartib(e){
+        input.chegirmatartib = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function chegirmamiqdor(e){
+        input.chegirmamiqdor = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function qisqanarx(e){
+        input.qisqanarx = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
     function shtrix(e) {
         input.shtrix = e.target.value
         let a = {...input}
@@ -594,22 +617,22 @@ function SavdoOynasi({
                                                 Tahrir
                                             </ModalHeader>
                                             <ModalBody>
-                                                <input type="text" className={'form-control'}/>
-                                                <div className="col-md-12 d-flex justify-content-between">
+                                                <label htmlFor={'nar'}>Narxi</label>
+                                                <input id={'nar'} type="text" value={input.narxi} onChange={narxi} className={'form-control'}/>
+                                                <div className="col-md-12 d-flex ">
                                                     <div className="col-md-6">
                                                         <label htmlFor={'a'}>Chegirma qilish</label>
-                                                        <select name="" id={'a'} className={'form-control'}>
+                                                        <select name="" id={'a'} value={input.chegirmatartib} onChange={chegirmatartib} className={'form-control'}>
                                                             
                                                         </select>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <label htmlFor={'m'}>Chegirma miqdori</label>
-                                                        <select className={'form-control'} name="" id={'m'}>Chegirma miqdori
-
-                                                        </select>
+                                                        <input type="number" value={input.chegirmamiqdor} onChange={chegirmamiqdor} className={'form-control'}/>
                                                     </div>
-
                                                 </div>
+                                                <label htmlFor={'te'} className={'mt-2'}>Qisqa eslatma</label>
+                                                <textarea name="" id={'te'} cols="10" rows="3" value={input.qisqanarx} onChange={qisqanarx} className={'form-control'}> </textarea>
                                             </ModalBody>
                                             <ModalFooter>
                                                 <button onClick={toggle6} className={'btn btn-outline-primary'}>Chiqish</button>
