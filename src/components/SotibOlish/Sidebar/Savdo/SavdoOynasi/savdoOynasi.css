@@ -33,6 +33,13 @@
 .shoppingmodal{
 
 }
+.liniya{
+    background: black;
+    transform: rotateZ(90deg);
+    margin-top: 3rem;
+    width: 100%;
+    height: 1px;
+}
 .savdoOynaContainers .savdoNavbar{
     display: flex;
     justify-content: space-between;

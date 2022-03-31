@@ -424,7 +424,7 @@ function Xarid({
 
     }
     function saqla() {  
-        if ((input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans && input.yetkazibberishnarxi)) {
+        if ((input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans)) {
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
@@ -787,13 +787,12 @@ function Xarid({
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
                             <h5>Qarz miqdori!: 0.00</h5>
                             {
-                                (input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans && input.yetkazibberishnarxi) ?
+                                input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans  ?
                                     <Link to={'/headerthird/xaridlarRuyxati'}>
                                         <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
                                     </Link>
                                     :
-                                    <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
-
+                                <button className={'btn btn-danger'} onClick={saqla}>Saqlash</button>
                             }
 
                         </div>

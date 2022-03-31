@@ -29,13 +29,13 @@ import SavdoQoshishReducer, {saveSavdolar} from "../reducer/SavdoQoshishReducer"
 import BolimReducer, {getBolim} from "../../Maxsulotlar/reducer/BolimReducer";
 import FirmaReducer, {getFirma} from "../../Maxsulotlar/reducer/FirmaReducer";
 import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
-import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
+import PayReducer, {getPay,getPay2} from "../../../../../reducer/PayReducer";
 import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
 import TradeHistory, {getSavdolarHistory} from "../reducer/TradeHistory";
 function SavdoOynasi({
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
-                         getPay, PayReducer,
+                         getPay,getPay2, PayReducer,
                          FirmaReducer, getFirma, saveMaxsulotRuyxati,getMaxsulotRuyxati3,
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
@@ -69,7 +69,7 @@ function SavdoOynasi({
             yil:'',
             birincitulovkredit:'',
             qarzamount:'',
-
+            naqdId:'',
         }
     )
 
@@ -162,11 +162,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-    function oy(e) {
-        input.oy = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
     function kun(e) {
         input.kun = e.target.value
         let a = {...input}
@@ -204,7 +199,6 @@ function SavdoOynasi({
     }
 
     const [arr1, setarr1] = useState([])
-    const componentRef = useRef();
     const [lastTradeActive, setlastTradeActive] = useState(false)
     const [printactive,setprintactive] = useState(false)
 
@@ -386,11 +380,19 @@ function SavdoOynasi({
         setInput(a)
     }
 
-    function UzcardTolov(naqd) {
+
+
+    function UzcardTolov(naqd,type) {
+
         if (naqd == 4){
             kredit()
         }
-        printtoggle()
+
+
+
+
+
+
         arr1.map(item => {
             if (baza !== '') {
                 saveSavdolar({
@@ -412,10 +414,12 @@ function SavdoOynasi({
                 alert('MIJOZ QOSHIN')
             }
         })
+
         setarr1([])
 
         setxisob(0)
         setjamixisob(0)
+
     }
 
     function UzcardTolovQarz(naqd) {
@@ -522,22 +526,6 @@ function SavdoOynasi({
         setarr1([])
     }
 
-    const [oyy,setoyy] = useState([
-        {
-            yanvar:'Yanvar',
-            fevral:'Fevral',
-            mart:'Mart',
-            aprel:'Aprel',
-            may:'May',
-            iyun:'Iyun',
-            iyul:'Iyul',
-            avgust:'Avgust',
-            sentabr:'Sentabr',
-            oktabr:'Oktabr',
-            noyabr:'Noyabr',
-            dekabr:'Dekabr'
-        }
-    ])
 
     const [activeModalkredit,setactiveModalkredit] = useState(false)
 
@@ -548,6 +536,8 @@ function SavdoOynasi({
     useEffect(()=>{
         getSavdolarHistory(users.businessId)
     },[])
+
+    const componentRef = useRef();
 
     return (
         <div className={"shopping"}>
@@ -573,11 +563,10 @@ function SavdoOynasi({
                             }
                         }).map(item=> <p>{item.name}</p>)
 
-
-
                     }
 
                 </p></div>
+                {console.log(arr1)}
                 <div className={'table-responsive'}>
                     <table className={'table'}>
                         <thead>
@@ -594,11 +583,27 @@ function SavdoOynasi({
                                 <td>{item.name}</td>
                                 <td>{item.counter}  {item.measurement.name}</td>
                                 <td>{item.buyPrice}</td>
-                                <td>{item.counter*item.buyPrice}</td>
+                                <td>{item.counter*item.buyPrice} so'm</td>
                             </tr>)
                         }
                         </tbody>
                     </table>
+                </div>
+            <hr/>
+                <br/>
+
+                <div className={'d-flex col-12'}>
+                    <div  className={'col-5'}>
+                        <p className={"d-flex justify-content-between"}> <strong>Total paid:</strong>  {jamixisob} so'm</p>
+                        <p className={"d-flex justify-content-between"}> <strong>Discount:</strong>  0 so'm</p>
+                    </div>
+                    <div className={'col-2 liniya'}></div>
+                    <div className={'col-5'}>
+                        <p className={"d-flex justify-content-between"}> <strong>Subtotal:</strong>  {jamixisob} so'm</p>
+
+                        <p className={"d-flex justify-content-between"}> <strong>Total:</strong>  {jamixisob} so'm</p>
+
+                    </div>
                 </div>
 
             </div>
@@ -948,7 +953,7 @@ function SavdoOynasi({
                             <button onClick={qarz} className={'btn btn-outline-primary'}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
-                    <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>
+                    <button onClick={() => UzcardTolov(1,'Naqd')} className={'btn btn-success m-1'}>
                         <ReactToPrint
                             trigger={() => <p className={'toprint '}>Naqd</p>
                             }
@@ -956,14 +961,14 @@ function SavdoOynasi({
                         />
                     </button>
 
-                    <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(2)}>
+                    <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(2,"Uzcard")}>
                         <ReactToPrint
                             trigger={() => <p className={'toprint '}>UzCard</p>
                             }
                             content={() => componentRef.current}
                         />
                     </button>
-                    <button onClick={() => UzcardTolov(3)} className={'btn btn-warning m-1'}>
+                    <button onClick={() => UzcardTolov(3,"Humo")} className={'btn btn-warning m-1'}>
                         <ReactToPrint
                             trigger={() => <p className={'toprint'}>Humo</p>
 
@@ -1028,7 +1033,7 @@ export default connect((kgreducer, PayReducer,TradeHistory, MaxsulotlarRoyxariRe
     getSavdo,
     getSavdolarHistory,
     getFirma,
-    getPay,
+    getPay, getPay2,
     saveMaxsulotRuyxati,
     getBolim,
     saveSavdo,

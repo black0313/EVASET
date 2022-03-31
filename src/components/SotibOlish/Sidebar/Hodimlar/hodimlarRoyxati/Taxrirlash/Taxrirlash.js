@@ -193,7 +193,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     <div className="col-6 d-flex justify-content-center">
                         {
                             input.username === '' || input.firstName === '' || input.lastName==="" || input.parol === '' ?
-                                <button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button> :
+                                <button onClick={saqla} className={'btn btn-outline-danger btnSaqlash'}>Saqlash</button> :
                                 <Link to={'/headerthird/hodimlarruyxati'}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>
                         }
 
