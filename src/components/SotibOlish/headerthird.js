@@ -86,7 +86,8 @@ function Headerthird() {
                 <Route path={'/headerthird/hodimulush/taxrirlash'} component={Taxrirlash}/>
                 <Route path={'/headerthird/hodimulush/view'} component={Korish}/>
                 <Route path={'/headerthird/hodimulush'} component={HodimlarSavdodanUlushi}/>
-                <Route path={'/headerthird/taminotchilar/view'} component={Korish2}/>
+
+                <Route path={'/headerthird/taminotchilar/view/:name?/:phone?/:telegram?/:supplier?'} component={Korish2}/>
                 <Route path={'/headerthird/taminotchilar'} component={Taminotchilar}/>
                 <Route path={'/headerthird/mijozlarGuruhi'} component={Mijozlarguruxi}/>
                 <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/:id?'} component={Taxrirlash3}/>
