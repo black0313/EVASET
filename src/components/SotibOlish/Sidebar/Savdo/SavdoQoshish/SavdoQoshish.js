@@ -228,7 +228,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         currencyId:1,
                         addressId:1
                     },
-                    console.log('saved')
+                    console.log(input.mijoz)
                 )
             })
         }
@@ -293,14 +293,14 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         </div>
                         <label htmlFor={'stat'} >Status</label>
                         {console.log(PayReducer.paymethod)}
-                        <select value={input.status} onChange={status} name="" id="" className={'form-control'}>
-                            {/*<option value="">Tanlash</option>*/}
-                            {
-                                PayReducer.paymethod.map(item=>
-                                    input.status==''?input.status = item.id:
-                                    <option value={item.id}>{item.type}</option>)
-                            }
-                        </select>
+                        {/*<select value={input.status} onChange={status} name="" id="" className={'form-control'}>*/}
+                        {/*    /!*<option value="">Tanlash</option>*!/*/}
+                        {/*    {*/}
+                        {/*        PayReducer.paymethod.map(item=>*/}
+                        {/*            input.status==''?input.status = item.id:*/}
+                        {/*            <option value={item.id}>{item.type}</option>)*/}
+                        {/*    }*/}
+                        {/*</select>*/}
                         <label htmlFor={'savRaqam'} className={'mt-4'}>Savdo raqami</label>
                         <input type="number" value={input.savdoraqami} onChange={savdoraqami} className={'form-control'} placeholder={'savdo raqami'}/>
                     </div>
@@ -309,10 +309,10 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         <label htmlFor={'savOyna'}>Savdo oynasi</label>
                         <input type="date" value={input.savdooynasisana} onChange={savdooynasisana} className={'form-control'}/>
 
-                        <label htmlFor={'hisobF'} className={'mt-4'}>Xisob Faktura sxemasi</label>
-                        <select name="" value={input.xisobfakturasxemasi} onChange={xisobfakturasxemasi} id={'hisobF'} className={'form-control'}>
-                            <option value="">Default</option>
-                        </select>
+                        {/*<label htmlFor={'hisobF'} className={'mt-4'}>Xisob Faktura sxemasi</label>*/}
+                        {/*<select name="" value={input.xisobfakturasxemasi} onChange={xisobfakturasxemasi} id={'hisobF'} className={'form-control'}>*/}
+                        {/*    <option value="">Default</option>*/}
+                        {/*</select>*/}
 
                         <label htmlFor={'qoshim'} className={'mt-4'}>Qo`shimcha hujjat</label>
                         <input type="file" value={input.qoshimchaxujjat} onChange={qoshimchaxujjat} className={'form-control'} id={'qoshim'}/>

@@ -208,9 +208,9 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                         {
                             SavdoQoshishReducer.savdolar.map(item=><tr key={item?.id}>
                                 <td>{item?.payDate}</td>
-                                <td>{item?.branch?.id}</td>
+                                <td>-</td>
                                 <td>{item?.customer?.name}</td>
-                                <td> -</td>
+                                <td>{item?.customer?.phoneNumber}</td>
                                 <td>{item?.branch?.name}</td>
                                 <td>{item?.paymentStatus?.status}</td>
                                 <td>{item?.payMethod?.type}</td>
