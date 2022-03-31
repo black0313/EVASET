@@ -18,11 +18,12 @@ import Tolovreducer from "../../../../../reducer/tolovreducer";
 import MaxsulotlarRoyxariReducer, { getMaxsulotRuyxati } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import kgreducer, { getkg } from "../../../../../reducer/kgreducer";
 import { lineHeight } from '@mui/system';
-import PayReducer from "../../../../../reducer/PayReducer";
+import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
 
 function Xarid({
     getXarid,
     getXarid5,
+                   getPay,
                    PayReducer,
     getXarid2,
     saveXarid,
@@ -31,6 +32,7 @@ function Xarid({
     kgreducer,
     deleteXarid,
     getTaminot,
+
     saveTaminot,
     editXarid,
     XaridReducer,
@@ -432,7 +434,7 @@ function Xarid({
 
     }
     function saqla() {  
-        if ((input.diller && input.xaridstatusi && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2)) {
+        if ((input.diller && input.xaridstatusi && input.tulovusuli && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2)) {
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
@@ -523,6 +525,7 @@ function Xarid({
         getTaminot(users.businessId)
         getMaxsulotRuyxati(users.businessId)
         getkg(users.businessId)
+        getPay(users.businessId)
         editX()
     }, [TaminotReducer.current])
     useEffect(() => {
@@ -760,10 +763,14 @@ function Xarid({
                             <input type="number" className={'form-control'} value={input.avans} placeholder={placeholders.tolovSummasiPlaceholder} onChange={avans}
                                 id={'avans'} />
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
+                            {
+                                console.log(PayReducer.getPay)
+                            }
                             <select name="" id={'tol'} className={'form-control mb-3'} value={input.tulovusuli}
                                 onChange={tulovusuli}>
                                 {/*<option value="1">Naqd</option>*/}
                                 {/*<option value="2">Pastik</option>*/}
+
                                 {
                                     PayReducer.paymethod.map(item=>
                                         input.tulovusuli==''?input.tulovusuli = item.id:
@@ -771,7 +778,7 @@ function Xarid({
                                 }
                             </select>
                             {
-                                input.eslatma ? "":
+                                input.tulovusuli ? "":
                                 <p style={{color:'red',marginTop:'4px',lineHeight:'13px'}}>{placeholders.tolovUsuliSelectStyle}</p>
                             }
                         </div>
@@ -831,7 +838,7 @@ function Xarid({
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
                             <h5>Qarz miqdori!: 0.00</h5>
                             {
-                                input.diller && input.xaridstatusi && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2  ?
+                                input.diller && input.xaridstatusi && input.tulovusuli && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2  ?
                                     <Link to={'/headerthird/xaridlarRuyxati'}>
                                         <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
                                     </Link>
@@ -847,12 +854,13 @@ function Xarid({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer, XaridReducer, kgreducer, users, TaminotReducer, branchreducer, tolovreducer), {
+export default connect((MaxsulotlarRoyxariReducer,PayReducer, XaridReducer, kgreducer, users, TaminotReducer, branchreducer, tolovreducer), {
     getMaxsulotRuyxati,
     getXarid,
     getkg,
     getXarid2,
     getXarid5,
+    getPay,
     saveXarid,
     editXarid,
     getTaminot,
