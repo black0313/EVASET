@@ -7,7 +7,6 @@ import {useState} from "react";
 
 function Korish({match}) {
 
-
     const [pic,setpic] = useState({
         rasm:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYS4ItI44R4hI66qjzhinqY5-Miyb30PelnQ&usqp=CAU'
     })

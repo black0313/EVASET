@@ -348,7 +348,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                                 </button>
                                             </Link>
                                             <Link
-                                                to={'/headerthird/taminotchilar/view/' + input.name + '/' + input.tel + '/' + input.telegram + '/' + input.taminot}>
+                                                to={'/headerthird/taminotchilar/view/' + item.name + '/' + item.phone + '/' + item.telegram + '/' + item.supplier}>
                                                 <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
                                             </Link>
                                             <button onClick={() => deleteTaminot2(item)} className='ochirish'><img
