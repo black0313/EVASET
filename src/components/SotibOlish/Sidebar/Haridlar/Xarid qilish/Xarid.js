@@ -17,6 +17,7 @@ import branchreducer, { getbranch } from "../../../../../reducer/branchreducer";
 import Tolovreducer from "../../../../../reducer/tolovreducer";
 import MaxsulotlarRoyxariReducer, { getMaxsulotRuyxati } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import kgreducer, { getkg } from "../../../../../reducer/kgreducer";
+import { lineHeight } from '@mui/system';
 
 function Xarid({
     getXarid,
@@ -95,6 +96,11 @@ function Xarid({
             tolovSummasiPlaceholder: "",
             yetkazibBerishManziliPlaceholder: "",
             yetkazibBerishNarxiPlaceholder: "",
+            dillerSelectStyle:"",
+            xaridStatusiSelectStyle:"",
+            tolovUsuliSelectStyle:"",
+            bazaSelectStyle:"",
+            xaridSanasiSelectStyle:"",
         }
     )
 
@@ -424,7 +430,7 @@ function Xarid({
 
     }
     function saqla() {  
-        if ((input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans)) {
+        if ((input.diller && input.xaridstatusi && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2)) {
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
@@ -471,6 +477,8 @@ function Xarid({
                 })
             }
             setmah([])
+            
+           
         }
         else {
             setPlaceholders(
@@ -479,8 +487,13 @@ function Xarid({
                     xaridMiqdoriPlaceholder:"xarid miqdorini kiriting...",
                     donaNarxiPlaceholder:"ma'lumot kiriting...",
                     donaSotishNarxiPlaceholder:"ma'lumot kiritilmadi...",
-                    tolovSummasiPlaceholder:"ma'lumot kiritilmadi...",
-                    yetkazibBerishManziliPlaceholder:"ma'lumot kiritilmadi..."
+                    tolovSummasiPlaceholder:"",
+                    yetkazibBerishNarxiPlaceholder:"ma'lumot kiritilmadi...",
+                    dillerSelectStyle:"Diller tanlang!",
+                    xaridStatusiSelectStyle:"Xarid statusini tanlang!",
+                    tolovUsuliSelectStyle:"To'lov usulini tanlang!",
+                    bazaSelectStyle:"Baza tanlang!",
+                    xaridSanasiSelectStyle:"Xarid sanasini tanlang!",
                 }   
             )
         }
@@ -538,6 +551,13 @@ function Xarid({
                                                         : <option value={item.id}>{item.name}</option>)
                                             }
                                         </select>
+                                        
+                                        
+                                    }
+                                    {
+                                        input.diller ? "":
+                                        <p style={{color:'red',marginTop:'4px'}}>{placeholders.dillerSelectStyle}</p>
+
                                     }
                                 </div>
                                 <h4 style={{ cursor: 'pointer', marginTop: '25px', fontSize: '30px' }}
@@ -559,12 +579,21 @@ function Xarid({
                                             <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
+                            {
+                                input.baza ? "" :
+                                <p style={{color:'red',marginTop:'4px',lineHeight:'13px'}}>{placeholders.bazaSelectStyle}</p>
+                            }
                         </div>
 
                         <div className="col-3 col-sm-12">
                             <label htmlFor={'sana'}>Xarid sanasi</label>
                             <input type="date" value={input.xaridsanasi} onChange={xaridsanasi}
-                                className={'form-control'} />
+                                className={'form-control'}/>
+                                {
+                                    input.xaridsanasi ? "":
+                                    <p style={{color:'red',marginTop:'4px',lineHeight:'13px'}}>{placeholders.xaridSanasiSelectStyle}</p>
+
+                                }
                         </div>
 
                         <div className="col-3 col-sm-12 ">
@@ -578,6 +607,10 @@ function Xarid({
                                 {/*:<option value={item.id}>{item.name}</option>)*/}
                                 <option value="2">Qabul qilindi</option>
                             </select>
+                            {
+                                input.xaridstatusi ? "":
+                                <p style={{color:'red',marginTop:'4px',lineHeight:'13px'}}>{placeholders.xaridStatusiSelectStyle}</p>
+                            }
                             <label htmlFor={'qosh'} className={'mt-4'}>Qo`shimcha Hujjat</label>
                             <input type="file" value={input.qoshimchahujjat} onChange={qoshimchahujjat}
                                 className={'form-control'} />
@@ -651,7 +684,7 @@ function Xarid({
                                 placeholder={'Mahsulot shtrix kodi yoki nomi'} />
                                 {
                                     (input.xaridmiqdori==="" && input.donanarxi==="" && input.donasotish==="") ?
-                                    <div><p style={{color:"red"}}>Mahsulot nomi yoki shtrix kodini kiriting </p></div> :
+                                    <div><p style={{color:"red",textAlign:'center',marginTop:'4px'}}>Mahsulot nomi yoki shtrix kodini kiriting </p></div> :
                                     ""
                                 }
                             <div className="table-responsive">
@@ -730,6 +763,10 @@ function Xarid({
                                 <option value="1">Naqd</option>
                                 <option value="2">Pastik</option>
                             </select>
+                            {
+                                input.tulovusuli ? "":
+                                <p style={{color:'red',marginTop:'4px',lineHeight:'13px'}}>{placeholders.tolovUsuliSelectStyle}</p>
+                            }
                         </div>
                         <div className="col-6 col-sm-12">
                             <label htmlFor={'paid'}>Paid on</label>
@@ -750,7 +787,7 @@ function Xarid({
                                 <div className="col-6 col-sm-11">
                                     <div className="btnBox">
                                         <label htmlFor={'yet'}>Yetkazib berish manzili</label>
-                                        <input type="text" id={'yet'} value={input.yetkazibberish} placeholder={placeholders.yetkazibBerishManziliPlaceholder}
+                                        <input type="text" id={'yet'} value={input.yetkazibberish}
                                              onChange={yetkazibberish}
                                             className={'form-control'} />
                                         <button onClick={toggle2}
@@ -777,8 +814,8 @@ function Xarid({
                                 </div>
                                 <div className="col-6 col-sm-10">
                                     <label htmlFor={'yet2'}>(+)Yetkazib berish narxi</label>
-                                    <input type="text" value={input.yetkazibberishnarxi2}
-                                        onChange={yetkazibberishnarxi2}
+                                    <input type="text" value={input.yetkazibberishnarxi2} placeholder={placeholders.yetkazibBerishNarxiPlaceholder}
+                                       id="yetkizibBerishNarxiSelect" onChange={yetkazibberishnarxi2}
                                         className={'form-control'} />
                                 </div>
                             </div>
@@ -787,7 +824,7 @@ function Xarid({
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
                             <h5>Qarz miqdori!: 0.00</h5>
                             {
-                                input.xaridmiqdori && input.qisqaeslatma && input.donanarxi && input.donasotish && input.avans  ?
+                                input.diller && input.xaridstatusi && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2  ?
                                     <Link to={'/headerthird/xaridlarRuyxati'}>
                                         <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
                                     </Link>
