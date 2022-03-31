@@ -18,10 +18,12 @@ import Tolovreducer from "../../../../../reducer/tolovreducer";
 import MaxsulotlarRoyxariReducer, { getMaxsulotRuyxati } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import kgreducer, { getkg } from "../../../../../reducer/kgreducer";
 import { lineHeight } from '@mui/system';
+import PayReducer from "../../../../../reducer/PayReducer";
 
 function Xarid({
     getXarid,
     getXarid5,
+                   PayReducer,
     getXarid2,
     saveXarid,
     taminot,
@@ -760,8 +762,13 @@ function Xarid({
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
                             <select name="" id={'tol'} className={'form-control mb-3'} value={input.tulovusuli}
                                 onChange={tulovusuli}>
-                                <option value="1">Naqd</option>
-                                <option value="2">Pastik</option>
+                                {/*<option value="1">Naqd</option>*/}
+                                {/*<option value="2">Pastik</option>*/}
+                                {
+                                    PayReducer.paymethod.map(item=>
+                                        input.tulovusuli==''?input.tulovusuli = item.id:
+                                            <option value={item.id}>{item.type}</option>)
+                                }
                             </select>
                             {
                                 input.tulovusuli ? "":
@@ -833,7 +840,6 @@ function Xarid({
                             }
 
                         </div>
-
                     </div>
                 </div>
             </div>

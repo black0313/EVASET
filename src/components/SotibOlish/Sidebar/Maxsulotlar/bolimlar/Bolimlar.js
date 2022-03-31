@@ -162,6 +162,16 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
         }
     ])
 
+    const [korishId,setkorishId] = useState('')
+    function korishsh(id){
+        setkorishId(id)
+        toggle7()
+    }
+
+    function toggle7() {
+        setActive(!active)
+    }
+
     const [bolimlar2, setbolimlar2] = useState(true)
     const [bolimkodi2, setbolimkodi2] = useState(true)
     const [qisqa, setbqisqa] = useState(true)
