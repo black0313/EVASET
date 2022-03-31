@@ -771,7 +771,7 @@ function Xarid({
                                 }
                             </select>
                             {
-                                input.tulovusuli ? "":
+                                input.eslatma ? "":
                                 <p style={{color:'red',marginTop:'4px',lineHeight:'13px'}}>{placeholders.tolovUsuliSelectStyle}</p>
                             }
                         </div>
