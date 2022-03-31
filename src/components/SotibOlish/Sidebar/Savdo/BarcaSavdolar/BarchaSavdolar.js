@@ -109,9 +109,9 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
 
     function deleteS(item){
         deleteSavdolar(item.id)
-        // setTimeout(()=>{
-        //     getSavdolar(users.businessId)
-        // },100)
+        setTimeout(()=>{
+            getSavdolar(users.businessId)
+        },100)
     }
 
     return (
@@ -220,7 +220,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                                 <td> </td>
                                 {/*<td> </td>*/}
                                 <td>
-                                        <Link to={'/third/xarajatlarRuyxati/xarajatqoshish/'+item?.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
+                                        <Link to={'/headerthird/mahsulotQoshish/'+item?.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
                                         <button onClick={()=>deleteS(item)} className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
                                 </td>
                             </tr>)

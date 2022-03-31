@@ -81,10 +81,10 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
                             {console.log(SavdoQoshishReducer.savdolar)}
                             <tbody>
                             {
-                                SavdoQoshishReducer.savdolar.filter(val=>val.loan>0) .map(item=><tr key={item.id}>
+                                SavdoQoshishReducer.savdolar.filter(val=>val?.loan>0) .map(item=><tr key={item.id}>
                                     <td>{item.trader.id}</td>
                                     <td>{item.customer.name}</td>
-                                    <td>{item.loan}</td>
+                                    <td>{item?.loan}</td>
                                     <td>
                                         {
                                             item.payDate

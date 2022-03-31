@@ -44,7 +44,7 @@ const slice = createSlice({
         savefrom: (state,action) => {
             state.savdolar.unshift(action.payload.object)
             // state.savdolar.unshift(action.payload.message)
-            toast.success('Savdo qo`shildi')
+            // toast.success('Savdo qo`shildi')
         },
         editfrom: (state,action) => {
             state.savdolar.map((item,index)=>{
@@ -55,7 +55,7 @@ const slice = createSlice({
             toast.success('Savdo tahrirlandi')
         },
         deletefrom:(state,action)=>{
-            toast.info('Savdo O`chirildi')
+            // toast.info('Savdo ucdi')
         }
 
     }

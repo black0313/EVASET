@@ -57,7 +57,6 @@ const slice = createSlice({
         deletefrom:(state,action)=>{
             toast.info('Savdo O`chirildi')
         }
-
     }
 });
 

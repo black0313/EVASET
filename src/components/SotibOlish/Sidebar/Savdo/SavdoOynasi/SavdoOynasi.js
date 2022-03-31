@@ -1,5 +1,6 @@
 import img1 from '../../../../../img/pause1.png'
 import img3 from '../../../../../img/calculator3.png'
+import ReactTooltip from 'react-tooltip';
 import img4 from '../../../../../img/note4.png'
 import img5 from '../../../../../img/clipboard-close5.png'
 import img6 from '../../../../../img/backward6.png'
@@ -66,7 +67,9 @@ function SavdoOynasi({
             qisqanarx:'',
             kun:'',
             yil:'',
-            birincitulovkredit:''
+            birincitulovkredit:'',
+            qarzamount:'',
+
         }
     )
 
@@ -94,6 +97,14 @@ function SavdoOynasi({
         input.qisqanarx = e.target.value
         let a = {...input}
         setInput(a)
+    }
+    function qarzamount(e){
+        console.log(e.target.value)
+            input.qarzamount = e.target.value
+            let a = {...input}
+            setInput(a)
+
+
     }
     function shtrix(e) {
         input.shtrix = e.target.value
@@ -374,11 +385,11 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
+
     function UzcardTolov(naqd) {
         if (naqd == 4){
             kredit()
         }
-
         printtoggle()
         arr1.map(item => {
             if (baza !== '') {
@@ -405,6 +416,59 @@ function SavdoOynasi({
 
         setxisob(0)
         setjamixisob(0)
+    }
+
+    function UzcardTolovQarz(naqd) {
+
+            console.log(input.qarzamount)
+        if (naqd == 4){
+            kredit()
+        }
+        if (input.qarzamount === ''){
+            input.qarzamount = 0
+            let a = {...input}
+            setInput(a)
+        }
+
+        printtoggle()
+        arr1.map(item => {
+            if (baza !== '') {
+                saveSavdolar({
+                    customerId: input.baza,
+                    userId: users.businessId,
+                    productTraderDto: [
+                        {
+                            tradedQuantity: item.counter,
+                            productTradeId: item.id
+                        }],
+                    payDate: new Date().getDate(),
+                    branchId: item.branch.id,
+                    payMethodId: naqd,
+                    amountPaid: input.qarzamount,
+                    currencyId: 1,
+                    addressId: 1,
+                })
+            } else {
+                alert('MIJOZ QOSHIN')
+            }
+        })
+        setarr1([])
+        console.log(input.qarzamount)
+        setxisob(0)
+        setjamixisob(0)
+        input.qarzamount=''
+        let a = {...input}
+        setInput(a)
+        qarz()
+    }
+
+    const [activeqarz,setactiveqarz] = useState(false)
+
+    function qarz(){
+        setactiveqarz(!activeqarz)
+        input.qarzamount=''
+        let a = {...input}
+        setInput(a)
     }
 
     function saqla() {
@@ -455,9 +519,7 @@ function SavdoOynasi({
     const [tahrir,settahrir] = useState(false)
 
     function clear(){
-        let a = arr1
-        a = ''
-        setarr1(a)
+        setarr1([])
     }
 
     const [oyy,setoyy] = useState([
@@ -586,8 +648,8 @@ function SavdoOynasi({
                                     </Switch>
 
                                         {
-                                            TradeHistory.savdolar.map(item=><tr key={item.id}>
-                                                <td>{item.name}</td>
+                                            TradeHistory.savdolar.map(item=><tr key={item?.id}>
+                                                <td>{item?.name}</td>
                                             </tr>)
                                         }
 
@@ -862,8 +924,30 @@ function SavdoOynasi({
                         </ModalFooter>
                     </Modal>
                     <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
-                    <button className={'col-6 btn btn-info m-1'}>Plastik</button>
-
+                    <button onClick={qarz} className={'col-6 btn btn-info m-1'}>Qarzga sotish</button>
+                    <Modal isOpen={activeqarz} toggle={qarz}>
+                        <ModalHeader>
+                            Qarzga savdo qilish bo`limi
+                        </ModalHeader>
+                        <ModalBody>
+                            <h3> <strong>Jami summa:</strong>  {jamixisob} </h3>
+                            <label htmlFor={'rrr'}>Birinchi to`lov summasini kiriting</label>
+                            <input type="number" placeholder={'0'} className={'form-control'} id={'rrr'} value={input.qarzamount} onChange={qarzamount}/>
+                            <p data-tip="Avans sifatida to`lov qilishingiz shart emas (agar to`lov qilinmasa hammasi qarz sifatida yoziladi)" className={'btn btn-outline-primary mt-2 form-control'}>BATAFSIL</p>
+                            <ReactTooltip />
+                        </ModalBody>
+                        <ModalFooter>
+                            {/*<button className={'btn btn-outline-primary'}>Saqlash</button>*/}
+                            <button onClick={() => UzcardTolovQarz(2)} className={'btn btn-outline-primary'}>
+                                <ReactToPrint
+                                    trigger={() => <p style={{marginBottom:0}}>Saqlash (Chek)</p>
+                                    }
+                                    content={() => componentRef.current}
+                                />
+                            </button>
+                            <button onClick={qarz} className={'btn btn-outline-primary'}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
                     <button onClick={() => UzcardTolov(1)} className={'btn btn-success m-1'}>
                         <ReactToPrint
                             trigger={() => <p className={'toprint '}>Naqd</p>
