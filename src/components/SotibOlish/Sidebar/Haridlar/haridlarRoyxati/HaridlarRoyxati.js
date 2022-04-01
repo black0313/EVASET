@@ -181,8 +181,8 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
                         <tr>
+                            <th>T/R</th>
                             <th>sana</th>
-
                             <th>Baza</th>
                             <th>Diller</th>
                             <th>Harid statusi</th>
@@ -201,7 +201,8 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                                 } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
                                     return val
                                 }
-                            }).map(item => <tr key={item.id}>
+                            }).map((item,index) => <tr key={item.id}>
+                                <td>{index+1}</td>
                                 <td>{item.date}</td>
                                 <td>{item.branch.name}</td>
                                 <td>{item.dealer.name}</td>

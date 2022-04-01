@@ -171,6 +171,7 @@ function BarchaMaxsulotlar({
                             <thead>
                             {
                                 headlist.map(item => <tr key={item.id}>
+                                    <th>T/R</th>
                                     <th><input checked={input.checkbarcha} onChange={checkBarca} type="checkbox"/></th>
                                     {
                                         mahsulot ? <th>{item.product}</th> : ''
@@ -206,7 +207,8 @@ function BarchaMaxsulotlar({
                                         return val
                                     }
                                 })
-                                    .map(item => <tr key={item.id}>
+                                    .map((item,index) => <tr key={item.id}>
+                                        <td>{index+1}</td>
                                         <td><input value={item.id} onChange={check} type="checkbox"/></td>
                                         {
                                             mahsulot ? <td>{item.name}</td> : ''

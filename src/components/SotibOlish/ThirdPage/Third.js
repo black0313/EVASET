@@ -40,7 +40,6 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
         savdooynasi()
         activSavdo()  
         // active()
-
     }
 
     const [amount,setamount] = useState(0)

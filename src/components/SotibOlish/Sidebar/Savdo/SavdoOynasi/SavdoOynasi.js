@@ -227,10 +227,8 @@ function SavdoOynasi({
         setOpenCalc(!openCalc)
     }
 
-
     let [xisob, setxisob] = useState(0)
     let [jamixisob, setjamixisob] = useState(0)
-
 
     function pushesh(val) {
         let order = false
@@ -249,7 +247,6 @@ function SavdoOynasi({
        let b = [...arr1]
         setarr1(b)
 
-
         let a = 0
         let c = 0
         arr1.map(item => {
@@ -258,7 +255,6 @@ function SavdoOynasi({
         })
         setxisob(a)
         setjamixisob(c)
-
     }
 
     function setCount(id) {
@@ -388,11 +384,6 @@ function SavdoOynasi({
             kredit()
         }
 
-
-
-
-
-
         arr1.map(item => {
             if (baza !== '') {
                 saveSavdolar({
@@ -423,7 +414,6 @@ function SavdoOynasi({
     }
 
     function UzcardTolovQarz(naqd) {
-
             console.log(input.qarzamount)
         if (naqd == 4){
             kredit()
@@ -526,7 +516,6 @@ function SavdoOynasi({
         setarr1([])
     }
 
-
     const [activeModalkredit,setactiveModalkredit] = useState(false)
 
     function kredit(){
@@ -597,7 +586,7 @@ function SavdoOynasi({
                         <p className={"d-flex justify-content-between"}> <strong>Total paid:</strong>  {jamixisob} so'm</p>
                         <p className={"d-flex justify-content-between"}> <strong>Discount:</strong>  0 so'm</p>
                     </div>
-                    <div className={'col-2 liniya'}></div>
+                    <div className={'col-2 liniya'}> </div>
                     <div className={'col-5'}>
                         <p className={"d-flex justify-content-between"}> <strong>Subtotal:</strong>  {jamixisob} so'm</p>
 
@@ -768,6 +757,7 @@ function SavdoOynasi({
                             <table className={'table '}>
                                 <thead>
                                 <tr>
+                                    <th>T/R</th>
                                     <th>Mahsulot</th>
                                     <th className={'text-center'}>Miqdori</th>
                                     <th>Jami</th>
@@ -776,7 +766,8 @@ function SavdoOynasi({
                                 </thead>
                                 <tbody>
                                 {
-                                    arr1.map(item => <tr key={item.id}>
+                                    arr1.map((item,index) => <tr key={item.id}>
+                                        <td>{index+1}</td>
                                         <td onClick={toggle6} className={'namepointer'} style={{marginLeft: '10px'}}>{item.name}</td>
                                         <Modal isOpen={tahrir} toggle={toggle6}>
                                             <ModalHeader>
@@ -991,7 +982,6 @@ function SavdoOynasi({
                             <button className={'btn btn-outline-primary'} onClick={toggle}>'Chiqish</button>
                         </ModalFooter>
                     </Modal>
-                    {/*<img style={{cursor:'pointer'}} onClick={toggle2} src={img2} alt=""/>*/}
 
                     <Modal isOpen={active2} toggle={toggle2}>
                         <ModalHeader>
@@ -1023,12 +1013,9 @@ function SavdoOynasi({
                 </div>
             </div>
         </div>
-
-
     )
 }
 
-//355352081562619
 export default connect((kgreducer, PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
     getSavdo,
     getSavdolarHistory,

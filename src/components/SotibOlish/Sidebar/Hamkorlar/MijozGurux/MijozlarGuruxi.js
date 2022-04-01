@@ -238,6 +238,7 @@ function Mijozlarguruxi({
                         <thead>
                         {
                             headlist.map(item=><tr key={item.id}>
+                                <th>T/R</th>
                                 {
                                     nomi?<th>{item.name}</th>:''
                                 }
@@ -265,7 +266,8 @@ function Mijozlarguruxi({
                                     return val
                                 }
                             })
-                                .map(item => <tr key={item.id}>
+                                .map((item,index) => <tr key={item.id}>
+                                    <td>{index+1}</td>
                                     {
                                         nomi?<td>{item.name}</td>:''
                                     }

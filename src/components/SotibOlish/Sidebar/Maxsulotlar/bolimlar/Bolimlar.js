@@ -229,6 +229,7 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                         <thead>
                         {
                             headlist.map(item=><tr key={item.id}>
+                                <th>T/R</th>
                                 {
                                     bolimlar2?<th>{item.bolim}</th>:''
                                 }
@@ -252,7 +253,8 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                                 } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
                                     return val
                                 }
-                            }).map(item => <tr key={item.id}>
+                            }).map((item,index) => <tr key={item.id}>
+                                <td>{index+1}</td>
                                 {
                                     bolimlar2?<td>{item.name}</td>:''
                                 }

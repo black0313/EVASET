@@ -172,6 +172,7 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
                             <tr>
+                                <th>T/R</th>
                                 <th>Firmalar</th>
                                 <th>Eslatma</th>
                                 <th>Amallar</th>
@@ -186,7 +187,8 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                                     } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
                                         return val
                                     }
-                                }).map(item => <tr key={item.id}>
+                                }).map((item,index) => <tr key={item.id}>
+                                    <td>{index+1}</td>
                                     <td>{item.name}</td>
                                     <td></td>
                                     <td>

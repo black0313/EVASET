@@ -118,6 +118,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                         <thead>
                         {
                             headlist.map(item=><tr key={item.id}>
+                                <th>T/R</th>
                                 {
                                     login?<th>{item.login}</th>:''
                                 }
@@ -148,7 +149,8 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                     return val
                                 }
                             })
-                                .map((item) => <tr key={item.id}>
+                                .map((item,index) => <tr key={item.id}>
+                                    <td>{index+1}</td>
                                     {
                                         login?<td>{item.username}</td>:''
                                     }

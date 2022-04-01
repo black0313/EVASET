@@ -89,6 +89,7 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                             <table className='table table-striped table-bordered mt-4'>
                                 <thead>
                                 <tr>
+                                    <th>T/R</th>
                                     <th>Lavozimlar</th>
                                     <th>Amal</th>
                                 </tr>
@@ -101,7 +102,8 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                     } else if (val.name.toUpperCase().includes(inSearch2.inputputsearch2.toUpperCase())) {
                                         return val
                                     }
-                                }).map(item => <tr key={item.id}>
+                                }).map((item,index) => <tr key={item.id}>
+                                        <td>{index+1}</td>
                                     <td>{item.name}</td>
                                     <td>
                                         <Link to={'/headerthird/lavozimlar/taxrirlash/'+item.id}>

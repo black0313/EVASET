@@ -299,6 +299,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                             {/*<tr>*/}
                             {
                                 headlist.map(item => <tr key={item.id}>
+                                    <th>T/R</th>
                                     {
                                         ismi?<th>{item.name}</th>:''
                                     }
@@ -326,7 +327,8 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                     } else if (val.name.toUpperCase().includes(input.inputsearch.toUpperCase())) {
                                         return val
                                     }
-                                }).map(item => <tr key={item.id}>
+                                }).map((item,index) => <tr key={item.id}>
+                                    <td>{index+1}</td>
                                     {
                                         ismi?<td>{item.name}</td>:''
                                     }
