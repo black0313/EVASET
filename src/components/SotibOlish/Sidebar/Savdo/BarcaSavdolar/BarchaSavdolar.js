@@ -260,7 +260,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     </table>
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa  yana {parseInt(pages)} ta sahifa bor</p>
+                <p>Ko'rsatildi {currentPage} ta sahifa  yana {parseInt(pages)} ta sahifa bor</p>
                 <div className='sahifalar'>
                     <button
                         onClick={goToPreviousPage}
