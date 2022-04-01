@@ -78,13 +78,11 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
         let a = {...input}
         setInput(a)
     }
-
     function search(e) {
         input.search = e.target.value
         let a = {...input}
         setInput(a)
     }
-
     function deleteX(item) {
         deleteXarid(item.id)
             getXarid(users.businessId)
