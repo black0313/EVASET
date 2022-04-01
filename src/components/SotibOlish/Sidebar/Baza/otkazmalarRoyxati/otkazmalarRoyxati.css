@@ -1,3 +1,24 @@
+.li2{
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    transition: 0.2s all ease-in-out;
+}
+.li2:hover{
+    cursor: pointer;
+    font-size: 14.7px;
+    color: #67c41e;
+}
+.ul2{
+    position: absolute;
+    top: 38%;
+    left: 53%;
+    height: 180px;
+    width: 150px;
+    background: #4c4ca0;
+    opacity: 0.9;
+}
+
 .rowStyleN{
        justify-content: space-between;
        border-radius: 8px;
