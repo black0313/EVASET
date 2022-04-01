@@ -7,7 +7,7 @@ import Pdf from '../../../../../img/PDF.png'
 import Edit from '../../../../../img/Edit.png'
 import Delete from '../../../../../img/Delete.png'
 import './barcasavdolar.css'
-import {useState, useRef, useEffect} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {MenuItem, TextField,Select,InputLabel} from "@mui/material";
 import {connect} from "react-redux";
 import TaminotReducer, {getTaminot} from "../../Hamkorlar/reducer/TaminotReducer";
@@ -79,6 +79,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
         getSavdolar2(users.businessId)
         getbranch(users.businessId)
         getTaminot(users.businessId)
+        ommabop()
         // getSavdolar3(users.businessId)
     },[])
 
@@ -113,7 +114,35 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
             getSavdolar(users.businessId)
         },100)
     }
+    const [pages,setpages] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
 
+    function ommabop() {
+
+        let d = SavdoQoshishReducer.savdolar.length/5
+        setpages(d)
+    }
+    function goToNextPage() {
+        setCurrentPage((page) => page + 1);
+        console.log(pages)
+        console.log(currentPage)
+    }
+    function goToPreviousPage() {
+        setCurrentPage((page) => page - 1);
+    }
+    function changePage(event) {
+        const pageNumber = Number(event.target.textContent);
+        setCurrentPage(pageNumber);
+    }
+    const getPaginatedData = () => {
+        const startIndex = currentPage * 7 - 7;
+        const endIndex = startIndex + 7;
+        return SavdoQoshishReducer.savdolar.slice(startIndex, endIndex);
+    };
+    const getPaginationGroup = () => {
+        let start = Math.floor((currentPage - 1) / 1) * 1;
+        return new Array(1).fill().map((_, idx) => start + idx + 1);
+    };
     return (
         <div className="col-md-12 mt-2 mb-4 mt-4 ">
             <div className="textHeader">
@@ -207,8 +236,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                         {console.log(SavdoQoshishReducer.savdolar)}
                         <tbody>
                         {
-                            SavdoQoshishReducer.savdolar.map((item,index)=><tr key={item?.id}>
-                                <td>{index+1}</td>
+                            getPaginatedData().map((item,index)=><tr key={item?.id}>
                                 <td>{item?.payDate}</td>
                                 <td>-</td>
                                 <td>{item?.customer?.name}</td>
@@ -231,11 +259,32 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     </table>
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
+                <p>Ko'rsatildi 1 ta sahifa  yana {parseInt(pages)} ta sahifa bor</p>
                 <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
+                    <button
+                        onClick={goToPreviousPage}
+                        className={` ${currentPage === 1 ? 'disabled' : ''}`}
+                        disabled={currentPage === 1 ? true : false}
+
+                    >
+                        ortga
+                    </button>
+                    {getPaginationGroup().map((item, index) => (
+                        <button
+                            key={index}
+                            onClick={changePage}
+                            className={`${currentPage === item ? 'active' : null}`}
+                        >
+                            <span>{item}</span>
+                        </button>
+                    ))}
+                    <button
+                        onClick={goToNextPage}
+                        className={` ${currentPage ===  parseInt(pages)  ? 'disabled' : ''}`}
+                        disabled={currentPage === parseInt(pages) ? true : false}
+                    >
+                        oldinga
+                    </button>
                 </div>
             </div>
         </div>
