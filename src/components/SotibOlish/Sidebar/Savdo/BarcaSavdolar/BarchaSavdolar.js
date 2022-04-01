@@ -214,7 +214,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     <table className='table table-striped table-bordered mt-4 '>
                         <thead>
                         <tr>
-                            <th>T/R</th>
+                            {/*<th>T/R</th>*/}
                             <th>sana</th>
                             <th>Savdo raqami</th>
                             <th>Mijoz</th>
@@ -237,6 +237,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                         <tbody>
                         {
                             getPaginatedData().map((item,index)=><tr key={item?.id}>
+                                {/*<td>{index+1}</td>*/}
                                 <td>{item?.payDate}</td>
                                 <td>-</td>
                                 <td>{item?.customer?.name}</td>
