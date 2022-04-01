@@ -439,6 +439,7 @@ function Xarid({
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
+                        
                         {
                             dealerId: input.diller,
                             seller: 2,
