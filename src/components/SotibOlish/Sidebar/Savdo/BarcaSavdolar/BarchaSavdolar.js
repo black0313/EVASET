@@ -119,7 +119,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
 
     function ommabop() {
 
-        let d = SavdoQoshishReducer.savdolar.length/5
+        let d = SavdoQoshishReducer.savdolar.length/7
         setpages(d)
     }
     function goToNextPage() {
@@ -282,7 +282,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     <button
                         onClick={goToNextPage}
                         className={` ${currentPage ===  parseInt(pages)  ? 'disabled' : ''}`}
-                        disabled={currentPage === parseInt(pages) ? true : false}
+                        disabled={ currentPage >= parseInt(pages) ? true : false}
                     >
                         oldinga
                     </button>
