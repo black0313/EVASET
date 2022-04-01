@@ -119,7 +119,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
 
     function ommabop() {
 
-        let d = SavdoQoshishReducer.savdolar.length/5
+        let d = SavdoQoshishReducer.savdolar.length/7
         setpages(d)
     }
     function goToNextPage() {
@@ -260,7 +260,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     </table>
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa  yana {parseInt(pages)} ta sahifa bor</p>
+                <p>Ko'rsatildi {currentPage} ta sahifa  yana {parseInt(pages)} ta sahifa bor</p>
                 <div className='sahifalar'>
                     <button
                         onClick={goToPreviousPage}
@@ -281,8 +281,8 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     ))}
                     <button
                         onClick={goToNextPage}
-                        className={` ${currentPage ===  parseInt(pages)  ? 'disabled' : ''}`}
-                        disabled={currentPage === parseInt(pages) ? true : false}
+                        className={` ${currentPage >=  pages  ? 'disabled' : ''}`}
+                        disabled={ currentPage >= pages ? true : false}
                     >
                         oldinga
                     </button>
