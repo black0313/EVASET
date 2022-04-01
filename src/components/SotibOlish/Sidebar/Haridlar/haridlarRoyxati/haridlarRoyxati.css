@@ -1,3 +1,24 @@
+
+.li23{
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    transition: 0.2s all ease-in-out;
+}
+.li23:hover{
+    cursor: pointer;
+    font-size: 14.7px;
+    color: #67c41e;
+}
+.ul23{
+    position: absolute;
+    top: 92%;
+    left: 52%;
+    height: 180px;
+    width: 150px;
+    background: #4c4ca0;
+    opacity: 0.9;
+}
 .rowStyleHarid{
        border-radius: 8px;
        padding: 20px 30px 20px 30px;

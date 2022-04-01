@@ -98,6 +98,30 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
         getXarid4(users.businessId)
     },[XaridReducer.current])
 
+    const [sana3,setsana3]= useState(true)
+    const [baza3,setbaza3]=useState(true)
+    const [diller3,setdiller3]=useState(true)
+    const [xaridstatus3,setxaridstatus3]=useState(true)
+    const [donanarxi,setdonanarxi]=useState(true)
+    const [jammisumma,setjamisumma]=useState(true)
+    const [qisqaeslatma,setqisqaeslatma]=useState(true)
+    const [amallar,setamallar]=useState(true)
+
+    const [headlist,setheadlist] = useState([
+        {
+            sana: 'Sana',
+            baza:'Baza',
+            diller:'Diller',
+            xaridstatus:'Xarid statusi',
+            donanarxi:'Dona narx',
+            jamisumma:'Jami summa',
+            qisqaeslatma:'Qisqa eslatma',
+            amallar:'Amallar'
+        }
+    ])
+
+    const [malkamay, setmalkamay] = useState(false)
+
     return (
         <div className="col-md-12 mt-2">
             <div className="textHeaderHarid">
@@ -171,7 +195,19 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                         <button><img src={Excel} alt=""/> Export Excel</button>
                         <button><img src={Print} alt=""/> Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                        <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+
+                        {
+                            malkamay ? headlist.map(item => <ul className={'ul23'} key={item.id}>
+                                <li onClick={()=>setsana3(!sana3)} className={'li23'}>{sana3? item.sana: item.sana+' <-'}</li>
+                                <li onClick={()=>setbaza3(!baza3)} className={'li23'}>{baza3? item.baza:item.baza +' <-'}</li>
+                                <li onClick={()=>setdiller3(!diller3)} className={'li23'}>{diller3? item.diller:item.diller+' <-'}</li>
+                                <li onClick={()=>setxaridstatus3(!xaridstatus3)} className={'li23'}>{xaridstatus3? item.xaridstatus:item.xaridstatus+' <-'}</li>
+                                <li onClick={()=>setdiller3(!donanarxi)} className={'li23'}>{donanarxi? item.donanarxi:item.donanarxi+' <-'}</li>
+                                <li onClick={()=>setamallar(!amallar)} className={'li23'}>{amallar?item.amallar:item.amallar+ ' <-'}</li>
+                            </ul>) : ''
+                        }
+
                     </div>
                     <div className="izlashBox2">
                         <input type="text" placeholder='Izlash...' onChange={search} value={input.search}/>
@@ -180,18 +216,37 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                 <div className="table-responsive">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
-                        <tr>
-                            <th>T/R</th>
-                            <th>sana</th>
-                            <th>Baza</th>
-                            <th>Diller</th>
-                            <th>Harid statusi</th>
-                            <th>Dona narxi</th>
-                            <th>Jami summa</th>
-                            {/*<th>Qarz miqdori</th>*/}
-                            <th>Qisqa eslatma</th>
-                            <th>Amallar</th>
-                        </tr>
+
+                            {
+                                headlist.map(item=><tr key={item.id}>
+                                    <th>T/R</th>
+                                    {
+                                        sana3?<th>{item.sana}</th>:''
+                                    }
+                                    {
+                                        baza3?<th>{item.baza}</th>:''
+                                    }
+                                    {
+                                        diller3?<th>{item.diller}</th>:''
+                                    }
+                                    {
+                                        xaridstatus3?<th>{item.xaridstatus}</th>:''
+                                    }
+                                    {
+                                        donanarxi?<th>{item.donanarxi}</th>:''
+                                    }
+                                    {
+                                        jammisumma?<th>{item.jamisumma}</th>:''
+                                    }
+                                    {
+                                        qisqaeslatma?<th>{item.qisqaeslatma}</th>:''
+                                    }
+                                    {
+                                        amallar?<th>{item.amallar}</th>:''
+                                    }
+                                </tr>)
+                            }
+
                         </thead>
                         <tbody>
                         {
@@ -203,20 +258,36 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                                 }
                             }).map((item,index) => <tr key={item.id}>
                                 <td>{index+1}</td>
-                                <td>{item.date}</td>
-                                <td>{item.branch.name}</td>
-                                <td>{item.dealer.name}</td>
-                                <td>{item.purchaseStatus.status}</td>
+                                {
+                                    sana3?<td>{item.date}</td>:''
+                                }
+                                {
+                                    baza3?<td>{item.branch.name}</td>:''
+                                }
+                                {
+                                    diller3?<td>{item.dealer.name}</td>:''
+                                }
+                                {
+                                    xaridstatus3?<td>{item.purchaseStatus.status}</td>:''
+                                }
                                 {/*<td></td>*/}
-                                <td></td>
-                                <td>{item.totalSum}</td>
-                                <td>{item.description}</td>
-                                <td>
-                                    <Link to={'/headerthird/xaridQilish/'+item.id}>
-                                        <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
-                                    </Link>
-                                    <button className='ochirish' onClick={()=>deleteX(item)}><img src={Delete} alt=""/> O'chirish</button>
-                                </td>
+                                {
+                                    donanarxi?<td></td>:''
+                                }
+                                {
+                                    jammisumma?<td>{item.totalSum}</td>:''
+                                }
+                                {
+                                    qisqaeslatma?<td>{item.description}</td>:''
+                                }
+                                {
+                                    amallar?<td>
+                                        <Link to={'/headerthird/xaridQilish/'+item.id}>
+                                            <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
+                                        </Link>
+                                        <button className='ochirish' onClick={()=>deleteX(item)}><img src={Delete} alt=""/> O'chirish</button>
+                                    </td>:''
+                                }
                             </tr>)
                         }
                         </tbody>
