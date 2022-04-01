@@ -18,7 +18,7 @@ import Tolovreducer from "../../../../../reducer/tolovreducer";
 import MaxsulotlarRoyxariReducer, { getMaxsulotRuyxati } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import kgreducer, { getkg } from "../../../../../reducer/kgreducer";
 import { lineHeight } from '@mui/system';
-import PayReducer from "../../../../../reducer/PayReducer";
+import PayReducer, {getPay} from "../../../../../reducer/PayReducer";
 
 function Xarid({
     getXarid,
@@ -37,6 +37,7 @@ function Xarid({
     users,
     match,
     getMaxsulotRuyxati,
+                   getPay,
     MaxsulotlarRoyxariReducer,
     TaminotReducer,
     branchreducer, getbranch, tolovreducer, gettolovholati,
@@ -406,6 +407,7 @@ function Xarid({
     }
     useEffect(() => {
         // diller()
+        getPay(users.businessId)
         // console.log(TaminotReducer.taminot.map(item=><div>{item.id}</div>) +' nimadir')
     }, [])
 
@@ -847,13 +849,14 @@ function Xarid({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer, XaridReducer, kgreducer, users, TaminotReducer, branchreducer, tolovreducer), {
+export default connect((MaxsulotlarRoyxariReducer,PayReducer, XaridReducer, kgreducer, users, TaminotReducer, branchreducer, tolovreducer), {
     getMaxsulotRuyxati,
     getXarid,
     getkg,
     getXarid2,
     getXarid5,
     saveXarid,
+    getPay,
     editXarid,
     getTaminot,
     saveTaminot,
