@@ -7,6 +7,7 @@ import users, {getusers, savdooynasi} from "../../../reducer/users";
 import functionreducer, {active, activSavdo} from "../../../reducer/functionreducer";
 import XaridReducer, {getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import RenderComponent3 from "./RenderComponent3";
 
 function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdolar}) {
     useEffect(() => {
@@ -34,8 +35,9 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
             a.push({...mahsulot, id: i})
             setposts(a)
         }
-        let d = posts.length/5
+        let d = SavdoQoshishReducer.savdolar.filter(item=>{if(item.loan > 0){return item}}).length/5
         setpages(d)
+        console.log(d)
     }
 
     function goToNextPage() {
@@ -54,7 +56,9 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
     const getPaginatedData = () => {
         const startIndex = currentPage * 5 - 5;
         const endIndex = startIndex + 5;
-        return posts.slice(startIndex, endIndex);
+        return SavdoQoshishReducer.savdolar.filter(item=>{if( item.loan >0){
+            return item
+        }}).slice(startIndex, endIndex);
     };
     const getPaginationGroup = () => {
         let start = Math.floor((currentPage - 1) / 3) * 3;
@@ -80,18 +84,9 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
                             </thead>
                             {console.log(SavdoQoshishReducer.savdolar)}
                             <tbody>
-                            {
-                                SavdoQoshishReducer.savdolar.filter(val=>val?.loan>0) .map(item=><tr key={item.id}>
-                                    <td>{item.trader.id}</td>
-                                    <td>{item.customer.name}</td>
-                                    <td>{item?.loan}</td>
-                                    <td>
-                                        {
-                                            item.payDate
-                                        }
-                                    </td>
-                                </tr>)
-                            }
+                            {getPaginatedData().map((d, idx) => (
+                                <RenderComponent4 key={idx} data={d} />
+                            ))}
                             </tbody>
                         </table>
 

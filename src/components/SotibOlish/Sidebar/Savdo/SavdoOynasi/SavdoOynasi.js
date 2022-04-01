@@ -251,7 +251,7 @@ function SavdoOynasi({
         let c = 0
         arr1.map(item => {
             a += item.counter
-            c += (item.counter * item.buyPrice)
+            c += (item.counter * item.salePrice)
         })
         setxisob(a)
         setjamixisob(c)
@@ -279,7 +279,7 @@ function SavdoOynasi({
         let c = 0
         arr1.map(item => {
             b += item.counter
-            c += (item.counter * item.buyPrice)
+            c += (item.counter * item.salePrice)
         })
         setxisob(b)
         setjamixisob(c)
@@ -318,7 +318,7 @@ function SavdoOynasi({
         let c = 0
         arr1.map(item => {
             b += item.counter
-            c += (item.counter * item.buyPrice)
+            c += (item.counter * item.salePrice)
 
         })
         setxisob(b)
@@ -339,7 +339,7 @@ function SavdoOynasi({
         let c = 0
         arr1.map(item => {
             b += item.counter
-            c += (item.counter * item.buyPrice)
+            c += (item.counter * item.salePrice)
 
         })
         setxisob(b)
@@ -397,7 +397,7 @@ function SavdoOynasi({
                     payDate: new Date().getDate(),
                     branchId: item.branch.id,
                     payMethodId: naqd,
-                    amountPaid: item.buyPrice * item.counter,
+                    amountPaid: item.salePrice * item.counter,
                     currencyId: 1,
                     addressId: 1,
                 })
@@ -476,8 +476,8 @@ function SavdoOynasi({
             photoIds: [1],
             minQuantity: input.foydafoiz,
             /*   input.foydafoiz,*/
-            buyPrice: input.sotishnarxi,               /*   input.sotishnarxi,*/
-            salePrice: input.sotibolishnarx,
+            buyPrice: input.sotibolishnarxi,               /*   input.sotishnarxi,*/
+            salePrice: input.sotishnarxi,
             tax: input.soliqbnnarxi,         /* input.amaldagisoliq,*/
             branchId: [1],
             expireDate: null,
@@ -571,8 +571,8 @@ function SavdoOynasi({
                             arr1.map(item=> <tr>
                                 <td>{item.name}</td>
                                 <td>{item.counter}  {item.measurement.name}</td>
-                                <td>{item.buyPrice}</td>
-                                <td>{item.counter*item.buyPrice} so'm</td>
+                                <td>{item.salePrice}</td>
+                                <td>{item.counter*item.salePrice} so'm</td>
                             </tr>)
                         }
                         </tbody>
@@ -810,7 +810,7 @@ function SavdoOynasi({
                                                 item.active ? <p className={'text-danger text-center fw-2'}>Only {item.quantity} available !</p>:''
                                             }
                                         </td>
-                                        <td>{item.counter * item.buyPrice}</td>
+                                        <td>{item.counter * item.salePrice}</td>
                                         <td>
                                             <button onClick={() => deleteM(item.id)}
                                                     className={'btn btn-outline-dark border-2 rounded-circle'}>x
@@ -867,7 +867,7 @@ function SavdoOynasi({
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
                                             alt="yuq"/>
                                         <h6>{item.name}</h6>
-                                        <p>{item.buyPrice}</p>
+                                        <p>{item.salePrice}</p>
                                     </div>
                                 </div>)
                             }
