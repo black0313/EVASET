@@ -35,7 +35,7 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
             a.push({...mahsulot, id: i})
             setposts(a)
         }
-        let d = SavdoQoshishReducer.savdolar.filter(item=>{if(item.loan > 0){return item}}).length/5
+        let d = SavdoQoshishReducer.savdolar.filter(item=>{if(item?.loan > 0){return item}}).length/5
         setpages(d)
         console.log(d)
     }
@@ -56,7 +56,7 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
     const getPaginatedData = () => {
         const startIndex = currentPage * 5 - 5;
         const endIndex = startIndex + 5;
-        return SavdoQoshishReducer.savdolar.filter(item=>{if( item.loan >0){
+        return SavdoQoshishReducer.savdolar.filter(item=>{if( item?.loan >0){
             return item
         }}).slice(startIndex, endIndex);
     };
