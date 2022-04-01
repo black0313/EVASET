@@ -281,8 +281,8 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     ))}
                     <button
                         onClick={goToNextPage}
-                        className={` ${currentPage ===  parseInt(pages)  ? 'disabled' : ''}`}
-                        disabled={ currentPage >= parseInt(pages) ? true : false}
+                        className={` ${currentPage >=  pages  ? 'disabled' : ''}`}
+                        disabled={ currentPage >= pages ? true : false}
                     >
                         oldinga
                     </button>
