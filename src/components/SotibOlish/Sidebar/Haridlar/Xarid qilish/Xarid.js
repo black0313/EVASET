@@ -407,6 +407,7 @@ function Xarid({
         setjamiXisob(c)
     }
     useEffect(() => {
+        getXarid(users.businessId)
         // diller()
         getPay(users.businessId)
         // console.log(TaminotReducer.taminot.map(item=><div>{item.id}</div>) +' nimadir')
@@ -439,7 +440,7 @@ function Xarid({
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
-                        
+
                         {
                             dealerId: input.diller,
                             seller: 2,
@@ -600,7 +601,8 @@ function Xarid({
 
                             }
                         </div>
-
+                                    {console.log
+                                (XaridReducer.xaridlar)}
                         <div className="col-3 col-sm-12 ">
                             <label htmlFor={'status'}>Xarid statusi</label>
                             <select name="" value={input.xaridstatusi} onChange={xaridstatusi}

@@ -35,6 +35,14 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
             maxmiqdor:''
         }
     )
+
+    const [placeholders,setPlaceholders] = useState(
+        {
+            tolovUsuliPlaceholder:"",
+            tolovSummasiPlaceholder:"",
+        }
+    )
+
     useEffect(()=>{
        editS()
         getbranch(users.businessId)
@@ -210,6 +218,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                 addressId:1
             },console.log('edited'))
         }else {
+           if(input.tulovusuli && input.avans){
             mah.map(item=>{
                 saveSavdolar(
                     {
@@ -231,6 +240,15 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                     console.log('saved')
                 )
             })
+           }
+           else{
+                setPlaceholders(
+                    {
+                        tolovSummasiPlaceholder:"To'lov summasini kiriting",
+                        tolovUsuliPlaceholder:"To'lov usulini tanlang!"
+                    }
+                )
+           }
         }
     }
     function deleteM(ind) {
@@ -366,7 +384,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                     <div className="row">
                         <div className="col-md-6">
                             <label htmlFor={'avans'}>To`lov so`mmasi</label>
-                            <input type="text" value={input.avans} onChange={avans} className={'form-control'} id={'avans'}/>
+                            <input type="number" value={input.avans} onChange={avans} className={'form-control'} id={'avans'} placeholder={placeholders.tolovSummasiPlaceholder}/>
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
                             <select id={'tol'} className={'form-control'} value={input.tulovusuli} onChange={tulovusuli}>
                                 <option value="tanla">Tanlash</option>
@@ -374,6 +392,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                                     PayReducer.paymethod.map(item=> <option value={item.id}>{item.type}</option>)
                                 }
                             </select>
+                            <p style={{color:'red',lineHeight:'13px',marginTop:'6px',textAlign:'center'}}>{placeholders.tolovUsuliPlaceholder}</p>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor={'paid'}>Paid on</label>
@@ -387,9 +406,13 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
             </div>
             <div className={'col-md-10 offset-1 mt-5 border p-4'}>
                 <h5>Qarz miqdori!: 0.00</h5>
-                <Link to={'/headerthird/barcasavdolar'}>
-                    <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
-                </Link>
+                {
+                    input.tulovusuli && input.avans ? 
+                    <Link to={'/headerthird/barcasavdolar'}>
+                        <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                    </Link> :
+                     <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                }
                 <button className={'btn btn-outline-primary'}>Saqlash va chek</button>
             </div>
 
