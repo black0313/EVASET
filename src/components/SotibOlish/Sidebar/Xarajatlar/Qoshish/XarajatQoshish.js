@@ -1,14 +1,14 @@
-import {useEffect, useState} from "react";
-import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {saveOtkazma} from "../../Baza/reducer/OtkazmaReducer";
-import {connect} from "react-redux";
+import { useEffect, useState } from "react";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { saveOtkazma } from "../../Baza/reducer/OtkazmaReducer";
+import { connect } from "react-redux";
 import XarajatlarReducer, {
     deleteXarajatlar,
     editXarajatlar,
     getXarajatlar,
     saveXarajatlar
 } from "../reducer/XarajatlarReducer";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './xarajatQoshish.css'
 import TaminotReducer from "../../Hamkorlar/reducer/TaminotReducer";
 import SavdoQoshishReducer, {
@@ -18,16 +18,16 @@ import SavdoQoshishReducer, {
     saveSavdolar
 } from "../../Savdo/reducer/SavdoQoshishReducer";
 import users from "../../../../../reducer/users";
-import LavozimReducer, {getLavozim, saveLavozim} from "../../Hodimlar/reducer/LavozimReducer";
-import XodimReducer, {editXodim, getXodim, saveXodim} from "../../Hodimlar/reducer/XodimReducer";
-import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import LavozimReducer, { getLavozim, saveLavozim } from "../../Hodimlar/reducer/LavozimReducer";
+import XodimReducer, { editXodim, getXodim, saveXodim } from "../../Hodimlar/reducer/XodimReducer";
+import branchreducer, { getbranch } from "../../../../../reducer/branchreducer";
 import XarajatTurlariReducer, {
     editXarajatlarTurlari,
     getXarajatlarTurlari,
     saveXarajatlarTurlari
 } from "../reducer/XarajatTurlariReducer";
 
-function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXarajatlar, match, getXarajatlar, XarajatlarReducer,getXarajatlarTurlari,XarajatTurlariReducer}) {
+function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveXarajatlar, match, getXarajatlar, XarajatlarReducer, getXarajatlarTurlari, XarajatTurlariReducer }) {
 
     const [input, setInput] = useState(
         {
@@ -52,105 +52,113 @@ function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXaraj
             eslatma: ''
         }
     )
+    const [placeholders,setPlaceholders] = useState(
+        {
+            bazaPlaceholders:"",   
+            jamiSummaPlaceholders:"",   
+            qisqaEslatmaPlaceholders:"",   
+            sanaPlaceholders:"",   
+        }
+    )
 
     function baza(e) {
         input.baza = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function sana(e) {
         input.sana = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function qoshimchaxujjat(e) {
         input.qoshimchaxujjat = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function xarajateslatmasi(e) {
         input.xarajateslatmasi = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function xarajatturi(e) {
         input.xarajatturi = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function xarajatqildi(e) {
         input.xarajatqildi = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function amaldagisoliq(e) {
         input.amaldagisoliq = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function doimtakror(e) {
         input.doimtakror = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function xarajatsana(e) {
         input.xarajatsana = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function takrorsoni(e) {
         input.takrorsoni = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function takrorkun(e) {
         input.takrorkun = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function qisqaeslatma(e) {
         input.qisqaeslatma = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
 
     function experencecontact(e) {
         input.experencecontact = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
 
     function jamisumma(e) {
         input.jamisumma = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
 
     function maxsulotnomishtrix(e) {
         input.maxsulotnomishtrix = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
 
     function avans(e) {
         input.avans = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
 
     function paidon(e) {
         input.paidon = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function tulovusuli(e) {
         input.tulovusuli = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
     function eslatma(e) {
         input.eslatma = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
     }
 
@@ -164,37 +172,50 @@ function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXaraj
             if (item.id == match.params.id) {
                 input.jamisumma = item.totalSum
                 input.qisqaeslatma = item.description
-                let a = {...input}
+                let a = { ...input }
                 setInput(a)
             }
         })
     }
 
     function saqla() {
-        console.log('jifiierhihieruhhre')
-        if (match.params.id === undefined) {
-            saveXarajatlar(
-                {
+
+        if (input.jamisumma && input.baza && input.qisqaeslatma && input.sana) {
+            if (match.params.id === undefined) {
+                saveXarajatlar(
+                    {
+                        outlayCategoryId: 1,
+                        totalSum: input.jamisumma,
+                        branchId: input.baza,
+                        spenderId: 1,
+                        description: input.qisqaeslatma,
+                        date: input.sana
+                    },
+                    console.log('saved')
+                )
+
+            } else {
+                editXarajatlar({
                     outlayCategoryId: 1,
                     totalSum: input.jamisumma,
-                    branchId: input.baza,
-                    spenderId: 1,
                     description: input.qisqaeslatma,
-                    date: input.sana
-                },
-                console.log('saved')
-            )
+                    date: input.sana,
+                    branchId: 1,
+                    spenderId: 1,
+                    id: match.params.id
+                }, console.log('edited'))
+            }
+        }
+        else {
+            setPlaceholders(
+                {
+                   bazaPlaceholders:"Baza tanlang!",
+                   qisqaEslatmaPlaceholders:"Ma'lumot kiritilmadi...",   
+                   jamiSummaPlaceholders:"Ma'lumot kiritilmadi...", 
+                   sanaPlaceholders:"Sanani tanlang!"  
 
-        } else {
-            editXarajatlar({
-                outlayCategoryId: 1,
-                totalSum: input.jamisumma,
-                description: input.qisqaeslatma,
-                date: input.sana,
-                branchId: 1,
-                spenderId: 1,
-                id:match.params.id
-            },console.log('edited'))
+                }
+            )
         }
     }
 
@@ -223,45 +244,54 @@ function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXaraj
                             <select className={'form-control'} value={input.baza} onChange={baza} name="">
                                 <option value="tanlash">Tanlash</option>
                                 {
-                                    branchreducer.branch.map(item=> <option value={item.id}>{item.name}</option>)
+                                    branchreducer.branch.map(item => <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
+                            {
+                                input.baza ? ""
+                                :
+                                <p style={{color:'red',textAlign:"center",margin:'0px'}}>{placeholders.bazaPlaceholders}</p> 
+                            }
 
                             <label htmlFor={'mijoz'} className={'mt-4'}>Sana</label>
                             <input type="date" id={'mijoz2'} className={'form-control'} value={input.sana}
-                                   onChange={sana}/>
-
+                                onChange={sana} />
+                            {
+                                input.sana ?""
+                                : 
+                                <p style={{color:'red',textAlign:"center",margin:'0px'}}>{placeholders.sanaPlaceholders}</p>
+                            }
                             <label htmlFor={'mijoz'} className={'mt-4'}>Qo`shimcha hujjat</label>
                             <input type="file" id={'mijoz2'} className={'form-control'} value={input.qoshimchaxujjat}
-                                   onChange={qoshimchaxujjat}/>
+                                onChange={qoshimchaxujjat} />
 
-                        {/*    <label htmlFor={'area1'}>Xarajat eslatmasi</label>*/}
-                        {/*    <textarea name="" id={'area1'} value={input.xarajateslatmasi} onChange={xarajateslatmasi}*/}
-                        {/*              className={'form-control'} cols="30" rows="2">*/}
+                            {/*    <label htmlFor={'area1'}>Xarajat eslatmasi</label>*/}
+                            {/*    <textarea name="" id={'area1'} value={input.xarajateslatmasi} onChange={xarajateslatmasi}*/}
+                            {/*              className={'form-control'} cols="30" rows="2">*/}
 
-                        {/*</textarea>*/}
+                            {/*</textarea>*/}
                         </div>
 
                         <div className="col-4 col-sm-12">
                             <label htmlFor={'muddat'}>Xarajat turi</label>
                             <select name="" id="" value={input.xarajatturi} onChange={xarajatturi}
-                                    className={'form-control'}>
+                                className={'form-control'}>
                                 <option value="tanlash">Tanlash</option>
                                 {
-                                    XarajatTurlariReducer.xarajatturlari.map(item=> <option value={item.id}>{item.title}</option>)
+                                    XarajatTurlariReducer.xarajatturlari.map(item => <option value={item.id}>{item.title}</option>)
                                 }
                             </select>
                             {/*</div>*/}
                             <label htmlFor={'stat'} className={'mt-4'}>Xarajat qildi</label>
                             <select name="" id="" className={'form-control'} value={input.xarajatqildi}
-                                    onChange={xarajatqildi}>
+                                onChange={xarajatqildi}>
                                 <option value="tanlash">Tanlash</option>
                                 <option value="Fake">Boshliq</option>
                             </select>
 
                             <label htmlFor={'savRaqam'} className={'mt-4'}>Amaldagi soliq</label>
                             <input type="number" value={input.amaldagisoliq} onChange={amaldagisoliq}
-                                   className={'form-control'} placeholder={'savdo raqami'}/>
+                                className={'form-control'} placeholder={'savdo raqami'} />
 
                         </div>
                         {/*<Modal isOpen={active} toggle={toggle}>*/}
@@ -293,8 +323,8 @@ function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXaraj
                         {/*</Modal>*/}
                         <div className="col-4 col-sm-12">
                             <label htmlFor={'savOyna'}>Qisqa eslatma</label>
-                            <input type="text" className={'form-control'} value={input.qisqaeslatma}
-                                   onChange={qisqaeslatma}/>
+                            <input type="text" className={'form-control'} value={input.qisqaeslatma} placeholder={placeholders.qisqaEslatmaPlaceholders} id="qisqEstm"
+                                onChange={qisqaeslatma} />
 
                             {/*<label htmlFor={'hisobF'} className={'mt-4'}>Experence for contact</label>*/}
                             {/*<select name="" id={'hisobF'} className={'form-control'} value={input.experencecontact}*/}
@@ -304,8 +334,8 @@ function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXaraj
                             {/*</select>*/}
 
                             <label htmlFor={'qoshim'} className={'mt-4'}>Jami summa</label>
-                            <input type="text" value={input.jamisumma} onChange={jamisumma} className={'form-control'}
-                                   id={'qoshim'}/>
+                            <input type="text" value={input.jamisumma} onChange={jamisumma} className={'form-control'} placeholder={placeholders.jamiSummaPlaceholders}
+                                id={'qoshim'} />
                         </div>
                     </div>
                 </div>
@@ -366,15 +396,19 @@ function XarajatQoshish({editXarajatlar,users,getbranch,branchreducer, saveXaraj
 
                 <div className={'col-md-10 offset-1 mt-5 border p-4'}>
                     <h5>Qarz miqdori!: 0.00</h5>
-                    <Link to={'/headerthird/xarajatRuyxati'}>
-                        <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
-                    </Link>
-                    <button className={'btn btn-outline-primary'}>Saqlash va chek</button>
+                    {
+                        input.jamisumma && input.baza && input.qisqaeslatma && input.sana ?
+                        <Link to={'/headerthird/xarajatRuyxati'}>
+                        <button className={'btn btn-outline-primary me-2'} onClick={saqla}>Saqlash</button>
+                        </Link> :
+                        <button className={'btn btn-outline-primary me-2'} onClick={saqla}>Saqlash</button>
+                    }   
+                        <button className={'btn btn-outline-primary'}>Saqlash va chek</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default connect((XarajatTurlariReducer,branchreducer, XodimReducer,users,branchreducer,XarajatlarReducer),{editXarajatlar, getXarajatlar,getXarajatlarTurlari,saveXarajatlarTurlari,editXarajatlarTurlari,getbranch,saveXarajatlar}) (XarajatQoshish)
+export default connect((XarajatTurlariReducer, branchreducer, XodimReducer, users, branchreducer, XarajatlarReducer), { editXarajatlar, getXarajatlar, getXarajatlarTurlari, saveXarajatlarTurlari, editXarajatlarTurlari, getbranch, saveXarajatlar })(XarajatQoshish)
 
