@@ -8,7 +8,7 @@ import Edit from '../../../../../img/Edit.png'
 import Delete from '../../../../../img/Delete.png'
 import './haridlarRoyxati.css'
 import {connect} from "react-redux";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import XaridReducer, {
     deleteXarid,
     editXarid,
@@ -89,11 +89,13 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
     }
 
     useEffect(() => {
+        ommabop()
         getXarid(users.businessId)
         getTaminot(users.businessId)
         getbranch(users.businessId)
         gettolovholati(users.businessId)
         getXarid4(users.businessId)
+
     },[XaridReducer.current])
 
     const [sana3,setsana3]= useState(true)
@@ -119,6 +121,37 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
     ])
 
     const [malkamay, setmalkamay] = useState(false)
+
+
+    const [pages,setpages] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+
+    function ommabop() {
+
+        let d = XaridReducer.xaridlar.length/7
+        setpages(d)
+    }
+    function goToNextPage() {
+        setCurrentPage((page) => page + 1);
+        console.log(pages)
+        console.log(currentPage)
+    }
+    function goToPreviousPage() {
+        setCurrentPage((page) => page - 1);
+    }
+    function changePage(event) {
+        const pageNumber = Number(event.target.textContent);
+        setCurrentPage(pageNumber);
+    }
+    const getPaginatedData = () => {
+        const startIndex = currentPage * 7 - 7;
+        const endIndex = startIndex + 7;
+        return XaridReducer.xaridlar.slice(startIndex, endIndex);
+    };
+    const getPaginationGroup = () => {
+        let start = Math.floor((currentPage - 1) / 1) * 1;
+        return new Array(1).fill().map((_, idx) => start + idx + 1);
+    };
 
     return (
         <div className="col-md-12 mt-2">
@@ -248,7 +281,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                         </thead>
                         <tbody>
                         {
-                            XaridReducer.xaridlar.filter(val => {
+                            getPaginatedData().filter(val => {
                                 if (input.search === '') {
                                     return val
                                 } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
@@ -292,11 +325,34 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                     </table>
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
+
+                <p>Ko'rsatildi {currentPage} ta sahifa  yana {parseInt(pages+1)-currentPage} bitta sahifa bor</p>
+
                 <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
+                    <button
+                        onClick={goToPreviousPage}
+                        className={` ${currentPage === 1 ? 'disabled' : ''}`}
+                        disabled={currentPage === 1 ? true : false}
+
+                    >
+                        ortga
+                    </button>
+                    {getPaginationGroup().map((item, index) => (
+                        <button
+                            key={index}
+                            onClick={changePage}
+                            className={`${currentPage === item ? 'active' : null}`}
+                        >
+                            <span>{item}</span>
+                        </button>
+                    ))}
+                    <button
+                        onClick={goToNextPage}
+                        className={` ${currentPage >=  pages  ? 'disabled' : ''}`}
+                        disabled={ currentPage >= pages ? true : false}
+                    >
+                        oldinga
+                    </button>
                 </div>
             </div>
         </div>
