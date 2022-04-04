@@ -120,7 +120,7 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                             <th>Amallar</th>
                         </tr>
                         </thead>
-                        {console.log(XarajatTurlariReducer.xarajatturlari)}
+                        {/*{console.log(XarajatTurlariReducer.xarajatturlari)}*/}
                         <tbody>
                         {
                             XarajatTurlariReducer.xarajatturlari

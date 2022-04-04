@@ -279,6 +279,9 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                             }
 
                         </thead>
+                        {
+                            console.log(XaridReducer.xaridlar)
+                        }
                         <tbody>
                         {
                             getPaginatedData().filter(val => {

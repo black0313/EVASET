@@ -257,6 +257,7 @@ function Mijozlarguruxi({
                             </tr>)
                         }
                         </thead>
+                        {console.log(MijozGuruxReducer.mijozgurux)}
                         <tbody>
                         {
                             MijozGuruxReducer.mijozgurux.filter(val => {

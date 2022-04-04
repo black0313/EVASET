@@ -32,7 +32,13 @@ import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 import PayReducer, {getPay,getPay2} from "../../../../../reducer/PayReducer";
 import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
 import TradeHistory, {getSavdolarHistory} from "../reducer/TradeHistory";
+import {toast} from "react-toastify";
+import XarajatlarReducer, {getXarajatlar, saveXarajatlar} from "../../Xarajatlar/reducer/XarajatlarReducer";
+import XarajatTurlariReducer, {getXarajatlarTurlari} from "../../Xarajatlar/reducer/XarajatTurlariReducer";
 function SavdoOynasi({
+                         saveXarajatlar,
+                         getXarajatlar,
+                         XarajatTurlariReducer,
                          getMaxsulotRuyxati,
                          BolimReducer, getBolim,
                          getPay,getPay2, PayReducer,
@@ -40,7 +46,8 @@ function SavdoOynasi({
                          MaxsulotlarRoyxariReducer,
                          getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
                          users, savdooynasi, getkg, kgreducer,branchreducer,getbranch,getMaxsulotRuyxatibranch,
-                         getSavdolarHistory,TradeHistory
+                         getSavdolarHistory,TradeHistory,
+                        XarajatlarReducer,
                      }) {
 
     const [input, setInput] = useState(
@@ -70,9 +77,39 @@ function SavdoOynasi({
             birincitulovkredit:'',
             qarzamount:'',
             naqdId:'',
+            jamisummaxarajat:'',
+            bazaxarajat:'',
+            qisqaeslatmaxarajat:'',
+            sanaxarajat:'',
+            eslatma:''
         }
     )
 
+    function jamisummaxarajat(e){
+        input.jamisummaxarajat = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function eslatma(e){
+        input.eslatma = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function bazaxarajat(e){
+        input.bazaxarajat = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function qisqaeslatmaxarajat(e){
+        input.qisqaeslatmaxarajat = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function sanaxarajat(e){
+        input.sanaxarajat = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
     function modalmahsulotnomi(e) {
         input.modalmahsulotnomi = e.target.value
         let a = {...input}
@@ -104,7 +141,6 @@ function SavdoOynasi({
             let a = {...input}
             setInput(a)
 
-
     }
     function shtrix(e) {
         input.shtrix = e.target.value
@@ -116,7 +152,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function ulcovbirligi(e) {
         input.ulcovbirligi = e.target.value
         let a = {...input}
@@ -230,6 +265,32 @@ function SavdoOynasi({
     let [xisob, setxisob] = useState(0)
     let [jamixisob, setjamixisob] = useState(0)
 
+    const [ushlabtur,setushlabtur] = useState([])
+    const [countId,setcountId] = useState(1)
+
+    const [ushla2,setushla2] = useState(false)
+    function toggle8(){
+        setushla2(!ushla2)
+    }
+
+    function ushla(){
+        ushlabtur.push({id:countId,array:arr1,description:input.eslatma})
+        let a = [...ushlabtur]
+        setushlabtur(a)
+        setarr1([])
+        setcountId(p=>p+1)
+        toast.success('Mahsulot kutish xonasida')
+        console.log(ushlabtur)
+        toggle8()
+    }
+
+    function savdooynakochirish(){
+        setarr1(ushlabtur)
+        setushlabtur([])
+        toast.warning('Mahsulot Savdo bo`limida ')
+        toggle()
+    }
+
     function pushesh(val) {
         let order = false
         arr1.map(item=>{
@@ -305,10 +366,8 @@ function SavdoOynasi({
                     else{
                         item.active = true
                     }
-
                 }
             }
-
         })
         let a = [...arr1]
         setarr1(a)
@@ -323,7 +382,6 @@ function SavdoOynasi({
         })
         setxisob(b)
         setjamixisob(c)
-
 
     }
     function deleteM(ind) {
@@ -342,6 +400,7 @@ function SavdoOynasi({
             c += (item.counter * item.salePrice)
 
         })
+
         setxisob(b)
         setjamixisob(c)
     }
@@ -375,8 +434,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
-
 
     function UzcardTolov(naqd,type) {
 
@@ -493,6 +550,7 @@ function SavdoOynasi({
         getMijozGurux(users.businessId)
         getBolim(users.businessId)
         getFirma(users.businessId)
+        getXarajatlar(users.businessId)
         getkg(users.businessId)
         getPay(users.businessId)
         // history.push('/headerthird/turliTavar/final')
@@ -510,6 +568,23 @@ function SavdoOynasi({
     function toggle6(){
         settahrir(!tahrir)
     }
+    function toggle7(){
+        setxarajat(!xarajat)
+    }
+    function saqlaXarajat(){
+        saveXarajatlar(
+            {
+                outlayCategoryId: 1,
+                totalSum: input.jamisummaxarajat,
+                branchId: input.bazaxarajat,
+                spenderId: 1,
+                description: input.qisqaeslatmaxarajat,
+                date: input.sanaxarajat
+            }
+        )
+        toggle7()
+    }
+    const [xarajat,setxarajat] = useState(false)
     const [tahrir,settahrir] = useState(false)
 
     function clear(){
@@ -524,6 +599,7 @@ function SavdoOynasi({
 
     useEffect(()=>{
         getSavdolarHistory(users.businessId)
+        getXarajatlarTurlari(users.businessId)
     },[])
 
     const componentRef = useRef();
@@ -555,7 +631,7 @@ function SavdoOynasi({
                     }
 
                 </p></div>
-                {console.log(arr1)}
+                {/*{console.log(arr1)}*/}
                 <div className={'table-responsive'}>
                     <table className={'table'}>
                         <thead>
@@ -610,11 +686,57 @@ function SavdoOynasi({
                         </select>
                     </div>
                     <div className="navbarRigth">
-                        <button onClick={toggle4}>Oxirgi savdolar</button>
-                        <img src={img1} onClick={toggle} alt=""/>
-                        {/*<img src={img2} onClick={toggle} alt="" />*/}
+                        <button className={'btn btn-outline-primary'} onClick={toggle4}>Oxirgi savdolar</button>
+                        {/*<button className={'btn btn-outline-primary'}>Hold*/}
+                        <button className={'btn '} onClick={toggle} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">Ushlab turish</button>
+                        <button onClick={toggle7} className={'btn btn-outline-primary'}>+ Xarajat</button>
+                        <Modal isOpen={xarajat} toggle={toggle7}>
+                            <ModalHeader>
+                                Xarajat qo`shish
+                            </ModalHeader>
+                            <ModalBody>
+                                <div className="co-md-12 d-flex">
+                                    <div className="col-md-6">
+                                        <label htmlFor={'baza'}>Baza</label>
+                                        <input type="text" className={'form-control'} onChange={bazaxarajat} value={input.bazaxarajat}/>
+                                        <label htmlFor={'q'}>Qisqa eslatma</label>
+                                        <textarea id={'q'} cols="5" rows="3" className={'form-control'} value={input.qisqaeslatmaxarajat} onChange={qisqaeslatmaxarajat}> </textarea>
+                                        <label htmlFor={'tot'}>Jami summa</label>
+                                        <input type="text" className={'form-control'} value={input.jamisummaxarajat} onChange={jamisummaxarajat}/>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor={'sana'}>Sana</label>
+                                        <input type="date" value={input.sanaxarajat} onChange={sanaxarajat} className={'form-control'}/>
+                                        <label htmlFor={'xturi'} className={'mt-3'}>Xarajat turi</label>
+                                        {console.log(XarajatTurlariReducer.xarajatturlari)}
+                                        <select name={'xturi'} className={'form-control'}>
+                                            <option value="1">Tanlash</option>
+                                            {
+                                                XarajatTurlariReducer.xarajatturlari.map(item=> <option value={item.id}>
+                                                    {item.title}
+                                                </option>)
+                                            }
+                                        </select>
+                                        <label className={'mt-3'} htmlFor={'xqildi'}>Xarajat qildi</label>
+                                        <select id={'xqildi'} className={'form-control'}>
+                                            <option value={'Tanlash'}>Tanlash</option>
+                                            <option value={'boshliq'}>Boshliq</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </ModalBody>
+                            <ModalFooter>
+                                <button onClick={saqlaXarajat} className={'btn btn-outline-primary'}>Saqlash</button>
+                                <button onClick={toggle7} className={'btn btn-outline-primary'}>Chiqish</button>
+                            </ModalFooter>
+                        </Modal>
+                        <ReactTooltip />
                         <img src={img3} onClick={openCalcul} alt=""/>
-                        <img src={img4} onClick={toggle2} alt=""/>
+                        {/*<img src={img1} onClick={toggle} alt=""/>*/}
+                        {/*</button>*/}
+                        {/*<img src={img2} onClick={toggle} alt="" />*/}
+                        {/*<img src={img4} onClick={toggle2} alt=""/>*/}
                         <img src={img5} onClick={toggle3} alt=""/>
                         <Link to={'/headerthird'}><img src={img6} onClick={savdooynasi} alt=""/></Link>
 
@@ -880,7 +1002,20 @@ function SavdoOynasi({
                 <div className="savBtnBox col-12">
                     <button className={'col-sm-6 btn btn-primary m-1'}>Eslatma</button>
                     <button className={'col-6 btn btn-danger m-1'}>Chegirma</button>
-                    <button className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
+                    <button onClick={toggle8} className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
+                    <Modal isOpen={ushla2} toggle={toggle8}>
+                        <ModalHeader>
+                            Ushlab turish
+                        </ModalHeader>
+                        <ModalBody>
+                            <label htmlFor={'qisqa'}>ESLATMA</label>
+                            <textarea className={'form-control'} id={'qisqa'} cols="20" rows="3" value={input.eslatma} onChange={eslatma}> </textarea>
+                        </ModalBody>
+                        <ModalFooter>
+                            <button onClick={ushla} className={'btn btn-outline-primary'}>Saqlash</button>
+                            <button onClick={toggle8} className={'btn btn-outline-primary'}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
                     <button onClick={kredit} className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
                     <Modal isOpen={activeModalkredit} toggle={kredit}>
                         <ModalHeader>Kredit bo`limi </ModalHeader>
@@ -976,10 +1111,30 @@ function SavdoOynasi({
                             USHLAB TURISH
                         </ModalHeader>
                         <ModalBody>
-                            Manba Topilmadi !!!
+                            <table className={'table'}>
+                                <thead>
+                                    <tr>
+                                        <th>T/R</th>
+                                        <th>Mahsulot</th>
+                                        <th>Miqdori</th>
+                                        <th>Jami</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    ushlabtur.map((item,index)=><tr key={item.id}>
+                                        <td>{index+1}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.counter}</td>
+                                        <td>{item.counter*item.salePrice}</td>
+                                    </tr>)
+                                }
+                                </tbody>
+                            </table>
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'} onClick={toggle}>'Chiqish</button>
+                            <button onClick={savdooynakochirish} className={'btn btn-outline-primary'}>Savdo oynasiga ko`chirish</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
 
@@ -1016,9 +1171,11 @@ function SavdoOynasi({
     )
 }
 
-export default connect((kgreducer, PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
+export default connect((kgreducer,XarajatlarReducer,XarajatTurlariReducer ,PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
     getSavdo,
+    saveXarajatlar,
     getSavdolarHistory,
+    getXarajatlar,
     getFirma,
     getPay, getPay2,
     saveMaxsulotRuyxati,
@@ -1034,6 +1191,7 @@ export default connect((kgreducer, PayReducer,TradeHistory, MaxsulotlarRoyxariRe
     getMijozGurux,
     saveSavdolar,
     getbranch,
+    getXarajatlarTurlari,
     getMaxsulotRuyxatibranch,
     getMaxsulotRuyxati3
 })(SavdoOynasi)

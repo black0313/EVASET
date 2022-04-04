@@ -49,7 +49,7 @@ function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveX
             avans: '',
             paidon: '',
             tulovusuli: '',
-            eslatma: ''
+            eslatma: '',
         }
     )
     const [placeholders,setPlaceholders] = useState(
@@ -184,7 +184,7 @@ function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveX
             if (match.params.id === undefined) {
                 saveXarajatlar(
                     {
-                        outlayCategoryId: 1,
+                        outlayCategoryId: input.xarajatturi,
                         totalSum: input.jamisumma,
                         branchId: input.baza,
                         spenderId: 1,
@@ -203,7 +203,8 @@ function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveX
                     branchId: 1,
                     spenderId: 1,
                     id: match.params.id
-                }, console.log('edited'))
+                },
+                    console.log('edited'))
             }
         }
         else {
