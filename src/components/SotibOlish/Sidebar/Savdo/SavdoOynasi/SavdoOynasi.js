@@ -273,25 +273,73 @@ function SavdoOynasi({
     const [countId,setcountId] = useState(1)
 
     const [ushla2,setushla2] = useState(false)
+    const [ushlanumber,setushlanumber] = useState('')
     function toggle8(){
-        setushla2(!ushla2)
+        if(arr1.length === 0){
+            toast.warn("Mahsulot qo'shing !")
+        }
+        else{
+            setushla2(!ushla2)
+        }
+
     }
 
     function ushla(){
-        ushlabtur.push({id:countId,array:arr1,description:input.eslatma})
-        let a = [...ushlabtur]
-        setushlabtur(a)
-        setarr1([])
-        setcountId(p=>p+1)
-        toast.success('Mahsulot kutish xonasida')
-        console.log(ushlabtur)
-        toggle8()
+           if(ushlanumber === ''){
+               ushlabtur.push({id:countId,array:arr1,description:input.eslatma,jami:jamixisob,jamimiqdori:xisob})
+               let a = [...ushlabtur]
+               setushlabtur(a)
+               setushlanumber('')
+           }
+           else {
+               ushlabtur.map(item => {
+                   if (item.id == ushlanumber) {
+                       item.array = arr1
+                       item.description = input.eslatma
+                       item.jami = jamixisob
+                       item.jamimiqdori = xisob
+                   }
+               })
+           }
+
+           let a = [...ushlabtur]
+           setushlabtur(a)
+           setushlanumber('')
+
+
+           setarr1([])
+           setcountId(p=>p+1)
+           toast.success('Mahsulot kutish xonasida')
+           console.log(ushlabtur)
+           input.eslatma = ''
+           let d = {...input}
+           setInput(d)
+           toggle8()
+
+           setxisob(0)
+           setjamixisob(0)
+
     }
 
-    function savdooynakochirish(){
-        setarr1(ushlabtur)
-        setushlabtur([])
-        toast.warning('Mahsulot Savdo bo`limida ')
+
+    function savdooynakochirish(id){
+        ushlabtur.filter(val=>{
+            if (id == val.id ){
+                if (arr1.length == 0){
+                    console.log(arr1)
+                    setarr1(val.array)
+                    input.eslatma = val.description
+                    let b = {...input}
+                    setInput(b)
+                    setushlanumber(id)
+                    toast.warning('Mahsulot Savdo bo`limida')
+                }else {
+                    console.log(arr1.length)
+                    toast.warn('Savdo oynasi band')
+                }
+            }
+        })
+
         toggle()
     }
 
@@ -562,7 +610,13 @@ function SavdoOynasi({
     }, [MaxsulotlarRoyxariReducer.current])
 
     function toggle() {
-        setActive(!active)
+        if(ushlabtur.length === 0){
+            toast.info("Ma'lumot yo'q")
+        }
+        else{
+            setActive(!active)
+        }
+
     }
     function toggle2() {
         setActive2(!active2)
@@ -606,6 +660,21 @@ function SavdoOynasi({
         getSavdolarHistory(users.businessId)
         getXarajatlarTurlari(users.businessId)
     },[])
+
+    function deleteushla(id){
+        ushlabtur.map(item=>{
+                if (item.id == id){
+                    ushlabtur.splice(item,1)
+                    let a = [...ushlabtur]
+                    setushlabtur(a)
+                }}
+         )
+
+        if (ushlabtur.length == 0){
+            setActive(!active)
+        }
+
+    }
 
     const componentRef = useRef();
 
@@ -1129,25 +1198,30 @@ function SavdoOynasi({
                                 <thead>
                                     <tr>
                                         <th>T/R</th>
-                                        <th>Mahsulot</th>
+                                        <th>Eslatma</th>
                                         <th>Miqdori</th>
                                         <th>Jami</th>
+                                        <th className={'text-center'}>Amallar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {
                                     ushlabtur.map((item,index)=><tr key={item.id}>
                                         <td>{index+1}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.counter}</td>
-                                        <td>{item.counter*item.salePrice}</td>
+                                        <td>{item.description}</td>
+                                      <td>{item.jamimiqdori}</td>
+                                      <td>{item.jami}</td>
+                                        <td>
+                                            <button onClick={()=>savdooynakochirish(item.id)} className={'kv'}> | </button>
+                                            <button onClick={()=>deleteushla(item.id)} className={'ocbutton'}>X</button>
+                                        </td>
                                     </tr>)
                                 }
                                 </tbody>
                             </table>
                         </ModalBody>
                         <ModalFooter>
-                            <button onClick={savdooynakochirish} className={'btn btn-outline-primary'}>Savdo oynasiga ko`chirish</button>
+                            {/*<button onClick={savdooynakochirish} className={'btn btn-outline-primary'}>Savdo oynasiga ko`chirish</button>*/}
                             <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
