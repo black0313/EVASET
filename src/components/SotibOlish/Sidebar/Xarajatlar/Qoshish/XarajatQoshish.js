@@ -191,7 +191,7 @@ function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveX
                         description: input.qisqaeslatma,
                         date: input.sana
                     },
-                    console.log('saved')
+
                 )
 
             } else {

@@ -40,7 +40,7 @@ function SavdoOynasi({
                          getXarajatlar,
                          XarajatTurlariReducer,
                          getMaxsulotRuyxati,
-                         BolimReducer, getBolim,
+                         BolimReducer, getBolim,getXarajatlarTurlari,
                          getPay,getPay2, PayReducer,
                          FirmaReducer, getFirma, saveMaxsulotRuyxati,getMaxsulotRuyxati3,
                          MaxsulotlarRoyxariReducer,
@@ -81,12 +81,18 @@ function SavdoOynasi({
             bazaxarajat:'',
             qisqaeslatmaxarajat:'',
             sanaxarajat:'',
-            eslatma:''
+            eslatma:'',
+            xarajatturisavdo:''
         }
     )
 
     function jamisummaxarajat(e){
         input.jamisummaxarajat = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function xarajatturisavdo(e){
+        input.xarajatturisavdo = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -207,7 +213,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
     function setbranch(e){
         input.branch = e.target.value
         let a = {...input}
@@ -240,7 +245,6 @@ function SavdoOynasi({
     function printtoggle(){
         setprintactive(!printactive)
     }
-
     function toggle4() {
         setlastTradeActive(!lastTradeActive)
     }
@@ -551,6 +555,7 @@ function SavdoOynasi({
         getBolim(users.businessId)
         getFirma(users.businessId)
         getXarajatlar(users.businessId)
+        getXarajatlarTurlari(users.businessId)
         getkg(users.businessId)
         getPay(users.businessId)
         // history.push('/headerthird/turliTavar/final')
@@ -574,7 +579,7 @@ function SavdoOynasi({
     function saqlaXarajat(){
         saveXarajatlar(
             {
-                outlayCategoryId: 1,
+                outlayCategoryId: input.xarajatturisavdo,
                 totalSum: input.jamisummaxarajat,
                 branchId: input.bazaxarajat,
                 spenderId: 1,
@@ -698,21 +703,30 @@ function SavdoOynasi({
                                 <div className="co-md-12 d-flex">
                                     <div className="col-md-6">
                                         <label htmlFor={'baza'}>Baza</label>
-                                        <input type="text" className={'form-control'} onChange={bazaxarajat} value={input.bazaxarajat}/>
+                                        <select id={'b'} className={'form-control'} value={input.bazaxarajat} onChange={bazaxarajat}>
+                                            {
+                                                branchreducer.branch.map(item=>
+                                                    input.bazaxarajat==''?input.bazaxarajat = item.id:
+                                                    <option value={item.id}>{item.name}</option>)
+                                            }
+                                        </select>
+
                                         <label htmlFor={'q'}>Qisqa eslatma</label>
                                         <textarea id={'q'} cols="5" rows="3" className={'form-control'} value={input.qisqaeslatmaxarajat} onChange={qisqaeslatmaxarajat}> </textarea>
                                         <label htmlFor={'tot'}>Jami summa</label>
-                                        <input type="text" className={'form-control'} value={input.jamisummaxarajat} onChange={jamisummaxarajat}/>
+                                        <input type="number" className={'form-control'} value={input.jamisummaxarajat} onChange={jamisummaxarajat}/>
                                     </div>
                                     <div className="col-md-6">
                                         <label htmlFor={'sana'}>Sana</label>
                                         <input type="date" value={input.sanaxarajat} onChange={sanaxarajat} className={'form-control'}/>
                                         <label htmlFor={'xturi'} className={'mt-3'}>Xarajat turi</label>
-                                        {console.log(XarajatTurlariReducer.xarajatturlari)}
-                                        <select name={'xturi'} className={'form-control'}>
-                                            <option value="1">Tanlash</option>
+
+                                        <select name={'xturi'} value={input.xarajatturisavdo} onChange={xarajatturisavdo} className={'form-control'}>
+                                            {/*<option value="1">Tanlash</option>*/}
                                             {
-                                                XarajatTurlariReducer.xarajatturlari.map(item=> <option value={item.id}>
+                                                XarajatTurlariReducer.xarajatturlari.map(item=>
+                                                    input.xarajatturisavdo==''?input.xarajatturisavdo = item.id:
+                                                    <option value={item.id}>
                                                     {item.title}
                                                 </option>)
                                             }
