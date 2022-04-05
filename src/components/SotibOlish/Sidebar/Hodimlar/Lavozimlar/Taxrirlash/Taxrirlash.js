@@ -1,11 +1,11 @@
 import './taxrirlash.css'
-import {useEffect, useState} from 'react'
-import {connect} from 'react-redux'
-import LavozimReducer, {saveLavozim, getLavozim, deleteLavozim, editLavozim} from '../../reducer/LavozimReducer'
-import {Link} from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import LavozimReducer, { saveLavozim, getLavozim, deleteLavozim, editLavozim } from '../../reducer/LavozimReducer'
+import { Link } from 'react-router-dom'
 import users from "../../../../../../reducer/users";
 
-function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, match, LavozimReducer}) {
+function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, match, LavozimReducer }) {
 
     const [input, setInput] = useState(
         {
@@ -71,7 +71,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changexBarchasini(e) {
         input.xBarchasinibelgilash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         changexodimkorish(e)
         changexodimqoshish(e)
@@ -82,22 +82,22 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changename(e) {
         input.name = e.target.value
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         console.log(input.name)
     }
 
     function changexodimkorish(e) {
         input.xodimkorish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.xodimkorishinput = 'VIEW_USER'
-            let a = {...input}
+            let a = { ...input }
             setInput(a)
         } else {
             input.xodimkorishinput = ''
-            let a = {...input}
+            let a = { ...input }
             setInput(a)
         }
         console.log(input.xodimkorishinput)
@@ -105,15 +105,15 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changexodimqoshish(e) {
         input.xodimqoshish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.xodimqoshishinput = "ADD_USER"
-            let a = {...input}
+            let a = { ...input }
             setInput(a)
         } else {
             input.xodimqoshishinput = ''
-            let a = {...input}
+            let a = { ...input }
             setInput(a)
         }
         console.log(input.xodimqoshishinput)
@@ -121,15 +121,15 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changexodimtaxrirlash(e) {
         input.xodimtaxrirlash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.xodimtaxrirlashinput = "EDIT_USER"
-            let a = {...input}
+            let a = { ...input }
             setInput(a)
         } else {
             input.xodimtaxrirlashinput = null
-            let a = {...input}
+            let a = { ...input }
             setInput(a)
         }
         console.log(input.xodimtaxrirlashinput)
@@ -137,11 +137,11 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changexodimochirish(e) {
         input.xodimochirish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.xodimochirishinput = "DELETE_USER"
-            let a = {...input}
+            let a = { ...input }
             setInput(a)
         } else {
             input.xodimochirishinput = ''
@@ -151,7 +151,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changelBarchasini(e) {
         input.lBarchasinibelgilash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         changelavozimqoshish(e)
         changelavozitaxrirlash(e)
@@ -162,7 +162,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changelavozimqoshish(e) {
         input.lavozimqoshish = "ADD_ROLE"
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lavozimqoshishinput = "ADD_ROLE"
@@ -175,7 +175,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changelavozimkorish(e) {
         input.lavozimkorish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lavozimkorishinput = "VIEW_ROLE"
@@ -187,7 +187,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changelavozitaxrirlash(e) {
         input.lavozimtaxrirlash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lavozimtaxrirlashinput = "EDIT_ROLE"
@@ -199,7 +199,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changelavozimochirish(e) {
         input.lavozimochirish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lavozimochirishinput = "DELETE_ROLE"
@@ -211,7 +211,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changetBarchasi(e) {
         input.tBarchasinibelgilash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         changelang1(e)
         changelang2(e)
@@ -223,7 +223,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changelang1(e) {
         input.lang1 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang1input = "LANG_V1"
@@ -235,7 +235,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changelang2(e) {
         input.lang2 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang2input = "LANG_V2"
@@ -247,7 +247,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changedillerqoshish(e) {
         input.dillerqoshish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.dillerqoshishinput = "ADD_SUPPLIER"
@@ -259,7 +259,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changedillertaxrirlash(e) {
         input.dillertaxrirlash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.dillertaxrirlashinput = "EDIT_SUPPLIER"
@@ -271,7 +271,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changedillerochirish(e) {
         input.dillerochirish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.dillerochirishinput = "DELETE_SUPPLIER"
@@ -283,7 +283,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemBarchasi(e) {
         input.mBarchasinibelgilash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         changemlang3(e)
         changemlang4(e)
@@ -300,7 +300,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemlang3(e) {
         input.lang3 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang3 = "LANG_V3"
@@ -312,7 +312,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemlang4(e) {
         input.lang4 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang4input = "LANG_V4"
@@ -324,7 +324,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemlang5(e) {
         input.lang5 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang5input = "LANG_V5"
@@ -336,7 +336,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemlang6(e) {
         input.lang6 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang6input = "LANG_V6"
@@ -348,7 +348,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemlang7(e) {
         input.lang7 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang7input = "LANG_V7"
@@ -360,7 +360,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemlang8(e) {
         input.lang8 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang8input = "LANG_V8"
@@ -372,7 +372,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemlang9(e) {
         input.lang9 = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.lang9input = "LANG_V9"
@@ -384,7 +384,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemijozqoshish(e) {
         input.mijozqoshish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.mijozqoshishinput = "ADD_CUSTOMER"
@@ -396,7 +396,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemijoztaxrirlash(e) {
         input.mijoztaxrirlash = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.mijoztaxrirlashinput = "EDIT_CUSTOMER"
@@ -408,7 +408,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
     function changemijozochrish(e) {
         input.mijozochirish = e.target.checked
-        let a = {...input}
+        let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
             input.mijozochirishinput = "DELETE_CUSTOMER"
@@ -434,80 +434,80 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
     function editl2(item) {
         let a = item.permissions
         input.name = item.name
-        let c = {...input}
+        let c = { ...input }
         setInput(c)
         for (let i = 0; i < a.length - 1; i++) {
-                 console.log(a[i])
-                 switch (a[i]) {
-                case 'ADD_USER' :
+            console.log(a[i])
+            switch (a[i]) {
+                case 'ADD_USER':
                     input.xodimqoshish = true
-                    let a = {...input}
+                    let a = { ...input }
                     setInput(a)
                     break;
-                case 'VIEW_USER' :
+                case 'VIEW_USER':
                     input.xodimkorish = true
-                    let b = {...input}
+                    let b = { ...input }
                     setInput(b)
                     break;
-                case 'EDIT_USER' :
-             
-                input.xodimtaxrirlash = true
-                    let c = {...input}
+                case 'EDIT_USER':
+
+                    input.xodimtaxrirlash = true
+                    let c = { ...input }
                     setInput(c)
                     break;
-                case 'DELETE_USER' :
+                case 'DELETE_USER':
                     input.xodimochirish = true
-                    let d = {...input}
+                    let d = { ...input }
                     setInput(d)
                     break;
-                case 'ADD_ROLE' :
+                case 'ADD_ROLE':
                     input.lavozimqoshish = true
-                    let e = {...input}
+                    let e = { ...input }
                     setInput(e)
                     break;
-                case 'EDIT_ROLE' :
+                case 'EDIT_ROLE':
                     input.lavozimtaxrirlash = true
-                    let r = {...input}
+                    let r = { ...input }
                     setInput(r)
                     break;
-                case 'VIEW_ROLE' :
+                case 'VIEW_ROLE':
                     input.lavozimkorish = true
-                    let t = {...input}
+                    let t = { ...input }
                     setInput(t)
                     break;
-                case 'DELETE_ROLE' :
+                case 'DELETE_ROLE':
                     input.lavozimochirish = true
-                    let y = {...input}
+                    let y = { ...input }
                     setInput(y)
                     break;
-                case 'ADD_SUPPLIER' :
+                case 'ADD_SUPPLIER':
                     input.dillerqoshish = true
-                    let u = {...input}
+                    let u = { ...input }
                     setInput(u)
                     break;
-                case 'EDIT_SUPPLIER' :
+                case 'EDIT_SUPPLIER':
                     input.dillertaxrirlash = true
-                    let i = {...input}
+                    let i = { ...input }
                     setInput(i)
                     break;
-                case 'DELETE_SUPPLIER' :
+                case 'DELETE_SUPPLIER':
                     input.dillerochirish = true
-                    let p = {...input}
+                    let p = { ...input }
                     setInput(p)
                     break;
-                case 'ADD_CUSTOMER' :
+                case 'ADD_CUSTOMER':
                     input.mijozqoshish = true
-                    let o = {...input}
+                    let o = { ...input }
                     setInput(o)
                     break;
-                case 'EDIT_CUSTOMER' :
+                case 'EDIT_CUSTOMER':
                     input.mijoztaxrirlash = true
-                    let s = {...input}
+                    let s = { ...input }
                     setInput(s)
                     break;
-                case 'DELETE_CUSTOMER' :
+                case 'DELETE_CUSTOMER':
                     input.mijoztaxrirlash = true
-                    let f = {...input}
+                    let f = { ...input }
                     setInput(f)
                     break;
             }
@@ -515,20 +515,20 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
     }
 
     function saqla() {
-        if(input.name===""){
+        if (input.name === "") {
             input.namePlacholder = 'Lavozim nomini kiriting...'
             var b = document.getElementById('inputValudesion')
-            let a  = {...input}
+            let a = { ...input }
             setInput(a)
             b.classList.add('inputValudetion')
         }
-        else{
+        else {
             permission.push(input.xodimkorishinput, input.xodimqoshishinput, input.xodimtaxrirlashinput, input.xodimochirishinput, input.lavozimkorishinput
                 , input.lavozimqoshishinput, input.lavozimtaxrirlashinput, input.lavozimochirishinput, input.lang1input, input.lang2input, input.dillertaxrirlashinput,
                 input.dillerochirishinput, input.dillerqoshishinput, input.lang3input, input.lang4input, input.lang5input, input.lang6input, input.lang7input, input.lang8input,
                 input.lang9input, input.mijoztaxrirlashinput, input.mijozqoshishinput, input.mijozochirishinput)
-    
-            let a = {...permission}
+
+            let a = { ...permission }
             setpermission(a)
             console.log(permission);
             if (match.params.id === undefined) {
@@ -553,7 +553,7 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                 )
                 console.log('edit')
             }
-    
+
             getLavozim(users.businessId)
         }
     }
@@ -569,39 +569,35 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
             <div className="col-md-12">
                 <div className="row justify-content-center ">
                     <div className="l1 p-4 mt-5 col-sm-10 col-md-7 col-5 border">
-                        {/*{console.log(match.params.id)}*/}
                         <div>
-                            {/*{*/}
-                            {/*    console.log(input)*/}
-                            {/*}*/}
                             <label htmlFor={'l'}>Lavozim nomi</label>
                             <input type="text" className={'form-control mt-2'} id={'inputValudesion'} value={input.name} onChange={changename}
-                                   placeholder={input.namePlacholder}/>
+                                placeholder={input.namePlacholder} />
                             <div className="ruxsat mt-4">
                                 <h5>Ruxsatnomalar</h5>
                                 <label htmlFor={'ch'}>Barchasini belgilash</label>
                                 <input type="checkbox" checked={input.xBarchasinibelgilash} onChange={changexBarchasini}
-                                       style={{marginLeft: '10px', width: '15px', height: '15px'}} id={'ch'}/>
+                                    style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'ch'} />
                                 <div className={'mt-4'}>
                                     <input type="checkbox" checked={input.xodimkorish} onChange={changexodimkorish}
-                                           style={{width: '15px', height: '15px', marginTop: '4px'}} id={'kor'}/>
+                                        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'kor'} />
                                     <label htmlFor={'kor'}>Xodimlarni korish</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" id={'qosh'} checked={input.xodimqoshish}
-                                           onChange={changexodimqoshish}
-                                           style={{width: '15px', marginTop: '10px', height: '15px'}}/>
+                                        onChange={changexodimqoshish}
+                                        style={{ width: '15px', marginTop: '10px', height: '15px' }} />
                                     <label htmlFor={'qosh'}>Xodimlarni Qo`shish</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.xodimtaxrirlash}
-                                           onChange={changexodimtaxrirlash} id={'tax'}
-                                           style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                        onChange={changexodimtaxrirlash} id={'tax'}
+                                        style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                     <label htmlFor={'tax'}>Xodimlarni taxrirlash</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.xodimochirish} onChange={changexodimochirish}
-                                           id={'och'} style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                        id={'och'} style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                     <label htmlFor={'och'}>Xodimlarni o`chirish</label>
                                 </div>
                             </div>
@@ -613,28 +609,28 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                         <div className="ruxsat mt-4">
                             <label htmlFor={'chch'}>Barchasini belgilash</label>
                             <input type="checkbox" checked={input.lBarchasinibelgilash} onChange={changelBarchasini}
-                                   style={{marginLeft: '10px', width: '15px', height: '15px'}} id={'chch'}/>
+                                style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'chch'} />
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.lavozimkorish} onChange={changelavozimkorish}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'korr'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'korr'} />
                                 <label htmlFor={'korr'}>Lavozimni korish</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.lavozimqoshish} onChange={changelavozimqoshish}
-                                       id={'qoshLavozim'} style={{width: '15px', marginTop: '10px', height: '15px'}}/>
+                                    id={'qoshLavozim'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
                                 <label htmlFor={'qoshLavozim'}>Lavozim Qo`shish</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'taxLavozim'} checked={input.lavozimtaxrirlash}
-                                       onChange={changelavozitaxrirlash}
-                                       style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                    onChange={changelavozitaxrirlash}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                 <label htmlFor={'taxLavozim'}>Lavozimni taxrirlash</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'ochLavozim'} checked={input.lavozimochirish}
-                                       onChange={changelavozimochirish}
-                                       style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                    onChange={changelavozimochirish}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                 <label htmlFor={'ochLavozim'}>Lavozimni o`chirish</label>
                             </div>
                         </div>
@@ -651,34 +647,34 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
 
                                 <label htmlFor={'chDiller'}>Barchasini belgilash</label>
                                 <input type="checkbox" checked={input.tBarchasinibelgilash} onChange={changetBarchasi}
-                                       style={{marginLeft: '10px', width: '15px', height: '15px'}} id={'chDiller'}/>
+                                    style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'chDiller'} />
 
                                 <div className={'mt-4'}>
                                     <input type="radio" checked={input.lang1} onChange={changelang1} name={'radio'}
-                                           style={{width: '15px', height: '15px', marginTop: '4px'}} id={'korDiller'}/>
+                                        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'korDiller'} />
                                     <label htmlFor={'korDiller'}>Barcha dillerlarni ko'rish</label>
                                 </div>
                                 <div>
                                     <input type="radio" checked={input.lang2} onChange={changelang2} name={'radio'}
-                                           id={'qoshDiller'}
-                                           style={{width: '15px', marginTop: '10px', height: '15px'}}/>
+                                        id={'qoshDiller'}
+                                        style={{ width: '15px', marginTop: '10px', height: '15px' }} />
                                     <label htmlFor={'qoshDiller'}>view_own_supplier</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.dillerqoshish} onChange={changedillerqoshish}
-                                           id={'taxDiller'} style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                        id={'taxDiller'} style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                     <label htmlFor={'taxDiller'}>Dillerlarni qoshish</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.dillertaxrirlash}
-                                           onChange={changedillertaxrirlash} id={'ochDiller'}
-                                           style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                        onChange={changedillertaxrirlash} id={'ochDiller'}
+                                        style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                     <label htmlFor={'ochDiller'}>Dillerlarni taxrirlash</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.dillerochirish}
-                                           onChange={changedillerochirish} id={'och3'}
-                                           style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                        onChange={changedillerochirish} id={'och3'}
+                                        style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                     <label htmlFor={'och3'}>Dillerlarni o`chirish</label>
                                 </div>
 
@@ -692,71 +688,71 @@ function Taxrirlash({getLavozim, editLavozim, lavozimlar, saveLavozim, users, ma
                         <div className="ruxsat mt-4">
                             <label htmlFor={'ch1'}>Barchasini belgilash</label>
                             <input type="checkbox" checked={input.lang3} onChange={changemlang3}
-                                   style={{marginLeft: '10px', width: '15px', height: '15px'}} id={'ch1'}/>
+                                style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'ch1'} />
 
                             <div className={'mt-4'}>
                                 <input type="radio" checked={input.lang4} onChange={changemlang4} name={'r'}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'langC'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC'} />
                                 <label htmlFor={'langC'}>view_all_customer</label>
                             </div>
 
                             <div className={'mt-4'}>
                                 <input type="radio" checked={input.lang5} onChange={changemlang5} name={'r'}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'langC2'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC2'} />
                                 <label htmlFor={'langC2'}>view_own_customer</label>
                             </div>
 
                             <div className={'mt-4'}>
                                 <input type="radio" checked={input.lang6} onChange={changemlang6} name={'r'}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'langC3'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC3'} />
                                 <label htmlFor={'langC3'}>customer no_sell_month</label>
                             </div>
 
                             <div className={'mt-4'}>
                                 <input type="radio" checked={input.lang7} onChange={changemlang7} name={'r'}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'langthree'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langthree'} />
                                 <label htmlFor={'langthree'}>custm_with_no_sell_month</label>
                             </div>
 
                             <div className={'mt-4'}>
                                 <input type="radio" checked={input.lang8} onChange={changemlang8} name={'r'}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'langsix'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langsix'} />
                                 <label htmlFor={'langsix'}>customer_with_no_sell_6_month</label>
                             </div>
 
                             <div className={'mt-4'}>
                                 <input type="radio" checked={input.lang9} onChange={changemlang9} name={'r'}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'langyear'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langyear'} />
                                 <label htmlFor={'langyear'}>customer_with_no_sell_year</label>
                             </div>
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.mijozqoshish} onChange={changemijozqoshish}
-                                       style={{width: '15px', height: '15px', marginTop: '4px'}} id={'kor1'}/>
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'kor1'} />
                                 <label htmlFor={'kor1'}>Qoshish</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.mijoztaxrirlash} onChange={changemijoztaxrirlash}
-                                       id={'qosh3'} style={{width: '15px', marginTop: '10px', height: '15px'}}/>
+                                    id={'qosh3'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
                                 <label htmlFor={'qosh3'}>Taxrirlash</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'tax2'} checked={input.mijozochirish}
-                                       onChange={changemijozochrish}
-                                       style={{width: '15px', height: '15px', marginTop: '10px'}}/>
+                                    onChange={changemijozochrish}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                 <label htmlFor={'tax2'}>O`chirish</label>
                             </div>
                         </div>
 
                         {
                             input.name === "" ?
-                            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
-                            :
-                            <Link to={'/headerthird/lavozimlar'}>
-                            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
-                        </Link>
+                                <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
+                                :
+                                <Link to={'/headerthird/lavozimlar'}>
+                                    <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
+                                </Link>
                         }
-                        
+
 
                     </div>
                 </div>
