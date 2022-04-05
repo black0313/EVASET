@@ -82,12 +82,23 @@ function SavdoOynasi({
             qisqaeslatmaxarajat:'',
             sanaxarajat:'',
             eslatma:'',
-            xarajatturisavdo:''
+            xarajatturisavdo:'',
+            tulovturi:'',
+            tulovmiqdori:''
         }
     )
 
     function jamisummaxarajat(e){
         input.jamisummaxarajat = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function tulovturi(e){
+        input.tulovturi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }function tulovmiqdori(e){
+        input.tulovmiqdori = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -673,7 +684,11 @@ function SavdoOynasi({
         if (ushlabtur.length == 0){
             setActive(!active)
         }
+    }
 
+    const [turli,setturli] = useState(false)
+    function toggle9(){
+        setturli(!turli)
     }
 
     const componentRef = useRef();
@@ -1137,7 +1152,36 @@ function SavdoOynasi({
                             <button className={'btn btn-outline-primary'} onClick={kredit}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
-                    <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
+                    <button className={'col-6 btn btn-outline-warning  m-1'} onClick={toggle9}>Turli to`lovli</button>
+                    {console.log(PayReducer.paymethod+ ' dasfwef23f')}
+                    <Modal isOpen={turli} toggle={toggle9}>
+                        <ModalHeader>
+                            Turli tulov
+                        </ModalHeader>
+                        <ModalBody>
+                            <div className={'d-flex'}>
+                                <div className={'col-md-8'}>
+                                    <label htmlFor={'turi'}>To`lov turi</label>
+                                    <select className={'form-control'} value={input.tulovturi} onChange={tulovturi} id={'turi'}>
+                                        {
+                                            PayReducer.paymethod.map(item=>
+                                                input.tulovturi==''?input.tulovturi = item.id:
+                                                <option value={item.id}>{item.type}</option>)
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className={'col-md-4'}>
+                                    <label htmlFor={'miqdor'}>Tulov miqdori</label>
+                                    <input type="number" value={input.tulovmiqdori} onChange={tulovmiqdori} className={'form-control'}/>
+                                </div>
+                            </div>
+                        </ModalBody>
+                        <ModalFooter>
+                            <button className={'btn btn-outline-primary'}>Saqlash</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle9}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
                     <button onClick={qarz} className={'col-6 btn btn-info m-1'}>Qarzga sotish</button>
                     <Modal isOpen={activeqarz} toggle={qarz}>
                         <ModalHeader>
@@ -1259,7 +1303,7 @@ function SavdoOynasi({
     )
 }
 
-export default connect((kgreducer,XarajatlarReducer,XarajatTurlariReducer ,PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
+export default connect((kgreducer,PayReducer,XarajatlarReducer,XarajatTurlariReducer ,PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
     getSavdo,
     saveXarajatlar,
     getSavdolarHistory,
