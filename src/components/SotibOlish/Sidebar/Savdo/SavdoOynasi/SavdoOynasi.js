@@ -511,8 +511,13 @@ function SavdoOynasi({
                 setInput(a)
             }
         })
-    }
 
+        if (input.mahsulotnomi === ''){
+            setfiltermahsulot(false)
+        }else {
+            setfiltermahsulot(true)
+        }
+    }
 
     function UzcardTolov(naqd,type) {
 
@@ -587,7 +592,6 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
-
 
     function UzcardTolovQarz(naqd) {
             console.log(input.qarzamount)
@@ -750,6 +754,8 @@ function SavdoOynasi({
             setkarta(false)
         }
     }
+
+    const [filtermahsulot,setfiltermahsulot] = useState(false)
 
     const componentRef = useRef();
 
@@ -948,7 +954,16 @@ function SavdoOynasi({
                                 }
                             </select>
                             <input type="text" value={input.mahsulotnomi} onChange={mahsulotnomi}
+                                   autoFocus={true}
                                    placeholder={'Mahsulot nomi yoki shtrix kodini yozing'}/>
+
+                            {/*{*/}
+                            {/*    filtermahsulot?*/}
+                            {/*                MaxsulotlarRoyxariReducer.maxsulotlar.map(item=> <ul key={item.id}>*/}
+                            {/*                <li>{item.name}</li>*/}
+                            {/*            </ul>) :''*/}
+                            {/*}*/}
+
                             <button className={'addButton'} onClick={toggle5}>+</button>
                             <Modal isOpen={openModal} toggle={toggle5}>
                                 <ModalHeader>
@@ -1139,19 +1154,39 @@ function SavdoOynasi({
                         </div>
                         <div className={' maxsulotImgBlock'}>
 
+                            {/*{*/}
+                            {/*    MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}*/}
+                            {/*                                                           key={item.id}>*/}
+                            {/*        <div onClick={() => pushesh(item)}>*/}
+                            {/*            <img className={'hoverimg'}*/}
+                            {/*                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"*/}
+                            {/*                alt="yuq"/>*/}
+                            {/*            <h6>{item.name}</h6>*/}
+                            {/*            <p>{item.salePrice}</p>*/}
+                            {/*        </div>*/}
+                            {/*    </div>)*/}
+                            {/*}*/}
+
+
                             {
-                                MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}
+                                MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>{
+                                    if (input.mahsulotnomi === ''){
+                                        return val
+                                    }else if(val.name.toUpperCase().includes(input.mahsulotnomi.toUpperCase())){
+                                        return val
+                                    }
+                                }).
+                                map(item => <div className={'maxsuImgBox'}
                                                                                        key={item.id}>
                                     <div onClick={() => pushesh(item)}>
                                         <img className={'hoverimg'}
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
-                                            alt="yuq"/>
+                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
+                                             alt="yuq"/>
                                         <h6>{item.name}</h6>
                                         <p>{item.salePrice}</p>
                                     </div>
                                 </div>)
                             }
-
                         </div>
 
                     </div>
