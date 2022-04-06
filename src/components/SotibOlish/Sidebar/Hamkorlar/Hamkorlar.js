@@ -79,7 +79,7 @@ function Hamkorlar({active}) {
                 active2 ?<ul>
                     <li className={activeback?"b3":"b4"} onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/taminotchilar'}>Taminotchilar</Link></li>
                     {/*<li><Link className={'hamkorlar'} to={'/mijozlar'}>Mijozlar</Link></li>*/}
-                    <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Mijozlar guruxlari</Link></li>
+                    <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Barcha Mijozlar</Link></li>
                     {/*<li><Link className={'hamkorlar'} to={'/malumotTiklash'}>Malumotlarni tiklash</Link></li>*/}
                 </ul>:''
             }

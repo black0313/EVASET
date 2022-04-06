@@ -73,12 +73,6 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                 <p>Ko'rsatildi</p>
                                 <select name="" id="">
                                     <option value="">25</option>
-                                    <option value="">50</option>
-                                    <option value="">100</option>
-                                    <option value="">200</option>
-                                    <option value="">500</option>
-                                    <option value="">1,000</option>
-                                    <option value="">All</option>
                                 </select>
                             </div>
                             <div className="izlashBox2">

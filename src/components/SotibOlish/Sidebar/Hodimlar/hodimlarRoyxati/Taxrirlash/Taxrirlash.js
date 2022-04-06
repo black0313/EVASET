@@ -31,7 +31,10 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             parol: '',
             parolplace: 'Parolni kiriting',
             parolTakror:'',
-            parolTakrorplace:'Parolni kiriting'
+            parolTakrorplace:'Parolni kiriting',
+            barchacheck: '',
+            checkId:'',
+            checkIdinput: null,
         }
     );
 
@@ -39,6 +42,20 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         input.username = event.target.value
         let a = {...input}
         setInput(a)
+    }
+
+    function barchacheck(event){
+        input.barchacheck = event.target.checked
+        let a = {...input}
+        setInput(a)
+    }
+
+    function checkId(event){
+        {
+            branchreducer.branch.map(item=>{
+                console.log(branchreducer.branch + '  3das ')
+            })
+        }
     }
     function onchangefirstName(event){
         input.firstName = event.target.value
@@ -87,7 +104,6 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             }
         })
     }
-
 
     function saqla(){
 
@@ -174,16 +190,6 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     </div>
                 </div>
 
-                <div className="row d-flex mt-4 justify-content-between align-items-center">
-                    <div className="col-sm-12 col-4 ">
-                        <label htmlFor={'email'}>Email</label>
-                        <input type="text" onChange={onchangeemail} value={input.email} className={'form-control'} placeholder={'Email'}/>
-                    </div>
-                    <div className="col-md-8  d-flex pt-4 align-items-center">
-                        <label htmlFor={'faol'}>Faolmi ?</label>
-                        <input type="checkbox" style={{width:'20px',height:'20px'}} id={'faol'}/>
-                    </div>
-                </div>
                 <h5 className={'text-center mt-4'}>Lavozim vakolatlari</h5>
                 <div className="row mt-4 mb-5">
                     <div className="col-6 d-flex justify-content-center" >
@@ -215,25 +221,31 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                                     LavozimReducer.lavozimlar.map((item,index)=> <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
-                            <h5 className={'mt-3'}>Biriktirilgan baza</h5>
-                            <div className="col-md-12 d-flex justify-content-between">
-                                <div className="col-md-6 d-flex align-items-center">
-                                    <label htmlFor={'b1'}>Barcha bazalar</label>
-                                    <input type="checkbox"
-                                           style={{width:'20px',height:'20px',marginLeft:'20px'}}
-                                           id={'b1'}/>
-                                    {
-                                        branchreducer.branch.map(item=><div>
-                                            <label htmlFor={'b1'}>{item.name}</label>
-                                            <input type="checkbox"
-                                                   style={{width:'20px',height:'20px',marginLeft:'20px'}}
-                                                   id={'b1'}/>
+                            <h5 className={'mt-4 text-center'}>Biriktirilgan baza</h5>
+                            <table className={'table mt-2 border'}>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input checked={input.barchacheck} onChange={barchacheck} type="checkbox" />
+                                        </th>
+                                        <th>Bazalar</th>
+                                        <th>Adress</th>
+                                    </tr>
+                                </thead>
+                                {
+                                    console.log(branchreducer.branch)
+                                }
+                                <tbody>
+                                {
+                                    branchreducer.branch.map(item=><tr key={item.id}>
+                                        <td><input type="checkbox" checked={input.checkId} onChange={checkId}/></td>
+                                        <td>{item.name}</td>
+                                        <td>{item.address.city}</td>
+                                    </tr>)
+                                }
+                                </tbody>
+                            </table>
 
-                                        </div>)
-                                    }
-                                </div>
-                                {console.log(input)}
-                            </div>
                         </ModalBody>
                         <ModalFooter>
                             <button className={'btn btn-primary btnSaqlash'} onClick={toggle}>Saqlash</button>
@@ -242,7 +254,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     </Modal>
                 </div>
         </div>
-
     )
 }
+
 export default connect((LavozimReducer,XodimReducer,users,branchreducer),{getLavozim,saveLavozim,saveXodim,getXodim,editXodim,getbranch}) (Taxrirlash)
