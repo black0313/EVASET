@@ -31,7 +31,10 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             parol: '',
             parolplace: 'Parolni kiriting',
             parolTakror:'',
-            parolTakrorplace:'Parolni kiriting'
+            parolTakrorplace:'Parolni kiriting',
+            barchacheck: '',
+            checkId:'',
+            checkIdinput: null,
         }
     );
 
@@ -39,6 +42,16 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         input.username = event.target.value
         let a = {...input}
         setInput(a)
+    }
+
+    function barchacheck(event){
+        input.barchacheck = event.target.checked
+        let a = {...input}
+        setInput(a)
+    }
+
+    function checkId(event){
+
     }
     function onchangefirstName(event){
         input.firstName = event.target.value
@@ -87,7 +100,6 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             }
         })
     }
-
 
     function saqla(){
 
@@ -215,25 +227,29 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                                     LavozimReducer.lavozimlar.map((item,index)=> <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
-                            <h5 className={'mt-3'}>Biriktirilgan baza</h5>
-                            <div className="col-md-12 d-flex justify-content-between">
-                                <div className="col-md-6 d-flex align-items-center">
-                                    <label htmlFor={'b1'}>Barcha bazalar</label>
-                                    <input type="checkbox"
-                                           style={{width:'20px',height:'20px',marginLeft:'20px'}}
-                                           id={'b1'}/>
-                                    {
-                                        branchreducer.branch.map(item=><div>
-                                            <label htmlFor={'b1'}>{item.name}</label>
-                                            <input type="checkbox"
-                                                   style={{width:'20px',height:'20px',marginLeft:'20px'}}
-                                                   id={'b1'}/>
+                            <h5 className={'mt-4 text-center'}>Biriktirilgan baza</h5>
+                            <table className={'table mt-2 border'}>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input checked={input.barchacheck} onChange={barchacheck} type="checkbox" />
+                                        </th>
+                                        <th>Bazalar</th>
+                                        <th>Adress</th>
+                                    </tr>
+                                </thead>
 
-                                        </div>)
-                                    }
-                                </div>
-                                {console.log(input)}
-                            </div>
+                                <tbody>
+                                {
+                                    branchreducer.branch.map(item=><tr key={item.id}>
+                                        <td><input type="checkbox"/></td>
+                                        <td>{item.name}</td>
+                                        <td>{item.address.city}</td>
+                                    </tr>)
+                                }
+                                </tbody>
+                            </table>
+
                         </ModalBody>
                         <ModalFooter>
                             <button className={'btn btn-primary btnSaqlash'} onClick={toggle}>Saqlash</button>
@@ -242,7 +258,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     </Modal>
                 </div>
         </div>
-
     )
 }
+
 export default connect((LavozimReducer,XodimReducer,users,branchreducer),{getLavozim,saveLavozim,saveXodim,getXodim,editXodim,getbranch}) (Taxrirlash)

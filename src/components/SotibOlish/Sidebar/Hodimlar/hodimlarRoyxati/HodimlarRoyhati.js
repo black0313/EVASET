@@ -108,6 +108,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                 <li onClick={()=>setamallar(!amallar)} className={'li2'}>{amallar?item.amallar:item.amallar+ ' <-'}</li>
                             </ul>) : ''
                         }
+
                     </div>
                     <div className="izlashBox2">
                         <input type="text" onChange={search} value={inSearch.inputsearch} placeholder='Izlash...'/>

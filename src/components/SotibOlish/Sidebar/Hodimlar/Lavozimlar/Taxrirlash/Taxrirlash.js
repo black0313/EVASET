@@ -1263,7 +1263,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                         </Link>
                 }
             </div>
-
         </div>
     )
 }
