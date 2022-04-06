@@ -1238,19 +1238,30 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                             </div>
                         </div>
 
-                        {
-                            input.name === "" ?
-                                <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
-                                :
-                                <Link to={'/headerthird/lavozimlar'}>
-                                    <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
-                                </Link>
-                        }
+                        {/*{*/}
+                        {/*    input.name === "" ?*/}
+                        {/*        <button className={'btn btn-primary form-control mt-4 ml-4'} onClick={saqla}>Saqlash</button>*/}
+                        {/*        :*/}
+                        {/*        <Link to={'/headerthird/lavozimlar'}>*/}
+                        {/*            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>*/}
+                        {/*        </Link>*/}
+                        {/*}*/}
 
 
                     </div>
                 </div>
 
+                {
+                    input.name === "" ?
+                        <div style={{padding:'5px'}}>
+                            <button style={{width:'91%',marginLeft:'5%',}} className={'btn btn-primary form-control mt-4 ml-4'} onClick={saqla}>Saqlash</button>
+
+                        </div>
+                        :
+                        <Link to={'/headerthird/lavozimlar'}>
+                            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
+                        </Link>
+                }
             </div>
 
         </div>
