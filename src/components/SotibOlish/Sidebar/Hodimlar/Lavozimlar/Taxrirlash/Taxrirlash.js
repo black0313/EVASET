@@ -9,6 +9,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
 
     const [input, setInput] = useState(
         {
+            // xodimlar 
             name: '',
             namePlacholder: 'Lavozim nomi',
             xBarchasinibelgilash: '',
@@ -21,6 +22,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             xodimochirish: '',
             xodimochirishinput: null,
 
+            // lavozimlar
             lBarchasinibelgilash: '',
             lavozimkorish: '',
             lavozimkorishinput: null,
@@ -31,6 +33,51 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             lavozimochirish: '',
             lavozimochirishinput: null,
 
+            // xaridlar uchun
+            xaridBarchasinibelgilash: "",
+            xaridKorish: "",
+            xaridKorishInput: null,
+            xaridQoshish: "",
+            xaridQoshishInput: null,
+            xaridTaxrirlash: "",
+            xaridTaxrirlashInput: null,
+            xaridOchirish: "",
+            xaridOchirishInput: null,
+
+            // Baza
+            bazaBarchasinibelgilash: "",
+            bazaKorish: "",
+            bazaKorishInput: null,
+            bazaQoshish: "",
+            bazaQoshishInput: null,
+            bazaTaxrirlash: "",
+            bazaTaxrirlashInput: null,
+            bazaOchirish: "",
+            bazaOchirishInput: null,
+
+            //Xarajatlar
+            xarajatlarBarchasinibelgilash: "",
+            xarajatlarKorish: "",
+            xarajatlarKorishInput: null,
+            xarajatlarQoshish: "",
+            xarajatlarQoshishInput: null,
+            xarajatlarTaxrirlash: "",
+            xarajatlarTaxrirlashInput: null,
+            xarajatlarOchirish: "",
+            xarajatlarOchirishInput: null,
+
+            //Savdo
+            savdoBarchasinibelgilash: "",
+            savdoKorish: "",
+            savdoKorishInput: null,
+            savdoQoshish: "",
+            savdoQoshishInput: null,
+            savdoTaxrirlash: "",
+            savdoTaxrirlashInput: null,
+            savdoOchirish: "",
+            savdoOchirishInput: null,
+
+            //Diller
             tBarchasinibelgilash: '',
             lang1: '',
             lang1input: null,
@@ -43,6 +90,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             dillerochirish: '',
             dillerochirishinput: null,
 
+            //Mijoz
             mBarchasinibelgilash: '',
             lang3: '',
             lang3input: null,
@@ -160,8 +208,10 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         console.log(input)
     }
 
+
+
     function changelavozimqoshish(e) {
-        input.lavozimqoshish = "ADD_ROLE"
+        input.lavozimqoshish = e.target.checked
         let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
@@ -169,7 +219,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         } else {
             input.lavozimqoshishinput = ''
         }
-        console.log(input.lavozimqoshishinput)
 
     }
 
@@ -207,6 +256,247 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             input.lavozimochirishinput = ''
         }
         console.log(input.lavozimochirishinput)
+    }
+
+
+    // xaridlar funcsions
+    function xaridBarchaBelgilash(e) {
+        input.xaridBarchasinibelgilash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        xaridlarKorish(e)
+        changeXaridQoshish(e)
+        xaridTaxrirlashchane(e)
+        xaridlArOchirish(e)
+        console.log(input);
+    }
+
+
+
+    function xaridlarKorish(e) {
+        input.xaridKorish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xaridKorishInput = "VIEW_SHOPPING"
+        } else {
+            input.xaridKorishInput = ''
+        }
+    }
+
+    function changeXaridQoshish(e) {
+        input.xaridQoshish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xaridQoshishInput = "ADD_SHOPPING"
+        } else {
+            input.xaridQoshishInput = ''
+        }
+
+    }
+
+    function xaridTaxrirlashchane(e) {
+        input.xaridTaxrirlash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xaridTaxrirlashInput = "EDIT_SHOPPING"
+        } else {
+            input.xaridTaxrirlashInput = ''
+        }
+        console.log(input.lavozimtaxrirlashinput)
+    }
+
+    function xaridlArOchirish(e) {
+        input.xaridOchirish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xaridOchirishInput = "DELETE_SHOPPING"
+        } else {
+            input.xaridOchirishInput = ''
+        }
+
+    }
+
+    // Baza functions
+    function bazaBarchasiBelgilash(e) {
+        input.bazaBarchasinibelgilash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        bazaKorishChange(e)
+        bazaQoshishChange(e)
+        bazaTaxrirlashChange(e)
+        bazaOchirishlashChange(e)
+        console.log(input);
+    }
+
+    function bazaKorishChange(e) {
+        input.bazaKorish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.bazaKorishInput = "WIEW_BAZA"
+        } else {
+            input.bazaKorishInput = ''
+        }
+
+    }
+
+    function bazaQoshishChange(e) {
+        input.bazaQoshish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.bazaQoshishInput = "ADD_BAZA"
+        } else {
+            input.bazaQoshishInput = ''
+        }
+
+    }
+
+    function bazaTaxrirlashChange(e) {
+        input.bazaTaxrirlash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.bazaTaxrirlashInput = "EDIT_BAZA"
+        } else {
+            input.bazaTaxrirlashInput = ''
+        }
+
+    }
+
+    function bazaOchirishlashChange(e) {
+        input.bazaOchirish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.bazaOchirishInput = "DELETE_BAZA"
+        } else {
+            input.bazaOchirishInput = ''
+        }
+
+    }
+
+    // Xarajatlar functions
+    function xarajatBarchaBelgilashChange(e) {
+        input.xarajatlarBarchasinibelgilash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        xarajatKorishChange(e)
+        xarajatQoshishChange(e)
+        xarajatTaxrirlashChange(e)
+        xarajatOchirishChange(e)
+        console.log(input);
+    }
+
+    function xarajatKorishChange(e) {
+        input.xarajatlarKorish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xarajatlarKorishInput = "WIEW_OUTLAY"
+        } else {
+            input.xarajatlarKorishInput = ''
+        }
+
+    }
+    function xarajatQoshishChange(e) {
+        input.xarajatlarQoshish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xarajatlarQoshishInput = "ADD_OUTLAY"
+        } else {
+            input.xarajatlarQoshishInput = ''
+        }
+
+    }
+
+    function xarajatTaxrirlashChange(e) {
+        input.xarajatlarTaxrirlash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xarajatlarTaxrirlashInput = "EDIT_OUTLAY"
+        } else {
+            input.xarajatlarTaxrirlashInput = ''
+        }
+
+    }
+
+    function xarajatOchirishChange(e) {
+        input.xarajatlarOchirish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.xarajatlarOchirishInput = "DELETE_OUTLAY"
+        } else {
+            input.xarajatlarOchirishInput = ''
+        }
+
+    }
+
+    // Savdo functions
+    function savdoBarchaBelgilashChange(e) {
+        input.savdoBarchasinibelgilash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        savdoKorishChange(e)
+        savdoQoshishChange(e)
+        savdoTaxrirlashChange(e)
+        savdoOchirishChange(e)
+        console.log(input);
+    }
+
+    function savdoKorishChange(e) {
+        input.savdoKorish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.savdoKorishInput = "WIEW_TRADE"
+        } else {
+            input.savdoKorishInput = ''
+        }
+
+    }
+
+    function savdoQoshishChange(e) {
+        input.savdoQoshish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.savdoQoshishInput = "ADD_TRADE"
+        } else {
+            input.savdoQoshishInput = ''
+        }
+
+    }
+
+    function savdoTaxrirlashChange(e) {
+        input.savdoTaxrirlash = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.savdoTaxrirlashInput = "EDIT_TRADE"
+        } else {
+            input.savdoTaxrirlashInput = ''
+        }
+
+    }
+
+    function savdoOchirishChange(e) {
+        input.savdoOchirish = e.target.checked
+        let a = { ...input }
+        setInput(a)
+        if (e.target.checked === true) {
+            input.savdoOchirishInput = "DELETE_TRADE"
+        } else {
+            input.savdoOchirishInput = ''
+        }
+
     }
 
     function changetBarchasi(e) {
@@ -428,7 +718,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             }
 
         })
-        console.log(roleid)
     }
 
     function editl2(item) {
@@ -510,6 +799,86 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                     let f = { ...input }
                     setInput(f)
                     break;
+                case 'VIEW_SHOPPING':
+                    input.xaridKorish = true
+                    let j = { ...input }
+                    setInput(j)
+                    break;
+                case 'ADD_SHOPPING':
+                    input.xaridQoshish = true
+                    let k = { ...input }
+                    setInput(k)
+                    break;
+                case 'EDIT_SHOPPING':
+                    input.xaridTaxrirlash = true
+                    let l = { ...input }
+                    setInput(l)
+                    break;
+                case 'DELETE_SHOPPING':
+                    input.xaridOchirish = true
+                    let z = { ...input }
+                    setInput(z)
+                    break;
+                case 'WIEW_BAZA':
+                    input.bazaKorish = true
+                    let x = { ...input }
+                    setInput(x)
+                    break;
+                case 'ADD_BAZA':
+                    input.bazaQoshish = true
+                    let v = { ...input }
+                    setInput(v)
+                    break;
+                case 'EDIT_BAZA':
+                    input.bazaTaxrirlash = true
+                    let n = { ...input }
+                    setInput(n)
+                    break;
+                case 'DELETE_BAZA':
+                    input.bazaOchirish = true
+                    let m = { ...input }
+                    setInput(m)
+                    break;
+                case 'WIEW_OUTLAY':
+                    input.xarajatlarKorish = true
+                    let xk = { ...input }
+                    setInput(xk)
+                    break;
+                case 'ADD_OUTLAY':
+                    input.xarajatlarQoshish = true
+                    let xq = { ...input }
+                    setInput(xq)
+                    break;
+                case 'EDIT_OUTLAY':
+                    input.xarajatlarTaxrirlash = true
+                    let xt = { ...input }
+                    setInput(xt)
+                    break;
+                case 'DELETE_OUTLAY':
+                    input.xarajatlarOchirish = true
+                    let xo = { ...input }
+                    setInput(xo)
+                    break;
+                case 'WIEW_TRADE':
+                    input.savdoKorish = true
+                    let ss = { ...input }
+                    setInput(ss)
+                    break;
+                case 'ADD_TRADE':
+                    input.savdoQoshish = true
+                    let sq = { ...input }
+                    setInput(sq)
+                    break;
+                case 'EDIT_TRADE':
+                    input.savdoTaxrirlash = true
+                    let st = { ...input }
+                    setInput(sq)
+                    break;
+                case 'DELETE_TRADE':
+                    input.savdoOchirish = true
+                    let so = { ...input }
+                    setInput(so)
+                    break;
             }
         }
     }
@@ -526,7 +895,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             permission.push(input.xodimkorishinput, input.xodimqoshishinput, input.xodimtaxrirlashinput, input.xodimochirishinput, input.lavozimkorishinput
                 , input.lavozimqoshishinput, input.lavozimtaxrirlashinput, input.lavozimochirishinput, input.lang1input, input.lang2input, input.dillertaxrirlashinput,
                 input.dillerochirishinput, input.dillerqoshishinput, input.lang3input, input.lang4input, input.lang5input, input.lang6input, input.lang7input, input.lang8input,
-                input.lang9input, input.mijoztaxrirlashinput, input.mijozqoshishinput, input.mijozochirishinput)
+                input.lang9input, input.mijoztaxrirlashinput, input.mijozqoshishinput, input.mijozochirishinput, input.xaridKorishInput, input.xaridQoshishInput, input.xaridTaxrirlashInput, input.xaridOchirishInput, input.bazaKorishInput, input.bazaQoshishInput, input.bazaTaxrirlashInput, input.bazaOchirishInput, input.xarajatlarKorishInput, input.xarajatlarQoshishInput, input.xarajatlarTaxrirlashInput, input.xarajatlarOchirishInput, input.savdoKorishInput, input.savdoQoshishInput, input.savdoTaxrirlashInput, input.savdoOchirishInput)
 
             let a = { ...permission }
             setpermission(a)
@@ -587,7 +956,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                                     <input type="checkbox" id={'qosh'} checked={input.xodimqoshish}
                                         onChange={changexodimqoshish}
                                         style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                    <label htmlFor={'qosh'}>Xodimlarni Qo`shish</label>
+                                    <label htmlFor={'qosh'}>Xodimlarni qo`shish</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.xodimtaxrirlash}
@@ -619,7 +988,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                             <div>
                                 <input type="checkbox" checked={input.lavozimqoshish} onChange={changelavozimqoshish}
                                     id={'qoshLavozim'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                <label htmlFor={'qoshLavozim'}>Lavozim Qo`shish</label>
+                                <label htmlFor={'qoshLavozim'}>Lavozim qo`shish</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'taxLavozim'} checked={input.lavozimtaxrirlash}
@@ -632,6 +1001,135 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                                     onChange={changelavozimochirish}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
                                 <label htmlFor={'ochLavozim'}>Lavozimni o`chirish</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
+                        <label htmlFor={'l'}>Xaridlar uchun</label>
+                        <div className="ruxsat mt-4">
+                            <label htmlFor={'xabb'}>Barchasini belgilash</label>
+                            <input type="checkbox" checked={input.xaridBarchasinibelgilash} onChange={xaridBarchaBelgilash}
+                                style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'xabb'} />
+
+                            <div className={'mt-4'}>
+                                <input type="checkbox" checked={input.xaridKorish} onChange={xaridlarKorish}
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'xaridkorId'} />
+                                <label htmlFor={'xaridkorId'}>Xaridlarni korish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" checked={input.xaridQoshish} onChange={changeXaridQoshish}
+                                    id={'xaridQoshishL'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
+                                <label htmlFor={'xaridQoshishL'}>Xaridlar qo`shish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'xaridTaxrirI'} checked={input.xaridTaxrirlash}
+                                    onChange={xaridTaxrirlashchane}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'xaridTaxrirI'}>Xaridlarni taxrirlash</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'xaridOchirishId'} checked={input.xaridOchirish}
+                                    onChange={xaridlArOchirish}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'xaridOchirishId'}>Xaridlar o`chirish</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
+                        <label htmlFor={'l'}>Baza</label>
+                        <div className="ruxsat mt-4">
+                            <label htmlFor={'barchasiBazaId'}>Barchasini belgilash</label>
+                            <input type="checkbox" checked={input.bazaBarchasinibelgilash} onChange={bazaBarchasiBelgilash}
+                                style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'barchasiBazaId'} />
+
+                            <div className={'mt-4'}>
+                                <input type="checkbox" checked={input.bazaKorish} onChange={bazaKorishChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'bazakorId'} />
+                                <label htmlFor={'bazakorId'}>Bazalarni korish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" checked={input.bazaQoshish} onChange={bazaQoshishChange}
+                                    id={'bazaQoshishId'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
+                                <label htmlFor={'bazaQoshishId'}>Bazalar qo`shish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'bazaTaxId'} checked={input.bazaTaxrirlash}
+                                    onChange={bazaTaxrirlashChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'bazaTaxId'}>Bazalarni taxrirlash</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'bazaOchirId'} checked={input.bazaOchirish}
+                                    onChange={bazaOchirishlashChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'bazaOchirId'}>Bazalarni o'chirish</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
+                        <label htmlFor={'l'}>Xarajatlar</label>
+                        <div className="ruxsat mt-4">
+                            <label htmlFor={'xarjatBarchId'}>Barchasini belgilash</label>
+                            <input type="checkbox" checked={input.xarajatlarBarchasinibelgilash} onChange={xarajatBarchaBelgilashChange}
+                                style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'xarjatBarchId'} />
+
+                            <div className={'mt-4'}>
+                                <input type="checkbox" checked={input.xarajatlarKorish} onChange={xarajatKorishChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'xarajatKorishId'} />
+                                <label htmlFor={'xarajatKorishId'}>Xarajatlarni korish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" checked={input.xarajatlarQoshish} onChange={xarajatQoshishChange}
+                                    id={'xarajatQoshId'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
+                                <label htmlFor={'xarajatQoshId'}>Xarajatlar qo'shish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'xarajatTaxId'} checked={input.xarajatlarTaxrirlash}
+                                    onChange={xarajatTaxrirlashChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'xarajatTaxId'}>Xarajatlarni taxrirlash</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'xarajatOcirId'} checked={input.xarajatlarOchirish}
+                                    onChange={xarajatOchirishChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'xarajatOcirId'}>Xarajatlarni o`chirish</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
+                        <label htmlFor={'l'}>Savdo</label>
+                        <div className="ruxsat mt-4">
+                            <label htmlFor={'savdoBarId'}>Barchasini belgilash</label>
+                            <input type="checkbox" checked={input.savdoBarchasinibelgilash} onChange={savdoBarchaBelgilashChange}
+                                style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'savdoBarId'} />
+
+                            <div className={'mt-4'}>
+                                <input type="checkbox" checked={input.savdoKorish} onChange={savdoKorishChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'savdoKorId'} />
+                                <label htmlFor={'savdoKorId'}>Savdolarni ko'rish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" checked={input.savdoQoshish} onChange={savdoQoshishChange}
+                                    id={'savdoQoshId'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
+                                <label htmlFor={'savdoQoshId'}>Savdolarni qo`shish</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'savdoTaxId'} checked={input.savdoTaxrirlash}
+                                    onChange={savdoTaxrirlashChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'savdoTaxId'}>Savdolarni taxrirlash</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id={'savdoOchirId'} checked={input.savdoOchirish}
+                                    onChange={savdoOchirishChange}
+                                    style={{ width: '15px', height: '15px', marginTop: '10px' }} />
+                                <label htmlFor={'savdoOchirId'}>Savdolarni o`chirish</label>
                             </div>
                         </div>
                     </div>
