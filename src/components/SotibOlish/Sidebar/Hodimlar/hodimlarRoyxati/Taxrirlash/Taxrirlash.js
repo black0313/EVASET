@@ -51,7 +51,11 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
     }
 
     function checkId(event){
-
+        {
+            branchreducer.branch.map(item=>{
+                console.log(branchreducer.branch + '  3das ')
+            })
+        }
     }
     function onchangefirstName(event){
         input.firstName = event.target.value
@@ -238,11 +242,13 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                                         <th>Adress</th>
                                     </tr>
                                 </thead>
-
+                                {
+                                    console.log(branchreducer.branch)
+                                }
                                 <tbody>
                                 {
                                     branchreducer.branch.map(item=><tr key={item.id}>
-                                        <td><input type="checkbox"/></td>
+                                        <td><input type="checkbox" checked={input.checkId} onChange={checkId}/></td>
                                         <td>{item.name}</td>
                                         <td>{item.address.city}</td>
                                     </tr>)

@@ -11,12 +11,11 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.xodimlar = action.payload.object
-            console.log(action.payload.object);
-            console.log('getdeltetishladi')
+
         },
         savefrom: (state, action) => {
             state.xodimlar.unshift(action.payload)
-            console.log(action.payload)
+            toast.success('Xodim saqlandi')
             state.current=state.current+1
         },
         editfrom: (state, action) => {
@@ -25,11 +24,11 @@ const slice = createSlice({
                     item.login = action.payload.login
                 }
             })
+            toast.success('Xodim tahrirlandi')
             state.current+=1
         },
         deletefrom: (state, action) => {
-            console.log('ochirildi')
-            console.log(action.payload.object.id)
+            toast.success('Xodim o`chirildi')
             state.current+=1
         }
     }
