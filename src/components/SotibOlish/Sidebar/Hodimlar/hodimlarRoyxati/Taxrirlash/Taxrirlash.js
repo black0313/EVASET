@@ -190,16 +190,16 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     </div>
                 </div>
 
-                <div className="row d-flex mt-4 justify-content-between align-items-center">
-                    <div className="col-sm-12 col-4 ">
-                        <label htmlFor={'email'}>Email</label>
-                        <input type="text" onChange={onchangeemail} value={input.email} className={'form-control'} placeholder={'Email'}/>
-                    </div>
-                    <div className="col-md-8  d-flex pt-4 align-items-center">
-                        <label htmlFor={'faol'}>Faolmi ?</label>
-                        <input type="checkbox" style={{width:'20px',height:'20px'}} id={'faol'}/>
-                    </div>
-                </div>
+                {/*<div className="row d-flex mt-4 justify-content-between align-items-center">*/}
+                {/*    <div className="col-sm-12 col-4 ">*/}
+                {/*        <label htmlFor={'email'}>Email</label>*/}
+                {/*        <input type="text" onChange={onchangeemail} value={input.email} className={'form-control'} placeholder={'Email'}/>*/}
+                {/*    </div>*/}
+                {/*    <div className="col-md-8  d-flex pt-4 align-items-center">*/}
+                {/*        <label htmlFor={'faol'}>Faolmi ?</label>*/}
+                {/*        <input type="checkbox" style={{width:'20px',height:'20px'}} id={'faol'}/>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 <h5 className={'text-center mt-4'}>Lavozim vakolatlari</h5>
                 <div className="row mt-4 mb-5">
                     <div className="col-6 d-flex justify-content-center" >
