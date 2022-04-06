@@ -581,7 +581,11 @@ function SavdoOynasi({
 
         setxisob(0)
         setjamixisob(0)
-
+        toggle9()
+        input.tulovmiqdori = ''
+        input.tulovmiqdori2 = ''
+        let a = {...input}
+        setInput(a)
     }
 
 
@@ -739,8 +743,12 @@ function SavdoOynasi({
     }
 
     const [turli,setturli] = useState(false)
+
     function toggle9(){
         setturli(!turli)
+        if (karta == true){
+            setkarta(false)
+        }
     }
 
     const componentRef = useRef();
