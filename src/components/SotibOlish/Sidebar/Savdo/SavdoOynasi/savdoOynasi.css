@@ -18,6 +18,33 @@
     top: 0;
 
 }
+.shopping .plceholdersStylSavdoOyna::placeholder{
+    color: red;
+}
+#mod::placeholder{
+    color: red;
+}
+#soishNSO{
+    color: red;
+}
+#sn::placeholder{
+    color: red;
+}
+#shtrixId::placeholder{
+    color: red;
+}
+#soliqBnNId::placeholder{
+    color: red;
+}
+#foydaId::placeholder{
+    color: red;
+}
+#sotishNSoliqsizId::placeholder{
+    color: red;
+}
+#sotibOliNId::placeholder{
+    color: red;
+}
 .namepointer{
     transition: 0.4s all;
     cursor: pointer;
@@ -30,9 +57,9 @@
     cursor: pointer;
 }
 
-.shoppingmodal{
+/* .shoppingmodal{
 
-}
+} */
 .liniya{
     background: black;
     transform: rotateZ(90deg);
@@ -102,6 +129,15 @@
     cursor: pointer;
 }
 .savdoOynaContainers .savdoNavbar .navbarRigth button{
+    height: 32px;
+    padding: 0px 16px;
+    background-color: #FFFFFF;
+    border: 1px solid #9FA2B4;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: #9FA2B4;
+}
+.savdoOynaContainers .savdoNavbar .navbarLeft .bazaSelect1{
     height: 32px;
     padding: 0px 16px;
     background-color: #FFFFFF;
@@ -461,9 +497,9 @@
     .savdoOynaContainers .savBtnBox .qchiqish{
         width: 100%;
     }
-    .savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
+    /* .savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
         
-    }
+    } */
     .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox{
         width: 60%;
     }
@@ -548,9 +584,9 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1119.9px){
-    .savdoOynaContainers{
+    /* .savdoOynaContainers{
     }
     .savdoOynaContainers .savBtnBox button{
-    }
+    } */
 }
 
