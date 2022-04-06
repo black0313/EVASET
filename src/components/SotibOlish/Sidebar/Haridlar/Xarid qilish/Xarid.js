@@ -723,7 +723,6 @@ function Xarid({
                                                                 kgreducer.kg.map(item => <option
                                                                     value={item.id}>{item.name}</option>)
                                                             }
-                                                            {console.log(kgreducer.kg)}
                                                         </select>
                                                     </td>
                                                     <td>
@@ -767,8 +766,6 @@ function Xarid({
                             <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
                             <select name="" id={'tol'} className={'form-control mb-3'} value={input.tulovusuli}
                                 onChange={tulovusuli}>
-                                {/*<option value="1">Naqd</option>*/}
-                                {/*<option value="2">Pastik</option>*/}
                                 {
                                     PayReducer.paymethod.map(item =>
                                         input.tulovusuli == '' ? input.tulovusuli = item.id :

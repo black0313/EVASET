@@ -35,6 +35,7 @@ import TradeHistory, {getSavdolarHistory} from "../reducer/TradeHistory";
 import {toast} from "react-toastify";
 import XarajatlarReducer, {getXarajatlar, saveXarajatlar} from "../../Xarajatlar/reducer/XarajatlarReducer";
 import XarajatTurlariReducer, {getXarajatlarTurlari} from "../../Xarajatlar/reducer/XarajatTurlariReducer";
+// import {optional} from "yarn/lib/cli";
 function SavdoOynasi({
                          saveXarajatlar,
                          getXarajatlar,
@@ -82,7 +83,11 @@ function SavdoOynasi({
             qisqaeslatmaxarajat:'',
             sanaxarajat:'',
             eslatma:'',
-            xarajatturisavdo:''
+            xarajatturisavdo:'',
+            tulovturi:'',
+            tulovmiqdori:'',
+            tulovmiqdori2:'',
+            tulovturi2:''
         }
     )
 
@@ -91,6 +96,33 @@ function SavdoOynasi({
         let a = {...input}
         setInput(a)
     }
+    function tulovturi(e){
+        input.tulovturi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function tulovturi2(e){
+        input.tulovturi2 = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function tulovmiqdori(e){
+        input.tulovmiqdori = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function tulovmiqdori2(e){
+        input.tulovmiqdori2 = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    const [karta,setkarta] = useState(false)
+
+    function toggle10(){
+        setkarta(!karta)
+    }
+
     function xarajatturisavdo(e){
         input.xarajatturisavdo = e.target.value
         let a = {...input}
@@ -481,11 +513,6 @@ function SavdoOynasi({
         })
     }
 
-    function barchabrandlar(e) {
-        input.barchabrandlar = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
 
     function UzcardTolov(naqd,type) {
 
@@ -521,6 +548,46 @@ function SavdoOynasi({
         setjamixisob(0)
 
     }
+
+    function UzcardTolovturli(naqd,type) {
+
+        if (naqd == 4){
+            kredit()
+        }
+
+        arr1.map(item => {
+            if (baza !== '') {
+                saveSavdolar({
+                    customerId: input.baza,
+                    userId: users.businessId,
+                    productTraderDto: [
+                        {
+                            tradedQuantity: item.counter,
+                            productTradeId: item.id
+                        }],
+                    payDate: new Date().getDate(),
+                    branchId: item.branch.id,
+                    payMethodId: naqd,
+                    amountPaid: item.salePrice * item.counter,
+                    currencyId: 1,
+                    addressId: 1,
+                })
+            } else {
+                alert('MIJOZ QOSHIN')
+            }
+        })
+
+        setarr1([])
+
+        setxisob(0)
+        setjamixisob(0)
+        toggle9()
+        input.tulovmiqdori = ''
+        input.tulovmiqdori2 = ''
+        let a = {...input}
+        setInput(a)
+    }
+
 
     function UzcardTolovQarz(naqd) {
             console.log(input.qarzamount)
@@ -673,7 +740,15 @@ function SavdoOynasi({
         if (ushlabtur.length == 0){
             setActive(!active)
         }
+    }
 
+    const [turli,setturli] = useState(false)
+
+    function toggle9(){
+        setturli(!turli)
+        if (karta == true){
+            setkarta(false)
+        }
     }
 
     const componentRef = useRef();
@@ -1137,7 +1212,73 @@ function SavdoOynasi({
                             <button className={'btn btn-outline-primary'} onClick={kredit}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
-                    <button className={'col-6 btn btn-outline-warning  m-1'}>Turli to`lovli</button>
+                    <button className={'col-6 btn btn-outline-warning  m-1'} onClick={toggle9}>Turli to`lovli</button>
+
+                    <Modal isOpen={turli} toggle={toggle9}>
+                        <ModalHeader>
+                            Turli tulov
+                        </ModalHeader>
+                        <ModalBody>
+                            <div className={'d-flex'}>
+                                <div className={'col-md-8'}>
+                                    <label htmlFor={'turi'}>To`lov turi (NAQD)</label>
+                                    <select className={'form-control'} value={input.tulovturi} onChange={tulovturi} id={'turi'}>
+                                        {
+                                            PayReducer.paymethod.map(item=>
+                                                input.tulovturi==''?input.tulovturi = item.id:
+                                                <option value={item.id}>{item.type}</option>)
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className={'col-md-4'}>
+                                    <label htmlFor={'miqdor'}>Tulov (Naqd)</label>
+                                    <input type="number" value={input.tulovmiqdori} placeholder={'0'} onChange={tulovmiqdori} className={'form-control'}/>
+                                </div>
+                            </div>
+
+                            <div style={{width:'94%',marginLeft:'3%',marginTop:'15px'}}>
+                                <button className={'btn btn-outline-primary form-control'} onClick={toggle10}>Karta orqali to`lash</button>
+
+                            </div>
+
+                            {
+                                karta?
+                                    <div className={'d-flex mt-3'}>
+
+                                        <div className={'col-md-8'}>
+                                            <label htmlFor={'turi'}>Karta turini tanlang (PLASTIK)</label>
+                                            <select className={'form-control'} value={input.tulovturi2} onChange={tulovturi2} id={'turi'}>
+                                                {
+
+                                                    PayReducer.paymethod.map(item=>
+                                                        input.tulovturi2==''?input.tulovturi2 = item.id:
+                                                            <option value={item.id}>
+                                                                {item.type}
+                                                            </option>)
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className={'col-md-4'}>
+                                            <label htmlFor={'miqdor'}>Tulov (Plastik)</label>
+                                            <input type="number" value={input.tulovmiqdori2} placeholder={'0'} onChange={tulovmiqdori2} className={'form-control'}/>
+                                        </div>
+                                    </div>:''
+                            }
+                        </ModalBody>
+                        <ModalFooter>
+                            <button onClick={() => UzcardTolovturli(1,'Naqd')} className={'btn btn-outline-primary m-1'}>
+                                <ReactToPrint
+                                    trigger={() => <p className={'toprint '} style={{marginBottom:'0'}}>Saqlash</p>
+                                    }
+                                    content={() => componentRef.current}
+                                />
+                            </button>
+
+                            <button className={'btn btn-outline-primary'} onClick={toggle9}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
                     <button onClick={qarz} className={'col-6 btn btn-info m-1'}>Qarzga sotish</button>
                     <Modal isOpen={activeqarz} toggle={qarz}>
                         <ModalHeader>
@@ -1259,7 +1400,7 @@ function SavdoOynasi({
     )
 }
 
-export default connect((kgreducer,XarajatlarReducer,XarajatTurlariReducer ,PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
+export default connect((kgreducer,PayReducer,XarajatlarReducer,XarajatTurlariReducer ,PayReducer,TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer,branchreducer), {
     getSavdo,
     saveXarajatlar,
     getSavdolarHistory,
