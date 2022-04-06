@@ -1152,12 +1152,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                                         style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'korDiller'} />
                                     <label htmlFor={'korDiller'}>Barcha dillerlarni ko'rish</label>
                                 </div>
-                                <div>
-                                    <input type="radio" checked={input.lang2} onChange={changelang2} name={'radio'}
-                                        id={'qoshDiller'}
-                                        style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                    <label htmlFor={'qoshDiller'}>view_own_supplier</label>
-                                </div>
+
                                 <div>
                                     <input type="checkbox" checked={input.dillerqoshish} onChange={changedillerqoshish}
                                         id={'taxDiller'} style={{ width: '15px', height: '15px', marginTop: '10px' }} />
@@ -1188,41 +1183,42 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                             <input type="checkbox" checked={input.lang3} onChange={changemlang3}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'ch1'} />
 
-                            <div className={'mt-4'}>
-                                <input type="radio" checked={input.lang4} onChange={changemlang4} name={'r'}
-                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC'} />
-                                <label htmlFor={'langC'}>view_all_customer</label>
-                            </div>
+                {/*  0313  */}
+                            {/*<div className={'mt-4'}>*/}
+                            {/*    <input type="radio" checked={input.lang4} onChange={changemlang4} name={'r'}*/}
+                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC'} />*/}
+                            {/*    <label htmlFor={'langC'}>view_all_customer</label>*/}
+                            {/*</div>*/}
 
-                            <div className={'mt-4'}>
-                                <input type="radio" checked={input.lang5} onChange={changemlang5} name={'r'}
-                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC2'} />
-                                <label htmlFor={'langC2'}>view_own_customer</label>
-                            </div>
+                            {/*<div className={'mt-4'}>*/}
+                            {/*    <input type="radio" checked={input.lang5} onChange={changemlang5} name={'r'}*/}
+                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC2'} />*/}
+                            {/*    <label htmlFor={'langC2'}>view_own_customer</label>*/}
+                            {/*</div>*/}
 
-                            <div className={'mt-4'}>
-                                <input type="radio" checked={input.lang6} onChange={changemlang6} name={'r'}
-                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC3'} />
-                                <label htmlFor={'langC3'}>customer no_sell_month</label>
-                            </div>
+                            {/*<div className={'mt-4'}>*/}
+                            {/*    <input type="radio" checked={input.lang6} onChange={changemlang6} name={'r'}*/}
+                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC3'} />*/}
+                            {/*    <label htmlFor={'langC3'}>customer no_sell_month</label>*/}
+                            {/*</div>*/}
 
-                            <div className={'mt-4'}>
-                                <input type="radio" checked={input.lang7} onChange={changemlang7} name={'r'}
-                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langthree'} />
-                                <label htmlFor={'langthree'}>custm_with_no_sell_month</label>
-                            </div>
+                            {/*<div className={'mt-4'}>*/}
+                            {/*    <input type="radio" checked={input.lang7} onChange={changemlang7} name={'r'}*/}
+                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langthree'} />*/}
+                            {/*    <label htmlFor={'langthree'}>custm_with_no_sell_month</label>*/}
+                            {/*</div>*/}
 
-                            <div className={'mt-4'}>
-                                <input type="radio" checked={input.lang8} onChange={changemlang8} name={'r'}
-                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langsix'} />
-                                <label htmlFor={'langsix'}>customer_with_no_sell_6_month</label>
-                            </div>
+                            {/*<div className={'mt-4'}>*/}
+                            {/*    <input type="radio" checked={input.lang8} onChange={changemlang8} name={'r'}*/}
+                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langsix'} />*/}
+                            {/*    <label htmlFor={'langsix'}>customer_with_no_sell_6_month</label>*/}
+                            {/*</div>*/}
 
-                            <div className={'mt-4'}>
-                                <input type="radio" checked={input.lang9} onChange={changemlang9} name={'r'}
-                                    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langyear'} />
-                                <label htmlFor={'langyear'}>customer_with_no_sell_year</label>
-                            </div>
+                            {/*<div className={'mt-4'}>*/}
+                            {/*    <input type="radio" checked={input.lang9} onChange={changemlang9} name={'r'}*/}
+                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langyear'} />*/}
+                            {/*    <label htmlFor={'langyear'}>customer_with_no_sell_year</label>*/}
+                            {/*</div>*/}
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.mijozqoshish} onChange={changemijozqoshish}
