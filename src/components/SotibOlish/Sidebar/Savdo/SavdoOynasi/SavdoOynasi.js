@@ -957,7 +957,6 @@ function SavdoOynasi({
                         <p className={"d-flex justify-content-between"}> <strong>Subtotal:</strong>  {jamixisob} so'm</p>
 
                         <p className={"d-flex justify-content-between"}> <strong>Total:</strong>  {jamixisob} so'm</p>
-
                     </div>
                 </div>
 

@@ -48,11 +48,18 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
             familiyasi: '',
             inputsearch: '',
             tID: '',
+            taminotturi:''
         },
     );
 
     function changeizlash(e) {
         input.inputsearch = e.target.value
+        let a = {...input}
+        setInput(a)
+        console.log(input.inputsearch)
+    }
+ function taminotturi(e) {
+        input.taminotturi = e.target.value
         let a = {...input}
         setInput(a)
         console.log(input.inputsearch)
@@ -129,21 +136,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     }
 
     function saqla() {
-        // if(input.idraqam === ""){
-        //     input.idplaceholder = "ID kiriting..."
-        //     var b = document.getElementById('idRaqam')
-        //     let a = {...input}
-        //     setInput(a)
-        //     console.log(input);
-        //     b.classList.add('pcolor')
-        // }
-        //  if(input.login === ""){
-        //     input.loginplaceholder = "Ma'lumot kiriting..."
-        //     var b = document.getElementById('log1')
-        //     let a ={...input}
-        //     setInput(a)
-        //     b.classList.add('pcolor')
-        // }
+
         if (input.ismi === "" || input.telegram === "" || input.familiyasi === "") {
             input.ismplaceholder = "Ism kiriting..."
             var b = document.getElementById('ism')
@@ -157,21 +150,6 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
             c.classList.add('pcolor')
             d.classList.add('pcolor')
         }
-            // else if(input.telegram === ""){
-            //     input.telegramLinkPlaceholder = "Link kiriting..."
-            //     var b = document.getElementById('telegram')
-            //     let a = {...input}
-            //     setInput(a)
-            //     b.classList.add('pcolor')
-            // }
-            // else if(input.familiyasi === ""){
-            //     input.telefonRaqamPlaceholder = "Telefon raqam kiriting..."
-            //     var b = document.getElementById('telefon')
-            //     let a = {...input}
-            //     setInput(a)
-            //     b.classList.add('pcolor')
-        // }
-
 
         else {
 
@@ -192,7 +170,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                     name: input.ismi,
                     phoneNumber: input.familiyasi,
                     telegram: input.telegram,
-                    supplierType: '',
+                    supplierType: input.taminotturi,
                     businessId: 1,
                 })
                 console.log('save')
@@ -296,7 +274,6 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                     <div className="table-responsive">
                         <table className='table table-striped table-bordered mt-4'>
                             <thead>
-                            {/*<tr>*/}
                             {
                                 headlist.map(item => <tr key={item.id}>
                                     <th>T/R</th>
@@ -381,26 +358,19 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                             Yangi Qo`shish
                         </ModalHeader>
                         <ModalBody>
-                            <label htmlFor="">Taminotchi turi</label>
-                            <select name="" id="" className={'p-1'} style={{marginLeft: '20px'}}>
-                                <option value="">Tanlash</option>
-                                <option value="">Taminotchilar</option>
-                                <option value="">Mijozlar</option>
-                                <option value="">(ikkisi ham) Taminotchi ha Mijoz</option>
-                            </select>
-                            <div className="in d-flex align-items-center justify-content-sm-around mt-3">
-                                <input type="radio" checked={input.langv1} onChange={changelangv1} name={'radio'}
-                                       id={'in1'}/>
-                                <label htmlFor={'in1'}>
-                                    lang_v1.induvidial
-                                </label>
-                                <input type="radio" checked={input.dukon} onChange={changedukon} name={'radio'}
-                                       id={'in2'}/>
-                                <label htmlFor={'in2'}>
-                                    Do`kon
-                                </label>
+                            <div className={'d-flex justify-content-between'}>
+                                <div className={'col-md-6'}>
+                                    <label htmlFor="">Businnes Id</label>
+                                    <select name="" id="" className={'form-control'} >
+                                        <option value="">Tanlash</option>
+                                    </select>
+                                </div>
+                                <div className="in col-md-6">
+                                    <label htmlFor={'turi'}>Taminotchi turi</label>
+                                    <input type="text" value={input.taminotturi} onChange={taminotturi} className={'form-control'} placeholder={'taminot turi'}/>
+                                </div>
                             </div>
-                            <label htmlFor={'idRaqam'}>ID Raqami</label>
+                            <label htmlFor={'idRaqam'} className={'mt-3'}>ID Raqami</label>
                             <input value={input.idraqam} onChange={changeidraqam} type="text" id={'idRaqam'}
                                    placeholder={input.idplaceholder} className={'form-control'}/>
                             lang_v1.leave_empty_to_autogenerate

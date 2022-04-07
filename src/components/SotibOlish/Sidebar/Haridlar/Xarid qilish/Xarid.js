@@ -17,7 +17,7 @@ import branchreducer, { getbranch } from "../../../../../reducer/branchreducer";
 import Tolovreducer from "../../../../../reducer/tolovreducer";
 import MaxsulotlarRoyxariReducer, { getMaxsulotRuyxati } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import kgreducer, { getkg } from "../../../../../reducer/kgreducer";
-import { lineHeight } from '@mui/system';
+// import { lineHeight } from '@mui/system';
 import PayReducer, { getPay } from "../../../../../reducer/PayReducer";
 
 function Xarid({
@@ -112,20 +112,6 @@ function Xarid({
     const [jamixisob, setjamiXisob] = useState(0)
 
     function diller(e) {
-        // if (input.diller === ''){
-        //     // TaminotReducer.taminot.map(item=> input.diller = 1 )
-        //     // let a = {...input}
-        //     // setInput(a)
-        //     input.diller = TaminotReducer.taminot[0]
-        //     let a = {...input}
-        //     setInput(a)
-        //     console.log(input.diller+' s2/')
-        // }else {
-        //     input.diller = e.target.value
-        //     let a = {...input}
-        //     setInput(a)
-        //     console.log(input.diller+ 's7')
-        // }
 
         input.diller = e.target.value
         let a = { ...input }
@@ -449,7 +435,7 @@ function Xarid({
                             branchId: input.baza,
                             date: input.xaridsanasi,
                             description: input.qisqaeslatma,
-                            deliveryPrice: input.yetkazibberishnarxi2,
+                            deliver : input.yetkazibberishnarxi2,
                             purchaseProductsDto: [
                                 {
                                     purchasedQuantity: item.quantity,
@@ -601,8 +587,7 @@ function Xarid({
 
                             }
                         </div>
-                                    {console.log
-                                (XaridReducer.xaridlar)}
+                                    {console.log(XaridReducer.xaridlar + ' OOOOOOO')}
                         <div className="col-3 col-sm-12 ">
                             <label htmlFor={'status'}>Xarid statusi</label>
                             <select name="" value={input.xaridstatusi} onChange={xaridstatusi}

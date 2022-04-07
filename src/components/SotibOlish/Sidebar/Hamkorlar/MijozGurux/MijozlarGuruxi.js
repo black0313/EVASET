@@ -22,7 +22,6 @@ function Mijozlarguruxi({
                             saveMijozGurux,
                             editMijozGurux,
                             deleteMijozGurux,
-                            mijozgurux,
                             users,
                             MijozGuruxReducer
                         }) {
@@ -197,11 +196,11 @@ function Mijozlarguruxi({
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
             <div className="textHeaderMIG">
-                <h2>Mijozlar guruxlari</h2>
+                <h2 className={'text-center'}>Barcha Mijozlar</h2>
             </div>
             <div className="rowStyleMIG">
                 <div className="qoshishMIG">
-                    <h5>Barcha mijozlar guruxlari</h5>
+                    <h5>Barcha mijozlar</h5>
                     <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>
                 </div>
 
@@ -257,7 +256,7 @@ function Mijozlarguruxi({
                             </tr>)
                         }
                         </thead>
-                        {console.log(MijozGuruxReducer.mijozgurux)}
+
                         <tbody>
                         {
                             MijozGuruxReducer.mijozgurux.filter(val => {
