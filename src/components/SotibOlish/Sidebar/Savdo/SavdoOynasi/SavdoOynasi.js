@@ -822,10 +822,29 @@ function SavdoOynasi({
                     date: input.sanaxarajat
                 }
             )
+
+            setInput(
+                {
+                    xarajatturisavdo:"",
+                    jamisummaxarajat:"",
+                    bazaxarajat:"",
+                    qisqaeslatmaxarajat:"",
+                    sanaxarajat:""
+
+                }
+            )
             toggle7()
         }
         else {
-
+            setPlaceholders(
+                {
+                    xqBazalaceholder:"Baza tanlang!",
+                    xqSanaPlaceholder:"Sana tanlang!",
+                    xqQisqaEslatmaPlaceholder:"Ma'lumot kiriting!",
+                    xqXarajatTuriPlaceholder:"Xarajat turini tanlang!",
+                    xqJamiSummaPlaceholder:"Ma'lumot kiritilmadi!"
+                }
+            )
         }
 
     }
@@ -976,15 +995,25 @@ function SavdoOynasi({
                                                         <option value={item.id}>{item.name}</option>)
                                             }
                                         </select>
+                                        {
+                                            input.bazaxarajat ? ""
+                                            :
+                                            <p className='pStyle'>{placeholders.xqBazalaceholder}</p>
+                                        }
 
                                         <label htmlFor={'q'}>Qisqa eslatma</label>
-                                        <textarea id={'q'} cols="5" rows="3" className={'form-control'} value={input.qisqaeslatmaxarajat} onChange={qisqaeslatmaxarajat}> </textarea>
+                                        <textarea id={'q'} cols="5" rows="3" className={'form-control'} value={input.qisqaeslatmaxarajat} onChange={qisqaeslatmaxarajat} placeholder={placeholders.xqQisqaEslatmaPlaceholder}> </textarea>
                                         <label htmlFor={'tot'}>Jami summa</label>
-                                        <input type="number" className={'form-control'} value={input.jamisummaxarajat} onChange={jamisummaxarajat} />
+                                        <input type="number" id='JamPlacID' className={'form-control'} value={input.jamisummaxarajat} placeholder={placeholders.xqJamiSummaPlaceholder} onChange={jamisummaxarajat} />
                                     </div>
                                     <div className="col-md-6">
                                         <label htmlFor={'sana'}>Sana</label>
-                                        <input type="date" value={input.sanaxarajat} onChange={sanaxarajat} className={'form-control'} />
+                                        <input  type="date" value={input.sanaxarajat} onChange={sanaxarajat} className={'form-control'} />
+                                        {
+                                            input.sanaxarajat ? ""
+                                            :
+                                            <p className='pStyle'>{placeholders.xqSanaPlaceholder}</p>
+                                        }
                                         <label htmlFor={'xturi'} className={'mt-3'}>Xarajat turi</label>
 
                                         <select name={'xturi'} value={input.xarajatturisavdo} onChange={xarajatturisavdo} className={'form-control'}>
@@ -997,6 +1026,11 @@ function SavdoOynasi({
                                                         </option>)
                                             }
                                         </select>
+                                        {
+                                            input.xarajatturisavdo ? ""
+                                            :
+                                            <p className='pStyle'>{placeholders.xqQisqaEslatmaPlaceholder}</p>
+                                        }
                                         <label className={'mt-3'} htmlFor={'xqildi'}>Xarajat qildi</label>
                                         <select id={'xqildi'} className={'form-control'}>
                                             <option value={'Tanlash'}>Tanlash</option>

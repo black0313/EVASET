@@ -45,6 +45,18 @@
 #sotibOliNId::placeholder{
     color: red;
 }
+#q::placeholder{
+    color: red;
+}
+#JamPlacID::placeholder{
+    color: red;
+}
+.sana::placeholder{
+    color: red;
+}
+.pStyle{
+    color: red;
+}
 .namepointer{
     transition: 0.4s all;
     cursor: pointer;
