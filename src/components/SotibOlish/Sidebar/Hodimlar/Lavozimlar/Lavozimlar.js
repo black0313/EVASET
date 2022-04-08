@@ -63,62 +63,75 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                     <div className="rowStyleL">
                         <div className="qoshish">
                             <h5>Barcha lavozimlar</h5>
-                            <Link to={'/headerthird/lavozimlar/taxrirlash'}>
-                                <button className='btn btn-primary'>+Qo'shish</button>
-                            </Link>
+                            {
+                                users.addrole ? <Link to={'/headerthird/lavozimlar/taxrirlash'}>
+                                    <button className='btn btn-primary'>+Qo'shish</button>
+                                </Link>:''
+                            }
+
                         </div>
 
-                        <div className="izlashL">
-                            <div className="izlashLBox1">
-                                <p>Ko'rsatildi</p>
-                                <select name="" id="">
-                                    <option value="">25</option>
-                                </select>
-                            </div>
-                            <div className="izlashBox2">
-                                <input type="text" value={inSearch2.inputputsearch2} onChange={search} placeholder='Izlash...'/>
-                            </div>
-                        </div>
-                        <div className="table-responsive">
-                            <table className='table table-striped table-bordered mt-4'>
-                                <thead>
-                                <tr>
-                                    <th>T/R</th>
-                                    <th>Lavozimlar</th>
-                                    <th>Amal</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    LavozimReducer.lavozimlar.filter(val => {
-                                    if (inSearch2.inputputsearch2 === '') {
-                                        return val
-                                    } else if (val.name.toUpperCase().includes(inSearch2.inputputsearch2.toUpperCase())) {
-                                        return val
-                                    }
-                                }).map((item,index) => <tr key={item.id}>
-                                        <td>{index+1}</td>
-                                    <td>{item.name}</td>
-                                    <td>
-                                        <Link to={'/headerthird/lavozimlar/taxrirlash/'+item.id}>
-                                            <button className='taxrirlash' ><img src={Edit} alt=""/> Taxrirlash</button>
-                                        </Link>
-                                        <button className='ochirish' onClick={() => deletel(item)}><img src={Delete} alt=""/> O'chirish
-                                        </button>
-                                    </td>
-                                </tr>)
-                                }
+                        {
+                            users.viewrole ? <div>
+                                <div className="izlashL">
+                                    <div className="izlashLBox1">
+                                        <p>Ko'rsatildi</p>
+                                        <select name="" id="">
+                                            <option value="">25</option>
+                                        </select>
+                                    </div>
+                                    <div className="izlashBox2">
+                                        <input type="text" value={inSearch2.inputputsearch2} onChange={search} placeholder='Izlash...'/>
+                                    </div>
+                                </div>
+                                <div className="table-responsive">
+                                    <table className='table table-striped table-bordered mt-4'>
+                                        <thead>
+                                        <tr>
+                                            <th>T/R</th>
+                                            <th>Lavozimlar</th>
+                                            <th>Amal</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            LavozimReducer.lavozimlar.filter(val => {
+                                                if (inSearch2.inputputsearch2 === '') {
+                                                    return val
+                                                } else if (val.name.toUpperCase().includes(inSearch2.inputputsearch2.toUpperCase())) {
+                                                    return val
+                                                }
+                                            }).map((item,index) => <tr key={item.id}>
+                                                <td>{index+1}</td>
+                                                <td>{item.name}</td>
+                                                <td>
+                                                    {
+                                                        users.editrole ?   <Link to={'/headerthird/lavozimlar/taxrirlash/'+item.id}>
+                                                            <button className='taxrirlash' ><img src={Edit} alt=""/> Taxrirlash</button>
+                                                        </Link>:''
+                                                    }
+                                                    {
+                                                        users.deleterole ?<button className='ochirish' onClick={() => deletel(item)}><img src={Delete} alt=""/> O'chirish
+                                                        </button>:''
+                                                    }
 
-                                </tbody>
-                            </table>
-                        </div>
+                                                </td>
+                                            </tr>)
+                                        }
 
-                        <p>Ko'rsatildi 1 ta sahifa 2 va yana 2 ta sahifa bor</p>
-                        <div className='sahifalar'>
-                            <button>Ortga</button>
-                            <button>1</button>
-                            <button>Oldinga</button>
-                        </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <p>Ko'rsatildi 1 ta sahifa 2 va yana 2 ta sahifa bor</p>
+                                <div className='sahifalar'>
+                                    <button>Ortga</button>
+                                    <button>1</button>
+                                    <button>Oldinga</button>
+                                </div>
+                            </div>:''
+                        }
+
                     </div>
                 </div>
     )

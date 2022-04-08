@@ -15,6 +15,15 @@ export const slice = createSlice({
         linksavdooynasi:false,
         error:false,
         rememberme:false,
+        adduser:false,
+        edituser:false,
+        viewuser:false,
+        viewuseradmin:false,
+        deleteuser:false,
+        addrole:false,
+        editrole:false,
+        viewrole:false,
+        deleterole:false
     },
     reducers: {
         save: (state, action) => {
@@ -25,12 +34,44 @@ export const slice = createSlice({
                 state.users = action.payload.object
                 state.businessId=action.payload.object.business.id
                 localStorage.setItem('tokenname',action.payload.message)
+
+                    state.users.role.permissions.map(item=>{
+                    switch (item){
+                        case "ADD_USER":;
+                            state.adduser=true
+                            break;
+                        case "EDIT_USER":;
+                            state.edituser=true
+                            break;
+                        case "VIEW_USER":;
+                            state.viewuser=true
+                            break;
+                        case "DELETE_USER":;
+                            state.deleteuser=true
+                            break;
+                        case "VIEW_USER_ADMIN":;
+                            state.viewuser=true
+                            break;
+                        case "ADD_ROLE":;
+                            state.addrole=true
+                            break;
+                        case "EDIT_ROLE":;
+                            state.editrole=true
+                            break;
+                        case "VIEW_ROLE":;
+                            state.viewrole=true
+                            break;
+                        case "DELETE_ROLE":;
+                            state.deleterole=true
+                            break;
+
+                    }
+                })
             }
             else{
                 state.error=true
-                console.log('herh')
                 toast.info('parol yoki login xato')
-                console.log('oeje')
+
             }
 
         },
