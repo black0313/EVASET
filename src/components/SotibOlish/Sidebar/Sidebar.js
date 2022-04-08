@@ -76,18 +76,10 @@ function Sidebar({functionreducer,active,users}) {
 
                         </div>
 
-                        {
-                            adduser && addrole ?  <Hodimlar/> :''
-                        }
-                        {
-                            addsupplier  ?  <Hamkorlar/> :''
-                        }
+
+                        <Hodimlar/>
+                        <Hamkorlar/>
                         <Maxsulotlar/>
-                        {/*{*/}
-                        {/*       xaridruyxat?<div className={'hhh'}>*/}
-                        {/*           <div className={'hhh2'}><Haridlar/></div>*/}
-                        {/*       </div>:''*/}
-                        {/*}*/}
                         <Haridlar/>
                         <Savdo/>
                         <Baza/>

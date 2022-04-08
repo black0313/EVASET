@@ -23,7 +23,7 @@ import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import tolovreducer, {gettolovholati} from "../../../../../reducer/tolovreducer";
 
-function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati,tolovreducer, branchreducer,getbranch,getXarid2, deleteXarid, saveXarid,XaridReducer,TaminotReducer,users}) {
+function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovreducer, branchreducer,getbranch,getXarid2, deleteXarid, saveXarid,XaridReducer,TaminotReducer,users}) {
 
     const [input, setInput] = useState(
         {
@@ -94,8 +94,6 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
         getTaminot(users.businessId)
         getbranch(users.businessId)
         gettolovholati(users.businessId)
-        getXarid4(users.businessId)
-
     },[XaridReducer.current])
 
     const [sana3,setsana3]= useState(true)
@@ -290,7 +288,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,getXarid4,gettolovholati
                                 } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
                                     return val
                                 }
-                            }).map((item,index) => <tr key={item.id}>
+                            }).map((item,index) => <tr key={index}>
                                 <td>{index+1}</td>
                                 {
                                     sana3?<td>{item.date}</td>:''

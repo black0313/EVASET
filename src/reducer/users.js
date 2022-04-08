@@ -18,6 +18,7 @@ export const slice = createSlice({
     },
     reducers: {
         save: (state, action) => {
+
             if (action.payload.success===true){
                 state.linkhome=!state.linkhome
                 state.linkheader=!state.linkheader

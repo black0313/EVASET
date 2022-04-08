@@ -9,6 +9,7 @@ import {active} from "../../../reducer/functionreducer";
 import Calculator from "./Calculator/Calculator";
 import users from "../../../reducer/users";
 import {Link} from "react-router-dom";
+import Imagecom from "../../Imagecom";
 
 function Header({active,sidebarfunc,users}) {
 
@@ -57,11 +58,8 @@ function Header({active,sidebarfunc,users}) {
                     </div>
                     {console.log(users.users)}
                     <div className="imgUserBox">
-                        {/*<div className="imgUser">*/}
-                        {/*    /!*<img src={rasm.pic} alt=""/>*!/*/}
-                        {/*</div>*/}
                         <div className="iiii ">
-                            <img src={rasm.pic} className={'img-fluid'} alt=""/>
+                            <Imagecom id={users.users?.photo?.id}/>
                         </div>
                         <Link to={'/headerthird/profil'} > <img src={Arrow} alt="" /> </Link>
                     </div>    

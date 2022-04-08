@@ -1,4 +1,6 @@
 import './foydaZarar.css'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 import {connect} from "react-redux";
 import {useEffect, useState} from "react";
 import FoydaZararReducer, {
@@ -13,6 +15,8 @@ import MaxsulotlarRoyxariReducer, {
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import { DateRangePicker } from 'react-date-range';
+import {addDays} from "date-fns";
 
 function FoydaZarar({
                         getFoydaZarar,
@@ -54,27 +58,9 @@ function FoydaZarar({
         }
     }
 
-    function aniqsananibelgilash(e) {
-        if (e.target.value == 1) {
-            const bugun = parseInt(new Date().getFullYear()) + "-" + parseInt(new Date().getMonth() + 1) + '-' + parseInt(new Date().getDate())
-            const bugun2 = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + '-' + (new Date().getDate() - 7)
-            console.log(typeof bugun)
-            const bugun3 = new Date().toLocaleDateString()
-            console.log(bugun3)
-            console.log(typeof bugun3)
-            console.log(bugun2)
-            input.firstDate = (bugun)
-            input.secondDate = parseInt(bugun2)
-            let a = {...input}
-            setInput(a)
-            console.log(input)
-            saveFoydaZarar(input)
-        }
-    }
 
-    function dataPicker() {
-        toggle2()
-    }
+
+
 
     useEffect(() => {
         getFoydaZarar()
@@ -82,11 +68,18 @@ function FoydaZarar({
         getbranch(users.businessId)
     }, [])
 
-    const [dataPick, setdataPick] = useState(false)
 
-    function toggleData() {
-        setdataPick(!dataPick)
-    }
+
+
+    const [state, setState] = useState([
+        {
+            startDate: new Date(),
+            endDate: addDays(new Date(), 7),
+            color:'#0044ff',
+            key: 'selection'
+        }
+    ]);
+
 
     return (
         <div className="col-md-12 mt-4 mb-4">
@@ -96,7 +89,7 @@ function FoydaZarar({
             <div className="rowStyleF">
                 <div className="izlashF">
                     <div className="row">
-                        <div className="col-md-6 col-sm-10">
+                        <div className="col-md-3 col-sm-10">
                             <h6>Baza tanlash:</h6>
                             <select value={input.branch} onChange={branch} name="" id="">
                                 <option value="barcasi">Barchasi</option>
@@ -106,25 +99,22 @@ function FoydaZarar({
                                 }
                             </select>
                         </div>
-                        <div className="col-md-6 col-sm-10 ">
-                            <h6 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani
-                                belgilash:</h6>
-                            {
-                                sana ? <div className={'col-md-4 d1 border'}>
-                                    <ul>
-                                        <li onClick={dataPicker} style={{cursor: 'pointer'}}>Bugun</li>
-                                        <li>Kecha</li>
-                                        <li>Oxirgi 7 kun</li>
-                                        <li>Oxirgi 30 kun</li>
-                                        <li>Bu oy</li>
-                                        <li>O`tgan oy</li>
-                                        <li>Bu yil</li>
-                                        <li>O`tgan yil</li>
-                                        <li onClick={toggleData}>Siz istagan sana</li>
-                                    </ul>
+                        <div className="col-md-5 col-sm-10 ">
+                            <div>
+                                <h6 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani
+                                    belgilash:</h6>
+                            </div>
+                           {/*<div>*/}
+                           {/*    <DateRangePicker*/}
+                           {/*        onChange={item => setState([item.selection])}*/}
+                           {/*        showSelectionPreview={true}*/}
+                           {/*        moveRangeOnFirstSelection={false}*/}
+                           {/*        months={2}*/}
+                           {/*        ranges={state}*/}
+                           {/*        direction="horizontal"*/}
+                           {/*    />*/}
+                           {/*</div>*/}
 
-                                </div> : ''
-                            }
                         </div>
 
                     </div>

@@ -10,7 +10,7 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
-            state.photo = action.payload.object
+            state.photo = action.payload
         },
         savefrom: (state,action) => {
             state.current=!state.current
@@ -27,8 +27,8 @@ const slice = createSlice({
     }
 });
 
-export const getphoto=(data)=>apiCall({
-    url: '/paymethod/get-by-business/'+data,
+export const getphoto=()=>apiCall({
+    url: '/attachment/download/'+2,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

@@ -1,9 +1,9 @@
 import './profil.css'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {connect} from "react-redux";
-import photoreducer ,{savephoto} from "../../../reducer/photoreducer";
+import photoreducer ,{savephoto,getphoto} from "../../../reducer/photoreducer";
 import users from "../../../reducer/users";
-function Profil({image,savephoto}) {
+function Profil({image,savephoto,users,photoreducer,getphoto}) {
 
     const [viber,setviber] = useState({
         pic: {}
@@ -13,26 +13,13 @@ function Profil({image,savephoto}) {
     const [selectfile,setSelectfile] = useState([])
 
     function vib(e){
-        console.log(e.target.files[0])
-        // setSelectfile([])
-        // if(e.target.files){
-        //     const filesArray = Array.from(e.target.files).map((file)=>URL.createObjectURL(file));
-        //     setSelectfile((prev=>prev.concat(filesArray)))
-        //     Array.from(e.target.files).map(
-        //         (file)=>URL.revokeObjectURL(file)
-        //     );
-        // }
-        viber.pic = e.target.files[0]
-        let a = {...viber}
-        setviber(a)
+        const data = new FormData();
+        data.append('file', e.target.files[0]);
+
+        savephoto(data)
     }
 
 
-    const renderPhotos = (source) => {
-            return source.map((photo)=>{
-                return <img src={photo} alt={''} key={photo} style={{width:"300px",height:"400px"}}/>;
-            });
-    }
 
 
 
@@ -41,6 +28,10 @@ function Profil({image,savephoto}) {
                 viber.pic
             )
     }
+
+    useEffect(()=>{
+        getphoto()
+    },[])
 
   return (
     <div className='containerProfil mt-4 mb-4'>
@@ -72,4 +63,4 @@ function Profil({image,savephoto}) {
     </div>
   )
 }
-export default connect((users,photoreducer),{savephoto}) (Profil)
+export default connect((users,photoreducer),{savephoto,getphoto}) (Profil)

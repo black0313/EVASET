@@ -17,7 +17,7 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.xaridlar = action.payload.object
-            console.log(action.payload.object);
+            console.log(action.payload);
             let amount=0
             let uzcard=0
             let naqd=0

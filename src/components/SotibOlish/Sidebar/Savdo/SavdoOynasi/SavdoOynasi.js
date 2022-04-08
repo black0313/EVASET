@@ -35,6 +35,8 @@ import TradeHistory, { getSavdolarHistory } from "../reducer/TradeHistory";
 import { toast } from "react-toastify";
 import XarajatlarReducer, { getXarajatlar, saveXarajatlar } from "../../Xarajatlar/reducer/XarajatlarReducer";
 import XarajatTurlariReducer, { getXarajatlarTurlari } from "../../Xarajatlar/reducer/XarajatTurlariReducer";
+import imagecom from "../../../../Imagecom";
+import Imagecom from "../../../../Imagecom";
 // import {optional} from "yarn/lib/cli";
 function SavdoOynasi({
     saveXarajatlar,
@@ -1266,7 +1268,7 @@ function SavdoOynasi({
                                                     item.active ? <p className={'text-danger text-center fw-2'}>Only {item.quantity} available !</p> : ''
                                                 }
                                             </td>
-                                            <td>{item.counter * item.salePrice}</td>
+                                            <td>{item.counter * item.salePrice} so'm</td>
                                             <td>
                                                 <button onClick={() => deleteM(item.id)}
                                                     className={'btn btn-outline-dark border-2 rounded-circle'}>x
@@ -1340,11 +1342,14 @@ function SavdoOynasi({
                                     map(item => <div className={'maxsuImgBox'}
                                         key={item.id}>
                                         <div onClick={() => pushesh(item)}>
-                                            <img className={'hoverimg'}
-                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"
-                                                alt="yuq" />
+                                            {
+                                                item.photo.map(valp=>
+                                                    <Imagecom id={valp.id}/>
+                                                )
+                                            }
+
                                             <h6>{item.name}</h6>
-                                            <p>{item.salePrice}</p>
+                                            <p>{item.salePrice} so'm</p>
                                         </div>
                                     </div>)
                             }
