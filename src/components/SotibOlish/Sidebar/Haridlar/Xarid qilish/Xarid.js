@@ -375,7 +375,6 @@ function Xarid({
         mah.map(item => {
             if (item.id === val.id) {
                 d = true
-                // alert('Bu mahsulot jadvalda bor!')
                 toast.warn('Bu mahsulot jadvalda bor!')
             }
         })
@@ -587,7 +586,7 @@ function Xarid({
 
                             }
                         </div>
-                                    {console.log(XaridReducer.xaridlar + ' OOOOOOO')}
+
                         <div className="col-3 col-sm-12 ">
                             <label htmlFor={'status'}>Xarid statusi</label>
                             <select name="" value={input.xaridstatusi} onChange={xaridstatusi}

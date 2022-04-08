@@ -15,8 +15,8 @@ import MaxsulotlarRoyxariReducer, {
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
-import { DateRangePicker } from 'react-date-range';
-import {addDays} from "date-fns";
+// import { DateRangePicker } from 'react-date-range';
+// import {addDays} from "date-fns";
 
 function FoydaZarar({
                         getFoydaZarar,
@@ -74,7 +74,7 @@ function FoydaZarar({
     const [state, setState] = useState([
         {
             startDate: new Date(),
-            endDate: addDays(new Date(), 7),
+            // endDate: addDays(new Date(), 7),
             color:'#0044ff',
             key: 'selection'
         }

@@ -740,7 +740,6 @@ function SavdoOynasi({
                 mqFoydaPlaceholder: "",
                 mqSotishNarxiSoliqsizPlaceholder: "",
                 mqSotibOlishNarxiPlaceholder: "",
-
             })
             setInput(
                 {

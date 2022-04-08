@@ -144,11 +144,11 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             let a = { ...input }
             setInput(a)
         } else {
-            input.xodimkorishinput = ''
+            input.xodimkorishinput = null
             let a = { ...input }
             setInput(a)
         }
-        console.log(input.xodimkorishinput)
+        // console.log(input.xodimkorishinput)
     }
 
     function changexodimqoshish(e) {
@@ -160,11 +160,10 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             let a = { ...input }
             setInput(a)
         } else {
-            input.xodimqoshishinput = ''
+            input.xodimqoshishinput = null
             let a = { ...input }
             setInput(a)
         }
-        console.log(input.xodimqoshishinput)
     }
 
     function changexodimtaxrirlash(e) {
@@ -180,7 +179,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             let a = { ...input }
             setInput(a)
         }
-        console.log(input.xodimtaxrirlashinput)
     }
 
     function changexodimochirish(e) {
@@ -192,9 +190,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
             let a = { ...input }
             setInput(a)
         } else {
-            input.xodimochirishinput = ''
+            input.xodimochirishinput = null
         }
-        console.log(input.xodimochirishinput)
     }
 
     function changelBarchasini(e) {
@@ -205,7 +202,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         changelavozitaxrirlash(e)
         changelavozimkorish(e)
         changelavozimochirish(e)
-        console.log(input)
     }
 
 
@@ -217,9 +213,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.lavozimqoshishinput = "ADD_ROLE"
         } else {
-            input.lavozimqoshishinput = ''
+            input.lavozimqoshishinput = null
         }
-
     }
 
     function changelavozimkorish(e) {
@@ -229,9 +224,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.lavozimkorishinput = "VIEW_ROLE"
         } else {
-            input.lavozimkorishinput = ''
+            input.lavozimkorishinput = null
         }
-        console.log(input.lavozimkorishinput)
     }
 
     function changelavozitaxrirlash(e) {
@@ -241,9 +235,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.lavozimtaxrirlashinput = "EDIT_ROLE"
         } else {
-            input.lavozimtaxrirlashinput = ''
+            input.lavozimtaxrirlashinput = null
         }
-        console.log(input.lavozimtaxrirlashinput)
     }
 
     function changelavozimochirish(e) {
@@ -253,13 +246,12 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.lavozimochirishinput = "DELETE_ROLE"
         } else {
-            input.lavozimochirishinput = ''
+            input.lavozimochirishinput = null
         }
         console.log(input.lavozimochirishinput)
     }
 
 
-    // xaridlar funcsions
     function xaridBarchaBelgilash(e) {
         input.xaridBarchasinibelgilash = e.target.checked
         let a = { ...input }
@@ -268,7 +260,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         changeXaridQoshish(e)
         xaridTaxrirlashchane(e)
         xaridlArOchirish(e)
-        console.log(input);
     }
 
 
@@ -280,7 +271,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.xaridKorishInput = "VIEW_SHOPPING"
         } else {
-            input.xaridKorishInput = ''
+            input.xaridKorishInput = null
         }
     }
 
@@ -291,9 +282,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.xaridQoshishInput = "ADD_SHOPPING"
         } else {
-            input.xaridQoshishInput = ''
+            input.xaridQoshishInput = null
         }
-
     }
 
     function xaridTaxrirlashchane(e) {
@@ -303,9 +293,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.xaridTaxrirlashInput = "EDIT_SHOPPING"
         } else {
-            input.xaridTaxrirlashInput = ''
+            input.xaridTaxrirlashInput = null
         }
-        console.log(input.lavozimtaxrirlashinput)
     }
 
     function xaridlArOchirish(e) {
@@ -315,12 +304,11 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.xaridOchirishInput = "DELETE_SHOPPING"
         } else {
-            input.xaridOchirishInput = ''
+            input.xaridOchirishInput = null
         }
 
     }
 
-    // Baza functions
     function bazaBarchasiBelgilash(e) {
         input.bazaBarchasinibelgilash = e.target.checked
         let a = { ...input }
@@ -329,7 +317,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         bazaQoshishChange(e)
         bazaTaxrirlashChange(e)
         bazaOchirishlashChange(e)
-        console.log(input);
     }
 
     function bazaKorishChange(e) {
@@ -337,11 +324,10 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
-            input.bazaKorishInput = "WIEW_BAZA"
+            input.bazaKorishInput = "VIEW_BRANCH"
         } else {
-            input.bazaKorishInput = ''
+            input.bazaKorishInput = null
         }
-
     }
 
     function bazaQoshishChange(e) {
@@ -349,11 +335,10 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
-            input.bazaQoshishInput = "ADD_BAZA"
+            input.bazaQoshishInput = "ADD_BRANCH"
         } else {
-            input.bazaQoshishInput = ''
+            input.bazaQoshishInput = null
         }
-
     }
 
     function bazaTaxrirlashChange(e) {
@@ -361,11 +346,10 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
-            input.bazaTaxrirlashInput = "EDIT_BAZA"
+            input.bazaTaxrirlashInput = "EDIT_BRANCH"
         } else {
-            input.bazaTaxrirlashInput = ''
+            input.bazaTaxrirlashInput = null
         }
-
     }
 
     function bazaOchirishlashChange(e) {
@@ -373,14 +357,12 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
-            input.bazaOchirishInput = "DELETE_BAZA"
+            input.bazaOchirishInput = "DELETE_BRANCH"
         } else {
-            input.bazaOchirishInput = ''
+            input.bazaOchirishInput = null
         }
-
     }
 
-    // Xarajatlar functions
     function xarajatBarchaBelgilashChange(e) {
         input.xarajatlarBarchasinibelgilash = e.target.checked
         let a = { ...input }
@@ -389,7 +371,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         xarajatQoshishChange(e)
         xarajatTaxrirlashChange(e)
         xarajatOchirishChange(e)
-        console.log(input);
     }
 
     function xarajatKorishChange(e) {
@@ -397,12 +378,13 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
-            input.xarajatlarKorishInput = "WIEW_OUTLAY"
+            input.xarajatlarKorishInput = "VIEW_OUTLAY"
         } else {
-            input.xarajatlarKorishInput = ''
+            input.xarajatlarKorishInput = null
         }
 
     }
+
     function xarajatQoshishChange(e) {
         input.xarajatlarQoshish = e.target.checked
         let a = { ...input }
@@ -410,9 +392,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.xarajatlarQoshishInput = "ADD_OUTLAY"
         } else {
-            input.xarajatlarQoshishInput = ''
+            input.xarajatlarQoshishInput = null
         }
-
     }
 
     function xarajatTaxrirlashChange(e) {
@@ -422,9 +403,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.xarajatlarTaxrirlashInput = "EDIT_OUTLAY"
         } else {
-            input.xarajatlarTaxrirlashInput = ''
+            input.xarajatlarTaxrirlashInput = null
         }
-
     }
 
     function xarajatOchirishChange(e) {
@@ -434,12 +414,10 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.xarajatlarOchirishInput = "DELETE_OUTLAY"
         } else {
-            input.xarajatlarOchirishInput = ''
+            input.xarajatlarOchirishInput = null
         }
-
     }
 
-    // Savdo functions
     function savdoBarchaBelgilashChange(e) {
         input.savdoBarchasinibelgilash = e.target.checked
         let a = { ...input }
@@ -448,7 +426,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         savdoQoshishChange(e)
         savdoTaxrirlashChange(e)
         savdoOchirishChange(e)
-        console.log(input);
     }
 
     function savdoKorishChange(e) {
@@ -456,9 +433,9 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         let a = { ...input }
         setInput(a)
         if (e.target.checked === true) {
-            input.savdoKorishInput = "WIEW_TRADE"
+            input.savdoKorishInput = "VIEW_TRADE"
         } else {
-            input.savdoKorishInput = ''
+            input.savdoKorishInput = null
         }
 
     }
@@ -470,7 +447,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.savdoQoshishInput = "ADD_TRADE"
         } else {
-            input.savdoQoshishInput = ''
+            input.savdoQoshishInput = null
         }
 
     }
@@ -482,7 +459,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.savdoTaxrirlashInput = "EDIT_TRADE"
         } else {
-            input.savdoTaxrirlashInput = ''
+            input.savdoTaxrirlashInput = null
         }
 
     }
@@ -494,45 +471,17 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.savdoOchirishInput = "DELETE_TRADE"
         } else {
-            input.savdoOchirishInput = ''
+            input.savdoOchirishInput = null
         }
-
     }
 
     function changetBarchasi(e) {
         input.tBarchasinibelgilash = e.target.checked
         let a = { ...input }
         setInput(a)
-        changelang1(e)
-        changelang2(e)
         changedillerqoshish(e)
         changedillertaxrirlash(e)
         changedillerochirish(e)
-        console.log(input)
-    }
-
-    function changelang1(e) {
-        input.lang1 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang1input = "LANG_V1"
-        } else {
-            input.lang1input = ''
-        }
-        console.log(input.lang1input)
-    }
-
-    function changelang2(e) {
-        input.lang2 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang2input = "LANG_V2"
-        } else {
-            input.lang2input = ''
-        }
-        console.log(input.lang2input)
     }
 
     function changedillerqoshish(e) {
@@ -542,9 +491,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.dillerqoshishinput = "ADD_SUPPLIER"
         } else {
-            input.dillerqoshishinput = ''
+            input.dillerqoshishinput = null
         }
-        console.log(input.dillerqoshishinput)
     }
 
     function changedillertaxrirlash(e) {
@@ -554,9 +502,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.dillertaxrirlashinput = "EDIT_SUPPLIER"
         } else {
-            input.dillertaxrirlashinput = ''
+            input.dillertaxrirlashinput = null
         }
-        console.log(input.dillertaxrirlashinput)
     }
 
     function changedillerochirish(e) {
@@ -566,110 +513,17 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.dillerochirishinput = "DELETE_SUPPLIER"
         } else {
-            input.dillerochirishinput = ''
+            input.dillerochirishinput = null
         }
-        console.log(input.dillerochirishinput)
     }
 
     function changemBarchasi(e) {
         input.mBarchasinibelgilash = e.target.checked
         let a = { ...input }
         setInput(a)
-        changemlang3(e)
-        changemlang4(e)
-        changemlang5(e)
-        changemlang6(e)
-        changemlang7(e)
-        changemlang8(e)
-        changemlang9(e)
         changemijozqoshish(e)
         changemijoztaxrirlash(e)
         changemijozochrish(e)
-        console.log(input)
-    }
-
-    function changemlang3(e) {
-        input.lang3 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang3 = "LANG_V3"
-        } else {
-            input.lang3 = ''
-        }
-        console.log(input.lang3input)
-    }
-
-    function changemlang4(e) {
-        input.lang4 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang4input = "LANG_V4"
-        } else {
-            input.lang4input = ''
-        }
-        console.log(input.lang4input)
-    }
-
-    function changemlang5(e) {
-        input.lang5 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang5input = "LANG_V5"
-        } else {
-            input.lang5input = ''
-        }
-        console.log(input.lang5input)
-    }
-
-    function changemlang6(e) {
-        input.lang6 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang6input = "LANG_V6"
-        } else {
-            input.lang6input = ''
-        }
-        console.log(input.lang6input)
-    }
-
-    function changemlang7(e) {
-        input.lang7 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang7input = "LANG_V7"
-        } else {
-            input.lang7input = ''
-        }
-        console.log(input.lang7input)
-    }
-
-    function changemlang8(e) {
-        input.lang8 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang8input = "LANG_V8"
-        } else {
-            input.lang8input = ''
-        }
-        console.log(input.lang8input)
-    }
-
-    function changemlang9(e) {
-        input.lang9 = e.target.checked
-        let a = { ...input }
-        setInput(a)
-        if (e.target.checked === true) {
-            input.lang9input = "LANG_V9"
-        } else {
-            input.lang9input = ""
-        }
-        console.log(input.lang9input)
     }
 
     function changemijozqoshish(e) {
@@ -679,9 +533,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.mijozqoshishinput = "ADD_CUSTOMER"
         } else {
-            input.mijozqoshishinput = ""
+            input.mijozqoshishinput = null
         }
-        console.log(input.mijozqoshishinput)
     }
 
     function changemijoztaxrirlash(e) {
@@ -691,9 +544,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.mijoztaxrirlashinput = "EDIT_CUSTOMER"
         } else {
-            input.mijoztaxrirlashinput = ""
+            input.mijoztaxrirlashinput = null
         }
-        console.log(input.mijoztaxrirlashinput)
     }
 
     function changemijozochrish(e) {
@@ -703,9 +555,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         if (e.target.checked === true) {
             input.mijozochirishinput = "DELETE_CUSTOMER"
         } else {
-            input.mijozochirishinput = ""
+            input.mijozochirishinput = null
         }
-        console.log(input.mijozochirishinput)
     }
 
     const [roleid, setroleid] = useState('')
@@ -726,7 +577,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         let c = { ...input }
         setInput(c)
         for (let i = 0; i < a.length - 1; i++) {
-            console.log(a[i])
+            // console.log(a[i])
             switch (a[i]) {
                 case 'ADD_USER':
                     input.xodimqoshish = true
@@ -799,47 +650,47 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                     let f = { ...input }
                     setInput(f)
                     break;
-                case 'VIEW_SHOPPING':
+                case 'VIEW_PURCHASE':
                     input.xaridKorish = true
                     let j = { ...input }
                     setInput(j)
                     break;
-                case 'ADD_SHOPPING':
+                case 'ADD_PURCHASE':
                     input.xaridQoshish = true
                     let k = { ...input }
                     setInput(k)
                     break;
-                case 'EDIT_SHOPPING':
+                case 'EDIT_PURCHASE':
                     input.xaridTaxrirlash = true
                     let l = { ...input }
                     setInput(l)
                     break;
-                case 'DELETE_SHOPPING':
+                case 'DELETE_PURCHASE':
                     input.xaridOchirish = true
                     let z = { ...input }
                     setInput(z)
                     break;
-                case 'WIEW_BAZA':
+                case 'VIEW_BRANCH':
                     input.bazaKorish = true
                     let x = { ...input }
                     setInput(x)
                     break;
-                case 'ADD_BAZA':
+                case 'ADD_BRANCH':
                     input.bazaQoshish = true
                     let v = { ...input }
                     setInput(v)
                     break;
-                case 'EDIT_BAZA':
+                case 'EDIT_BRANCH':
                     input.bazaTaxrirlash = true
                     let n = { ...input }
                     setInput(n)
                     break;
-                case 'DELETE_BAZA':
+                case 'DELETE_BRANCH':
                     input.bazaOchirish = true
                     let m = { ...input }
                     setInput(m)
                     break;
-                case 'WIEW_OUTLAY':
+                case 'VIEW_OUTLAY':
                     input.xarajatlarKorish = true
                     let xk = { ...input }
                     setInput(xk)
@@ -859,7 +710,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                     let xo = { ...input }
                     setInput(xo)
                     break;
-                case 'WIEW_TRADE':
+                case 'VIEW_TRADE':
                     input.savdoKorish = true
                     let ss = { ...input }
                     setInput(ss)
@@ -909,7 +760,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                         businessId: users.businessId
                     }
                 )
-                console.log('savele')
             } else {
                 editLavozim(
                     {
@@ -920,7 +770,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                         businessId: users.businessId
                     }
                 )
-                console.log('edit')
+                // console.log('edit')
             }
 
             getLavozim(users.businessId)
@@ -1148,8 +998,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                                     style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'chDiller'} />
 
                                 <div className={'mt-4'}>
-                                    <input type="radio" checked={input.lang1} onChange={changelang1} name={'radio'}
-                                        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'korDiller'} />
+                                    {/*<input type="radio" checked={input.lang1} onChange={changelang1} name={'radio'}*/}
+                                    {/*    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'korDiller'} />*/}
                                     <label htmlFor={'korDiller'}>Barcha dillerlarni ko'rish</label>
                                 </div>
 
@@ -1180,45 +1030,8 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
 
                         <div className="ruxsat mt-4">
                             <label htmlFor={'ch1'}>Barchasini belgilash</label>
-                            <input type="checkbox" checked={input.lang3} onChange={changemlang3}
+                            <input type="checkbox" checked={input.mBarchasinibelgilash} onChange={changemBarchasi}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'ch1'} />
-
-                {/*  0313  */}
-                            {/*<div className={'mt-4'}>*/}
-                            {/*    <input type="radio" checked={input.lang4} onChange={changemlang4} name={'r'}*/}
-                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC'} />*/}
-                            {/*    <label htmlFor={'langC'}>view_all_customer</label>*/}
-                            {/*</div>*/}
-
-                            {/*<div className={'mt-4'}>*/}
-                            {/*    <input type="radio" checked={input.lang5} onChange={changemlang5} name={'r'}*/}
-                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC2'} />*/}
-                            {/*    <label htmlFor={'langC2'}>view_own_customer</label>*/}
-                            {/*</div>*/}
-
-                            {/*<div className={'mt-4'}>*/}
-                            {/*    <input type="radio" checked={input.lang6} onChange={changemlang6} name={'r'}*/}
-                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langC3'} />*/}
-                            {/*    <label htmlFor={'langC3'}>customer no_sell_month</label>*/}
-                            {/*</div>*/}
-
-                            {/*<div className={'mt-4'}>*/}
-                            {/*    <input type="radio" checked={input.lang7} onChange={changemlang7} name={'r'}*/}
-                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langthree'} />*/}
-                            {/*    <label htmlFor={'langthree'}>custm_with_no_sell_month</label>*/}
-                            {/*</div>*/}
-
-                            {/*<div className={'mt-4'}>*/}
-                            {/*    <input type="radio" checked={input.lang8} onChange={changemlang8} name={'r'}*/}
-                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langsix'} />*/}
-                            {/*    <label htmlFor={'langsix'}>customer_with_no_sell_6_month</label>*/}
-                            {/*</div>*/}
-
-                            {/*<div className={'mt-4'}>*/}
-                            {/*    <input type="radio" checked={input.lang9} onChange={changemlang9} name={'r'}*/}
-                            {/*        style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'langyear'} />*/}
-                            {/*    <label htmlFor={'langyear'}>customer_with_no_sell_year</label>*/}
-                            {/*</div>*/}
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.mijozqoshish} onChange={changemijozqoshish}
@@ -1237,15 +1050,6 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                                 <label htmlFor={'tax2'}>O`chirish</label>
                             </div>
                         </div>
-
-                        {/*{*/}
-                        {/*    input.name === "" ?*/}
-                        {/*        <button className={'btn btn-primary form-control mt-4 ml-4'} onClick={saqla}>Saqlash</button>*/}
-                        {/*        :*/}
-                        {/*        <Link to={'/headerthird/lavozimlar'}>*/}
-                        {/*            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>*/}
-                        {/*        </Link>*/}
-                        {/*}*/}
 
 
                     </div>

@@ -171,7 +171,6 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                     </div>
                     <div className="col-md-6">
                         <h6>Diller:</h6>
-                        {console.log(TaminotReducer.taminot)}
                         <select name="" id="" value={input.diller} onChange={diller}>
                             <option value="barcasi">Barchasi</option>
                             {
@@ -278,7 +277,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
 
                         </thead>
                         {
-                            console.log(XaridReducer.xaridlar)
+                            console.log(XaridReducer.xaridlar+'xarid 123')
                         }
                         <tbody>
                         {
