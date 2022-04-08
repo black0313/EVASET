@@ -77,7 +77,6 @@ function Pagination2({getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,users,}) {
                                 <th className={'border-0 '}>Qolgan mahsulot</th>
                             </tr>
                             </thead>
-                            {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
                             <tbody>
                             {
                                 MaxsulotlarRoyxariReducer.maxsulotlar.filter(val=>val.quantity<=10).map(item=>

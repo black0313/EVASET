@@ -25,7 +25,6 @@ export const slice = createSlice({
                 state.users = action.payload.object
                 state.businessId=action.payload.object.business.id
                 localStorage.setItem('tokenname',action.payload.message)
-                console.log(state.payload)
             }
             else{
                 state.error=true

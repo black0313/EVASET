@@ -37,14 +37,10 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
         }
         let d = SavdoQoshishReducer.savdolar.filter(item=>{if(item?.loan > 0){return item}}).length/5
         setpages(d)
-        console.log(d)
     }
 
     function goToNextPage() {
         setCurrentPage((page) => page + 1);
-        console.log(posts)
-        console.log(pages)
-        console.log(currentPage)
     }
     function goToPreviousPage() {
         setCurrentPage((page) => page - 1);
@@ -82,7 +78,6 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
 
                             </tr>
                             </thead>
-                            {console.log(SavdoQoshishReducer.savdolar)}
                             <tbody>
                             {getPaginatedData().map((d, idx) => (
                                 <RenderComponent4 key={idx} data={d} />

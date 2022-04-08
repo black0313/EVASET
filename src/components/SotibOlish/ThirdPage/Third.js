@@ -274,7 +274,6 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
                                 <div className={'p-2'}>
                                     <div className="row p-0 colorback">
                                         <div className="col-12 margin">
-                                            {console.log('funkw')}
 
                                             <div
                                                 className="row p-2 pb-0 d-flex marginb align-items-center justify-content-start">
@@ -290,7 +289,6 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
                                             <div
                                                 className="row pt-0 pb-0 d-flex align-items-center justify-content-between">
                                                 <div className="col-8 me-0 mt-3 mt-md-0">
-                                                    {console.log(item.number)}
                                                     <p className={"raqam align-items-center"}>{item.number} so'm</p>
                                                 </div>
                                                 <div className="col-4 text-center align-items-center">

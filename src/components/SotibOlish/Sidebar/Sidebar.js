@@ -33,7 +33,7 @@ function Sidebar({functionreducer,active,users}) {
     const [addcustomer,setaddcustomer]=useState(false);
 
     function permission(){
-        console.log(users.users.role.permissions)
+
         users.users.role.permissions.map(item=>{
             switch (item){
                 case "ADD_USER":;

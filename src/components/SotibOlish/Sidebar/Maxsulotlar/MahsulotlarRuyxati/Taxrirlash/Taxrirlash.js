@@ -303,7 +303,7 @@ function Taxrirlash({
                     brandId: input.ferma,                      /*input.ferma,*/
                     categoryId: input.bolim,                     /*  input.bolim,*/
                     measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                    photoIds: [5],
+                    photoIds: [6],
                     minQuantity: input.ogohmiqdor,                    /*   input.foydafoiz,*/
                     buyPrice: input.sotibolishnarxi,               /*   input.sotishnarxi,*/
                     salePrice: input.sotishnarxi,

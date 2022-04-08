@@ -11,9 +11,11 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.photo = action.payload
+            console.log(action.payload)
         },
         savefrom: (state,action) => {
             state.current=!state.current
+            console.log(action.payload)
             toast.success('Saqlandi')
         },
         editfrom: (state,action) => {
