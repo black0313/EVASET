@@ -20,6 +20,7 @@ import MaxsulotlarRoyxariReducer, {
 } from '../../reducer/MaxsulotlarRoyxariReducer'
 import users from "../../../../../../reducer/users";
 import FirmaReducer, {getFirma} from "../../reducer/FirmaReducer";
+import {useReactToPrint} from "react-to-print";
 
 
 function BarchaMaxsulotlar({
@@ -128,144 +129,159 @@ function BarchaMaxsulotlar({
                     <div className="qoshish">
                         <h5>Barcha maxsulotlar</h5>
                         <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'}>
-                            <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>
+                            {
+                                users.addproduct ?
+                                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>:''
+
+                            }
                         </Link>
                     </div>
-                    <div className="izlashBR">
-                        <div className="izlashBox1">
-                            <p>Ko'rsatildi</p>
-                            <select name="" id="" value={input.view} onChange={view}>
-                                <option value="">25</option>
-                                <option value="">All</option>
-                            </select>
-                            <button><img src={CSV} alt=""/> Export CSV</button>
-                            <button><img src={Excel} alt=""/> Export Excel</button>
-                            <button><img src={Print} alt=""/> Print</button>
-                            <button><img src={Pdf} alt=""/>Export PDF</button>
-                            <button onClick={() => setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni
-                                kamaytirish
-                            </button>
-
-                            {
-                                malkamay ? headlist.map(item => <ul className={'ul3'} key={item.id}>
-                                    <li onClick={() => setmahsulot(!mahsulot)}
-                                        className={'li2'}>{mahsulot ? item.product : item.product + ' <-'}</li>
-                                    <li onClick={() => setbaza(!baza)}
-                                        className={'li2'}>{baza ? item.baza : 'Baza ' + ' <-'}</li>
-                                    <li onClick={() => setbuy(!buy)}
-                                        className={'li2'}>{buy ? item.buyPrice : item.buyPrice + ' <-'}</li>
-                                    <li onClick={() => setsell(!sell)}
-                                        className={'li2'}>{sell ? item.salePrice : item.salePrice + ' <-'}</li>
-                                    <li onClick={() => setamallar(!amallar)}
-                                        className={'li2'}>{amallar ? item.amallar : item.amallar + ' <-'}</li>
-                                </ul>) : ''
-                            }
-
-                        </div>
-                        <div className="izlashBox2">
-                            <input type="text" placeholder='Izlash...' value={input.izlash} onChange={izlash}/>
-                        </div>
-                    </div>
-                    <div className="table-responsive">
-                        <table className='table table-striped table-bordered mt-4'>
-                            <thead>
-                            {
-                                headlist.map(item => <tr key={item.id}>
-                                    <th>T/R</th>
-                                    <th><input checked={input.checkbarcha} onChange={checkBarca} type="checkbox"/></th>
-                                    {
-                                        mahsulot ? <th>{item.product}</th> : ''
-                                    }
-                                    {
-                                        baza ? <th>{item.baza}</th> : ''
-                                    }
-                                    {
-                                        buy ? <th>{item.buyPrice}</th> : ''
-                                    }
-                                    {
-                                        sell ? <th>{item.salePrice}</th> : ''
-                                    }
-                                    {
-                                        qolgan ? <th>{item.qolganmahsulot}</th> : ''
-                                    }
-                                    {
-                                        firma ? <th>{item.firma}</th> : ''
-                                    }
-                                    {
-                                        amallar ? <th className={'text-center'}>{item.amallar}</th> : ''
-                                    }
-                                </tr>)
-                            }
-                            </thead>
-                            {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
-                            <tbody>
-                            {
-                                MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
-                                    if (input.izlash === '') {
-                                        return val
-                                    } else if (val.name.toUpperCase().includes(input.izlash.toUpperCase())) {
-                                        return val
-                                    }
-                                })
-                                    .map((item,index) => <tr key={item.id}>
-                                        <td>{index+1}</td>
-                                        <td><input value={item.id} onChange={check} type="checkbox"/></td>
-                                        {
-                                            mahsulot ? <td>{item.name}</td> : ''
-                                        }
-                                        {
-                                            baza ? <td>{item.branch.name}</td> : ''
-                                        }
-                                        {
-                                            buy ? <td>{item.buyPrice}</td> : ''
-                                        }
-                                        {
-                                            sell ? <td>{item.salePrice}</td> : ''
-                                        }
-                                        {
-                                            qolgan ? <td>{item.quantity}</td> : ''
-                                        }
-                                        {
-                                            firma ? <td>{item.brand.name}</td> : ''
-                                        }
-                                        {
-                                            amallar ? <td>
-                                                <Link
-                                                    to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/' + item.id}>
-                                                    <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
-                                                    </button>
-                                                </Link>
-
-                                                <button onClick={()=>korishsh(item.id)} className='korish'><img src={Korish}
-                                                                                                 alt=""/> Ko'rish
-                                                </button>
-                                                <button onClick={() => deleteM(item)} className='ochirish'><img
-                                                    src={Delete} alt=""/> O'chirish
-                                                </button>
-                                            </td> : ''
-                                        }
-                                    </tr>)
-                            }
-
-                            </tbody>
-                        </table>
-                    </div>
                     {
-                        active ? <KorishM active={active} toggle={toggle} mahsulot={korishId}/> : ''
-                    }
-                    <div className="btnBoshqarish">
-                        <button className='btn btn-danger buttonPage'>Belgilanganlarni o'chirish</button>
-                        <button className='btn btn-success buttonPage'>Boshqa bazaga surish</button>
-                        <button className='btn btn-primary buttonPage'>Bazadan olib tashlash</button>
-                        <button className='btn btn-warning buttonPage'>Belgilanganlarni vaqtinchalik o'chirish</button>
-                    </div>
+                        users.viewproductadmin? <div>
+                            <div className="izlashBR">
+                                <div className="izlashBox1">
+                                    <p>Ko'rsatildi</p>
+                                    <select name="" id="" value={input.view} onChange={view}>
+                                        <option value="">25</option>
+                                        <option value="">All</option>
+                                    </select>
+                                    <button><img src={CSV} alt=""/> Export CSV</button>
+                                    <button><img src={Excel} alt=""/> Export Excel</button>
+                                    <button><img src={Print} alt=""/> Print</button>
+                                    <button><img src={Pdf} alt=""/>Export PDF</button>
+                                    <button onClick={() => setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni
+                                        kamaytirish
+                                    </button>
 
-                    <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                    <div className='sahifalar'>
-                        <button>Ortga</button>
-                        <button>1</button>
-                        <button>Oldinga</button>
-                    </div>
+                                    {
+                                        malkamay ? headlist.map(item => <ul className={'ul3'} key={item.id}>
+                                            <li onClick={() => setmahsulot(!mahsulot)}
+                                                className={'li2'}>{mahsulot ? item.product : item.product + ' <-'}</li>
+                                            <li onClick={() => setbaza(!baza)}
+                                                className={'li2'}>{baza ? item.baza : 'Baza ' + ' <-'}</li>
+                                            <li onClick={() => setbuy(!buy)}
+                                                className={'li2'}>{buy ? item.buyPrice : item.buyPrice + ' <-'}</li>
+                                            <li onClick={() => setsell(!sell)}
+                                                className={'li2'}>{sell ? item.salePrice : item.salePrice + ' <-'}</li>
+                                            <li onClick={() => setamallar(!amallar)}
+                                                className={'li2'}>{amallar ? item.amallar : item.amallar + ' <-'}</li>
+                                        </ul>) : ''
+                                    }
+
+                                </div>
+                                <div className="izlashBox2">
+                                    <input type="text" placeholder='Izlash...' value={input.izlash} onChange={izlash}/>
+                                </div>
+                            </div>
+                            <div className="table-responsive">
+                                <table className='table table-striped table-bordered mt-4'>
+                                    <thead>
+                                    {
+                                        headlist.map(item => <tr key={item.id}>
+                                            <th>T/R</th>
+                                            <th><input checked={input.checkbarcha} onChange={checkBarca} type="checkbox"/></th>
+                                            {
+                                                mahsulot ? <th>{item.product}</th> : ''
+                                            }
+                                            {
+                                                baza ? <th>{item.baza}</th> : ''
+                                            }
+                                            {
+                                                buy ? <th>{item.buyPrice}</th> : ''
+                                            }
+                                            {
+                                                sell ? <th>{item.salePrice}</th> : ''
+                                            }
+                                            {
+                                                qolgan ? <th>{item.qolganmahsulot}</th> : ''
+                                            }
+                                            {
+                                                firma ? <th>{item.firma}</th> : ''
+                                            }
+                                            {
+                                                amallar ? <th className={'text-center'}>{item.amallar}</th> : ''
+                                            }
+                                        </tr>)
+                                    }
+                                    </thead>
+                                    {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
+                                    <tbody>
+                                    {
+                                        MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
+                                            if (input.izlash === '') {
+                                                return val
+                                            } else if (val.name.toUpperCase().includes(input.izlash.toUpperCase())) {
+                                                return val
+                                            }
+                                        })
+                                            .map((item,index) => <tr key={item.id}>
+                                                <td>{index+1}</td>
+                                                <td><input value={item.id} onChange={check} type="checkbox"/></td>
+                                                {
+                                                    mahsulot ? <td>{item.name}</td> : ''
+                                                }
+                                                {
+                                                    baza ? <td>{item.branch.name}</td> : ''
+                                                }
+                                                {
+                                                    buy ? <td>{item.buyPrice}</td> : ''
+                                                }
+                                                {
+                                                    sell ? <td>{item.salePrice}</td> : ''
+                                                }
+                                                {
+                                                    qolgan ? <td>{item.quantity}</td> : ''
+                                                }
+                                                {
+                                                    firma ? <td>{item.brand.name}</td> : ''
+                                                }
+                                                {
+                                                    amallar ? <td>
+                                                        {
+                                                            users.editproduct? <Link
+                                                                to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/' + item.id}>
+                                                                <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
+                                                                </button>
+                                                            </Link>:''
+                                                        }
+
+
+                                                        <button onClick={()=>korishsh(item.id)} className='korish'><img src={Korish}
+                                                                                                                        alt=""/> Ko'rish
+                                                        </button>
+                                                        {
+                                                            users.deleteproduct? <button onClick={() => deleteM(item)} className='ochirish'><img
+                                                                src={Delete} alt=""/> O'chirish
+                                                            </button>:''
+                                                        }
+
+                                                    </td> : ''
+                                                }
+                                            </tr>)
+                                    }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            {
+                                active ? <KorishM active={active} toggle={toggle} mahsulot={korishId}/> : ''
+                            }
+                            <div className="btnBoshqarish">
+                                <button className='btn btn-danger buttonPage'>Belgilanganlarni o'chirish</button>
+                                <button className='btn btn-success buttonPage'>Boshqa bazaga surish</button>
+                                <button className='btn btn-primary buttonPage'>Bazadan olib tashlash</button>
+                                <button className='btn btn-warning buttonPage'>Belgilanganlarni vaqtinchalik o'chirish</button>
+                            </div>
+
+                            <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
+                            <div className='sahifalar'>
+                                <button>Ortga</button>
+                                <button>1</button>
+                                <button>Oldinga</button>
+                            </div>
+                        </div>:''
+                    }
+
                 </div>
             </div>
         </div>

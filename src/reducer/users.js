@@ -15,15 +15,37 @@ export const slice = createSlice({
         linksavdooynasi:false,
         error:false,
         rememberme:false,
+
         adduser:false,
         edituser:false,
         viewuser:false,
         viewuseradmin:false,
         deleteuser:false,
+
         addrole:false,
         editrole:false,
         viewrole:false,
-        deleterole:false
+        viewroleadmin:false,
+        deleterole:false,
+
+        addsupplier:false,
+        editsupplier:false,
+        viewsupplier:false,
+        deletesupplier:false,
+        viewsupplieradmin:false,
+
+        addcustomer:false,
+        editcustomer:false,
+        viewcustomer:false,
+        deletecustomer:false,
+        viewcustomeradmin:false,
+
+        addproduct:false,
+        editproduct:false,
+        viewproduct:false,
+        deleteproduct:false,
+        viewproductadmin:false,
+
     },
     reducers: {
         save: (state, action) => {
@@ -64,7 +86,54 @@ export const slice = createSlice({
                         case "DELETE_ROLE":;
                             state.deleterole=true
                             break;
-
+                        case "VIEW_ROLE_ADMIN":;
+                            state.viewroleadmin=true
+                            break;
+                        case "ADD_SUPPLIER":;
+                            state.addsupplier=true
+                            break;
+                        case "EDIT_SUPPLIER":;
+                            state.editsupplier=true
+                            break;
+                        case "VIEW_SUPPLIER":;
+                            state.viewsupplier=true
+                            break;
+                        case "DELETE_SUPPLIER":;
+                            state.deletesupplier=true
+                            break;
+                        case "VIEW_SUPPLIER_ADMIN":;
+                            state.viewsupplieradmin=true
+                            break;
+                        case "ADD_CUSTOMER":;
+                            state.addcustomer=true
+                            break;
+                        case "EDIT_CUSTOMER":;
+                            state.editcustomer=true
+                            break;
+                        case "VIEW_CUSTOMER":;
+                            state.viewcustomer=true
+                            break;
+                        case "DELETE_CUSTOMER":;
+                            state.deletecustomer=true
+                            break;
+                        case "VIEW_CUSTOMER_ADMIN":;
+                            state.viewcustomeradmin=true
+                            break;
+                        case "ADD_PRODUCT":;
+                            state.addproduct=true
+                            break;
+                        case "EDIT_PRODUCT":;
+                            state.editproduct=true
+                            break;
+                        case "VIEW_PRODUCT":;
+                            state.viewproduct=true
+                            break;
+                        case "DELETE_PRODUCT":;
+                            state.deleteproduct=true
+                            break;
+                        case "VIEW_PRODUCT_ADMIN":;
+                            state.viewproductadmin=true
+                            break;
                     }
                 })
             }
