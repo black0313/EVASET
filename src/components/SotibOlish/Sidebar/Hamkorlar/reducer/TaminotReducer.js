@@ -13,7 +13,6 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.taminot = action.payload.object
-            console.log(action.payload.object);
         },
         savefrom: (state,action) => {
             toast.success('Diller saqlandi!')

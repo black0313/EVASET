@@ -15,6 +15,7 @@ import users from "../../../../../reducer/users";
 import {useState} from 'react'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {red} from "@mui/material/colors"
+import {toast} from "react-toastify";
 // import {ccc} from '../../../../../img/flash-1.svg'
 
 
@@ -226,6 +227,12 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
 
     const [malkamay, setmalkamay] = useState(false)
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
+
     return (
 
         <div>
@@ -250,7 +257,6 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                     <p>Ko'rsatildi</p>
                                     <select name="" id="">
                                         <option value="">25</option>
-                                        <option value="">1,000</option>
                                         <option value="">All</option>
                                     </select>
                                     <button><img src={CSV} alt=""/> Export CSV</button>
@@ -309,7 +315,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                             } else if (val.name.toUpperCase().includes(input.inputsearch.toUpperCase())) {
                                                 return val
                                             }
-                                        }).map((item,index) => <tr key={item.id}>
+                                        }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                             <td>{index+1}</td>
                                             {
                                                 ismi?<td>{item.name}</td>:''
@@ -344,17 +350,15 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                                         </button>:''
                                                     }
 
-
                                                 </td>:''
                                             }
-
                                         </tr>)
                                     }
-
                                     </tbody>
                                 </table>
+                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                             </div>
-                            <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
+                            <p className={'mt-3'}>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
                             <div className='sahifalar'>
                                 <button>Ortga</button>
                                 <button>1</button>
@@ -383,11 +387,11 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                     <input type="text" value={input.taminotturi} onChange={taminotturi} className={'form-control'} placeholder={'taminot turi'}/>
                                 </div>
                             </div>
-                            <label htmlFor={'idRaqam'} className={'mt-3'}>ID Raqami</label>
-                            <input value={input.idraqam} onChange={changeidraqam} type="text" id={'idRaqam'}
-                                   placeholder={input.idplaceholder} className={'form-control'}/>
-                            lang_v1.leave_empty_to_autogenerate
-                            <div className="in d-flex mt-3">
+                            {/*<label htmlFor={'idRaqam'} className={'mt-3'}>ID Raqami</label>*/}
+                            {/*<input value={input.idraqam} onChange={changeidraqam} type="text" id={'idRaqam'}*/}
+                            {/*       placeholder={input.idplaceholder} className={'form-control'}/>*/}
+                            {/*lang_v1.leave_empty_to_autogenerate*/}
+                            <div className="in d-flex justify-content-between col-md-12 mt-3">
                                 <div>
                                     <label htmlFor={'log1'}>Login</label>
                                     <input type="text" value={input.login} onChange={changelogin}
@@ -401,7 +405,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                            required="required"/>
                                 </div>
                             </div>
-                            <div className="in d-flex">
+                            <div className="in d-flex justify-content-between col-md-12">
                                 <div className={'mt-3'}>
                                     <label htmlFor={'ot'}>Telegram link</label>
                                     <input value={input.telegram} onChange={changeotaismi} id={'telegram'} type="text"

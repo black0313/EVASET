@@ -84,7 +84,6 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
                             ))}
                             </tbody>
                         </table>
-
                     </div>
                     <hr/>
                     <div className="pagination justify-content-end">

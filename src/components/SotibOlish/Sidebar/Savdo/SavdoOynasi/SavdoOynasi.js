@@ -1329,7 +1329,6 @@ function SavdoOynasi({
                             {/*    </div>)*/}
                             {/*}*/}
 
-
                             {
                                 MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
                                     if (input.mahsulotnomi === '') {

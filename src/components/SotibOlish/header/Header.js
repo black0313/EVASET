@@ -17,11 +17,9 @@ function Header({active,sidebarfunc,users}) {
         setCalactive(false)
     },[])
 
-
     const [rasm,setrasm] = useState({
         pic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYS4ItI44R4hI66qjzhinqY5-Miyb30PelnQ&usqp=CAU'
     })
-
 
 
     const [calactive,setCalactive] = useState(false)
@@ -35,7 +33,6 @@ function Header({active,sidebarfunc,users}) {
     }
 
     return(
-       
         <div className={'container-fluid position-relative'}>
             <div className={'headerBox '}>
                 <div className="dashbortButton">
@@ -56,7 +53,6 @@ function Header({active,sidebarfunc,users}) {
                             }
                         </div>
                     </div>
-                    {console.log(users.users)}
                     <div className="imgUserBox">
                         <div className="iiii ">
                             <Imagecom id={users.users?.photo?.id}/>
