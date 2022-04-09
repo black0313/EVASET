@@ -15,6 +15,7 @@ import FirmaReducer, {getFirma, saveFirma} from "../../reducer/FirmaReducer";
 import BolimReducer, {getBolim} from "../../reducer/BolimReducer";
 import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer";
 import photoreducer, {savephoto} from "../../../../../../reducer/photoreducer";
+import {toast} from "react-toastify";
 
 function Taxrirlash({
                         photoreducer,
@@ -365,6 +366,21 @@ function Taxrirlash({
         input.qisqaeslatma = ''
     }
 
+    function bazaClick(){
+        branchreducer.branch.map((item,index)=>{
+            // if (index == item.id){
+            //     input.bazalar = item.name
+            //     let a = {...input}
+            //     setInput(a)
+            // }else {
+            //     toast.warning('input bo`sh emas')
+            // }
+            input.bazalar = item.name
+            let a = {...input}
+            setInput(a)
+        })
+    }
+
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
         getBolim(users.businessId)
@@ -395,9 +411,9 @@ function Taxrirlash({
 
                             <select name="" id={'olcov'} onChange={ulcovbirligi} value={input.ulcovbirligi}
                                     className={'form-control'}>
-                                <option value="">Tanlash</option>
                                 {
                                     kgreducer.kg.map((item, index) =>
+                                        input.ulcovbirligi == '' ? input.ulcovbirligi = item.id :
                                         <option value={item.id}>
                                             {item.name}
                                         </option>)
@@ -407,9 +423,10 @@ function Taxrirlash({
                         </div>
                         <label className={'mt-3'} htmlFor={'bol'}>Bo`lim</label>
                         <select name="" onChange={bolim} value={input.bolim} className={'form-control'} id={'bol'}>
-                            <option value="">Tanlash</option>
                             {
-                                BolimReducer.bolimlar.map(item => <option value={item.id}>{item.name}</option>)
+                                BolimReducer.bolimlar.map(item =>
+                                    input.bolim == '' ? input.bolim = item.id :
+                                    <option value={item.id}>{item.name}</option>)
                             }
                         </select>
                     </div>
@@ -423,20 +440,21 @@ function Taxrirlash({
 
                         <label className='mt-3' htmlFor={'firma'}>Firma</label>
                         <div className={'d-flex'}>
-
                             <select name="" value={input.ferma} onChange={ferma} id={'firma'}
                                     className={'form-control'}>
-                                <option value="#">Tanlash</option>
+                                {/*<option value="#">Tanlash</option>*/}
                                 {
-                                    FirmaReducer.firmalar.map(item => <option value={item.id}>{item.name}</option>)
+                                    FirmaReducer.firmalar.map(item =>
+                                        input.ferma == '' ? input.ferma = item.id :
+                                        <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
                             <h2 onClick={toggle2} style={{cursor: 'pointer'}}>+</h2>
                         </div>
                         <label className={'mt-3'} htmlFor={'bol2'}>Bo`lim ichida bolim</label>
                         <select name="" id={'bol2'} value={input.bolim2} onChange={bolim2} className={'form-control'}>
-                            <option value="1">Tanlash</option>
-                            <option value="2">no backend</option>
+                            {/*<option value="1">Tanlash</option>*/}
+                            <option value="2">Mavjud emas</option>
                         </select>
                     </div>
 
@@ -444,7 +462,7 @@ function Taxrirlash({
                         <label className='mt-3' htmlFor={'shtrixKod'}>Shtrix kod turi</label>
                         <select name="" id={'shtrixKod'} onChange={shtrixkodturi} value={input.shtrixkodturi}
                                 className={'form-control'}>
-                            <option value="">noBackend</option>
+                            <option value="">Mavjud emas</option>
                         </select>
                         <label htmlFor="" className={'mt-3 '}>Bazalar</label>
                         <input type="text" id='bazalar' value={input.bazalar}
@@ -453,12 +471,11 @@ function Taxrirlash({
                         {
                             branchreducer.branch.filter(val => {
                                 if (input.bazalar === '') {
-
                                 } else if (val.name.toUpperCase().includes(input.bazalar.toUpperCase())) {
                                     return val
                                 }
                             }).map(item =>
-                                <button className={"btn"} value={item.id}>{item.name}</button>
+                                <button onClick={bazaClick} className={"btn"} value={item.id}>{item.name}</button>
                             )
                         }
                         <label htmlFor={'ppp'} className={'mt-4'}>Miqdori</label>
@@ -534,18 +551,18 @@ function Taxrirlash({
             </Modal>
 
             <div className="col-md-10 mt-5 offset-1 border">
-                <label htmlFor={'sol'}>Amaldagi soliq</label>
-                <select name="" id={'sol'} value={input.amaldagisoliq} onChange={amaldagisoliq}
-                        className={'form-control'}>
-                    <option value="">Tanlash</option>
-                    <option value="">Mavjud emas</option>
-                </select>
-                <label htmlFor={'turiMah'} className={'mt-3'}>Soliqning ajratilishi</label>
-                <select name="" className={'form-control'} value={input.soliqajralishi} onChange={soliqajralishi}
-                        id={'turiMah'}>
-                    <option value="">Narxga qo`shiladi</option>
-                    <option value="">Narx ichida</option>
-                </select>
+                {/*<label htmlFor={'sol'}>Amaldagi soliq</label>*/}
+                {/*<select name="" id={'sol'} value={input.amaldagisoliq} onChange={amaldagisoliq}*/}
+                {/*        className={'form-control'}>*/}
+                {/*    <option value="">Tanlash</option>*/}
+                {/*    <option value="">Mavjud emas</option>*/}
+                {/*</select>*/}
+                {/*<label htmlFor={'turiMah'} className={'mt-3'}>Soliqning ajratilishi</label>*/}
+                {/*<select name="" className={'form-control'} value={input.soliqajralishi} onChange={soliqajralishi}*/}
+                {/*        id={'turiMah'}>*/}
+                {/*    <option value="">Narxga qo`shiladi</option>*/}
+                {/*    <option value="">Narx ichida</option>*/}
+                {/*</select>*/}
                 <div className="table-responsive">
                     <table className={'table'}>
                         <thead>
