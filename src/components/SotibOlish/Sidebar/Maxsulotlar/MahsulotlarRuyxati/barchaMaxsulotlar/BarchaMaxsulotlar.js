@@ -122,6 +122,12 @@ function BarchaMaxsulotlar({
 
     const [malkamay, setmalkamay] = useState(false)
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
+
     return (
         <div>
             <div className="col-md-12">
@@ -205,7 +211,6 @@ function BarchaMaxsulotlar({
                                         </tr>)
                                     }
                                     </thead>
-                                    {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
                                     <tbody>
                                     {
                                         MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
@@ -214,8 +219,7 @@ function BarchaMaxsulotlar({
                                             } else if (val.name.toUpperCase().includes(input.izlash.toUpperCase())) {
                                                 return val
                                             }
-                                        })
-                                            .map((item,index) => <tr key={item.id}>
+                                        }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                                 <td>{index+1}</td>
                                                 <td><input value={item.id} onChange={check} type="checkbox"/></td>
                                                 {
@@ -264,11 +268,12 @@ function BarchaMaxsulotlar({
 
                                     </tbody>
                                 </table>
+                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                             </div>
                             {
                                 active ? <KorishM active={active} toggle={toggle} mahsulot={korishId}/> : ''
                             }
-                            <div className="btnBoshqarish">
+                            <div className="btnBoshqarish mt-3">
                                 <button className='btn btn-danger buttonPage'>Belgilanganlarni o'chirish</button>
                                 <button className='btn btn-success buttonPage'>Boshqa bazaga surish</button>
                                 <button className='btn btn-primary buttonPage'>Bazadan olib tashlash</button>

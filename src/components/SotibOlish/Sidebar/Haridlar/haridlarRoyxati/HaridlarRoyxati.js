@@ -151,6 +151,12 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
         return new Array(1).fill().map((_, idx) => start + idx + 1);
     };
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
+
     return (
         <div className="col-md-12 mt-2">
             <div className="textHeaderHarid">
@@ -276,9 +282,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                             }
 
                         </thead>
-                        {
-                            console.log(XaridReducer.xaridlar+'xarid 123')
-                        }
+
                         <tbody>
                         {
                             getPaginatedData().filter(val => {
@@ -287,7 +291,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                                 } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
                                     return val
                                 }
-                            }).map((item,index) => <tr key={index}>
+                            }).splice(0,visible).map((item,index) => <tr key={index}>
                                 <td>{index+1}</td>
                                 {
                                     sana3?<td>{item.date}</td>:''
@@ -323,6 +327,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                         }
                         </tbody>
                     </table>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
 

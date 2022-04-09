@@ -171,6 +171,11 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
     function toggle7() {
         setActive(!active)
     }
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
 
     const [bolimlar2, setbolimlar2] = useState(true)
     const [bolimkodi2, setbolimkodi2] = useState(true)
@@ -253,7 +258,7 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                                 } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
                                     return val
                                 }
-                            }).map((item,index) => <tr key={item.id}>
+                            }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                 <td>{index+1}</td>
                                 {
                                     bolimlar2?<td>{item.name}</td>:''
@@ -281,6 +286,7 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
 
                         </tbody>
                     </table>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
                 <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>

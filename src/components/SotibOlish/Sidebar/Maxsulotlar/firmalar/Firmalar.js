@@ -138,6 +138,12 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
         getFirma(users.businessId)
     }, [FirmaReducer.current])
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
+
     return (
         <div className="col-md-12 mt-2 mt-4 mb-4">
             <div className="textHeaderFR">
@@ -187,7 +193,7 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                                     } else if (val.name.toUpperCase().includes(input.search.toUpperCase())) {
                                         return val
                                     }
-                                }).map((item,index) => <tr key={item.id}>
+                                }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                     <td>{index+1}</td>
                                     <td>{item.name}</td>
                                     <td></td>
@@ -203,6 +209,7 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
 
                         </tbody>
                     </table>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
                 <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>

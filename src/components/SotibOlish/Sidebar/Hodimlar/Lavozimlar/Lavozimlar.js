@@ -51,6 +51,11 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
         setInput(a)
     }
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
 
     return (
             <div className="col-md-12 pt-4 pb-4 ">
@@ -101,7 +106,7 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                                 } else if (val.name.toUpperCase().includes(inSearch2.inputputsearch2.toUpperCase())) {
                                                     return val
                                                 }
-                                            }).map((item,index) => <tr key={item.id}>
+                                            }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                                 <td>{index+1}</td>
                                                 <td>{item.name}</td>
                                                 <td>
@@ -121,6 +126,7 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
 
                                         </tbody>
                                     </table>
+                                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                                 </div>
 
                                 <p>Ko'rsatildi 1 ta sahifa 2 va yana 2 ta sahifa bor</p>

@@ -143,6 +143,13 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
         let start = Math.floor((currentPage - 1) / 1) * 1;
         return new Array(1).fill().map((_, idx) => start + idx + 1);
     };
+
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
+
     return (
         <div className="col-md-12 mt-2 mb-4 mt-4 ">
             <div className="textHeader">
@@ -233,10 +240,9 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                             <th>Amallar</th>
                         </tr>
                         </thead>
-                        {console.log(SavdoQoshishReducer.savdolar)}
                         <tbody>
                         {
-                            getPaginatedData().map((item,index)=><tr key={item?.id}>
+                            getPaginatedData().splice(0,visible).map((item,index)=><tr key={item?.id}>
                                 {/*<td>{index+1}</td>*/}
                                 <td>{item?.payDate}</td>
                                 <td>-</td>
@@ -258,9 +264,10 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                         }
                         </tbody>
                     </table>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
-                <p>Ko'rsatildi {currentPage} ta sahifa  yana {parseInt(pages+1)-currentPage} bitta sahifa bor</p>
+                <p className={'mt-3'}>Ko'rsatildi {currentPage} ta sahifa  yana {parseInt(pages+1)-currentPage} bitta sahifa bor</p>
                 <div className='sahifalar'>
                     <button
                         onClick={goToPreviousPage}

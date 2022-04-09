@@ -64,6 +64,11 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
 
     const [malkamay, setmalkamay] = useState(false)
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
 
     return (
         <div className="col-md-12 pb-4 pt-4">
@@ -91,10 +96,6 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                     <p>Ko'rsatildi</p>
                                     <select name="" id="">
                                         <option value="">25</option>
-                                        <option value="">50</option>
-                                        <option value="">100</option>
-                                        <option value="">200</option>
-                                        <option value="">500</option>
                                         <option value="">1,000</option>
                                         <option value="">All</option>
                                     </select>
@@ -155,8 +156,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                             } else if (val.username.toUpperCase().includes(inSearch.inputsearch.toUpperCase())) {
                                                 return val
                                             }
-                                        })
-                                            .map((item,index) => <tr key={item.id}>
+                                        }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                                 <td>{index+1}</td>
                                                 {
                                                     login?<td>{item.username}</td>:''
@@ -198,11 +198,11 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                                 }
 
                                             </tr>)
-
                                     }
 
                                     </tbody>
                                 </table>
+                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                             </div>
 
                             <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>

@@ -204,7 +204,7 @@ function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveX
                     spenderId: 1,
                     id: match.params.id
                 },
-                    console.log('edited'))
+                    )
             }
         }
         else {
@@ -213,8 +213,7 @@ function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveX
                    bazaPlaceholders:"Baza tanlang!",
                    qisqaEslatmaPlaceholders:"Ma'lumot kiritilmadi...",   
                    jamiSummaPlaceholders:"Ma'lumot kiritilmadi...", 
-                   sanaPlaceholders:"Sanani tanlang!"  
-
+                   sanaPlaceholders:"Sanani tanlang!"
                 }
             )
         }
@@ -277,9 +276,10 @@ function XarajatQoshish({ editXarajatlar, users, getbranch, branchreducer, saveX
                             <label htmlFor={'muddat'}>Xarajat turi</label>
                             <select name="" id="" value={input.xarajatturi} onChange={xarajatturi}
                                 className={'form-control'}>
-                                <option value="tanlash">Tanlash</option>
                                 {
-                                    XarajatTurlariReducer.xarajatturlari.map(item => <option value={item.id}>{item.title}</option>)
+                                    XarajatTurlariReducer.xarajatturlari.map(item =>
+                                        input.xarajatturi == '' ? input.xarajatturi = item.id :
+                                        <option value={item.id}>{item.title}</option>)
                                 }
                             </select>
                             {/*</div>*/}

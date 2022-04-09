@@ -56,6 +56,11 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
         getMijozLarGuruh(users.businessId)
     },[])
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
 
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
@@ -108,9 +113,10 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
                             <th style={{fontSize:'17px'}}>Amallar</th>
                         </thead>
                         <tbody>
-                            LA LA
+                            LA LA KU
                         </tbody>
                     </table>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
                 <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>

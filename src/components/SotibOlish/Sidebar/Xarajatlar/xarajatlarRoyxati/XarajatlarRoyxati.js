@@ -89,7 +89,12 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
 
     function deleteXarajat(item){
         deleteXarajatlar(item.id)
-        console.log('o`chdi');
+    }
+
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
     }
 
     return (
@@ -212,7 +217,6 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                             }).map(item => <tr key={item.id}>
                                 <td>{item.date}</td>
                                 <td>{item.id}</td>
-                                {console.log(item.branch)}
                                 {/*<td>{item.branch}</td>*/}
                                 {/*<td>-</td>*/}
                                 {/*<td>-</td>*/}
@@ -232,11 +236,9 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                             </tr>)
                                                      
                         }
-                        {
-                            console.log(xarajatlar)
-                        }
                         </tbody>
                     </table>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
                 <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>

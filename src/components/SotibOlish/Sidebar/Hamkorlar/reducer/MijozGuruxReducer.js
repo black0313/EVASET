@@ -13,7 +13,6 @@ const slice = createSlice({
         getFrom: (state, action) => {
             console.log("lpo")
             state.mijozgurux = action.payload.object
-            console.log(action.payload.object);
         },
         savefrom: (state,action) => {
             state.mijozgurux.unshift(action.payload)
