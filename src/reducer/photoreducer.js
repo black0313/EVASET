@@ -5,16 +5,17 @@ import {toast} from "react-toastify";
 const slice = createSlice({
     name: 'photo',
     initialState: {
-        photo: [],
+        photo: {},
         current:false
     },
     reducers: {
         getFrom: (state, action) => {
-            state.photo = action.payload
+            state.photo = action.payload.object
             console.log(action.payload)
         },
         savefrom: (state,action) => {
             state.current=!state.current
+            state.photo = action.payload.object
             console.log(action.payload)
             toast.success('Saqlandi')
         },

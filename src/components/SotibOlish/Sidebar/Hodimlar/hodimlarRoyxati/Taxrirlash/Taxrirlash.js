@@ -13,7 +13,7 @@ import {toast} from "react-toastify";
 function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,users,match,editXodim,getbranch,branchreducer}) {
 
     useEffect(()=>{
-       getLavozim()
+       getLavozim(users.businessId)
         getbranch(users.businessId)
         editx()
     },[])

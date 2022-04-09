@@ -289,7 +289,7 @@ function Taxrirlash({
                     brandId: input.ferma,                      /*input.ferma,*/
                     categoryId: input.bolim,                     /*  input.bolim,*/
                     measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                    photoIds: [6],
+                    photoIds: [photoreducer.photo.id === null ? 21 : photoreducer.photo.id],
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,               /*   input.sotishnarxi,*/
                     salePrice: input.sotishnarxi,
@@ -386,6 +386,7 @@ function Taxrirlash({
             <h4 className={'text-center'}>Mahsulot qo`shish / Taxrirlash</h4>
             <div className="col-10 col-sm-10 border p-4 justify-content-center offset-1 d-flex">
                 <div className="row">
+                    {console.log(photoreducer.photo)}
                     <div className="inputs col-4 col-sm-12">
                         <label className='mt-3' htmlFor={'maxNomi'}>Mahsulot nomi</label>
                         <input type="text" value={input.mahsulotnomi} placeholder={placeholders.maxsulotNomiPlaceholder}
