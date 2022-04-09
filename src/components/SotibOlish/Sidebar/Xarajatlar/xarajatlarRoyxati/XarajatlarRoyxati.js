@@ -205,7 +205,6 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                         </tr>
                         </thead>
                         <tbody>
-                            {console.log(XarajatlarReducer.xarajatlar)}
                         {   
                             XarajatlarReducer.xarajatlar.filter(val => {
                                 if (input.izlash === '') {
