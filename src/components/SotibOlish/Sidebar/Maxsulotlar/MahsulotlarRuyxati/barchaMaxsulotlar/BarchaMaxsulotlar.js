@@ -89,7 +89,6 @@ function BarchaMaxsulotlar({
 
     function deleteM(item) {
         deleteMaxsulotRuyxati(item.id)
-        console.log('deleted')
     }
 
     useEffect(() => {
@@ -116,7 +115,8 @@ function BarchaMaxsulotlar({
             salePrice: 'Sotish narxi',
             qolganmahsulot: 'Qolgan mahsulot',
             firma: 'Firma',
-            amallar: 'Amallar'
+            amallar: 'Amallar',
+            ogoh:'Eslatma miqdori'
         }
     ])
 
@@ -198,6 +198,7 @@ function BarchaMaxsulotlar({
                                             {
                                                 firma ? <th>{item.firma}</th> : ''
                                             }
+                                            <th>{item.ogoh}</th>
                                             {
                                                 amallar ? <th className={'text-center'}>{item.amallar}</th> : ''
                                             }
@@ -235,6 +236,7 @@ function BarchaMaxsulotlar({
                                                 {
                                                     firma ? <td>{item.brand.name}</td> : ''
                                                 }
+                                                <td>{item.minQuantity}</td>
                                                 {
                                                     amallar ? <td>
                                                         {
