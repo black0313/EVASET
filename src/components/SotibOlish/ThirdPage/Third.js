@@ -258,7 +258,7 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
                     </div>
                     <div className="col-md-3 col-sm-12 align-items-center d-flex justify-content-around">
                         <Link to={'/headerthird/foydaZarar'}>
-                            <button className={'kitchen-button'}>Xisobot</button>
+                            <button className={' kitchen-button'}>Xisobot</button>
                         </Link>
                         <Link to={'/turliTavar'}>
                             <button onClick={savdod} className={'kitchen-button'}>Savdo oynasi</button>

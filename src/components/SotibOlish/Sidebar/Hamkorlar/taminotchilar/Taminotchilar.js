@@ -356,7 +356,13 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                     }
                                     </tbody>
                                 </table>
-                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+
+                                <button onClick={koproq} className={'bn '}>Ko`proq ko`rish
+                                <span className={'bn2'}> </span>
+                                </button>
+
+                                {/*<button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>*/}
+
                             </div>
                             <p className={'mt-3'}>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
                             <div className='sahifalar'>
