@@ -1,3 +1,12 @@
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
 .rowStyleHRR{
        border-radius: 8px;
        padding: 20px 30px 20px 30px;

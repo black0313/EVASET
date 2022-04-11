@@ -420,8 +420,6 @@
     .savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
         display: block;
     }
-    
-   
 }
 @media (min-width: 426px) and (max-width: 768.9px){
     .savdoOynaContainers{
@@ -444,12 +442,7 @@
         padding: 4px 26px;
         display: block;
     }
-    /* .savdoOynaContainers .savdoBlock .savdoBlockLeft {
-        height: 78vh;
-    }
-    .savdoOynaContainers .savdoBlock .savdoBlockRigth {
-        height: 78vh;
-    } */
+
     .tbodyY {
         height: 65vh;
     }
@@ -515,8 +508,7 @@
     .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox{
         width: 60%;
     }
-    
-    
+
 }
 @media (min-width: 769px) and (max-width: 1024.9px){
     .savdoOynaContainers{
@@ -533,8 +525,6 @@
     .tbodyY {
         height: 60%;
     }
-
-
     .savdoOynaContainers .savdoBlock .savdoBlockLeft .selectBox input{
         width: 80%;
         font-size: 12px;

@@ -247,8 +247,8 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                         <input type="text" placeholder='Izlash...' onChange={search} value={input.search}/>
                     </div>
                 </div>
-                <div className="table-responsive">
-                    <table className='table table-striped table-bordered mt-4'>
+                <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                    <table className='table  table-striped table-bordered mt-4'>
                         <thead>
 
                             {

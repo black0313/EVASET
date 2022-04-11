@@ -110,7 +110,7 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                         <input type="text" value={input.izlash} onChange={izlash} placeholder='Izlash...'/>
                     </div>
                 </div>
-                <div className="table-responsive mb-4">
+                <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar mb-4">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
                         <tr>

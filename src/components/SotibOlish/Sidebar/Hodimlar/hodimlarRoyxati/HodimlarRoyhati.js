@@ -121,7 +121,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                     <input type="text" onChange={search} value={inSearch.inputsearch} placeholder='Izlash...'/>
                                 </div>
                             </div>
-                            <div className="table-responsive mb-4">
+                            <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar mb-4">
                                 <table className='table table-striped table-bordered mt-4'>
                                     <thead>
                                     {

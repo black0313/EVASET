@@ -104,7 +104,7 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
                         <input type="text" value={input.inputsearch} onChange={search} placeholder='Izlash...'/>
                     </div>
                 </div>
-                <div className="table-responsive">
+                <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
                     <table className='table table-striped  mt-4'>
                         <thead>
                             <th style={{fontSize:'17px'}}>Guruh Nomi</th>

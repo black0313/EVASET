@@ -89,7 +89,7 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                         <input type="text" value={inSearch2.inputputsearch2} onChange={search} placeholder='Izlash...'/>
                                     </div>
                                 </div>
-                                <div className="table-responsive">
+                                <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
                                     <table className='table table-striped table-bordered mt-4'>
                                         <thead>
                                         <tr>

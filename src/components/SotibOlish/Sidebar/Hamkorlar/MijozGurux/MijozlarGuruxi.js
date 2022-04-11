@@ -242,7 +242,7 @@ function Mijozlarguruxi({
                                 <input type="text" value={input.inputsearch} onChange={search} placeholder='Izlash...'/>
                             </div>
                         </div>
-                        <div className="table-responsive">
+                        <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
                             <table className='table table-striped table-bordered mt-4'>
                                 <thead>
                                 {

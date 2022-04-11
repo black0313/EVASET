@@ -217,7 +217,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     </div>
                     
                 </div>
-                <div className="table-responsive">
+                <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
                     <table className='table table-striped table-bordered mt-4 '>
                         <thead>
                         <tr>

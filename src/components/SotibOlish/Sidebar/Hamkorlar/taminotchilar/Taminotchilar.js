@@ -282,8 +282,8 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 </div>
 
                             </div>
-                            <div className="table-responsive">
-                                <table className='table table-striped table-bordered mt-4'>
+                            <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                                <table className='table table-striped table-hover table-condensed  table-bordered mt-4'>
                                     <thead>
                                     {
                                         headlist.map(item => <tr key={item.id}>
@@ -307,7 +307,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                     }
 
                                     </thead>
-                                    <tbody>
+                                    <tbody >
                                     {
                                         TaminotReducer.taminot.filter(val => {
                                             if (input.inputsearch === '') {

@@ -184,7 +184,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                     </div>
                     
                 </div>
-                <div className="table-responsive mb-4">
+                <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar mb-4">
                     <table className='table table-striped table-bordered mt-4 '>
                         <thead>
                         <tr>

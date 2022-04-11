@@ -179,7 +179,7 @@ function BarchaMaxsulotlar({
                                     <input type="text" placeholder='Izlash...' value={input.izlash} onChange={izlash}/>
                                 </div>
                             </div>
-                            <div className="table-responsive">
+                            <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
                                 <table className='table table-striped table-bordered mt-4'>
                                     <thead>
                                     {

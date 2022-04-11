@@ -174,7 +174,7 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                         <input type="text" value={input.search} onChange={search} placeholder='Izlash...' />
                     </div>
                 </div>
-                <div className="table-responsive pb-4">
+                <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar pb-4">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
                             <tr>

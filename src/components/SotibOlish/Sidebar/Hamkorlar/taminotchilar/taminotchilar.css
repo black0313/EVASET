@@ -9,6 +9,28 @@
     border-radius: 5px;
 }
 
+.my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.scr{
+    /*overflow-y: scroll;*/
+    /*display: grid;*/
+    /*line-grid-progression: 10;*/
+    /*height: 60vh;*/
+    overflowY: scroll;
+    border:1px solid red;
+    width:500px;
+    float: left;
+    height:500px;
+    position:relative;
+}
+
 .bn:hover{
     position: relative;
     width: 100%;
