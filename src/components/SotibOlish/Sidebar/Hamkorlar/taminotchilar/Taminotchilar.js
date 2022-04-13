@@ -118,7 +118,9 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     function deleteTaminot2(item) {
         console.log(item)
         deleteTaminot(item.id)
-        getTaminot(users.businessId)
+        setTimeout(()=>{
+            getTaminot(1)
+        },100)
     }
 
     function editt(id) {
@@ -233,6 +235,11 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         setvisible(prev=>prev+5)
     }
 
+    const [deletemodal,setdeletemodal] = useState(false)
+    function deleteModaltoggle(){
+        setdeletemodal(!deletemodal)
+    }
+
     return (
 
         <div>
@@ -284,7 +291,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                             </div>
                             <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
                                 <table className='table table-striped table-hover table-condensed  table-bordered mt-4'>
-                                    <thead>
+                                    <thead className={'fix'}>
                                     {
                                         headlist.map(item => <tr key={item.id}>
                                             <th>T/R</th>
@@ -345,11 +352,21 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                                         <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
                                                     </Link>
                                                     {
-                                                        users.deletesupplier ?  <button onClick={() => deleteTaminot2(item)} className='ochirish'><img
+                                                        users.deletesupplier ?
+                                                            <button onClick={() => deleteTaminot2(item)} className='ochirish'><img
                                                             src={Delete} alt=""/> O'chirish
                                                         </button>:''
                                                     }
 
+                                                    <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                                        <ModalBody>
+                                                            <h5>Ishonchingiz komilmi ?</h5>
+                                                        </ModalBody>
+                                                        <ModalFooter>
+                                                            <button onClick={() => deleteTaminot2(item)} className={'btn btn-outline-primary'}>O`chirish</button>
+                                                            <button onClick={deleteModaltoggle} className={'btn btn-outline-primary'}>Chiqish</button>
+                                                        </ModalFooter>
+                                                    </Modal>
                                                 </td>:''
                                             }
                                         </tr>)
@@ -362,7 +379,6 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                 </button>
 
                                 {/*<button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>*/}
-
                             </div>
                             <p className={'mt-3'}>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
                             <div className='sahifalar'>
@@ -393,10 +409,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                     <input type="text" value={input.taminotturi} onChange={taminotturi} className={'form-control'} placeholder={'taminot turi'}/>
                                 </div>
                             </div>
-                            {/*<label htmlFor={'idRaqam'} className={'mt-3'}>ID Raqami</label>*/}
-                            {/*<input value={input.idraqam} onChange={changeidraqam} type="text" id={'idRaqam'}*/}
-                            {/*       placeholder={input.idplaceholder} className={'form-control'}/>*/}
-                            {/*lang_v1.leave_empty_to_autogenerate*/}
+
                             <div className="in d-flex justify-content-between col-md-12 mt-3">
                                 <div>
                                     <label htmlFor={'log1'}>Login</label>

@@ -1,3 +1,7 @@
+.fix{
+    position: page;
+
+}
 .bn {
     position: relative;
     width: 100%;
@@ -11,7 +15,7 @@
 
 .my-custom-scrollbar {
     position: relative;
-    height: 400px;
+    height: 405px;
     overflow: auto;
 }
 .table-wrapper-scroll-y {
