@@ -104,25 +104,15 @@ function FoydaZarar({
                                 <h6 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani
                                     belgilash:</h6>
                             </div>
-                           {/*<div>*/}
-                           {/*    <DateRangePicker*/}
-                           {/*        onChange={item => setState([item.selection])}*/}
-                           {/*        showSelectionPreview={true}*/}
-                           {/*        moveRangeOnFirstSelection={false}*/}
-                           {/*        months={2}*/}
-                           {/*        ranges={state}*/}
-                           {/*        direction="horizontal"*/}
-                           {/*    />*/}
-                           {/*</div>*/}
-
                         </div>
 
                     </div>
                 </div>
-                <div className="table-responsive mb-4">
-                    <table className='table table-striped table-bordered mt-4'>
+                <div className="table-responsive mb-4 table-wrapper-scroll-y my-custom-scrollbar">
+                    <table className='table table-hover table-striped table-bordered mt-4'>
                         <thead>
                         <tr>
+                            <th>T/r</th>
                             <th>Nomi</th>
                             <th>Maxsulot sotib olish narxi(sum)</th>
                             <th>Maxsulot sotish narxi(sum)</th>
@@ -133,7 +123,8 @@ function FoydaZarar({
                         </thead>
                         <tbody>
                         {
-                            MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <tr key={item.id}>
+                            MaxsulotlarRoyxariReducer.maxsulotlar.map((item,index) => <tr key={item.id}>
+                                <td>{index+1}</td>
                                 <td>{item.name}</td>
                                 <td>{item.buyPrice}</td>
                                 <td>{item.salePrice}</td>

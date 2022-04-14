@@ -61,12 +61,10 @@ function Taxrirlash({
         {
             mahsulotnomi: '',
             shtrixkod: '',
-            shtrixkodturi: '',
             //----
             ulcovbirligi: '',
             ulcovnomi: '',
             ulcovqisqanomi: '',
-            ulcovunlikasr: '',
             //-----
             ferma: '',
             brandnomi: '',
@@ -157,12 +155,18 @@ function Taxrirlash({
     const [bazafilter, setbazafilter] = useState([])
 
     function bazalar(e) {
-        input.bazalar = e.target.value
-        let a = {...input}
-        setInput(a)
 
-        console.log(bazafilter)
-
+        if (input.bazalar===''){
+            input.bazalar = e.target.value
+            let a = {...input}
+            setInput(a)
+            setactivebaza(false)
+        }else {
+            input.bazalar = e.target.value
+            let a = {...input}
+            setInput(a)
+            setactivebaza(true)
+        }
     }
 
     function bolim(e) {
@@ -353,18 +357,15 @@ function Taxrirlash({
 
     function bazaClick() {
         branchreducer.branch.map((item, index) => {
-            // if (index == item.id){
-            //     input.bazalar = item.name
-            //     let a = {...input}
-            //     setInput(a)
-            // }else {
-            //     toast.warning('input bo`sh emas')
-            // }
+
             input.bazalar = item.name
             let a = {...input}
             setInput(a)
         })
     }
+
+    const [activebaza,setactivebaza] = useState(false)
+
 
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
@@ -386,7 +387,6 @@ function Taxrirlash({
             <h4 className={'text-center'}>Mahsulot qo`shish / Taxrirlash</h4>
             <div className="col-10 col-sm-10 border p-4 justify-content-center offset-1 d-flex">
                 <div className="row">
-                    {console.log(photoreducer.photo)}
                     <div className="inputs col-4 col-sm-12">
                         <label className='mt-3' htmlFor={'maxNomi'}>Mahsulot nomi</label>
                         <input type="text" value={input.mahsulotnomi} placeholder={placeholders.maxsulotNomiPlaceholder}
@@ -405,7 +405,7 @@ function Taxrirlash({
                                             </option>)
                                 }
                             </select>
-                            <h2 onClick={toggle} style={{cursor: 'pointer'}}>+</h2>
+                            <h2 onClick={toggle} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
                         </div>
                         <label className={'mt-3'} htmlFor={'bol'}>Bo`lim</label>
                         <select name="" onChange={bolim} value={input.bolim} className={'form-control'} id={'bol'}>
@@ -428,14 +428,13 @@ function Taxrirlash({
                         <div className={'d-flex'}>
                             <select name="" value={input.ferma} onChange={ferma} id={'firma'}
                                     className={'form-control'}>
-                                {/*<option value="#">Tanlash</option>*/}
                                 {
                                     FirmaReducer.firmalar.map(item =>
                                         input.ferma == '' ? input.ferma = item.id :
                                             <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
-                            <h2 onClick={toggle2} style={{cursor: 'pointer'}}>+</h2>
+                            <h2 onClick={toggle2} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
                         </div>
                         <label className={'mt-3'} htmlFor={'bol2'}>Bo`lim ichida bolim</label>
                         <select name="" id={'bol2'} value={input.bolim2} onChange={bolim2} className={'form-control'}>
@@ -445,11 +444,11 @@ function Taxrirlash({
                     </div>
 
                     <div className="col-4 col-sm-12">
-                        <label className='mt-3' htmlFor={'shtrixKod'}>Shtrix kod turi</label>
-                        <select name="" id={'shtrixKod'} onChange={shtrixkodturi} value={input.shtrixkodturi}
-                                className={'form-control'}>
-                            <option value="">Mavjud emas</option>
-                        </select>
+                        <label htmlFor={'ppp'} className={'mt-3'}>Miqdori</label>
+                        <input className={'form-control taxrirlashInputValudetion'} type="number"
+                               value={input.miqdorMaxsulot} id='miqdor' placeholder={placeholders.miqdorPlaceholder}
+                               onChange={miqdorMaxsulot}/>
+
                         <label htmlFor="" className={'mt-3 '}>Bazalar</label>
                         <input type="text" id='bazalar' value={input.bazalar}
                                placeholder={placeholders.bazalarPlaceholder} onChange={bazalar}
@@ -460,14 +459,15 @@ function Taxrirlash({
                                 } else if (val.name.toUpperCase().includes(input.bazalar.toUpperCase())) {
                                     return val
                                 }
-                            }).map(item =>
-                                <button onClick={bazaClick} className={"btn"} value={item.id}>{item.name}</button>
+                            }).map(item =><ul key={item.id}>
+                                    {
+                                        activebaza?<li onClick={bazaClick} className={'click'}>{item.name}</li>:''
+                                    }
+                                </ul>
+                                // <button onClick={bazaClick} className={"btn"} value={item.id}>{item.name}</button>
                             )
                         }
-                        <label htmlFor={'ppp'} className={'mt-4'}>Miqdori</label>
-                        <input className={'form-control taxrirlashInputValudetion'} type="number"
-                               value={input.miqdorMaxsulot} id='miqdor' placeholder={placeholders.miqdorPlaceholder}
-                               onChange={miqdorMaxsulot}/>
+
                     </div>
                 </div>
             </div>
@@ -496,16 +496,9 @@ function Taxrirlash({
                     <label htmlFor={'nomi'}>Nomi</label>
                     <input type="text" onChange={ulcovNomi} value={input.ulcovnomi} className={'form-control'}
                            id={'nomi'}/>
-                    <label htmlFor={'nomi2'}>Qisqa nom masalan Kg,MM</label>
+                    <label htmlFor={'nomi2'} className={'mt-2'}>Qisqa nom masalan Kg,MM</label>
                     <input type="text" id={'nomi2'} value={input.ulcovqisqanomi} onChange={ulcovqisqaNomi}
                            className={'form-control'}/>
-                    <label htmlFor={'onli'}>O`nli kasrlarga ruxsat berish</label>
-                    <select name="" id={'onli'} value={input.ulcovunlikasr} onChange={ulcovunlikasr}
-                            className={'form-control'}>
-                        <option value="">Tanlash</option>
-                        <option value="">Ha</option>
-                        <option value="">Yuq</option>
-                    </select>
                 </ModalBody>
                 <ModalFooter>
                     <button onClick={saqlakg} className={'btn btn-primary'}>SAQLASH</button>
@@ -564,17 +557,17 @@ function Taxrirlash({
                                        style={{border: '1px solid gray', padding: '10px'}}/>
                             </td>
                             <td>
-                                <label htmlFor={''}>Sotish narxi</label><br/>
-                                <input type="text" id='sotishNarxi' placeholder={placeholders.sotishNarxiPlaceholder}
-                                       className='taxrirlashInputValudetion form-control' value={input.sotishnarxi}
-                                       onChange={sotishnarxi}
+                                <label htmlFor={''}>Sotib olish narxi</label><br/>
+                                <input type="text" id='sotishNarxi' placeholder={placeholders.sotibOlishNarxiPlaceholder}
+                                       className='taxrirlashInputValudetion form-control' value={input.sotibolishnarxi}
+                                       onChange={sotibolishnarxi}
                                        style={{border: '1px solid gray', padding: '10px'}}/>
                             </td>
                             <td>
-                                <label htmlFor={''}>Sotib olish narxi</label><br/>
+                                <label htmlFor={''}>Sotish narxi</label><br/>
                                 <input type="text" id='sotibOlishNarxi' className={'form-control'}
-                                       placeholder={placeholders.sotibOlishNarxiPlaceholder}
-                                       value={input.sotibolishnarxi} onChange={sotibolishnarxi}
+                                       placeholder={placeholders.sotishNarxiPlaceholder}
+                                       value={input.sotishnarxi} onChange={sotishnarxi}
                                        style={{border: '1px solid gray', padding: '10px'}}/>
                             </td>
                         </tr>
