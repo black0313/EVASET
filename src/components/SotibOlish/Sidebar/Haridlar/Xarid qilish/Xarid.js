@@ -87,6 +87,7 @@ function Xarid({
             foydafoiz: '',
             donasotish: '',
             kg: '',
+
         }
     )
 
@@ -165,6 +166,13 @@ function Xarid({
         setXisob(d)
         setjamiXisob(c)
     }
+
+    function avans(e) {
+        input.avans = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
     function donasotish(e, id) {
         // input.donasotish = e.target.value
         input.donasotish = e.target.value
@@ -432,9 +440,12 @@ function Xarid({
                             purchaseStatusId: input.xaridstatusi,
                             paymentStatusId: input.eslatma,
                             branchId: input.baza,
+                            buyPrice: input.donanarxi,
                             date: input.xaridsanasi,
+                            avans:input.avans,
                             description: input.qisqaeslatma,
-                            deliver : input.yetkazibberishnarxi2,
+                            // buyPrice: input.sot
+                            deliveryPrice : input.yetkazibberishnarxi2,
                             purchaseProductsDto: [
                                 {
                                     purchasedQuantity: item.quantity,
@@ -710,7 +721,7 @@ function Xarid({
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="number" value={item.buyPrice} id='sotibOlishInput'
+                                                        <input type="number" value={input.donanarxi} id='sotibOlishInput'
                                                             onChange={(event) => donanarxi(event, item.id)}
                                                             placeholder={placeholders.donaNarxiPlaceholder} className={'form-control'} />
                                                     </td>

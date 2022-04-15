@@ -59,16 +59,11 @@ function FoydaZarar({
     }
 
 
-
-
-
     useEffect(() => {
         getFoydaZarar()
         getMaxsulotRuyxati(users.businessId)
         getbranch(users.businessId)
     }, [])
-
-
 
 
     const [state, setState] = useState([

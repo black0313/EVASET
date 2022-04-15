@@ -16,8 +16,9 @@ import {connect} from 'react-redux'
 import {getMijozhisobot,deleteMijozhisobot,saveMijozhisobot,editMijozhisobot} from '../reducer/MijozHisobotiReducer'
 import XodimReducer, {getXodim, saveXodim} from "../../Hodimlar/reducer/XodimReducer";
 import users from "../../../../../reducer/users";
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 
-function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar}) {
+function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar,getbranch}) {
 
     const [inputvalue,setinputvalue] = useState(
         {
@@ -52,6 +53,7 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar}) {
     useEffect(()=>{
         getXodim(users.businessId)
         history.push('/headerthird/mijozlarXisoboti/1')
+        getbranch(users.businessId)
     },[])
 
     return (
@@ -64,11 +66,11 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar}) {
                     <h5>Filtirlash</h5>
                 </div>
                 <div className="row cont">
-                    <div className="col-md-6">
+                    <div className="col-md-12">
                         <h6>Xodim:</h6>
-                        <select className='inptData' value={inputvalue.xodim} onChange={xodim} name="" id="">
+                        <select className='inptData' value={inputvalue.xodim} onChange={xodim} id="">
                             {
-                                XodimReducer.xodimlar.map(item=> <option value={item.id}>{item.id}</option>)
+                                XodimReducer.xodimlar.map(item=> <option value={item.id}>{item.username}</option>)
                             }
                         </select>
                     </div>
@@ -80,24 +82,16 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar}) {
                     <div className="col-md-6">
                         <h6>Baza:</h6>
                         <select name="" id="" value={inputvalue.baza} onChange={baza} className={'inptData'}>
-                            <option value="">Tanlash</option>
-                            <option value="">Shefir zavod</option>
-                            <option value="">Instrumentlar</option>
+                            {
+
+                            }
                         </select>
                     </div>
                     <div className="col-md-6">
                         <h6>Sanani belgilang:</h6>
                         <select name="" id="" className={'inptData'} value={inputvalue.sananibelgilang} onChange={sananibelgilang}>
                             <option value="">Bugun</option>
-                            <option value="">Kecha</option>
-                            <option value="">Oxirgi 7 kun</option>
-                            <option value="">Oxirgi 30 kun</option>
-                            <option value="">Bu oy</option>
-                            <option value="">O`tgan oy</option>
-                            <option value="">Bu yilgi moliya</option>
-                            <option value="">Bu yil</option>
-                            <option value="">O`tgan yil moliyasi</option>
-                            <option value="" onClick={toggle}>Siz istagan sana</option>
+
                             {
                                 active?<option value="">123</option>:'no find'
                             }
@@ -143,4 +137,4 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar}) {
     )
 }
 
-export default connect((XodimReducer,users),{getXodim,saveXodim,}) (MijozlarXisoboti)
+export default connect((XodimReducer,users,branchreducer),{getXodim,getbranch,saveXodim,}) (MijozlarXisoboti)

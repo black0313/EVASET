@@ -21,6 +21,7 @@ import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import users from "../../../../../reducer/users";
 import TaminotReducer, {getTaminot, getTaminot2} from "../../Hamkorlar/reducer/TaminotReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 function XaridlarXisoboti({branchreducer,getXarid2,users,getTaminot2,getbranch,TaminotReducer,getTaminot,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,XaridReducer,getXarid}) {
 
@@ -32,10 +33,15 @@ function XaridlarXisoboti({branchreducer,getXarid2,users,getTaminot2,getbranch,T
             sananibelgilash:'',
             view:'',
             izlash:'',
-            eslatma:''
+            eslatma:'',
+            qarz:''
         }
     )
-
+    function izlash(e){
+        input.izlash = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
     function baza(e){
         input.baza = e.target.value
         let a = {...input}
@@ -80,13 +86,18 @@ getXarid2(users.businessId)
         let a = {...input}
         setInput(a)
     }
+    function qarzfunction(e){
+        input.qarz = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
 
     useEffect(()=>{
-        console.log('hello');
         getMaxsulotRuyxati(users.businessId)
         getTaminot2(users.businessId)
         getXarid(users.businessId)
         getXarid2(users.businessId)
+        getTaminot(users.businessId)
     },[])
 
     const [active,setActive] = useState(false)
@@ -112,6 +123,11 @@ getXarid2(users.businessId)
             console.log(day,day1,day2)
         }
     }
+    const [qarz,setqarz] = useState(false)
+
+    function toggleQarz(){
+        setqarz(!qarz)
+    }
 
     return (
         <div className="col-md-12 mt-4 mb-4">
@@ -126,10 +142,11 @@ getXarid2(users.businessId)
                     <div className="col-md-6">
                         <h6>Baza:</h6>
                         <select name="" value={input.baza} onChange={baza} id="" className='inputData'>
-                            {/*<option value="">Tanlash</option>*/}
+
                             <option value="barcasi">Barchasi</option>
                             {
                                 branchreducer.branch.map(item=>
+                                    input.baza == '' ? input.baza = item.id:
                                     <option value={item.id}>{item.name}</option>)
                             }
                         </select>
@@ -151,18 +168,6 @@ getXarid2(users.businessId)
                     <div className="col-md-6">
                         <h6>Sanani belgilang:</h6>
                         <input type="date" className={'inputData'} value={input.sananibelgilash} onChange={sananibelgilash}/>
-                            {
-                                // active?     <DateRangePickerComponent placeholder="Enter Date Range"
-                                //                                       startDate={startValueDate}
-                                //                                       endDate={endValueDate}
-                                //                                       min={minDateDate}
-                                //                                       max={maxDateDate}
-                                //                                       minDays={1}
-                                //                                       maxDays={10000}
-                                //                                       format="dd-MMM-yy"
-                                //
-                                // ></DateRangePickerComponent>:''
-                            }
 
                     </div>
                 </div>
@@ -177,7 +182,6 @@ getXarid2(users.businessId)
                         <select name="" id="" value={input.view} onChange={view}>
                             <option value="">25</option>
                             <option value="">50</option>
-                            <option value="">All</option>
                         </select>
                         <button> <img src={CSV} alt="" /> Export CSV</button>
                         <button><img src={Excel} alt="" /> Export Excel</button>
@@ -189,44 +193,47 @@ getXarid2(users.businessId)
                         <input value={input.izlash} onChange={izlash} type="text" placeholder='Izlash...'/>
                     </div>
                 </div>
-                <div className="table-responsive mb-4">
-                    <table className='table table-striped table-bordered mt-4 '>
+                <div className="table-responsive mb-4 table-wrapper-scroll-y my-custom-scrollbar">
+                    <table className='table table-hover table-primary table-striped table-bordered mt-4 '>
                         <thead>
                         <tr>
-                            <td>Maxsulot</td>
-                            {/*<td>Shtrix kod</td>*/}
-                            <td>Diller</td>
-                            <td>Qarzi qancha</td>
-                            <td>
-                                Qarzni to`lash
-                            </td>
-                            {/*<td>Sana</td>*/}
-                            {/*<td>Miqdori</td>*/}
-                            {/*<td>Jami</td>*/}
-                            {/*<td>Sotib olish narxi</td>*/}
-                            {/*<td>Jami</td>*/}
+                            <th>T/R</th>
+                            <th>Maxsulot</th>
+                            {/*<th>Shtrix kod</th>*/}
+                            <th>Diller</th>
+                            <th>Yetkazish narxi</th>
+                            <th>Qarz</th>
+                            <th>Qarzni to`lash</th>
                         </tr>
                         </thead>
-                        {console.log(XaridReducer.xaridlar)}
                         <tbody>
                         {
-                            XaridReducer.xaridlar.map(item=><tr key={item.id}>
-
+                            XaridReducer.xaridlar.filter(val=>{
+                                if (input.izlash === ''){
+                                    return val
+                                }else if (val.product.name.toUpperCase().includes(input.izlash.toUpperCase())){
+                                    return val
+                                }
+                            }).
+                            map((item,index)=><tr key={item.id}>
+                                <td>{index+1}</td>
                                     {
                                         item.purchaseProductList.map(item=><td key={item.id}>
                                             {item.product.name}
                                         </td>)
                                     }
-                                    {/*{console.log(item.purchaseProductList[0].product.name)}*/}
-
+                                {/*<td>{item.purchaseProductList.map(item=><td key={item.id}>*/}
+                                {/*    {item.product.barcode}*/}
+                                {/*</td>)}</td>*/}
                                 <td>
                                     {item.dealer.name}
                                 </td>
                                 <td>
-
+                                    {item.deliveryPrice}
                                 </td>
+                                <td>-</td>
                                 <td>
-                                    <button className={'btn btn-success'}>
+                                    <button onClick={toggleQarz} className={'btnQarz'}>
                                         Qarzni to`lash
                                     </button>
                                 </td>
@@ -234,6 +241,20 @@ getXarid2(users.businessId)
                         }
                         </tbody>
                     </table>
+                    <Modal isOpen={qarz} toggle={toggleQarz}>
+                        <ModalHeader>
+                            Qarz uzish
+                        </ModalHeader>
+                        <ModalBody>
+                            <h3>Umumiy Qarz</h3>
+                            <label htmlFor={'qarz'}>So`mmani kiriting</label>
+                            <input value={input.qarz} onChange={qarzfunction} type="number" className={'form-control'}/>
+                        </ModalBody>
+                        <ModalFooter>
+                            <button className={'btn btn-outline-primary'}>Saqlash</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggleQarz}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
                 </div>
 
                 <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>

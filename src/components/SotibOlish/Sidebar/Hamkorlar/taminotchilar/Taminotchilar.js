@@ -16,10 +16,11 @@ import {useState} from 'react'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {red} from "@mui/material/colors"
 import {toast} from "react-toastify";
+import QarzuzishTaminotReducer, {qarzuzishTaminot} from "../reducer/QarzuzishTaminotReducer";
 // import {ccc} from '../../../../../img/flash-1.svg'
 
 
-function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, taminot, users, TaminotReducer}) {
+function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, deleteTaminot, taminot, users, TaminotReducer}) {
 
     useEffect(() => {
         getTaminot(users.businessId)
@@ -49,7 +50,8 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
             familiyasi: '',
             inputsearch: '',
             tID: '',
-            taminotturi:''
+            taminotturi:'',
+            qarzuzish:''
         },
     );
 
@@ -57,7 +59,11 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         input.inputsearch = e.target.value
         let a = {...input}
         setInput(a)
-        console.log(input.inputsearch)
+    }
+    function qarzuzish(e) {
+        input.qarzuzish = e.target.value
+        let a = {...input}
+        setInput(a)
     }
  function taminotturi(e) {
         input.taminotturi = e.target.value
@@ -138,6 +144,20 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         })
     }
 
+    const [qarz,setqarz] = useState(false)
+    function toggle3(){
+        setqarz(!qarz)
+    }
+    function saqlaQarz(){
+        qarzuzishTaminot({
+            repayment: input.qarzuzish
+        })
+        input.qarzuzish = ''
+        let a = {...input}
+        setInput(a)
+        toggle3()
+    }
+
     function saqla() {
 
         if (input.ismi === "" || input.telegram === "" || input.familiyasi === "") {
@@ -155,7 +175,6 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
         }
 
         else {
-
             if (input.tID !== '') {
                 editTaminot(
                     {
@@ -307,6 +326,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                             {
                                                 suplier?<th>{item.supplier}</th>:''
                                             }
+                                            <th>Qarz</th>
                                             {
                                                 amallar?<th className={'text-center'}>{item.amallar}</th>:''
                                             }
@@ -314,6 +334,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                     }
 
                                     </thead>
+
                                     <tbody >
                                     {
                                         TaminotReducer.taminot.filter(val => {
@@ -336,6 +357,7 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                             {
                                                 suplier?<td>{item.supplierType}</td>:''
                                             }
+                                            <td>{item.storeDebt}</td>
                                             {
                                                 amallar?<td className={'text-center'}>
                                                     {
@@ -358,6 +380,24 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
                                                         </button>:''
                                                     }
 
+                                                    <button className={'btnB2'} onClick={toggle3}>Qarz uzish</button>
+
+                                                    {/*QARZ UZISH*/}
+                                                    <Modal isOpen={qarz} toggle={toggle3}>
+                                                        <ModalHeader>
+                                                            Qarz uzish
+                                                        </ModalHeader>
+                                                        <ModalBody>
+                                                            <label htmlFor={'m'}>Qarz uzish</label>
+                                                            <input type="text" className={'form-control'} value={input.qarzuzish} onChange={qarzuzish}/>
+                                                        </ModalBody>
+                                                        <ModalFooter>
+                                                            <button className={'btn btn-outline-primary'} onClick={saqlaQarz}>Saqlash</button>
+                                                            <button className={'btn btn-outline-primary'} onClick={toggle3}>Chiqish</button>
+                                                        </ModalFooter>
+                                                    </Modal>
+
+                                                    {/*IShonch komilmi DELETE*/}
                                                     <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                                         <ModalBody>
                                                             <h5>Ishonchingiz komilmi ?</h5>
@@ -450,8 +490,9 @@ function Taminotchilar({getTaminot, saveTaminot, editTaminot, deleteTaminot, tam
     )
 }
 
-export default connect((TaminotReducer, users), {
+export default connect((TaminotReducer,QarzuzishTaminotReducer, users), {
     getTaminot,
+    qarzuzishTaminot,
     saveTaminot,
     editTaminot,
     deleteTaminot

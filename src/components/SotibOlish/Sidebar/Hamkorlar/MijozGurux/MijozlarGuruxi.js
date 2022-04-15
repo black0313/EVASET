@@ -16,6 +16,7 @@ import MijozGuruxReducer, {
 } from "../reducer/MijozGuruxReducer";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import users from "../../../../../reducer/users";
+import QarzuzishReducer, {qarzuzishCustomer} from "../reducer/QarzuzishReducer";
 
 function Mijozlarguruxi({
                             getMijozGurux,
@@ -24,6 +25,7 @@ function Mijozlarguruxi({
                             deleteMijozGurux,
                             users,
                             MijozGuruxReducer
+                            ,qarzuzishCustomer
                         }) {
 
 
@@ -45,12 +47,18 @@ function Mijozlarguruxi({
             foizda: '',
             inputsearch: '',
             phone: '',
-            mId: ''
+            mId: '',
+            qarzuzish:''
         }
     )
 
     function phone(e) {
         input.phone = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function qarzuzish(e) {
+        input.qarzuzish = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -101,6 +109,16 @@ function Mijozlarguruxi({
         })
     }
 
+    function saqlaqarz(){
+        qarzuzishCustomer({
+            repayment: input.qarzuzish
+        })
+        toggle2()
+        input.qarzuzish = ''
+        let a = {...input}
+        setInput(a)
+    }
+
     function saqla() {
        if(input.guruhnomi !=="" && input.phone !=="" && input.foizda !==""){
          
@@ -117,6 +135,7 @@ function Mijozlarguruxi({
                 name: input.guruhnomi,
                 phoneNumber: input.phone,
                 telegram: input.foizda,
+                repayment: input.qarzuzish,
                 businessId: 1
             })
         }
@@ -145,9 +164,10 @@ function Mijozlarguruxi({
                 telegramPlaseholders:'Telegram guruh nomi... '
             }
         )
-        
        }
     }
+
+
 
     const [nomi,setnomi] = useState(true)
     const [telraqam,settelraqam] = useState(true)
@@ -198,6 +218,12 @@ function Mijozlarguruxi({
         setvisible(prev=>prev+5)
     }
 
+    const [qarzuz,setqarzuz] = useState(false)
+
+    function toggle2(){
+        setqarzuz(!qarzuz)
+    }
+
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
             <div className="textHeaderMIG">
@@ -208,7 +234,6 @@ function Mijozlarguruxi({
                     <h5>Barcha mijozlar</h5>
                     {
                         users.addcustomer?  <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>:''
-
                     }
                 </div>
 
@@ -238,6 +263,7 @@ function Mijozlarguruxi({
                                     </ul>) : ''
                                 }
                             </div>
+
                             <div className="izlashBox2">
                                 <input type="text" value={input.inputsearch} onChange={search} placeholder='Izlash...'/>
                             </div>
@@ -255,11 +281,10 @@ function Mijozlarguruxi({
                                             telraqam?<th>{item.phone}</th>:''
                                         }
                                         {
-                                            foizda?<th>{item.foiz}</th>:''
-                                        }
-                                        {
                                             telegram?<th>{item.telegram}</th>:''
                                         }
+                                        <th>Qarz</th>
+                                        {/*<th>Qarz uzish</th>*/}
                                         {
                                             amallar?<th className={'text-center'}>{item.amallar}</th>:''
                                         }
@@ -284,25 +309,37 @@ function Mijozlarguruxi({
                                                 telraqam?<td>{item.phoneNumber}</td>:''
                                             }
                                             {
-                                                foizda?<td></td>:''
-                                            }
-                                            {
                                                 telegram?<td>{item.telegram}</td>:''
                                             }
+                                            <td>{item.debt}</td>
+
+                                            <Modal isOpen={qarzuz} toggle={toggle2}>
+                                                <ModalHeader>
+                                                    Qarz uzish
+                                                </ModalHeader>
+                                                <ModalBody>
+                                                    <label htmlFor={'l'}>Qarz uzish</label>
+                                                    <input type="text" className={'form-control'} value={input.qarzuzish} onChange={qarzuzish}/>
+                                                </ModalBody>
+                                                <ModalFooter>
+                                                    <button className={'btn btn-outline-primary'} onClick={saqlaqarz}>Saqlash</button>
+                                                    <button className={'btn btn-outline-primary'} onClick={toggle2}>Chiqish</button>
+                                                </ModalFooter>
+                                            </Modal>
                                             {
                                                 amallar?<td>
                                                     {
                                                         users.editcustomer?
-                                                            <button className={'btn btn-outline-primary m-1'}
+                                                            <button className={'btnB m-1'}
                                                                     onClick={() => editM(item.id)}>Taxrirlash
                                                             </button>:''
                                                     }
                                                     {
-                                                        users.deletecustomer? <button className={'btn btn-outline-primary m-1'}
+                                                        users.deletecustomer? <button className={'btnB  m-1'}
                                                                                       onClick={() => deleteM(item)}>O`chirish
                                                         </button>:''
                                                     }
-
+                                                    <td><button className={'btnB '} onClick={toggle2}>Qarz uzish</button></td>
                                                 </td>:''
                                             }
                                         </tr>)
@@ -353,8 +390,9 @@ function Mijozlarguruxi({
     )
 }
 
-export default connect((MijozGuruxReducer, users), {
+export default connect((MijozGuruxReducer,QarzuzishReducer, users), {
     getMijozGurux,
+    qarzuzishCustomer,
     saveMijozGurux,
     editMijozGurux,
     deleteMijozGurux
