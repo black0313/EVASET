@@ -187,6 +187,9 @@ function Mijozlarguruxi({
 
     const [malkamay,setmalkamay] = useState(false)
 
+    const [xisob,setxisob] = useState(0)
+    let [jamixisob,setjamixisob] = useState(0)
+
     function toggle() {
         setActive(!active)
         setInput(
@@ -268,8 +271,20 @@ function Mijozlarguruxi({
                                 <input type="text" value={input.inputsearch} onChange={search} placeholder='Izlash...'/>
                             </div>
                         </div>
+                        <div className={'d-flex mt-3 justify-content-center'}>
+                            {/*{console.log(TaminotReducer.taminot.map(item=> item.storeDebt))}*/}
+
+                            {
+                                MijozGuruxReducer.mijozgurux.map(item=> {
+                                    jamixisob+=item.debt
+                                })
+                            }
+                            {/*<div><h4>Maxsulotlar soni: {xisob}</h4></div>*/}
+                            <div><h4>Jami Qarz: {jamixisob}  So`m</h4></div>
+                        </div>
                         <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-                            <table className='table table-striped table-bordered mt-4'>
+
+                            <table className='table table-hover  table-striped table-bordered mt-4'>
                                 <thead>
                                 {
                                     headlist.map(item=><tr key={item.id}>
@@ -327,7 +342,7 @@ function Mijozlarguruxi({
                                                 </ModalFooter>
                                             </Modal>
                                             {
-                                                amallar?<td>
+                                                amallar?<td className={'d-flex justify-content-center'}>
                                                     {
                                                         users.editcustomer?
                                                             <button className={'btnB m-1'}
@@ -339,7 +354,7 @@ function Mijozlarguruxi({
                                                                                       onClick={() => deleteM(item)}>O`chirish
                                                         </button>:''
                                                     }
-                                                    <td><button className={'btnB '} onClick={toggle2}>Qarz uzish</button></td>
+                                                    <td><button className={'btnB mt-1'} onClick={toggle2}>Qarz uzish</button></td>
                                                 </td>:''
                                             }
                                         </tr>)
@@ -349,12 +364,7 @@ function Mijozlarguruxi({
                             <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                         </div>
 
-                        <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                        <div className='sahifalar'>
-                            <button>Ortga</button>
-                            <button>1</button>
-                            <button>Oldinga</button>
-                        </div>
+
                     </div>:''
                 }
 

@@ -10,15 +10,11 @@ import Korish from '../../../../../img/Korish.png'
 import Delete from '../../../../../img/Delete.png'
 import {useEffect} from "react";
 import {connect} from "react-redux";
-import TaminotReducer, {getTaminot, saveTaminot, editTaminot, taminot, deleteTaminot} from "../reducer/TaminotReducer";
+import TaminotReducer, {getTaminot, saveTaminot, editTaminot,  deleteTaminot} from "../reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
 import {useState} from 'react'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {red} from "@mui/material/colors"
-import {toast} from "react-toastify";
 import QarzuzishTaminotReducer, {qarzuzishTaminot} from "../reducer/QarzuzishTaminotReducer";
-// import {ccc} from '../../../../../img/flash-1.svg'
-
 
 function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, deleteTaminot, taminot, users, TaminotReducer}) {
 
@@ -143,6 +139,9 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
             }
         })
     }
+
+    const [xisob,setxisob] = useState(0)
+    let [jamixisob,setjamixisob] = useState(0)
 
     const [qarz,setqarz] = useState(false)
     function toggle3(){
@@ -419,6 +418,17 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
                                 </button>
 
                                 {/*<button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>*/}
+                            </div>
+                            <div className={'d-flex mt-3 justify-content-around'}>
+                                {/*{console.log(TaminotReducer.taminot.map(item=> item.storeDebt))}*/}
+
+                                {
+                                    TaminotReducer.taminot.map(item=> {
+                                        jamixisob+=item.storeDebt
+                                    })
+                                }
+                                <div><h4>Maxsulotlar soni: {xisob}</h4></div>
+                                <div><h4>Jami: {jamixisob}  So`m</h4></div>
                             </div>
                             <p className={'mt-3'}>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
                             <div className='sahifalar'>

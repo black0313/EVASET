@@ -28,7 +28,8 @@ import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQo
 import functionreducer,{active,activSavdo} from "../../../reducer/functionreducer";
 import XaridReducer,{getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
-function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
+import TaminotReducer from "../Sidebar/Hamkorlar/reducer/TaminotReducer";
+function Third({display,users,SavdoQoshishReducer,TaminotReducer ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
@@ -166,6 +167,7 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
         },
 
     ])
+
     const jami = [
         {
             number: XaridReducer.xaridlarjami,
@@ -182,7 +184,7 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
             svgfoiz: <img src={jami2} alt={'jami2'}/>
         },
         {
-            number: "2 400 000",
+            number: TaminotReducer.taminotjami,
             foiz: "+10.23%",
             text: 'BOZORDAN QARZIM',
             svg: <img className={'imgsvg'} src={bozordanqarz} alt={'bozordanqarz'}/>,
@@ -250,7 +252,7 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
                             </div>
 
                             <div className="col-md-11 col-sm-9 align-items-center">
-                                <h4 className={'kitchen'}>Tokyo Kitchen</h4>
+                                <h4 className={'kitchen2'}>X O` SH - K E L I B S I Z</h4>
                                 <p className={'kitchen'}>Sizni shaxsiy boshqaruv panelida yana ko'rganimizdan juda
                                     xursandmiz</p>
                             </div>
@@ -583,4 +585,5 @@ function Third({display,users,SavdoQoshishReducer,getMaxsulotRuyxati,getSavdolar
 }
 
 
-export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),{getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Third);
+export default connect((SavdoQoshishReducer,TaminotReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),
+    {getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Third);

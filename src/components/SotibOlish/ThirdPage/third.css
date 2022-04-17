@@ -57,7 +57,41 @@ h4.kitchen {
     /* identical to box height */
     color: #3A3C40;
 }
-
+h4.kitchen2{
+    animation: kit 15s linear;
+    color: #90543f;
+}
+@keyframes kit {
+    10%{
+        color: #844343;
+        opacity: 0.7;
+    }
+    20%{
+        color: #2158a8;
+    }
+    30%{
+        color: #503b3b;
+    }
+    40%{
+        color: #5f4848;
+        opacity: 0.7;
+    }
+    50%{
+        color: #83a837;
+    }
+    60%{
+        color: #3f6d3f;
+    }
+    70%{
+        color: #8d468d;
+    }
+    80%{
+        color: #9e6d23;
+    }
+    90%{
+        color: #647d3a;
+    }
+}
 .kitchen-button {
     background: #FFFFFF;
     box-shadow: 0px 8px 20px rgba(40, 41, 61, 0.08);

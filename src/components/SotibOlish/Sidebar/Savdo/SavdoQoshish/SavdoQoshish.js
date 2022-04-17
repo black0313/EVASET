@@ -216,7 +216,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                 amountPaid:input.avans,
                 currencyId:1,
                 addressId:1
-            },console.log('edited'))
+            },)
         }else {
            if(input.tulovusuli && input.avans){
             mah.map(item=>{
@@ -237,7 +237,6 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                         currencyId:1,
                         addressId:1
                     },
-                    console.log('saved')
                 )
             })
            }
@@ -306,7 +305,7 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                             </select>
                         </div>
                         <label htmlFor={'stat'} >Status</label>
-                        {console.log(PayReducer.paymethod)}
+
                         <select value={input.status} onChange={status} name="" id="" className={'form-control'}>
                             <option value="">Tanlash</option>
                             {
@@ -344,7 +343,6 @@ function SavdoQoshish({getbranch,branchreducer,getPay,PayReducer,getMijozGurux,M
                             <th>Mahsulot</th>
                             <th>Miqdori</th>
                             <th>Narxi</th>
-                            {/*<th>Discount</th>*/}
                             <th>Jami</th>
                             <th>x</th>
                         </tr>

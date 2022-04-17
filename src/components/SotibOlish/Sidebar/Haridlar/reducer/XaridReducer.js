@@ -17,7 +17,6 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.xaridlar = action.payload.object
-            console.log(action.payload);
             let amount=0
             let uzcard=0
             let naqd=0
@@ -25,12 +24,11 @@ const slice = createSlice({
             let miqdor=0
             action.payload.object.map(item=>{
                     amount+=item.totalSum
-                console.log(item.purchaseProductList[0].purchasedQuantity)
+                // console.log(item.purchaseProductList[0].purchasedQuantity)
                 item.purchaseProductList.map(item=>{
                     miqdor+=item.purchasedQuantity
                 })
 
-                console.log(item)
                 // if (item.payMethod.id===2){
                 //     uzcard+=item.totalSum
                 // }

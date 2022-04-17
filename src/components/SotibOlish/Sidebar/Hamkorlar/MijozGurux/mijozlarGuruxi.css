@@ -1,7 +1,8 @@
 .btnB{
-    width: 100px;
-    height: 40px;
-    background: linear-gradient(90deg, #2d2424,darkred);
+    width: 70px;
+    height: 30px;
+    /*background: linear-gradient(90deg, #841c1c, #060642, #40501f);*/
+    background: #0A58CA;
     color: #fff;
     border-radius: 15px;
 }
