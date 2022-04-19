@@ -11,7 +11,7 @@ import SecondPage from "../Pricing/SecondPage/SecondPage";
 import users ,{saveusers,getusers,changeerror}from "../../reducer/users";
 // import {idID} from "@mui/material/locale";
 
-function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
+function Home({saveusers, getusers,users, linkpost,active, changeerror}) {
 
     useEffect(() => {
     }, [])
@@ -92,7 +92,7 @@ function Home({saveusers, getusers,users, linkpost,active,changeerror}) {
                                     <img onClick={changetypeinput} src={eye} alt=""/>
                                 </div>
                                 {
-                                  users.error ? <span className={'error'}> Login yoki parol xato !</span>:''
+                                  users.error ? <span className={'error'}>Login yoki parol xato !</span>:''
                                 }
                                 <div className="kirish-checkbox">
                                     <input onChange={changechecked} checked={checked} type="checkbox" id={'check'}/>

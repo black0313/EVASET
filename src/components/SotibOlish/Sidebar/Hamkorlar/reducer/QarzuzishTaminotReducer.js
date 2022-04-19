@@ -19,7 +19,7 @@ const slice = createSlice({
 });
 
 export const qarzuzishTaminot=(data)=>apiCall({
-    url: '/supplier/repayment/13',
+    url: '/supplier/repayment/'+data.id,
     method:'post',
     data,
     onSuccess: slice.actions.savefrom.type

@@ -47,7 +47,8 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
             inputsearch: '',
             tID: '',
             taminotturi:'',
-            qarzuzish:''
+            qarzuzish:'',
+            qId:''
         },
     );
 
@@ -147,9 +148,10 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
     function toggle3(){
         setqarz(!qarz)
     }
-    function saqlaQarz(){
+    function saqlaQarz(item){
         qarzuzishTaminot({
-            repayment: input.qarzuzish
+            repayment: input.qarzuzish,
+            id:item
         })
         input.qarzuzish = ''
         let a = {...input}
@@ -185,7 +187,6 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
                         id: input.tID
                     }
                 )
-                console.log('edit')
             } else {
                 saveTaminot({
                     name: input.ismi,
@@ -333,7 +334,9 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
                                     }
 
                                     </thead>
-
+                                    {
+                                        console.log(TaminotReducer.taminot)
+                                    }
                                     <tbody >
                                     {
                                         TaminotReducer.taminot.filter(val => {
@@ -391,7 +394,7 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
                                                             <input type="text" className={'form-control'} value={input.qarzuzish} onChange={qarzuzish}/>
                                                         </ModalBody>
                                                         <ModalFooter>
-                                                            <button className={'btn btn-outline-primary'} onClick={saqlaQarz}>Saqlash</button>
+                                                            <button className={'btn btn-outline-primary'} onClick={()=>saqlaQarz(item)}>Saqlash</button>
                                                             <button className={'btn btn-outline-primary'} onClick={toggle3}>Chiqish</button>
                                                         </ModalFooter>
                                                     </Modal>
