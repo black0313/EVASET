@@ -220,7 +220,6 @@ function Taxrirlash({
     function mahsulotrasmi(e) {
         const data = new FormData();
         data.append('file', e.target.files[0]);
-
         savephoto(data)
     }
 
@@ -490,8 +489,11 @@ function Taxrirlash({
                     </div>
 
                     <div className={'col-md-6'}>
-                        <label htmlFor={'mahRasmi'}>Mahsulot rasmi</label>
-                        <input type="file" className={'form-control'} value={input.mahsulotrasmi} onChange={mahsulotrasmi} id={'mahRasmi'}
+                        <p className={"p-0 m-0"}>Mahsulot rasm qo'shish</p>
+                        <label htmlFor={'mahRasm'}>
+                            <p className={'btn btn-primary'}>Add img</p>
+                        </label>
+                        <input type="file" className={'form-control d-none'} value={input.mahsulotrasmi} onChange={mahsulotrasmi} id={'mahRasm'}
                                style={{background: 'transparent'}}/>
                     </div>
                 </div>

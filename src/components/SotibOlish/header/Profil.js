@@ -15,18 +15,11 @@ function Profil({image,savephoto,users,photoreducer,getphoto}) {
     function vib(e){
         const data = new FormData();
         data.append('file', e.target.files[0]);
-
         savephoto(data)
     }
 
-
-
-
-
     function saqla(){
-            savephoto(
-                viber.pic
-            )
+
     }
 
     useEffect(()=>{
@@ -50,7 +43,21 @@ function Profil({image,savephoto,users,photoreducer,getphoto}) {
             </div>
         </div>
         <div className="row">
-            <input type="file" value={vib.pic} id={'file'} name={'file[]'}  multiple={true} onChange={vib}/>
+            <div className="col-md-6">
+                {
+                    users.users?.photo?.id===undefined && photoreducer.photo?.id ===undefined ?  <img className={'img-fluid bg-danger'} src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwrDpSgHY2z-CJ_i1pQr42NUW531sx0yqOcQ&usqp=CAU`} alt="###"/>:
+                       photoreducer.photo.id !==undefined ?   <img className={'img-fluid bg-danger'} src={`http://localhost:8080/api/attachment/download/${photoreducer.photo?.id}`} alt="###"/>
+                    :  <img className={'img-fluid bg-danger'} src={`http://localhost:8080/api/attachment/download/${users.users?.photo?.id}`} alt="###"/>
+
+                }
+            </div>
+
+        </div>
+        <div className="row">
+            <label htmlFor={'profilRasm'}>
+                <p className={'btn btn-primary'}>Add img</p>
+            </label>
+            <input type="file" className={'d-none'} value={vib.pic} id={'profilRasm'} name={'file[]'}  multiple={true} onChange={vib}/>
         </div>
         <div className="row mt-2">
             <div className="col-md-3"><button onClick={saqla} className={'btn btn-primary'}>Saqlash</button>

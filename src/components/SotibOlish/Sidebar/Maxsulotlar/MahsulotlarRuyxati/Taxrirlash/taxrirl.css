@@ -66,3 +66,9 @@
 .filterbranch{
     position: absolute;
 }
+.addimg{
+    padding: 6px 40px;
+    border-radius: 5px;
+    background: #0044FF;
+    color: white;
+}
