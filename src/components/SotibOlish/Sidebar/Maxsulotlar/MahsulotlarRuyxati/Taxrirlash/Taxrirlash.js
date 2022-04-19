@@ -83,11 +83,17 @@ function Taxrirlash({
             soliqbnnarx: '',
             sotibolishnarxi: '',
             miqdorMaxsulot: '',
+            muddatmaxsulot:''
         }
     )
 
     function mahsulotnomi(e) {
         input.mahsulotnomi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function muddatmahsulot(e) {
+        input.muddatmaxsulot = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -469,6 +475,7 @@ function Taxrirlash({
                         }
 
                     </div>
+
                 </div>
             </div>
             <div className="row mt-4 justify-content-center d-flex align-items-center">
@@ -478,6 +485,8 @@ function Taxrirlash({
                         <label htmlFor={'ogoh'}>Ogohlantiruvchi miqdor</label>
                         <input type="number" value={input.ogohmiqdor} onChange={ogohmiqdor}
                                className={'form-control'} id={'ogoh'}/>
+                        <label htmlFor={'yaroq'} className={'mt-3'}>Mahsulot yaroqlilik muddati</label>
+                        <input type="date" className={'form-control'} value={input.muddatmaxsulot} onChange={muddatmahsulot}/>
                     </div>
 
                     <div className={'col-md-6'}>

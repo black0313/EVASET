@@ -116,7 +116,8 @@ function BarchaMaxsulotlar({
             qolganmahsulot: 'Qolgan mahsulot',
             firma: 'Firma',
             amallar: 'Amallar',
-            ogoh:'Eslatma miqdori'
+            ogoh:'Eslatma miqdori',
+            yaroq: 'Muddati'
         }
     ])
 
@@ -205,6 +206,7 @@ function BarchaMaxsulotlar({
                                                 firma ? <th>{item.firma}</th> : ''
                                             }
                                             <th>{item.ogoh}</th>
+                                            <th>{item.yaroq}</th>
                                             {
                                                 amallar ? <th className={'text-center'}>{item.amallar}</th> : ''
                                             }
@@ -241,6 +243,7 @@ function BarchaMaxsulotlar({
                                                     firma ? <td>{item.brand.name}</td> : ''
                                                 }
                                                 <td>{item.minQuantity}</td>
+                                                <td>{item.expireDate}</td>
                                                 {
                                                     amallar ? <td>
                                                         {

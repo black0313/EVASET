@@ -106,6 +106,7 @@ getXarid2(users.businessId)
     const endValueDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 15);
     const minDateDate = new Date(new Date().getFullYear(), new Date().getMonth(), 8);
     const maxDateDate = new Date(new Date().getFullYear(), new Date().getMonth()+1, 20);
+
     function selectchange(event){
          console.log(event.isDefaultPrevented(false))
              event.isDefaultPrevented(true)
