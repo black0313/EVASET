@@ -254,7 +254,6 @@ function BarchaMaxsulotlar({
                                                             </Link>:''
                                                         }
 
-
                                                         <button onClick={()=>korishsh(item.id)} className='korish'><img src={Korish}
                                                                                                                         alt=""/> Ko'rish
                                                         </button>

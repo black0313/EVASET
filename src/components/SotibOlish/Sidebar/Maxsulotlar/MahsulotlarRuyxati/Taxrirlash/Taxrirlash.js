@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 import kgreducer, {getkg, savekg} from "../../../../../../reducer/kgreducer";
 import users from "../../../../../../reducer/users";
 import FirmaReducer, {getFirma, saveFirma} from "../../reducer/FirmaReducer";
-import BolimReducer, {getBolim} from "../../reducer/BolimReducer";
+import BolimReducer, {getBolim, saveBolim} from "../../reducer/BolimReducer";
 import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer";
 import photoreducer, {savephoto} from "../../../../../../reducer/photoreducer";
 import {toast} from "react-toastify";
@@ -31,6 +31,7 @@ function Taxrirlash({
                         kgreducer,
                         getkg,
                         users,
+                        saveBolim,
                         savekg,
                         FirmaReducer,
                         getFirma,
@@ -83,12 +84,18 @@ function Taxrirlash({
             soliqbnnarx: '',
             sotibolishnarxi: '',
             miqdorMaxsulot: '',
-            muddatmaxsulot:''
+            muddatmaxsulot:'',
+            bolimnomi:'',
         }
     )
 
     function mahsulotnomi(e) {
         input.mahsulotnomi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function bolimnomi(e) {
+        input.bolimnomi = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -241,6 +248,12 @@ function Taxrirlash({
         setActive3(!active3)
     }
 
+    const [bolimactive,setbolimactive] = useState(false)
+
+    function toggle4(){
+        setbolimactive(!bolimactive)
+    }
+
     function editMax() {
         // console.log(match.params)
         if (match.params.id !== undefined) {
@@ -261,14 +274,7 @@ function Taxrirlash({
                 setInput(a)
             }
         })
-        console.log(input)
     }
-
-
-    // input.mahsulotnomi ==="" || input.shtrixkod==="" ||
-    // input.bazalar==="" || input.miqdorMaxsulot==="" ||
-    // input.soliqsiznarx==="" || input.soliqbnnarx==="" || input.foydafoiz==="" || 
-    //input.sotishnarxi==="" || input.sotibolishnarxi===""
 
     function saqla() {
         if (input.mahsulotnomi !== "" && input.shtrixkod !== "" && input.bazalar !== "" && input.miqdorMaxsulot !== "" &&   input.foydafoiz !== "" && input.sotibolishnarxi !== "") {
@@ -293,19 +299,19 @@ function Taxrirlash({
             } else {
                 saveMaxsulotRuyxati({
                     name: input.mahsulotnomi,
-                    quantity: input.miqdorMaxsulot,              /*input.foydafoiz,*/
+                    quantity: input.miqdorMaxsulot,
                     barcode: input.shtrixkod,
-                    brandId: input.ferma,                      /*input.ferma,*/
-                    categoryId: input.bolim,                     /*  input.bolim,*/
-                    measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
+                    brandId: input.ferma,
+                    categoryId: input.bolim,
+                    measurementId: input.ulcovbirligi,
                     photoIds: [photoreducer.photo.id],
                     minQuantity: input.ogohmiqdor,
-                    buyPrice: input.sotibolishnarxi,               /*   input.sotishnarxi,*/
+                    buyPrice: input.sotibolishnarxi,
                     salePrice: input.sotishnarxi,
-                    tax: input.soliqsiznarx,            /* input.amaldagisoliq,*/
+                    tax: input.soliqsiznarx,
                     branchId: [1],
-                    expireDate: null,
-                    dueDate: null
+                    expireDate: input.muddatmaxsulot,
+                    dueDate: new Date().getDate()
                 })
             }
 
@@ -350,6 +356,14 @@ function Taxrirlash({
         input.ulcovunlikasr = ''
     }
 
+    function saqlaBolim(){
+        saveBolim({
+            name: input.bolimnomi,
+            businessId: users.businessId,
+        })
+        toggle4()
+    }
+
     function saqlabrand() {
         saveFirma({
             name: input.brandnomi,
@@ -362,7 +376,6 @@ function Taxrirlash({
 
     function bazaClick() {
         branchreducer.branch.map((item, index) => {
-
             input.bazalar = item.name
             let a = {...input}
             setInput(a)
@@ -413,16 +426,31 @@ function Taxrirlash({
                             <h2 onClick={toggle} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
                         </div>
                         <label className={'mt-3'} htmlFor={'bol'}>Bo`lim</label>
-                        <select name="" onChange={bolim} value={input.bolim} className={'form-control'} id={'bol'}>
-                            {
-                                BolimReducer.bolimlar.map(item =>
-                                    input.bolim == '' ? input.bolim = item.id :
-                                        <option value={item.id}>{item.name}</option>)
-                            }
-                        </select>
+                        <div className={'d-flex'}>
+                            <select name="" onChange={bolim} value={input.bolim} className={'form-control'} id={'bol'}>
+                                {
+                                    BolimReducer.bolimlar.map(item =>
+                                        input.bolim == '' ? input.bolim = item.id :
+                                            <option value={item.id}>{item.name}</option>)
+                                }
+                            </select>
+                            <h2 onClick={toggle4} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
+                        </div>
                     </div>
 
-
+                    <Modal isOpen={bolimactive} toggle={toggle4}>
+                        <ModalHeader>
+                            Bo`lim qo`shish
+                        </ModalHeader>
+                        <ModalBody>
+                            <label htmlFor={'ism'}>Bo`lim nomi</label>
+                            <input type="text" className={'form-control'} value={input.bolimnomi} onChange={bolimnomi}/>
+                        </ModalBody>
+                        <ModalFooter>
+                            <button onClick={saqlaBolim} className={'btn btn-outline-primary'}>Saqlash</button>
+                            <button onClick={toggle4} className={'btn btn-outline-primary'}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
                     <div className="col-4 col-sm-12">
                         <label className='mt-3' htmlFor={'shtrixKod'}>Shtrix kod</label>
                         <input type="number" id={'shtrixKod'} value={input.shtrixkod}
@@ -609,6 +637,7 @@ export default connect((MaxsulotlarRoyxariReducer, users, kgreducer, FirmaReduce
     editMaxsulotRuyxati,
     getkg,
     savekg,
+    saveBolim,
     getFirma,
     saveFirma,
     getBolim,

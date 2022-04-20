@@ -364,7 +364,6 @@ function Mijozlarguruxi({
                             <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                         </div>
 
-
                     </div>:''
                 }
 
