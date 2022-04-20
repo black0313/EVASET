@@ -70,7 +70,6 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer ,getMaxsulotRuy
                 curve: 'smooth'
             },
             yaxis: {
-
                 min: 0,
                 max: 500000
             },
@@ -239,7 +238,7 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer ,getMaxsulotRuy
 
     const series = [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0]
     const windowscrenn = window.screen.height
-    const windowscrenn2 = window.screen.width
+
 
     return (
         <div className={`third  pt-md-4  ${display} ${third}`}>
@@ -428,7 +427,6 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer ,getMaxsulotRuy
                                         series={series}
                                         type={'donut'}
                                         width={"100%"}
-                                        height={"100%"}
                                     />
                                 </div>
                                 <div className="col-md-12  p-3 bar-chart d-flex align-items-center mt-4">

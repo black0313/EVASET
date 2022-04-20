@@ -30,11 +30,6 @@ const slice = createSlice({
     }
 });
 
-export const getphoto=()=>apiCall({
-    url: '/attachment/download/'+2,
-    method:'get',
-    onSuccess: slice.actions.getFrom.type
-});
 
 export const savephoto=(data)=>apiCall({
     url: '/attachment/upload',

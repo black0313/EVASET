@@ -1,9 +1,9 @@
 import './profil.css'
 import {useEffect, useState} from 'react'
 import {connect} from "react-redux";
-import photoreducer ,{savephoto,getphoto} from "../../../reducer/photoreducer";
+import photoreducer ,{savephoto} from "../../../reducer/photoreducer";
 import users from "../../../reducer/users";
-function Profil({image,savephoto,users,photoreducer,getphoto}) {
+function Profil({image,savephoto,users,photoreducer}) {
 
     const [viber,setviber] = useState({
         pic: {}
@@ -23,7 +23,7 @@ function Profil({image,savephoto,users,photoreducer,getphoto}) {
     }
 
     useEffect(()=>{
-        getphoto()
+
     },[])
 
   return (
@@ -70,4 +70,4 @@ function Profil({image,savephoto,users,photoreducer,getphoto}) {
     </div>
   )
 }
-export default connect((users,photoreducer),{savephoto,getphoto}) (Profil)
+export default connect((users,photoreducer),{savephoto}) (Profil)

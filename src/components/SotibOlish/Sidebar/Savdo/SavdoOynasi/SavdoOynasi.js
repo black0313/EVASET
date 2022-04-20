@@ -1341,12 +1341,18 @@ function SavdoOynasi({
                                         key={item.id}>
                                         <div onClick={() => pushesh(item)}>
                                             {
+                                                item.photo?.id === null  ?
+                                                    <img className={'img-fluid bg-danger'} src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU`} alt="###"/>
+
+                                                    :
                                                 item.photo.map(valp=>
-                                                    <Imagecom id={valp.id}/>
+                                                <Imagecom id={valp.id}/>
                                                 )
+
                                             }
 
                                             <h6>{item.name}</h6>
+                                            {console.log(item.photo)}
                                             <p>{item.salePrice} so'm</p>
                                         </div>
                                     </div>)

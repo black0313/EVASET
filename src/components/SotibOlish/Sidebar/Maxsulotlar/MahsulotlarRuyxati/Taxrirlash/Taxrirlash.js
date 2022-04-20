@@ -298,7 +298,7 @@ function Taxrirlash({
                     brandId: input.ferma,                      /*input.ferma,*/
                     categoryId: input.bolim,                     /*  input.bolim,*/
                     measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
-                    photoIds: [photoreducer.photo.id === null ? 21 : photoreducer.photo.id],
+                    photoIds: [photoreducer.photo.id],
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,               /*   input.sotishnarxi,*/
                     salePrice: input.sotishnarxi,

@@ -116,6 +116,10 @@ li{
 }
 
 
+
+
+
+
 @media screen  and  (max-width: 425.9px){
         .sidebar{
             width: calc(100%  + 70px) !important;

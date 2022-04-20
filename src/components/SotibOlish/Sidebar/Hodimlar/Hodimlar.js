@@ -13,17 +13,21 @@ function Hodimlar({active,activemedia}) {
     const [fontsiza,setfontsize] = useState('');
 
     function toggle() {
-        setActive(!active2)
         if(classs===''){
             setClasss('right2')
             setfill('stroke')
             setfontsize('fontsize')
+            let style = document.getElementById('h')
+            style.classList.add('h22')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
+            let style = document.getElementById('h')
+            style.classList.remove('h22')
         }
+
     }
     function sidebaractive(){
         const windowWidth = window.innerWidth;
@@ -34,7 +38,7 @@ function Hodimlar({active,activemedia}) {
 
 
     return(
-        <div className={'row h'}>
+        <div className={'row h'} id={'h'}>
 
             {/*<div className="col-md-6">*/}
                 <div className="imgDiv"    onClick={toggle}>
@@ -52,15 +56,18 @@ function Hodimlar({active,activemedia}) {
                     </svg>
 
                 </div>
-                <div>
-                    {
-                        active2 ?<ul >
-                            <li onClick={sidebaractive}><Link  to={'/headerthird/hodimlarruyxati'} className={"lll li-text"}>Xodimlar ruyxati</Link></li>
-                            <li onClick={sidebaractive}><Link  to={'/headerthird/lavozimlar'} className={"lll li-text"}>Lavozimlar</Link></li>
-                            {/*<li onClick={sidebaractive}><Link  to={'/headerthird/hodimulush'} className={"lll li-text"}>Xodimlar ulushi</Link>   </li>*/}
-                        </ul>:''
-                    }
+
+
+                    <div className={'hodimul'}>
+                    <ul>
+                        <li onClick={sidebaractive}><Link  to={'/headerthird/hodimlarruyxati'} className={"lll li-text"}>Xodimlar ruyxati</Link></li>
+                        <li onClick={sidebaractive}><Link  to={'/headerthird/lavozimlar'} className={"lll li-text"}>Lavozimlar</Link></li>
+                        {/*<li onClick={sidebaractive}><Link  to={'/headerthird/hodimulush'} className={"lll li-text"}>Xodimlar ulushi</Link>   </li>*/}
+                    </ul>
+
                 </div>
+
+
             </div>
         // </div>
     )

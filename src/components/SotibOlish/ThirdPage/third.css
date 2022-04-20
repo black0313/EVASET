@@ -763,7 +763,6 @@ input.search::placeholder {
         height: 100% !important;
     }
 }
-
 @media (min-width: 426px) and (max-width: 500.9px){
         .image{
             width: 64px;
