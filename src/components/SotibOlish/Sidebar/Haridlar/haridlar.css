@@ -36,3 +36,12 @@
     text-decoration: none;
     color: #3f3c3c;
 }
+.haridlar{
+    height: 60px;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+.haridlar2{
+    height: 120px;
+    transition: 0.3s ease;
+}

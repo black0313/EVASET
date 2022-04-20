@@ -30,3 +30,7 @@
     color: #3f3c3c;
     text-decoration: none;
 }
+.seting{
+    height: 120px;
+    transition: 0.3s ease;
+}

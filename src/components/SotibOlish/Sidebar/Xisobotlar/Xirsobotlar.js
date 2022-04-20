@@ -20,11 +20,15 @@ function Xirsobotlar({active}) {
             setClasss('right2')
             setfill('fill')
             setfontsize('fontsize')
+            let style = document.getElementById('xisobot')
+            style.classList.add('xisbot')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
+            let style = document.getElementById('xisobot')
+            style.classList.remove('xisbot')
         }
     }
 
@@ -35,7 +39,7 @@ function Xirsobotlar({active}) {
         }
         }
     return(
-        <div className={'row mahsulot'}>
+        <div className={'row mahsulot'} id={"xisobot"}>
             <div className=" imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
 
@@ -53,8 +57,8 @@ function Xirsobotlar({active}) {
                 <svg className={`sidebar-img  ${classs}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>              </div>
-            {
-                active2 ?<ul>
+
+             <ul>
                     <Link to={'/headerthird/foydaZarar'} ><li  className={'li-text'} onClick={sidebaractive}>Foyda va zarar</li></Link>
                     <Link to={'/headerthird/xaridlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Xaridlar hisoboti</li></Link>
                     <Link to={'/headerthird/mijozlarXisoboti'} ><li className={'li-text'} onClick={sidebaractive}>Mijozlar hisoboti</li></Link>
@@ -73,8 +77,8 @@ function Xirsobotlar({active}) {
                     {/*<Link to={'/taminotMijoz'} className={'mahsulotXisobot'}><li>Ta`minot va mijoz hisoboti</li></Link>*/}
                     <Link to={'/headerthird/soliqlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Soliqlar hisoboti</li></Link>
                     {/*<Link to={'/kmDastur'} className={'mahsulotXisobot'}><li>Kimlar dasturga kirdi?</li></Link>*/}
-                </ul>:''
-            }
+                </ul>
+
         </div>
     )
 }

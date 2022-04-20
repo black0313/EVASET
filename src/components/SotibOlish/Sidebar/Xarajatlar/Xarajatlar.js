@@ -20,11 +20,15 @@ function Mahsulotlar({active}) {
             setClasss('right2')
             setfill('fill')
             setfontsize('fontsize')
+            let style = document.getElementById('xarajat')
+            style.classList.add('mahsulot2')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
+            let style = document.getElementById('xarajat')
+            style.classList.remove('mahsulot2')
         }
     }
 
@@ -35,7 +39,7 @@ function Mahsulotlar({active}) {
         }
     }
     return(
-        <div className={'row mahsulot'}>
+        <div className={'row mahsulot'} id={'xarajat'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
 
@@ -53,13 +57,13 @@ function Mahsulotlar({active}) {
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            {
-                active2 ?<ul>
+
+                <ul>
                     <Link to={'/headerthird/xarajatRuyxati'}><li className={'li-text'} onClick={sidebaractive}>Xarajatlar ruyxati</li></Link>
                     <Link to={'/headerthird/xarajatQoshish'}><li className={'li-text'} onClick={sidebaractive}>Xarajat qoshish</li></Link>
                     <Link to={'/headerthird/xarajatTurlari'}><li className={'li-text'} onClick={sidebaractive}>Xarajat turlari</li></Link>
-                </ul>:''
-            }
+                </ul>
+
         </div>
     )
 }

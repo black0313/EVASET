@@ -41,3 +41,12 @@
     background: transparent;
     transition: 0.3s all;
 }
+.mahsulot{
+    height: 60px;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+.mahsulot2{
+    height: 150px;
+    transition: 0.3s ease;
+}

@@ -16,16 +16,19 @@ function Savdo({active,savdooynasi}) {
     const [fontsiza,setfontsize] = useState('');
 
     function toggle() {
-        setActive(!active2)
         if(classs===''){
             setClasss('right2')
             setfill('stroke')
             setfontsize('fontsize')
+            let style = document.getElementById('savdo')
+            style.classList.add('mahsulot2')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
+            let style = document.getElementById('savdo')
+            style.classList.remove('mahsulot2')
         }
     }
 
@@ -42,7 +45,7 @@ function Savdo({active,savdooynasi}) {
     }
 
     return(
-        <div className={'row mahsulot'}>
+        <div className={'row mahsulot'} id={'savdo'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
                     <svg className={`sidebar-img2 ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,8 +62,8 @@ function Savdo({active,savdooynasi}) {
                 </svg>
 
             </div>
-            {
-                active2?<ul>
+
+                <ul>
                     {/*<li><Link to={'/mahsulotRuyxati'} className={'mahqosh'}>Barcha savdolar</Link></li>*/}
                     <li><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
                     <li onClick={sidebaractive}><Link to={'/headerthird/mahsulotQoshish'} className={'li-text'}>Savdo qo`shish</Link></li>
@@ -73,8 +76,8 @@ function Savdo({active,savdooynasi}) {
                     {/*<li><Link to={'/bolimlar'} className={'mahqosh'}>Qaytarilgan savdolar</Link></li>*/}
                     {/*<li><Link to={'/fermalar'} className={'mahqosh'}>Yuklar</Link></li>*/}
                     {/*<li><Link to={'/kafolat'} className={'mahqosh'}>Chegirmalar</Link></li>*/}
-                </ul>:''
-            }
+                </ul>
+
         </div>
     )
 }

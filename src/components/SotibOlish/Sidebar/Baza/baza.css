@@ -31,3 +31,13 @@
     color: #3f3c3c;
     text-decoration: none;
 }
+.baza{
+    overflow: hidden;
+    height: 60px;
+    transition: 0.3s ease;
+
+}
+.baza2{
+    height: 120px;
+    transition: 0.3s ease;
+}

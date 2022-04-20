@@ -13,16 +13,19 @@ function Hamkorlar({active}) {
     const [fontsiza,setfontsize] = useState('');
 
     function toggle() {
-        setActive(!active2)
         if(classs===''){
             setClasss('right2')
             setfill('fill')
             setfontsize('fontsize')
+            let style = document.getElementById('hamkor')
+            style.classList.add('hamkor2')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
+            let style = document.getElementById('hamkor')
+            style.classList.remove('hamkor2')
         }
     }
     function sidebaractive(){
@@ -58,7 +61,7 @@ function Hamkorlar({active}) {
     const [activeback2,setactiveback2] = useState(false)
 
     return(
-        <div className={'row hamkor'}>
+        <div className={'row hamkor'} id={'hamkor'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
                     <svg className={`sidebar-img ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,14 +78,14 @@ function Hamkorlar({active}) {
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            {
-                active2 ?<ul>
+
+               <ul>
                     <li className={activeback?"b3":"b4"} onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/taminotchilar'}>Taminotchilar</Link></li>
                     <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Barcha Mijozlar</Link></li>
                     <li><Link className={'hamkorlar'} to={'/headerthird/mijozGuruh'}>Mijozlar Guruhlari</Link></li>
                     {/*<li><Link className={'hamkorlar'} to={'/malumotTiklash'}>Malumotlarni tiklash</Link></li>*/}
-                </ul>:''
-            }
+                </ul>
+
 
         </div>
     )

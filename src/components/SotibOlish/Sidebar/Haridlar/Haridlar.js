@@ -14,16 +14,19 @@ function Mahsulotlar({active}) {
     const [fontsiza,setfontsize] = useState('');
 
     function toggle() {
-        setActive(!active2)
         if(classs===''){
             setClasss('right2')
             setfill('stroke')
             setfontsize('fontsize')
+            let style = document.getElementById('haridlar')
+            style.classList.add('haridlar2')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
+            let style = document.getElementById('haridlar')
+            style.classList.remove('haridlar2')
         }
     }
     function sidebaractive(){
@@ -34,7 +37,7 @@ function Mahsulotlar({active}) {
     }
 
     return(
-        <div className={'row haridlar'}>
+        <div className={'row haridlar'} id={'haridlar'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
                     <svg className={`sidebar-img2 ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,13 +52,13 @@ function Mahsulotlar({active}) {
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            {
-                active2?<ul className={'tran'}>
+
+               <ul className={'tran'}>
                     <li className={`${sidebaractive?'ttt':'ttt2'}`} onClick={sidebaractive}><Link  to={'/headerthird/xaridlarRuyxati'} className={'li-text'}>Xaridlar ruyxati</Link></li>
                     <li onClick={sidebaractive}><Link  to={'/headerthird/xaridQilish'} className={'li-text'}>Xarid qilish</Link></li>
                     {/*<li><Link to={'/headerthird/qaytganXarid'} className={'haridClass'}>Qaytarilgan Xaridlar</Link></li>*/}
-                </ul>:''
-            }
+                </ul>
+
         </div>
     )
 }

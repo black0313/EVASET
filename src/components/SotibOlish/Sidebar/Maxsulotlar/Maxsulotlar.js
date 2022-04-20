@@ -15,16 +15,19 @@ function Mahsulotlar({active}) {
     const [fontsiza,setfontsize] = useState('');
 
     function toggle() {
-        setActive(!active2)
         if(classs===''){
             setClasss('right2')
             setfill('fill')
             setfontsize('fontsize')
+            let style = document.getElementById('mahsulot')
+            style.classList.add('mahsulot2')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
+            let style = document.getElementById('mahsulot')
+            style.classList.remove('mahsulot2')
         }
     }
 
@@ -80,7 +83,7 @@ function Mahsulotlar({active}) {
     }
 
     return (
-        <div className={'row mahsulot'}>
+        <div className={'row mahsulot'} id={'mahsulot'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
 
@@ -101,8 +104,8 @@ function Mahsulotlar({active}) {
                 <svg className={`sidebar-img  ${classs}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>            </div>
-            {
-                active2 ? <ul>
+
+                <ul>
                     <li className={activeback?"b3":"b4"}  onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati'} className={'li-text'}>Maxsulotlar ruyxati</Link></li>
                     {/*<li><Link to={'/mahsulotQoshish'} className={'mahqosh'}>Maxsulot qo`shish</Link></li>*/}
                     {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>Shtrix kodlar</Link></li>*/}
@@ -116,8 +119,8 @@ function Mahsulotlar({active}) {
                     <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link to={'/headerthird/bolimlar'} className={'li-text'}>Bo`limlar</Link></li>
                     <li className={activeback3?"b3":"b4"} onClick={sidebaractive3}><Link to={'/headerthird/firmalar'} className={'li-text'}>Firmalar</Link></li>
                     {/*<li><Link to={'/kafolat'} className={'mahqosh'}>Kafolatlar</Link></li>*/}
-                </ul> : ''
-            }
+                </ul>
+
 
         </div>
     )
