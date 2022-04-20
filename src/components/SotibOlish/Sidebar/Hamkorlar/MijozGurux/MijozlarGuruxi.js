@@ -109,9 +109,10 @@ function Mijozlarguruxi({
         })
     }
 
-    function saqlaqarz(){
+    function saqlaqarz(item){
         qarzuzishCustomer({
-            repayment: input.qarzuzish
+            repayment: input.qarzuzish,
+            id:item.id
         })
         toggle2()
         input.qarzuzish = ''
@@ -166,7 +167,6 @@ function Mijozlarguruxi({
         )
        }
     }
-
 
 
     const [nomi,setnomi] = useState(true)
@@ -337,7 +337,7 @@ function Mijozlarguruxi({
                                                     <input type="text" className={'form-control'} value={input.qarzuzish} onChange={qarzuzish}/>
                                                 </ModalBody>
                                                 <ModalFooter>
-                                                    <button className={'btn btn-outline-primary'} onClick={saqlaqarz}>Saqlash</button>
+                                                    <button className={'btn btn-outline-primary'} onClick={()=>saqlaqarz(item)}>Saqlash</button>
                                                     <button className={'btn btn-outline-primary'} onClick={toggle2}>Chiqish</button>
                                                 </ModalFooter>
                                             </Modal>
@@ -378,11 +378,7 @@ function Mijozlarguruxi({
                         <label htmlFor={'nomi'}>Nomi</label>
                         <input value={input.guruhnomi} onChange={changeguruxnomi} id={'nomi'} type="text"
                               placeholder={plaseholders.guruhNomiPlaseholders}  className={'form-control mb-3 mt-1'}/>
-                        <label htmlFor={'lang'}>price_calculation_type</label>
-                        <select value={input.selectfoiz} onChange={changeselectfoiz} className={'form-control mb-3 mt-1'}
-                                name="" id="">
-                            <option value="#">Foizda</option>
-                        </select>
+
                         <label htmlFor={'tel'}>Telefon raqam</label>
                         <input type="text" id='phoneNumberInput' placeholder={plaseholders.phonePlaseholders} className={'form-control mb-3 mt-1'} value={input.phone} onChange={phone}/>
                         <label htmlFor={'foizda'}>Telegram</label>

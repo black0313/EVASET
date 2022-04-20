@@ -144,6 +144,7 @@ export const slice = createSlice({
             }
 
         },
+
         get: (state, action) => {
             state.users = action.payload
             console.log(state.users)

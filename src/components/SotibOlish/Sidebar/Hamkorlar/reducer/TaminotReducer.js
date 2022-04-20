@@ -43,6 +43,10 @@ const slice = createSlice({
             toast.success('Diller saqlandi!')
             state.current=!state.current
         },
+        savefrom2: (state,action) => {
+            state.current=!state.current
+            toast.success('Qarz o`chdi !')
+        },
         editfrom: (state,action) => {
             toast.success('Diller tahrirlandi')
             state.current=!state.current
@@ -85,5 +89,11 @@ export const deleteTaminot=(data)=>apiCall({
     data,
     onSuccess: slice.actions.deletefrom.type
 })
+export const qarzuzishTaminot=(data)=>apiCall({
+    url: '/supplier/repayment/'+data.id,
+    method:'post',
+    data,
+    onSuccess: slice.actions.savefrom2.type
+});
 
 export default slice.reducer

@@ -14,6 +14,7 @@ import users ,{saveusers,getusers,changeerror}from "../../reducer/users";
 function Home({saveusers, getusers,users, linkpost,active, changeerror}) {
 
     useEffect(() => {
+
     }, [])
     const [inputlogin, setLogin] = useState('')
     const [inputparol, setparol] = useState('')

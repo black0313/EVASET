@@ -225,7 +225,7 @@ function BarchaMaxsulotlar({
                                                 <td>{index+1}</td>
                                                 <td><input value={item.id} onChange={check} type="checkbox"/></td>
                                                 {
-                                                    mahsulot ? <td>{item.name}</td> : ''
+                                                    mahsulot ? <td>{item.name}</td>: ''
                                                 }
                                                 {
                                                     baza ? <td>{item.branch.name}</td> : ''

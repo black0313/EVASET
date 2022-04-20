@@ -19,6 +19,11 @@ const slice = createSlice({
             state.current+=1
             toast.success('Mijjoz qo`shildi !')
         },
+        savefrom2: (state,action) => {
+            state.mijozgurux.unshift(action.payload)
+            state.current+=1
+            toast.success('Mijjoz qo`shildi !')
+        },
         editfrom: (state,action) => {
             state.current+=1
             toast.success('Mijoz tahrirlandi !')
@@ -55,6 +60,13 @@ export const deleteMijozGurux=(data)=>apiCall({
     method:'delete',
     data,
     onSuccess: slice.actions.deletefrom.type
-})
+});
+
+export const qarzuzishCustomer=(data)=>apiCall({
+    url: '/customer/repayment/'+data.id,
+    method:'post',
+    data,
+    onSuccess: slice.actions.savefrom2.type
+});
 
 export default slice.reducer

@@ -6,13 +6,14 @@ const slice = createSlice({
     name: 'mijozgurux',
     initialState: {
         qarz: [],
-        current:0
+        count:true
     },
     reducers: {
         getFrom: (state, action) => {
             state.qarz = action.payload.object
         },
         savefrom: (state,action) => {
+            state.count = !state.count
             toast.success('Qarz o`chdi !')
         },
     }

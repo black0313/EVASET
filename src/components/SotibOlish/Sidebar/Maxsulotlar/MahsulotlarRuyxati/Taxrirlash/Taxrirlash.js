@@ -271,7 +271,7 @@ function Taxrirlash({
     //input.sotishnarxi==="" || input.sotibolishnarxi===""
 
     function saqla() {
-        if (input.mahsulotnomi !== "" && input.shtrixkod !== "" && input.bazalar !== "" && input.miqdorMaxsulot !== "" && input.soliqsiznarx !== "" && input.soliqbnnarx !== "" && input.foydafoiz !== "" && input.sotishnarxi !== "" && input.sotibolishnarxi !== "") {
+        if (input.mahsulotnomi !== "" && input.shtrixkod !== "" && input.bazalar !== "" && input.miqdorMaxsulot !== "" &&   input.foydafoiz !== "" && input.sotibolishnarxi !== "") {
             if (match.params.id !== undefined) {
                 editMaxsulotRuyxati({
                     name: input.mahsulotnomi,
@@ -284,7 +284,7 @@ function Taxrirlash({
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,
                     salePrice: input.sotishnarxi,
-                    tax: input.amaldagisoliq,
+                    tax: input.soliqbnnarx,
                     branchId: [1],
                     expireDate: null,
                     dueDate: null,
@@ -302,7 +302,7 @@ function Taxrirlash({
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,               /*   input.sotishnarxi,*/
                     salePrice: input.sotishnarxi,
-                    tax: input.amaldagisoliq,               /* input.amaldagisoliq,*/
+                    tax: input.soliqsiznarx,            /* input.amaldagisoliq,*/
                     branchId: [1],
                     expireDate: null,
                     dueDate: null
@@ -542,44 +542,46 @@ function Taxrirlash({
                         <tr>
                             <th>Soliq bilan narxlar</th>
                             <th>Foyda foizda(%)</th>
+                            <th>Sotib oli sh narxi</th>
                             <th>Sotish narxi</th>
-                            <th>Sotib olish narxi</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>
-                                <label htmlFor={'soliqszNarx'}>Soliqsiz narx </label>
+                                <label htmlFor={'soliqszNarx'}>Soliqsiz narx (tan narxi)</label>
                                 <input type="number" value={input.soliqsiznarx}
-                                       placeholder={placeholders.soliqsizNarxPlaceholder}
-                                       className=' form-control' onChange={soliqsiznarx} id={'soliqszNarx'}
-                                       style={{border: '2px solid gray'}}/><br/>
+                                       placeholder={input.sotibolishnarxi===''?placeholders.soliqsizNarxPlaceholder:"Mahsulot tan narxi sotib olish narxiga teng"}
+                                       className=' form-control' onChange={soliqsiznarx} id={'soliqszNarx'}/><br/>
                                 <label htmlFor={'soliqszNarx2'}>Soliq bn narx </label>
                                 <input type="number" id={'soliqszNarx2'} value={input.soliqbnnarx}
                                        placeholder={placeholders.soliqbilanNarxPlaceholder}
-                                       className='taxrirlashInputValudetion mt-2 form-control' onChange={soliqbnnarx}
-                                       style={{border: '2px solid gray'}}/>
+                                       className='taxrirlashInputValudetion mt-2 form-control' onChange={soliqbnnarx}/>
+
+                                {/*<h3>*/}
+                                {/*    {*/}
+                                {/*        input.foydafoiz*input.sotibolishnarxi + " so`m"*/}
+                                {/*    }*/}
+                                {/*</h3>*/}
                             </td>
                             <td>
                                 <label htmlFor={'foy'}>Foyda foizda</label><br/>
-                                <input type="text" id={'foy'} placeholder={placeholders.foydaPlaceholder}
+                                <input type="number" id={'foy'} placeholder={placeholders.foydaPlaceholder}
                                        className='taxrirlashInputValudetion form-control' value={input.foydafoiz}
-                                       onChange={foydafoiz}
-                                       style={{border: '1px solid gray', padding: '10px'}}/>
+                                       onChange={foydafoiz}/>
                             </td>
                             <td>
                                 <label htmlFor={''}>Sotib olish narxi</label><br/>
-                                <input type="text" id='sotishNarxi' placeholder={placeholders.sotibOlishNarxiPlaceholder}
+                                <input type="number" id='sotishNarxi' placeholder={placeholders.sotibOlishNarxiPlaceholder}
                                        className='taxrirlashInputValudetion form-control' value={input.sotibolishnarxi}
-                                       onChange={sotibolishnarxi}
-                                       style={{border: '1px solid gray', padding: '10px'}}/>
+                                       onChange={sotibolishnarxi}/>
                             </td>
                             <td>
                                 <label htmlFor={''}>Sotish narxi</label><br/>
-                                <input type="text" id='sotibOlishNarxi' className={'form-control'}
+                                <input type="number" id='sotibOlishNarxi' className={'form-control'}
                                        placeholder={placeholders.sotishNarxiPlaceholder}
-                                       value={input.sotishnarxi} onChange={sotishnarxi}
-                                       style={{border: '1px solid gray', padding: '10px'}}/>
+                                       value={input.sotishnarxi} onChange={sotishnarxi}/>
+                                {/*<h4 className={'mt-3'}>{input.foydafoiz*input.sotibolishnarxi+ '  so`m'}</h4>*/}
                             </td>
                         </tr>
                         </tbody>
@@ -587,7 +589,7 @@ function Taxrirlash({
                 </div>
                 <div className='d-flex justify-content-end'>
                     {
-                        (input.mahsulotnomi === "" || input.shtrixkod === "" || input.bazalar === "" || input.miqdorMaxsulot === "" || input.soliqsiznarx === "" || input.soliqbnnarx === "" || input.foydafoiz === "" || input.sotishnarxi === "" || input.sotibolishnarxi === "") ?
+                        (input.mahsulotnomi === "" || input.shtrixkod === "" || input.bazalar === "" || input.miqdorMaxsulot === "" ||  input.foydafoiz === "" ||  input.sotibolishnarxi === "") ?
                             <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button> :
                             <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot'}>
                                 <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button>

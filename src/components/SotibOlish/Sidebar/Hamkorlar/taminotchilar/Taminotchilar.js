@@ -10,17 +10,18 @@ import Korish from '../../../../../img/Korish.png'
 import Delete from '../../../../../img/Delete.png'
 import {useEffect} from "react";
 import {connect} from "react-redux";
-import TaminotReducer, {getTaminot, saveTaminot, editTaminot,  deleteTaminot} from "../reducer/TaminotReducer";
+import TaminotReducer, {getTaminot, saveTaminot, editTaminot,  deleteTaminot,qarzuzishTaminot} from "../reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
 import {useState} from 'react'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import QarzuzishTaminotReducer, {qarzuzishTaminot} from "../reducer/QarzuzishTaminotReducer";
+import QarzuzishTaminotReducer from "../reducer/QarzuzishTaminotReducer";
 
-function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, deleteTaminot, taminot, users, TaminotReducer}) {
+function Taminotchilar({getTaminot, saveTaminot,QarzuzishTaminotReducer, qarzuzishTaminot,editTaminot, deleteTaminot, taminot, users, TaminotReducer}) {
 
     useEffect(() => {
         getTaminot(users.businessId)
     }, [TaminotReducer.current])
+
 
     const [active, setActive] = useState(false);
 
@@ -148,10 +149,11 @@ function Taminotchilar({getTaminot, saveTaminot, qarzuzishTaminot,editTaminot, d
     function toggle3(){
         setqarz(!qarz)
     }
+
     function saqlaQarz(item){
         qarzuzishTaminot({
             repayment: input.qarzuzish,
-            id:item
+            id:item.id
         })
         input.qarzuzish = ''
         let a = {...input}
