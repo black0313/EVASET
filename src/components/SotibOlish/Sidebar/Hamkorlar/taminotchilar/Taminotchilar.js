@@ -311,6 +311,7 @@ function Taminotchilar({getTaminot, saveTaminot,QarzuzishTaminotReducer, qarzuzi
 
                             </div>
                             <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                                <div className={'mt-3 d-flex justify-content-around'}><h4>Jami: {jamixisob}  So`m</h4></div>
                                 <table className='table table-striped table-hover table-condensed  table-bordered mt-4'>
                                     <thead className={'fix'}>
                                     {
@@ -336,9 +337,7 @@ function Taminotchilar({getTaminot, saveTaminot,QarzuzishTaminotReducer, qarzuzi
                                     }
 
                                     </thead>
-                                    {
-                                        console.log(TaminotReducer.taminot)
-                                    }
+
                                     <tbody >
                                     {
                                         TaminotReducer.taminot.filter(val => {
@@ -432,15 +431,9 @@ function Taminotchilar({getTaminot, saveTaminot,QarzuzishTaminotReducer, qarzuzi
                                         jamixisob+=item.storeDebt
                                     })
                                 }
-                                <div><h4>Maxsulotlar soni: {xisob}</h4></div>
-                                <div><h4>Jami: {jamixisob}  So`m</h4></div>
+
                             </div>
-                            <p className={'mt-3'}>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                            <div className='sahifalar'>
-                                <button>Ortga</button>
-                                <button>1</button>
-                                <button>Oldinga</button>
-                            </div>
+
                         </div>:''
                     }
 

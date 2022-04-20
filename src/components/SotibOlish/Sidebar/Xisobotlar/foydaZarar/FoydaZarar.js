@@ -132,12 +132,6 @@ function FoydaZarar({
                     </table>
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
-                </div>
             </div>
         </div>
     )

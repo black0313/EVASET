@@ -267,33 +267,6 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                     <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
-                <p className={'mt-3'}>Ko'rsatildi {currentPage} ta sahifa  yana {parseInt(pages+1)-currentPage} bitta sahifa bor</p>
-                <div className='sahifalar'>
-                    <button
-                        onClick={goToPreviousPage}
-                        className={` ${currentPage === 1 ? 'disabled' : ''}`}
-                        disabled={currentPage === 1 ? true : false}
-
-                    >
-                        ortga
-                    </button>
-                    {getPaginationGroup().map((item, index) => (
-                        <button
-                            key={index}
-                            onClick={changePage}
-                            className={`${currentPage === item ? 'active' : null}`}
-                        >
-                            <span>{item}</span>
-                        </button>
-                    ))}
-                    <button
-                        onClick={goToNextPage}
-                        className={` ${currentPage >=  pages  ? 'disabled' : ''}`}
-                        disabled={ currentPage >= pages ? true : false}
-                    >
-                        oldinga
-                    </button>
-                </div>
             </div>
         </div>
     )

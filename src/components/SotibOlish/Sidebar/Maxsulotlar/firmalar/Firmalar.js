@@ -212,12 +212,6 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                     <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
-                </div>
 
                 <Modal isOpen={active} toggle={toggle}>
                     <ModalHeader>

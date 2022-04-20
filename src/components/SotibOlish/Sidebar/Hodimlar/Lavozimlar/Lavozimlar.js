@@ -129,12 +129,6 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                     <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
                                 </div>
 
-                                <p>Ko'rsatildi 1 ta sahifa 2 va yana 2 ta sahifa bor</p>
-                                <div className='sahifalar'>
-                                    <button>Ortga</button>
-                                    <button>1</button>
-                                    <button>Oldinga</button>
-                                </div>
                             </div>:''
                         }
 
