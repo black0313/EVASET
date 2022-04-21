@@ -10,34 +10,18 @@ const slice = createSlice({
         taminot: [],
         current:false,
         taminotjami:0,
-        miqdor:0,
-        uzcard:0,
-        naqd:0,
-        humo:0
+
     },
     reducers: {
         getFrom: (state, action) => {
+            console.log(action.payload)
             state.taminot = action.payload.object
             let amount=0
-            let uzcard=0
-            let naqd=0
-            let humo=0
-            let miqdor=0
-
-            // action.payload.object.map(item=>{
-            //         amount+=item.storeDebt
-            //         console.log(item.storeDebt)
-            //         item.map(item=>{
-            //             miqdor+=item.storeDebt
-            //         })
-            //     },
-            // )
-
+            action.payload.object.map(item=> {
+                amount+=item.storeDebt
+            })
             state.taminotjami=amount
-            state.miqdor=miqdor
-            state.uzcard=uzcard
-            state.humo=humo
-            state.naqd=naqd
+                console.log(state.taminotjami)
         },
         savefrom: (state,action) => {
             toast.success('Diller saqlandi!')

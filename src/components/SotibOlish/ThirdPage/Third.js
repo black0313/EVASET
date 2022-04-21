@@ -28,12 +28,13 @@ import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQo
 import functionreducer,{active,activSavdo} from "../../../reducer/functionreducer";
 import XaridReducer,{getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
-import TaminotReducer from "../Sidebar/Hamkorlar/reducer/TaminotReducer";
-function Third({display,users,SavdoQoshishReducer,TaminotReducer ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
+import TaminotReducer,{getTaminot} from "../Sidebar/Hamkorlar/reducer/TaminotReducer";
+function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
         getXarid(users.businessId)
+        getTaminot(users.businessId)
 
     },[])
 
@@ -205,6 +206,7 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer ,getMaxsulotRuy
             setThird('')
         }
     }
+
 
     const options = {
         series: [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0],
@@ -584,4 +586,4 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer ,getMaxsulotRuy
 
 
 export default connect((SavdoQoshishReducer,TaminotReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),
-    {getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Third);
+    {getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,getXarid,getTaminot}) (Third);
