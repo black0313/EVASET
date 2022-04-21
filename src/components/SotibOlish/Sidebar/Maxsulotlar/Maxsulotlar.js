@@ -107,7 +107,7 @@ function Mahsulotlar({active}) {
 
                 <ul>
                     <li className={activeback?"b3":"b4"}  onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati'} className={'li-text'}>Maxsulotlar ruyxati</Link></li>
-                    {/*<li><Link to={'/mahsulotQoshish'} className={'mahqosh'}>Maxsulot qo`shish</Link></li>*/}
+                    {/*<li><Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} className={'mahqosh'}>Maxsulot qo`shish</Link></li>*/}
                     {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>Shtrix kodlar</Link></li>*/}
                     {/*<li><Link to={'/turliTavar'} className={'mahqosh'}>Turli Tavarlar</Link></li>*/}
                     {/*<li><Link to={'/mahsulotImporti'} className={'mahqosh'}>Mahsulot Importi</Link></li>*/}

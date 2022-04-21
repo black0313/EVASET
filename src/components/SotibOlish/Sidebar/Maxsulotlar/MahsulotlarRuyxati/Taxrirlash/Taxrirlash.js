@@ -77,11 +77,11 @@ function Taxrirlash({
             bolim2: '',
             ogohmiqdor: '',
             //-------------
-            soliqsiznarx: '',
+            soliqsiznarx: 1,
             foydafoiz: '',
             sotishnarxi: '',
             mahsulotrasmi: '',
-            soliqbnnarx: '',
+            soliqbnnarx: 1,
             sotibolishnarxi: '',
             miqdorMaxsulot: '',
             muddatmaxsulot:'',
@@ -290,7 +290,7 @@ function Taxrirlash({
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,
                     salePrice: input.sotishnarxi,
-                    tax: input.soliqbnnarx,
+                    tax: input.sotibolishnarxi,
                     branchId: [1],
                     expireDate: null,
                     dueDate: null,
@@ -307,8 +307,8 @@ function Taxrirlash({
                     photoIds: [photoreducer.photo.id],
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,
-                    salePrice: input.sotishnarxi,
-                    tax: input.soliqsiznarx,
+                    salePrice: parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi),
+                    tax: input.sotibolishnarxi,
                     branchId: [1],
                     expireDate: input.muddatmaxsulot,
                     dueDate: new Date().getDate()
@@ -568,7 +568,7 @@ function Taxrirlash({
                     <table className={'table'}>
                         <thead>
                         <tr>
-                            <th>Soliq bilan narxlar</th>
+                            <th>Soliq</th>
                             <th>Foyda foizda(%)</th>
                             <th>Sotib oli sh narxi</th>
                             <th>Sotish narxi</th>
@@ -578,13 +578,15 @@ function Taxrirlash({
                         <tr>
                             <td>
                                 <label htmlFor={'soliqszNarx'}>Soliqsiz narx (tan narxi)</label>
-                                <input type="number" value={input.soliqsiznarx}
-                                       placeholder={input.sotibolishnarxi===''?placeholders.soliqsizNarxPlaceholder:"Mahsulot tan narxi sotib olish narxiga teng"}
-                                       className=' form-control' onChange={soliqsiznarx} id={'soliqszNarx'}/><br/>
-                                <label htmlFor={'soliqszNarx2'}>Soliq bn narx </label>
-                                <input type="number" id={'soliqszNarx2'} value={input.soliqbnnarx}
-                                       placeholder={placeholders.soliqbilanNarxPlaceholder}
-                                       className='taxrirlashInputValudetion mt-2 form-control' onChange={soliqbnnarx}/>
+                                <h4>{input.sotibolishnarxi}  so`m</h4>
+                                {/*<input type="number" value={input.soliqsiznarx}*/}
+                                {/*       placeholder={input.sotibolishnarxi===''?placeholders.soliqsizNarxPlaceholder:"Mahsulot tan narxi sotib olish narxiga teng"}*/}
+                                {/*       className=' form-control' onChange={soliqsiznarx} id={'soliqszNarx'}/><br/>*/}
+
+                                {/*<label htmlFor={'soliqszNarx2'}>Soliq bn narx </label>*/}
+                                {/*<input type="number" id={'soliqszNarx2'} value={input.soliqbnnarx}*/}
+                                {/*       placeholder={placeholders.soliqbilanNarxPlaceholder}*/}
+                                {/*       className='taxrirlashInputValudetion mt-2 form-control' onChange={soliqbnnarx}/>*/}
 
                                 {/*<h3>*/}
                                 {/*    {*/}
@@ -608,7 +610,7 @@ function Taxrirlash({
                                 <label htmlFor={''}>Sotish narxi</label><br/>
                                 <input type="number" id='sotibOlishNarxi' className={'form-control'}
                                        placeholder={placeholders.sotishNarxiPlaceholder}
-                                       value={input.sotishnarxi} onChange={sotishnarxi}/>
+                                       value={parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi)} onChange={sotishnarxi}/>
                                 {/*<h4 className={'mt-3'}>{input.foydafoiz*input.sotibolishnarxi+ '  so`m'}</h4>*/}
                             </td>
                         </tr>

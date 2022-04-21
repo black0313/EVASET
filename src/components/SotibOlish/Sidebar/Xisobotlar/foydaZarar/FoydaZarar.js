@@ -131,7 +131,6 @@ function FoydaZarar({
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     )

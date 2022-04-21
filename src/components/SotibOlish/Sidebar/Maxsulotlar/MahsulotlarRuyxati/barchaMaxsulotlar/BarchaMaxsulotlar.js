@@ -60,7 +60,6 @@ function BarchaMaxsulotlar({
         //         }
         //     })
         // alert('ishladi')
-
     }
 
     function checkBarca(e) {
@@ -139,7 +138,6 @@ function BarchaMaxsulotlar({
                             {
                                 users.addproduct ?
                                     <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>:''
-
                             }
                         </Link>
                     </div>
@@ -267,7 +265,6 @@ function BarchaMaxsulotlar({
                                                 }
                                             </tr>)
                                     }
-
                                     </tbody>
                                 </table>
                                 <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
