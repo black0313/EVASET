@@ -62,7 +62,7 @@ function Pagination() {
     <div>
 
         <div>
-            <div className="row p-0 pb-md-3 ">
+            <div className="row p-0 pb-3 ">
                 <div className={'table-responsive'}>
                     <table className={"table"}>
                         <thead>
