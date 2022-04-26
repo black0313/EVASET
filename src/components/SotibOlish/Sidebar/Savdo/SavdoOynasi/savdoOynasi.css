@@ -350,6 +350,11 @@
     }
     .savdoOynaContainers .savdoNavbar .navbarRigth{
         width: 100%;
+        margin-top: 12px;
+    }
+    .savdoOynaContainers .savdoNavbar .navbarRigth .headerImgStyle{
+        width: 30px;
+        height: 30px;
     }
     .savdoOynaContainers .savdoNavbar .navbarLeft h5{
         display: flex;
@@ -420,6 +425,12 @@
     .savdoOynaContainers .savdoBlock .savdoBlockLeft .maxSoniBox{
         display: block;
     }
+    .bbb{
+        position: absolute;
+        top: 25%;
+        left: 120%;
+    }
+    
 }
 @media (min-width: 426px) and (max-width: 768.9px){
     .savdoOynaContainers{
@@ -432,6 +443,11 @@
     }
     .savdoOynaContainers .savdoNavbar .navbarRigth{
         width: 100%;
+        margin-top: 12px;
+    }
+    .savdoOynaContainers .savdoNavbar .navbarRigth .headerImgStyle{
+        width: 30px;
+        height: 30px;
     }
     .savdoOynaContainers .savdoNavbar .navbarLeft h5{
         display: flex;
@@ -444,7 +460,7 @@
     }
 
     .tbodyY {
-        height: 65vh;
+        height: 60vh;
     }
 
     .savdoOynaContainers .savdoBlock .savdoBlockLeft{
@@ -507,6 +523,11 @@
     } */
     .savdoOynaContainers .savdoBlock .savdoBlockRigth .maxsulotImgBlock .maxsuImgBox{
         width: 60%;
+    }
+    .bbb{
+        position: absolute;
+        top: 28%;
+        left: 96%;
     }
 
 }

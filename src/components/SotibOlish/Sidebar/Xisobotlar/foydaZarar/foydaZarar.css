@@ -54,13 +54,7 @@
      
 }
 .hovFoyda{
-       position: absolute;
        transition: 0.6s all ease;
-       margin-top: 25px;
-       margin-left: 30%;
-       font-size: 24px;
-       padding: 0.3rem;
-       text-align: center;
 }
 .hovFoyda:hover{
        background: linear-gradient(90deg,red,green);

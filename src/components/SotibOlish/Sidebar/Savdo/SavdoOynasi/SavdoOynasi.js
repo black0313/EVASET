@@ -976,10 +976,10 @@ function SavdoOynasi({
                         </select>
                     </div>
                     <div className="navbarRigth">
-                        <button className={'btn btn-outline-primary'} onClick={toggle4}>Oxirgi savdolar</button>
+                        <button className={'btn btn-outline-primary'} style={{lineHeight:'12px'}} onClick={toggle4}>Oxirgi savdolar</button>
                         {/*<button className={'btn btn-outline-primary'}>Hold*/}
-                        <button className={'btn '} onClick={toggle} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">Ushlab turish</button>
-                        <button onClick={toggle7} className={'btn btn-outline-primary'}>+ Xarajat</button>
+                        <button className={'btn '} onClick={toggle} style={{lineHeight:'12px'}} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">Ushlab turish</button>
+                        <button onClick={toggle7} className={'btn btn-outline-primary'} style={{lineHeight:'12px'}}>+ Xarajat</button>
                         <Modal isOpen={xarajat} toggle={toggle7}>
                             <ModalHeader>
                                 Xarajat qo`shish
@@ -1046,13 +1046,13 @@ function SavdoOynasi({
                             </ModalFooter>
                         </Modal>
                         <ReactTooltip />
-                        <img src={img3} onClick={openCalcul} alt="" />
+                        <img className='headerImgStyle' src={img3} onClick={openCalcul} alt="" />
                         {/*<img src={img1} onClick={toggle} alt=""/>*/}
                         {/*</button>*/}
                         {/*<img src={img2} onClick={toggle} alt="" />*/}
                         {/*<img src={img4} onClick={toggle2} alt=""/>*/}
-                        <img src={img5} onClick={toggle3} alt="" />
-                        <Link to={'/headerthird'}><img src={img6} onClick={savdooynasi} alt="" /></Link>
+                        <img className='headerImgStyle' src={img5} onClick={toggle3} alt="" />
+                        <Link to={'/headerthird'}><img className='headerImgStyle' src={img6} onClick={savdooynasi} alt="" /></Link>
 
                         <Modal isOpen={lastTradeActive} toggle={toggle4}>
                             <ModalHeader>

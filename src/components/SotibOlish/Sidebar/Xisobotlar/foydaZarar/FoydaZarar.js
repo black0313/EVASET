@@ -83,8 +83,8 @@ function FoydaZarar({
             </div>
             <div className="rowStyleF">
                 <div className="izlashF">
-                    <div className="row">
-                        <div className="col-md-3 col-sm-10">
+                    <div className="row d-flex justify-content-between">
+                        <div className="col-md-4 col-sm-12">
                             <h6>Baza tanlash:</h6>
                             <select value={input.branch} onChange={branch} name="" id="">
                                 <option value="barcasi">Barchasi</option>
@@ -94,11 +94,9 @@ function FoydaZarar({
                                 }
                             </select>
                         </div>
-                        <div className="col-md-5 col-sm-10 ">
-                            <div>
-                                <h6 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani
-                                    belgilash:</h6>
-                            </div>
+                        <div className="col-md-4 col-sm-12 d-flex align-items-center">
+                                <h4 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani
+                                    belgilash:</h4>
                         </div>
 
                     </div>

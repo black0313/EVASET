@@ -403,8 +403,7 @@ function Taxrirlash({
     return (
         <div className={'mt-5 contanerT'}>
             <h4 className={'text-center'}>Mahsulot qo`shish / Taxrirlash</h4>
-            <div className="col-10 col-sm-10 border p-4 justify-content-center offset-1 d-flex">
-                <div className="row">
+                <div className="row p-md-3">
                     <div className="inputs col-4 col-sm-12">
                         <label className='mt-3' htmlFor={'maxNomi'}>Mahsulot nomi</label>
                         <input type="text" value={input.mahsulotnomi} placeholder={placeholders.maxsulotNomiPlaceholder}
@@ -504,11 +503,8 @@ function Taxrirlash({
                     </div>
 
                 </div>
-            </div>
-            <div className="row mt-4 justify-content-center d-flex align-items-center">
-                <div className="col-10  col-sm-10 d-flex">
-
-                    <div className={'col-md-6'}>
+            <div className="row mt-4 p-md-3">
+                    <div className={'col-md-6 col-sm-12 mb-3'}>
                         <label htmlFor={'ogoh'}>Ogohlantiruvchi miqdor</label>
                         <input type="number" value={input.ogohmiqdor} onChange={ogohmiqdor}
                                className={'form-control'} id={'ogoh'}/>
@@ -516,7 +512,7 @@ function Taxrirlash({
                         <input type="date" className={'form-control'} value={input.muddatmaxsulot} onChange={muddatmahsulot}/>
                     </div>
 
-                    <div className={'col-md-6'}>
+                    <div className={'col-md-6 col-sm-12'}>
                         <p className={"p-0 m-0"}>Mahsulot rasm qo'shish</p>
                         <label htmlFor={'mahRasm'}>
                             <p className={'btn btn-primary'}>Add img</p>
@@ -524,7 +520,6 @@ function Taxrirlash({
                         <input type="file" className={'form-control d-none'} value={input.mahsulotrasmi} onChange={mahsulotrasmi} id={'mahRasm'}
                                style={{background: 'transparent'}}/>
                     </div>
-                </div>
             </div>
 
             <Modal isOpen={active} toggle={toggle}>
@@ -562,7 +557,7 @@ function Taxrirlash({
                 </ModalFooter>
             </Modal>
 
-            <div className="col-md-10 mt-5 offset-1 border">
+            <div className="row mt-5 p-3">
 
                 <div className="table-responsive">
                     <table className={'table'}>

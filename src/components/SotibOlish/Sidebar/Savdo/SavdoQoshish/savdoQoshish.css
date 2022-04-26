@@ -1,7 +1,8 @@
 .savdoQBox{
-    background-color: #FFFFFF;
+    background-color: #FFFF;
     margin: 20px;
     border-radius: 8px;
+    padding: 20px 30px 20px 30px;
 
 }
 #avans::placeholder{

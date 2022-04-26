@@ -151,6 +151,14 @@
      
 }
 @media (max-width: 425.9px){
+       .rowStyleBR{
+              justify-content: space-between;
+              border-radius: 8px;
+              padding: 40px 0px 40px 0px;
+       }
+       .rowStyleBR .qoshish{
+              display: block;
+       }
        .rowStyleBR .qoshish h5{
               font-size: 17px;
        }

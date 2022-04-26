@@ -130,7 +130,7 @@ function BarchaMaxsulotlar({
 
     return (
         <div>
-            <div className="col-md-12">
+            <div className="row">
                 <div className="rowStyleBR">
                     <div className="qoshish">
                         <h5>Barcha maxsulotlar</h5>
