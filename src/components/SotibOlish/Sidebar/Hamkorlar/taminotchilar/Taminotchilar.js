@@ -229,6 +229,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
     const [telraqam, settelraqam] = useState(true)
     const [telegram, settelegram] = useState(true)
     const [suplier, setsuplier] = useState(true)
+    const [debt,setdebt] = useState(true)
     const [amallar, setamallar] = useState(true)
 
     const [headlist, setheadlist] = useState([
@@ -237,6 +238,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
             phone: 'Telefon raqami',
             telegram: 'Telegram',
             supplier: 'Taminotchi turi',
+            debt:'Qarz',
             amallar: 'Amallar'
         }
     ])
@@ -244,6 +246,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
     function malumotkamayname() {
         setismi(!ismi)
     }
+
     function toggle2() {
         setmalkamay(!malkamay)
     }
@@ -299,6 +302,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                             <li onClick={() => settelraqam(!telraqam)} className={'li2'}>{telraqam ? item.phone : 'Tel raqam ' + ' <-'}</li>
                                             <li onClick={() => settelegram(!telegram)} className={'li2'}>{telegram ? item.telegram : item.telegram + ' <-'}</li>
                                             <li onClick={() => setsuplier(!suplier)} className={'li2'}>{suplier ? item.supplier : 'Taminotchi ' + ' <-'}</li>
+                                            <li onClick={() => setdebt(!debt)} className={'li2'}>{debt ? item.debt : 'Qarz ' + ' <-'}</li>
                                             <li onClick={() => setamallar(!amallar)} className={'li2'}>{amallar ? item.amallar : item.amallar + ' <-'}</li>
                                         </ul>) : ''
                                     }
@@ -329,7 +333,9 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                                 {
                                                     suplier ? <th>{item.supplier}</th> : ''
                                                 }
-                                                <th>Qarz</th>
+                                                {
+                                                    debt?<th>{item.debt}</th>:''
+                                                }
                                                 {
                                                     amallar ? <th className={'text-center'}>{item.amallar}</th> : ''
                                                 }
@@ -360,7 +366,9 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                                 {
                                                     suplier ? <td>{item.supplierType}</td> : ''
                                                 }
-                                                <td>{item.storeDebt}</td>
+                                                {
+                                                    debt?<td>{item.storeDebt}</td>:''
+                                                }
                                                 {
                                                     amallar ? <td className={'text-center'}>
                                                         {

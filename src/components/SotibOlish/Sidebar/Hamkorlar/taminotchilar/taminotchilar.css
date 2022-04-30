@@ -101,7 +101,7 @@
 
 .li2:hover {
     cursor: pointer;
-    font-size: 14.7px;
+    font-size: 14.8px;
     color: #67c41e;
 }
 
@@ -111,8 +111,8 @@
     left: 54%;
     height: 180px;
     width: 150px;
-    background: #4c4ca0;
-    opacity: 0.9;
+    background: #1f1f73;
+    opacity: 1;
 }
 
 .posrel {
