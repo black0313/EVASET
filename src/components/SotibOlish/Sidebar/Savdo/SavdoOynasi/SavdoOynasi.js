@@ -89,7 +89,8 @@ function SavdoOynasi({
             tulovturi: '',
             tulovmiqdori: '',
             tulovmiqdori2: '',
-            tulovturi2: ''
+            tulovturi2: '',
+            inputCounter: 0
         }
     )
 
@@ -127,6 +128,13 @@ function SavdoOynasi({
         let a = { ...input }
         setInput(a)
     }
+
+    function inputCounter(e) {
+        input.inputCounter = e.target.value
+        let a = { ...input }
+        setInput(a)
+    }
+
     function tulovturi(e) {
         input.tulovturi = e.target.value
         let a = { ...input }
@@ -463,6 +471,35 @@ function SavdoOynasi({
         setjamixisob(c)
     }
 
+    function changeCount(e,id){
+        arr1.map(item => {
+            if (item.id === id) {
+
+                if (item.counter >= item.quantity) {
+                    item.counter = parseFloat(e)
+                    item.active = true
+                    item.disabled = false
+                }
+                else {
+                    item.counter = parseFloat(e)
+                    item.disabled = false
+                    item.active = false
+                }
+            }
+        })
+        let a = [...arr1]
+        setarr1(a)
+        let b = 0
+        let c = 0
+        arr1.map(item => {
+            b += item.counter
+            c += (item.counter * item.salePrice)
+        })
+        setxisob(b)
+        setjamixisob(c)
+    }
+
+
     function setCount(id) {
         arr1.map(item => {
             if (item.id === id) {
@@ -489,6 +526,7 @@ function SavdoOynasi({
         })
         setxisob(b)
         setjamixisob(c)
+
     }
 
     function sMinus(id) {
@@ -1258,7 +1296,8 @@ function SavdoOynasi({
                                                     <button disabled={item.disabled} onClick={() => sMinus(item.id)}
                                                         className={'btn btn-outline-danger rounded-circle border-3'}>-
                                                     </button>
-                                                    {item.counter}
+                                                    {/*{item.counter}*/}
+                                                    <input className={'form-control'} value={item.counter} onChange={(e)=>changeCount(e.target.value,item.id)} type="number" style={{width:'100px',border:'1px solid darkred',padding:'0.5rem'}}/>
                                                     <button onClick={() => setCount(item.id)}
                                                         className={'btn btn-outline-primary rounded-circle border-3'}>+
                                                     </button>
@@ -1268,6 +1307,7 @@ function SavdoOynasi({
                                                 }
                                             </td>
                                             <td>{item.counter * item.salePrice} so'm</td>
+                                            {/*<td>{input.inputCounter * item.salePrice} so'm</td>*/}
                                             <td>
                                                 <button onClick={() => deleteM(item.id)}
                                                     className={'btn btn-outline-dark border-2 rounded-circle'}>x
@@ -1281,7 +1321,8 @@ function SavdoOynasi({
                         </div>
                         <div className="maxSoniBox">
                             <h6 className='d-flex align-items-center'>Mahsulot soni:{xisob}</h6>
-                            <h6>Jami:{jamixisob}</h6>
+                            {/*<h6>Jami:{jamixisob}</h6>*/}
+                            <h6>Jami: {jamixisob} so`m</h6>
                         </div>
                         <hr style={{ margin: '2px' }} />
                         <div className={'chegirmalarBox'}>
@@ -1352,7 +1393,7 @@ function SavdoOynasi({
                                             }
 
                                             <h6>{item.name}</h6>
-                                            {console.log(item.photo)}
+                                            {/*{console.log(item.photo)}*/}
                                             <p>{item.salePrice} so'm</p>
                                         </div>
                                     </div>)

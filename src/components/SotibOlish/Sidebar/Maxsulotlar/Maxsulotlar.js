@@ -110,7 +110,7 @@ function Mahsulotlar({active}) {
                     <li><Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} className={'mahqosh'}>Maxsulot qo`shish</Link></li>
                     {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>Shtrix kodlar</Link></li>*/}
                     {/*<li><Link to={'/turliTavar'} className={'mahqosh'}>Turli Tavarlar</Link></li>*/}
-                    {/*<li><Link to={'/mahsulotImporti'} className={'mahqosh'}>Mahsulot Importi</Link></li>*/}
+                    <li><Link to={'/headerthird/mahsulotRuyxati/mahsulotImporti'} className={'mahqosh'}>Mahsulot Importi</Link></li>
                     {/*<li><Link to={'/mavjudImport'} className={'mahqosh'}>Mavjud miq import</Link></li>*/}
 
                     {/* <li  onClick={sidebaractive}><Link to={'/headerthird/sotuvNarxGuruhlanishi'} className={'mahqosh'}>Sotuv narxining guruhi</Link></li> */}
