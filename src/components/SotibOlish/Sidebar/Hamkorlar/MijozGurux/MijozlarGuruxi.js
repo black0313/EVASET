@@ -17,6 +17,7 @@ import MijozGuruxReducer, {
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import users from "../../../../../reducer/users";
 import QarzuzishReducer, {qarzuzishCustomer} from "../reducer/QarzuzishReducer";
+import {deleteMijozhisobot} from "../../Xisobotlar/reducer/MijozHisobotiReducer";
 
 function Mijozlarguruxi({
                             getMijozGurux,
@@ -227,6 +228,23 @@ function Mijozlarguruxi({
         setqarzuz(!qarzuz)
     }
 
+
+    const [deletemodal, setdeletemodal] = useState(false)
+    const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteMijozGurux(deleteID)
+        deleteModaltoggle('')
+    }
+
+
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
+        // deleteTaminot(item.id)
+        console.log(item)
+    }
+
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
             <div className="textHeaderMIG">
@@ -351,9 +369,20 @@ function Mijozlarguruxi({
                                                     }
                                                     {
                                                         users.deletecustomer? <button className={'btnB  m-1'}
-                                                                                      onClick={() => deleteM(item)}>O`chirish
+                                                                                      onClick={() => deleteModaltoggle(item.id)}>O`chirish
                                                         </button>:''
                                                     }
+
+                                                    <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                                        <ModalBody>
+                                                            <h5>Ishonchingiz komilmi ?</h5>
+                                                        </ModalBody>
+                                                        <ModalFooter>
+                                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                                        </ModalFooter>
+                                                    </Modal>
+
                                                     <td><button className={'btnB mt-1'} onClick={toggle2}>Qarz uzish</button></td>
                                                 </td>:''
                                             }

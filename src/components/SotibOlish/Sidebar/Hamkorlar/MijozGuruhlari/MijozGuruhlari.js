@@ -27,10 +27,16 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
     const [input,setInput] = useState({
         inputsearch:'',
         name:'',
+        foiz:''
     })
 
     function name(e){
         input.name = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function foiz(e){
+        input.foiz = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -80,6 +86,9 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
                     <ModalBody>
                         <label htmlFor={'n'}>Guruh nomi</label>
                         <input type="text" value={input.name} onChange={name} className={'form-control'} id={'n'}/>
+
+                        <label className={'mt-3'} htmlFor={'foiz'}>Foiz %</label>
+                        <input type="number" value={input.foiz} onChange={foiz} className={'form-control'}/>
                     </ModalBody>
                     <ModalFooter>
                         <button className={'btn btn-outline-primary'}>Saqlash</button>

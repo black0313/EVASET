@@ -70,11 +70,6 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
         console.log(input.inputsearch)
     }
 
-    function changelangv1(e) {
-        input.langv1 = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
 
     function changedukon(e) {
         input.dukon = e.target.value
@@ -260,12 +255,23 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
     }
 
     const [deletemodal, setdeletemodal] = useState(false)
-    function deleteModaltoggle() {
-        setdeletemodal(!deletemodal)
+    const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteTaminot(deleteID)
+        deleteModaltoggle('')
     }
 
-    return (
 
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
+        // deleteTaminot(item.id)
+        console.log(item)
+    }
+
+
+    return (
         <div>
             <div className="col-md-12 pt-4 pb-4 mt-2">
                 <div className="textHeaderTM">
@@ -315,7 +321,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
 
                             </div>
                             <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-                                <div className={'mt-3 d-flex justify-content-around'}><h4>Jami: {jamixisob}  So`m</h4></div>
+                                <div className={'mt-3 d-flex justify-content-around'}><h4>Jami: {jamixisob} So`m</h4></div>
                                 <table className='table table-striped table-hover table-condensed  table-bordered mt-4'>
                                     <thead className={'fix'}>
                                         {
@@ -385,8 +391,9 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                                             <button className='korish'><img src={Korish} alt="" /> Ko'rish</button>
                                                         </Link>
                                                         {
+
                                                             users.deletesupplier ?
-                                                                <button onClick={() => deleteTaminot2(item)} className='ochirish'><img
+                                                                <button onClick={() => deleteModaltoggle(item.id)} className='ochirish'><img
                                                                     src={Delete} alt="" /> O'chirish
                                                                 </button> : ''
                                                         }
@@ -409,13 +416,14 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                                         </Modal>
 
                                                         {/*IShonch komilmi DELETE*/}
+
                                                         <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                                             <ModalBody>
                                                                 <h5>Ishonchingiz komilmi ?</h5>
                                                             </ModalBody>
                                                             <ModalFooter>
-                                                                <button onClick={() => deleteTaminot2(item)} className={'btn btn-outline-primary'}>O`chirish</button>
-                                                                <button onClick={deleteModaltoggle} className={'btn btn-outline-primary'}>Chiqish</button>
+                                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
                                                             </ModalFooter>
                                                         </Modal>
                                                     </td> : ''

@@ -184,6 +184,22 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
 
     const [malkamay, setmalkamay] = useState(false)
 
+    const [deletemodal, setdeletemodal] = useState(false)
+    const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteBolim(deleteID)
+        deleteModaltoggle('')
+    }
+
+
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
+        // deleteTaminot(item.id)
+        console.log(item)
+    }
+
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderBL">
@@ -276,9 +292,20 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                                                                                                                alt=""/> Taxrirlash
                                             </button>
                                         </Link>
-                                        <button className='ochirish' onClick={() => deleteB(item)}><img src={Delete}
+                                        <button className='ochirish' onClick={() => deleteModaltoggle(item.id)}><img src={Delete}
                                                                                                         alt=""/> O'chirish
                                         </button>
+
+                                        <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                            <ModalBody>
+                                                <h5>Ishonchingiz komilmi ?</h5>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            </ModalFooter>
+                                        </Modal>
+
                                     </td>:''
                                 }
                             </tr>)

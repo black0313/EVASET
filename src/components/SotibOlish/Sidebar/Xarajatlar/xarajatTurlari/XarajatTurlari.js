@@ -80,6 +80,22 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
         deleteXarajatlarTurlari(item.id)
     }
 
+    const [deletemodal, setdeletemodal] = useState(false)
+    const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteXarajatlarTurlari(deleteID)
+        deleteModaltoggle('')
+    }
+
+
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
+        // deleteTaminot(item.id)
+        console.log(item)
+    }
+
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderXRT">
@@ -139,7 +155,18 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                                 <td>
                                     <button onClick={toggle} className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
                                     </button>
-                                    <button onClick={()=>deletet(item)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
+                                    <button onClick={()=>deleteModaltoggle(item.id)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
+
+                                    <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                        <ModalBody>
+                                            <h5>Ishonchingiz komilmi ?</h5>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                        </ModalFooter>
+                                    </Modal>
+
                                 </td>
                             </tr>)
                         }

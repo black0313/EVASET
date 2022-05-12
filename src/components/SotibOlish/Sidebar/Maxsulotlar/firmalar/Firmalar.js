@@ -144,6 +144,22 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
         setvisible(prev=>prev+5)
     }
 
+    const [deletemodal, setdeletemodal] = useState(false)
+    const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteFirma(deleteID)
+        deleteModaltoggle('')
+    }
+
+
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
+        // deleteTaminot(item.id)
+        console.log(item)
+    }
+
     return (
         <div className="col-md-12 mt-2 mt-4 mb-4">
             <div className="textHeaderFR">
@@ -196,14 +212,25 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                                 }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                     <td>{index+1}</td>
                                     <td>{item.name}</td>
-                                    <td></td>
+                                    <td> </td>
                                     <td>
                                         <Link>
                                             <button onClick={() => editB(item.id)} className='taxrirlash'><img src={Edit} alt="" /> Taxrirlash
                                             </button>
                                         </Link>
-                                        <button className='ochirish' onClick={() => deleteF(item)}><img src={Delete} alt="" /> O'chirish</button>
+                                        <button className='ochirish' onClick={() => deleteModaltoggle(item.id)}><img src={Delete} alt="" /> O'chirish</button>
                                     </td>
+
+                                    <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                        <ModalBody>
+                                            <h5>Ishonchingiz komilmi ?</h5>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                        </ModalFooter>
+                                    </Modal>
+
                                 </tr>)
                             }
 

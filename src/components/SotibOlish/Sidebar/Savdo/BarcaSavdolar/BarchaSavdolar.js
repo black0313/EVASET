@@ -20,6 +20,7 @@ import SavdoQoshishReducer, {
 } from "../reducer/SavdoQoshishReducer";
 import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import {Modal, ModalBody, ModalFooter} from "reactstrap";
 
 function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,TaminotReducer,SavdoQoshishReducer,getSavdolar,getSavdolar2,users,getbranch,ditSavdolar,saveSavdolar}) {
 
@@ -150,6 +151,22 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
         setvisible(prev=>prev+5)
     }
 
+    const [deletemodal, setdeletemodal] = useState(false)
+    const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteSavdolar(deleteID)
+        deleteModaltoggle('')
+    }
+
+
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
+        // deleteTaminot(item.id)
+        console.log(item)
+    }
+
     return (
         <div className="col-md-12 mt-2 mb-4 mt-4 ">
             <div className="textHeader">
@@ -258,7 +275,17 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
                                 {/*<td> </td>*/}
                                 <td>
                                         <Link to={'/headerthird/mahsulotQoshish/'+item?.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
-                                        <button onClick={()=>deleteS(item)} className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
+                                        <button onClick={()=>deleteModaltoggle(item.id)} className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
+
+                                    <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                        <ModalBody>
+                                            <h5>Ishonchingiz komilmi ?</h5>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                        </ModalFooter>
+                                    </Modal>
                                 </td>
                             </tr>)
                         }
