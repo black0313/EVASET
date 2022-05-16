@@ -118,7 +118,6 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
                         <thead>
                             <th style={{fontSize:'17px'}}>Guruh Nomi</th>
                             <th style={{fontSize:'17px'}}>Fozida %</th>
-                            <th style={{fontSize:'17px'}}>Sotuv narxini guruhlash</th>
                             <th style={{fontSize:'17px'}}>Amallar</th>
                         </thead>
                         <tbody>
