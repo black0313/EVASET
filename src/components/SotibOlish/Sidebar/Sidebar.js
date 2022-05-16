@@ -17,6 +17,8 @@ import functionreducer from "../../../reducer/functionreducer";
 import {active} from "../../../reducer/functionreducer";
 import xodimReducer from "./Hodimlar/reducer/XodimReducer";
 import users from "../../../reducer/users";
+import SuperAdmin from "./SUPERADMIN/SuperAdmin";
+import store from '../../../img/storefront-outline.svg'
 
 function Sidebar({functionreducer,active,users}) {
 
@@ -61,6 +63,13 @@ function Sidebar({functionreducer,active,users}) {
                     </div>
                     <div className={'gap ms-2 sidebar-active'}>
                         <div className="row bosh">
+
+                            <Link to={'/headerthird/superadmin'}>
+                                <div className={'d-flex'}>
+                                    <img className={'im3'} src={store} alt=""/>
+                                    <h5 className={'mr'}>Super Admin</h5>
+                                </div>
+                            </Link><hr/>
                             <div className="imgDiv">
                                 <div className={'d-flex align-items-center'}>
                                     <Link onClick={sidebaractive} className={'d-flex align-items-center'} to={'/headerthird/'}><svg className={'sidebar-img'} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

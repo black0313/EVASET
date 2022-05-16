@@ -15,12 +15,13 @@
     cursor: pointer;
     height: 9vh;
     transform: translateX(-20px);
-    transition: 0.4s all linear;
+    transition: 0.2s all ease-in;
 }
 .w:hover{
     width: 65px;
     transform: translateX(-20px);
     background: #d5d5de;
+    
 }
 
 .dashbortButton{

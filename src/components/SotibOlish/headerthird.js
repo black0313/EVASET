@@ -51,6 +51,7 @@ import SavdoOyna from "./Sidebar/Settings/DukonSozlamalari/SavdoOynasi/SavdoOyna
 import MijozGuruhlari from "./Sidebar/Hamkorlar/MijozGuruhlari/MijozGuruhlari";
 import MijozGuruhlariii from "./Sidebar/Hamkorlar/MijozGuruhlari/MijozGuruhlari";
 import MahsulotImport from "./Sidebar/Maxsulotlar/MahsulotlarImporti/MahsulotImport";
+import SuperAdmin from "./Sidebar/SUPERADMIN/SuperAdmin";
 function Headerthird() {
 
     const [classheader,setClassheader] = useState('classheader1')
@@ -79,6 +80,7 @@ function Headerthird() {
                 <Header sidebarfunc={sidebarheader}/>
             </div>
             <Switch>
+                <Route path={'/headerthird/superadmin'} component={SuperAdmin}/>
                 <Route path={'/headerthird/hodimlarruyxati/taxrirlash/:id?'} component={Taxrirlash}/>
                 <Route path={'/headerthird/hodimlarruyxati/taxrirlash'} component={Taxrirlash}/>
                 <Route path={'/headerthird/hodimlarruyxati/view/:username?/:login?/:email?'} component={Korish}/>

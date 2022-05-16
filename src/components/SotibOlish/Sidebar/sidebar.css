@@ -10,6 +10,14 @@
 .tran{
 
 }
+.mr{
+    margin-left: 12px;
+    margin-top: -2px;
+}
+.im3{
+    width: 20px;
+    height: 20px;
+}
 .hhh{
     /*background: #0cd3c6;*/
     transition: 0.5s all;
