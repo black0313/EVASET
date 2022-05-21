@@ -1,0 +1,13 @@
+.containersSuperAdmin{
+    border-radius: 8px;
+    padding: 20px 30px 20px 30px;
+    background-color: #FFFF;
+}
+.containersSuperAdmin .header123{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.containersSuperAdmin h6{
+   margin-bottom: 4px;
+}

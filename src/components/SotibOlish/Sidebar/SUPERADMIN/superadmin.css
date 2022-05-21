@@ -1,0 +1,34 @@
+
+.textHeaderSuperAdmin{
+    display: flex;
+    align-items: baseline;
+}
+.rowStyleSA{
+    display: flex;
+    border-radius: 8px;
+    padding: 20px 30px 20px 30px;
+    background-color: #FFFF;
+}
+.rowStyleSA button{
+    margin: 0px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    color: rgb(138, 134, 134);
+}
+.rowStyleSA button:hover{
+    color: black;
+}
+.rowStyleSA button img{
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+
+}
+.textHeaderSuperAdmin h2{
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+    
