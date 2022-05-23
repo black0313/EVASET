@@ -8,7 +8,7 @@ import Packages from './pages/packages/Packages'
 import SuperAdminSettings from './pages/super-admin-settings/SuperAdminSettings'
 import Communicator from './pages/communicator/Communicator'
 import AddBusiness from './pages/all-buseness/addBusiness/AddBusiness'
-
+import PackageAdd from './pages/packages/PackageAdd/PackageAdd'
 
 function SuperAdmin() {
 
@@ -26,6 +26,7 @@ function SuperAdmin() {
                 <Route path={'/headerthird/superadmin/allbusenesses/addbusiness'} component={AddBusiness} />
                 <Route path={'/headerthird/superadmin/allbusenesses'} component={AllBusenesses}/>
                 <Route path={'/headerthird/superadmin/packagesubscription'} component={PackageSubscription}/>
+                <Route path={'/headerthird/superadmin/paskages/addpackage'} component={PackageAdd}/>
                 <Route path={'/headerthird/superadmin/paskages'} component={Packages}/>
                 <Route path={'/headerthird/superadmin/superadminsettings'} component={SuperAdminSettings}/>
                 <Route path={'/headerthird/superadmin/communicator'} component={Communicator}/>
