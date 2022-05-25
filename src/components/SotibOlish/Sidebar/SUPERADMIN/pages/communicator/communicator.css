@@ -1,0 +1,216 @@
+.containerCommunicator {
+    border-radius: 8px;
+    padding: 20px 30px 20px 30px;
+    box-shadow: 0px 10px 20px grey;
+    background-color: #FFFF;
+}
+
+.containerCommunicator .belgilashBtn {
+    width: 180px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #0044FF;
+    margin: 4px;
+    margin: 4px;
+    color: white;
+    font-size: 14px;
+    
+}
+.containerCommunicator .belgilashBtn:focus{
+    background-color: #082f9c;
+    border-radius: 1px solid rgba(255, 255, 255, 0.523);
+}
+
+.rowStyleCommun{
+    border-radius: 8px;
+    padding: 20px 30px 20px 30px;
+    box-shadow: 0px 10px 20px grey;
+    background-color: #FFFF;
+    margin-top: 60px;
+}
+
+.textHeader{
+    display: flex;
+    align-items: baseline;
+}
+.textHeader h2{
+    margin-right: 10px;
+    font-size: 24px;
+
+}
+
+.rowStyleCommun .izlashCommun{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    
+}
+.rowStyleCommun .izlashCommun .izlashBox1{
+    display: flex;
+}
+
+.rowStyleCommun .izlashCommun p{
+    text-align: center;
+}
+.rowStyleCommun .izlashCommun select{
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid #6b6363a0;
+    margin-left: 4px;
+}
+.rowStyleCommun .izlashCommun button:hover{
+    cursor: pointer;
+    background-color: #e0dddd;
+}
+.rowStyleCommun .izlashCommun button{
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid #6b6363a0;
+    margin-left: 4px;
+    background-color: #f3efef;
+    font-size: 11px;
+}
+.rowStyleCommun .izlashCommun button img{
+    width: 16px;
+}
+
+.rowStyleCommun .izlashCommun input{
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid #6b6363a0;
+    background-color: #FFFF;
+    padding: 8px 0px 8px 12px;
+    margin-left: 24px;
+}
+
+.rowStyleCommun .sahifalar{
+    display: flex;
+    justify-content: end;
+}
+.rowStyleCommun .sahifalar :first-child{
+    border-radius: 4px 0px 0px 4px;
+    border: 1px solid #6b6363a0;
+}
+.rowStyleCommun .sahifalar button{
+    border: 1px solid #6b6363a0;
+    background-color: #FFFF;
+    color:#1f1c1ca0;
+}
+.sahifalar :last-child{
+  border-radius: 0px 4px 4px 0px;
+  
+}
+
+@media (max-width: 425.9px){
+    .rowStyleCommun .qoshishPageS .sarlavha{
+            font-size: 14px;
+     }
+     .rowStyleCommun .izlashCommun{
+            display: block;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1{
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 110px 110px;
+            text-align: center;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox2{
+            display: flex;
+            justify-content: center;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox2 input{
+            width: 60%;
+            margin: 8px 0px 0px 4px;
+
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1 select{
+            margin-bottom: 8px;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1 button{
+            line-height: 4px;
+            font-size: 10px;
+            margin-bottom: 8px;
+     }
+     .rowStyleCommun p{
+            font-size: 12px;
+            line-height: 12px;
+     }
+     .rowStyleCommun .qoshishPageS h5{
+            font-size: 17px;
+     }
+     .rowStyleCommun .izlashCommun{
+            display: block;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1{
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 110px 110px;
+            text-align: center;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox2{
+            display: flex;
+            justify-content: center;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox2 input{
+            width: 60%;
+            margin: 8px 0px 0px 4px;
+
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1 select{
+            margin-bottom: 8px;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1 button{
+            line-height: 4px;
+            font-size: 10px;
+            margin-bottom: 8px;
+     }
+     .rowStyleCommun p{
+            font-size: 12px;
+            line-height: 12px;
+     }
+     
+}
+
+@media (min-width: 426px) and (max-width: 768.9px){
+     .rowStyleCommun .izlashCommun{
+            display: block;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1{
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 33% 33% 33%;
+            text-align: center;
+     }
+     .rowStyleCommun .qoshishPageS .sarlavha{
+           font-size: 15px;
+    }
+     .rowStyleCommun .izlashCommun .izlashBox2{
+            display: flex;
+            justify-content: center;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox2 input{
+            width: 70%;
+            margin: 8px 0px 0px 4px;
+
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1 button{
+            line-height: 4px;
+            margin-bottom: 8px;
+     }
+}
+@media (min-width: 769px) and (max-width: 1024.9px){
+     .rowStyleCommun .izlashCommun .izlashBox1{
+            display: grid;
+            grid-template-columns:36% 36% 36% ;
+     }
+     .rowStyleCommun .izlashCommun .izlashBox1 button{
+            line-height: 4px;
+            margin-bottom: 8px;
+     }
+       
+}
+@media (min-width: 1025px) and (max-width: 1199.9px){
+     .rowStyleCommun .izlashCommun .izlashBox1 button{
+            line-height: 4px;
+     }
+}

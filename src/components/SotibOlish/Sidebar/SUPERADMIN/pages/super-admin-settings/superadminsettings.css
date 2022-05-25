@@ -25,9 +25,11 @@
 }
 .supAdmSetContStyle  .settingsBlock{
     display: flex;
+   
 }
 .supAdmSetContStyle .settinButtonsBox{
     display: grid;
+    height: 400px;
 }
 .supAdmSetContStyle .settinButtonsBox .buttonsStyle{
     background: #FFFFFF;
@@ -37,7 +39,7 @@
     width: 190px;
     padding: 6px 12px;
     line-height: 14px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     padding: 12px 12px;
 }
 
@@ -52,7 +54,7 @@
     
 }
 .supAdmSetContStyle .settinPages{
-    
+   
 }
 .supAdmSetContStyle .settinButtonsBox .clicButtonStyle{
     background-color: red;
