@@ -11,13 +11,12 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
-            console.log("lpo")
             state.mijozgurux = action.payload.object
         },
         savefrom: (state,action) => {
             state.mijozgurux.unshift(action.payload)
             state.current+=1
-            toast.success('Mijjoz qo`shildi !')
+            toast.success('Mijoz qo`shildi !')
         },
         savefrom2: (state,action) => {
             state.mijozgurux.unshift(action.payload)

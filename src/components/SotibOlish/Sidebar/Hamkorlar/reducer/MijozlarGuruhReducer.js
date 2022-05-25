@@ -4,20 +4,19 @@ import {toast} from "react-toastify";
 // import {toast} from "react-toastify";
 
 const slice = createSlice({
-    name: 'mijozgurux',
+    name: 'mijozGuruh',
     initialState: {
-        mijozlarguruhlari: [],
+        mijozGuruh: [],
         current:0
     },
     reducers: {
         getFrom: (state, action) => {
-            console.log("lpo")
-            state.mijozlarguruhlari = action.payload.object
+            state.mijozGuruh = action.payload
         },
         savefrom: (state,action) => {
-            state.mijozlarguruhlari.unshift(action.payload)
+            state.mijozGuruh.unshift(action.payload)
             state.current+=1
-            toast.success('Guruh qo`shildi !')
+            toast.success('Mijoz Guruhi qo`shildi !')
         },
         editfrom: (state,action) => {
             state.current+=1
@@ -31,27 +30,27 @@ const slice = createSlice({
 });
 
 export const getMijozLarGuruh=()=>apiCall({
-    url: 'customer/get-by-businessId/1',
+    url: '/customerGroup/get',
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });
 
 export const saveMijozLarGurux=(data)=>apiCall({
-    url: '/customer',
+    url: '/customerGroup',
     method:'post',
     data,
     onSuccess: slice.actions.savefrom.type
 });
 
 export const editMijozLarGurux=(data)=>apiCall({
-    url: '/customer/'+data.id,
+    url: '/customerGroup/'+data.id,
     method: 'put',
     data,
     onSuccess: slice.actions.editfrom.type
 });
 
 export const deleteMijozLarGuruh=(data)=>apiCall({
-    url: '/customer/'+data,
+    url: '/customerGroup/'+data,
     method:'delete',
     data,
     onSuccess: slice.actions.deletefrom.type

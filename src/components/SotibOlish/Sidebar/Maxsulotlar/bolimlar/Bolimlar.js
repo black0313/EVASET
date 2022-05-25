@@ -12,6 +12,9 @@ import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {connect} from "react-redux";
 import BolimReducer, {deleteBolim, bolimlar, editBolim, getBolim, saveBolim,} from "../reducer/BolimReducer";
 import users from "../../../../../reducer/users";
+import Route from "react-router-dom/es/Route";
+import Switch from "react-router-dom/es/Switch";
+import IchkiBolim from "../IchkiBolim/IchkiBolim";
 
 function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users}) {
 
@@ -23,6 +26,10 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
             bolimkodi: '',
             qisqacamalumot: '',
             bId: '',
+            bolim2:'',
+            ichkibolimnomi:'',
+            ichkibolimdescription:'',
+            asosiybolim:'',
         }
     )
 
@@ -32,9 +39,28 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
         }
     )
 
-
     function view(e) {
         input.view = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function asosiybolim(e) {
+        input.asosiybolim = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function ichkibolimnomi(e) {
+        input.ichkibolimnomi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function ichkibolimdescription(e) {
+        input.ichkibolimdescription = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function bolim2(e) {
+        input.bolim2 = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -86,6 +112,7 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                     {
                         name: input.bolimnomi,
                         businessId: users.businessId,
+                        childCategory: input.bolim2,
                         id: input.bId
                     }
                 )
@@ -93,7 +120,9 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
             } else {
                 saveBolim({
                     name: input.bolimnomi,
+                    description: input.qisqacamalumot,
                     businessId: users.businessId,
+                    childCategory: input.bolim2
                 })
             }
 
@@ -123,9 +152,9 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
         }
     }
 
-    function deleteB(item) {
-        deleteBolim(item.id)
-        console.log('Deleted')
+    function saqla2(){
+
+        toggle10()
     }
 
     function toggle() {
@@ -146,6 +175,13 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                 bolimNomiPlaceholder: ""
             }
         )
+    }
+
+    const [active10,setactive10] = useState( false)
+
+    function toggle10(){
+        setactive10(!active10)
+
     }
 
 
@@ -209,8 +245,34 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
             <div className="rowStyleBL">
                 <div className="qoshish">
                     <h5>Bo'limlar</h5>
-                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>
+                    <button onClick={toggle} className='btn btn-outline-dark' style={{marginLeft:'550px'}}>+ Bo`lim Qo'shish</button>
+                    <button onClick={toggle10} className='btn btn-outline-primary'>+ Ichki bo`lim Qo'shish</button>
                 </div>
+
+                <Modal isOpen={active10} toggle={toggle10}>
+                    <ModalHeader>
+                        Bo`lim ichida bo`lim
+                    </ModalHeader>
+                    <ModalBody>
+                        <label htmlFor="">Asosiy bo`limni tanlang</label>
+                        <select value={input.asosiybolim} onChange={asosiybolim} className={'form-control'} id="">
+                            {
+                                BolimReducer.bolimlar.map(item=> <option value={item.id}>{item.name}</option>)
+                            }
+                        </select>
+
+                        <label htmlFor={''} className={'mt-3'}>Ichki bo`lim nomi</label>
+                        <input type="text" className={'form-control'} value={input.ichkibolimnomi} onChange={ichkibolimnomi}/>
+
+                        <label className={'mt-3'} htmlFor={''}>Izoh</label>
+                        <input type="text" className={'form-control'} value={input.ichkibolimdescription} onChange={ichkibolimdescription}/>
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className={'btn btn-outline-primary'} onClick={saqla2}>Saqlash</button>
+                        <button className={'btn btn-outline-primary'} onClick={toggle10}>Chiqish</button>
+                    </ModalFooter>
+                </Modal>
+
                 <div className="izlashBL">
                     <div className="izlashBox1">
                         <p>Ko'rsatildi</p>
@@ -245,6 +307,10 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                         <input type="text" placeholder='Izlash...' onChange={search} value={input.search}/>
                     </div>
                 </div>
+
+                <Link to={'/headerthird/bolimlar'}><button className={'btn btn-danger mt-2'}>Bo`limlar</button></Link>
+                <Link to={'/headerthird/ichkibolimlar'}><button style={{marginLeft:'10px'}} className={'btn btn-primary mt-2'}>Ichki Bo`limlar</button></Link>
+
                 <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar mb-4">
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
@@ -254,9 +320,10 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                                 {
                                     bolimlar2?<th>{item.bolim}</th>:''
                                 }
-                                {
-                                    bolimkodi2?<th>{item.bolimkod}</th>:''
-                                }
+                                {/*{*/}
+                                {/*    bolimkodi2?<th>{item.bolimkod}</th>:''*/}
+                                {/*}*/}
+                                <th>Bolim ichida</th>
                                 {
                                     qisqa?<th>{item.qisqa}</th>:''
                                 }
@@ -266,6 +333,9 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                             </tr>)
                         }
                         </thead>
+                        {
+                            // console.log(BolimReducer.bolimlar)
+                        }
                         <tbody>
                         {
                             BolimReducer.bolimlar.filter(val => {
@@ -279,11 +349,18 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                                 {
                                     bolimlar2?<td>{item.name}</td>:''
                                 }
+                                {/*{*/}
+                                {/*    bolimkodi2?<td></td>:''*/}
+                                {/*}*/}
+                                {/*<td>{item.childCategory.name}</td>*/}
                                 {
-                                    bolimkodi2?<td></td>:''
+                                    // console.log(item.childCategory.name)
                                 }
                                 {
-                                    qisqa?<td></td>:''
+                                    <td></td>
+                                }
+                                {
+                                    qisqa?<td>{item.description}</td>:''
                                 }
                                 {
                                     amallar?<td>
@@ -325,12 +402,16 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                         <input type="text" className={'form-control '} placeholder={placeholders.bolimNomiPlaceholder}
                                id={'bnomi'} onChange={bolimnomi}
                                value={input.bolimnomi}/>
-                        <label className={'mt-4'} htmlFor={'bkodi'}>Bo`lim kodi</label>
-                        <input type="text" className={'form-control'} value={input.bolimkodi} onChange={bolimkodi}
-                               id={'bkodi'}/>
-                        bo`limni izlashga oson bol`ishi uchun bironta belgi kiritng
+                        {/*<label className={'mt-4'} htmlFor={'bkodi'}>Bo`lim kodi</label>*/}
+                        {/*<input type="text" className={'form-control'} value={input.bolimkodi} onChange={bolimkodi}*/}
+                        {/*       id={'bkodi'}/>*/}
+                        {/*bo`limni izlashga oson bol`ishi uchun bironta belgi kiritng*/}
+
+                        <label htmlFor={'bolim2'} className={'mt-2'}>Bolim 2</label>
+                        <input type="text" className={'form-control'} value={input.bolim2} onChange={bolim2}/>
+
                         <label className={'mt-3'} htmlFor={'area'}>Qisqacha malumot</label>
-                        <textarea className={'form-control'} name="" id={'area'} cols="30" rows="4"> </textarea>
+                        <textarea value={input.qisqacamalumot} onChange={qisqacamalumot} className={'form-control'} name="" id={'area'} cols="30" rows="4"> </textarea>
                     </ModalBody>
                     <ModalFooter>
                         {/*<Link to={'/headerthird/bolimlar'}>*/}

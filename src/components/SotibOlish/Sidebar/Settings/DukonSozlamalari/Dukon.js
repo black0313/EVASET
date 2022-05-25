@@ -11,13 +11,14 @@ import BoshSahifaDukonSozlama from "./BoshSahifaDukonSozlama/BoshSahifaDukonSozl
 import TizimKorinishiDukonSozlama from "./TizimKorinishiDukonSozlama/TizimKorinishiDukonSozlama";
 import QisqaQoshimcha from "./QisqaQoshimcha/QisqaQoshimcha";
 import EmailSozlama from "./eMailSozlama/EmailSozlama";
+import Valyuta from "./Valyuta/Valyuta";
 
 export default function Dukon() {
     return (
         <div className={'containerSet'}>
                 <div className="dashboardBox">
                     <Link to={'/headerthird/dukonSozlama/1'}><button className={'btn btn-outline-primary form-control mt-2'}>Do`kon</button></Link>
-                    <Link to={'/headerthird/dukonSozlama/2'}><button className={'btn btn-outline-primary form-control mt-2'}>Soliq</button></Link>
+                    <Link to={'/headerthird/dukonSozlama/2'}><button className={'btn btn-outline-primary form-control mt-2'}>Soliq & Valyuta</button></Link>
                     <Link to={'/headerthird/dukonSozlama/3'}><button className={'btn btn-outline-primary form-control mt-2'}>Mahsulot</button></Link>
                     <Link to={'/headerthird/dukonSozlama/4'}><button className={'btn btn-outline-primary form-control mt-2'}>Aloqa</button></Link>
                     <Link to={'/headerthird/dukonSozlama/5'}><button className={'btn btn-outline-primary form-control mt-2'}>Savdo</button></Link>
@@ -39,6 +40,8 @@ export default function Dukon() {
                     <Switch>
                         <Route path={'/headerthird/dukonSozlama/1'} component={Dukon1}/>
                         <Route path={'/headerthird/dukonSozlama/2'} component={Soliq}/>
+                        <Route path={'/headerthird/dukonSozlama/2/valyuta'} component={Valyuta}/>
+
                         <Route path={'/headerthird/dukonSozlama/3'} component={Mahsulot2}/>
                         <Route path={'/headerthird/dukonSozlama/4'} component={Aloqa}/>
                         <Route path={'/headerthird/dukonSozlama/5'} component={Savdo2}/>

@@ -18,6 +18,7 @@ import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import users from "../../../../../reducer/users";
 import QarzuzishReducer, {qarzuzishCustomer} from "../reducer/QarzuzishReducer";
 import {deleteMijozhisobot} from "../../Xisobotlar/reducer/MijozHisobotiReducer";
+import MijozlarGuruhReducer, {getMijozLarGuruh} from "../reducer/MijozlarGuruhReducer";
 
 function Mijozlarguruxi({
                             getMijozGurux,
@@ -25,6 +26,8 @@ function Mijozlarguruxi({
                             editMijozGurux,
                             deleteMijozGurux,
                             users,
+                            getMijozLarGuruh,
+                            MijozlarGuruhReducer,
                             MijozGuruxReducer
                             ,qarzuzishCustomer
                         }) {
@@ -49,7 +52,8 @@ function Mijozlarguruxi({
             inputsearch: '',
             phone: '',
             mId: '',
-            qarzuzish:''
+            qarzuzish:'',
+            mijozguruhnomi:''
         }
     )
 
@@ -66,6 +70,12 @@ function Mijozlarguruxi({
 
     function search(e) {
         input.inputsearch = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function mijozguruhnomi(e) {
+        input.mijozguruhnomi = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -138,6 +148,7 @@ function Mijozlarguruxi({
                 phoneNumber: input.phone,
                 telegram: input.foizda,
                 repayment: input.qarzuzish,
+                customerGroup: 2,
                 businessId: 1
             })
         }
@@ -182,6 +193,7 @@ function Mijozlarguruxi({
             phone: 'Tel raqami',
             foiz:'Foiz %',
             telegram: 'Telegram',
+            guruh: 'Guruh nomi',
             amallar: 'Amallar'
         }
     ])
@@ -214,6 +226,7 @@ function Mijozlarguruxi({
 
     useEffect(() => {
         getMijozGurux()
+        // getMijozLarGuruh()
     }, [MijozGuruxReducer.current])
 
     const [visible,setvisible] = useState(5)
@@ -241,8 +254,6 @@ function Mijozlarguruxi({
     function deleteModaltoggle(item) {
         setdeletemodal(!deletemodal)
         setdeletID(item)
-        // deleteTaminot(item.id)
-        console.log(item)
     }
 
     return (
@@ -290,7 +301,6 @@ function Mijozlarguruxi({
                             </div>
                         </div>
                         <div className={'d-flex mt-3 justify-content-center'}>
-                            {/*{console.log(TaminotReducer.taminot.map(item=> item.storeDebt))}*/}
 
                             {
                                 MijozGuruxReducer.mijozgurux.map(item=> {
@@ -318,6 +328,7 @@ function Mijozlarguruxi({
                                         }
                                         <th>Qarz</th>
                                         {/*<th>Qarz uzish</th>*/}
+                                        <th>{item.guruh}</th>
                                         {
                                             amallar?<th className={'text-center'}>{item.amallar}</th>:''
                                         }
@@ -345,7 +356,7 @@ function Mijozlarguruxi({
                                                 telegram?<td>{item.telegram}</td>:''
                                             }
                                             <td>{item.debt}</td>
-
+                                            <td>{input.mijozguruhnomi}</td>
                                             <Modal isOpen={qarzuz} toggle={toggle2}>
                                                 <ModalHeader>
                                                     Qarz uzish
@@ -400,7 +411,7 @@ function Mijozlarguruxi({
 
                 <Modal isOpen={active} toggle={toggle}>
                     <ModalHeader>
-                        Yangi guruh qo`shish / taxrirlash
+                        Yangi Mijoz qo`shish / taxrirlash
                     </ModalHeader>
                     <ModalBody>
                         <label htmlFor={'nomi'}>Nomi</label>
@@ -412,6 +423,22 @@ function Mijozlarguruxi({
                         <label htmlFor={'foizda'}>Telegram</label>
                         <input type="text" value={input.foizda}  placeholder={plaseholders.telegramPlaseholders} onChange={changefoizda} className={'form-control mb-3 mt-1'}
                                id={'foizda'}/>
+                        <label htmlFor={'m'}>Mijoz uchun guruh</label>
+                        <select id={'m'} value={input.mijozguruhnomi} className={'form-control'} onChange={mijozguruhnomi}>
+                            {
+                                // console.log(MijozlarGuruhReducer.mijozGuruh)
+
+
+                                // MijozlarGuruhReducer.mijozGuruh.map(item=><tr key={item.id}>
+                                // <td>{item.name}</td>
+                                // </tr>)
+
+
+                                // MijozlarGuruhReducer.mijozGuruh.map(item=> <option key={item.id}>
+                                //     {item.name}
+                                // </option>)
+                            }
+                        </select>
                     </ModalBody>
                     <ModalFooter>
                         <button className={'btn btn-primary'} onClick={saqla}>SAQLASH</button>
@@ -424,7 +451,7 @@ function Mijozlarguruxi({
     )
 }
 
-export default connect((MijozGuruxReducer,QarzuzishReducer, users), {
+export default connect((MijozGuruxReducer,QarzuzishReducer,MijozlarGuruhReducer, users), {
     getMijozGurux,
     qarzuzishCustomer,
     saveMijozGurux,

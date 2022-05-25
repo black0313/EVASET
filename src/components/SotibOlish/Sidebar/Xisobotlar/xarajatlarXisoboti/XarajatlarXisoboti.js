@@ -24,8 +24,11 @@ import XarajatTurlariReducer, {
     getXarajatlarTurlari, saveXarajatlarTurlari
 } from "../../Xarajatlar/reducer/XarajatTurlariReducer";
 import XarajatlarReducer, {getXarajatlar} from "../../Xarajatlar/reducer/XarajatlarReducer";
+import branchreducer from "../../../../../reducer/branchreducer";
+import BolimReducer, {getBolim} from "../../Maxsulotlar/reducer/BolimReducer";
+import users from "../../../../../reducer/users";
 
-function XarajatlarXisoboti({XarajatTurlariReducer,XarajatlarReducer,getXarajatlar}) {
+function XarajatlarXisoboti({XarajatTurlariReducer,BolimReducer,getBolim,XarajatlarReducer,getXarajatlar,branchreducer}) {
 
 
     const [input,setInput] = useState(
@@ -68,6 +71,7 @@ function XarajatlarXisoboti({XarajatTurlariReducer,XarajatlarReducer,getXarajatl
     useEffect(() => {
         // getXarajatxisobot()
         getXarajatlar()
+        getBolim(users.businessId)
     },[])
 
     return (
@@ -83,21 +87,25 @@ function XarajatlarXisoboti({XarajatTurlariReducer,XarajatlarReducer,getXarajatl
                     <div className="col-4 col-sm-12">
                         <h6>Baza:</h6>
                         <select value={input.baza} onChange={baza} name="" id="">
-                            <option value="">Barchasi</option>
+                            {
+                                branchreducer.branch.map(item=> <option value={item.id}>
+                                    {item.name}
+                                </option>)
+                            }
                         </select>
                     </div>
                     <div className="col-4 col-sm-12">
                         <h6>Bo'limlar:</h6>
                         <select name="" id="" onChange={bolim} value={input.bolim}>
-                            <option value="">Barchasi</option>
+                            {
+                                BolimReducer.bolimlar.map(item=> <option value={item.id}>{item.name}</option>)
+                            }
                         </select>
                     </div>
                     <div className="col-4 col-sm-12">
                         <h6>Aniq sanani belgilash:</h6>
                         <select name="" id="" value={input.aniqsana} onChange={aniqsana}>
                             <option value="" hidden>Aniq sanani belgilash</option>
-                            <option value="">Bugun</option>
-                            <option value="">Oxirgi 1 hafta</option>
                         </select>
                     </div>
                 </div>
@@ -130,6 +138,7 @@ function XarajatlarXisoboti({XarajatTurlariReducer,XarajatlarReducer,getXarajatl
                 </div>
                 {console.log(XarajatlarReducer.xarajatlar)}
                 {console.log('222')}
+
                 <div className="table-responsive mb-4">
                     <table className='table table-striped table-bordered mt-4 '>
                         <thead>
@@ -161,4 +170,4 @@ function XarajatlarXisoboti({XarajatTurlariReducer,XarajatlarReducer,getXarajatl
     )
 }
 
-export default connect((XarajatTurlariReducer,SavdoOynaReducer,XarajatlarReducer),{getXarajatlar,getXarajatlarTurlari,saveXarajatlarTurlari,editXarajatlarTurlari,deleteXarajatlarTurlari,}) (XarajatlarXisoboti)
+export default connect((XarajatTurlariReducer,branchreducer,BolimReducer,SavdoOynaReducer,XarajatlarReducer),{getXarajatlar,getBolim,getXarajatlarTurlari,saveXarajatlarTurlari,editXarajatlarTurlari,deleteXarajatlarTurlari,}) (XarajatlarXisoboti)

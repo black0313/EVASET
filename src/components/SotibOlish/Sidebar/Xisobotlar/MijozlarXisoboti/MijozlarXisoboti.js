@@ -17,19 +17,27 @@ import {getMijozhisobot,deleteMijozhisobot,saveMijozhisobot,editMijozhisobot} fr
 import XodimReducer, {getXodim, saveXodim} from "../../Hodimlar/reducer/XodimReducer";
 import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import SavdoQoshishReducer, {getSavdolar} from "../../Savdo/reducer/SavdoQoshishReducer";
+import MijozGuruxReducer from "../../Hamkorlar/reducer/MijozGuruxReducer";
 
-function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar,getbranch}) {
+function MijozlarXisoboti({XodimReducer,MijozGuruxReducer,SavdoQoshishReducer,getXodim,users,getSavdolar,getbranch}) {
 
     const [inputvalue,setinputvalue] = useState(
         {
             baza:'',
             xodim:'',
             sananibelgilang:'',
+            mijozId:''
         }
     )
     const history = useHistory()
     function xodim(e){
         inputvalue.xodim = e.target.value
+        let a = {...inputvalue}
+        setinputvalue(a)
+    }
+    function mijozId(e){
+        inputvalue.mijozId = e.target.value
         let a = {...inputvalue}
         setinputvalue(a)
     }
@@ -50,10 +58,17 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar,getbranch}) {
         setActive(!active)
     }
 
+    const [visible,setvisible] = useState(5)
+
+    function koproq(){
+        setvisible(prev=>prev+5)
+    }
+
     useEffect(()=>{
         getXodim(users.businessId)
         history.push('/headerthird/mijozlarXisoboti/1')
         getbranch(users.businessId)
+        getSavdolar(users.businessId)
     },[])
 
     return (
@@ -80,10 +95,10 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar,getbranch}) {
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <h6>Baza:</h6>
-                        <select name="" id="" value={inputvalue.baza} onChange={baza} className={'inptData'}>
+                        <h6>Mijoz:</h6>
+                        <select  id="" value={inputvalue.mijozId} onChange={mijozId} className={'inptData'}>
                             {
-
+                                MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
                             }
                         </select>
                     </div>
@@ -103,7 +118,7 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar,getbranch}) {
             <div className="rowSty">
                 <div className="col-md-12">
                     <h5>Summary</h5>
-                    <h3>Jami savdo - Jami sotuvlar bo`yicha daromad: ( backend-backend = backend )</h3>
+                    <h3>{SavdoQoshishReducer.amount} - Jami sotuvlar bo`yicha daromad: ( backend-backend = backend )</h3>
                     <h3>Jami xarajatlar: ( backend )</h3>
                 </div>
             </div>
@@ -121,20 +136,17 @@ function MijozlarXisoboti({XodimReducer,getXodim,users,getSavdolar,getbranch}) {
                     {/*<Link to={'/third/xarajatlarRuyxati/xarajatqoshish'}><button className='btn btn-primary'>+Qo'shish</button></Link>*/}
                 </div>
 
+
                 <Route path={'/headerthird/mijozlarXisoboti/1'} component={Savdolar1}/>
                 <Route path={'/headerthird/mijozlarXisoboti/2'} component={Ulushli}/>
                 <Route path={'/headerthird/mijozlarXisoboti/3'} component={Xarajatlar3}/>
                 <Route path={'/headerthird/mijozlarXisoboti/4'} component={MijozlarBnIshlash}/>
 
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
-                </div>
+                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+
             </div>
         </div>
     )
 }
 
-export default connect((XodimReducer,users,branchreducer),{getXodim,getbranch,saveXodim,}) (MijozlarXisoboti)
+export default connect((XodimReducer,users,MijozGuruxReducer,SavdoQoshishReducer,branchreducer),{getXodim,getbranch,saveXodim,getSavdolar}) (MijozlarXisoboti)

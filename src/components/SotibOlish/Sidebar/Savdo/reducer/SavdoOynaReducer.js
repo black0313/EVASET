@@ -34,9 +34,10 @@ const slice = createSlice({
     }
 });
 
-export const getSavdo=()=>apiCall({
-    url: '/trade/get-by-business/1',
+export const getSavdo=(data)=>apiCall({
+    url: '/trade/get-by-business/'+ data,
     method:'get',
+    data,
     onSuccess: slice.actions.getFrom.type
 });
 

@@ -15,7 +15,6 @@ const slice = createSlice({
     reducers: {
         getFrom: (state, action) => {
             state.savdolar = action.payload.object
-            console.log(action.payload);
             let amount=0
             let qarz=0
             let uzcard=0
@@ -43,7 +42,6 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             state.savdolar.unshift(action.payload.object)
-            // state.savdolar.unshift(action.payload.message)
             // toast.success('Savdo qo`shildi')
         },
         editfrom: (state,action) => {

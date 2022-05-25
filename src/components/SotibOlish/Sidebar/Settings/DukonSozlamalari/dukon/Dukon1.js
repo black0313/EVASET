@@ -17,10 +17,6 @@ function Dukon1() {
             otkazmamuddati:'',
             kunformat:'',
             vaqtformat:'',
-            lang1_name:'',
-            lang2_name:'',
-            lang1:'',
-            lang2:'',
         }
     )
 
@@ -39,21 +35,7 @@ function Dukon1() {
         let a = {...input}
         setInput(a)
     }
-    function valyuta(e){
-        input.valyuta = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function valyutajoylashuvi(e){
-        input.valyutajoylashuvi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function vaqtzonasi(e){
-        input.vaqtzonasi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
+
     function legionyangilash(e){
         input.legionyangilash = e.target.value
         let a = {...input}
@@ -84,26 +66,6 @@ function Dukon1() {
         let a = {...input}
         setInput(a)
     }
-    function lang1_name(e){
-        input.lang1_name = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function lang2_name(e){
-        input.lang2_name = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function lang1(e){
-        input.lang1 = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function lang2(e){
-        input.lang2 = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
 
     return (
         <div className="dukonCont">
@@ -123,26 +85,7 @@ function Dukon1() {
                 </div>
             </div>
 
-            <div className={'row mb-3 '}>
-                <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'nomi'}>Valyuta</label>
-                    <input type="text" id={'nomi'} className={'form-control'} value={input.valyuta} onChange={valyuta}/>
-                </div>
-                <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'sana'}>Valyuta joylashuvi</label>
-                    <select name="" id="" className={'form-control'} value={input.valyutajoylashuvi} onChange={valyutajoylashuvi}>
-                        <option value="#">Narxdan chapga</option>
-                        <option value="#">Narxdan o`nga</option>
-                    </select>
-                </div>
-                <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'nomi'}>Vaqt zonasi</label>
-                    <select name="" id="" className={'form-control'} value={input.vaqtzonasi} onChange={vaqtzonasi}>
-                        <option value="#">ASIA/Srednekolymsk</option>
-                        <option value="#">ASIA/Taipei</option>
-                    </select>
-                </div>
-            </div>
+
 
             <div className={'row mb-3'}>
                 <div className='col-4 col-sm-12 mb-3'>
@@ -154,16 +97,6 @@ function Dukon1() {
                     <select name="" id="" className={'form-control'} value={input.xisobotyil} onChange={xisobotyil}>
                         <option value="#">Yanvar</option>
                         <option value="#">Fevral</option>
-                        <option value="#">Mart</option>
-                        <option value="#">Aprel</option>
-                        <option value="#">May</option>
-                        <option value="#">Iyun</option>
-                        <option value="#">Iyul</option>
-                        <option value="#">Avgust</option>
-                        <option value="#">Sentabr</option>
-                        <option value="#">Oktabr</option>
-                        <option value="#">Noyabr</option>
-                        <option value="#">Dekabr</option>
                     </select>
                 </div>
                 <div className='col-4 col-sm-12 mb-3'>
@@ -198,24 +131,6 @@ function Dukon1() {
                 </div>
             </div>
 
-            <div className="row mb-3">
-                <div className='col-3 col-sm-12 mb-3'>
-                    <label htmlFor={'l1'}>code_1_name:</label>
-                    <input type="text" id={'l1'} className={'form-control'} value={input.lang1_name} onChange={lang1_name}/>
-                </div>
-                <div className='col-3 col-sm-12 mb-3'>
-                    <label htmlFor={'l2'}>code_1:</label>
-                    <input type="text" id={'l2'} onChange={lang1} value={input.lang1} className={'form-control'}/>
-                </div>
-                <div className='col-3 col-sm-12 mb-3'>
-                    <label htmlFor={'l3'}>name:</label>
-                    <input type="text" id={'l3'} className={'form-control'} onChange={lang2_name} value={input.lang2_name}/>
-                </div>
-                <div className='col-3 col-sm-12 mb-3'>
-                    <label htmlFor={'l4'}>code_2:</label>
-                    <input type="text" id={'l4'} className={'form-control'} value={input.lang2}/>
-                </div>
-            </div>
             
         </div>
 

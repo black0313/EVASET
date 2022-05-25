@@ -14,14 +14,12 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
-            console.log(action.payload)
             state.taminot = action.payload.object
             let amount=0
             action.payload.object.map(item=> {
                 amount+=item.storeDebt
             })
             state.taminotjami=amount
-                console.log(state.taminotjami)
         },
         savefrom: (state,action) => {
             toast.success('Diller saqlandi!')

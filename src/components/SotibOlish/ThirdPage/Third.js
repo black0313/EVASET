@@ -199,14 +199,6 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
         },
     ]
 
-    function sidebar() {
-        if (third === '') {
-            setThird('third2')
-        } else {
-            setThird('')
-        }
-    }
-
 
     const options = {
         series: [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0],
@@ -361,8 +353,6 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
                                                     <div className={'selects-style'}>
                                                         <select className={'selects'} name="" id="">
                                                             <option value="1">Ushbu oy</option>
-                                                            <option value="2">O'tgan oy</option>
-                                                            <option value="3">Bugun</option>
                                                         </select>
                                                     </div>
                                                     <div className={'btn-nuqta'}>
@@ -411,8 +401,6 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
                                             <div className={'selects-style'}>
                                                 <select className={'selects'} name="" id="">
                                                     <option value="1">Ushbu oy</option>
-                                                    <option value="2">O'tgan oy</option>
-                                                    <option value="3">Bugun</option>
                                                 </select>
                                             </div>
                                             <div className={'btn-nuqta'}>
@@ -454,8 +442,7 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
                                             <div className={'selects-style'}>
                                                 <select className={'selects '} name="" id="">
                                                     <option value="1">Ushbu oy</option>
-                                                    <option value="2">O'tgan oy</option>
-                                                    <option value="3">Bugun</option>
+
                                                 </select>
                                             </div>
                                             <div className={'btn-nuqta'}>
@@ -554,7 +541,6 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
                                     <Pagination4/>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div className="col-md-6 col-sm-12 col-md-12 col-lg-6">

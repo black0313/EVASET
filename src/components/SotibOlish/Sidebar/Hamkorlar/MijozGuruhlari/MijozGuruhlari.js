@@ -22,12 +22,13 @@ import MijozlarGuruhReducer, {
 } from "../reducer/MijozlarGuruhReducer";
 
 
-function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijozLarGurux,saveMijozLarGurux}){
+function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,deleteMijozLarGuruh,editMijozLarGurux,saveMijozLarGurux}){
 
     const [input,setInput] = useState({
         inputsearch:'',
         name:'',
-        foiz:''
+        foiz:'',
+        mId: ''
     })
 
     function name(e){
@@ -55,17 +56,69 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
         setInput(a)
     }
 
-    function saqla(){
-
+    function editM(id){
+        toggle()
+        MijozlarGuruhReducer.mijozGuruh.map(item=>{
+            if (item.id === id){
+                input.name = item.name
+                input.foiz = item.percent
+                input.mId = id
+                let a = {...input}
+                setInput(a)
+            }
+        })
     }
+
+    function saqla(){
+        if (input.mId !==''){
+            editMijozLarGurux({
+                name: input.name,
+                percent: input.foiz,
+                id: input.mId
+            })
+        }else {
+            saveMijozLarGurux({
+                name: input.name,
+                percent: input.foiz
+            })
+            let a = {...input}
+            setInput(a)
+            setInput({
+                name: '',
+                foiz: ''
+            })
+        }
+        toggle()
+        let a = {...input}
+        setInput(a)
+    }
+
     useEffect(()=>{
-        getMijozLarGuruh(users.businessId)
-    },[])
+        getMijozLarGuruh()
+    },[MijozlarGuruhReducer.current])
 
     const [visible,setvisible] = useState(5)
 
     function koproq(){
         setvisible(prev=>prev+5)
+    }
+
+    function deleteGroup(item){
+        deleteMijozLarGuruh(item.id)
+    }
+
+    const [deletemodal, setdeletemodal] = useState(false)
+    const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteMijozLarGuruh(deleteID)
+        deleteModaltoggle('')
+    }
+
+
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
     }
 
     return (
@@ -91,10 +144,11 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
                         <input type="number" value={input.foiz} onChange={foiz} className={'form-control'}/>
                     </ModalBody>
                     <ModalFooter>
-                        <button className={'btn btn-outline-primary'}>Saqlash</button>
+                        <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
                         <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
                     </ModalFooter>
                 </Modal>
+
                 <div className="izlashMIG">
                     <div className="izlashBox1">
                         <p>Ko'rsatildi</p>
@@ -114,14 +168,33 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
                     </div>
                 </div>
                 <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-                    <table className='table table-striped  mt-4'>
+                    <table className='table table-striped table-hover mt-4'>
                         <thead>
                             <th style={{fontSize:'17px'}}>Guruh Nomi</th>
                             <th style={{fontSize:'17px'}}>Fozida %</th>
                             <th style={{fontSize:'17px'}}>Amallar</th>
                         </thead>
                         <tbody>
-                            LA LA KU
+                        {
+                            MijozlarGuruhReducer.mijozGuruh.map(item=><tr key={item.id}>
+                                <td>{item.name}</td>
+                                <td>{item.percent}</td>
+                                <td>
+                                    <button className={'btnB'} onClick={()=>editM(item.id)}>Tahrirlash</button>
+                                    <button className={'btnB'} onClick={()=>deleteModaltoggle(item.id)}>O`chirish</button>
+                                </td>
+
+                                <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                    <ModalBody>
+                                        <h5>Ishonchingiz komilmi ?</h5>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                        <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                    </ModalFooter>
+                                </Modal>
+                            </tr>)
+                        }
                         </tbody>
                     </table>
                     <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
@@ -132,7 +205,7 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,editMijoz
     )
 }
 
-export default connect((MijozGuruxReducer, users,MijozlarGuruhReducer), {
+export default connect((MijozGuruxReducer, users, MijozlarGuruhReducer), {
     getMijozGurux,
     getMijozLarGuruh,
     saveMijozLarGurux,

@@ -57,7 +57,7 @@ function Sozlamalar({active}) {
             </div>
 
                 <ul style={{width:'80%'}}>
-                    <Link to={'/headerthird/dukonSozlama'} ><li   className={'li-text'} onClick={sidebaractive}>Do`kon sozlamalari</li></Link>
+                    <Link to={'/headerthird/dukonSozlama'} ><li   className={'li-text'} onClick={sidebaractive}>Sozlamalar</li></Link>
                     <Link to={'/headerthird/bazalarSetting'}><li className={'li-text'} onClick={sidebaractive}>Bazalar</li></Link>
                     {/*<Link to={'/chekSetting'} className={'mahsulotSetting'}><li>Cheklar sozlamalari</li></Link>*/}
                     {/*<Link to={'/shtrixKodlar'} className={'mahsulotSetting'}><li>Shtrix kodlar sozlamalari</li></Link>*/}

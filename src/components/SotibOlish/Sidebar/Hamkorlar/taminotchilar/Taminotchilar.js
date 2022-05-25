@@ -115,7 +115,6 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
     }
 
     function deleteTaminot2(item) {
-        console.log(item)
         deleteTaminot(item.id)
         setTimeout(() => {
             getTaminot(1)
@@ -192,13 +191,11 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                     supplierType: input.taminotturi,
                     businessId: 1,
                 })
-                console.log('save')
             }
 
             toggle()
             let a = { ...input }
             setInput(a)
-            console.log(input);
             let v = { ...input }
             setInput({
                 langv1: '',

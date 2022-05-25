@@ -52,6 +52,7 @@ import MijozGuruhlari from "./Sidebar/Hamkorlar/MijozGuruhlari/MijozGuruhlari";
 import MijozGuruhlariii from "./Sidebar/Hamkorlar/MijozGuruhlari/MijozGuruhlari";
 import MahsulotImport from "./Sidebar/Maxsulotlar/MahsulotlarImporti/MahsulotImport";
 import SuperAdmin from "./Sidebar/SUPERADMIN/SuperAdmin";
+import IchkiBolim from "./Sidebar/Maxsulotlar/IchkiBolim/IchkiBolim";
 function Headerthird() {
 
     const [classheader,setClassheader] = useState('classheader1')
@@ -103,6 +104,8 @@ function Headerthird() {
                 <Route path={'/headerthird/mahsulotRuyxati'} component={MaxsulotlarRoyxati}/>
                 <Route path={'/headerthird/sotuvNarxGuruhlanishi'} component={SotuvNarxiniGuruxlash}/>
                 <Route path={'/headerthird/bolimlar'} component={Bolimlar}/>
+                <Route path={'/headerthird/ichkibolimlar'} component={IchkiBolim}/>
+
                 <Route path={'/headerthird/firmalar'} component={Firmalar}/>
                 <Route path={'/headerthird/xaridQilish/:id?'} component={Xarid}/>
                 <Route path={'/headerthird/xaridQilish'} component={Xarid}/>

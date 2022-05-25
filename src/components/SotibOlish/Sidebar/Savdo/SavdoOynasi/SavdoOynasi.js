@@ -1013,7 +1013,11 @@ function SavdoOynasi({
                             }
                         </select>
                     </div>
-                    <div className="navbarRigth">
+                    <div className="navbarRigth" style={{width:'630px'}}>
+                        <select className={'sss'}  id={'valuta'}>
+                            <option value={'valuta'}>UZS</option>
+                            <option value={'valuta'}>USSD</option>
+                        </select>
                         <button className={'btn btn-outline-primary'} style={{lineHeight:'12px'}} onClick={toggle4}>Oxirgi savdolar</button>
                         {/*<button className={'btn btn-outline-primary'}>Hold*/}
                         <button className={'btn '} onClick={toggle} style={{lineHeight:'12px'}} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">Ushlab turish</button>

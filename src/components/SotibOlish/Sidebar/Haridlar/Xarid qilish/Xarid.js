@@ -429,11 +429,10 @@ function Xarid({
 
     }
     function saqla() {
-        if ((input.diller && input.xaridstatusi && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2 && input.xaridmiqdori && input.donanarxi && input.donasotish)) {
+        if ((input.diller && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2 && input.xaridmiqdori && input.donanarxi && input.donasotish)) {
             if (match.params.id === undefined) {
                 mah.map(item => {
                     saveXarid(
-
                         {
                             dealerId: input.diller,
                             seller: 2,
@@ -441,7 +440,7 @@ function Xarid({
                             paymentStatusId: input.eslatma,
                             branchId: input.baza,
                             buyPrice: input.donanarxi,
-                            date: input.xaridsanasi,
+                            date: Date.now(),
                             avans:input.avans,
                             description: input.qisqaeslatma,
                             // buyPrice: input.sot
@@ -465,7 +464,7 @@ function Xarid({
                             purchaseStatusId: input.xaridstatusi,
                             paymentStatusId: input.eslatma,
                             branchId: input.baza,
-                            date: input.xaridsanasi,
+                            date: Date.now(),
                             description: input.qisqaeslatma,
                             deliveryPrice: input.yetkazibberishnarxi2,
                             purchaseProductsDto: [
@@ -517,8 +516,6 @@ function Xarid({
         toggle()
     }
 
-    const [activeshtrix, setactiveshtrix] = useState(false)
-
     useEffect(() => {
         getTaminot(users.businessId)
         getMaxsulotRuyxati(users.businessId)
@@ -539,7 +536,7 @@ function Xarid({
                 <h5 className={'text-center mt-3'}>XARID QILISH</h5>
                 <div className="col-md-10 border mt-4 offset-1 d-flex">
                     <div className="row">
-                        <div className={'col-3 col-sm-12'}>
+                        <div className={'col-4 col-sm-12'}>
                             <div className={'d-flex'}>
                                 <div style={{ width: '100%' }}>
                                     <label htmlFor={'dil'}>Diller</label>
@@ -567,7 +564,7 @@ function Xarid({
                             </div>
                         </div>
 
-                        <div className="col-3 col-sm-12 mb-4">
+                        <div className="col-4 col-sm-12 mb-4">
                             <label htmlFor={'qisqa'}>Qisqa eslatma</label>
                             <input type="text" className={'form-control'} value={input.qisqaeslatma}
                                 placeholder={placeholders.qisqaeslatmaPlaceholder} onChange={qisqaeslatma}
@@ -587,18 +584,18 @@ function Xarid({
                             }
                         </div>
 
-                        <div className="col-3 col-sm-12">
-                            <label htmlFor={'sana'}>Xarid sanasi</label>
-                            <input type="date" value={input.xaridsanasi} onChange={xaridsanasi}
-                                className={'form-control'} />
-                            {
-                                input.xaridsanasi ? "" :
-                                    <p style={{ color: 'red', marginTop: '4px', lineHeight: '13px' }}>{placeholders.xaridSanasiSelectStyle}</p>
+                        {/*<div className="col-3 col-sm-12">*/}
+                            {/*<label htmlFor={'sana'}>Xarid sanasi</label>*/}
+                            {/*<input type="date" value={input.xaridsanasi} onChange={xaridsanasi}*/}
+                            {/*    className={'form-control'} />*/}
+                            {/*{*/}
+                            {/*    input.xaridsanasi ? "" :*/}
+                            {/*        <p style={{ color: 'red', marginTop: '4px', lineHeight: '13px' }}>{placeholders.xaridSanasiSelectStyle}</p>*/}
 
-                            }
-                        </div>
+                            {/*}*/}
+                        {/*</div>*/}
 
-                        <div className="col-3 col-sm-12 ">
+                        <div className="col-4 col-sm-12 ">
                             <label htmlFor={'status'}>Xarid statusi</label>
                             <select name="" value={input.xaridstatusi} onChange={xaridstatusi}
                                 className={'form-control'}
@@ -831,9 +828,9 @@ function Xarid({
 
                         </div>
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
-                            <h5>Qarz miqdori!: 0.00</h5>
+                            <h5>Qarz miqdori!: {jamixisob - input.avans} so`m</h5>
                             {
-                                input.diller && input.xaridstatusi && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2 && input.xaridmiqdori && input.donanarxi && input.donasotish ?
+                                input.diller &&  input.eslatma && input.baza && input.qisqaeslatma && input.yetkazibberishnarxi2 && input.xaridmiqdori && input.donanarxi && input.donasotish ?
                                     <Link to={'/headerthird/xaridlarRuyxati'}>
                                         <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
                                     </Link>

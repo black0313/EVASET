@@ -24,20 +24,10 @@ const slice = createSlice({
             let miqdor=0
             action.payload.object.map(item=>{
                     amount+=item.totalSum
-                // console.log(item.purchaseProductList[0].purchasedQuantity)
                 item.purchaseProductList.map(item=>{
                     miqdor+=item.purchasedQuantity
                 })
 
-                // if (item.payMethod.id===2){
-                //     uzcard+=item.totalSum
-                // }
-                // else if(item.payMethod.id===1){
-                //     naqd+=item.totalSum
-                // }
-                // else if(item.payMethod.id===3){
-                //     humo+=item.totalSum
-                // }
                 },
             )
             state.xaridlarjami=amount
@@ -57,7 +47,6 @@ const slice = createSlice({
         },
         deletefrom:(state,action)=>{
             state.current=!state.current
-            console.log('Deleted_XArid');
         }
     }
 });
