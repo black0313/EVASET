@@ -16,14 +16,17 @@ import BolimReducer, {getBolim, saveBolim} from "../../reducer/BolimReducer";
 import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer";
 import photoreducer, {savephoto} from "../../../../../../reducer/photoreducer";
 import {toast} from "react-toastify";
+import Ichkibolimred, {getichki} from "../../reducer/Ichkibolimred";
 
 function Taxrirlash({
                         photoreducer,
                         savephoto,
+                        Ichkibolimred,
                         editMaxsulotRuyxati,
                         BolimReducer,
                         getBolim,
                         saveMaxsulotRuyxati,
+                        getichki,
                         deleteMaxsulotRuyxati,
                         getMaxsulotRuyxati,
                         match,
@@ -86,11 +89,17 @@ function Taxrirlash({
             miqdorMaxsulot: '',
             muddatmaxsulot:'',
             bolimnomi:'',
+            ichkibolim: ''
         }
     )
 
     function mahsulotnomi(e) {
         input.mahsulotnomi = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function ichkibolim(e) {
+        input.ichkibolim = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -389,6 +398,7 @@ function Taxrirlash({
         getMaxsulotRuyxati(users.businessId)
         getBolim(users.businessId)
         getbranch(users.businessId)
+        getichki(users.businessId)
         editMax()
     }, [MaxsulotlarRoyxariReducer.current])
 
@@ -469,9 +479,11 @@ function Taxrirlash({
                             <h2 onClick={toggle2} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
                         </div>
                         <label className={'mt-3'} htmlFor={'bol2'}>Bo`lim ichida bolim</label>
-                        <select name="" id={'bol2'} value={input.bolim2} onChange={bolim2} className={'form-control'}>
-                            {/*<option value="1">Tanlash</option>*/}
-                            <option value="2">Mavjud emas</option>
+                        <select name="" id={'bol2'} value={input.ichkibolim} onChange={ichkibolim} className={'form-control'}>
+                            {
+                                Ichkibolimred.ichkibolim.map(item=> <option value={item.id}>{item.name}</option>)
+                            }
+
                         </select>
                     </div>
 
@@ -627,8 +639,9 @@ function Taxrirlash({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer, users, kgreducer, FirmaReducer, BolimReducer, branchreducer, photoreducer), {
+export default connect((MaxsulotlarRoyxariReducer,Ichkibolimred, users, kgreducer, FirmaReducer, BolimReducer, branchreducer, photoreducer), {
     getMaxsulotRuyxati,
+    getichki,
     saveMaxsulotRuyxati,
     deleteMaxsulotRuyxati,
     editMaxsulotRuyxati,

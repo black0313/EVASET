@@ -410,8 +410,8 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                         {/*       id={'bkodi'}/>*/}
                         {/*bo`limni izlashga oson bol`ishi uchun bironta belgi kiritng*/}
 
-                        <label htmlFor={'bolim2'} className={'mt-2'}>Bolim 2</label>
-                        <input type="text" className={'form-control'} value={input.bolim2} onChange={bolim2}/>
+                        {/*<label htmlFor={'bolim2'} className={'mt-2'}>Bolim 2</label>*/}
+                        {/*<input type="text" className={'form-control'} value={input.bolim2} onChange={bolim2}/>*/}
 
                         <label className={'mt-3'} htmlFor={'area'}>Qisqacha malumot</label>
                         <textarea value={input.qisqacamalumot} onChange={qisqacamalumot} className={'form-control'} name="" id={'area'} cols="30" rows="4"> </textarea>

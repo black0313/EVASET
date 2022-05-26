@@ -1,4 +1,17 @@
-
+.sss{
+    width: 60px;
+    height: 40px;
+    border-radius: 10px;
+    color: #fff;
+    transition: 0.4s all;
+    background: #3a3ad2;
+}.sss:hover{
+    width: 60px;
+    height: 40px;
+    border-radius: 10px;
+    color: #000000;
+    background: #0cd3c6;
+}
 .my-custom-scrollbar {
     position: relative;
     height: 400px;

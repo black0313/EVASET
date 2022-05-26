@@ -14,10 +14,10 @@ import BolimReducer, {deleteBolim, bolimlar, editBolim, getBolim, saveBolim,} fr
 import users from "../../../../../reducer/users";
 import Route from "react-router-dom/es/Route";
 import Switch from "react-router-dom/es/Switch";
-import ichkibolimred,{getichki} from "../reducer/Ichkibolimred";
+import ichkibolimred, {deleteichkibolim, getichki} from "../reducer/Ichkibolimred";
 import Ichkibolimred from "../reducer/Ichkibolimred";
 
-function Bolimlar({editBolim,Ichkibolimred ,getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users,getichki,ichkibolimred}) {
+function Bolimlar({editBolim,Ichkibolimred,deleteichkibolim ,getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users,getichki,ichkibolimred}) {
 
     const [input, setInput] = useState(
         {
@@ -104,9 +104,24 @@ function Bolimlar({editBolim,Ichkibolimred ,getBolim, bolimlar, saveBolim, delet
         setvisible(prev=>prev+5)
     }
 
+    //
+    // const [deletemodal, setdeletemodal] = useState(false)
+    // const [deleteID, setdeletID] = useState('')
+    //
+    //
+    // function deleteModaltoggle(item) {
+    //     setdeletemodal(!deletemodal)
+    //     setdeletID(item)
+    // }
+
 
     const [deletemodal, setdeletemodal] = useState(false)
     const [deleteID, setdeletID] = useState('')
+
+    function deleteFunc(){
+        deleteichkibolim(deleteID)
+        deleteModaltoggle('')
+    }
 
 
     function deleteModaltoggle(item) {
@@ -127,7 +142,7 @@ function Bolimlar({editBolim,Ichkibolimred ,getBolim, bolimlar, saveBolim, delet
             <div className="rowStyleBL">
                 <div className="qoshish">
                     <h5>Bo'limlar</h5>
-                    <button onClick={toggle} className='btn btn-outline-dark' style={{marginLeft:'550px'}}>+ Bo`lim Qo'shish</button>
+                    {/*<button onClick={toggle} className='btn btn-outline-dark' style={{marginLeft:'550px'}}>+ Bo`lim Qo'shish</button>*/}
                     <button onClick={toggle10} className='btn btn-outline-primary'>+ Ichki bo`lim Qo'shish</button>
                 </div>
 
@@ -180,20 +195,39 @@ function Bolimlar({editBolim,Ichkibolimred ,getBolim, bolimlar, saveBolim, delet
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
                             <tr>
+                                <th>T/R</th>
                                 <th>Name</th>
+                                <th>Asosiy Bo`lim</th>
                                 <th>Izoh</th>
+                                <th>Amallar</th>
                             </tr>
                         </thead>
                         {
-                            // console.log(BolimReducer.bolimlar)
+                            console.log(Ichkibolimred.ichkibolim)
                         }
                         <tbody>
                         {
-                            // Ichkibolimred.ichkibolim.map(item=>
-                            //     <tr>
-                            //         <td> </td>
-                            //     </tr>
-                            // )
+                            Ichkibolimred.ichkibolim.map((item,index)=>
+                                <tr key={item.id}>
+                                    <td>{index+1}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.parentCategoryName}</td>
+                                    <td>{item.description}</td>
+                                    <td>
+                                        <button className={'sss'} onClick={()=>deleteModaltoggle(item.id)}>O`chirish</button>
+
+                                        <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                            <ModalBody>
+                                                <h5>Ishonchingiz komilmi ?</h5>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            </ModalFooter>
+                                        </Modal>
+                                    </td>
+                                </tr>
+                            )
                         }
                         </tbody>
                     </table>
@@ -212,6 +246,7 @@ export default connect((BolimReducer, users,Ichkibolimred), {
     getBolim,
     saveBolim,
     deleteBolim,
+    deleteichkibolim,
     editBolim,
     getichki
 })(Bolimlar)

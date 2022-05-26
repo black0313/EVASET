@@ -13,14 +13,17 @@ const slice = createSlice({
             state.ichkibolim = action.payload.object
         },
         savefrom: (state,action) => {
-            toast.success("Ichki bo'lim qo'shildi")
+            state.ichkibolim.unshift(action.payload)
             state.current+=1
+            toast.success("Ichki bo'lim qo'shildi")
         },
         editfrom: (state,action) => {
             state.current+=1
+            toast.success("Ichki bo'lim tahrirlandi")
         },
         deletefrom:(state,action)=>{
             state.current+=1
+            toast.success("Ichki bo'lim o`chirildi")
         }
 
     }
@@ -39,5 +42,11 @@ export const saveichkibolim=(data)=>apiCall({
     onSuccess: slice.actions.savefrom.type
 });
 
+export const deleteichkibolim=(data)=>apiCall({
+    url: '/category/'+data,
+    method:'delete',
+    data,
+    onSuccess: slice.actions.deletefrom.type
+})
 
 export default slice.reducer
