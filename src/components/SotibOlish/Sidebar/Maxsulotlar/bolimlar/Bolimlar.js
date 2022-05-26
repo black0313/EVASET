@@ -12,11 +12,9 @@ import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {connect} from "react-redux";
 import BolimReducer, {deleteBolim, bolimlar, editBolim, getBolim, saveBolim,} from "../reducer/BolimReducer";
 import users from "../../../../../reducer/users";
-import Route from "react-router-dom/es/Route";
-import Switch from "react-router-dom/es/Switch";
-import IchkiBolim from "../IchkiBolim/IchkiBolim";
+import ichkibolimred,{saveichkibolim,getichki} from "../reducer/Ichkibolimred";
 
-function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users}) {
+function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users,saveichkibolim,getichki}) {
 
     const [input, setInput] = useState(
         {
@@ -112,7 +110,6 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                     {
                         name: input.bolimnomi,
                         businessId: users.businessId,
-                        childCategory: input.bolim2,
                         id: input.bId
                     }
                 )
@@ -122,7 +119,6 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                     name: input.bolimnomi,
                     description: input.qisqacamalumot,
                     businessId: users.businessId,
-                    childCategory: input.bolim2
                 })
             }
 
@@ -155,6 +151,16 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
     function saqla2(){
 
         toggle10()
+
+        saveichkibolim(
+            {
+                name:input.ichkibolimnomi,
+                description:input.ichkibolimdescription,
+                businessId:users.businessId,
+                parentCategory:input.asosiybolim,
+            }
+        )
+
     }
 
     function toggle() {
@@ -323,7 +329,6 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                                 {/*{*/}
                                 {/*    bolimkodi2?<th>{item.bolimkod}</th>:''*/}
                                 {/*}*/}
-                                <th>Bolim ichida</th>
                                 {
                                     qisqa?<th>{item.qisqa}</th>:''
                                 }
@@ -356,9 +361,7 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                                 {
                                     // console.log(item.childCategory.name)
                                 }
-                                {
-                                    <td></td>
-                                }
+
                                 {
                                     qisqa?<td>{item.description}</td>:''
                                 }
@@ -427,9 +430,11 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
 
 // export default connect((BolimReducer), {getBolim, saveBolim, editBolim,deleteBolim})(Bolimlar)
 
-export default connect((BolimReducer, users), {
+export default connect((BolimReducer, users,ichkibolimred), {
     getBolim,
     saveBolim,
     deleteBolim,
-    editBolim
+    editBolim,
+    getichki,
+    saveichkibolim
 })(Bolimlar)

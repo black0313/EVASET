@@ -14,8 +14,9 @@ import BolimReducer, {deleteBolim, bolimlar, editBolim, getBolim, saveBolim,} fr
 import users from "../../../../../reducer/users";
 import Route from "react-router-dom/es/Route";
 import Switch from "react-router-dom/es/Switch";
+import ichkibolimred,{getichki} from "../reducer/Ichkibolimred";
 
-function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users}) {
+function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users,getichki,ichkibolimred}) {
 
     const [input, setInput] = useState(
         {
@@ -114,6 +115,10 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
         console.log(item)
     }
 
+    useEffect(()=>{
+        getichki(users.businessId)
+    },[ichkibolimred.current])
+
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderBL">
@@ -184,10 +189,13 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                             // console.log(BolimReducer.bolimlar)
                         }
                         <tbody>
-                            <tr>
-                                <td>A</td>
-                                <td>VA</td>
-                            </tr>
+                        {
+                            ichkibolimred.ichkibolim.map(item=>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            )
+                        }
                         </tbody>
                     </table>
                     <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
@@ -201,9 +209,10 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
 
 // export default connect((BolimReducer), {getBolim, saveBolim, editBolim,deleteBolim})(Bolimlar)
 
-export default connect((BolimReducer, users), {
+export default connect((BolimReducer, users,ichkibolimred), {
     getBolim,
     saveBolim,
     deleteBolim,
-    editBolim
+    editBolim,
+    getichki
 })(Bolimlar)

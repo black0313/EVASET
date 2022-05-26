@@ -35,6 +35,7 @@ import photoreducer from "./reducer/photoreducer";
 import TradeHistory from "./components/SotibOlish/Sidebar/Savdo/reducer/TradeHistory";
 import MijozlarGuruhReducer, {getMijozLarGuruh} from "./components/SotibOlish/Sidebar/Hamkorlar/reducer/MijozlarGuruhReducer";
 import QarzuzishReducer from "./components/SotibOlish/Sidebar/Hamkorlar/reducer/QarzuzishReducer";
+import ichkibolimred from "./components/SotibOlish/Sidebar/Maxsulotlar/reducer/Ichkibolimred";
 export default configureStore({
     reducer:{
         users,functionreducer,XodimReducer,LavozimReducer,XodimSavdoReducer,TaminotReducer,tolovreducer,photoreducer,
@@ -42,7 +43,7 @@ export default configureStore({
         OtkazmaReducer,XarajatlarReducer,XarajatTurlariReducer,FoydaZararReducer,XaridlarXisobotiReducer,
         MijozHisobotiReducer,XarajatXisobotReducer,SavdodagiTulovReducer,MaxsulotxisobotReducer,KopsotilgantovarlarReducer,
         OtkazmalarxisobotiReducer,QoldiqlarxisobotiReducer,SoliqlarxisobotiReducer,MaxsulotlarRoyxariReducer,branchreducer,kgreducer,SavdoQoshishReducer,
-        PayReducer,TradeHistory,MijozlarGuruhReducer,QarzuzishReducer
+        PayReducer,TradeHistory,MijozlarGuruhReducer,QarzuzishReducer,ichkibolimred
 
     },
         middleware:[api]
