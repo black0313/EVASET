@@ -10,9 +10,10 @@ import Delete from '../../../../../img/Delete.png'
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import Chart from "react-apexcharts";
 import {connect} from 'react-redux'
-import {getKopsotilgan,saveKopsotilgan,editKopsotilgan,deleteKopsotilgan} from '../reducer/KopsotilgantovarlarReducer'
+import KopsotilgantovarlarReducer, {getKopsotilgan,saveKopsotilgan,editKopsotilgan,deleteKopsotilgan} from '../reducer/KopsotilgantovarlarReducer'
 import {useEffect,useState} from 'react'
-function KopSotilgan({mijoz,dukon,summa,eslatma,}) {
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
 
     useEffect(()=>{
         getKopsotilgan()
@@ -128,7 +129,7 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,}) {
     return (
         <div className="col-md-12 mt-4 ">
             <div className="textHeader">
-                <h2>Ko`p sotilgan tovarlar</h2>
+                <h2>Ko`p sotilgan mahsulotlar</h2>
             </div>
             <div className="rowStyleKS">
                 <div className="qoshish">
@@ -137,6 +138,17 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,}) {
                 <div className="row">
                     <div className="col-6 col-sm-12">
                         <h6>Baza:</h6>
+                        {
+                            branchreducer.branch.filter(val=>{
+                                if (inputvalue.baza===''){
+                                    return val
+                                }else if (val.name.toUpperCase().includes(inputvalue.baza.toUpperCase())){
+                                    return val
+                                }
+                            }).map(item=><ul key={item.id}>
+                                <li>{item.name}</li>
+                            </ul>)
+                        }
                         <input value={inputvalue.baza} onChange={baza} placeholder='Baza nomi...' type="text" className={'inputSelectStyl'}/>
                     </div>
                     <div className="col-6 col-sm-12">
@@ -162,13 +174,7 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,}) {
                         <select name="" className='inputSelectStyl'  id="" value={inputvalue.firma} onChange={firma}>
                             <option value="">Bugun</option>
                             <option value="">Kecha</option>
-                            <option value="">Oxirgi 7 kun</option>
-                            <option value="">Oxirgi 30 kun</option>
-                            <option value="">Bu oy</option>
-                            <option value="">O`tgan oy</option>
-                            <option value="">Bu yilgi moliya</option>
-                            <option value="">Bu yil</option>
-                            <option value="">O`tgan yil moliyasi</option>
+
                             <option value="" onClick={toggle}>Siz istagan sana</option>
                         </select>
                     </div>
@@ -180,10 +186,10 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,}) {
                         <div className="col-3 col-sm-12">
                             <label htmlFor={'olcov1'}>O`lchov birligi</label>
                             <select name="" id={'olcov1'} className='inputSelectStyl' value={inputvalue.ulcovbirligi} onChange={ulcovbirligi}>
-                                <option value="#">Barchasi</option>
-                                <option value="#">Pc(s)</option>
-                                <option value="#">Kg</option>
-                                <option value="#">Dona</option>
+                                <option value="">Barchasi</option>
+                                <option value="">Pc(s)</option>
+                                <option value="">Kg</option>
+                                <option value="">Dona</option>
                             </select>
                         </div>
                         <div className="col-3 col-sm-12">
@@ -238,4 +244,4 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,}) {
         </div>
     )
 }
-export default connect(({KopsotilgantovarlarReducer:{kopsotilgan}})=>({kopsotilgan}),{getKopsotilgan,saveKopsotilgan,editKopsotilgan,deleteKopsotilgan}) (KopSotilgan)
+export default connect((KopsotilgantovarlarReducer,branchreducer),{getKopsotilgan,getbranch,saveKopsotilgan,editKopsotilgan,deleteKopsotilgan}) (KopSotilgan)

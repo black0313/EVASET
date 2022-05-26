@@ -283,7 +283,6 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
 
                         }
                     </div>
-
                     {
                         users.viewsupplier ? <div>
                             <div className="izlashTM">

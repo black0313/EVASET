@@ -1,8 +1,12 @@
 import './Valyuta.css'
 import {useState} from "react";
+import {connect} from "react-redux";
+import BolimReducer, {deleteBolim, editBolim, getBolim, saveBolim} from "../../../Maxsulotlar/reducer/BolimReducer";
+import users from "../../../../../../reducer/users";
+import ValyutaReducer from "../reducers/ValyutaReducer";
 
 
-function Soliq(){
+function Valyuta(){
 
     const [input,setInput] = useState({
         valyutanomi:'',
@@ -27,11 +31,11 @@ function Soliq(){
         setInput(a)
     }
 
+
     return(
         <div className="soliqCont">
             <div className="row">
 
-                <hr/>
                 <h2 className={'text-center'}>VALYUTA / USSD & UZS</h2>
 
                 <div className={'row mb-3 mt-3'}>
@@ -57,4 +61,8 @@ function Soliq(){
         </div>
     )
 }
-export default Soliq
+
+export default connect((BolimReducer, ValyutaReducer,users),{
+    getBolim,
+
+})(Valyuta)

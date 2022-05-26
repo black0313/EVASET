@@ -15,8 +15,9 @@ import users from "../../../../../reducer/users";
 import Route from "react-router-dom/es/Route";
 import Switch from "react-router-dom/es/Switch";
 import ichkibolimred,{getichki} from "../reducer/Ichkibolimred";
+import Ichkibolimred from "../reducer/Ichkibolimred";
 
-function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users,getichki,ichkibolimred}) {
+function Bolimlar({editBolim,Ichkibolimred ,getBolim, bolimlar, saveBolim, deleteBolim, BolimReducer, users,getichki,ichkibolimred}) {
 
     const [input, setInput] = useState(
         {
@@ -111,13 +112,11 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
     function deleteModaltoggle(item) {
         setdeletemodal(!deletemodal)
         setdeletID(item)
-        // deleteTaminot(item.id)
-        console.log(item)
     }
 
     useEffect(()=>{
         getichki(users.businessId)
-    },[ichkibolimred.current])
+    },[Ichkibolimred.current])
 
     return (
         <div className="col-md-12 mt-4 mb-4">
@@ -190,11 +189,11 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                         }
                         <tbody>
                         {
-                            ichkibolimred.ichkibolim.map(item=>
-                                <tr>
-                                    <td></td>
-                                </tr>
-                            )
+                            // Ichkibolimred.ichkibolim.map(item=>
+                            //     <tr>
+                            //         <td> </td>
+                            //     </tr>
+                            // )
                         }
                         </tbody>
                     </table>
@@ -209,7 +208,7 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
 
 // export default connect((BolimReducer), {getBolim, saveBolim, editBolim,deleteBolim})(Bolimlar)
 
-export default connect((BolimReducer, users,ichkibolimred), {
+export default connect((BolimReducer, users,Ichkibolimred), {
     getBolim,
     saveBolim,
     deleteBolim,

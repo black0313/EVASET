@@ -11,7 +11,7 @@ import BoshSahifaDukonSozlama from "./BoshSahifaDukonSozlama/BoshSahifaDukonSozl
 import TizimKorinishiDukonSozlama from "./TizimKorinishiDukonSozlama/TizimKorinishiDukonSozlama";
 import QisqaQoshimcha from "./QisqaQoshimcha/QisqaQoshimcha";
 import EmailSozlama from "./eMailSozlama/EmailSozlama";
-import Valyuta from "./Valyuta/Valyuta";
+import VALYUTA from './Valyuta/Valyuta';
 
 export default function Dukon() {
     return (
@@ -27,7 +27,8 @@ export default function Dukon() {
                     <Link to={'/headerthird/dukonSozlama/8'}><button className={'btn btn-outline-primary form-control mt-2'}>Bosh sahifa</button></Link>
                     <Link to={'/headerthird/dukonSozlama/9'}><button className={'btn btn-outline-primary form-control mt-2'}>Tizim ko`rinishi</button></Link>
                     <Link to={'/headerthird/dukonSozlama/10'}><button className={'btn btn-outline-primary form-control mt-2'}>Qisqa qo`shimcha</button></Link>
-                    
+                    <Link to={'/headerthird/dukonSozlama/2/valyuta'}><button className={'btn btn-outline-primary form-control mt-2'}>VALYUTA</button></Link>
+
                      {/* <Link to={'/headerthird/dukonSozlama/11'}><button className={'btn btn-outline-primary form-control mt-2'}>Email sozlamalari</button></Link> 
                      <Link to={'/headerthird/dukonSozlama/12'}><button className={'btn btn-outline-primary form-control mt-2'}>Sms sozlamalari</button></Link> 
                      <Link to={'/headerthird/dukonSozlama/13'}><button className={'btn btn-outline-primary form-control mt-2'}>Ko`ponlar sozlamalari</button></Link> 
@@ -40,7 +41,7 @@ export default function Dukon() {
                     <Switch>
                         <Route path={'/headerthird/dukonSozlama/1'} component={Dukon1}/>
                         <Route path={'/headerthird/dukonSozlama/2'} component={Soliq}/>
-                        <Route path={'/headerthird/dukonSozlama/2/valyuta'} component={Valyuta}/>
+                        <Route path={'/headerthird/dukonSozlama/2/valyuta'} component={VALYUTA}/>
 
                         <Route path={'/headerthird/dukonSozlama/3'} component={Mahsulot2}/>
                         <Route path={'/headerthird/dukonSozlama/4'} component={Aloqa}/>

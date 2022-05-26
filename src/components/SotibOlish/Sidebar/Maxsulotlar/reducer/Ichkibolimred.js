@@ -6,7 +6,7 @@ const slice = createSlice({
     name: 'ichkibolim',
     initialState: {
         ichkibolim: [],
-        current:false
+        current:0
     },
     reducers: {
         getFrom: (state, action) => {
@@ -14,13 +14,13 @@ const slice = createSlice({
         },
         savefrom: (state,action) => {
             toast.success("Ichki bo'lim qo'shildi")
-            state.current=!state.current
+            state.current+=1
         },
         editfrom: (state,action) => {
-            state.current=!state.current
+            state.current+=1
         },
         deletefrom:(state,action)=>{
-            state.current=!state.current
+            state.current+=1
         }
 
     }

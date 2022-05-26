@@ -37,6 +37,7 @@ import XarajatlarReducer, { getXarajatlar, saveXarajatlar } from "../../Xarajatl
 import XarajatTurlariReducer, { getXarajatlarTurlari } from "../../Xarajatlar/reducer/XarajatTurlariReducer";
 import imagecom from "../../../../Imagecom";
 import Imagecom from "../../../../Imagecom";
+import ValyutaReducer, {getValyuta} from "../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
 // import {optional} from "yarn/lib/cli";
 function SavdoOynasi({
     saveXarajatlar,
@@ -50,7 +51,8 @@ function SavdoOynasi({
     getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
     users, savdooynasi, getkg, kgreducer, branchreducer, getbranch, getMaxsulotRuyxatibranch,
     getSavdolarHistory, TradeHistory,
-    XarajatlarReducer,
+    XarajatlarReducer,getValyuta,ValyutaReducer,
+
 }) {
 
     const [input, setInput] = useState(
@@ -90,7 +92,8 @@ function SavdoOynasi({
             tulovmiqdori: '',
             tulovmiqdori2: '',
             tulovturi2: '',
-            inputCounter: 0
+            inputCounter: 0,
+            valyutaa:''
         }
     )
 
@@ -125,6 +128,11 @@ function SavdoOynasi({
 
     function jamisummaxarajat(e) {
         input.jamisummaxarajat = e.target.value
+        let a = { ...input }
+        setInput(a)
+    }
+    function Valyutaa(e) {
+        input.valyutaa = e.target.value
         let a = { ...input }
         setInput(a)
     }
@@ -825,6 +833,7 @@ function SavdoOynasi({
         getXarajatlarTurlari(users.businessId)
         getkg(users.businessId)
         getPay(users.businessId)
+        getValyuta(users.businessId)
         // history.push('/headerthird/turliTavar/final')
     }, [MaxsulotlarRoyxariReducer.current])
 
@@ -1013,10 +1022,13 @@ function SavdoOynasi({
                             }
                         </select>
                     </div>
-                    <div className="navbarRigth" style={{width:'630px'}}>
-                        <select className={'sss'}  id={'valuta'}>
-                            <option value={'valuta'}>UZS</option>
-                            <option value={'valuta'}>USSD</option>
+                    <div className="navbarRigth" style={{width:'650px'}}>
+                        <select className={'sss'}  id={'valuta'}  >
+                            {
+                                ValyutaReducer.valyuta.map(item=>
+                                    // input.valyutaa == '' ? input.valyutaa = item.id :
+                                    <option value={item.id}>{item.name}</option>)
+                            }
                         </select>
                         <button className={'btn btn-outline-primary'} style={{lineHeight:'12px'}} onClick={toggle4}>Oxirgi savdolar</button>
                         {/*<button className={'btn btn-outline-primary'}>Hold*/}
@@ -1089,10 +1101,7 @@ function SavdoOynasi({
                         </Modal>
                         <ReactTooltip />
                         <img className='headerImgStyle' src={img3} onClick={openCalcul} alt="" />
-                        {/*<img src={img1} onClick={toggle} alt=""/>*/}
-                        {/*</button>*/}
-                        {/*<img src={img2} onClick={toggle} alt="" />*/}
-                        {/*<img src={img4} onClick={toggle2} alt=""/>*/}
+
                         <img className='headerImgStyle' src={img5} onClick={toggle3} alt="" />
                         <Link to={'/headerthird'}><img className='headerImgStyle' src={img6} onClick={savdooynasi} alt="" /></Link>
 
@@ -1360,19 +1369,6 @@ function SavdoOynasi({
                             </select>
                         </div>
                         <div className={' maxsulotImgBlock'}>
-
-                            {/*{*/}
-                            {/*    MaxsulotlarRoyxariReducer.maxsulotlar.map(item => <div className={'maxsuImgBox'}*/}
-                            {/*                                                           key={item.id}>*/}
-                            {/*        <div onClick={() => pushesh(item)}>*/}
-                            {/*            <img className={'hoverimg'}*/}
-                            {/*                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU"*/}
-                            {/*                alt="yuq"/>*/}
-                            {/*            <h6>{item.name}</h6>*/}
-                            {/*            <p>{item.salePrice}</p>*/}
-                            {/*        </div>*/}
-                            {/*    </div>)*/}
-                            {/*}*/}
 
                             {
                                 MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
@@ -1650,9 +1646,10 @@ function SavdoOynasi({
     )
 }
 
-export default connect((kgreducer, PayReducer, XarajatlarReducer, XarajatTurlariReducer, PayReducer, TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer, branchreducer), {
+export default connect((kgreducer, PayReducer,ValyutaReducer, XarajatlarReducer, XarajatTurlariReducer, PayReducer, TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer, branchreducer), {
     getSavdo,
     saveXarajatlar,
+    getValyuta,
     getSavdolarHistory,
     getXarajatlar,
     getFirma,

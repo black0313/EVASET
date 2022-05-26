@@ -3,3 +3,19 @@
     padding: 32px;
     border-radius: 8px;
 }
+.btnB2{
+    width: 80px;
+    height: 25px;
+    color: #ffff;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #5f4848, darkred);
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 405px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
