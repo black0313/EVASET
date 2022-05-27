@@ -905,6 +905,19 @@ function SavdoOynasi({
 
     const [activeModalkredit, setactiveModalkredit] = useState(false)
 
+    const [valyuta,setvalyuta] = useState('')
+    const [valyutas,setvalyutas] = useState('')
+
+    function changevalyuta(e){
+        ValyutaReducer.valyuta.map(item=>{
+            if (item.id==e.target.value){
+                setvalyuta(item.currentCourse)
+                setvalyutas(item.name)
+            }
+        })
+    }
+
+
     function kredit() {
         setactiveModalkredit(!activeModalkredit)
     }
@@ -1023,7 +1036,7 @@ function SavdoOynasi({
                         </select>
                     </div>
                     <div className="navbarRigth " style={{width:'630px'}}>
-                        <select className={'sss2'}  id={'valuta'}  >
+                        <select className={'sss2'} onChange={changevalyuta}  id={'valuta'}  >
                             {
                                 ValyutaReducer.valyuta.map(item=>
                                     // input.valyutaa == '' ? input.valyutaa = item.id :
@@ -1391,10 +1404,9 @@ function SavdoOynasi({
                                                 )
 
                                             }
-
                                             <h6>{item.name}</h6>
                                             {/*{console.log(item.photo)}*/}
-                                            <p>{item.salePrice} so'm</p>
+                                            <p>{Math.round((item.salePrice/valyuta+Number.EPSILON)*100)/100} {valyutas}</p>
                                         </div>
                                     </div>)
                             }
