@@ -20,12 +20,12 @@ export default function Dukon() {
                     <Link to={'/headerthird/dukonSozlama/1'}><button className={'btn btn-outline-primary form-control mt-2'}>Do`kon</button></Link>
                     <Link to={'/headerthird/dukonSozlama/2'}><button className={'btn btn-outline-primary form-control mt-2'}>Soliq & Valyuta</button></Link>
                     <Link to={'/headerthird/dukonSozlama/3'}><button className={'btn btn-outline-primary form-control mt-2'}>Mahsulot</button></Link>
-                    <Link to={'/headerthird/dukonSozlama/4'}><button className={'btn btn-outline-primary form-control mt-2'}>Aloqa</button></Link>
+                    {/*<Link to={'/headerthird/dukonSozlama/4'}><button className={'btn btn-outline-primary form-control mt-2'}>Aloqa</button></Link>*/}
                     <Link to={'/headerthird/dukonSozlama/5'}><button className={'btn btn-outline-primary form-control mt-2'}>Savdo</button></Link>
                     <Link to={'/headerthird/dukonSozlama/6'}><button className={'btn btn-outline-primary form-control mt-2'}>Savdo oynasi</button></Link>
-                    <Link to={'/headerthird/dukonSozlama/7'}><button className={'btn btn-outline-primary form-control mt-2'}>Haridlar</button></Link>
-                    <Link to={'/headerthird/dukonSozlama/8'}><button className={'btn btn-outline-primary form-control mt-2'}>Bosh sahifa</button></Link>
-                    <Link to={'/headerthird/dukonSozlama/9'}><button className={'btn btn-outline-primary form-control mt-2'}>Tizim ko`rinishi</button></Link>
+                    {/*<Link to={'/headerthird/dukonSozlama/7'}><button className={'btn btn-outline-primary form-control mt-2'}>Haridlar</button></Link>*/}
+                    {/*<Link to={'/headerthird/dukonSozlama/8'}><button className={'btn btn-outline-primary form-control mt-2'}>Bosh sahifa</button></Link>*/}
+                    {/*<Link to={'/headerthird/dukonSozlama/9'}><button className={'btn btn-outline-primary form-control mt-2'}>Tizim ko`rinishi</button></Link>*/}
                     <Link to={'/headerthird/dukonSozlama/10'}><button className={'btn btn-outline-primary form-control mt-2'}>Qisqa qo`shimcha</button></Link>
                     <Link to={'/headerthird/dukonSozlama/2/valyuta'}><button className={'btn btn-outline-primary form-control mt-2'}>VALYUTA</button></Link>
 

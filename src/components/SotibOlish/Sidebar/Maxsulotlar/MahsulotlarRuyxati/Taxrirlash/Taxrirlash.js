@@ -17,12 +17,14 @@ import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer"
 import photoreducer, {savephoto} from "../../../../../../reducer/photoreducer";
 import {toast} from "react-toastify";
 import Ichkibolimred, {getichki} from "../../reducer/Ichkibolimred";
+import SoliqReducer from "../../../Settings/DukonSozlamalari/reducers/SoliqReducer";
 
 function Taxrirlash({
                         photoreducer,
                         savephoto,
                         Ichkibolimred,
                         editMaxsulotRuyxati,
+                        SoliqReducer,
                         BolimReducer,
                         getBolim,
                         saveMaxsulotRuyxati,
@@ -217,18 +219,22 @@ function Taxrirlash({
 
     function foydafoiz(e) {
         input.foydafoiz = e.target.value
+        input.sotishnarxi = parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi)
         let a = {...input}
         setInput(a)
+
     }
 
     function sotishnarxi(e) {
         input.sotishnarxi = e.target.value
+        input.foydafoiz = Math.round((parseFloat(input.sotishnarxi/input.sotibolishnarxi)-1)*100)
         let a = {...input}
         setInput(a)
     }
 
     function sotibolishnarxi(e) {
         input.sotibolishnarxi = e.target.value
+        input.sotishnarxi = parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi)
         let a = {...input}
         setInput(a)
     }
@@ -481,7 +487,7 @@ function Taxrirlash({
                         <label className={'mt-3'} htmlFor={'bol2'}>Bo`lim ichida bolim</label>
                         <select name="" id={'bol2'} value={input.ichkibolim} onChange={ichkibolim} className={'form-control'}>
                             {
-                                Ichkibolimred.ichkibolim.map(item=> <option value={item.id}>{item.name}</option>)
+                                Ichkibolimred.ichkibolim.filter(val=> input.bolim==val.parentCategory).map(item=> <option value={item.id}>{item.name}</option>)
                             }
 
                         </select>
@@ -577,7 +583,7 @@ function Taxrirlash({
                         <tr>
                             <th>Soliq</th>
                             <th>Foyda foizda(%)</th>
-                            <th>Sotib oli sh narxi</th>
+                            <th>Sotib olish narxi</th>
                             <th>Sotish narxi</th>
                         </tr>
                         </thead>
@@ -610,14 +616,21 @@ function Taxrirlash({
                             <td>
                                 <label htmlFor={''}>Sotib olish narxi</label><br/>
                                 <input type="number" id='sotishNarxi' placeholder={placeholders.sotibOlishNarxiPlaceholder}
-                                       className='taxrirlashInputValudetion form-control' value={input.sotibolishnarxi}
+                                       className='taxrirlashInputValudetion form-control'
+                                       value={input.sotibolishnarxi }
                                        onChange={sotibolishnarxi}/>
+                                {console.log(SoliqReducer.soliq)}
                             </td>
                             <td>
                                 <label htmlFor={''}>Sotish narxi</label><br/>
                                 <input type="number" id='sotibOlishNarxi' className={'form-control'}
                                        placeholder={placeholders.sotishNarxiPlaceholder}
-                                       value={parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi)} onChange={sotishnarxi}/>
+                                       // value={parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi)} onChange={sotishnarxi}/>
+                                       // value={input.sotibolishnarxi!==''?
+                                       //     parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi) || input.sotishnarxi :input.sotishnarxi
+                                       // }
+                                    value={input.sotishnarxi}
+                                       onChange={sotishnarxi}/>
                                 {/*<h4 className={'mt-3'}>{input.foydafoiz*input.sotibolishnarxi+ '  so`m'}</h4>*/}
                             </td>
                         </tr>
@@ -639,7 +652,7 @@ function Taxrirlash({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer,Ichkibolimred, users, kgreducer, FirmaReducer, BolimReducer, branchreducer, photoreducer), {
+export default connect((MaxsulotlarRoyxariReducer,Ichkibolimred,SoliqReducer, users, kgreducer, FirmaReducer, BolimReducer, branchreducer, photoreducer), {
     getMaxsulotRuyxati,
     getichki,
     saveMaxsulotRuyxati,

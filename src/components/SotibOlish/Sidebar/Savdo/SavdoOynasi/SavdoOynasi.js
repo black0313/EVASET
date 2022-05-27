@@ -1022,8 +1022,8 @@ function SavdoOynasi({
                             }
                         </select>
                     </div>
-                    <div className="navbarRigth" style={{width:'650px'}}>
-                        <select className={'sss'}  id={'valuta'}  >
+                    <div className="navbarRigth " style={{width:'630px'}}>
+                        <select className={'sss2'}  id={'valuta'}  >
                             {
                                 ValyutaReducer.valyuta.map(item=>
                                     // input.valyutaa == '' ? input.valyutaa = item.id :

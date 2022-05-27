@@ -191,7 +191,82 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
 
     return(
             <div className="soliqCont">
-                    <h3 className='text-center pb-3'>Soliq sozlamalari</h3>
+
+
+                <div className="row">
+
+                    <br/>
+
+                    <h2 className={'text-center mt-2'}>VALYUTA / USSD & UZS</h2>
+
+                    <button className={'btn btn-outline-warning'} onClick={toggle2}>+ Valyuta qo`shish</button>
+
+                    <Modal isOpen={active2} toggle={toggle2}>
+                        <ModalHeader>
+                            Valyuta Qo`shish
+                        </ModalHeader>
+                        <ModalBody>
+                            <label htmlFor="">Valyuta nomi</label>
+                            <input type="text" className={'form-control'} value={input.valyutanomi} onChange={valyutanomi}/>
+                            <label className={'mt-2'} htmlFor="">Valyuta kursi</label>
+                            <input type="text" className={'form-control'} value={input.valyutakursi} onChange={valyutakursi}/>
+
+                            <label className={'mt-2'} htmlFor="">Vaqt zonasi</label>
+                            <select name="" className={'form-control'} id="">
+                                <option value="">Tashkent</option>
+                            </select>
+                        </ModalBody>
+                        <ModalFooter>
+                            <button className={'btn btn-outline-primary'} onClick={saqlaValyuta}>Saqlash</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle2}>Chiqish</button>
+                        </ModalFooter>
+                    </Modal>
+
+                    <div className={'table-responsive table-wrapper-scroll-y my-custom-scrollbar'}>
+
+                        <table className={'table table-hover table-bordered mt-4'}>
+                            <thead>
+                            <tr>
+                                <th>T/R</th>
+                                <th>Name</th>
+                                <th>Kurs</th>
+                                <th>Amallar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                ValyutaReducer.valyuta.map((item,index)=><tr key={item.id}>
+                                    <td>{index+1}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.currentCourse}</td>
+                                    <td>
+                                        <button className={'btnB'} onClick={()=>editValyutaa(item.id)}>Tahrirlash</button>
+                                        <button className={'btnB'} onClick={()=>deleteModaltoggle(item.id)}>O`chirish</button>
+
+                                        <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                            <ModalBody>
+                                                <h5>Ishonchingiz komilmi ?</h5>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            </ModalFooter>
+                                        </Modal>
+
+
+                                    </td>
+                                </tr>)
+                            }
+                            </tbody>
+
+                        </table>
+
+                        <button onClick={koproqvalyuta} className={'bn3 '}>Ko`proq ko`rish</button>
+
+                    </div>
+                </div>
+
+                <h3 className='text-center pb-3'>Soliq sozlamalari</h3>
                 <div className="row">
 
                     <button className={'btn btn-outline-danger'} onClick={toggle}>+ Soliq qo`shish</button>
@@ -256,87 +331,11 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
 
                         </table>
 
-                        <button onClick={koproq} className={'bn '}>Ko`proq ko`rish
-                            <span className={'bn2'}> </span>
-                        </button>
+                        <button onClick={koproq} className={'bn3 '}>Ko`proq ko`rish</button>
                     </div>
 
                 </div>
-<hr/>
-                <div className="row">
 
-                    <br/>
-
-                    <h2 className={'text-center mt-2'}>VALYUTA / USSD & UZS</h2>
-
-                    <button className={'btn btn-outline-primary mt-2'} onClick={toggle2}>+ Valyuta qo`shish</button>
-
-                    <Modal isOpen={active2} toggle={toggle2}>
-                        <ModalHeader>
-                            Valyuta Qo`shish
-                        </ModalHeader>
-                        <ModalBody>
-                            <label htmlFor="">Valyuta nomi</label>
-                            <input type="text" className={'form-control'} value={input.valyutanomi} onChange={valyutanomi}/>
-                            <label className={'mt-2'} htmlFor="">Valyuta kursi</label>
-                            <input type="text" className={'form-control'} value={input.valyutakursi} onChange={valyutakursi}/>
-
-                            <label className={'mt-2'} htmlFor="">Vaqt zonasi</label>
-                            <select name="" className={'form-control'} id="">
-                                <option value="">Tashkent</option>
-                            </select>
-                        </ModalBody>
-                        <ModalFooter>
-                            <button className={'btn btn-outline-primary'} onClick={saqlaValyuta}>Saqlash</button>
-                            <button className={'btn btn-outline-primary'} onClick={toggle2}>Chiqish</button>
-                        </ModalFooter>
-                    </Modal>
-
-                    <div className={'table-responsive table-wrapper-scroll-y my-custom-scrollbar'}>
-
-                        <table className={'table table-hover table-bordered mt-4'}>
-                            <thead>
-                            <tr>
-                                <th>T/R</th>
-                                <th>Name</th>
-                                <th>Kurs</th>
-                                <th>Amallar</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                ValyutaReducer.valyuta.map((item,index)=><tr key={item.id}>
-                                    <td>{index+1}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.currentCourse}</td>
-                                    <td>
-                                        <button className={'btnB'} onClick={()=>editValyutaa(item.id)}>Tahrirlash</button>
-                                        <button className={'btnB'} onClick={()=>deleteModaltoggle(item.id)}>O`chirish</button>
-
-                                        <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
-                                            <ModalBody>
-                                                <h5>Ishonchingiz komilmi ?</h5>
-                                            </ModalBody>
-                                            <ModalFooter>
-                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
-                                            </ModalFooter>
-                                        </Modal>
-
-
-                                    </td>
-                                </tr>)
-                            }
-                            </tbody>
-
-                        </table>
-
-                        <button onClick={koproqvalyuta} className={'bn '}>Ko`proq ko`rish
-                            <span className={'bn2'}> </span>
-                        </button>
-
-                    </div>
-                </div>
             </div>
     )
 }
