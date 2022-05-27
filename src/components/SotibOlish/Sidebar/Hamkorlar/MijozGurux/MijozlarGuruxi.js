@@ -434,9 +434,9 @@ function Mijozlarguruxi({
                                 // </tr>)
 
 
-                                // MijozlarGuruhReducer.mijozGuruh.map(item=> <option key={item.id}>
-                                //     {item.name}
-                                // </option>)
+                                MijozlarGuruhReducer.mijozGuruh.map(item=> <option key={item.id}>
+                                    {item.name}
+                                </option>)
                             }
                         </select>
                     </ModalBody>
