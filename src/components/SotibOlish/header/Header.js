@@ -38,9 +38,9 @@ function Header({active,sidebarfunc,users}) {
     return(
         <div className={'container-fluid position-relative'}>
             <div className={'headerBox '}>
-                <div className={'w'}>
+                <div className={'w'} onClick={sidebar}>
                     <div onClick={sidebar} className="dashbortButton ">
-                        <img  src={imgMenu}  className={'im1'} alt=""/>
+                        <img  src={imgMenu}   className={'im1'} alt=""/>
                     </div>
                 </div>
                 <div className="two ">

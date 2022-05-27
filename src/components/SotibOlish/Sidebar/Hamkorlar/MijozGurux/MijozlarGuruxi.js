@@ -29,7 +29,8 @@ function Mijozlarguruxi({
                             getMijozLarGuruh,
                             MijozlarGuruhReducer,
                             MijozGuruxReducer
-                            ,qarzuzishCustomer
+                            ,qarzuzishCustomer,
+
                         }) {
 
 
@@ -226,7 +227,7 @@ function Mijozlarguruxi({
 
     useEffect(() => {
         getMijozGurux()
-        // getMijozLarGuruh()
+        getMijozLarGuruh(users.businessId)
     }, [MijozGuruxReducer.current])
 
     const [visible,setvisible] = useState(5)
@@ -454,6 +455,7 @@ function Mijozlarguruxi({
 export default connect((MijozGuruxReducer,QarzuzishReducer,MijozlarGuruhReducer, users), {
     getMijozGurux,
     qarzuzishCustomer,
+    getMijozLarGuruh,
     saveMijozGurux,
     editMijozGurux,
     deleteMijozGurux
