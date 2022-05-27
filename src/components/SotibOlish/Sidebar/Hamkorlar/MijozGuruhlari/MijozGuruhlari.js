@@ -79,7 +79,8 @@ function MijozGuruhlariii({getMijozLarGuruh,users,MijozlarGuruhReducer,deleteMij
         }else {
             saveMijozLarGurux({
                 name: input.name,
-                percent: input.foiz
+                percent: parseInt(input.foiz),
+                businessId: users.businessId
             })
             let a = {...input}
             setInput(a)
