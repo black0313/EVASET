@@ -15,6 +15,7 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
         valyutanomi:'',
         valyutakursi:'',
         vaqtzonasi:'',
+        valyutadescription:'',
         soliqnomi:'',
         soliqfoiz:'',
         soliqraqam:'',
@@ -26,6 +27,11 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
 
     function soliqfoiz(e){
         input.soliqfoiz = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function valyutadescripttion(e){
+        input.valyutadescription = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -78,6 +84,7 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
             editValyuta({
                 name: input.valyutanomi,
                 currentCourse: input.valyutakursi,
+                description:input.valyutadescription,
                 businessId: users.businessId,
                 active: true
             })
@@ -85,6 +92,7 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
             saveValyuta({
                 name: input.valyutanomi,
                 currentCourse: input.valyutakursi,
+                description:input.valyutadescription,
                 businessId: users.businessId,
                 active: true
             })
@@ -200,7 +208,9 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
                     <h2 className={'text-center mt-2'}>VALYUTA / USSD & UZS</h2>
 
                     <button className={'btn btn-outline-warning'} onClick={toggle2}>+ Valyuta qo`shish</button>
-
+                    {
+                        console.log(ValyutaReducer.valyuta)
+                    }
                     <Modal isOpen={active2} toggle={toggle2}>
                         <ModalHeader>
                             Valyuta Qo`shish
@@ -210,7 +220,8 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
                             <input type="text" className={'form-control'} value={input.valyutanomi} onChange={valyutanomi}/>
                             <label className={'mt-2'} htmlFor="">Valyuta kursi</label>
                             <input type="text" className={'form-control'} value={input.valyutakursi} onChange={valyutakursi}/>
-
+                            <label htmlFor="">Qisqa eslatma</label>
+                            <input type="text" className={'form-control'} value={input.valyutadescription} onChange={valyutadescripttion}/>
                             <label className={'mt-2'} htmlFor="">Vaqt zonasi</label>
                             <select name="" className={'form-control'} id="">
                                 <option value="">Tashkent</option>
@@ -230,6 +241,7 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
                                 <th>T/R</th>
                                 <th>Name</th>
                                 <th>Kurs</th>
+                                <th>Qisqacha</th>
                                 <th>Amallar</th>
                             </tr>
                             </thead>
@@ -239,6 +251,7 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
                                     <td>{index+1}</td>
                                     <td>{item.name}</td>
                                     <td>{item.currentCourse}</td>
+                                    <td>{item.description}</td>
                                     <td>
                                         <button className={'btnB'} onClick={()=>editValyutaa(item.id)}>Tahrirlash</button>
                                         <button className={'btnB'} onClick={()=>deleteModaltoggle(item.id)}>O`chirish</button>

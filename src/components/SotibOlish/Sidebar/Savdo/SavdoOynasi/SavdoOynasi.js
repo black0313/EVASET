@@ -1036,13 +1036,16 @@ function SavdoOynasi({
                         </select>
                     </div>
                     <div className="navbarRigth " style={{width:'630px'}}>
-                        <select className={'sss2'} onChange={changevalyuta}  id={'valuta'}  >
+                        <select className={'sss2'} value={input.valyutaa} onChange={changevalyuta}  id={'valuta'}  >
                             {
                                 ValyutaReducer.valyuta.map(item=>
-                                    // input.valyutaa == '' ? input.valyutaa = item.id :
+                                    // input.valyutaa == '' ? input.valyutaa = item.id:
                                     <option value={item.id}>{item.name}</option>)
                             }
                         </select>
+                        {
+                            console.log(input.valyutaa)
+                        }
                         <button className={'btn btn-outline-primary'} style={{lineHeight:'12px'}} onClick={toggle4}>Oxirgi savdolar</button>
                         {/*<button className={'btn btn-outline-primary'}>Hold*/}
                         <button className={'btn '} onClick={toggle} style={{lineHeight:'12px'}} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">Ushlab turish</button>
@@ -1140,13 +1143,11 @@ function SavdoOynasi({
                                         <Route path={'/headerthird/turliTavar/chegirma'} component={Chegirma} />
                                         <Route path={'/headerthird/turliTavar/eslatma'} component={Eslatma} />
                                     </Switch>
-
                                     {
                                         TradeHistory.savdolar.map(item => <tr key={item?.id}>
                                             <td>{item?.name}</td>
                                         </tr>)
                                     }
-
                                 </div>
                             </ModalBody>
                             <ModalFooter>
@@ -1332,6 +1333,10 @@ function SavdoOynasi({
                                                     item.active ? <p className={'text-danger text-center fw-2'}>Only {item.quantity} available !</p> : ''
                                                 }
                                             </td>
+
+                                            {/*  F I X  -  M E*/}
+
+                                            {/*<p>{Math.round(((item.salePrice/valyuta+Number.EPSILON)*100)/100*item.counter) } </p>*/}
                                             <td>{item.counter * item.salePrice} so'm</td>
                                             {/*<td>{input.inputCounter * item.salePrice} so'm</td>*/}
                                             <td>
@@ -1406,7 +1411,8 @@ function SavdoOynasi({
                                             }
                                             <h6>{item.name}</h6>
                                             {/*{console.log(item.photo)}*/}
-                                            <p>{Math.round((item.salePrice/valyuta+Number.EPSILON)*100)/100} {valyutas}</p>
+                                            <p>{item.salePrice} so`m</p>
+                                            {/*<p>{Math.round((item.salePrice/valyuta+Number.EPSILON)*100)/100} {valyutas}</p>*/}
                                         </div>
                                     </div>)
                             }

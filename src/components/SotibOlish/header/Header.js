@@ -40,7 +40,7 @@ function Header({active,sidebarfunc,users}) {
             <div className={'headerBox '}>
                 <div className={'w'} onClick={sidebar}>
                     <div onClick={sidebar} className="dashbortButton ">
-                        <img  src={imgMenu}   className={'im1'} alt=""/>
+                        <img  src={imgMenu} onClick={sidebar} className={'im1'} alt=""/>
                     </div>
                 </div>
                 <div className="two ">

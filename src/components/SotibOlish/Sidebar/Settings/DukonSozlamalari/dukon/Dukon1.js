@@ -92,36 +92,18 @@ function Dukon1() {
                     <label htmlFor={'nomi3'}>Logoni yangilash</label>
                     <input type="file" id={'nomi3'} value={input.legionyangilash} onChange={legionyangilash} className={'form-control'}/>
                 </div>
-                <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'sana'}>Xisobot yil boshlanadigan oy</label>
-                    <select name="" id="" className={'form-control'} value={input.xisobotyil} onChange={xisobotyil}>
-                        <option value="#">Yanvar</option>
-                        <option value="#">Fevral</option>
-                    </select>
-                </div>
+
                 <div className='col-4 col-sm-12 mb-3'>
                     <label htmlFor={'nomi'}>Savdolar usulari</label>
                     <select name="" id="" className={'form-control'} value={input.savdolarusulari} onChange={savdolarusulari}>
                         <option value="#">Fifo</option>
-                        <option value="#">ASIA/Taipei</option>
-                        <option value="#">ASIA/Tashkent</option>
+
                     </select>
                 </div>
             </div>
 
             <div className={'row mb-3'}>
-                <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'nomi5'}>O`tkazmalar muddati</label>
-                    <input type="text" id={'nomi5'} className={'form-control'} value={input.otkazmamuddati} onChange={otkazmamuddati}/>
-                </div>
-                <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'sana'}>Kun formati</label>
-                    <select name="" id="" className={'form-control'} value={input.kunformat} onChange={kunformat}>
-                        <option value="#">mm/dd/yyyy</option>
-                        <option value="#">mm/yyyy/dd</option>
-                        <option value="#">yyyy/dd/mm</option>
-                    </select>
-                </div>
+
                 <div className='col-4 col-sm-12 mb-3'>
                     <label htmlFor={'nomi'}>Vaqt formati</label>
                     <select name="" id="" className={'form-control'} value={input.vaqtformat} onChange={vaqtformat}>
