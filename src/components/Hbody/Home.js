@@ -105,7 +105,7 @@ function Home({saveusers, getusers,users, linkpost,active, changeerror}) {
                                         </svg>
                                     </label>
                                     <div className="login">
-                                        <h4>Meni eslab qol</h4>
+                                        <label style={{cursor:'pointer',color:'gray'}} htmlFor={'check'}>Meni eslab qol</label>
                                         <a href="">Parolni unutdingizmi?</a>
                                     </div>
                                 
