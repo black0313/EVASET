@@ -1,5 +1,6 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './dukon1.css'
+import {toast} from "react-toastify";
 
 function Dukon1() {
 
@@ -25,6 +26,25 @@ function Dukon1() {
         let a = {...input}
         setInput(a)
     }
+
+    const [fifovalue,setfifovalue] = useState(true)
+    const [lifovalue,setlifovalue] = useState(false)
+
+    function fifo(e){
+        if (e.target.value ==='fifo'){
+            setfifovalue(true)
+            setlifovalue(false)
+            console.log('fifo')
+            }
+        else{
+            setfifovalue(false)
+            setlifovalue(true)
+            console.log('lifo')
+        }
+
+    }
+
+
     function ochilgansana(e){
         input.ochilgansana = e.target.value
         let a = {...input}
@@ -41,30 +61,9 @@ function Dukon1() {
         let a = {...input}
         setInput(a)
     }
-    function xisobotyil(e){
-        input.xisobotyil = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function savdolarusulari(e){
-        input.savdolarusulari = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function otkazmamuddati(e){
-        input.otkazmamuddati = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function kunformat(e){
-        input.kunformat = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function vaqtformat(e){
-        input.vaqtformat = e.target.value
-        let a = {...input}
-        setInput(a)
+
+    function saqla(){
+
     }
 
     return (
@@ -94,25 +93,18 @@ function Dukon1() {
                 </div>
 
                 <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'nomi'}>Savdolar usulari</label>
-                    <select name="" id="" className={'form-control'} value={input.savdolarusulari} onChange={savdolarusulari}>
-                        <option value="#">Fifo</option>
+                    <p>Savdo usuli tanlang</p>
 
-                    </select>
+                    <label htmlFor={'fifo'} className={'fifo'}>Fifo</label>
+                    <input type="radio" style={{marginLeft:'15px'}} id={'fifo'} checked={fifovalue} name={'male'}  value={'fifo'} onChange={fifo}/>
+
+                    <label htmlFor={'lifo'} className={'lifo'}>Lifo</label>
+                    <input type="radio" style={{marginLeft:'15px'}} id={'lifo'} checked={lifovalue} name={'male'}  value={'lifo'} onChange={fifo}/>
+
                 </div>
+
+                <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
             </div>
-
-            <div className={'row mb-3'}>
-
-                <div className='col-4 col-sm-12 mb-3'>
-                    <label htmlFor={'nomi'}>Vaqt formati</label>
-                    <select name="" id="" className={'form-control'} value={input.vaqtformat} onChange={vaqtformat}>
-                        <option value="#">12 mb-3 soatlik</option>
-                        <option value="#">24 soatlik</option>
-                    </select>
-                </div>
-            </div>
-
             
         </div>
 

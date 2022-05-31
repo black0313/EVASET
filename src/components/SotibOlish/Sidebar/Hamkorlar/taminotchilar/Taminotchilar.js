@@ -263,8 +263,6 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
     function deleteModaltoggle(item) {
         setdeletemodal(!deletemodal)
         setdeletID(item)
-        // deleteTaminot(item.id)
-        console.log(item)
     }
 
 

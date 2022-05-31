@@ -18,7 +18,7 @@ function App({functionreducer, active, users}) {
 
     return (
         <div className={`app-css ${functionreducer.func.class5}`}>
-            <div className={`${functionreducer.func.class1}`}>
+            <div className={ `${functionreducer.func.class1}`}>
                 {
                     functionreducer.func.actives ? <Sidebar/>
                         : ''

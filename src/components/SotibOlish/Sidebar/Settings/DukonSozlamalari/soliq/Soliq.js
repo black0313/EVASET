@@ -124,6 +124,7 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
     useEffect(()=>{
         getSoliq(users.businessId)
         getValyuta(users.businessId)
+        console.log(ValyutaReducer.valyuta)
     },[SoliqReducer.current,ValyutaReducer.current])
 
     function editValyutaa(id) {
@@ -357,6 +358,7 @@ export default connect((SoliqReducer,ValyutaReducer ,users), {
     saveSoliq,
     getValyuta,
     editSoliq,
+
     saveValyuta,
     deleteValyuta,
     editValyuta,
