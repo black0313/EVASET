@@ -126,7 +126,7 @@ function Soliq({SoliqReducer,getValyutacurrency,ValyutaReducer,editSoliq,editVal
 
     useEffect(()=>{
         // getSoliq(users.businessId)
-        getValyuta()
+        getValyuta(users.businessId)
         console.log(ValyutaReducer.valyuta2)
         console.log(ValyutaReducer.valyuta)
         getValyutacurrency(users.businessId)
@@ -260,9 +260,9 @@ function Soliq({SoliqReducer,getValyutacurrency,ValyutaReducer,editSoliq,editVal
                             {
                                 ValyutaReducer.valyuta.map((item,index)=><tr key={item.id}>
                                     <td>{index+1}</td>
-                                    <td>{item.currency.name}</td>
+                                    <td>{item.name}</td>
                                     <td>{item.currentCourse}</td>
-                                    <td>{item.currency.description}</td>
+                                    <td>{item.description}</td>
                                     <td>
                                         <button className={'btnB'} onClick={()=>editValyutaa(item.id)}>Tahrirlash</button>
                                         <button className={'btnB'} onClick={()=>deleteModaltoggle(item.id)}>O`chirish</button>
