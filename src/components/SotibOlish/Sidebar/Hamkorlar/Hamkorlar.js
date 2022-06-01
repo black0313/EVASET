@@ -53,6 +53,7 @@ function Hamkorlar({active}) {
     const ToggleSwitch = () =>{
         activeback? setactiveback(false) : setactiveback(true)
     }
+
     const ToggleSwitch2 = () =>{
         activeback2? setactiveback2(false) : setactiveback2(true)
     }

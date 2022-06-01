@@ -7,14 +7,18 @@ const slice = createSlice({
     name: 'valyuta',
     initialState: {
         valyuta: [],
+        valyuta2:[],
         current :0
     },
     reducers: {
         getFrom: (state, action) => {
             state.valyuta = action.payload.object
         },
+        getFromcurrency: (state, action) => {
+            state.valyuta = action.payload.object
+        },
         savefrom: (state,action) => {
-            state.valyuta.unshift(action.payload)
+            state.valyuta2.unshift(action.payload)
             state.current+=1
             toast.success('Valyuta qo`shildi')
         },
@@ -30,9 +34,15 @@ const slice = createSlice({
 });
 
 export const getValyuta=(data)=>apiCall({
-    url: '/currency/get-by-businessId/'+data,
+    url: '/currency/getAll/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
+});
+
+export const getValyutacurrency=(data)=>apiCall({
+    url: '/curreny/course/get-by-business/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFromcurrency.type
 });
 
 export const saveValyuta=(data)=>apiCall({

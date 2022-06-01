@@ -71,24 +71,6 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
     }
 
 
-    function changedukon(e) {
-        input.dukon = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-
-    function changeidraqam(e) {
-        input.idraqam = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-
-    function TELEGRAM(e) {
-        input.telegram = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-
     function changelogin(e) {
         input.login = e.target.value
         let a = { ...input }
@@ -278,7 +260,6 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                         <h5>Barcha Taminotchilar</h5>
                         {
                             users.addsupplier ? <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button> : ''
-
                         }
                     </div>
                     {

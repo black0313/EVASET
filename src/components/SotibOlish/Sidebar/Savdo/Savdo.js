@@ -44,6 +44,9 @@ function Savdo({active,savdooynasi}) {
         active()
     }
 
+    const [activeback,setactiveback] = useState(false)
+
+
     return(
         <div className={'row mahsulot'} id={'savdo'}>
             <div className="imgDiv" onClick={toggle}>
@@ -64,18 +67,10 @@ function Savdo({active,savdooynasi}) {
             </div>
 
                 <ul>
-                    {/*<li><Link to={'/mahsulotRuyxati'} className={'mahqosh'}>Barcha savdolar</Link></li>*/}
                     <li><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
                     <li onClick={sidebaractive}><Link to={'/headerthird/mahsulotQoshish'} className={'li-text'}>Savdo qo`shish</Link></li>
-                    {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>SAVDO</Link></li>*/}
                     <li   onClick={savdod}><Link to={'/turliTavar'} className={'li-text'} >Savdo oynasi</Link></li>
-                    {/*<li><Link to={'/mahsulotImporti'} className={'mahqosh'}>lang_v1_add_draft</Link></li>*/}
-                    {/*<li><Link to={'/mavjudImport'} className={'mahqosh'}>Eslatmalar ro`yxati</Link></li>*/}
-                    {/*<li><Link to={'/sotuvNarxGuruhlanishi'} className={'mahqosh'}>lang_v1.add_quotation</Link></li>*/}
-                    {/*<li><Link to={'/ulcovBirliklar'} className={'mahqosh'}>Iqtiboslar ruyxati</Link></li>*/}
-                    {/*<li><Link to={'/bolimlar'} className={'mahqosh'}>Qaytarilgan savdolar</Link></li>*/}
-                    {/*<li><Link to={'/fermalar'} className={'mahqosh'}>Yuklar</Link></li>*/}
-                    {/*<li><Link to={'/kafolat'} className={'mahqosh'}>Chegirmalar</Link></li>*/}
+
                 </ul>
 
         </div>

@@ -9,7 +9,7 @@ export const slice = createSlice({
         token: {
             token_name: ''
         },
-        businessId:'',
+        businessId:"",
         linkhome:true,
         linkheader:false,
         linksavdooynasi:false,

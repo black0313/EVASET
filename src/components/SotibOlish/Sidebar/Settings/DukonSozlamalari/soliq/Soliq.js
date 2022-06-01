@@ -5,11 +5,16 @@ import SoliqReducer, {deleteSoliq, editSoliq, getSoliq, saveSoliq} from "../redu
 import users from "../../../../../../reducer/users";
 import {connect} from "react-redux";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import ValyutaReducer, {deleteValyuta, editValyuta, getValyuta, saveValyuta} from "../reducers/ValyutaReducer";
-import {deleteTaminot} from "../../../Hamkorlar/reducer/TaminotReducer";
+import ValyutaReducer, {
+    deleteValyuta,
+    editValyuta,
+    getValyuta,
+    getValyutacurrency,
+    saveValyuta
+} from "../reducers/ValyutaReducer";
 
 
-function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,getValyuta,saveValyuta,getSoliq,saveSoliq,users,deleteSoliq}){
+function Soliq({SoliqReducer,getValyutacurrency,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,getValyuta,saveValyuta,getSoliq,saveSoliq,users,deleteSoliq}){
 
     const [input,setInput] = useState({
         valyutanomi:'',
@@ -68,8 +73,6 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
             })
         }
 
-
-
         input.soliqnomi = ''
         input.soliqfoiz = ''
 
@@ -122,9 +125,11 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
     }
 
     useEffect(()=>{
-        getSoliq(users.businessId)
-        getValyuta(users.businessId)
+        // getSoliq(users.businessId)
+        getValyuta()
+        console.log(ValyutaReducer.valyuta2)
         console.log(ValyutaReducer.valyuta)
+        getValyutacurrency(users.businessId)
     },[SoliqReducer.current,ValyutaReducer.current])
 
     function editValyutaa(id) {
@@ -197,6 +202,10 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
         setvisiblevalyuta(prev => prev + 5)
     }
 
+    useEffect(()=>{
+       getValyutacurrency(users.businessId)
+    },[])
+
 
     return(
             <div className="soliqCont">
@@ -209,6 +218,7 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
                     <h2 className={'text-center mt-2'}>VALYUTA / USSD & UZS</h2>
 
                     <button className={'btn btn-outline-warning'} onClick={toggle2}>+ Valyuta qo`shish</button>
+
                     {
                         console.log(ValyutaReducer.valyuta)
                     }
@@ -250,9 +260,9 @@ function Soliq({SoliqReducer,ValyutaReducer,editSoliq,editValyuta,deleteValyuta,
                             {
                                 ValyutaReducer.valyuta.map((item,index)=><tr key={item.id}>
                                     <td>{index+1}</td>
-                                    <td>{item.name}</td>
+                                    <td>{item.currency.name}</td>
                                     <td>{item.currentCourse}</td>
-                                    <td>{item.description}</td>
+                                    <td>{item.currency.description}</td>
                                     <td>
                                         <button className={'btnB'} onClick={()=>editValyutaa(item.id)}>Tahrirlash</button>
                                         <button className={'btnB'} onClick={()=>deleteModaltoggle(item.id)}>O`chirish</button>
@@ -359,6 +369,7 @@ export default connect((SoliqReducer,ValyutaReducer ,users), {
     getValyuta,
     editSoliq,
 
+    getValyutacurrency,
     saveValyuta,
     deleteValyuta,
     editValyuta,
