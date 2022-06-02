@@ -41,7 +41,7 @@ export const getXodim = (data) => apiCall({
 });
 
 export const saveXodim = (data) => apiCall({
-    url: '/user',
+    url: '/user'+data,
     method: 'post',
     data,
     onSuccess: slice.actions.savefrom.type,

@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom'
 import users from "../../../../../../reducer/users";
 import branchreducer,{getbranch} from "../../../../../../reducer/branchreducer";
 import {toast} from "react-toastify";
+import {savephoto} from "../../../../../../reducer/photoreducer";
 function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,users,match,editXodim,getbranch,branchreducer}) {
 
     useEffect(()=>{
@@ -35,11 +36,24 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             barchacheck: '',
             checkId:'',
             checkIdinput: null,
+            xodimrasm: '',
         }
     );
 
     function onchangeuserName(event){
         input.username = event.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
+    function mahsulotrasmi(e) {
+        const data = new FormData();
+        data.append('file', e.target.files[0]);
+        savephoto(data)
+    }
+
+    function xodimrasm(event){
+        input.xodimrasm = event.target.value
         let a = {...input}
         setInput(a)
     }
@@ -117,7 +131,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 branchId:1,
                 businessId: 1,
                 enabled: true,
-                photoId:1,
+                photoId: input.xodimrasm,
                 id:match.params.id
             })
 
@@ -149,7 +163,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     branchId: 1,
                     businessId: 1,
                     enabled: true,
-                    photoId: 1
+                    photoId: input.xodimrasm
                 })
             }
 
