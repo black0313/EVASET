@@ -36,7 +36,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             barchacheck: '',
             checkId:'',
             checkIdinput: null,
-            xodimrasm: '',
+            photoid:''
         }
     );
 
@@ -46,17 +46,9 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         setInput(a)
     }
 
-    function mahsulotrasmi(e) {
-        const data = new FormData();
-        data.append('file', e.target.files[0]);
-        savephoto(data)
-    }
 
-    function xodimrasm(event){
-        input.xodimrasm = event.target.value
-        let a = {...input}
-        setInput(a)
-    }
+
+
 
     function barchacheck(event){
         input.barchacheck = event.target.checked
@@ -113,6 +105,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 input.lastName=item.lastName
                 input.parol=''
                 input.roleName=item.role.id
+                input.photoid=item.photoId
                 let a ={...input}
                 setInput(a)
             }
@@ -129,9 +122,9 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 password: input.parolTakror,
                 roleId: input.roleName,
                 branchId:1,
-                businessId: 1,
+                businessId: users.businessId,
                 enabled: true,
-                photoId: input.xodimrasm,
+                photoId: input.photoid,
                 id:match.params.id
             })
 
@@ -161,9 +154,9 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     password: parseInt(input.parolTakror),
                     roleId: input.roleName,
                     branchId: 1,
-                    businessId: 1,
+                    businessId: users.businessId,
                     enabled: true,
-                    photoId: input.xodimrasm
+                    photoId: null
                 })
             }
 
