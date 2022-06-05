@@ -27,7 +27,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             firstNameplace: 'Ismi',
             lastName: '',
             lastNameplace: 'Familiyasi',
-            roleName:1,
+            roleName:'',
             email: '',
             parol: '',
             parolplace: 'Parolni kiriting',
@@ -36,7 +36,8 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
             barchacheck: '',
             checkId:'',
             checkIdinput: null,
-            photoid:''
+            photoid:'',
+            branchid:''
         }
     );
 
@@ -94,6 +95,13 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         setInput(a)
     }
 
+    function selectbranch(e){
+        console.log(e)
+        input.branchid = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+
     function editx(){
         if(match.params.id !== undefined){
             getXodim(users.businessId)
@@ -131,7 +139,6 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
         }
         else {
             if (input.username === '' || input.firstName === '' || input.lastName==="" || input.parol === '' ){
-                alert("Login va Parolni ham to'liq kiriting")
                     let f = document.getElementById('login1')
                     let f2 = document.getElementById('ismi')
                     let f3 = document.getElementById('login2')
@@ -143,7 +150,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                  input.lastNameplace= "Ma'lumot kiriting !"
                 let a ={...input}
                 setInput(a)
-                toast.warning("Login va Parolni ham to'liq kiriting")
+                toast.warn("Login va Parolni ham to'liq kiriting")
 
             }
             else{
@@ -152,8 +159,8 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     lastName: input.lastName,
                     username: input.username,
                     password: parseInt(input.parolTakror),
-                    roleId: input.roleName,
-                    branchId: 1,
+                    roleId: input.roleName === '' ? LavozimReducer.lavozimlar[0].id : input.roleName,
+                    branchId: input.branchid === '' ? branchreducer.branch.id : input.branchid,
                     businessId: users.businessId,
                     enabled: true,
                     photoId: null
@@ -200,7 +207,13 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 <h5 className={'text-center mt-4'}>Lavozim vakolatlari</h5>
                 <div className="row mt-4 mb-5">
                     <div className="col-6 d-flex justify-content-center" >
-                        <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>Login parol berish</button>
+                        {
+                            input.parol === '' ?
+                                <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>Login parol berish</button>
+                                : <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>Login parol berish</button>
+
+
+                        }
                     </div>
 
                     <div className="col-6 d-flex justify-content-center">
@@ -225,37 +238,49 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                             <label htmlFor={'lavozimi'} className={'mt-3'}>Lavozimi</label>
                             <select name="" id={'lavozimi'} onChange={onchangeroleName} value={input.roleName}  className={'form-control'}>
                                 {
-                                    LavozimReducer.lavozimlar.map((item,index)=> <option value={item.id}>{item.name}</option>)
+                                    LavozimReducer.lavozimlar.map((item,index)=>
+                                        <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
                             <h5 className={'mt-4 text-center'}>Biriktirilgan baza</h5>
-                            <table className={'table mt-2 border'}>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <input checked={input.barchacheck} onChange={barchacheck} type="checkbox" />
-                                        </th>
-                                        <th>Bazalar</th>
-                                        <th>Adress</th>
-                                    </tr>
-                                </thead>
+                            {/*<table className={'table mt-2 border'}>*/}
+                            {/*    <thead>*/}
+                            {/*        <tr>*/}
+                            {/*            <th>*/}
+                            {/*                <input checked={input.barchacheck} onChange={barchacheck} type="checkbox" />*/}
+                            {/*            </th>*/}
+                            {/*            <th>Bazalar</th>*/}
+                            {/*            <th>Adress</th>*/}
+                            {/*        </tr>*/}
+                            {/*    </thead>*/}
+                            {/*    {*/}
+                            {/*        console.log(branchreducer.branch)*/}
+                            {/*    }*/}
+                            {/*    <tbody>*/}
+                            {/*    {*/}
+                            {/*        branchreducer.branch.map(item=><tr key={item.id}>*/}
+                            {/*            <td><input type="checkbox" checked={input.checkId} onChange={checkId}/></td>*/}
+                            {/*            <td>{item.name}</td>*/}
+                            {/*            <td>{item.address.city}</td>*/}
+                            {/*        </tr>)*/}
+                            {/*    }*/}
+                            {/*    </tbody>*/}
+                            {/*</table>*/}
+                            <select value={input.branchid} className={'form-control'} onChange={selectbranch}>
                                 {
-                                    console.log(branchreducer.branch)
+                                    branchreducer.branch.map(item=>
+                                        <option value={item.id}>{item.name}</option>)
                                 }
-                                <tbody>
-                                {
-                                    branchreducer.branch.map(item=><tr key={item.id}>
-                                        <td><input type="checkbox" checked={input.checkId} onChange={checkId}/></td>
-                                        <td>{item.name}</td>
-                                        <td>{item.address.city}</td>
-                                    </tr>)
-                                }
-                                </tbody>
-                            </table>
+                            </select>
 
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-primary btnSaqlash'} onClick={toggle}>Saqlash</button>
+                            {
+                                input.parol === input.parolTakror  ? <button className={'btn btn-primary btnSaqlash'} onClick={toggle}>Saqlash</button>
+                                    :  <button className={'btn btn-danger btnSaqlash'}>Parol bir xilligini tekshiring</button>
+
+
+                            }
                             <button className={'btn btn-primary btnLogin'} onClick={toggle}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
