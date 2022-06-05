@@ -34,8 +34,8 @@ const slice = createSlice({
     }
 });
 
-export const getMijozGurux=()=>apiCall({
-    url: 'customer/get-by-businessId/1',
+export const getMijozGurux=(data)=>apiCall({
+    url: '/customer/get-by-businessId/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

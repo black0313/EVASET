@@ -17,22 +17,37 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
     const [branchd,setbranchd]=useState('')
 
     function nameofbranch(e){
-        console.log(e.target.value)
         setbranchname(e.target.value)
+    }
+
+    const [input,setInput] = useState({
+        branchname: '',
+        addresId: '',
+        percent:'',
+        fifo: false,
+        address2: 'f9b67be5-220d-47ae-b1b3-9674e4115d68'
+    })
+
+
+    function branchname2(e){
+        input.branchname = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function branchaddresId(e){
+        input.addresId = e.target.value
+        let a = {...input}
+        setInput(a)
+    }
+    function branchpercent(e){
+        input.percent = e.target.value
+        let a = {...input}
+        setInput(a)
     }
 
     const [list, setList] = useState([
         {
             name: 'Naqd'
-        },
-        {
-            name: 'Plastik'
-        },
-        {
-            name: 'Cheque'
-        },
-        {
-            name: 'Bank Transfer'
         },
         {
             name: 'Uzcard'
@@ -59,34 +74,47 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
     function saqla(){
         if (branchd===''){
             savebranch({
-                name:branchname,
-                addressId:1,
-                businessId:users.businessId
+                name:input.branchname,
+                addressId: input.address2,
+                businessId:users.businessId,
+                percent: input.percent,
+                fifo: false
             })
         }
         else{
             editbranchs({
-                name:branchname,
+                name:input.branchname,
                 addressId:1,
                 businessId:users.businessId,
-                id:branchd
+                id:branchd,
             })
         }
 
-        setbranchname('')
-        setbranchd('')
+        input.branchname = ''
+        input.percent = ''
+        let a = {...input}
+        setInput(a)
         toggle()
     }
 
-    function deleteb(id){
-        deletebranchs(id)
-    }
 
     useEffect(()=>{
         getbranch(users.businessId)
     },[branchreducer.current])
 
+    const [deletemodal, setdeletemodal] = useState(false)
+    const [deleteID, setdeletID] = useState('')
 
+    function deleteFunc(){
+        deletebranchs(deleteID)
+        deleteModaltoggle('')
+    }
+
+
+    function deleteModaltoggle(item) {
+        setdeletemodal(!deletemodal)
+        setdeletID(item)
+    }
 
 
     return (
@@ -101,6 +129,7 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
                         <h5>Sizning bazalaringiz</h5>
                         <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>
                     </div>
+
                     <div className="izlashBaza">
                         <input type="text" placeholder='Izlash...'/>
                     </div>
@@ -115,6 +144,7 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
                                 <th>Amallar</th>
                             </tr>
                             </thead>
+
                             <tbody>
 
                             {
@@ -128,7 +158,17 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
                                             <button onClick={()=>editbranch(item.id)} className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash
                                             </button>
                                             <Link to={'/headerthird/bazaSozlama'}><button className='korish'><img src={Settings} alt=""/>Sozlamalar</button></Link>
-                                            <button className='ochirish' onClick={()=>deleteb(item.id)}><img src={Delete} alt=""/>Bazani o'chirish</button>
+                                            <button className='ochirish' onClick={()=>deleteModaltoggle(item.id)}><img src={Delete} alt=""/>Bazani o'chirish</button>
+
+                                            <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                                <ModalBody>
+                                                    <h5>Ishonchingiz komilmi ?</h5>
+                                                </ModalBody>
+                                                <ModalFooter>
+                                                    <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
+                                                    <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                                </ModalFooter>
+                                            </Modal>
                                         </td>
                                     </tr>
 
@@ -137,12 +177,7 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
                             </tbody>
                         </table>
                     </div>
-                    <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                    <div className='sahifalar'>
-                        <button>Ortga</button>
-                        <button>1</button>
-                        <button>Oldinga</button>
-                    </div>
+
                 </div>
             </div>
             <div className="col-md-12">
@@ -152,45 +187,22 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
                     </ModalHeader>
                     <ModalBody>
                         <label htmlFor={'nomi'}>Nomi</label>
-                        <input onChange={nameofbranch} value={branchname} type="text" className={'form-control'} id={'nomi'}/>
-                        <div className={'d-flex justify-content-between'}>
-                            <div className="col-md-6">
-                                <label htmlFor={'bazaid'}>Baza Idsi</label>
-                                <input type="text" className={'form-control'} id={'bazaid'}/>
-                                <label htmlFor={'bazaid2'}>Shahar</label>
-                                <input type="text" className={'form-control'} id={'bazaid2'}/>
-                                <label htmlFor={'bazaid3'}>Tel raqam</label>
-                                <input type="text" className={'form-control'} id={'bazaid3'}/>
-                                <label htmlFor={'bazaid4'}>Xisob faktura</label>
-                                <select name="" id={'bazaid4'} className={'form-control'}>
-                                    <option value="#">Tanlash</option>
-                                    <option value="#">Default</option>
-                                </select>
-                                <label htmlFor={'bazaid5'}>Sotish un faktura</label>
-                                <select name="" id={'bazaid5'} className={'form-control'}>
-                                    <option value="#">Tanlash</option>
-                                    <option value="#">Default</option>
-                                </select>
-                            </div>
-                            <div className="col-md-6">
-                                <label htmlFor={'xudud'}>Xudud</label>
-                                <input type="text" className={'form-control'} id={'xudud'}/>
-                                <label htmlFor={'xudud2'}>Index</label>
-                                <input type="text" className={'form-control'} id={'xudud2'}/>
-                                <label htmlFor={'xudud3'}>Davlat</label>
-                                <input type="text" className={'form-control'} placeholder={'Davlat'} id={'xudud3'}/>
-                                <label htmlFor={'xudud4'}>Xisob faktura sxemasi</label>
-                                <select name="" id={'xudud4'} className={'form-control'}>
-                                    <option value="#">Tanlash</option>
-                                    <option value="#">Default</option>
-                                </select>
-                                <label htmlFor={'xudud5'}>Sotish narxlarning guruhlari</label>
-                                <select name="" id={'xudud5'} className={'form-control'}>
-                                    <option value="#">Tanlash</option>
-                                    <option value="#">Default</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input onChange={branchname2} value={input.branchname} type="text" className={'form-control'} id={'nomi'}/>
+
+                        <label className={'mt-2'} htmlFor="">Adress</label>
+                        <select className={'form-control'} value={input.addresId} onChange={branchaddresId} >
+                            {
+                                branchreducer.branch.map(item=>
+                                    input.addresId == '' ? input.addresId = item.id :
+                                    <option value={item.address.id}>{item.address.district}</option>)
+                            }
+                        </select>
+                        {/*<label className={'mt-2'} htmlFor="">Addres</label>*/}
+                        {/*<input type="text" value={input.addresId} onChange={branchaddresId} className={'form-control'}/>*/}
+
+                        <label className={'mt-2'}>Foiz</label>
+                        <input type="text" className={'form-control'} value={input.percent} onChange={branchpercent}/>
+
                         <hr/>
                         <label htmlFor={'sotuv'}>Sotuv oynasida ko`p sotiladigan mahsulotlarni belgilash</label>
                         <input type="text" className={'form-control'} id={'sotuv'} placeholder={'enter character'}/>

@@ -11,6 +11,7 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
+            console.log(action.payload)
             state.mijozGuruh = action.payload
         },
         savefrom: (state,action) => {

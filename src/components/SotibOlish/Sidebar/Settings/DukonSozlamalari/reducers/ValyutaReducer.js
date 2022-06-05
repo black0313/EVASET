@@ -28,7 +28,7 @@ const slice = createSlice({
         },
         deletefrom:(state,action)=>{
             state.current+=1
-            toast.success('Soliq o`chirildi')
+            toast.success('Valyuta o`chirildi')
         }
     }
 });

@@ -14,7 +14,16 @@ export const slice=createSlice({
         },
         save:(state,action)=>{
             state.current=!state.current
-            toast.success('Yangi baza qo`shildi')
+            toast.success('Yangi filial qo`shildi')
+        },
+        editfrom: (state,action) => {
+            state.current=!state.current
+            toast.success('Filial tahrirlandi')
+            // toast.success('O`zgartirildi')
+        },
+        deletefrom:(state,action)=>{
+            state.current=!state.current
+            toast.success('Filial o`chirildi')
         }
     }
 })
@@ -37,14 +46,14 @@ export const editbranchs=(data)=>apiCall({
     url:'/branch/'+data.id,
     method:'put',
     data,
-    onSuccess:slice.actions.save.type
+    onSuccess:slice.actions.editfrom.type
 })
 
 export const deletebranchs=(data)=>apiCall({
     url:'/branch/'+data,
     method:'delete',
     data,
-    onSuccess:slice.actions.save.type
+    onSuccess:slice.actions.deletefrom.type
 })
 
 export default slice.reducer

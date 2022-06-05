@@ -24,7 +24,8 @@ function Soliq({SoliqReducer,getValyutacurrency,ValyutaReducer,editSoliq,editVal
         soliqnomi:'',
         soliqfoiz:'',
         soliqraqam:'',
-        tID:'',
+        vID:'',
+        valId:'',
         activevalyuta: false,
         sId:'',
     })
@@ -82,8 +83,7 @@ function Soliq({SoliqReducer,getValyutacurrency,ValyutaReducer,editSoliq,editVal
     }
 
     function saqlaValyuta(){
-
-        if (input.tID !==''){
+        if (input.vID !==''){
             editValyuta({
                 name: input.valyutanomi,
                 currentCourse: input.valyutakursi,
@@ -127,28 +127,29 @@ function Soliq({SoliqReducer,getValyutacurrency,ValyutaReducer,editSoliq,editVal
     useEffect(()=>{
         // getSoliq(users.businessId)
         getValyuta(users.businessId)
-        console.log(ValyutaReducer.valyuta2)
-        console.log(ValyutaReducer.valyuta)
         getValyutacurrency(users.businessId)
     },[SoliqReducer.current,ValyutaReducer.current])
 
+
     function editValyutaa(id) {
-        toggle()
+        toggle2()
         ValyutaReducer.valyuta.map(item => {
             if (item.id === id) {
                 input.valyutanomi = item.name
                 input.valyutakursi = item.currentCourse
+                input.valyutadescription = item.description
                 users.businessId = item.businessId
                 input.activevalyuta = true
-                input.tID = id
+                input.vID = id
                 let a = { ...input }
                 setInput(a)
             }
         })
+
     }
 
     function editsoliq(id){
-        toggle2()
+        toggle()
         SoliqReducer.soliq.map(item=>{
             if (item.id === id){
                 input.soliqnomi = item.name
@@ -219,9 +220,6 @@ function Soliq({SoliqReducer,getValyutacurrency,ValyutaReducer,editSoliq,editVal
 
                     <button className={'btn btn-outline-warning'} onClick={toggle2}>+ Valyuta qo`shish</button>
 
-                    {
-                        console.log(ValyutaReducer.valyuta)
-                    }
                     <Modal isOpen={active2} toggle={toggle2}>
                         <ModalHeader>
                             Valyuta Qo`shish

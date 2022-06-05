@@ -19,6 +19,7 @@ import users from "../../../../../reducer/users";
 import QarzuzishReducer, {qarzuzishCustomer} from "../reducer/QarzuzishReducer";
 import {deleteMijozhisobot} from "../../Xisobotlar/reducer/MijozHisobotiReducer";
 import MijozlarGuruhReducer, {getMijozLarGuruh} from "../reducer/MijozlarGuruhReducer";
+import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 
 function Mijozlarguruxi({
                             getMijozGurux,
@@ -26,11 +27,12 @@ function Mijozlarguruxi({
                             editMijozGurux,
                             deleteMijozGurux,
                             users,
+                            getbranch,
                             getMijozLarGuruh,
                             MijozlarGuruhReducer,
-                            MijozGuruxReducer
-                            ,qarzuzishCustomer,
-
+                            MijozGuruxReducer,
+                            qarzuzishCustomer,
+                            branchreducer
                         }) {
 
 
@@ -54,7 +56,8 @@ function Mijozlarguruxi({
             phone: '',
             mId: '',
             qarzuzish:'',
-            mijozguruhnomi:''
+            mijozguruhnomi:'',
+            branchId: ''
         }
     )
 
@@ -80,9 +83,14 @@ function Mijozlarguruxi({
         let a = {...input}
         setInput(a)
     }
+    function mijozbranchId(e) {
+        input.branchId = e.target.value
+        let a = {...input}
+        setInput(a)
+        console.log(input.branchId)
+    }
 
     function deleteM(item) {
-        console.log(item)
         deleteMijozGurux(item.id)
         setTimeout(()=>{
             getMijozGurux(1)
@@ -140,7 +148,7 @@ function Mijozlarguruxi({
                 name: input.guruhnomi,
                 phoneNumber: input.phone,
                 telegram: input.foizda,
-                businessId: 1,
+                businessId: users.businessId,
                 id: input.mId
             })
         } else {
@@ -148,9 +156,10 @@ function Mijozlarguruxi({
                 name: input.guruhnomi,
                 phoneNumber: input.phone,
                 telegram: input.foizda,
-                repayment: input.qarzuzish,
-                customerGroup: 2,
-                businessId: 1
+                // repayment: input.qarzuzish,
+                customerGroup: input.mijozguruhnomi,
+                businessId: users.businessId,
+                branchId: input.branchId
             })
         }
         setPlaseholders(
@@ -205,6 +214,8 @@ function Mijozlarguruxi({
     let [jamixisob,setjamixisob] = useState(0)
 
     function toggle() {
+        console.log(branchreducer.branch)
+        console.log(MijozlarGuruhReducer.mijozGuruh)
         setActive(!active)
         setInput(
             {
@@ -226,8 +237,9 @@ function Mijozlarguruxi({
     }
 
     useEffect(() => {
-        getMijozGurux()
+        getMijozGurux(users.businessId)
         getMijozLarGuruh(users.businessId)
+        getbranch(users.businessId)
     }, [MijozGuruxReducer.current])
 
     const [visible,setvisible] = useState(5)
@@ -410,6 +422,7 @@ function Mijozlarguruxi({
 
 
 
+
                 <Modal isOpen={active} toggle={toggle}>
                     <ModalHeader>
                         Yangi Mijoz qo`shish / taxrirlash
@@ -418,8 +431,15 @@ function Mijozlarguruxi({
                         <label htmlFor={'nomi'}>Nomi</label>
                         <input value={input.guruhnomi} onChange={changeguruxnomi} id={'nomi'} type="text"
                               placeholder={plaseholders.guruhNomiPlaseholders}  className={'form-control mb-3 mt-1'}/>
-
-                        <label htmlFor={'tel'}>Telefon raqam</label>
+                        <label className={'mt-1'} htmlFor={'filial'}>Filialni tanlash</label>
+                        <select name="" className={'form-control'} value={input.branchId} onChange={mijozbranchId} >
+                            {
+                                branchreducer.branch.map(item=>
+                                    input.branchId == undefined ? input.branchId = item.id :
+                                    <option  value={item.id}>{item.name}</option>)
+                            }
+                        </select>
+                        <label className={'mt-2'} htmlFor={'tel'}>Telefon raqam</label>
                         <input type="text" id='phoneNumberInput' placeholder={plaseholders.phonePlaseholders} className={'form-control mb-3 mt-1'} value={input.phone} onChange={phone}/>
                         <label htmlFor={'foizda'}>Telegram</label>
                         <input type="text" value={input.foizda}  placeholder={plaseholders.telegramPlaseholders} onChange={changefoizda} className={'form-control mb-3 mt-1'}
@@ -427,17 +447,9 @@ function Mijozlarguruxi({
                         <label htmlFor={'m'}>Mijoz uchun guruh</label>
                         <select id={'m'} value={input.mijozguruhnomi} className={'form-control'} onChange={mijozguruhnomi}>
                             {
-                                // console.log(MijozlarGuruhReducer.mijozGuruh)
-
-
-                                // MijozlarGuruhReducer.mijozGuruh.map(item=><tr key={item.id}>
-                                // <td>{item.name}</td>
-                                // </tr>)
-
-
-                                MijozlarGuruhReducer.mijozGuruh.map(item=> <option key={item.id}>
-                                    {item.name}
-                                </option>)
+                                MijozlarGuruhReducer.mijozGuruh.map(item=>
+                                    input.mijozguruhnomi == undefined ? input.mijozguruhnomi = item.id :
+                                    <option key={item.id} value={item.id}>{item.name} {input.mijozguruhnomi}</option>)
                             }
                         </select>
                     </ModalBody>
@@ -452,11 +464,12 @@ function Mijozlarguruxi({
     )
 }
 
-export default connect((MijozGuruxReducer,QarzuzishReducer,MijozlarGuruhReducer, users), {
+export default connect((MijozGuruxReducer,QarzuzishReducer,branchreducer,MijozlarGuruhReducer, users), {
     getMijozGurux,
     qarzuzishCustomer,
     getMijozLarGuruh,
     saveMijozGurux,
     editMijozGurux,
+    getbranch,
     deleteMijozGurux
 })(Mijozlarguruxi)

@@ -160,7 +160,6 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
                 parentCategory:input.asosiybolim,
             }
         )
-
     }
 
     function toggle() {
@@ -187,7 +186,6 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
 
     function toggle10(){
         setactive10(!active10)
-
     }
 
 
@@ -238,8 +236,6 @@ function Bolimlar({editBolim, getBolim, bolimlar, saveBolim, deleteBolim, BolimR
     function deleteModaltoggle(item) {
         setdeletemodal(!deletemodal)
         setdeletID(item)
-        // deleteTaminot(item.id)
-        console.log(item)
     }
 
     return (
