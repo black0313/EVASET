@@ -9,8 +9,9 @@ import {connect} from "react-redux";
 import branchreducer,{getbranch,savebranch,editbranchs,deletebranchs} from "../../../../../reducer/branchreducer";
 import users from "../../../../../reducer/users";
 import {Link} from 'react-router-dom'
+import addressReducer,{getaddress} from "../../../../../reducer/addressReducer";
 
-function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebranchs}) {
+function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebranchs,addressReducer,getaddress}) {
 
     const [active, setActive] = useState(false)
     const [branchname,setbranchname]=useState('')
@@ -25,7 +26,6 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
         addresId: '',
         percent:'',
         fifo: false,
-        address2: 'f9b67be5-220d-47ae-b1b3-9674e4115d68'
     })
 
 
@@ -75,7 +75,7 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
         if (branchd===''){
             savebranch({
                 name:input.branchname,
-                addressId: input.address2,
+                addressId: input.addresId === "" ? addressReducer.address[0].id : input.addresId,
                 businessId:users.businessId,
                 percent: input.percent,
                 fifo: false
@@ -100,6 +100,7 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
 
     useEffect(()=>{
         getbranch(users.businessId)
+        getaddress()
     },[branchreducer.current])
 
     const [deletemodal, setdeletemodal] = useState(false)
@@ -192,9 +193,8 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
                         <label className={'mt-2'} htmlFor="">Adress</label>
                         <select className={'form-control'} value={input.addresId} onChange={branchaddresId} >
                             {
-                                branchreducer.branch.map(item=>
-                                    input.addresId == '' ? input.addresId = item.id :
-                                    <option value={item.address.id}>{item.address.district}</option>)
+                                addressReducer.address.map(item=>
+                                    <option value={item.id}>{item.city} shahar , {item.district} tuman , {item.street} ko'cha</option>)
                             }
                         </select>
                         {/*<label className={'mt-2'} htmlFor="">Addres</label>*/}
@@ -241,4 +241,4 @@ function Bazalar({branchreducer,getbranch,users,savebranch,editbranchs,deletebra
         </div>
     )
 }
-export default connect((branchreducer,users),{getbranch,savebranch,editbranchs,deletebranchs}) (Bazalar)
+export default connect((branchreducer,users,addressReducer),{getbranch,savebranch,editbranchs,deletebranchs,getaddress}) (Bazalar)

@@ -197,6 +197,7 @@ function BarchaMaxsulotlar({
                                 </div>
                             </div>
                             <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                                {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
                                 <table className='table table-striped table-bordered mt-4'>
                                     <thead>
                                     {
@@ -244,7 +245,7 @@ function BarchaMaxsulotlar({
                                                     mahsulot ? <td>{item.name}</td>: ''
                                                 }
                                                 {
-                                                    baza ? <td>{item.branch.name}</td> : ''
+                                                    baza ? <td>{item.branch?.name}</td> : ''
                                                 }
                                                 {
                                                     buy ? <td>{item.buyPrice}</td> : ''
@@ -256,7 +257,7 @@ function BarchaMaxsulotlar({
                                                     qolgan ? <td>{item.quantity}</td> : ''
                                                 }
                                                 {
-                                                    firma ? <td>{item.brand.name}</td> : ''
+                                                    firma ? <td>{item.brand?.name}</td> : ''
                                                 }
                                                 <td>{item.minQuantity}</td>
                                                 <td>{item.expireDate}</td>

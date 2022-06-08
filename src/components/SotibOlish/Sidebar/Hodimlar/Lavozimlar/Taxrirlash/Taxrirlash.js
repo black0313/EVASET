@@ -588,9 +588,10 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                     input.xodimkorish = true
                     let b = { ...input }
                     setInput(b)
+                    console.log('reojr')
                     break;
-                case 'EDIT_USER':
 
+                case 'EDIT_USER':
                     input.xodimtaxrirlash = true
                     let c = { ...input }
                     setInput(c)
@@ -723,7 +724,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                 case 'EDIT_TRADE':
                     input.savdoTaxrirlash = true
                     let st = { ...input }
-                    setInput(sq)
+                    setInput(st)
                     break;
                 case 'DELETE_TRADE':
                     input.savdoOchirish = true

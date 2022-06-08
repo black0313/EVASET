@@ -180,17 +180,20 @@ function Taxrirlash({
 
     function bazalar(e) {
 
-        if (input.bazalar===''){
-            input.bazalar = e.target.value
-            let a = {...input}
-            setInput(a)
-            setactivebaza(false)
-        }else {
-            input.bazalar = e.target.value
-            let a = {...input}
-            setInput(a)
-            setactivebaza(true)
-        }
+        // if (input.bazalar===''){
+        //     input.bazalar = e.target.value
+        //     let a = {...input}
+        //     setInput(a)
+        //     setactivebaza(false)
+        // }else {
+        //     input.bazalar = e.target.value
+        //     let a = {...input}
+        //     setInput(a)
+        //     setactivebaza(true)
+        // }
+        input.bazalar = e.target.value
+        let a = {...input}
+        setInput(a)
     }
 
     function bolim(e) {
@@ -279,9 +282,9 @@ function Taxrirlash({
                 input.mahsulotnomi = item.name
                 input.shtrixkod = item.barcode
                 input.sotibolishnarxi = item.salePrice
-                input.ferma = item.brand.id
-                input.bolim = item.category.id
-                input.ulcovbirligi = item.measurement.id
+                input.ferma = item.brand?.id
+                input.bolim = item.category?.id
+                input.ulcovbirligi = item.measurement?.id
                 input.foydafoiz = item.minQuantity
                 input.sotishnarxi = item.buyPrice
                 input.amaldagisoliq = item.tax
@@ -292,7 +295,7 @@ function Taxrirlash({
     }
 
     function saqla() {
-        if (input.mahsulotnomi !== "" && input.shtrixkod !== "" && input.bazalar !== "" && input.miqdorMaxsulot !== "" &&   input.foydafoiz !== "" && input.sotibolishnarxi !== "") {
+        if (input.mahsulotnomi !== "" && input.shtrixkod !== ""  && input.miqdorMaxsulot !== "" &&   input.foydafoiz !== "" && input.sotibolishnarxi !== "") {
             if (match.params.id !== undefined) {
                 editMaxsulotRuyxati({
                     name: input.mahsulotnomi,
@@ -311,23 +314,25 @@ function Taxrirlash({
                     dueDate: null,
                     id: match.params.id,
                 })
-            } else {
-                saveMaxsulotRuyxati({
+            } else{
+                saveMaxsulotRuyxati(
+                    {
                     name: input.mahsulotnomi,
                     quantity: input.miqdorMaxsulot,
                     barcode: input.shtrixkod,
-                    brandId: input.ferma,
-                    categoryId: input.bolim,
-                    measurementId: input.ulcovbirligi,
+                    brandId: input.ferma === '' ? FirmaReducer.firmalar[0].id : input.ferma,
+                    categoryId: input.bolim === '' ? BolimReducer.bolimlar[0].id : input.bolim,
+                    measurementId: input.ulcovbirligi === '' ? kgreducer.kg[0].id : input.ulcovbirligi,
                     photoIds: [photoreducer.photo.id],
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,
                     salePrice: parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi),
                     tax: input.sotibolishnarxi,
-                    branchId: [1],
+                    branchId: [input.bazalar === "" ? branchreducer.branch[0].id : input.bazalar],
                     expireDate: input.muddatmaxsulot,
                     dueDate: new Date().getDate()
                 })
+
             }
 
             setPlaseholders(
@@ -432,7 +437,6 @@ function Taxrirlash({
                                     className={'form-control'}>
                                 {
                                     kgreducer.kg.map((item, index) =>
-                                        input.ulcovbirligi == '' ? input.ulcovbirligi = item.id :
                                             <option value={item.id}>
                                                 {item.name}
                                             </option>)
@@ -445,7 +449,6 @@ function Taxrirlash({
                             <select name="" onChange={bolim} value={input.bolim} className={'form-control'} id={'bol'}>
                                 {
                                     BolimReducer.bolimlar.map(item =>
-                                        input.bolim == '' ? input.bolim = item.id :
                                             <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
@@ -478,7 +481,6 @@ function Taxrirlash({
                                     className={'form-control'}>
                                 {
                                     FirmaReducer.firmalar.map(item =>
-                                        input.ferma == '' ? input.ferma = item.id :
                                             <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
@@ -499,24 +501,31 @@ function Taxrirlash({
                                value={input.miqdorMaxsulot} id='miqdor' placeholder={placeholders.miqdorPlaceholder}
                                onChange={miqdorMaxsulot}/>
 
-                        <label htmlFor="" className={'mt-3 '}>Bazalar</label>
-                        <input type="text" id='bazalar' value={input.bazalar}
-                               placeholder={placeholders.bazalarPlaceholder} onChange={bazalar}
-                               className={'form-control taxrirlashInputValudetion'}/>
-                        {
-                            branchreducer.branch.filter(val => {
-                                if (input.bazalar === '') {
-                                } else if (val.name.toUpperCase().includes(input.bazalar.toUpperCase())) {
-                                    return val
-                                }
-                            }).map(item =><ul key={item.id}>
-                                    {
-                                        activebaza?<li onClick={bazaClick} className={'click'}>{item.name}</li>:''
-                                    }
-                                </ul>
-                                // <button onClick={bazaClick} className={"btn"} value={item.id}>{item.name}</button>
-                            )
-                        }
+                        <label htmlFor="bazalar" className={'mt-3 '}>Bazalar</label>
+                        {/*<input type="text" id='bazalar' value={input.bazalar}*/}
+                        {/*       placeholder={placeholders.bazalarPlaceholder} onChange={bazalar}*/}
+                        {/*       className={'form-control taxrirlashInputValudetion'}/>*/}
+                        {/*{*/}
+                        {/*    branchreducer.branch.filter(val => {*/}
+                        {/*        if (input.bazalar === '') {*/}
+                        {/*        } else if (val.name.toUpperCase().includes(input.bazalar.toUpperCase())) {*/}
+                        {/*            return val*/}
+                        {/*        }*/}
+                        {/*    }).map(item =><ul key={item.id}>*/}
+                        {/*            {*/}
+                        {/*                activebaza?<li onClick={bazaClick} className={'click'}>{item.name}</li>:''*/}
+                        {/*            }*/}
+                        {/*        </ul>*/}
+                        {/*        // <button onClick={bazaClick} className={"btn"} value={item.id}>{item.name}</button>*/}
+                        {/*    )*/}
+                        {/*}*/}
+                        <select name="" id="bazalar"  className={'form-control'} onChange={bazalar} value={input.bazalar}>
+                            {
+
+                                branchreducer.branch.map(item =>
+                                    <option value={item.id}>{item.name}</option>)
+                            }
+                        </select>
 
                     </div>
 
@@ -639,7 +648,7 @@ function Taxrirlash({
                 </div>
                 <div className='d-flex justify-content-end'>
                     {
-                        (input.mahsulotnomi === "" || input.shtrixkod === "" || input.bazalar === "" || input.miqdorMaxsulot === "" ||  input.foydafoiz === "" ||  input.sotibolishnarxi === "") ?
+                        (input.mahsulotnomi === "" || input.shtrixkod === ""  || input.miqdorMaxsulot === "" ||  input.foydafoiz === "" ||  input.sotibolishnarxi === "") ?
                             <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button> :
                             <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot'}>
                                 <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button>

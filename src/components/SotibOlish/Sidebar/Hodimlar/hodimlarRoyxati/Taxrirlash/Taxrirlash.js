@@ -111,9 +111,9 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 input.username=item.username
                 input.firstName=item.firstName
                 input.lastName=item.lastName
-                input.parol=''
                 input.roleName=item.role.id
                 input.photoid=item.photoId
+                input.branchid=item.branches[0].id
                 let a ={...input}
                 setInput(a)
             }
@@ -127,12 +127,12 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                 firstName: input.firstName,
                 lastName: input.lastName,
                 username: input.username,
-                password: input.parolTakror,
+                password: '',
                 roleId: input.roleName,
-                branchId:1,
+                branchId:[input.branchid],
                 businessId: users.businessId,
                 enabled: true,
-                photoId: input.photoid,
+                photoId: null,
                 id:match.params.id
             })
 
@@ -160,7 +160,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
                     username: input.username,
                     password: parseInt(input.parolTakror),
                     roleId: input.roleName === '' ? LavozimReducer.lavozimlar[0].id : input.roleName,
-                    branchId: input.branchid === '' ? branchreducer.branch.id : input.branchid,
+                    branchId: [input.branchid === '' ? branchreducer.branch[0].id : input.branchid],
                     businessId: users.businessId,
                     enabled: true,
                     photoId: null
@@ -218,7 +218,7 @@ function Taxrirlash({getLavozim,saveXodim,LavozimReducer,getXodim,XodimReducer,u
 
                     <div className="col-6 d-flex justify-content-center">
                         {
-                            input.username === '' || input.firstName === '' || input.lastName==="" || input.parol === '' ?
+                            input.username === '' || input.firstName === '' || input.lastName===""  ?
                                 <button onClick={saqla} className={'btn btn-outline-danger btnSaqlash'}>Saqlash</button> :
                                 <Link to={'/headerthird/hodimlarruyxati'}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>
                         }
