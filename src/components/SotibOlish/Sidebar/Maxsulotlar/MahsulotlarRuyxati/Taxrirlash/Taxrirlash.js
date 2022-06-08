@@ -18,6 +18,7 @@ import photoreducer, {savephoto} from "../../../../../../reducer/photoreducer";
 import {toast} from "react-toastify";
 import Ichkibolimred, {getichki} from "../../reducer/Ichkibolimred";
 import SoliqReducer from "../../../Settings/DukonSozlamalari/reducers/SoliqReducer";
+import Select from 'react-select'
 
 function Taxrirlash({
                         photoreducer,
@@ -77,7 +78,7 @@ function Taxrirlash({
             qisqaeslatma: '',
             photoIds: '',
             // ----
-            bazalar: '',
+            bazalar: [],
             bolim: '',
             bolim2: '',
             ogohmiqdor: '',
@@ -91,7 +92,8 @@ function Taxrirlash({
             miqdorMaxsulot: '',
             muddatmaxsulot:'',
             bolimnomi:'',
-            ichkibolim: ''
+            ichkibolim: '',
+            selectvalue:[],
         }
     )
 
@@ -328,7 +330,7 @@ function Taxrirlash({
                     buyPrice: input.sotibolishnarxi,
                     salePrice: parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi),
                     tax: input.sotibolishnarxi,
-                    branchId: [input.bazalar === "" ? branchreducer.branch[0].id : input.bazalar],
+                    branchId: input.bazalar,
                     expireDate: input.muddatmaxsulot,
                     dueDate: new Date().getDate()
                 })
@@ -394,15 +396,8 @@ function Taxrirlash({
         input.qisqaeslatma = ''
     }
 
-    function bazaClick() {
-        branchreducer.branch.map((item, index) => {
-            input.bazalar = item.name
-            let a = {...input}
-            setInput(a)
-        })
-    }
 
-    const [activebaza,setactivebaza] = useState(false)
+
 
 
     useEffect(() => {
@@ -420,6 +415,22 @@ function Taxrirlash({
     useEffect(() => {
         getFirma(users.businessId)
     }, [FirmaReducer.current])
+
+    function changeselect(e){
+        input.selectvalue = e
+        input.bazalar = []
+        e.map(item=>{
+            let b = input.bazalar
+            b.push(item.value)
+        })
+        let a ={...input}
+        setInput(a)
+    }
+
+
+
+
+
 
     return (
         <div className={'mt-5 contanerT'}>
@@ -445,7 +456,7 @@ function Taxrirlash({
                             <h2 onClick={toggle} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
                         </div>
                         <label className={'mt-3'} htmlFor={'bol'}>Bo`lim</label>
-                        <div className={'d-flex'}>
+                        <div className={'d-flex select-group'}>
                             <select name="" onChange={bolim} value={input.bolim} className={'form-control'} id={'bol'}>
                                 {
                                     BolimReducer.bolimlar.map(item =>
@@ -519,14 +530,14 @@ function Taxrirlash({
                         {/*        // <button onClick={bazaClick} className={"btn"} value={item.id}>{item.name}</button>*/}
                         {/*    )*/}
                         {/*}*/}
-                        <select name="" id="bazalar"  className={'form-control'} onChange={bazalar} value={input.bazalar}>
-                            {
+                        {/*<select name="" id="bazalar"  className={'form-control'} onChange={bazalar} value={input.bazalar}>*/}
+                        {/*    {*/}
 
-                                branchreducer.branch.map(item =>
-                                    <option value={item.id}>{item.name}</option>)
-                            }
-                        </select>
-
+                        {/*        branchreducer.branch.map(item =>*/}
+                        {/*            <option value={item.id}>{item.name}</option>)*/}
+                        {/*    }*/}
+                        {/*</select>*/}
+                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'} onChange={changeselect} />
                     </div>
 
                 </div>
@@ -628,7 +639,6 @@ function Taxrirlash({
                                        className='taxrirlashInputValudetion form-control'
                                        value={input.sotibolishnarxi }
                                        onChange={sotibolishnarxi}/>
-                                {console.log(SoliqReducer.soliq)}
                             </td>
                             <td>
                                 <label htmlFor={''}>Sotish narxi</label><br/>

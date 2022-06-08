@@ -6,11 +6,18 @@ export const slice=createSlice({
     name:'branch',
     initialState:{
         branch:[],
+        branches:[],
         current:false
     },
     reducers:{
         get:(state,action)=>{
                 state.branch=action.payload.object
+                let a = action.payload.object.map(({
+                                                      name:label,
+                                                      id: value,...rest
+                                                  }) =>({label,value,...rest}));
+            state.branches =a
+
         },
         save:(state,action)=>{
             state.current=!state.current
