@@ -513,31 +513,8 @@ function Taxrirlash({
                                onChange={miqdorMaxsulot}/>
 
                         <label htmlFor="bazalar" className={'mt-3 '}>Bazalar</label>
-                        {/*<input type="text" id='bazalar' value={input.bazalar}*/}
-                        {/*       placeholder={placeholders.bazalarPlaceholder} onChange={bazalar}*/}
-                        {/*       className={'form-control taxrirlashInputValudetion'}/>*/}
-                        {/*{*/}
-                        {/*    branchreducer.branch.filter(val => {*/}
-                        {/*        if (input.bazalar === '') {*/}
-                        {/*        } else if (val.name.toUpperCase().includes(input.bazalar.toUpperCase())) {*/}
-                        {/*            return val*/}
-                        {/*        }*/}
-                        {/*    }).map(item =><ul key={item.id}>*/}
-                        {/*            {*/}
-                        {/*                activebaza?<li onClick={bazaClick} className={'click'}>{item.name}</li>:''*/}
-                        {/*            }*/}
-                        {/*        </ul>*/}
-                        {/*        // <button onClick={bazaClick} className={"btn"} value={item.id}>{item.name}</button>*/}
-                        {/*    )*/}
-                        {/*}*/}
-                        {/*<select name="" id="bazalar"  className={'form-control'} onChange={bazalar} value={input.bazalar}>*/}
-                        {/*    {*/}
 
-                        {/*        branchreducer.branch.map(item =>*/}
-                        {/*            <option value={item.id}>{item.name}</option>)*/}
-                        {/*    }*/}
-                        {/*</select>*/}
-                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'} onChange={changeselect} />
+                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'} onChange={changeselect} placeholder={'Tanlang'}/>
                     </div>
 
                 </div>

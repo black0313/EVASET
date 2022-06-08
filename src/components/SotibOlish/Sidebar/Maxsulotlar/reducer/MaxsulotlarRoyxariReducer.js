@@ -11,8 +11,13 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
-                console.log(action.payload.object)
-            state.maxsulotlar = action.payload.object
+                console.log(action.payload)
+            if(action.payload.success===true){
+                state.maxsulotlar = action.payload.object
+            }
+            else{
+                state.maxsulotlar = []
+            }
         },
         savefrom: (state,action) => {
             state.current=!state.current
@@ -32,41 +37,55 @@ const slice = createSlice({
 export const getMaxsulotRuyxati=(data)=>apiCall({
     url: '/product/get-by-business/'+data,
     method:'get',
-    onSuccess: slice.actions.getFrom.type
+    onSuccess: slice.actions.getFrom.type,
+    onFail: slice.actions.getFrom.type
+
 });
 export const getMaxsulotRuyxati2=(data)=>apiCall({
     url: '/product/get-by-barcode/'+data,
     method:'get',
-    onSuccess: slice.actions.getFrom.type
+    onSuccess: slice.actions.getFrom.type,
+    onFail: slice.actions.getFrom.type
+
 });
 
 export const getMaxsulotRuyxati3=(data)=>apiCall({
     url: '/product/get-by-brand/'+data,
     method:'get',
-    onSuccess: slice.actions.getFrom.type
+    onSuccess: slice.actions.getFrom.type,
+    onFail: slice.actions.getFrom.type
+
 });
 export const getMaxsulotRuyxatiBOLIM=(data)=>apiCall({
     url: '/product/get-by-category/'+data,
     method:'get',
-    onSuccess: slice.actions.getFrom.type
+    onSuccess: slice.actions.getFrom.type,
+    onFail: slice.actions.getFrom.type
+
 });
 
 export const getMaxsulotRuyxatiMeasure=(data)=>apiCall({
     url: '/product/get-by-measurement/'+data,
     method:'get',
-    onSuccess: slice.actions.getFrom.type
+    onSuccess: slice.actions.getFrom.type,
+    onFail: slice.actions.getFrom.type
+
 });
 
 export const getMaxsulotRuyxatibranch=(data)=>apiCall({
     url: '/product/get-by-branch/'+data,
     method:'get',
-    onSuccess: slice.actions.getFrom.type
+    onSuccess: slice.actions.getFrom.type,
+    onFail: slice.actions.getFrom.type
+
 });
 
 export const getCategory=()=>apiCall({
     url: '/get-by-category/1',
     method:'get',
-    onSuccess: slice.actions.getFrom.type
+    onSuccess: slice.actions.getFrom.type,
+    onFail: slice.actions.getFrom.type
+
 });
 
 export const saveMaxsulotRuyxati=(data)=>apiCall({

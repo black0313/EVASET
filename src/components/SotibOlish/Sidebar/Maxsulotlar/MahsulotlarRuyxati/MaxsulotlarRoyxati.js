@@ -6,11 +6,12 @@ import React from "react";
 import {connect} from 'react-redux'
 import {useEffect,useState} from 'react'
 import users from "../../../../../reducer/users";
-import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure} from '../reducer/MaxsulotlarRoyxariReducer'
+import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure,getMaxsulotRuyxatibranch} from '../reducer/MaxsulotlarRoyxariReducer'
 import FirmaReducer,{getFirma} from "../reducer/FirmaReducer";
 import kgreducer,{getkg} from "../../../../../reducer/kgreducer";
 import BolimReducer,{getBolim} from "../reducer/BolimReducer";
-function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyxati,getCategory,users,getFirma,FirmaReducer,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getkg,kgreducer,getMaxsulotRuyxatiMeasure}) {
+import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
+function MaxsulotlarRoyxati({getBolim,BolimReducer,branchreducer,getbranch, getMaxsulotRuyxati,saveMaxsulotRuyxati,maxsulotruyxati,getCategory,users,getFirma,FirmaReducer,getMaxsulotRuyxati3,getMaxsulotRuyxatibranch,getMaxsulotRuyxatiBOLIM,getkg,kgreducer,getMaxsulotRuyxatiMeasure}) {
 
 
 
@@ -75,6 +76,13 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
         input.baza = e.target.value
         let a = {...input}
         setInput(a)
+        if (input.baza !== 'barchasi'){
+            getMaxsulotRuyxatibranch(input.baza)
+        }
+        else{
+            getMaxsulotRuyxati(users.businessId)
+
+        }
     }
     function changesotuvemas(e){
         input.sotvemas = e.target.value
@@ -88,6 +96,7 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
         getFirma(users.businessId)
         getkg(users.businessId)
         getBolim(users.businessId)
+        getbranch(users.businessId)
         history.push('/headerthird/mahsulotRuyxati/barcaMahsulot')
     },[])
 
@@ -150,7 +159,11 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
                                                 <div className="minBox">
                                                     <h6>Baza:</h6>
                                                     <select name="" id="" onChange={changebaza} value={input.baza}>
-                                                        <option value="">Barchasi</option>
+                                                        <option value={'barchasi'}>Barchasi</option>
+                                                        {
+                                                            branchreducer.branch.map(item=>
+                                                                <option value={item.id}>{item.name}</option>)
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
@@ -174,4 +187,4 @@ function MaxsulotlarRoyxati({getBolim,BolimReducer, getMaxsulotRuyxati,saveMaxsu
                      </div>
        )
 }
-export default connect((MaxsulotlarRoyxariReducer,users,FirmaReducer,kgreducer,BolimReducer),{getBolim,getkg,getFirma,getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure})  (MaxsulotlarRoyxati)
+export default connect((MaxsulotlarRoyxariReducer,users,FirmaReducer,kgreducer,BolimReducer,branchreducer),{getBolim,getkg,getbranch,getFirma,getMaxsulotRuyxati,saveMaxsulotRuyxati,editMaxsulotRuyxati,deleteMaxsulotRuyxati,getCategory,getMaxsulotRuyxati3,getMaxsulotRuyxatiBOLIM,getMaxsulotRuyxatiMeasure,getMaxsulotRuyxatibranch})  (MaxsulotlarRoyxati)
