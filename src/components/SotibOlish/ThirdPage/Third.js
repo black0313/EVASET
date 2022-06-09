@@ -245,7 +245,7 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
                             </div>
 
                             <div className="col-md-11 col-sm-9 align-items-center">
-                                <h4 className={'kitchen2'}>X O` SH - K E L I B S I Z</h4>
+                                <h4 className={'kitchen2'}>X U SH - K E L I B S I Z</h4>
                                 <p className={'kitchen'}>Sizni shaxsiy boshqaruv panelida yana ko'rganimizdan juda
                                     xursandmiz</p>
                             </div>
