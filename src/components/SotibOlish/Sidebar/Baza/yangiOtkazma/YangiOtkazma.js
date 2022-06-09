@@ -5,10 +5,11 @@ import {connect} from "react-redux";
 import users from "../../../../../reducer/users";
 import branchreducer,{getbranch} from "../../../../../reducer/branchreducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
-import OtkazmaReducer,{saveOtkazma} from "../reducer/OtkazmaReducer";
+import OtkazmaReducer,{saveOtkazma,} from "../reducer/OtkazmaReducer";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
-function YangiOtkazma({branchreducer,getbranch,users,saveOtkazma,OtkazmaReducer,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer}) {
+import ExchangeStatusR,{getOtkazmaStatus} from "../../../../../reducer/ExchangeStatusR";
+function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,users,saveOtkazma,OtkazmaReducer,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer}) {
 
 
 
@@ -144,7 +145,6 @@ function YangiOtkazma({branchreducer,getbranch,users,saveOtkazma,OtkazmaReducer,
                             exchangeDate:input.sana,
                             description:input.qisqaeslatma,
                             exchangeStatusId:input.status,
-                            yolkira:input.yulhaqi,
                             exchangeProductDTOS:[
                                    {
                                           exchangeProductQuantity:item.quantity,
@@ -181,6 +181,7 @@ function YangiOtkazma({branchreducer,getbranch,users,saveOtkazma,OtkazmaReducer,
 
        useEffect(()=>{
          getbranch(users.businessId)
+              getOtkazmaStatus()
        },[])
 
        return (
@@ -197,9 +198,10 @@ function YangiOtkazma({branchreducer,getbranch,users,saveOtkazma,OtkazmaReducer,
                                    <div className="col-md-6 col-sm-12">
                                           <h6>Status:</h6>
                                           <select name="" id="" value={input.status} onChange={status}>
-                                                 <option value="1">Buyurtma berildi</option>
-                                                 <option value="2">Kutilmoqda</option>
-                                                 <option value="3">Qabul qilindi</option>
+                                                 {
+                                                        ExchangeStatusR.exchangestatus.map(item=>
+                                                            <option value={item.id}>{item.status}</option>)
+                                                 }
                                           </select>
                                    </div>
                             </div>
@@ -293,4 +295,4 @@ function YangiOtkazma({branchreducer,getbranch,users,saveOtkazma,OtkazmaReducer,
               </div>
        )
 }
-export default connect((branchreducer,users,MaxsulotlarRoyxariReducer,OtkazmaReducer),{getbranch,getMaxsulotRuyxati,saveOtkazma})  (YangiOtkazma)
+export default connect((branchreducer,users,MaxsulotlarRoyxariReducer,OtkazmaReducer,ExchangeStatusR),{getbranch,getMaxsulotRuyxati,saveOtkazma,getOtkazmaStatus})  (YangiOtkazma)

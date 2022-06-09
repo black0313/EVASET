@@ -7,7 +7,7 @@ const slice = createSlice({
     name: 'otkazmalar',
     initialState: {
         otkazmalar: [],
-        counter:false
+                                counter:false
     },
     reducers: {
         getFrom: (state, action) => {
@@ -38,7 +38,7 @@ const slice = createSlice({
 });
 
 export const getOtkazma=(data)=>apiCall({
-    url: '/exchange-product-branch/get-by-shipped-branch/'+data,
+    url: '/exchange-product-branch/get-by-businessId/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

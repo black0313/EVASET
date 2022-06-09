@@ -48,8 +48,8 @@ export const slice = createSlice({
 
     },
     reducers: {
-        save: (state, action) => {
-
+        saveusers: (state, action) => {
+                console.log(action.payload)
             if (action.payload.success===true){
                 state.linkhome=!state.linkhome
                 state.linkheader=!state.linkheader
@@ -159,20 +159,5 @@ export const slice = createSlice({
 
     }
 })
-
-export const saveusers=(data) => apiCall({
-    url: '/auth/login',
-    method: 'post',
-    data,
-    onSuccess: slice.actions.save.type,
-    onFail: slice.actions.save.type
-})
-
-export const  getusers = () => apiCall({
-    url: '/auth/login',
-    method: 'get',
-    onSuccess: slice.actions.get.type
-})
-
-export const {changeerror,savdooynasi} = slice.actions
+export const {changeerror,savdooynasi,saveusers} = slice.actions
 export default slice.reducer

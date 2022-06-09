@@ -94,6 +94,7 @@ function Taxrirlash({
             bolimnomi:'',
             ichkibolim: '',
             selectvalue:[],
+            photoID:[]
         }
     )
 
@@ -123,13 +124,6 @@ function Taxrirlash({
         let a = {...input}
         setInput(a)
     }
-
-    function shtrixkodturi(e) {
-        input.shtrixkodturi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
     function ulcovbirligi(e) {
         input.ulcovbirligi = e.target.value
         let a = {...input}
@@ -144,12 +138,6 @@ function Taxrirlash({
 
     function ulcovqisqaNomi(e) {
         input.ulcovqisqanomi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function ulcovunlikasr(e) {
-        input.ulcovunlikasr = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -178,25 +166,7 @@ function Taxrirlash({
         setInput(a)
     }
 
-    const [bazafilter, setbazafilter] = useState([])
 
-    function bazalar(e) {
-
-        // if (input.bazalar===''){
-        //     input.bazalar = e.target.value
-        //     let a = {...input}
-        //     setInput(a)
-        //     setactivebaza(false)
-        // }else {
-        //     input.bazalar = e.target.value
-        //     let a = {...input}
-        //     setInput(a)
-        //     setactivebaza(true)
-        // }
-        input.bazalar = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
 
     function bolim(e) {
         input.bolim = e.target.value
@@ -290,15 +260,25 @@ function Taxrirlash({
                 input.foydafoiz = item.minQuantity
                 input.sotishnarxi = item.buyPrice
                 input.amaldagisoliq = item.tax
+                input.photoID = item.photo?.id
+                input.ogohmiqdor = item.minQuantity
+                input.miqdorMaxsulot = item.quantity
+                input.muddatmaxsulot = item.expireDate
+                input.selectvalue = [item.branch].map(({
+                                                           name: label,
+                                                           id: value, ...rest
+                                                       }) => ({label, value, ...rest}));
                 let a = {...input}
                 setInput(a)
             }
         })
+        console.log(input.selectvalue)
     }
 
     function saqla() {
         if (input.mahsulotnomi !== "" && input.shtrixkod !== ""  && input.miqdorMaxsulot !== "" &&   input.foydafoiz !== "" && input.sotibolishnarxi !== "") {
             if (match.params.id !== undefined) {
+                changeselect(input.selectvalue)
                 editMaxsulotRuyxati({
                     name: input.mahsulotnomi,
                     quantity: input.miqdorMaxsulot,
@@ -306,12 +286,12 @@ function Taxrirlash({
                     brandId: input.ferma,
                     categoryId: input.bolim,
                     measurementId: input.ulcovbirligi,
-                    photoIds: [2],
+                    photoIds: input.photoID,
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,
                     salePrice: input.sotishnarxi,
                     tax: input.sotibolishnarxi,
-                    branchId: [1],
+                    branchId: input.bazalar,
                     expireDate: null,
                     dueDate: null,
                     id: match.params.id,
@@ -514,7 +494,7 @@ function Taxrirlash({
 
                         <label htmlFor="bazalar" className={'mt-3 '}>Bazalar</label>
 
-                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'} onChange={changeselect} placeholder={'Tanlang'}/>
+                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'} defaultValue={input.selectvalue} onChange={changeselect} placeholder={'Tanlang'}/>
                     </div>
 
                 </div>

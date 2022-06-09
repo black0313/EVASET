@@ -3,7 +3,7 @@ import './PAGANATION.css';
 import RenderComponent4 from "./RenderComponent4";
 import {connect} from "react-redux";
 import SavdoQoshishReducer, {getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
-import users, {getusers, savdooynasi} from "../../../reducer/users";
+import users, {savdooynasi} from "../../../reducer/users";
 import functionreducer, {active, activSavdo} from "../../../reducer/functionreducer";
 import XaridReducer, {getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
@@ -122,4 +122,4 @@ function Pagination4({XaridReducer,getXarid,users,SavdoQoshishReducer,getSavdola
         </div>
     );
 }
-export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),{getMaxsulotRuyxati,getusers,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Pagination4);
+export default connect((SavdoQoshishReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),{getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,getXarid}) (Pagination4);

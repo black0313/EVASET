@@ -8,10 +8,11 @@ import {Link, Switch, Route, Redirect} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../reducer/functionreducer";
 import SecondPage from "../Pricing/SecondPage/SecondPage";
-import users ,{saveusers,getusers,changeerror}from "../../reducer/users";
+import users ,{saveusers,changeerror}from "../../reducer/users";
+import axios from "axios";
 // import {idID} from "@mui/material/locale";
 
-function Home({saveusers, getusers,users, linkpost,active, changeerror}) {
+function Home({saveusers,users, linkpost,active, changeerror}) {
 
     useEffect(() => {
 
@@ -52,7 +53,18 @@ function Home({saveusers, getusers,users, linkpost,active, changeerror}) {
     }
 
     function testusers() {
-        saveusers({username:inputlogin,password:inputparol})
+        axios({
+            method:'post',
+            url:'http://192.168.43.146:8080/api/auth/login',
+            data:{
+                username:inputlogin,
+                password:inputparol
+            }
+        }).then(function (res){
+                saveusers(res.data)
+        }).catch(function (err){
+            saveusers({...err,success:false})
+        })
     }
 
     return (
@@ -131,4 +143,4 @@ function Home({saveusers, getusers,users, linkpost,active, changeerror}) {
     )
 }
 
-export default connect((users), {getusers, saveusers,active,changeerror})(Home)
+export default connect((users), {saveusers,active,changeerror})(Home)
