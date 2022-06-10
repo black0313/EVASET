@@ -11,12 +11,15 @@ import users from "../../../reducer/users";
 import {Link} from "react-router-dom";
 import Imagecom from "../../Imagecom";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import ValyutaReducer,{getValyuta,changeActivecur} from "../Sidebar/Settings/DukonSozlamalari/reducers/ValyutaReducer";
 
-function Header({active,sidebarfunc,users}) {
+function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActivecur}) {
 
     useEffect(()=>{
         setCalactive(false)
-    },[])
+        getValyuta(users.businessId)
+    },[ValyutaReducer.current])
+
 
 
     const [calactive,setCalactive] = useState(false)
@@ -35,6 +38,15 @@ function Header({active,sidebarfunc,users}) {
         sidebarfunc()
     }
 
+
+    function valyutactiver(e){
+            changeActivecur({
+                businessId:users.businessId,
+                id:e.target.value
+            })
+        getValyuta(users.businessId)
+    }
+
     return(
         <div className={'container-fluid position-relative'}>
             <div className={'headerBox '}>
@@ -45,6 +57,12 @@ function Header({active,sidebarfunc,users}) {
                 </div>
                 <div className="two ">
                     <div className={'img2img3'}>
+                        <select name="" id="" onChange={valyutactiver} value={ValyutaReducer.valyutactiveID} >
+                            {
+                                    ValyutaReducer.valyuta.map(item=>
+                                        <option value={item.id}>{item.name}</option>)
+                            }
+                        </select>
                         <img src={imgCalc} onClick={calchange} className={'im2'} alt=""/>
                         <div className="notificBox">
                             <img src={imgNot}  className={'im3'} alt=""/>
@@ -89,4 +107,4 @@ function Header({active,sidebarfunc,users}) {
         </div>
     )
 }
-export default connect((users),{active}) (Header)
+export default connect((users,ValyutaReducer),{active,getValyuta,changeActivecur}) (Header)

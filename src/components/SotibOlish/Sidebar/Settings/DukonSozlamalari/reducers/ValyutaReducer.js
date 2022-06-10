@@ -8,11 +8,18 @@ const slice = createSlice({
     initialState: {
         valyuta: [],
         valyuta2:[],
-        current :0
+        current :0,
+        valyutactiveID:''
     },
     reducers: {
         getFrom: (state, action) => {
             state.valyuta = action.payload.object
+            action.payload.object.map(item=>{
+                if (item.active === true){
+                    state.valyutactiveID = item.id
+
+                }
+            })
         },
         getFromcurrency: (state, action) => {
             state.valyuta = action.payload.object
@@ -29,6 +36,10 @@ const slice = createSlice({
         deletefrom:(state,action)=>{
             state.current+=1
             toast.success('Valyuta o`chirildi')
+        },
+        changeactive:(state)=>{
+            state.current+=1
+            toast.success("Valyuta o'zgardi")
         }
     }
 });
@@ -58,6 +69,12 @@ export const editValyuta=(data)=>apiCall({
     data,
     onSuccess: slice.actions.editfrom.type
 });
+export const changeActivecur=(data)=>apiCall({
+    url:'/currency/active-course',
+    method:'put',
+    data,
+    onSuccess:slice.actions.changeactive.type
+})
 
 export const deleteValyuta=(data)=>apiCall({
     url: '/currency/'+data,
