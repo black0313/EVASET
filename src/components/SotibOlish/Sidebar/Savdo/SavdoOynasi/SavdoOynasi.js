@@ -37,7 +37,7 @@ import XarajatlarReducer, { getXarajatlar, saveXarajatlar } from "../../Xarajatl
 import XarajatTurlariReducer, { getXarajatlarTurlari } from "../../Xarajatlar/reducer/XarajatTurlariReducer";
 import imagecom from "../../../../Imagecom";
 import Imagecom from "../../../../Imagecom";
-import ValyutaReducer, {getValyuta} from "../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
+import ValyutaReducer, {getValyuta,changeActivecur} from "../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
 // import {optional} from "yarn/lib/cli";
 function SavdoOynasi({
     saveXarajatlar,
@@ -51,7 +51,7 @@ function SavdoOynasi({
     getMijozGurux, MijozGuruxReducer, saveSavdo, SavdoQoshishReducer, saveSavdolar,
     users, savdooynasi, getkg, kgreducer, branchreducer, getbranch, getMaxsulotRuyxatibranch,
     getSavdolarHistory, TradeHistory,
-    XarajatlarReducer,getValyuta,ValyutaReducer,
+    XarajatlarReducer,getValyuta,ValyutaReducer,changeActivecur
 
 }) {
 
@@ -835,7 +835,7 @@ function SavdoOynasi({
         getPay(users.businessId)
         getValyuta(users.businessId)
         // history.push('/headerthird/turliTavar/final')
-    }, [MaxsulotlarRoyxariReducer.current])
+    }, [MaxsulotlarRoyxariReducer.current,ValyutaReducer.current])
 
     function toggle() {
         if (ushlabtur.length === 0) {
@@ -905,16 +905,14 @@ function SavdoOynasi({
 
     const [activeModalkredit, setactiveModalkredit] = useState(false)
 
-    const [valyuta,setvalyuta] = useState('')
-    const [valyutas,setvalyutas] = useState('')
+
 
     function changevalyuta(e){
-        ValyutaReducer.valyuta.map(item=>{
-            if (item.id==e.target.value){
-                setvalyuta(item.currentCourse)
-                setvalyutas(item.name)
-            }
+        changeActivecur({
+            businessId:users.businessId,
+            id:e.target.value
         })
+        getValyuta(users.businessId)
     }
 
 
@@ -1036,10 +1034,9 @@ function SavdoOynasi({
                         </select>
                     </div>
                     <div className="navbarRigth " style={{width:'630px'}}>
-                        <select className={'sss2'} value={input.valyutaa} onChange={changevalyuta}  id={'valuta'}  >
+                        <select className={'sss2'} value={ValyutaReducer.valyutactiveID} onChange={changevalyuta}  id={'valuta'}  >
                             {
                                 ValyutaReducer.valyuta.map(item=>
-                                    // input.valyutaa == '' ? input.valyutaa = item.id:
                                     <option value={item.id}>{item.name}</option>)
                             }
                         </select>
@@ -1410,9 +1407,7 @@ function SavdoOynasi({
 
                                             }
                                             <h6>{item.name}</h6>
-                                            {/*{console.log(item.photo)}*/}
-                                            <p>{item.salePrice} so`m</p>
-                                            {/*<p>{Math.round((item.salePrice/valyuta+Number.EPSILON)*100)/100} {valyutas}</p>*/}
+                                            <p>{Math.round((item.salePrice+Number.EPSILON)*100)/100} {ValyutaReducer.valyutactiveName}</p>
                                         </div>
                                     </div>)
                             }
@@ -1664,7 +1659,7 @@ function SavdoOynasi({
     )
 }
 
-export default connect((kgreducer, PayReducer,ValyutaReducer, XarajatlarReducer, XarajatTurlariReducer, PayReducer, TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer, branchreducer), {
+export default connect((kgreducer,ValyutaReducer, PayReducer,ValyutaReducer, XarajatlarReducer, XarajatTurlariReducer, PayReducer, TradeHistory, MaxsulotlarRoyxariReducer, BolimReducer, FirmaReducer, users, SavdoOynaReducer, MijozGuruxReducer, SavdoQoshishReducer, branchreducer), {
     getSavdo,
     saveXarajatlar,
     getValyuta,
@@ -1687,5 +1682,6 @@ export default connect((kgreducer, PayReducer,ValyutaReducer, XarajatlarReducer,
     getbranch,
     getXarajatlarTurlari,
     getMaxsulotRuyxatibranch,
-    getMaxsulotRuyxati3
+    getMaxsulotRuyxati3,
+    changeActivecur
 })(SavdoOynasi)

@@ -39,7 +39,7 @@ function Xirsobotlar({active}) {
         }
         }
     return(
-        <div className={'row mahsulot'} id={"xisobot"}>
+        <div className={'row list'} id={"xisobot"}>
             <div className=" imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
 

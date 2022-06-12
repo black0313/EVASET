@@ -83,7 +83,7 @@ function Mahsulotlar({active}) {
     }
 
     return (
-        <div className={'row mahsulot'} id={'mahsulot'}>
+        <div className={'row list'} id={'mahsulot'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
 

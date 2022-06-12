@@ -161,7 +161,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                         phoneNumber: input.familiyasi,
                         telegram: input.telegram,
                         supplierType: '',
-                        businessId: 1,
+                        businessId: users.businessId,
                         id: input.tID
                     }
                 )
@@ -171,7 +171,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                     phoneNumber: input.familiyasi,
                     telegram: input.telegram,
                     supplierType: input.taminotturi,
-                    businessId: 1,
+                    businessId: users.businessId,
                 })
             }
 

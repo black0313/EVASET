@@ -12,12 +12,14 @@ import {Link} from "react-router-dom";
 import Imagecom from "../../Imagecom";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import ValyutaReducer,{getValyuta,changeActivecur} from "../Sidebar/Settings/DukonSozlamalari/reducers/ValyutaReducer";
+import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 
-function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActivecur}) {
+function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActivecur,MaxsulotlarRoyxariReducer,getMaxsulotRuyxati}) {
 
     useEffect(()=>{
         setCalactive(false)
         getValyuta(users.businessId)
+        getMaxsulotRuyxati(users.businessId)
     },[ValyutaReducer.current])
 
 
@@ -99,7 +101,7 @@ function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActive
                             </div>
                         </div>
                         <Link to={'/headerthird/profil'} > <img src={Arrow} alt="" /> </Link>
-                    </div>    
+                    </div>
                 </div>
 
 
@@ -107,4 +109,4 @@ function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActive
         </div>
     )
 }
-export default connect((users,ValyutaReducer),{active,getValyuta,changeActivecur}) (Header)
+export default connect((users,ValyutaReducer,MaxsulotlarRoyxariReducer),{getMaxsulotRuyxati,active,getValyuta,changeActivecur}) (Header)

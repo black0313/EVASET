@@ -41,7 +41,7 @@ body{
     width: 82%;
     }
 .homepageone{
-    width: 0;
+    width: 0%;
 }
 .homepagetwo{
     width: 100%;
@@ -129,3 +129,39 @@ body{
         width: 100%;
     }
 }
+/*.indicator{*/
+/*    position: absolute;*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    background: red;*/
+/*    border-radius: 50%;*/
+/*}*/
+/*.indicator::before{*/
+/*    content: '';*/
+/*    background: transparent;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    border-top-right-radius: 20px;*/
+/*    box-shadow: 1px -10px 0 0 black;*/
+/*}*/
+
+/*.indicator::after{*/
+/*    content: '';*/
+/*    background: transparent;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    right:0px;*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    border-top-left-radius: 20px;*/
+/*    box-shadow: 1px -10px 0 0 black;*/
+
+/*}*/
+
+/*.navigation div:nth-child(1) ~ .indicator{*/
+/*    transform: translateX(calc(70px*0));*/
+/*    transition: 0.7s;*/
+/*}*/

@@ -9,7 +9,8 @@ const slice = createSlice({
         valyuta: [],
         valyuta2:[],
         current :0,
-        valyutactiveID:''
+        valyutactiveID:'',
+        valyutactiveName:''
     },
     reducers: {
         getFrom: (state, action) => {
@@ -17,6 +18,7 @@ const slice = createSlice({
             action.payload.object.map(item=>{
                 if (item.active === true){
                     state.valyutactiveID = item.id
+                    state.valyutactiveName = item.description
 
                 }
             })

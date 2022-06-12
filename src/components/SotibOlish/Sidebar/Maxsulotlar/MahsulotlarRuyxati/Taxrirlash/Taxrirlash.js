@@ -19,8 +19,9 @@ import {toast} from "react-toastify";
 import Ichkibolimred, {getichki} from "../../reducer/Ichkibolimred";
 import SoliqReducer from "../../../Settings/DukonSozlamalari/reducers/SoliqReducer";
 import Select from 'react-select'
+import ValyutaReducer from "../../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
 
-function Taxrirlash({
+function Taxrirlash({   ValyutaReducer,
                         photoreducer,
                         savephoto,
                         Ichkibolimred,
@@ -568,7 +569,7 @@ function Taxrirlash({
                         <tr>
                             <td>
                                 <label htmlFor={'soliqszNarx'}>Soliqsiz narx (tan narxi)</label>
-                                <h4>{input.sotibolishnarxi}  so`m</h4>
+                                <h4>{input.sotibolishnarxi}  {ValyutaReducer.valyutactiveName}</h4>
                                 {/*<input type="number" value={input.soliqsiznarx}*/}
                                 {/*       placeholder={input.sotibolishnarxi===''?placeholders.soliqsizNarxPlaceholder:"Mahsulot tan narxi sotib olish narxiga teng"}*/}
                                 {/*       className=' form-control' onChange={soliqsiznarx} id={'soliqszNarx'}/><br/>*/}
@@ -628,7 +629,7 @@ function Taxrirlash({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer,Ichkibolimred,SoliqReducer, users, kgreducer, FirmaReducer, BolimReducer, branchreducer, photoreducer), {
+export default connect((MaxsulotlarRoyxariReducer,ValyutaReducer, Ichkibolimred,SoliqReducer, users, kgreducer, FirmaReducer, BolimReducer, branchreducer, photoreducer), {
     getMaxsulotRuyxati,
     getichki,
     saveMaxsulotRuyxati,

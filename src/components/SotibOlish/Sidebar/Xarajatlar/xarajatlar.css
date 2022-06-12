@@ -1,31 +1,35 @@
-.mahsulot .imgDiv{
+.list .imgDiv{
     display: flex;
     margin-left: 0;
     margin-top: 15px;
     align-items: center;
 }
-.mahsulot h6{
+.list h6{
     margin-left: 10px;
     cursor: pointer;
     transition: 0.2s linear;
 }
-.mahsulot h6:hover{
+.list h6:hover{
     margin-left: 10px;
     cursor: pointer;
     color: #0044FF;
 }
-.mahsulot .xarajatImg{
+.list .xarajatImg{
     cursor: pointer;
     margin-left: 28%;
 }
-.mahsulot ul li{
+.list ul li{
     margin-top: 5px;
 }
-.mahsulot ul{
+.list ul{
     display: block;
     margin-left: 15%;
 }
-.mahsulot .mahsulotXarajat{
+.list .mahsulotXarajat{
     color: #3f3c3c;
     text-decoration: none;
+}
+.xarajat{
+    height: 120px;
+    transition: 0.3s ease;
 }

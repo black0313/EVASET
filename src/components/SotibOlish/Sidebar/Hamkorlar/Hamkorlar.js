@@ -18,14 +18,14 @@ function Hamkorlar({active}) {
             setfill('fill')
             setfontsize('fontsize')
             let style = document.getElementById('hamkor')
-            style.classList.add('hamkor2')
+            style.classList.add('list2')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
             let style = document.getElementById('hamkor')
-            style.classList.remove('hamkor2')
+            style.classList.remove('list2')
         }
     }
     function sidebaractive(){
@@ -62,7 +62,7 @@ function Hamkorlar({active}) {
     const [activeback2,setactiveback2] = useState(false)
 
     return(
-        <div className={'row hamkor'} id={'hamkor'}>
+        <div className={'row list'} id={'hamkor'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
                     <svg className={`sidebar-img ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

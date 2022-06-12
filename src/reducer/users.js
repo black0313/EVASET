@@ -6,6 +6,7 @@ export const slice = createSlice({
     name: 'users',
     initialState: {
         users: [],
+        id:'',
         token: {
             token_name: ''
         },
@@ -55,6 +56,7 @@ export const slice = createSlice({
                 state.linkheader=!state.linkheader
                 state.users = action.payload.object
                 state.businessId=action.payload.object.business.id
+                state.id=action.payload.object.id
                 localStorage.setItem('tokenname',action.payload.message)
 
                     state.users.role.permissions.map(item=>{

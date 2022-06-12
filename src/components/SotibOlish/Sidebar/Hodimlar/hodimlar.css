@@ -1,11 +1,9 @@
-.h h6 {
+.list h6 {
     margin-left: 10px;
     cursor: pointer;
     transition: 0.2s linear;
     margin-top: 2%;
-    font-family: 'Roboto',sans-serif;
-    font-style: normal;
-    font-weight: 500;
+
     font-size: 16px;
     line-height: 24px;
     /* identical to box height, or 150% */
@@ -17,34 +15,31 @@ li{
     /*border: 1px solid red;*/
     margin-top: 5px;
 }
-.h .imgDiv{
+.list .imgDiv{
     display: flex;
     align-items: center;
     margin-top: 15px;
 }
-.h .imgDiv .right{
+.list .imgDiv .right{
     margin-left: 30%;
 }
 .right2{
     transform: rotate(90deg);
 }
-.h .ul li{
+.list .ul li{
     color: black;
     width: 80%;
 }
-.h .imgDiv img{
+.list .imgDiv img{
     margin-left: 3px;
 }
-.h{
-    overflow: hidden;
-    height: 60px;
-    transition: 0.3s ease;
-
-}
-.h22{
+.list22{
     height: 120px;
     transition: 0.3s ease;
 }
+
+
+
 
 
 /*.fff{*/

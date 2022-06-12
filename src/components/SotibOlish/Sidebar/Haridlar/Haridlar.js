@@ -37,7 +37,7 @@ function Mahsulotlar({active}) {
     }
 
     return(
-        <div className={'row haridlar'} id={'haridlar'}>
+        <div className={'row list'} id={'haridlar'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
                     <svg className={`sidebar-img2 ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

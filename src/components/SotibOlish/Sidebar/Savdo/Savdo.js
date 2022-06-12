@@ -21,14 +21,14 @@ function Savdo({active,savdooynasi}) {
             setfill('stroke')
             setfontsize('fontsize')
             let style = document.getElementById('savdo')
-            style.classList.add('mahsulot2')
+            style.classList.add('savdo')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
             let style = document.getElementById('savdo')
-            style.classList.remove('mahsulot2')
+            style.classList.remove('savdo')
         }
     }
 
@@ -48,7 +48,7 @@ function Savdo({active,savdooynasi}) {
 
 
     return(
-        <div className={'row mahsulot'} id={'savdo'}>
+        <div className={'row list'} id={'savdo'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
                     <svg className={`sidebar-img2 ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

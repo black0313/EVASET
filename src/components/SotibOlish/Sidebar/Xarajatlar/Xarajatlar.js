@@ -21,14 +21,14 @@ function Mahsulotlar({active}) {
             setfill('fill')
             setfontsize('fontsize')
             let style = document.getElementById('xarajat')
-            style.classList.add('mahsulot2')
+            style.classList.add('xarajat')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
             let style = document.getElementById('xarajat')
-            style.classList.remove('mahsulot2')
+            style.classList.remove('xarajat')
         }
     }
 
@@ -39,7 +39,7 @@ function Mahsulotlar({active}) {
         }
     }
     return(
-        <div className={'row mahsulot'} id={'xarajat'}>
+        <div className={'row list'} id={'xarajat'}>
             <div className="imgDiv" onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
 

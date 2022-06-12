@@ -55,7 +55,7 @@ function Home({saveusers,users, linkpost,active, changeerror}) {
     function testusers() {
         axios({
             method:'post',
-            url:'http://192.168.43.146:8080/api/auth/login',
+            url:'http://localhost:8080/api/auth/login',
             data:{
                 username:inputlogin,
                 password:inputparol

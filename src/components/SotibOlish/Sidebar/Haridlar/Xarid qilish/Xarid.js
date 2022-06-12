@@ -19,8 +19,11 @@ import MaxsulotlarRoyxariReducer, { getMaxsulotRuyxati } from "../../Maxsulotlar
 import kgreducer, { getkg } from "../../../../../reducer/kgreducer";
 // import { lineHeight } from '@mui/system';
 import PayReducer, { getPay } from "../../../../../reducer/PayReducer";
+import ExchangeStatusR,{getOtkazmaStatus} from "../../../../../reducer/ExchangeStatusR";
 
 function Xarid({
+    ExchangeStatusR,
+    getOtkazmaStatus,
     getXarid,
     getXarid5,
     PayReducer,
@@ -123,11 +126,9 @@ function Xarid({
         input.xaridmiqdori = e.target.value
         let a = { ...input }
         setInput(a)
-        console.log(parseInt(e.target.value))
-        console.log(id)
         mah.map(val => {
-            if (id == val.id) {
-                val.quantity = parseInt(input.xaridmiqdori)
+            if (id == val.productPurchaseId) {
+                val.purchasedQuantity = parseInt(input.xaridmiqdori)
             }
         })
         let b = [...mah]
@@ -136,8 +137,8 @@ function Xarid({
         let d = 0
         let c = 0
         mah.map(item => {
-            d += item.quantity
-            c += (item.quantity * item.buyPrice)
+            d += item.purchasedQuantity
+            c += (item.productPurchaseId * item.buyPrice)
 
         })
         setXisob(d)
@@ -147,40 +148,31 @@ function Xarid({
         input.donanarxi = e.target.value
         let a = { ...input }
         setInput(a)
-
         mah.map(val => {
-            if (id == val.id) {
+            if (id == val.productPurchaseId) {
                 val.buyPrice = input.donanarxi
             }
         })
-        let b = [...mah]
-        setmah(b)
+        let cc = [...mah]
+        setmah(cc)
 
         let d = 0
         let c = 0
         mah.map(item => {
-            d += item.quantity
-            c += (item.quantity * item.buyPrice)
+            d += item.purchasedQuantity
+            c += (item.purchasedQuantity * item.buyPrice)
 
         })
         setXisob(d)
         setjamiXisob(c)
     }
 
-    function avans(e) {
-        input.avans = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
     function donasotish(e, id) {
-        // input.donasotish = e.target.value
         input.donasotish = e.target.value
         let a = { ...input }
         setInput(a)
-
         mah.map(val => {
-            if (id == val.id) {
+            if (id == val.productPurchaseId) {
                 val.salePrice = input.donasotish
             }
         })
@@ -190,8 +182,8 @@ function Xarid({
         let d = 0
         let c = 0
         mah.map(item => {
-            d += item.quantity
-            c += (item.quantity * item.buyPrice)
+            d += item.purchasedQuantity
+            c += (item.purchasedQuantity * item.buyPrice)
 
         })
         setXisob(d)
@@ -264,12 +256,12 @@ function Xarid({
         MaxsulotlarRoyxariReducer.maxsulotlar.filter(val => {
             if (val.name === input.shtrix) {
                 console.log(val.quantity)
-                pushesh({ ...val, quantity: '', buyPrice: '', salePrice: '' })
+                pushesh({name:val.name,purchasedQuantity: '', buyPrice: '', salePrice: '',productPurchaseId:val.id})
                 input.shtrix = ''
                 let a = { ...input }
                 setInput(a)
             } else if (input.shtrix == val.barcode) {
-                pushesh({ ...val, quantity: '', buyPrice: '', salePrice: '' })
+                pushesh({name:val.name,purchasedQuantity: '', buyPrice: '', salePrice: '',productPurchaseId:val.id})
                 input.shtrix = ''
                 let a = { ...input }
                 setInput(a)
@@ -280,7 +272,7 @@ function Xarid({
     }
     function deleteM(ind) {
         mah.map((item, index) => {
-            if (item.id === ind) {
+            if (item.productPurchaseId === ind) {
                 mah.splice(index, 1)
             }
         })
@@ -290,8 +282,8 @@ function Xarid({
         let b = 0
         let c = 0
         mah.map(item => {
-            b += item.quantity
-            c += (item.quantity * item.buyPrice)
+            b += item.purchasedQuantity
+            c += (item.purchasedQuantity * item.buyPrice)
 
         })
         setXisob(b)
@@ -381,7 +373,7 @@ function Xarid({
     function pushesh(val) {
         let d = false
         mah.map(item => {
-            if (item.id === val.id) {
+            if (item.productPurchaseId === val.productPurchaseId) {
                 d = true
                 toast.warn('Bu mahsulot jadvalda bor!')
             }
@@ -393,8 +385,8 @@ function Xarid({
         let a = 0
         let c = 0
         mah.map(item => {
-            a += item.quantity
-            c += (item.quantity * item.buyPrice)
+            a += item.purchasedQuantity
+            c += (item.purchasedQuantity * item.buyPrice)
         })
         setXisob(a)
         setjamiXisob(c)
@@ -429,42 +421,37 @@ function Xarid({
 
     }
     function saqla() {
-        if ((input.diller && input.eslatma && input.baza && input.xaridsanasi && input.qisqaeslatma && input.yetkazibberishnarxi2 && input.xaridmiqdori && input.donanarxi && input.donasotish)) {
+        console.log('e;jf')
+       {
             if (match.params.id === undefined) {
-                mah.map(item => {
                     saveXarid(
                         {
                             dealerId: input.diller,
-                            seller: 2,
+                            seller: users.id,
                             purchaseStatusId: input.xaridstatusi,
                             paymentStatusId: input.eslatma,
                             branchId: input.baza,
-                            buyPrice: input.donanarxi,
-                            date: Date.now(),
+                            date: input.paidon,
                             avans:input.avans,
+                            totalSum:jamixisob,
                             description: input.qisqaeslatma,
-                            // buyPrice: input.sot
                             deliveryPrice : input.yetkazibberishnarxi2,
-                            purchaseProductsDto: [
-                                {
-                                    purchasedQuantity: item.quantity,
-                                    productPurchaseId: item.id
-                                }
-                            ]
+                            purchaseProductsDto: mah
                         }
                     )
-                })
+
             }
             else {
                 mah.map(item => {
                     editXarid(
                         {
                             dealerId: input.diller,
-                            seller: 2,
+                            seller: users.businessId,
                             purchaseStatusId: input.xaridstatusi,
                             paymentStatusId: input.eslatma,
                             branchId: input.baza,
-                            date: Date.now(),
+                            date: input.paidon,
+                            totalSum:jamixisob,
                             description: input.qisqaeslatma,
                             deliveryPrice: input.yetkazibberishnarxi2,
                             purchaseProductsDto: [
@@ -480,24 +467,24 @@ function Xarid({
             }
             setmah([])
         }
-        else {
-            setPlaceholders(
-                {
-                    qisqaeslatmaPlaceholder: "qisqa eslatma kiriting...",
-                    xaridMiqdoriPlaceholder: "xarid miqdorini kiriting...",
-                    donaNarxiPlaceholder: "ma'lumot kiriting...",
-                    donaSotishNarxiPlaceholder: "ma'lumot kiritilmadi...",
-                    tolovSummasiPlaceholder: "",
-                    yetkazibBerishNarxiPlaceholder: "ma'lumot kiritilmadi...",
-                    dillerSelectStyle: "Diller tanlang!",
-                    xaridStatusiSelectStyle: "Xarid statusini tanlang!",
-                    tolovUsuliSelectStyle: "To'lov usulini tanlang!",
-                    tolovStatusiSelectStyle: "To'lov statusini tanlang!",
-                    bazaSelectStyle: "Baza tanlang!",
-                    xaridSanasiSelectStyle: "Xarid sanasini tanlang!",
-                }
-            )
-        }
+        // else {
+        //     setPlaceholders(
+        //         {
+        //             qisqaeslatmaPlaceholder: "qisqa eslatma kiriting...",
+        //             xaridMiqdoriPlaceholder: "xarid miqdorini kiriting...",
+        //             donaNarxiPlaceholder: "ma'lumot kiriting...",
+        //             donaSotishNarxiPlaceholder: "ma'lumot kiritilmadi...",
+        //             tolovSummasiPlaceholder: "",
+        //             yetkazibBerishNarxiPlaceholder: "ma'lumot kiritilmadi...",
+        //             dillerSelectStyle: "Diller tanlang!",
+        //             xaridStatusiSelectStyle: "Xarid statusini tanlang!",
+        //             tolovUsuliSelectStyle: "To'lov usulini tanlang!",
+        //             tolovStatusiSelectStyle: "To'lov statusini tanlang!",
+        //             bazaSelectStyle: "Baza tanlang!",
+        //             xaridSanasiSelectStyle: "Xarid sanasini tanlang!",
+        //         }
+        //     )
+        // }
     }
 
     function savedealer() {
@@ -506,7 +493,7 @@ function Xarid({
             phoneNumber: input.tel,
             telegram: input.telegram,
             supplierType: '',
-            businessId: 1,
+            businessId: users.businessId,
         })
         input.ismi = ''
         input.ismi = ''
@@ -519,6 +506,7 @@ function Xarid({
     useEffect(() => {
         getTaminot(users.businessId)
         getMaxsulotRuyxati(users.businessId)
+        getOtkazmaStatus()
         getkg(users.businessId)
         editX()
     }, [TaminotReducer.current])
@@ -600,11 +588,9 @@ function Xarid({
                             <select name="" value={input.xaridstatusi} onChange={xaridstatusi}
                                 className={'form-control'}
                                 id={'status'}>
-                                <option value="1">Tanlash</option>
-                                {/*TaminotReducer.taminot.map(item =>*/}
-                                {/*input.diller==''?input.diller = item.id*/}
-                                {/*:<option value={item.id}>{item.name}</option>)*/}
-                                <option value="2">Qabul qilindi</option>
+                                {
+                                    ExchangeStatusR.exchangestatus.map(item=> <option value={item.id}>{item.status}</option>)
+                                }
                             </select>
                             {
                                 input.xaridstatusi ? "" :
@@ -701,11 +687,11 @@ function Xarid({
                                     <tbody>
                                         {
                                             mah
-                                                .map(item => <tr key={item.id}>
+                                                .map(item => <tr key={item.productPurchaseId}>
                                                     <td><h5>{item.name}</h5></td>
                                                     <td>
                                                         <input type="number"
-                                                            value={item.quantity} onChange={(event) => xaridmiqdori(event, item.id)}
+                                                            value={item.purchasedQuantity} onChange={(event) => xaridmiqdori(event, item.productPurchaseId)}
                                                             placeholder={placeholders.xaridMiqdoriPlaceholder}
                                                             id="xaridMiqdor" className={'form-control'} />
 
@@ -718,21 +704,21 @@ function Xarid({
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="number" value={input.donanarxi} id='sotibOlishInput'
-                                                            onChange={(event) => donanarxi(event, item.id)}
+                                                        <input type="number" value={item.buyPrice} id='sotibOlishInput'
+                                                            onChange={(event) => donanarxi(event, item.productPurchaseId)}
                                                             placeholder={placeholders.donaNarxiPlaceholder} className={'form-control'} />
                                                     </td>
 
                                                     <td>
-                                                        <h5>{item.buyPrice * item.quantity}</h5>
+                                                        <h5>{item.buyPrice * item.purchasedQuantity}</h5>
                                                     </td>
                                                     <td>
                                                         <input type="number" value={item.salePrice} id='sotishNarxiInput'
-                                                            onChange={(event) => donasotish(event, item.id)}
+                                                            onChange={(event) => donasotish(event, item.productPurchaseId)}
                                                             className={'form-control'} placeholder={placeholders.donaSotishNarxiPlaceholder} />
                                                     </td>
                                                     <td>
-                                                        <button onClick={() => deleteM(item.id)}
+                                                        <button onClick={() => deleteM(item.productPurchaseId)}
                                                             className={'btn btn-danger'}>x
                                                         </button>
                                                     </td>
@@ -846,8 +832,9 @@ function Xarid({
     )
 }
 
-export default connect((MaxsulotlarRoyxariReducer, PayReducer, XaridReducer, kgreducer, users, TaminotReducer, branchreducer, tolovreducer), {
+export default connect((MaxsulotlarRoyxariReducer, PayReducer, XaridReducer, kgreducer, users, TaminotReducer, branchreducer, tolovreducer,ExchangeStatusR), {
     getMaxsulotRuyxati,
+    getOtkazmaStatus,
     getXarid,
     getkg,
     getXarid2,

@@ -18,14 +18,14 @@ function Hodimlar({active,activemedia}) {
             setfill('stroke')
             setfontsize('fontsize')
             let style = document.getElementById('h')
-            style.classList.add('h22')
+            style.classList.add('list22')
         }
         else{
             setClasss('')
             setfill('')
             setfontsize('')
             let style = document.getElementById('h')
-            style.classList.remove('h22')
+            style.classList.remove('list22')
         }
 
     }
@@ -38,9 +38,8 @@ function Hodimlar({active,activemedia}) {
 
 
     return(
-        <div className={'row h'} id={'h'}>
-
-            {/*<div className="col-md-6">*/}
+            <div className={'row list'} id={'h'}>
+                {/*<div className="col-md-6">*/}
                 <div className="imgDiv"    onClick={toggle}>
                     <div className={'d-flex align-items-center'}>
                         <svg    className={`sidebar-img2 ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,9 +55,7 @@ function Hodimlar({active,activemedia}) {
                     </svg>
 
                 </div>
-
-
-                    <div className={'hodimul'}>
+                <div className={'hodimul'}>
                     <ul>
                         <li onClick={sidebaractive}><Link  to={'/headerthird/hodimlarruyxati'} className={"lll li-text"}>Xodimlar ruyxati</Link></li>
                         <li onClick={sidebaractive}><Link  to={'/headerthird/lavozimlar'} className={"lll li-text"}>Lavozimlar</Link></li>
@@ -69,7 +66,6 @@ function Hodimlar({active,activemedia}) {
 
 
             </div>
-        // </div>
     )
 }
 export default connect(({functionreducer:{func}})=>({func}),{active,activemedia}) (Hodimlar)

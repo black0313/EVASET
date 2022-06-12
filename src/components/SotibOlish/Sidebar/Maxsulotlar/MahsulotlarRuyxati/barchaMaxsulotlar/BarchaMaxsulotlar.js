@@ -248,10 +248,14 @@ function BarchaMaxsulotlar({
                                                     baza ? <td>{item.branch?.name}</td> : ''
                                                 }
                                                 {
-                                                    buy ? <td>{item.buyPrice}</td> : ''
+                                                    buy ? <td>
+                                                        {Math.round((item.buyPrice+Number.EPSILON)*100)/100}
+                                                    </td> : ''
                                                 }
                                                 {
-                                                    sell ? <td>{item.salePrice}</td> : ''
+                                                    sell ? <td>
+                                                        {Math.round((item.salePrice+Number.EPSILON)*100)/100}
+                                                    </td> : ''
                                                 }
                                                 {
                                                     qolgan ? <td>{item.quantity}</td> : ''
