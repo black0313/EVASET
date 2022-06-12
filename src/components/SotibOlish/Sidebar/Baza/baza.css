@@ -1,20 +1,4 @@
-.list .imgDiv{
-    display: flex;
-    margin-left: 0;
-    margin-top: 15px;
-    align-items: center;
-}
-.list h6{
-    margin-left: 10px;
-    cursor: pointer;
-    transition: 0.2s linear;
-}
-.list h6:hover{
-    margin-left: 10px;
-    cursor: pointer;
-    /*border-bottom: 2px solid gray;*/
-    color: #0044FF;
-}
+
 .list .bazaImg{
     cursor: pointer;
     width: 24px;

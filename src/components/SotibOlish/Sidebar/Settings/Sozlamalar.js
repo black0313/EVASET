@@ -39,7 +39,7 @@ function Sozlamalar({active}) {
         }
     }
     return(
-        <div className={'row mahsulot'} id={'setting'} onClick={toggle}>
+        <div className={'row list'} id={'setting'} onClick={toggle}>
             <div className="imgDiv" >
                 <div className={'d-flex align-items-center'}>
 
