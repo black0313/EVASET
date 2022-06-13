@@ -6,17 +6,22 @@ const slice = createSlice({
     name: 'xodimlar',
     initialState: {
         xodimlar: [],
-        current:0
+        oneXodim:{},
+        current:true
     },
     reducers: {
         getFrom: (state, action) => {
             state.xodimlar = action.payload.object
-
+        },
+        getFromID: (state, action) => {
+            state.oneXodim = action.payload.object
+            console.log('1')
+            state.current=!state.current
         },
         savefrom: (state, action) => {
             state.xodimlar.unshift(action.payload)
             toast.success('Xodim saqlandi')
-            state.current=state.current+1
+            state.current=!state.current
         },
         editfrom: (state, action) => {
             state.xodimlar.map((item, index) => {
@@ -25,11 +30,11 @@ const slice = createSlice({
                 }
             })
             toast.success('Xodim tahrirlandi')
-            state.current+=1
+            state.current=!state.current
         },
         deletefrom: (state, action) => {
             toast.success('Xodim o`chirildi')
-            state.current+=1
+            state.current=!state.current
         }
     }
 });
@@ -38,6 +43,12 @@ export const getXodim = (data) => apiCall({
     method: 'get',
     data,
     onSuccess: slice.actions.getFrom.type
+});
+export const getXodimID = (data) => apiCall({
+    url: '/user/'+data,
+    method: 'get',
+    data,
+    onSuccess: slice.actions.getFromID.type
 });
 
 export const saveXodim = (data) => apiCall({

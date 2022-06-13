@@ -26,14 +26,15 @@ import Pagination4 from "./Pagination4";
 import users,{savdooynasi} from "../../../reducer/users";
 import SavdoQoshishReducer ,{getSavdolar} from "../Sidebar/Savdo/reducer/SavdoQoshishReducer";
 import functionreducer,{active,activSavdo} from "../../../reducer/functionreducer";
-import XaridReducer,{getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
+import XaridReducer,{getXarid,getXaridCost} from "../Sidebar/Haridlar/reducer/XaridReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import TaminotReducer,{getTaminot} from "../Sidebar/Hamkorlar/reducer/TaminotReducer";
-function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
+function Third({display,users,getXaridCost, SavdoQoshishReducer,TaminotReducer,getTaminot ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
         getXarid(users.businessId)
+        getXaridCost(users.businessId)
         getTaminot(users.businessId)
 
     },[])
@@ -170,7 +171,7 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
 
     const jami = [
         {
-            number: XaridReducer.xaridlarjami,
+            number: XaridReducer.xaridlarcost.cost,
             foiz: "+10.23%",
             text: 'JAMI XARIDLAR',
             svg: <img className={'imgsvg'} src={shopping} alt={'shopping'}/>,
@@ -184,7 +185,7 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
             svgfoiz: <img src={jami2} alt={'jami2'}/>
         },
         {
-            number: TaminotReducer.taminotjami,
+            number: XaridReducer.xaridlarcost.debt,
             foiz: "+10.23%",
             text: 'BOZORDAN QARZIM',
             svg: <img className={'imgsvg'} src={bozordanqarz} alt={'bozordanqarz'}/>,
@@ -572,4 +573,4 @@ function Third({display,users,SavdoQoshishReducer,TaminotReducer,getTaminot ,get
 
 
 export default connect((SavdoQoshishReducer,TaminotReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),
-    {getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,getXarid,getTaminot}) (Third);
+    {getMaxsulotRuyxati,getXaridCost,getSavdolar,savdooynasi,active,activSavdo,getXarid,getTaminot}) (Third);

@@ -5,7 +5,7 @@ import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {useState, useEffect} from "react";
 import {connect} from "react-redux";
 import LavozimReducer, {getLavozim, saveLavozim} from "../../reducer/LavozimReducer";
-import XodimReducer, {saveXodim, getXodim, editXodim} from "../../reducer/XodimReducer";
+import XodimReducer, {saveXodim, getXodim, editXodim,getXodimID} from "../../reducer/XodimReducer";
 import {Link} from 'react-router-dom'
 import users from "../../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer";
@@ -18,6 +18,7 @@ function Taxrirlash({
                         saveXodim,
                         LavozimReducer,
                         getXodim,
+                        getXodimID,
                         XodimReducer,
                         users,
                         match,
@@ -29,7 +30,9 @@ function Taxrirlash({
     useEffect(() => {
         getLavozim(users.businessId)
         getbranch(users.businessId)
-        editx()
+        if (match.params.id !== undefined) {
+            getXodimID(match.params.id)
+        }
     }, [])
 
     const [input, setInput] = useState(
@@ -60,32 +63,26 @@ function Taxrirlash({
         let a = {...input}
         setInput(a)
     }
-
-
     function onchangefirstName(event) {
         input.firstName = event.target.value
         let a = {...input}
         setInput(a)
     }
-
     function onchangelastName(event) {
         input.lastName = event.target.value
         let a = {...input}
         setInput(a)
     }
-
     function onchangeroleName(event) {
         input.roleName = (event.target.value)
         let a = {...input}
         setInput(a)
     }
-
     function onchangeparol(event) {
         input.parol = event.target.value
         let a = {...input}
         setInput(a)
     }
-
     function onchangeparolTakror(event) {
         input.parolTakror = event.target.value
         let a = {...input}
@@ -94,29 +91,23 @@ function Taxrirlash({
 
 
     function editx() {
-        if (match.params.id !== undefined) {
-            getXodim(users.businessId)
-        }
-        XodimReducer.xodimlar.map(item => {
-            if (item.id == match.params.id) {
-                input.username = item.username
-                input.firstName = item.firstName
-                input.lastName = item.lastName
-                input.roleName = item.role.id
-                input.photoid = item.photoId
-                input.selectvalue = item.branches.map(({
-                                                           name: label,
-                                                           id: value, ...rest
-                                                       }) => ({label, value, ...rest}));
-                let a = {...input}
-                setInput(a)
-            }
-        })
+        console.log('2');
+        input.username = XodimReducer.oneXodim.username
+        input.firstName = XodimReducer.oneXodim.firstName
+        input.lastName = XodimReducer.oneXodim.lastName
+        input.roleName = XodimReducer.oneXodim.role?.id
+        input.photoid = XodimReducer.oneXodim.photoId
+        input.selectvalue = XodimReducer.oneXodim.branches?.map(({
+                                                                     name: label,
+                                                                     id: value, ...rest
+                                                                 }) => ({label, value, ...rest}));
+        let a = {...input}
+        setInput(a)
     }
 
     function saqla() {
-
         if (match.params.id !== undefined) {
+            changeselect(input.selectvalue)
             editXodim({
                 firstName: input.firstName,
                 lastName: input.lastName,
@@ -166,6 +157,7 @@ function Taxrirlash({
         } else {
             alert('= = - - > ERROR PAROL MOS EMAS')
         }
+        match.params.id = undefined
     }
 
     const [active, setActive] = useState(false)
@@ -187,7 +179,8 @@ function Taxrirlash({
 
     useEffect(() => {
         getLavozim(users.businessId)
-    }, [])
+        editx()
+    }, [XodimReducer.current])
 
     return (
         <div className={' ht'}>
@@ -286,5 +279,6 @@ export default connect((LavozimReducer, XodimReducer, users, branchreducer), {
     saveXodim,
     getXodim,
     editXodim,
-    getbranch
+    getbranch,
+    getXodimID
 })(Taxrirlash)

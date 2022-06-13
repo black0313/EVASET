@@ -219,6 +219,11 @@ li{
     cursor: pointer;
     color: #0044FF;
 }
+
+.list ul{
+    display: block;
+    margin-left: 15%;
+}
 .list .hamkorImg{
     cursor: pointer;
     margin-left: 24%;

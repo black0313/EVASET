@@ -59,7 +59,7 @@ function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActive
                 </div>
                 <div className="two ">
                     <div className={'img2img3'}>
-                        <select name="" id="" onChange={valyutactiver} value={ValyutaReducer.valyutactiveID} >
+                        <select name="" id="" className={'form-select me-2'} onChange={valyutactiver} value={ValyutaReducer.valyutactiveID} >
                             {
                                     ValyutaReducer.valyuta.map(item=>
                                         <option value={item.id}>{item.name}</option>)

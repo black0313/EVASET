@@ -38,7 +38,7 @@ function Hodimlar({active,activemedia}) {
 
 
     return(
-            <div className={'row list'} id={'h'}>
+            <div className={'row list active'} id={'h'}>
                 {/*<div className="col-md-6">*/}
                 <div className="imgDiv"    onClick={toggle}>
                     <div className={'d-flex align-items-center'}>

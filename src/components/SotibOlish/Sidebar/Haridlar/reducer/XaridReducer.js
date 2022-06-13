@@ -9,32 +9,16 @@ const slice = createSlice({
         xaridlar: [],
         current:false,
         xaridlarjami:0,
-        miqdor:0,
-        uzcard:0,
-        naqd:0,
-        humo:0,
+        xaridsumma:0,
+        xaridqarz:0,
+        xaridlarcost:{}
     },
     reducers: {
         getFrom: (state, action) => {
             state.xaridlar = action.payload.object
-            let amount=0
-            let uzcard=0
-            let naqd=0
-            let humo=0
-            let miqdor=0
-            action.payload.object.map(item=>{
-                    amount+=item.totalSum
-                item.purchaseProductList.map(item=>{
-                    miqdor+=item.purchasedQuantity
-                })
-
-                },
-            )
-            state.xaridlarjami=amount
-            state.miqdor=miqdor
-            state.uzcard=uzcard
-            state.humo=humo
-            state.naqd=naqd
+        },
+        getFromcost: (state, action) => {
+            state.xaridlarcost = action.payload.object
         },
         savefrom: (state,action) => {
             state.current=!state.current
@@ -61,6 +45,12 @@ export const getXarid5=(data)=>apiCall({
     url: '/purchase/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
+});
+
+export const getXaridCost=(data)=>apiCall({
+    url: '/purchase/get-cost-by-business/'+data,
+    method:'get',
+    onSuccess: slice.actions.getFromcost.type
 });
 
 export const getXarid2=(data)=>apiCall({
