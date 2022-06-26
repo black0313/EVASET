@@ -69,7 +69,7 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
         saveXarajatlarTurlari(
             {
                 title: input.nomi,
-                branchId: 1
+                branchId: users.users.branches[0].id
             }
         )
         console.log(xarajatturlari);

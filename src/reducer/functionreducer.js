@@ -31,7 +31,6 @@ const slice1 =createSlice({
                 }
 
         },
-
         activSavdo:(state)=>{
             state.func.actives = false;
             if(state.func.class2 === 'homepage2'){
@@ -46,17 +45,18 @@ const slice1 =createSlice({
                     state.func.class3='sidebar'
                     state.func.class4="media2"
                 }
-        }
-        ,
+        },
         activemedia:(state,action)=>{
             state.func.class4='media2'
             state.func.class2='homepagetwo'
             state.func.class1='homepageone'
             state.func.class3='sidebar'
-        }
+        },
+        activetoggle:(state,action)=>{
 
+        }
     }
 })
 
-export const {  active,activemedia,activSavdo} = slice1.actions
+export const {  active,activemedia,activSavdo,activetoggle} = slice1.actions
 export default slice1.reducer

@@ -119,7 +119,7 @@ function FoydaZarar({
                             MaxsulotlarRoyxariReducer.maxsulotlar.map((item,index) => <tr key={item.id}>
                                 <td>{index+1}</td>
                                 <td>{item.name}</td>
-                                <td>{item.buyPrice}</td>
+                                <td>{Math.round((item.salePrice+Number.EPSILON)*100)/100}</td>
                                 <td>{item.salePrice}</td>
                                 <td>{item.salePrice - item.buyPrice}</td>
                                 <td>{item.tax}</td>

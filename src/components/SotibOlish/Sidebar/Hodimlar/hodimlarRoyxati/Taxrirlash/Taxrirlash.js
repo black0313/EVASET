@@ -142,7 +142,7 @@ function Taxrirlash({
                     lastName: input.lastName,
                     username: input.username,
                     password: parseInt(input.parolTakror),
-                    roleId: input.roleName === '' ? LavozimReducer.lavozimlar[0].id : input.roleName,
+                    roleId: input.roleName === '' || input.roleName === undefined ? LavozimReducer.lavozimlar[0].id : input.roleName,
                     branchId: input.branchid,
                     businessId: users.businessId,
                     enabled: true,
@@ -235,6 +235,7 @@ function Taxrirlash({
                         Log / Parol
                     </ModalHeader>
                     <ModalBody>
+                        {console.log(input.roleName)}
                         <label htmlFor={'log3'} className={'mt-3'}>Parol</label>
                         <input type="text" onChange={onchangeparol} value={input.parol} placeholder={input.parolplace}
                                className={'form-control'} id={'log3'}/>

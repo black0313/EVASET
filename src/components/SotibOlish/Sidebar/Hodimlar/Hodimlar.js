@@ -3,14 +3,15 @@ import {Link,Switch,Route} from 'react-router-dom'
 import {useState} from 'react'
 import right from '../../../../img/arrow-right2.svg'
 import {connect} from "react-redux";
-import {active,activemedia} from "../../../../reducer/functionreducer";
+import {active,activemedia,activetoggle} from "../../../../reducer/functionreducer";
 
-function Hodimlar({active,activemedia}) {
+function Hodimlar({active,activemedia,activetoggle}) {
 
     const [active2,setActive] = useState(false);
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
+
 
     function toggle() {
         if(classs===''){
@@ -68,4 +69,4 @@ function Hodimlar({active,activemedia}) {
             </div>
     )
 }
-export default connect(({functionreducer:{func}})=>({func}),{active,activemedia}) (Hodimlar)
+export default connect(({functionreducer:{func}})=>({func}),{active,activemedia,activetoggle}) (Hodimlar)

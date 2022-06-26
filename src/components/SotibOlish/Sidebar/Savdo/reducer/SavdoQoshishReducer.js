@@ -59,8 +59,8 @@ const slice = createSlice({
     }
 });
 
-export const getSavdolar=()=>apiCall({
-    url: '/trade/get-by-business/1',
+export const getSavdolar=(data)=>apiCall({
+    url: '/trade/get-by-business/'+data,
     method:'get',
     onSuccess: slice.actions.getFrom.type
 });

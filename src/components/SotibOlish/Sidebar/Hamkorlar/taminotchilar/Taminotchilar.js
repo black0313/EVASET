@@ -122,18 +122,28 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
     let [jamixisob, setjamixisob] = useState(0)
 
     const [qarz, setqarz] = useState(false)
+    const [qarzID,setqarzID] = useState('')
+
+
+
+    function debt2(id){
+        setqarzID(id)
+        toggle3()
+    }
+
     function toggle3() {
         setqarz(!qarz)
     }
 
-    function saqlaQarz(item) {
+    function saqlaQarz() {
         qarzuzishTaminot({
             repayment: input.qarzuzish,
-            id: item.id
+            id: qarzID
         })
         input.qarzuzish = ''
         let a = { ...input }
         setInput(a)
+        setqarzID('')
         toggle3()
     }
 
@@ -373,7 +383,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                                                 </button> : ''
                                                         }
 
-                                                        <button className={'btnB2'} onClick={toggle3}>Qarz uzish</button>
+                                                        <button className={'btnB2'} onClick={()=>debt2(item.id)}>Qarz uzish</button>
 
                                                         {/*QARZ UZISH*/}
                                                         <Modal isOpen={qarz} toggle={toggle3}>
@@ -385,7 +395,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                                                 <input type="text" className={'form-control'} value={input.qarzuzish} onChange={qarzuzish} />
                                                             </ModalBody>
                                                             <ModalFooter>
-                                                                <button className={'btn btn-outline-primary'} onClick={() => saqlaQarz(item)}>Saqlash</button>
+                                                                <button className={'btn btn-outline-primary'} onClick={saqlaQarz}>Saqlash</button>
                                                                 <button className={'btn btn-outline-primary'} onClick={toggle3}>Chiqish</button>
                                                             </ModalFooter>
                                                         </Modal>

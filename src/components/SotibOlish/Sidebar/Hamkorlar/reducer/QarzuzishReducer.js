@@ -21,7 +21,7 @@ const slice = createSlice({
 });
 
 export const qarzuzishCustomer=(data)=>apiCall({
-    url: '/customer/repayment/1',
+    url: '/customer/repayment/'+data,
     method:'post',
     data,
     onSuccess: slice.actions.savefrom.type

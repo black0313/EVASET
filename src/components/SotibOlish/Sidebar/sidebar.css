@@ -198,9 +198,9 @@ li{
     position: relative;
 }
 
-.list{
+.list {
     overflow: hidden;
-    height: 60px;
+    height: 50px;
     transition: 0.3s ease;
 }
 .list .imgDiv{

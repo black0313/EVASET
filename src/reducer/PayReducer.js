@@ -7,7 +7,8 @@ const slice = createSlice({
     initialState: {
         paymethod: [],
         paymethod2:{},
-        current:false
+        current:false,
+
     },
     reducers: {
         getFrom: (state, action) => {

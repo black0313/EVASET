@@ -95,7 +95,8 @@ function Taxrirlash({   ValyutaReducer,
             bolimnomi:'',
             ichkibolim: '',
             selectvalue:[],
-            photoID:[]
+            photoID:[],
+            changedate:''
         }
     )
 
@@ -118,6 +119,7 @@ function Taxrirlash({   ValyutaReducer,
         input.muddatmaxsulot = e.target.value
         let a = {...input}
         setInput(a)
+        console.log(input.muddatmaxsulot)
     }
 
     function shtrixkod(e) {
@@ -264,7 +266,7 @@ function Taxrirlash({   ValyutaReducer,
                 input.photoID = item.photo?.id
                 input.ogohmiqdor = item.minQuantity
                 input.miqdorMaxsulot = item.quantity
-                input.muddatmaxsulot = item.expireDate
+                input.changedate= item.expireDate
                 input.selectvalue = [item.branch].map(({
                                                            name: label,
                                                            id: value, ...rest
@@ -273,8 +275,25 @@ function Taxrirlash({   ValyutaReducer,
                 setInput(a)
             }
         })
+        changedates()
         console.log(input.selectvalue)
+        console.log(input.muddatmaxsulot)
     }
+
+    function changedates(){
+        let a = input.changedate
+        let b = new Date(a)
+        let day = b.getDay()+1
+        let month = b.getMonth()+1
+        let year = b.getFullYear()
+
+        let date = year+"/"+month+"/"+day
+        console.log(date)
+        input.muddatmaxsulot =date
+        let d = {...input}
+        setInput(d)
+    }
+
 
     function saqla() {
         if (input.mahsulotnomi !== "" && input.shtrixkod !== ""  && input.miqdorMaxsulot !== "" &&   input.foydafoiz !== "" && input.sotibolishnarxi !== "") {
@@ -287,13 +306,13 @@ function Taxrirlash({   ValyutaReducer,
                     brandId: input.ferma,
                     categoryId: input.bolim,
                     measurementId: input.ulcovbirligi,
-                    photoIds: input.photoID,
+                    photoIds: [input.photoID],
                     minQuantity: input.ogohmiqdor,
                     buyPrice: input.sotibolishnarxi,
                     salePrice: input.sotishnarxi,
                     tax: input.sotibolishnarxi,
                     branchId: input.bazalar,
-                    expireDate: null,
+                    expireDate: input.muddatmaxsulot,
                     dueDate: null,
                     id: match.params.id,
                 })
@@ -358,7 +377,6 @@ function Taxrirlash({   ValyutaReducer,
         input.ulcovqisqanomi = ''
         input.ulcovunlikasr = ''
     }
-
     function saqlaBolim(){
         saveBolim({
             name: input.bolimnomi,
@@ -366,7 +384,6 @@ function Taxrirlash({   ValyutaReducer,
         })
         toggle4()
     }
-
     function saqlabrand() {
         saveFirma({
             name: input.brandnomi,
@@ -494,8 +511,8 @@ function Taxrirlash({   ValyutaReducer,
                                onChange={miqdorMaxsulot}/>
 
                         <label htmlFor="bazalar" className={'mt-3 '}>Bazalar</label>
-
-                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'} defaultValue={input.selectvalue} onChange={changeselect} placeholder={'Tanlang'}/>
+                        {console.log(input.selectvalue)}
+                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'} defaultValue={input.selectvalue} onChange={changeselect}/>
                     </div>
 
                 </div>

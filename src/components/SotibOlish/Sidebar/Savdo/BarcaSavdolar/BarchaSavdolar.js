@@ -21,8 +21,9 @@ import SavdoQoshishReducer, {
 import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import {Modal, ModalBody, ModalFooter} from "reactstrap";
+import ValyutaReducer from "../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
 
-function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,TaminotReducer,SavdoQoshishReducer,getSavdolar,getSavdolar2,users,getbranch,ditSavdolar,saveSavdolar}) {
+function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreducer,getTaminot,TaminotReducer,SavdoQoshishReducer,getSavdolar,getSavdolar2,users,getbranch,ditSavdolar,saveSavdolar}) {
 
     const [input,setInput] = useState(
         {
@@ -82,7 +83,7 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
         getTaminot(users.businessId)
         ommabop()
         // getSavdolar3(users.businessId)
-    },[])
+    },[ValyutaReducer.current])
 
     const [active,setActive] = useState(false)
     const [selectvalue,setSelectvalue] =useState('')
@@ -298,4 +299,4 @@ function BarchaSavdolar({getSavdolar3,deleteSavdolar,branchreducer,getTaminot,Ta
         </div>
     )
 }
-export default connect((TaminotReducer,SavdoQoshishReducer,users,branchreducer),{getSavdolar3,getbranch,getSavdolar,getTaminot,getSavdolar2,saveSavdolar,editSavdolar,deleteSavdolar}) (BarchaSavdolar)
+export default connect((TaminotReducer,SavdoQoshishReducer,users,branchreducer,ValyutaReducer),{getSavdolar3,getbranch,getSavdolar,getTaminot,getSavdolar2,saveSavdolar,editSavdolar,deleteSavdolar}) (BarchaSavdolar)

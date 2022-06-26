@@ -71,7 +71,7 @@ function SavdoOynasi({
             soliqbnnarxi: '',
             sotibolishnarx: '',
             sotishnarxi: '',
-            branch: '',
+            branch: users.users.branches[0].id,
             brand: '',
             narxi: '',
             chegirmatartib: '',
@@ -93,7 +93,8 @@ function SavdoOynasi({
             tulovmiqdori2: '',
             tulovturi2: '',
             inputCounter: 0,
-            valyutaa:''
+            valyutaa:'',
+            selectdisabled:false,
         }
     )
 
@@ -136,7 +137,6 @@ function SavdoOynasi({
         let a = { ...input }
         setInput(a)
     }
-
     function inputCounter(e) {
         input.inputCounter = e.target.value
         let a = { ...input }
@@ -222,7 +222,7 @@ function SavdoOynasi({
     }
     function qarzamount(e) {
         console.log(e.target.value)
-        input.qarzamount = e.target.value
+        input.qarzamount = parseInt(e.target.value)
         let a = { ...input }
         setInput(a)
 
@@ -294,15 +294,15 @@ function SavdoOynasi({
     }
     function setbranch(e) {
         input.branch = e.target.value
-        let a = { ...input }
+        let a = { ...input}
         setInput(a)
-        if (input.branch !== 'barchasi') {
+        if (input.branch===''){
+            getMaxsulotRuyxatibranch(users.users.branches[0].id)
+        }
+        else{
             getMaxsulotRuyxatibranch(input.branch)
         }
-        else {
-            getMaxsulotRuyxati(users.businessId)
 
-        }
     }
     function setbrand(e) {
         input.brand = e.target.value
@@ -316,20 +316,16 @@ function SavdoOynasi({
 
         }
     }
-
     const [arr1, setarr1] = useState([])
     const [lastTradeActive, setlastTradeActive] = useState(false)
     const [printactive, setprintactive] = useState(false)
-
     function printtoggle() {
         setprintactive(!printactive)
     }
     function toggle4() {
         setlastTradeActive(!lastTradeActive)
     }
-
     const [openModal, setOpenModal] = useState(false)
-
     function toggle5() {
         setInput(
             {
@@ -363,24 +359,19 @@ function SavdoOynasi({
 
         setOpenModal(!openModal)
     }
-
     const [active, setActive] = useState(false)
     const [active2, setActive2] = useState(false)
     const [active3, setActive3] = useState(false)
     const [openCalc, setOpenCalc] = useState(false)
     const [pushmah, setPushmah] = useState('')
     const [pushbool, setPushbool] = useState(false)
-
     function openCalcul() {
         setOpenCalc(!openCalc)
     }
-
     let [xisob, setxisob] = useState(0)
     let [jamixisob, setjamixisob] = useState(0)
-
     const [ushlabtur, setushlabtur] = useState([])
     const [countId, setcountId] = useState(1)
-
     const [ushla2, setushla2] = useState(false)
     const [ushlanumber, setushlanumber] = useState('')
     function toggle8() {
@@ -429,7 +420,16 @@ function SavdoOynasi({
         setjamixisob(0)
 
     }
-
+    function xisobkitob(){
+        let a = 0
+        let c = 0
+        arr1.map(item => {
+            a += item.tradedQuantity
+            c += (item.tradedQuantity *  Math.round(((item.salePrice+Number.EPSILON)*100)/100))
+        })
+        setxisob(a)
+        setjamixisob(c)
+    }
 
     function savdooynakochirish(id) {
         ushlabtur.filter(val => {
@@ -463,33 +463,26 @@ function SavdoOynasi({
             setCount(val.id)
         }
         else {
-            arr1.push({ ...val, counter: 1, disabled: false, active: false })
+            arr1.push({ ...val, productTradeId:val.id, tradedQuantity: 1, disabled: false, active: false })
             order = false
         }
         let b = [...arr1]
         setarr1(b)
 
-        let a = 0
-        let c = 0
-        arr1.map(item => {
-            a += item.counter
-            c += (item.counter * item.salePrice)
-        })
-        setxisob(a)
-        setjamixisob(c)
+      xisobkitob()
     }
 
     function changeCount(e,id){
         arr1.map(item => {
             if (item.id === id) {
 
-                if (item.counter >= item.quantity) {
-                    item.counter = parseFloat(e)
+                if (item.tradedQuantity>= item.quantity) {
+                    item.tradedQuantity = parseFloat(e)
                     item.active = true
                     item.disabled = false
                 }
                 else {
-                    item.counter = parseFloat(e)
+                    item.tradedQuantity = parseFloat(e)
                     item.disabled = false
                     item.active = false
                 }
@@ -497,14 +490,7 @@ function SavdoOynasi({
         })
         let a = [...arr1]
         setarr1(a)
-        let b = 0
-        let c = 0
-        arr1.map(item => {
-            b += item.counter
-            c += (item.counter * item.salePrice)
-        })
-        setxisob(b)
-        setjamixisob(c)
+      xisobkitob()
     }
 
 
@@ -512,13 +498,13 @@ function SavdoOynasi({
         arr1.map(item => {
             if (item.id === id) {
 
-                if (item.counter >= item.quantity) {
-                    item.counter += 1
+                if (item.tradedQuantity >= item.quantity) {
+                    item.tradedQuantity += 1
                     item.active = true
                     item.disabled = false
                 }
                 else {
-                    item.counter += 1
+                    item.tradedQuantity += 1
                     item.disabled = false
                     item.active = false
                 }
@@ -526,23 +512,16 @@ function SavdoOynasi({
         })
         let a = [...arr1]
         setarr1(a)
-        let b = 0
-        let c = 0
-        arr1.map(item => {
-            b += item.counter
-            c += (item.counter * item.salePrice)
-        })
-        setxisob(b)
-        setjamixisob(c)
+       xisobkitob()
 
     }
 
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
-                if (item.counter >= 1) {
-                    item.counter -= 1
-                    if (item.counter <= item.quantity) {
+                if (item.tradedQuantity >= 1) {
+                    item.tradedQuantity -= 1
+                    if(item.tradedQuantity <= item.quantity) {
                         item.active = false
                     }
                     else {
@@ -551,7 +530,7 @@ function SavdoOynasi({
 
                 } else {
                     item.disabled = true
-                    if (item.counter <= item.quantity) {
+                    if (item.tradedQuantity <= item.quantity) {
                         item.active = false
                     }
                     else {
@@ -564,16 +543,7 @@ function SavdoOynasi({
         setarr1(a)
 
 
-        let b = 0
-        let c = 0
-        arr1.map(item => {
-            b += item.counter
-            c += (item.counter * item.salePrice)
-
-        })
-        setxisob(b)
-        setjamixisob(c)
-
+      xisobkitob()
     }
     function deleteM(ind) {
         arr1.map((item, index) => {
@@ -586,14 +556,7 @@ function SavdoOynasi({
 
         let b = 0
         let c = 0
-        arr1.map(item => {
-            b += item.counter
-            c += (item.counter * item.salePrice)
-
-        })
-
-        setxisob(b)
-        setjamixisob(c)
+     xisobkitob()
     }
     function baza(e) {
         input.baza = e.target.value
@@ -628,31 +591,26 @@ function SavdoOynasi({
 
     function UzcardTolov(naqd, type) {
 
-        if (naqd == 4) {
+        if (naqd === 4) {
             kredit()
         }
 
-        arr1.map(item => {
             if (baza !== '') {
                 saveSavdolar({
                     customerId: input.baza,
-                    userId: users.businessId,
-                    productTraderDto: [
-                        {
-                            tradedQuantity: item.counter,
-                            productTradeId: item.id
-                        }],
+                    userId: users.id,
+                    productTraderDto: arr1,
                     payDate: new Date().getDate(),
-                    branchId: item.branch.id,
+                    branchId: input.branch,
                     payMethodId: naqd,
-                    amountPaid: item.salePrice * item.counter,
-                    currencyId: 1,
-                    addressId: 1,
+                    amountPaid: jamixisob,
+                    totalSum:jamixisob,
+                    addressId: users.users.branches[0].address.id,
+                    businessId:users.businessId
                 })
-            } else {
-                alert('MIJOZ QOSHIN')
+            }else {
+                alert('MIJOZ QOSHING')
             }
-        })
 
         setarr1([])
 
@@ -667,27 +625,22 @@ function SavdoOynasi({
             kredit()
         }
 
-        arr1.map(item => {
             if (baza !== '') {
                 saveSavdolar({
                     customerId: input.baza,
-                    userId: users.businessId,
-                    productTraderDto: [
-                        {
-                            tradedQuantity: item.counter,
-                            productTradeId: item.id
-                        }],
+                    userId: users.id,
+                    productTraderDto:arr1,
                     payDate: new Date().getDate(),
-                    branchId: item.branch.id,
+                    branchId: input.branch,
                     payMethodId: naqd,
-                    amountPaid: item.salePrice * item.counter,
-                    currencyId: 1,
-                    addressId: 1,
+                    totalSum:jamixisob,
+                    amountPaid: jamixisob,
+                    addressId: users.users.branches[0].address.id,
+                    businessId:users.businessId
                 })
             } else {
                 alert('MIJOZ QOSHIN')
             }
-        })
 
         setarr1([])
 
@@ -712,27 +665,22 @@ function SavdoOynasi({
         }
 
         printtoggle()
-        arr1.map(item => {
             if (baza !== '') {
                 saveSavdolar({
                     customerId: input.baza,
-                    userId: users.businessId,
-                    productTraderDto: [
-                        {
-                            tradedQuantity: item.counter,
-                            productTradeId: item.id
-                        }],
+                    userId: users.id,
+                    productTraderDto:arr1,
                     payDate: new Date().getDate(),
-                    branchId: item.branch.id,
-                    payMethodId: naqd,
-                    amountPaid: input.qarzamount,
-                    currencyId: 1,
-                    addressId: 1,
+                    branchId: input.branch,
+                    payMethodId: "03c7fe33-7be5-494e-8ff9-97b71a173023",
+                    totalSum:jamixisob,
+                    amountPaid:  input.qarzamount,
+                    addressId: users.users.branches[0].address.id,
+                    businessId:users.businessId
                 })
             } else {
                 alert('MIJOZ QOSHIN')
             }
-        })
         setarr1([])
         console.log(input.qarzamount)
         setxisob(0)
@@ -913,6 +861,9 @@ function SavdoOynasi({
             id:e.target.value
         })
         getValyuta(users.businessId)
+        setarr1([])
+       setxisob(0)
+        setjamixisob(0)
     }
 
 
@@ -923,6 +874,7 @@ function SavdoOynasi({
     useEffect(() => {
         getSavdolarHistory(users.businessId)
         getXarajatlarTurlari(users.businessId)
+        getMaxsulotRuyxatibranch(users.users.branches[0].id)
     }, [])
 
     function deleteushla(id) {
@@ -997,7 +949,7 @@ function SavdoOynasi({
                                     <td>{item.name}</td>
                                     <td>{item.counter}  {item.measurement.name}</td>
                                     <td>{item.salePrice}</td>
-                                    <td>{item.counter * item.salePrice} so'm</td>
+                                    <td>{Math.round((item.salePrice+Number.EPSILON)*100)/100} {ValyutaReducer.valyutactiveName}</td>
                                 </tr>)
                             }
                         </tbody>
@@ -1006,13 +958,13 @@ function SavdoOynasi({
                 <hr />
                 <br />
 
-                <div className={'d-flex col-12'}>
-                    <div className={'col-5'}>
+                <div className={'d-flex col-12 col-sm-12 col-md-12 col-xl-12 col-lg-12'}>
+                    <div className={'col-5 col-sm-5 col-md-5 col-xl-5 col-lg-5'}>
                         <p className={"d-flex justify-content-between"}> <strong>Total paid:</strong>  {jamixisob} so'm</p>
                         <p className={"d-flex justify-content-between"}> <strong>Discount:</strong>  0 so'm</p>
                     </div>
-                    <div className={'col-2 liniya'}> </div>
-                    <div className={'col-5'}>
+                    <div className={'col-2 col-sm-2 col-md-2 col-xl-2 col-lg-2 liniya'}> </div>
+                    <div className={'col-5 col-sm-5 col-md-5 col-xl-5 col-lg-5'}>
                         <p className={"d-flex justify-content-between"}> <strong>Subtotal:</strong>  {jamixisob} so'm</p>
 
                         <p className={"d-flex justify-content-between"}> <strong>Total:</strong>  {jamixisob} so'm</p>
@@ -1025,15 +977,14 @@ function SavdoOynasi({
                     <div className="navbarLeft d-flex">
                         <h5>Baza</h5>
                         <select name="" id="" className='bazaSelect1' onChange={setbranch} value={input.branch}>
-                            <option value="barchasi">Barchasi</option>
                             {
-                                branchreducer.branch.map(item => <option key={item.id} value={item.id}>
+                                users.users.branches.map(item => <option key={item.id} value={item.id}>
                                     {item.name}
                                 </option>)
                             }
                         </select>
                     </div>
-                    <div className="navbarRigth " style={{width:'630px'}}>
+                    <div className="navbarRigth d-flex overflow-hidden">
                         <select className={'sss2'} value={ValyutaReducer.valyutactiveID} onChange={changevalyuta}  id={'valuta'}  >
                             {
                                 ValyutaReducer.valyuta.map(item=>
@@ -1321,7 +1272,7 @@ function SavdoOynasi({
                                                         className={'btn btn-outline-danger rounded-circle border-3'}>-
                                                     </button>
                                                     {/*{item.counter}*/}
-                                                    <input className={'form-control'} value={item.counter} onChange={(e)=>changeCount(e.target.value,item.id)} type="number" style={{width:'100px',border:'1px solid darkred',padding:'0.5rem'}}/>
+                                                    <input className={'form-control'} value={item.tradedQuantity} onChange={(e)=>changeCount(e.target.value,item.id)} type="number" style={{width:'100px',border:'1px solid darkred',padding:'0.5rem'}}/>
                                                     <button onClick={() => setCount(item.id)}
                                                         className={'btn btn-outline-primary rounded-circle border-3'}>+
                                                     </button>
@@ -1333,8 +1284,11 @@ function SavdoOynasi({
 
                                             {/*  F I X  -  M E*/}
 
-                                            {/*<p>{Math.round(((item.salePrice/valyuta+Number.EPSILON)*100)/100*item.counter) } </p>*/}
-                                            <td>{item.counter * item.salePrice} so'm</td>
+                                            <td>
+
+                                                { Math.round((item.salePrice+Number.EPSILON)*100)/100 }
+                                                {ValyutaReducer.valyutactiveName}
+                                            </td>
                                             {/*<td>{input.inputCounter * item.salePrice} so'm</td>*/}
                                             <td>
                                                 <button onClick={() => deleteM(item.id)}
@@ -1350,7 +1304,7 @@ function SavdoOynasi({
                         <div className="maxSoniBox">
                             <h6 className='d-flex align-items-center'>Mahsulot soni:{xisob}</h6>
                             {/*<h6>Jami:{jamixisob}</h6>*/}
-                            <h6>Jami: {jamixisob} so`m</h6>
+                            <h6>Jami: {jamixisob} {ValyutaReducer.valyutactiveName}</h6>
                         </div>
                         <hr style={{ margin: '2px' }} />
                         <div className={'chegirmalarBox'}>
@@ -1399,7 +1353,6 @@ function SavdoOynasi({
                                             {
                                                 item.photo?.id === null  ?
                                                     <img className={'img-fluid bg-danger'} src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU`} alt="###"/>
-
                                                     :
                                                 item.photo.map(valp=>
                                                 <Imagecom id={valp.id}/>
@@ -1562,29 +1515,35 @@ function SavdoOynasi({
                             <button onClick={qarz} className={'btn btn-outline-primary'}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
-                    <button onClick={() => UzcardTolov(1, 'Naqd')} className={'btn btn-success m-1'}>
-                        <ReactToPrint
-                            trigger={() => <p className={'toprint '}>Naqd</p>
-                            }
-                            content={() => componentRef.current}
-                        />
-                    </button>
+                    {
+                        PayReducer.paymethod.map(item=>
+                            <button onClick={() => UzcardTolov(item.id)} className={'btn btn-success m-1'}>
+                                <ReactToPrint
+                                    trigger={() => <p className={'toprint '}>{item.type}</p>
+                                    }
+                                    content={() => componentRef.current}
+                                />
+                            </button>
+                        )
 
-                    <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(2, "Uzcard")}>
+                    }
+
+                    <button className={'btn  btn-dark m-1'} onClick={() => UzcardTolov(1, "Uzcard")}>
                         <ReactToPrint
                             trigger={() => <p className={'toprint '}>UzCard</p>
                             }
                             content={() => componentRef.current}
                         />
                     </button>
-                    <button onClick={() => UzcardTolov(3, "Humo")} className={'btn btn-warning m-1'}>
+                    <button onClick={() => UzcardTolov(2, "Humo")} className={'btn btn-warning m-1'}>
                         <ReactToPrint
                             trigger={() => <p className={'toprint'}>Humo</p>
 
                             }
                             content={() => componentRef.current}
                         /></button>
-                    <button className='jamiTolov m-1'>Jami to`lov: {jamixisob} so'm</button>
+                    <button className='jamiTolov m-1'>Jami to`lov:  {Math.round(((jamixisob+Number.EPSILON)*100)/100)}
+                         {ValyutaReducer.valyutactiveName}</button>
                     <button onClick={clear} className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
                 </div>
                 <div className="">
@@ -1610,7 +1569,7 @@ function SavdoOynasi({
                                             <td>{index + 1}</td>
                                             <td>{item.description}</td>
                                             <td>{item.jamimiqdori}</td>
-                                            <td>{item.jami}</td>
+                                            <td>{item.jami} </td>
                                             <td>
                                                 <button onClick={() => savdooynakochirish(item.id)} className={'kv'}> | </button>
                                                 <button onClick={() => deleteushla(item.id)} className={'ocbutton'}>X</button>
