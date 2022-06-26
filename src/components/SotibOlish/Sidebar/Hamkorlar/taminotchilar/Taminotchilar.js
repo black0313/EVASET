@@ -481,7 +481,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                 </div>
                                 <div className={'col-md-6 col-sm-12 mb-3'}>
                                     <label htmlFor={'ot'}>Telefon raqam</label>
-                                    <input value={input.familiyasi} onChange={changefamiliyasi} type="number"
+                                    <input value={input.familiyasi} onChange={changefamiliyasi} type="tel"
                                         placeholder={input.telefonRaqamPlaceholder} id={'telefon'}
                                         className={'form-control'} />
                                 </div>

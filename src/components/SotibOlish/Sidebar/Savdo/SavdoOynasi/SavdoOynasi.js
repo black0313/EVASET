@@ -425,7 +425,7 @@ function SavdoOynasi({
         let c = 0
         arr1.map(item => {
             a += item.tradedQuantity
-            c += (item.tradedQuantity *  Math.round(((item.salePrice+Number.EPSILON)*100)/100))
+            c += (item.tradedQuantity *  Math.round((item.salePrice+Number.EPSILON)*100))/100
         })
         setxisob(a)
         setjamixisob(c)
@@ -616,6 +616,8 @@ function SavdoOynasi({
 
         setxisob(0)
         setjamixisob(0)
+        getMaxsulotRuyxatibranch(users.users.branches[0].id)
+
 
     }
 
@@ -651,6 +653,8 @@ function SavdoOynasi({
         input.tulovmiqdori2 = ''
         let a = { ...input }
         setInput(a)
+        getMaxsulotRuyxatibranch(users.users.branches[0].id)
+
     }
 
     function UzcardTolovQarz(naqd) {
@@ -689,6 +693,8 @@ function SavdoOynasi({
         let a = { ...input }
         setInput(a)
         qarz()
+        getMaxsulotRuyxatibranch(users.users.branches[0].id)
+
     }
 
     const [activeqarz, setactiveqarz] = useState(false)
@@ -773,7 +779,6 @@ function SavdoOynasi({
     }
     useEffect(() => {
         getbranch(users.businessId)
-        getMaxsulotRuyxati(users.businessId)
         getMijozGurux(users.businessId)
         getBolim(users.businessId)
         getFirma(users.businessId)
@@ -875,7 +880,7 @@ function SavdoOynasi({
         getSavdolarHistory(users.businessId)
         getXarajatlarTurlari(users.businessId)
         getMaxsulotRuyxatibranch(users.users.branches[0].id)
-    }, [])
+    }, [ValyutaReducer.current])
 
     function deleteushla(id) {
         ushlabtur.map(item => {
@@ -947,9 +952,9 @@ function SavdoOynasi({
                             {
                                 arr1.map(item => <tr>
                                     <td>{item.name}</td>
-                                    <td>{item.counter}  {item.measurement.name}</td>
-                                    <td>{item.salePrice}</td>
-                                    <td>{Math.round((item.salePrice+Number.EPSILON)*100)/100} {ValyutaReducer.valyutactiveName}</td>
+                                    <td>{item.tradedQuantity}  {item.measurement.name}</td>
+                                    <td> {Math.round((item.salePrice+Number.EPSILON)*100)/100}</td>
+                                    <td>{item.tradedQuantity* Math.round((item.salePrice+Number.EPSILON)*100)/100} {ValyutaReducer.valyutactiveName}</td>
                                 </tr>)
                             }
                         </tbody>
@@ -960,14 +965,14 @@ function SavdoOynasi({
 
                 <div className={'d-flex col-12 col-sm-12 col-md-12 col-xl-12 col-lg-12'}>
                     <div className={'col-5 col-sm-5 col-md-5 col-xl-5 col-lg-5'}>
-                        <p className={"d-flex justify-content-between"}> <strong>Total paid:</strong>  {jamixisob} so'm</p>
-                        <p className={"d-flex justify-content-between"}> <strong>Discount:</strong>  0 so'm</p>
+                        <p className={"d-flex justify-content-between"}> <strong>Total paid:</strong>  {jamixisob} {ValyutaReducer.valyutactiveName}</p>
+                        <p className={"d-flex justify-content-between"}> <strong>Discount:</strong>  0 {ValyutaReducer.valyutactiveName}</p>
                     </div>
                     <div className={'col-2 col-sm-2 col-md-2 col-xl-2 col-lg-2 liniya'}> </div>
                     <div className={'col-5 col-sm-5 col-md-5 col-xl-5 col-lg-5'}>
-                        <p className={"d-flex justify-content-between"}> <strong>Subtotal:</strong>  {jamixisob} so'm</p>
+                        <p className={"d-flex justify-content-between"}> <strong>Subtotal:</strong>  {jamixisob} {ValyutaReducer.valyutactiveName}</p>
 
-                        <p className={"d-flex justify-content-between"}> <strong>Total:</strong>  {jamixisob} so'm</p>
+                        <p className={"d-flex justify-content-between"}> <strong>Total:</strong>  {jamixisob} {ValyutaReducer.valyutactiveName}</p>
                     </div>
                 </div>
 
@@ -1285,8 +1290,7 @@ function SavdoOynasi({
                                             {/*  F I X  -  M E*/}
 
                                             <td>
-
-                                                { Math.round((item.salePrice+Number.EPSILON)*100)/100 }
+                                                {item.tradedQuantity * Math.round((item.salePrice+Number.EPSILON)*100)/100}
                                                 {ValyutaReducer.valyutactiveName}
                                             </td>
                                             {/*<td>{input.inputCounter * item.salePrice} so'm</td>*/}
@@ -1351,12 +1355,16 @@ function SavdoOynasi({
                                         key={item.id}>
                                         <div onClick={() => pushesh(item)}>
                                             {
-                                                item.photo?.id === null  ?
+
+                                                  item.photo.length > 0 ?
+
+                                                      item.photo.map(valp=>
+                                                          <Imagecom id={valp.id}/>
+                                                      ):
+
                                                     <img className={'img-fluid bg-danger'} src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uAJqm9dM-DzEqpAyyUVfJ1JnRppFw2QtMcNVOIOBEKqkSzsWmK-5btcDekYzmawDWfg&usqp=CAU`} alt="###"/>
-                                                    :
-                                                item.photo.map(valp=>
-                                                <Imagecom id={valp.id}/>
-                                                )
+
+
 
                                             }
                                             <h6>{item.name}</h6>

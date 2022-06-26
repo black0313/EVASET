@@ -29,7 +29,8 @@ import functionreducer,{active,activSavdo} from "../../../reducer/functionreduce
 import XaridReducer,{getXarid,getXaridCost} from "../Sidebar/Haridlar/reducer/XaridReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import TaminotReducer,{getTaminot} from "../Sidebar/Hamkorlar/reducer/TaminotReducer";
-function Third({display,users,getXaridCost, SavdoQoshishReducer,TaminotReducer,getTaminot ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
+import ValyutaReducer from "../Sidebar/Settings/DukonSozlamalari/reducers/ValyutaReducer";
+function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,TaminotReducer,getTaminot ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
 
     useEffect(()=>{
         getSavdolar(users.businessId)
@@ -37,7 +38,7 @@ function Third({display,users,getXaridCost, SavdoQoshishReducer,TaminotReducer,g
         getXaridCost(users.businessId)
         getTaminot(users.businessId)
 
-    },[])
+    },[ValyutaReducer.current])
 
     function savdod(){
         savdooynasi()
@@ -226,10 +227,9 @@ function Third({display,users,getXaridCost, SavdoQoshishReducer,TaminotReducer,g
             }
         }
     }
-
     useEffect(()=>{
         getMaxsulotRuyxati(users.businessId)
-    },[])
+    },[ValyutaReducer.current])
 
     const series = [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0]
     const windowscrenn = window.screen.height
@@ -572,5 +572,5 @@ function Third({display,users,getXaridCost, SavdoQoshishReducer,TaminotReducer,g
 }
 
 
-export default connect((SavdoQoshishReducer,TaminotReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer),
+export default connect((SavdoQoshishReducer,TaminotReducer,users,functionreducer,XaridReducer,MaxsulotlarRoyxariReducer,ValyutaReducer),
     {getMaxsulotRuyxati,getXaridCost,getSavdolar,savdooynasi,active,activSavdo,getXarid,getTaminot}) (Third);
