@@ -1,17 +1,17 @@
 import './taxrir.css'
-
-// import {Link,Route,Switch} from "react-router-dom";
+import {useForm} from 'react-hook-form'
+import {Link, Route, Switch, useHistory} from "react-router-dom";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {useState, useEffect} from "react";
 import {connect} from "react-redux";
 import LavozimReducer, {getLavozim, saveLavozim} from "../../reducer/LavozimReducer";
-import XodimReducer, {saveXodim, getXodim, editXodim,getXodimID} from "../../reducer/XodimReducer";
-import {Link} from 'react-router-dom'
+import XodimReducer, {saveXodim, getXodim, editXodim, getXodimID} from "../../reducer/XodimReducer";
 import users from "../../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer";
 import {toast} from "react-toastify";
 import {savephoto} from "../../../../../../reducer/photoreducer";
 import Select from "react-select";
+import xodimReducer from "../../reducer/XodimReducer";
 
 function Taxrirlash({
                         getLavozim,
@@ -37,127 +37,56 @@ function Taxrirlash({
 
     const [input, setInput] = useState(
         {
-            username: '',
-            usernameplace: 'Mr/Mrs/Miss',
-            firstName: '',
-            firstNameplace: 'Ismi',
-            lastName: '',
-            lastNameplace: 'Familiyasi',
-            roleName: '',
-            email: '',
-            parol: '',
-            parolplace: 'Parolni kiriting',
-            parolTakror: '',
-            parolTakrorplace: 'Parolni kiriting',
-            barchacheck: '',
-            checkId: '',
-            checkIdinput: null,
             photoid: '',
             branchid: [],
-            selectvalue: []
+            selectvalue: [],
+            enabled: true
         }
     );
+    const history = useHistory()
 
-    function onchangeuserName(event) {
-        input.username = event.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function onchangefirstName(event) {
-        input.firstName = event.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function onchangelastName(event) {
-        input.lastName = event.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function onchangeroleName(event) {
-        input.roleName = (event.target.value)
-        let a = {...input}
-        setInput(a)
-    }
-    function onchangeparol(event) {
-        input.parol = event.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function onchangeparolTakror(event) {
-        input.parolTakror = event.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
+    const {register, setValue, handleSubmit, resetField, formState: {errors}} = useForm()
+    const {
+        register: register2,
+        setValue: setValue2,
+        handleSubmit: handleSubmit2,
+        resetField: resetField2,
+        formState: {errors: errors2}
+    } = useForm()
+    const [formData, setFormData] = useState(null)
 
     function editx() {
-        console.log('2');
-        input.username = XodimReducer.oneXodim.username
-        input.firstName = XodimReducer.oneXodim.firstName
-        input.lastName = XodimReducer.oneXodim.lastName
-        input.roleName = XodimReducer.oneXodim.role?.id
-        input.photoid = XodimReducer.oneXodim.photoId
-        input.selectvalue = XodimReducer.oneXodim.branches?.map(({
-                                                                     name: label,
-                                                                     id: value, ...rest
-                                                                 }) => ({label, value, ...rest}));
+
+        setValue('username', XodimReducer.oneXodim?.username);
+        setValue('firstName', XodimReducer.oneXodim?.firstName);
+        setValue('lastName', XodimReducer.oneXodim?.lastName);
+        setValue2('roleId', XodimReducer.oneXodim?.role?.id);
+        input.photoid = XodimReducer.oneXodim?.photoId
+            input.enabled = XodimReducer.oneXodim?.enabled
+            input.selectvalue = XodimReducer.oneXodim.branches?.map(({
+                                                                         name: label,
+                                                                         id: value, ...rest
+                                                                     }) => ({label, value, ...rest}));
         let a = {...input}
         setInput(a)
+        let ids = []
+        XodimReducer.oneXodim?.branches?.map(item => {
+            ids.push(item.id)
+        })
+        let b = {
+            roleId: XodimReducer.oneXodim?.role?.id,
+            password: '',
+            branchId: ids
+        }
+
+        setFormData({...b})
+
     }
 
-    function saqla() {
-        if (match.params.id !== undefined) {
-            changeselect(input.selectvalue)
-            editXodim({
-                firstName: input.firstName,
-                lastName: input.lastName,
-                username: input.username,
-                password: '',
-                roleId: input.roleName,
-                branchId: input.branchid,
-                businessId: users.businessId,
-                enabled: true,
-                photoId: null,
-                id: match.params.id
-            })
-
-        } else {
-            if (input.username === '' || input.firstName === '' || input.lastName === "" || input.parol === '') {
-                let f = document.getElementById('login1')
-                let f2 = document.getElementById('ismi')
-                let f3 = document.getElementById('login2')
-                f.classList.add('placecolor')
-                f2.classList.add('placecolor')
-                f3.classList.add('placecolor')
-                input.usernameplace = "Ma'lumot kiriting !"
-                input.firstNameplace = "Ma'lumot kiriting !"
-                input.lastNameplace = "Ma'lumot kiriting !"
-                let a = {...input}
-                setInput(a)
-                toast.warn("Login va Parolni ham to'liq kiriting")
-
-            } else {
-                saveXodim({
-                    firstName: input.firstName,
-                    lastName: input.lastName,
-                    username: input.username,
-                    password: parseInt(input.parolTakror),
-                    roleId: input.roleName === '' || input.roleName === undefined ? LavozimReducer.lavozimlar[0].id : input.roleName,
-                    branchId: input.branchid,
-                    businessId: users.businessId,
-                    enabled: true,
-                    photoId: null
-                })
-            }
-
-
-        }
-        if (input.parol === input.parolTakror) {
-            console.log('Parol mos');
-        } else {
-            alert('= = - - > ERROR PAROL MOS EMAS')
-        }
-        match.params.id = undefined
+    function saqla(data) {
+        saveXodim(
+            {...data, ...formData, businessId: users.businessId, enabled: true, photoId: null}
+        )
     }
 
     const [active, setActive] = useState(false)
@@ -179,97 +108,136 @@ function Taxrirlash({
 
     useEffect(() => {
         getLavozim(users.businessId)
-        editx()
+        if (match.params.id) {
+            editx()
+        }
     }, [XodimReducer.current])
+
+    function saveEdit(data) {
+        editXodim({
+            ...data, ...formData,id:match.params.id, businessId: users.id, photoId: input.photoid, enabled: input.enabled
+        })
+    }
+
+    function onSubmit(data) {
+        if (match.params.id) {
+            saveEdit(data)
+
+        } else {
+            if (formData === null) {
+                toast.warning("Ma`lumotlarni kiriting")
+                toggle()
+            } else {
+                saqla(data)
+                history.push('/headerthird/hodimlarruyxati')
+            }
+        }
+    }
+
+    function onSubmit2(data) {
+        if (data.password === data.password2) {
+            let a = {...data, branchId: input.branchid}
+            setFormData({...a})
+            toggle()
+        } else {
+            toast.warning("Parollaringizni tengligini tekshiring")
+        }
+    }
 
     return (
         <div className={' ht'}>
-            <h5 className={'text-center mt-4'}>Xodim qo`shish</h5>
-            <div className="row">
-                <div className="col-sm-12 col-4 mb-2">
-                    <label htmlFor={'login1'}>Login</label>
-                    <input type="text" id={'login1'} value={input.username} onChange={onchangeuserName}
-                           placeholder={input.usernameplace} className={'form-control'}/>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <h5 className={'text-center mt-4'}>Xodim qo`shish</h5>
+                <div className="row">
+                    <div className="col-sm-12 col-4 mb-2">
+                        <label htmlFor={'login1'}>Login</label>
+                        <input type="text" id={'login1'}
+                               {...register('username', {required: true})}
+                               placeholder={errors.username ? errors.username?.type === "required" && "Username is required" : 'Login'}
+
+                               className={'form-control'}/>
+                    </div>
+
+                    <div className="col-sm-12 col-md-4 mb-2">
+                        <label htmlFor={'ismi'}>Ismi</label>
+                        <input type="text" id={'ismi'}
+                               {...register('firstName', {required: true})}
+                               placeholder={errors.firstName ? errors.firstName?.type === "required" && "FirstName is required" : 'Name'}
+                               defaultValue={''}
+                               className={'form-control'}/>
+                    </div>
+                    <div className="col-sm-12 col-md-4 mb-2">
+                        <label htmlFor={'login2'}>Familiyasi</label>
+                        <input type="text" id={'login2'}
+                               {...register('lastName', {required: true})}
+                               placeholder={errors.lastName ? errors.lastName?.type === "required" && "LastName is required" : 'LastName'}
+                               defaultValue={''}
+                               className={'form-control'}/>
+                    </div>
                 </div>
-                <div className="col-sm-12 col-md-4 mb-2">
-                    <label htmlFor={'ismi'}>Ismi</label>
-                    <input type="text" onChange={onchangefirstName} id={'ismi'} placeholder={input.firstNameplace}
-                           value={input.firstName} className={'form-control'}/>
+                <div className="col-6 d-flex justify-content-center">
+                    <button type={"submit"} className={'btn btn-outline-danger btnSaqlash'}>Saqlash</button>
                 </div>
-                <div className="col-sm-12 col-md-4 mb-2">
-                    <label htmlFor={'login2'}>Familiyasi</label>
-                    <input type="text" id={'login2'} onChange={onchangelastName} value={input.lastName}
-                           placeholder={input.lastNameplace} className={'form-control'}/>
-                </div>
-            </div>
+            </form>
 
             <h5 className={'text-center mt-4'}>Lavozim vakolatlari</h5>
+
             <div className="row mt-4 mb-5">
                 <div className="col-6 d-flex justify-content-center">
-                    {
-                        input.parol === '' ?
-                            <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>Login parol
-                                berish</button>
-                            : <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>Login parol
-                                berish</button>
 
+                    <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>Login parol
+                        berish
+                    </button>
 
-                    }
                 </div>
 
-                <div className="col-6 d-flex justify-content-center">
-                    {
-                        input.username === '' || input.firstName === '' || input.lastName === "" ?
-                            <button onClick={saqla} className={'btn btn-outline-danger btnSaqlash'}>Saqlash</button> :
-                            <Link to={'/headerthird/hodimlarruyxati'}>
-                                <button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash
-                                </button>
-                            </Link>
-                    }
-
-                    {/*<Link to={'/headerthird/hodimlarruyxati'}><button onClick={saqla} className={'btn btn-outline-primary btnSaqlash'}>Saqlash</button></Link>*/}
-                </div>
 
                 <Modal isOpen={active} toggle={toggle}>
-                    <ModalHeader>
-                        Log / Parol
-                    </ModalHeader>
-                    <ModalBody>
-                        {console.log(input.roleName)}
-                        <label htmlFor={'log3'} className={'mt-3'}>Parol</label>
-                        <input type="text" onChange={onchangeparol} value={input.parol} placeholder={input.parolplace}
-                               className={'form-control'} id={'log3'}/>
-                        <label htmlFor={'log4'} className={'mt-3'}>Parolni takroran yozing</label>
-                        <input type="text" onChange={onchangeparolTakror} value={input.parolTakror}
-                               placeholder={input.parolTakrorplace} className={'form-control'} id={'log4'}/>
-                        <label htmlFor={'lavozimi'} className={'mt-3'}>Lavozimi</label>
-                        <select name="" id={'lavozimi'} onChange={onchangeroleName} value={input.roleName}
-                                className={'form-control'}>
-                            {
-                                LavozimReducer.lavozimlar.map((item, index) =>
-                                    <option value={item.id}>{item.name}</option>)
-                            }
-                        </select>
-                        <h5 className={'mt-4 text-center'}>Biriktirilgan baza</h5>
+                    <form onSubmit={handleSubmit2(onSubmit2)}>
+                        <ModalHeader>
+                            Log / Parol
+                        </ModalHeader>
+                        <ModalBody>
+                            <label htmlFor={'log3'} className={'mt-3'}>Parol</label>
+                            <input type="text"
+                                   {...register2("password", {required: match.params.id ? false : true})}
+                                   placeholder={errors2.password ? errors2.password.type === "required" && "Password is required" : "password"}
+                                   defaultValue={''}
+                                   className={'form-control'} id={'log3'}/>
+                            <label htmlFor={'log4'} className={'mt-3'}>Parolni takroran yozing</label>
+                            <input type="text"
+                                   {...register2("password2", {required: match.params.id ? false : true})}
+                                   placeholder={errors2.password2 ? errors2.password2.type === "required" && "Password2 is required" : "password2"}
+                                   className={'form-control'} id={'log4'}/>
+                            <label htmlFor={'lavozimi'} className={'mt-3'}>Lavozimi</label>
+                            <select id={'lavozimi'}
+                                    {...register2('roleId', {required: true})}
+                                    defaultValue={XodimReducer.one}
+                                    className={'form-control'}>
+                                {
+                                    LavozimReducer.lavozimlar.map((item, index) =>
+                                        <option value={item.id}>{item.name}</option>)
+                                }
+                            </select>
+                            <h5 className={'mt-4 text-center'}>Biriktirilgan baza</h5>
 
-                        <Select options={branchreducer.branches} isMulti={true} defaultValue={input.selectvalue}
-                                class={'form-control'} onChange={changeselect}/>
+                            <Select options={branchreducer.branches} isMulti={true}
+                                    defaultValue={input.selectvalue}
+                                    class={'form-control'} onChange={changeselect}/>
 
 
-                    </ModalBody>
-                    <ModalFooter>
-                        {
-                            input.parol === input.parolTakror ?
-                                <button className={'btn btn-primary btnSaqlash'} onClick={toggle}>Saqlash</button>
-                                :
-                                <button className={'btn btn-danger btnSaqlash'}>Parol bir xilligini tekshiring</button>
+                        </ModalBody>
+                        <ModalFooter>
 
-
-                        }
-                        <button className={'btn btn-primary btnLogin'} onClick={toggle}>Chiqish</button>
-                    </ModalFooter>
+                            <button className={'btn btn-danger btnSaqlash'} type={"submit"}>Saqla</button>
+                            <button className={'btn btn-primary btnLogin'} type={"button"} onClick={toggle}>Chiqish
+                            </button>
+                        </ModalFooter>
+                    </form>
                 </Modal>
+
             </div>
+
         </div>
     )
 }

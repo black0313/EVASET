@@ -15,7 +15,6 @@ const slice = createSlice({
         },
         getFromID: (state, action) => {
             state.oneXodim = action.payload.object
-            console.log('1')
             state.current=!state.current
         },
         savefrom: (state, action) => {
@@ -52,11 +51,11 @@ export const getXodimID = (data) => apiCall({
 });
 
 export const saveXodim = (data) => apiCall({
-    url: '/user',
-    method: 'post',
-    data,
-    onSuccess: slice.actions.savefrom.type,
-});
+        url: '/user',
+        method: 'post',
+        data,
+        onSuccess: slice.actions.savefrom.type,
+    });
 
 export const editXodim = (data) => apiCall({
     url: '/user/'+data.id,
