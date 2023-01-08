@@ -101,15 +101,15 @@ function Pagination3() {
                         </button>
 
                         {/* show page numbers */}
-                        {getPaginationGroup().map((item, index) => (
-                            <button
-                                key={index}
-                                onClick={changePage}
-                                className={`paginationItem ${currentPage === item ? 'active' : null}`}
-                            >
-                                <span>{item}</span>
-                            </button>
-                        ))}
+                            {getPaginationGroup().map((item, index) => (
+                                <button
+                                    key={index}
+                                    onClick={changePage}
+                                    className={`paginationItem ${currentPage === item ? 'active' : null}`}
+                                >
+                                    <span>{item}</span>
+                                </button>
+                            ))}
 
                         {/* next button */}
                         <button

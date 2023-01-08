@@ -36,28 +36,29 @@ function Sidebar({functionreducer,active,users}) {
 
     function permission(){
 
-        users.users.role.permissions.map(item=>{
-            switch (item){
-                case "ADD_USER":;
-                setadduser(true)
-                    break;
-                case "ADD_ROLE":;
-                setaddrole(true)
-                    break;
-                case "ADD_SUPPLIER":;
-                setaddsupplier(true)
-                    break; 
-                case "ADD_CUSTOMER":;
-                setaddcustomer(true)
-                    break;
-            }
-        })
+        // users.users.role.permissions.map(item=>{
+        //     switch (item){
+        //         case "ADD_USER":;
+        //         setadduser(true)
+        //             break;
+        //         case "ADD_ROLE":;
+        //         setaddrole(true)
+        //             break;
+        //         case "ADD_SUPPLIER":;
+        //         setaddsupplier(true)
+        //             break;
+        //         case "ADD_CUSTOMER":;
+        //         setaddcustomer(true)
+        //             break;
+        //     }
+        // })
     }
+    // ${functionreducer.func.class3} ${functionreducer.func.class4}
 
     const [xaridruyxat,setxaridruyxat] = useState(true)
 
     return (
-                <div className={`col-md-12 sidebar ${functionreducer.func.class3} ${functionreducer.func.class4}`}>
+                <div className={`col-md-12 sidebar`}>
                     <div className="sidehead d-flex justify-content-center">
                         <img src={logo} alt="logo"/>
                     </div>

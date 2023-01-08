@@ -4,13 +4,14 @@ import './home.css'
 import React, {useState, useEffect} from "react";
 import Header from "../header/Header";
 import Bottom from "../Bottom/Bottom";
-import {Link, Switch, Route, Redirect} from 'react-router-dom'
+import {Link, Switch, Route, Redirect,useHistory} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../reducer/functionreducer";
 import SecondPage from "../Pricing/SecondPage/SecondPage";
 import users ,{saveusers,changeerror}from "../../reducer/users";
 import axios from "axios";
-// import {idID} from "@mui/material/locale";
+import {BaseUrl} from "../../middleware";
+
 
 function Home({saveusers,users, linkpost,active, changeerror}) {
 
@@ -21,7 +22,7 @@ function Home({saveusers,users, linkpost,active, changeerror}) {
     const [inputparol, setparol] = useState('')
     const [disabled, setdisabled] = useState(false)
     const [checked, setchecked] = useState(false)
-
+    const history = useHistory()
     function login(event) {
         setLogin(event.target.value)
         changeerror()
@@ -55,13 +56,15 @@ function Home({saveusers,users, linkpost,active, changeerror}) {
     function testusers() {
         axios({
             method:'post',
-            url:'http://localhost:8080/api/auth/login',
+            url:`${BaseUrl}/auth/login`,
             data:{
                 username:inputlogin,
                 password:inputparol
             }
         }).then(function (res){
                 saveusers(res.data)
+            history.push('/headerthird')
+
         }).catch(function (err){
             saveusers({...err,success:false})
         })

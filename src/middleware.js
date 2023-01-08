@@ -1,4 +1,5 @@
 import axios from "axios";
+export  const  BaseUrl = 'http://192.168.255.30:8080/api'
 export const api = ({dispatch}) => (next) => (action) => {
     if (action.type !== "api/apiCall") {
         next(action)
@@ -7,7 +8,7 @@ export const api = ({dispatch}) => (next) => (action) => {
     next(action)
     const {url, method, data, onSuccess,params, onFail} = action.payload
    axios({
-        baseURL: 'http://localhost:8080/api',
+        baseURL: BaseUrl,
 
         headers:{
             Authorization:`Bearer ${localStorage.getItem('tokenname')}`

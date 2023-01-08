@@ -53,16 +53,21 @@ import MijozGuruhlariii from "./Sidebar/Hamkorlar/MijozGuruhlari/MijozGuruhlari"
 import MahsulotImport from "./Sidebar/Maxsulotlar/MahsulotlarImporti/MahsulotImport";
 import SuperAdmin from "./Sidebar/SUPERADMIN/SuperAdmin";
 import IchkiBolim from "./Sidebar/Maxsulotlar/IchkiBolim/IchkiBolim";
+import Sidebar from "./Sidebar/Sidebar";
 function Headerthird() {
 
-    const [classheader,setClassheader] = useState('classheader1')
+    const [classheader,setClassheader] = useState('headerthird')
+    const [classSidebar,setClassSidebar] = useState('home-sidebar')
 
     function sidebarheader(){
-        if(classheader==='classheader1'){
-            setClassheader('classheader2')
+        if(classheader==='headerthird'){
+            setClassheader('headerthird-active')
+            setClassSidebar('home-sidebar-active')
         }
         else{
-            setClassheader('classheader1')
+
+            setClassheader('headerthird')
+            setClassSidebar('home-sidebar')
         }
     }
     const history = useHistory()
@@ -76,70 +81,78 @@ function Headerthird() {
     })
 
     return (
-        <div className={'headerthird'}>
-            <div className={`${classheader}`}>
-                <Header sidebarfunc={sidebarheader}/>
+        <div className={'home-header'}>
+            <div className={classSidebar}>
+                <div>
+                    <Sidebar/>
+                </div>
             </div>
-            <Switch>
-                <Route path={'/headerthird/superadmin'} component={SuperAdmin}/>
-                <Route path={'/headerthird/hodimlarruyxati/taxrirlash/:id?'} component={Taxrirlash}/>
-                <Route path={'/headerthird/hodimlarruyxati/taxrirlash'} component={Taxrirlash}/>
-                <Route path={'/headerthird/hodimlarruyxati/view/:username?/:login?/:email?'} component={Korish}/>
-                <Route path={'/headerthird/hodimlarruyxati'} component={HodimlarRoyhati}/>
-                <Route path={'/headerthird/lavozimlar/taxrirlash/:id?'} component={Taxrirlash2}/>
-                <Route path={'/headerthird/lavozimlar/taxrirlash'} component={Taxrirlash2}/>
-                <Route path={'/headerthird/lavozimlar'} component={Lavozimlar}/>
-                <Route path={'/headerthird/hodimulush/taxrirlash'} component={Taxrirlash}/>
-                <Route path={'/headerthird/hodimulush/view'} component={Korish}/>
-                <Route path={'/headerthird/hodimulush'} component={HodimlarSavdodanUlushi}/>
+            <div className={`${classheader}`}>
+                <div >
+                    <Header sidebarfunc={sidebarheader}/>
+                </div>
+                <Switch>
+                    <Route path={'/headerthird/superadmin'} component={SuperAdmin}/>
+                    <Route path={'/headerthird/hodimlarruyxati/taxrirlash/:id?'} component={Taxrirlash}/>
+                    <Route path={'/headerthird/hodimlarruyxati/taxrirlash'} component={Taxrirlash}/>
+                    <Route path={'/headerthird/hodimlarruyxati/view/:username?/:login?/:email?'} component={Korish}/>
+                    <Route path={'/headerthird/hodimlarruyxati'} component={HodimlarRoyhati}/>
+                    <Route path={'/headerthird/lavozimlar/taxrirlash/:id?'} component={Taxrirlash2}/>
+                    <Route path={'/headerthird/lavozimlar/taxrirlash'} component={Taxrirlash2}/>
+                    <Route path={'/headerthird/lavozimlar'} component={Lavozimlar}/>
+                    <Route path={'/headerthird/hodimulush/taxrirlash'} component={Taxrirlash}/>
+                    <Route path={'/headerthird/hodimulush/view'} component={Korish}/>
+                    <Route path={'/headerthird/hodimulush'} component={HodimlarSavdodanUlushi}/>
 
-                <Route path={'/headerthird/taminotchilar/view/:name?/:phone?/:telegram?/:supplier?'} component={Korish2}/>
-                <Route path={'/headerthird/taminotchilar'} component={Taminotchilar}/>
-                <Route path={'/headerthird/mijozlarGuruhi'} component={Mijozlarguruxi}/>
-                <Route path={'/headerthird/mijozGuruh'} component={MijozGuruhlariii}/>
+                    <Route path={'/headerthird/taminotchilar/view/:name?/:phone?/:telegram?/:supplier?'} component={Korish2}/>
+                    <Route path={'/headerthird/taminotchilar'} component={Taminotchilar}/>
+                    <Route path={'/headerthird/mijozlarGuruhi'} component={Mijozlarguruxi}/>
+                    <Route path={'/headerthird/mijozGuruh'} component={MijozGuruhlariii}/>
 
-                <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/:id?'} component={Taxrirlash3}/>
-                <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} component={Taxrirlash3}/>
-                <Route path={'/headerthird/mahsulotRuyxati/mahsulotImporti'} component={MahsulotImport}/>
-                <Route path={'/headerthird/mahsulotRuyxati'} component={MaxsulotlarRoyxati}/>
-                <Route path={'/headerthird/sotuvNarxGuruhlanishi'} component={SotuvNarxiniGuruxlash}/>
-                <Route path={'/headerthird/bolimlar'} component={Bolimlar}/>
-                <Route path={'/headerthird/ichkibolimlar'} component={IchkiBolim}/>
+                    <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/:id?'} component={Taxrirlash3}/>
+                    <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} component={Taxrirlash3}/>
+                    <Route path={'/headerthird/mahsulotRuyxati/mahsulotImporti'} component={MahsulotImport}/>
+                    <Route path={'/headerthird/mahsulotRuyxati'} component={MaxsulotlarRoyxati}/>
+                    <Route path={'/headerthird/sotuvNarxGuruhlanishi'} component={SotuvNarxiniGuruxlash}/>
+                    <Route path={'/headerthird/bolimlar'} component={Bolimlar}/>
+                    <Route path={'/headerthird/ichkibolimlar'} component={IchkiBolim}/>
 
-                <Route path={'/headerthird/firmalar'} component={Firmalar}/>
-                <Route path={'/headerthird/xaridQilish/:id?'} component={Xarid}/>
-                <Route path={'/headerthird/xaridQilish'} component={Xarid}/>
-                <Route path={'/headerthird/xaridlarRuyxati'} component={HaridlarRoyxati}/>
-                {/*fix me xaridlar ruyxati taxrirlash*/}
-                <Route path={'/headerthird/barcasavdolar'} component={BarchaSavdolar}/>
-                <Route path={'/headerthird/mahsulotQoshish/:id?'} component={SavdoQoshish}/>
-                <Route path={'/headerthird/mahsulotQoshish'} component={SavdoQoshish}/>
-                {/*<Route path={'/headerthird/turliTavar'} component={SavdoOynasi}/>*/}
-                <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
-                <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
-                <Route path={'/headerthird/utkazmaRuyxati'} component={OtkazmalarRoyxati}/>
-                <Route path={'/headerthird/yangiOtkazma'} component={YangiOtkazma}/>
-                <Route path={'/headerthird/xarajatRuyxati'} component={XarajatlarRoyxati}/>
-                <Route path={'/headerthird/xarajatQoshish/:id?'} component={XarajatQoshish}/>
-                <Route path={'/headerthird/xarajatQoshish'} component={XarajatQoshish}/>
-                <Route path={'/headerthird/xarajatTurlari'} component={XarajatTurlari}/>
-                <Route path={'/headerthird/foydaZarar'} component={FoydaZarar}/>
-                <Route path={'/headerthird/xaridlarXisoboti'} component={XaridlarXisoboti}/>
-                <Route path={'/headerthird/mijozlarXisoboti'} component={MijozlarXisoboti}/>
-                <Route path={'/headerthird/mahsulotXisoboti'} component={MaxsulotXisoboti}/>
-                <Route path={'/headerthird/savdoTolov'} component={SavdodaTulov}/>
-                <Route path={'/headerthird/xarajatXisoboti'} component={XarajatlarXisoboti}/>
-                <Route path={'/headerthird/kopSotilgan'} component={KopSotilgan}/>
-                <Route path={'/headerthird/otkazmalarXisoboti'} component={OtkazmalarXisoboti}/>
-                <Route path={'/headerthird/qoldiqlarXisoboti'} component={QoldiqlarXisoboti}/>
-                <Route path={'/headerthird/dukonSozlama'} component={Dukon}/>
-                <Route path={'/headerthird/soliqlarXisoboti'} component={SoliqlarXisoboti}/>
-                <Route path={'/headerthird/bazalarSetting'} component={Bazalar}/>
-                <Route path={'/headerthird/bazaSozlama'} component={SozlamalarBtn}/>
-                <Route path={'/headerthird/profil'} component={Profil}/>
-                <Route path={'/headerthird/'} component={Third}/>
-            </Switch>
+                    <Route path={'/headerthird/firmalar'} component={Firmalar}/>
+                    <Route path={'/headerthird/xaridQilish/:id?'} component={Xarid}/>
+                    <Route path={'/headerthird/xaridQilish'} component={Xarid}/>
+                    <Route path={'/headerthird/xaridlarRuyxati'} component={HaridlarRoyxati}/>
+                    {/*fix me xaridlar ruyxati taxrirlash*/}
+                    <Route path={'/headerthird/barcasavdolar'} component={BarchaSavdolar}/>
+                    <Route path={'/headerthird/mahsulotQoshish/:id?'} component={SavdoQoshish}/>
+                    <Route path={'/headerthird/mahsulotQoshish'} component={SavdoQoshish}/>
+                    {/*<Route path={'/headerthird/turliTavar'} component={SavdoOynasi}/>*/}
+                    <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
+                    <Route path={'/headerthird/utkazmaRuyxati/taxrirlash'} component={YangiOtkazma}/>
+                    <Route path={'/headerthird/utkazmaRuyxati'}  component={OtkazmalarRoyxati}/>
+                    <Route path={'/headerthird/yangiOtkazma'} component={YangiOtkazma}/>
+                    <Route path={'/headerthird/xarajatRuyxati'} component={XarajatlarRoyxati}/>
+                    <Route path={'/headerthird/xarajatQoshish/:id?'} component={XarajatQoshish}/>
+                    <Route path={'/headerthird/xarajatQoshish'} component={XarajatQoshish}/>
+                    <Route path={'/headerthird/xarajatTurlari'} component={XarajatTurlari}/>
+                    <Route path={'/headerthird/foydaZarar'} component={FoydaZarar}/>
+                    <Route path={'/headerthird/xaridlarXisoboti'} component={XaridlarXisoboti}/>
+                    <Route path={'/headerthird/mijozlarXisoboti'} component={MijozlarXisoboti}/>
+                    <Route path={'/headerthird/mahsulotXisoboti'} component={MaxsulotXisoboti}/>
+                    <Route path={'/headerthird/savdoTolov'} component={SavdodaTulov}/>
+                    <Route path={'/headerthird/xarajatXisoboti'} component={XarajatlarXisoboti}/>
+                    <Route path={'/headerthird/kopSotilgan'} component={KopSotilgan}/>
+                    <Route path={'/headerthird/otkazmalarXisoboti'} component={OtkazmalarXisoboti}/>
+                    <Route path={'/headerthird/qoldiqlarXisoboti'} component={QoldiqlarXisoboti}/>
+                    <Route path={'/headerthird/dukonSozlama'} component={Dukon}/>
+                    <Route path={'/headerthird/soliqlarXisoboti'} component={SoliqlarXisoboti}/>
+                    <Route path={'/headerthird/bazalarSetting'} component={Bazalar}/>
+                    <Route path={'/headerthird/bazaSozlama'} component={SozlamalarBtn}/>
+                    <Route path={'/headerthird/profil'} component={Profil}/>
+                    <Route path={'/headerthird'} component={Third}/>
+                </Switch>
+            </div>
         </div>
+
     );
 }
 

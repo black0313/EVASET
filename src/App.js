@@ -1,12 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Home from "./components/Hbody/Home";
 import './App.css'
 import {connect} from "react-redux";
 import {active} from "./reducer/functionreducer";
-import {useState} from "react";
 import {Route, Switch, Link, Redirect} from "react-router-dom";
 import Headerthird from "./components/SotibOlish/headerthird";
-import {useHistory} from "react-router-dom";
 import functionreducer from "./reducer/functionreducer";
 import Sidebar from "./components/SotibOlish/Sidebar/Sidebar";
 import users from "./reducer/users";
@@ -14,42 +12,23 @@ import SavdoOynasi from "./components/SotibOlish/Sidebar/Savdo/SavdoOynasi/Savdo
 import {ToastContainer} from "react-toastify";
 
 
-function App({functionreducer, active, users}) {
+function App({functionreducer, users}) {
+
+    const [auth,setAuth] = useState(false)
+    useEffect(()=>{
+        setAuth(users.authEnter)
+    },[users.authEnter])
 
     return (
-        <div className={`app-css ${functionreducer.func.class5}`}>
-            <div className={ `${functionreducer.func.class1}`}>
-                {
-                    functionreducer.func.actives ? <Sidebar/>
-                        : ''
-                }
-            </div>
-            <div className={`${functionreducer.func.class2}`}>
-
+        <div>
+            <div>
                 <Switch>
+                    <Route path={'/login'} component={Home}/>
                     {
-                        users.linkhome ?
-                            <Route path={'/home'} component={Home}/>
-                            : ''
-                    }
-                    {
-                         users.linkheader ? <Route path={'/headerthird'} component={Headerthird}/> : ''
-
-                    }
-                    {
-                        users.linkhome ? <Redirect to={'/home'}/> : ''
+                        auth ? <Route path={'/headerthird'} component={Headerthird}/>
+                            :<Redirect to={'/login'}/>
                     }
 
-                    {
-                        users.linkheader ? <Redirect to={'/headerthird'}/> : ''
-                    }
-
-                    {
-                      users.linksavdooynasi ?  <Route path={'/turliTavar'} component={SavdoOynasi}/>:''
-                    }
-                    {
-                      users.linksavdooynasi ?  <Redirect to={'/turliTavar'}/>:''
-                    }
                 </Switch>
             </div>
         </div>
@@ -57,4 +36,4 @@ function App({functionreducer, active, users}) {
     );
 }
 
-export default connect((functionreducer, users), {active})(App);
+export default connect((functionreducer,users), {}) (App);

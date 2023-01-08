@@ -11,9 +11,7 @@ export const slice = createSlice({
             token_name: ''
         },
         businessId:"",
-        linkhome:true,
-        linkheader:false,
-        linksavdooynasi:false,
+        authEnter:false,
         error:false,
         rememberme:false,
 
@@ -50,14 +48,15 @@ export const slice = createSlice({
     },
     reducers: {
         saveusers: (state, action) => {
-                console.log(action.payload)
-            if (action.payload.success===true){
+                console.log(action.payload.success)
+            if (action.payload.success){
                 state.linkhome=!state.linkhome
                 state.linkheader=!state.linkheader
+                state.authEnter = true
                 state.users = action.payload.object
                 state.businessId=action.payload.object.business.id
-                state.id=action.payload.object.id
                 localStorage.setItem('tokenname',action.payload.message)
+                console.log('ei')
 
                     state.users.role.permissions.map(item=>{
                     switch (item){
