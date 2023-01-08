@@ -25,7 +25,10 @@ function App({functionreducer, users}) {
                 <Switch>
                     <Route path={'/login'} component={Home}/>
                     {
-                        auth ? <Route path={'/headerthird'} component={Headerthird}/>
+                        auth ? <Route path={'/'}>
+                                <Route path={'/headerthird'} component={Headerthird}/>
+                            <Route path={'/turliTavar'} component={SavdoOynasi}/>
+                            </Route>
                             :<Redirect to={'/login'}/>
                     }
 

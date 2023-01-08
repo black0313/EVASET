@@ -88,7 +88,7 @@ function Headerthird() {
                 </div>
             </div>
             <div className={`${classheader}`}>
-                <div >
+                <div>
                     <Header sidebarfunc={sidebarheader}/>
                 </div>
                 <Switch>
