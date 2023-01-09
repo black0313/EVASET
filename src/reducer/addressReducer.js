@@ -14,6 +14,7 @@ export const slice=createSlice({
         },
         save:(state,action)=>{
             state.current=!state.current
+            toast.success('Address Added')
      },
         editfrom: (state,action) => {
             state.current=!state.current
@@ -31,12 +32,12 @@ export const getaddress=()=>apiCall({
     onSuccess:slice.actions.get.type
 })
 
-// export const savebranch=(data)=>apiCall({
-//     url:'/branch',
-//     method:'post',
-//     data,
-//     onSuccess:slice.actions.save.type
-// })
+export const saveaddress=(data)=>apiCall({
+    url:'/address',
+    method:'post',
+    data,
+    onSuccess:slice.actions.save.type
+})
 //
 // export const editbranchs=(data)=>apiCall({
 //     url:'/branch/'+data.id,
