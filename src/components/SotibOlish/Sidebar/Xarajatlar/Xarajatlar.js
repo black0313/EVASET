@@ -2,20 +2,30 @@ import down from '../../../../img/arrow-right2.svg'
 import mahsulot from '../../../../img/card-send.svg'
 import {Switch,Link,Route} from 'react-router-dom'
 import './xarajatlar.css'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
-function Mahsulotlar({active}) {
+function Xarajatlar({changeLink,link,sidebaractive2}) {
 
-    const [active2,setActive] = useState(false);
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+
+    useEffect(()=>{
+        if (link !== 'xarajatlar'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('xarajat')
+            style.classList.remove('xarajat')
+        }
+    },[link])
+
     function toggle() {
-        setActive(!active2)
+        changeLink('xarajatlar')
         if(classs===''){
             setClasss('right2')
             setfill('fill')
@@ -34,8 +44,8 @@ function Mahsulotlar({active}) {
 
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
     }
     return(
@@ -67,4 +77,4 @@ function Mahsulotlar({active}) {
         </div>
     )
 }
-export default connect(({functionreducer:{func}})=>({func}),{active}) (Mahsulotlar)
+export default connect(({functionreducer:{func}})=>({func}),{active}) (Xarajatlar)

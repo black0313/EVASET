@@ -1,21 +1,29 @@
-import down from '../../../../img/arrow-down-1.svg'
-import mahsulot from '../../../../img/box-tick.svg'
 import './savdo.css'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {Switch,Route,Link} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 import {savdooynasi} from "../../../../reducer/users";
-function Savdo({active,savdooynasi}) {
+function Savdo({changeLink,link,savdooynasi,sidebaractive2}) {
 
-    const [active2,setActive] = useState(false);
 
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'savdo'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('savdo')
+            style.classList.remove('savdo')
+        }
+    },[link])
+
     function toggle() {
+        changeLink('savdo')
         if(classs===''){
             setClasss('right2')
             setfill('stroke')
@@ -34,17 +42,16 @@ function Savdo({active,savdooynasi}) {
 
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
     }
 
     function savdod(){
         savdooynasi()
-        active()
+       sidebaractive2()
     }
 
-    const [activeback,setactiveback] = useState(false)
 
 
     return(
@@ -67,7 +74,7 @@ function Savdo({active,savdooynasi}) {
             </div>
 
                 <ul>
-                    <li><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
+                    <li onClick={sidebaractive}><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
                     <li onClick={sidebaractive}><Link to={'/headerthird/mahsulotQoshish'} className={'li-text'}>Savdo qo`shish</Link></li>
                     <li   onClick={savdod}><Link to={'/turliTavar'} className={'li-text'} >Savdo oynasi</Link></li>
 

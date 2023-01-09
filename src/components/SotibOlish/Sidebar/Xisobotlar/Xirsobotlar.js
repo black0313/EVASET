@@ -1,21 +1,30 @@
 import down from '../../../../img/arrow-right2.svg'
 import mahsulot from '../../../../img/status-up.svg'
 import './xisobotlar.css'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {Switch,Link,Route} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
-function Xirsobotlar({active}) {
+function Xirsobotlar({sidebaractive2,changeLink,link}) {
 
-    const [active2,setActive] = useState(false);
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'xisobot'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('xisobot')
+            style.classList.remove('xisbot')
+        }
+    },[link])
+
     function toggle() {
-        setActive(!active2)
+        changeLink('xisobot')
         if(classs===''){
             setClasss('right2')
             setfill('fill')
@@ -34,10 +43,10 @@ function Xirsobotlar({active}) {
 
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
-        }
+    }
     return(
         <div className={'row list'} id={"xisobot"}>
             <div className=" imgDiv" onClick={toggle}>

@@ -1,17 +1,27 @@
 import './hodimlar.css'
 import {Link,Switch,Route} from 'react-router-dom'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
 import {active,activemedia,activetoggle} from "../../../../reducer/functionreducer";
 
-function Hodimlar({sidebaractive2}) {
+function Hodimlar({sidebaractive2,changeLink,link}) {
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'hodimlar'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('h')
+            style.classList.remove('list22')
+        }
+    },[link])
 
     function toggle() {
+        changeLink('hodimlar')
         if(classs===''){
             setClasss('right2')
             setfill('stroke')
@@ -30,7 +40,7 @@ function Hodimlar({sidebaractive2}) {
     }
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
+        if(windowWidth <= 1023.9){
             sidebaractive2()
         }
     }

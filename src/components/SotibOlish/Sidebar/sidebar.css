@@ -7,32 +7,19 @@
     width: 100%;
     object-fit: cover;
     padding-top: 1px !important;
-
 }
-
-.tran {
-
-}
-
 .mr {
     margin-left: 12px;
     margin-top: -2px;
 }
-
 .im3 {
     width: 20px;
     height: 20px;
 }
-
 .hhh {
     /*background: #0cd3c6;*/
     transition: 0.5s all;
 }
-
-.hhh2 {
-
-}
-
 .sidebar2 {
     transition: 0.6s linear;
     transform: translateX(0);
@@ -159,7 +146,6 @@ li {
 
 
 @media screen  and  (max-width: 425.9px) {
-
     .sidebar {
         padding: 1rem;
         transition: all 0.1s linear;
@@ -170,7 +156,9 @@ li {
 
 @media (min-width: 426px)  and  (max-width: 500.9px) {
     .sidebar {
-        width: calc(100% + 70px) !important;
+        padding: 1rem;
+        transition: all 0.1s linear;
+        width: 270px;
     }
 
 
@@ -178,7 +166,9 @@ li {
 
 @media (min-width: 501px)  and  (max-width: 767.9px) {
     .sidebar {
-        width: calc(100% + 70px) !important;
+        padding: 1rem;
+        transition: all 0.1s linear;
+        width: 270px;
     }
 
     .sidebar-text {
@@ -188,12 +178,14 @@ li {
 }
 
 @media (min-width: 768px)  and  (max-width: 1023.9px) {
-    .homepage1 .sidebar-text {
-        font-size: 12px;
+    .sidebar {
+        padding: 1rem;
+        transition: all 0.1s linear;
+        width: 310px;
     }
 
-    .homepageone .sidebar-text {
-        font-size: 12px;
+    .sidebar-text {
+        font-size: 24px;
     }
 
     .li-text {
@@ -209,11 +201,16 @@ li {
 }
 
 @media (min-width: 1024px)  and  (max-width: 1280.9px) {
-    .homepage1 .sidebar-text {
+    .sidebar {
+        padding: 1rem;
+        transition: all 0.1s linear;
+        width: 250px;
+    }
+    .sidebar-text {
         font-size: 14px;
     }
 
-    .homepageone .sidebar-text {
+     .sidebar-text {
         font-size: 14px;
     }
 
@@ -228,7 +225,13 @@ li {
         border: 1px dot-dash #0044FF;
     }
 }
-
+@media (min-width: 1281px) {
+    .sidebar {
+        padding: 1rem;
+        transition: all 0.1s linear;
+        width: 250px;
+    }
+}
 .navigation {
     position: relative;
 }
