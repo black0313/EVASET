@@ -108,9 +108,9 @@ function Headerthird() {
                         <Route path={'/headerthird/mijozlarGuruhi'} component={Mijozlarguruxi}/>
                         <Route path={'/headerthird/mijozGuruh'} component={MijozGuruhlariii}/>
 
-                        <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/:id?'} component={Taxrirlash3}/>
-                        <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} component={Taxrirlash3}/>
-                        <Route path={'/headerthird/mahsulotRuyxati/mahsulotImporti'} component={MahsulotImport}/>
+                        <Route path={'/headerthird/taxrirlash/:id?'} component={Taxrirlash3}/>
+                        <Route path={'/headerthird/taxrirlash'} component={Taxrirlash3}/>
+                        <Route path={'/headerthird/mahsulotImporti'} component={MahsulotImport}/>
                         <Route path={'/headerthird/mahsulotRuyxati'} component={MaxsulotlarRoyxati}/>
                         <Route path={'/headerthird/sotuvNarxGuruhlanishi'} component={SotuvNarxiniGuruxlash}/>
                         <Route path={'/headerthird/bolimlar'} component={Bolimlar}/>

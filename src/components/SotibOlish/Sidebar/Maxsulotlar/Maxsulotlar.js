@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import './mahsulotlar.css'
 import {useEffect, useState} from 'react'
 import {active} from "../../../../reducer/functionreducer";
-import {Switch, Route, Link} from 'react-router-dom'
+import {Switch, Route, Link, NavLink} from 'react-router-dom'
 import {getStyle} from "chart.js/helpers";
 
 function Maxsulotlar({changeLink,link,sidebaractive2}) {
@@ -74,18 +74,18 @@ function Maxsulotlar({changeLink,link,sidebaractive2}) {
                 </svg>            </div>
 
                 <ul>
-                    <li  onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati'} className={'li-text'}>Maxsulotlar ruyxati</Link></li>
-                    <li    onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} className={'mahqosh'}>Maxsulot qo`shish</Link></li>
+                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotRuyxati'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Maxsulotlar ruyxati</NavLink></li>
+                    <li    onClick={sidebaractive}><NavLink to={'/headerthird/taxrirlash'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Maxsulot qo`shish</NavLink></li>
                     {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>Shtrix kodlar</Link></li>*/}
                     {/*<li><Link to={'/turliTavar'} className={'mahqosh'}>Turli Tavarlar</Link></li>*/}
-                    <li    onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati/mahsulotImporti'} className={'mahqosh'}>Mahsulot Importi</Link></li>
+                    <li    onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotImporti'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Mahsulot Importi</NavLink></li>
                     {/*<li><Link to={'/mavjudImport'} className={'mahqosh'}>Mavjud miq import</Link></li>*/}
 
                     {/* <li  onClick={sidebaractive}><Link to={'/headerthird/sotuvNarxGuruhlanishi'} className={'mahqosh'}>Sotuv narxining guruhi</Link></li> */}
                     {/*<li  onClick={sidebaractive}><Link to={'/headerthird/sotuvNarxGuruhlanishi'} className={'mahqosh'}>Sotuv narxining guruhi</Link></li>*/}
                     {/*<li><Link to={'/ulcovBirliklar'} className={'mahqosh'}>O`lchov birliklar</Link></li>*/}
-                    <li  onClick={sidebaractive}><Link to={'/headerthird/bolimlar'} className={'li-text'}>Bo`limlar</Link></li>
-                    <li   onClick={sidebaractive}><Link to={'/headerthird/firmalar'} className={'li-text'}>Firmalar</Link></li>
+                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/bolimlar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Bo`limlar</NavLink></li>
+                    <li   onClick={sidebaractive}><NavLink to={'/headerthird/firmalar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Firmalar</NavLink></li>
                     {/*<li><Link to={'/kafolat'} className={'mahqosh'}>Kafolatlar</Link></li>*/}
                 </ul>
 

@@ -1,5 +1,5 @@
 import './hodimlar.css'
-import {Link,Switch,Route} from 'react-router-dom'
+import {Link,Switch,Route,NavLink} from 'react-router-dom'
 import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
 import {active,activemedia,activetoggle} from "../../../../reducer/functionreducer";
@@ -65,8 +65,8 @@ function Hodimlar({sidebaractive2,changeLink,link}) {
                 </div>
                 <div className={'hodimul'}>
                     <ul>
-                        <li onClick={sidebaractive}><Link  to={'/headerthird/hodimlarruyxati'} className={"lll li-text"}>Xodimlar ruyxati</Link></li>
-                        <li onClick={sidebaractive}><Link  to={'/headerthird/lavozimlar'} className={"lll li-text"}>Lavozimlar</Link></li>
+                        <li onClick={sidebaractive}><NavLink  to={'/headerthird/hodimlarruyxati'} className={isActive=>isActive? 'active-enter-link lll li-text':'lll li-text'}>Xodimlar ruyxati</NavLink></li>
+                        <li onClick={sidebaractive}><NavLink  to={'/headerthird/lavozimlar'} className={isActive=>isActive? 'active-enter-link lll li-text':'lll li-text'}>Lavozimlar</NavLink></li>
                         {/*<li onClick={sidebaractive}><Link  to={'/headerthird/hodimulush'} className={"lll li-text"}>Xodimlar ulushi</Link>   </li>*/}
                     </ul>
 
