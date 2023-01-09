@@ -20,54 +20,31 @@ import users from "../../../reducer/users";
 import SuperAdmin from "./SUPERADMIN/SuperAdmin";
 import store from '../../../img/storefront-outline.svg'
 
-function Sidebar({functionreducer,active,users}) {
+function Sidebar({sidebaractive2}) {
 
     useEffect(()=>{
-        permission()
+
     },[])
     function sidebaractive(){
-
+        const windowWidth = window.innerWidth;
+        if(windowWidth <= 767){
+            sidebaractive2()
+        }
     }
 
-    const [adduser,setadduser]=useState(false);
-    const [addrole,setaddrole]=useState(false);
-    const [addsupplier,setaddsupplier]=useState(false);
-    const [addcustomer,setaddcustomer]=useState(false);
 
-    function permission(){
 
-        // users.users.role.permissions.map(item=>{
-        //     switch (item){
-        //         case "ADD_USER":;
-        //         setadduser(true)
-        //             break;
-        //         case "ADD_ROLE":;
-        //         setaddrole(true)
-        //             break;
-        //         case "ADD_SUPPLIER":;
-        //         setaddsupplier(true)
-        //             break;
-        //         case "ADD_CUSTOMER":;
-        //         setaddcustomer(true)
-        //             break;
-        //     }
-        // })
-    }
-    // ${functionreducer.func.class3} ${functionreducer.func.class4}
 
-    const [xaridruyxat,setxaridruyxat] = useState(true)
 
     return (
-                <div className={`col-md-12 sidebar`}>
+                <div className={`sidebar`}>
                     <div className="sidehead d-flex justify-content-center">
                         <img src={logo} alt="logo"/>
                     </div>
                     <div className={'gap ms-2 sidebar-active'}>
                         <div className={'navigation'}>
                             <div className="nav">
-
                                 <div className="row bosh">
-
                                     <Link to={'/headerthird/superadmin'}>
                                         <div className={'d-flex'}>
                                             <img className={'im3'} src={store} alt=""/>
@@ -86,19 +63,17 @@ function Sidebar({functionreducer,active,users}) {
                                             </Link>
                                         </div>
                                     </div>
-
                                 </div>
-                                <Hodimlar/>
-                                <Hamkorlar/>
-                                <Maxsulotlar/>
-                                <Haridlar/>
-                                <Savdo/>
-                                <Baza/>
+                                <Hodimlar sidebaractive2={sidebaractive2}/>
+                                <Hamkorlar sidebaractive2={sidebaractive2}/>
+                                <Maxsulotlar sidebaractive2={sidebaractive2}/>
+                                <Haridlar sidebaractive2={sidebaractive2}/>
+                                <Savdo sidebaractive2={sidebaractive2}/>
+                                <Baza sidebaractive2={sidebaractive2}/>
                                 {/*<MahBaza/>*/}
-                                <Xarajatlar/>
-                                <Xirsobotlar/>
-                                <Sozlamalar/>
-                                <div className="indicator"></div>
+                                <Xarajatlar sidebaractive2={sidebaractive2}/>
+                                <Xirsobotlar sidebaractive2={sidebaractive2}/>
+                                <Sozlamalar sidebaractive2={sidebaractive2}/>
                             </div>
                         </div>
 
@@ -108,4 +83,4 @@ function Sidebar({functionreducer,active,users}) {
     )
 }
 
-export default connect((functionreducer,users),{active}) (Sidebar)
+export default connect() (Sidebar)

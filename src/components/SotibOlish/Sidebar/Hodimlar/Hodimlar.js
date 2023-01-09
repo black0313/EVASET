@@ -1,13 +1,11 @@
 import './hodimlar.css'
 import {Link,Switch,Route} from 'react-router-dom'
 import {useState} from 'react'
-import right from '../../../../img/arrow-right2.svg'
 import {connect} from "react-redux";
 import {active,activemedia,activetoggle} from "../../../../reducer/functionreducer";
 
-function Hodimlar({active,activemedia,activetoggle}) {
+function Hodimlar({sidebaractive2}) {
 
-    const [active2,setActive] = useState(false);
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
@@ -33,14 +31,13 @@ function Hodimlar({active,activemedia,activetoggle}) {
     function sidebaractive(){
         const windowWidth = window.innerWidth;
         if(windowWidth <= 767){
-            active()
+            sidebaractive2()
         }
     }
 
 
     return(
             <div className={'row list active'} id={'h'}>
-                {/*<div className="col-md-6">*/}
                 <div className="imgDiv"    onClick={toggle}>
                     <div className={'d-flex align-items-center'}>
                         <svg    className={`sidebar-img2 ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,4 +66,4 @@ function Hodimlar({active,activemedia,activetoggle}) {
             </div>
     )
 }
-export default connect(({functionreducer:{func}})=>({func}),{active,activemedia,activetoggle}) (Hodimlar)
+export default connect() (Hodimlar)

@@ -1,65 +1,79 @@
-.sidebar{
+.sidebar {
     background: #ffffff;
     margin-top: 1%;
-    transition: 1s linear;
+    transition:all 0.1s linear;
     cursor: pointer;
     height: 100%;
+    width: 100%;
     object-fit: cover;
     padding-top: 1px !important;
-}
-.tran{
 
 }
-.mr{
+
+.tran {
+
+}
+
+.mr {
     margin-left: 12px;
     margin-top: -2px;
 }
-.im3{
+
+.im3 {
     width: 20px;
     height: 20px;
 }
-.hhh{
+
+.hhh {
     /*background: #0cd3c6;*/
     transition: 0.5s all;
 }
-.hhh2{
+
+.hhh2 {
 
 }
-.sidebar2{
+
+.sidebar2 {
     transition: 0.6s linear;
     transform: translateX(0);
 }
-.sidebar ul li{
+
+.sidebar ul li {
     transition: all 0.3s linear;
     width: 100%;
 }
-.sidebar ul li:hover{
+
+.sidebar ul li:hover {
     width: 100%;
     font-size: 18px;
 }
 
-.sidehead img{
+.sidehead img {
     width: 70%;
 }
-.sidebar .sidehead{
+
+.sidebar .sidehead {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
 }
-.sidebar .sidehead h5{
+
+.sidebar .sidehead h5 {
     margin-left: 10px;
     text-transform: uppercase;
     font-weight: bold;
     margin-top: 10px;
 }
-.imgDiv{
+
+.imgDiv {
     display: flex;
     justify-content: space-between;
 }
-.sidebar-text{
+
+.sidebar-text {
     margin-left: 10px;
     margin-top: 7px;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -67,133 +81,155 @@
     /* identical to box height, or 150% */
     color: #3A3C40;
 }
-.sidebar-active{
+
+.sidebar-active {
     position: relative;
 }
-.imgDiv:hover .sidebar-text{
+
+.imgDiv:hover .sidebar-text {
     color: #0044FF;
     /*color: yellow;*/
 }
-.imgDiv:checked img{
+
+.imgDiv:checked img {
     transform: rotate(180deg);
 }
-.imgDiv:hover .sidebar-img path{
+
+.imgDiv:hover .sidebar-img path {
     stroke: #0044FF;
 }
-.sidebar-img path{
-    stroke:#3A3C40;
+
+.sidebar-img path {
+    stroke: #3A3C40;
 }
-.sidebar-img2 path{
+
+.sidebar-img2 path {
     fill: #3A3C40;
 }
-.imgDiv:hover .sidebar-img2 path{
+
+.imgDiv:hover .sidebar-img2 path {
     fill: #0044FF;
 }
 
-.sidebar .bosh{
+.sidebar .bosh {
     cursor: pointer;
     display: flex;
     margin-top: 44px;
     align-items: center;
 }
-.sidehead{
+
+.sidehead {
     cursor: pointer;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 5px;
-}::-webkit-scrollbar:hover{
+}
+
+::-webkit-scrollbar:hover {
     width: 10px;
 }
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar-track {
     background: #ffffff;
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border: 5px solid #0044FF;
 }
-.fill path{
+
+.fill path {
     fill: #0044FF;
 }
-.fontsize{
+
+.fontsize {
     font-size: 17px;
     font-weight: 700;
 }
-.stroke path{
+
+.stroke path {
     stroke: #0044FF;
 }
-li{
+
+li {
     list-style: disc;
     margin-top: 5px;
 }
 
 
+@media screen  and  (max-width: 425.9px) {
 
-
-
-
-@media screen  and  (max-width: 425.9px){
-        .sidebar{
-            width: calc(100%  + 70px) !important;
-        }
-        .media2{
-            display: none;
-        }
-        .media{
-            display: block;
-        }
+    .sidebar {
+        padding: 1rem;
+        transition: all 0.1s linear;
+        width: 250px;
+    }
 
 }
-@media (min-width: 426px)  and  (max-width: 500.9px){
-        .sidebar{
-            width: calc(100%  + 70px) !important;
-        }
+
+@media (min-width: 426px)  and  (max-width: 500.9px) {
+    .sidebar {
+        width: calc(100% + 70px) !important;
+    }
 
 
 }
-@media (min-width: 501px)  and  (max-width: 767.9px){
-        .sidebar{
-            width: calc(100%  + 70px) !important;
-        }
-        .sidebar-text{
-            font-size: 20px;
-        }
+
+@media (min-width: 501px)  and  (max-width: 767.9px) {
+    .sidebar {
+        width: calc(100% + 70px) !important;
+    }
+
+    .sidebar-text {
+        font-size: 20px;
+    }
 
 }
-@media (min-width: 768px)  and  (max-width: 1023.9px){
-   .homepage1 .sidebar-text{
-       font-size: 12px;
-   }
-    .homepageone .sidebar-text{
+
+@media (min-width: 768px)  and  (max-width: 1023.9px) {
+    .homepage1 .sidebar-text {
         font-size: 12px;
     }
-    .li-text{
+
+    .homepageone .sidebar-text {
+        font-size: 12px;
+    }
+
+    .li-text {
         font-size: 16px !important;
         transition: 0.5s;
     }
-    .li-text:hover{
+
+    .li-text:hover {
         font-size: 17px !important;
         color: #0044FF;
         border: 1px dot-dash #0044FF;
     }
 }
-@media (min-width: 1024px)  and  (max-width: 1280.9px){
-   .homepage1 .sidebar-text{
-       font-size: 14px;
-   }
-    .homepageone .sidebar-text{
+
+@media (min-width: 1024px)  and  (max-width: 1280.9px) {
+    .homepage1 .sidebar-text {
         font-size: 14px;
     }
-    .li-text{
+
+    .homepageone .sidebar-text {
+        font-size: 14px;
+    }
+
+    .li-text {
         font-size: 14px !important;
         transition: 0.5s;
     }
-    .li-text:hover{
+
+    .li-text:hover {
         font-size: 15px !important;
         color: #0044FF;
         border: 1px dot-dash #0044FF;
     }
 }
-.navigation{
+
+.navigation {
     position: relative;
 }
 
@@ -202,39 +238,46 @@ li{
     height: 50px;
     transition: 0.3s ease;
 }
-.list .imgDiv{
+
+.list .imgDiv {
     display: flex;
     margin-left: 0;
     margin-top: 15px;
     align-items: center;
 }
-.list h6{
+
+.list h6 {
     margin-left: 10px;
     cursor: pointer;
     transition: 0.2s linear;
 }
-.list h6:hover{
+
+.list h6:hover {
     margin-left: 10px;
     cursor: pointer;
     color: #0044FF;
 }
 
-.list ul{
+.list ul {
     display: block;
     margin-left: 15%;
 }
-.list .hamkorImg{
+
+.list .hamkorImg {
     cursor: pointer;
     margin-left: 24%;
 }
-.list ul li{
+
+.list ul li {
     margin-top: 5px;
 }
-.list ul{
+
+.list ul {
     display: block;
     margin-left: 15%;
 }
-.list ul li .hamkorlar{
+
+.list ul li .hamkorlar {
     text-decoration: none;
     color: #3f3c3c;
 }

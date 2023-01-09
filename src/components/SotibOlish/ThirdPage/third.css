@@ -641,6 +641,9 @@ input.search::placeholder {
         font-size: 8px;
         line-height: 10px;
     }
+    h4.kitchen2{
+        font-size: 14px;
+    }
     .kitchen-button {
         padding: 2px 10px;
         font-size: 10px;
