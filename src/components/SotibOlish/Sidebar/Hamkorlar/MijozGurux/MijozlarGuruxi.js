@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
 import CSV from '../../../../../img/CSV.png'
 import Excel from '../../../../../img/Excel.png'
 import Print from '../../../../../img/Print.png'
@@ -61,11 +61,8 @@ function Mijozlarguruxi({
         }
     )
 
-    function phone(e) {
-        input.phone = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
+    const {register,setValue,resetField, reset,handleSubmit, formState:{errors}} = useForm()
+
     function qarzuzish(e) {
         input.qarzuzish = e.target.value
         let a = {...input}
@@ -78,55 +75,16 @@ function Mijozlarguruxi({
         setInput(a)
     }
 
-    function mijozguruhnomi(e) {
-        input.mijozguruhnomi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-    function mijozbranchId(e) {
-        input.branchId = e.target.value
-        let a = {...input}
-        setInput(a)
-        console.log(input.branchId)
-    }
-
-    function deleteM(item) {
-        deleteMijozGurux(item.id)
-        setTimeout(()=>{
-            getMijozGurux(1)
-        },100)
-    }
-
-    function changeguruxnomi(e) {
-        input.guruhnomi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function changeselectfoiz(e) {
-        input.selectfoiz = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function changefoizda(e) {
-        input.foizda = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
+    const [editId, setEditId] = useState('')
     function editM(id) {
         toggle()
-        MijozGuruxReducer.mijozgurux.map(item => {
-            if (item.id === id) {
-                input.guruhnomi = item.name
-                input.phone = item.phoneNumber
-                input.foizda = item.telegram
-                input.mId = id
-                let a = {...input}
-                setInput(a)
-            }
-        })
+        setEditId(id)
+        let a = MijozGuruxReducer.mijozgurux.filter(item=>item.id===id)
+        setValue('name',a[0].name)
+        setValue('phoneNumber',a[0].phoneNumber)
+        setValue('telegram',a[0].telegram)
+        setValue('customerGroupId',a[0].customerGroupId)
+        setValue('businessId',a[0].businessId)
     }
 
     function saqlaqarz(item){
@@ -138,56 +96,6 @@ function Mijozlarguruxi({
         input.qarzuzish = ''
         let a = {...input}
         setInput(a)
-    }
-
-    function saqla() {
-       if(input.guruhnomi !=="" && input.phone !=="" && input.foizda !==""){
-         
-        if (input.mId !== '') {
-            editMijozGurux({
-                name: input.guruhnomi,
-                phoneNumber: input.phone,
-                telegram: input.foizda,
-                businessId: users.businessId,
-                id: input.mId
-            })
-        } else {
-            saveMijozGurux({
-                name: input.guruhnomi,
-                phoneNumber: input.phone,
-                telegram: input.foizda,
-                // repayment: input.qarzuzish,
-                customerGroup: input.mijozguruhnomi,
-                businessId: users.businessId,
-                branchId: input.branchId
-            })
-        }
-        setPlaseholders(
-            {
-                guruhNomiPlaseholders:'',
-                phonePlaseholders:'',
-                telegramPlaseholders:''
-            }
-        )
-        
-        input.guruhnomi = ''
-        input.phone = ''
-        input.selectfoiz = ''
-        input.foizda = ''
-        input.mId=''
-        let a ={...input}
-        setInput(a)
-        toggle()
-       }
-       else{
-        setPlaseholders(
-            {
-                guruhNomiPlaseholders:'Guruh nomini kiriting...',
-                phonePlaseholders:'Telefon raqam kiriting...',
-                telegramPlaseholders:'Telegram guruh nomi... '
-            }
-        )
-       }
     }
 
 
@@ -210,7 +118,6 @@ function Mijozlarguruxi({
 
     const [malkamay,setmalkamay] = useState(false)
 
-    const [xisob,setxisob] = useState(0)
     let [jamixisob,setjamixisob] = useState(0)
 
     function toggle() {
@@ -254,7 +161,6 @@ function Mijozlarguruxi({
         setqarzuz(!qarzuz)
     }
 
-
     const [deletemodal, setdeletemodal] = useState(false)
     const [deleteID, setdeletID] = useState('')
 
@@ -263,12 +169,32 @@ function Mijozlarguruxi({
         deleteModaltoggle('')
     }
 
-
     function deleteModaltoggle(item) {
         setdeletemodal(!deletemodal)
         setdeletID(item)
     }
 
+    function save(data){
+        saveMijozGurux({
+            ...data, businessId: users.businessId
+        })
+        reset('')
+    }
+
+    function onSubmit(data){
+        if (editId === ''){
+            save(data)
+        }else {
+            editMijozGurux({
+                ...data,businessId: users.businessId,id:editId
+            })
+            toggle()
+        }
+        setEditId('')
+        resetField('name','')
+        resetField('phoneNumber','')
+        resetField('telegram','')
+    }
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
             <div className="textHeaderMIG">
@@ -340,7 +266,6 @@ function Mijozlarguruxi({
                                             telegram?<th>{item.telegram}</th>:''
                                         }
                                         <th>Qarz</th>
-                                        {/*<th>Qarz uzish</th>*/}
                                         <th>{item.guruh}</th>
                                         {
                                             amallar?<th className={'text-center'}>{item.amallar}</th>:''
@@ -424,39 +349,55 @@ function Mijozlarguruxi({
 
 
                 <Modal isOpen={active} toggle={toggle}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                     <ModalHeader>
                         Yangi Mijoz qo`shish / taxrirlash
                     </ModalHeader>
                     <ModalBody>
                         <label htmlFor={'nomi'}>Nomi</label>
-                        <input value={input.guruhnomi} onChange={changeguruxnomi} id={'nomi'} type="text"
-                              placeholder={plaseholders.guruhNomiPlaseholders}  className={'form-control mb-3 mt-1'}/>
+                        <input
+                            {...register('name', {required: true})}
+                            placeholder={errors.name ? errors.name?.type === "required" && "Name is required": 'name'}
+                            defaultValue={''}
+                            id={'nomi'} type="text"
+                            className={'form-control mb-3 mt-1'}/>
                         <label className={'mt-1'} htmlFor={'filial'}>Filialni tanlash</label>
-                        <select name="" className={'form-control'} value={input.branchId} onChange={mijozbranchId} >
+                        <select name="" className={'form-control'} {...register('branchId', {required:true})}   >
                             {
                                 branchreducer.branch.map(item=>
-                                    input.branchId == undefined ? input.branchId = item.id :
                                     <option  value={item.id}>{item.name}</option>)
                             }
                         </select>
                         <label className={'mt-2'} htmlFor={'tel'}>Telefon raqam</label>
-                        <input type="text" id='phoneNumberInput' placeholder={plaseholders.phonePlaseholders} className={'form-control mb-3 mt-1'} value={input.phone} onChange={phone}/>
+                        <input type="text" id='phoneNumberInput'
+                               {...register('phoneNumber',{required:true})}
+                            placeholder={errors.phoneNumber ? errors.phoneNumber?.type === "required" && "Phone num is required": 'phoneNumber'}
+                               defaultValue={''}
+                                className={'form-control mb-3 mt-1'} />
                         <label htmlFor={'foizda'}>Telegram</label>
-                        <input type="text" value={input.foizda}  placeholder={plaseholders.telegramPlaseholders} onChange={changefoizda} className={'form-control mb-3 mt-1'}
+                        <input type="text"
+                               {...register('telegram', {required:true})}
+                            placeholder={errors.telegram ? errors.telegram?.type === "required" && "Telegram is required": 'telegram'}
+                               defaultValue={''}
+                               className={'form-control mb-3 mt-1'}
                                id={'foizda'}/>
+
                         <label htmlFor={'m'}>Mijoz uchun guruh</label>
-                        <select id={'m'} value={input.mijozguruhnomi} className={'form-control'} onChange={mijozguruhnomi}>
+                        <select id={'m'}
+                                {...register('customerGroupId', {required:true})}
+                                className={'form-control'}>
                             {
                                 MijozlarGuruhReducer.mijozGuruh.map(item=>
-                                    input.mijozguruhnomi == undefined ? input.mijozguruhnomi = item.id :
-                                    <option key={item.id} value={item.id}>{item.name} {input.mijozguruhnomi}</option>)
+                                    <option key={item.id} value={item.id}>{item.name}</option>)
                             }
                         </select>
+
                     </ModalBody>
                     <ModalFooter>
-                        <button className={'btn btn-primary'} onClick={saqla}>SAQLASH</button>
-                        <button className={'btn btn-primary'} onClick={toggle}>CHIQISH</button>
+                        <button className={'btn btn-primary'} type={"submit"}>SAQLASH</button>
+                        <button className={'btn btn-primary'} type={"button"} onClick={toggle}>CHIQISH</button>
                     </ModalFooter>
+                    </form>
                 </Modal>
 
             </div>
