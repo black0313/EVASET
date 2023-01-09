@@ -6,9 +6,9 @@ import {useState} from 'react'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
-function Mahsulotlar({active}) {
+function Baza({active,sidebaractive2}) {
 
-    const [active2,setActive] = useState(false);
+
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
@@ -33,8 +33,8 @@ function Mahsulotlar({active}) {
 
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
     }
     return(
@@ -66,4 +66,4 @@ function Mahsulotlar({active}) {
         </div>
     )
 }
-export default connect(({functionreducer:{func}})=>({func}),{active}) (Mahsulotlar)
+export default connect(({functionreducer:{func}})=>({func}),{active}) (Baza)

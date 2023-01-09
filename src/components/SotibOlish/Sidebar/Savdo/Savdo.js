@@ -6,7 +6,7 @@ import {Switch,Route,Link} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 import {savdooynasi} from "../../../../reducer/users";
-function Savdo({active,savdooynasi}) {
+function Savdo({active,savdooynasi,sidebaractive2}) {
 
     const [active2,setActive] = useState(false);
 
@@ -34,14 +34,14 @@ function Savdo({active,savdooynasi}) {
 
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
     }
 
     function savdod(){
         savdooynasi()
-        active()
+       sidebaractive2()
     }
 
     const [activeback,setactiveback] = useState(false)
@@ -67,7 +67,7 @@ function Savdo({active,savdooynasi}) {
             </div>
 
                 <ul>
-                    <li><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
+                    <li onClick={sidebaractive}><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
                     <li onClick={sidebaractive}><Link to={'/headerthird/mahsulotQoshish'} className={'li-text'}>Savdo qo`shish</Link></li>
                     <li   onClick={savdod}><Link to={'/turliTavar'} className={'li-text'} >Savdo oynasi</Link></li>
 

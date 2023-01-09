@@ -6,7 +6,7 @@ import {useState} from 'react'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
-function Sozlamalar({active}) {
+function Sozlamalar({active,sidebaractive2}) {
 
     const [active2,setActive] = useState(false);
 
@@ -34,8 +34,8 @@ function Sozlamalar({active}) {
 
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
     }
     return(

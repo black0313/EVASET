@@ -7,7 +7,7 @@ import {active} from "../../../../reducer/functionreducer";
 import {Switch, Route, Link} from 'react-router-dom'
 import {getStyle} from "chart.js/helpers";
 
-function Mahsulotlar({active}) {
+function Maxsulotlar({active,sidebaractive2}) {
 
     const [active2, setActive] = useState(false);
     const [classs,setClasss] = useState('');
@@ -31,56 +31,15 @@ function Mahsulotlar({active}) {
         }
     }
 
+
+
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
-        }
-        ToggleSwitch()
-        if (activeback2===true){
-            setactiveback2(!activeback2)
-        }else if (activeback3===true){
-            setactiveback3(!activeback3)
-        }
-    }
-    function sidebaractive2(){
-        const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
-        }
-        ToggleSwitch2()
-        if (activeback===true){
-            setactiveback(!activeback)
-        }else if (activeback3===true){
-            setactiveback3(!activeback3)
-        }
-    }
-    function sidebaractive3(){
-        const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
-        }
-        ToggleSwitch3()
-        if (activeback===true){
-            setactiveback(!activeback)
-        }else if (activeback2===true){
-            setactiveback2(!activeback2)
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
     }
 
-    const [activeback,setactiveback] = useState(false)
-    const [activeback2,setactiveback2] = useState(false)
-    const [activeback3,setactiveback3] = useState(false)
-
-    const ToggleSwitch = () =>{
-        activeback? setactiveback(false) : setactiveback(true)
-    }
-    const ToggleSwitch2 = () =>{
-        activeback2? setactiveback2(false) : setactiveback2(true)
-    }
-    const ToggleSwitch3 = () =>{
-        activeback3? setactiveback3(false) : setactiveback3(true)
-    }
 
     return (
         <div className={'row list'} id={'mahsulot'}>
@@ -106,18 +65,18 @@ function Mahsulotlar({active}) {
                 </svg>            </div>
 
                 <ul>
-                    <li className={activeback?"b3":"b4"}  onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati'} className={'li-text'}>Maxsulotlar ruyxati</Link></li>
-                    <li><Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} className={'mahqosh'}>Maxsulot qo`shish</Link></li>
+                    <li  onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati'} className={'li-text'}>Maxsulotlar ruyxati</Link></li>
+                    <li    onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'} className={'mahqosh'}>Maxsulot qo`shish</Link></li>
                     {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>Shtrix kodlar</Link></li>*/}
                     {/*<li><Link to={'/turliTavar'} className={'mahqosh'}>Turli Tavarlar</Link></li>*/}
-                    <li><Link to={'/headerthird/mahsulotRuyxati/mahsulotImporti'} className={'mahqosh'}>Mahsulot Importi</Link></li>
+                    <li    onClick={sidebaractive}><Link to={'/headerthird/mahsulotRuyxati/mahsulotImporti'} className={'mahqosh'}>Mahsulot Importi</Link></li>
                     {/*<li><Link to={'/mavjudImport'} className={'mahqosh'}>Mavjud miq import</Link></li>*/}
 
                     {/* <li  onClick={sidebaractive}><Link to={'/headerthird/sotuvNarxGuruhlanishi'} className={'mahqosh'}>Sotuv narxining guruhi</Link></li> */}
                     {/*<li  onClick={sidebaractive}><Link to={'/headerthird/sotuvNarxGuruhlanishi'} className={'mahqosh'}>Sotuv narxining guruhi</Link></li>*/}
                     {/*<li><Link to={'/ulcovBirliklar'} className={'mahqosh'}>O`lchov birliklar</Link></li>*/}
-                    <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link to={'/headerthird/bolimlar'} className={'li-text'}>Bo`limlar</Link></li>
-                    <li className={activeback3?"b3":"b4"} onClick={sidebaractive3}><Link to={'/headerthird/firmalar'} className={'li-text'}>Firmalar</Link></li>
+                    <li  onClick={sidebaractive}><Link to={'/headerthird/bolimlar'} className={'li-text'}>Bo`limlar</Link></li>
+                    <li   onClick={sidebaractive}><Link to={'/headerthird/firmalar'} className={'li-text'}>Firmalar</Link></li>
                     {/*<li><Link to={'/kafolat'} className={'mahqosh'}>Kafolatlar</Link></li>*/}
                 </ul>
 
@@ -126,4 +85,4 @@ function Mahsulotlar({active}) {
     )
 }
 
-export default connect(({functionreducer:{func}})=>({func}),{active}) (Mahsulotlar)
+export default connect(({functionreducer:{func}})=>({func}),{active}) (Maxsulotlar)

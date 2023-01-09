@@ -6,7 +6,7 @@ import {Switch,Link,Route} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
-function Xirsobotlar({active}) {
+function Xirsobotlar({active,sidebaractive2}) {
 
     const [active2,setActive] = useState(false);
 
@@ -34,10 +34,10 @@ function Xirsobotlar({active}) {
 
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            active()
+        if(windowWidth <= 1023.9){
+            sidebaractive2()
         }
-        }
+    }
     return(
         <div className={'row list'} id={"xisobot"}>
             <div className=" imgDiv" onClick={toggle}>

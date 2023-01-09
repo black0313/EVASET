@@ -30,7 +30,7 @@ function Hodimlar({sidebaractive2}) {
     }
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
+        if(windowWidth <= 1023.9){
             sidebaractive2()
         }
     }

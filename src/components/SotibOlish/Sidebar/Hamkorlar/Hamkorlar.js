@@ -5,9 +5,8 @@ import {useState} from 'react'
 import {Link,Switch,Route} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
-function Hamkorlar({active}) {
+function Hamkorlar({active,sidebaractiveopen}) {
 
-    const [active2,setActive] = useState(false);
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
@@ -31,7 +30,7 @@ function Hamkorlar({active}) {
     function sidebaractive(){
         const windowWidth = window.innerWidth;
         if(windowWidth <= 767){
-            active()
+            sidebaractiveopen()
         }
         ToggleSwitch()
         if (activeback2===true){
@@ -42,7 +41,7 @@ function Hamkorlar({active}) {
     function sidebaractive2(){
         const windowWidth = window.innerWidth;
         if(windowWidth <= 767){
-            active()
+            sidebaractiveopen()
         }
         ToggleSwitch2()
         if (activeback===true){
@@ -83,7 +82,7 @@ function Hamkorlar({active}) {
                <ul>
                     <li className={activeback?"b3":"b4"} onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/taminotchilar'}>Taminotchilar</Link></li>
                     <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Barcha Mijozlar</Link></li>
-                    <li><Link className={'hamkorlar'} to={'/headerthird/mijozGuruh'}>Mijozlar Guruhlari</Link></li>
+                    <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'hamkorlar'} to={'/headerthird/mijozGuruh'}>Mijozlar Guruhlari</Link></li>
                     {/*<li><Link className={'hamkorlar'} to={'/malumotTiklash'}>Malumotlarni tiklash</Link></li>*/}
                 </ul>
 
