@@ -12,11 +12,10 @@
 .bn {
     position: relative;
     width: 100%;
-    padding: 5px;
+    padding: 7px;
     transition: 0.4s all ease-in-out;
-    /*background: rgb(55, 55, 144);*/
     color: #ffff;
-    background: #17176a;
+    background: silver;
     border-radius: 5px;
 }
 
@@ -47,41 +46,7 @@
     width: 100%;
     padding: 5px;
     color: #fff;
-    background: black;
-}
-.bn2 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    animation: line 1s 3;
-}
-
-@keyframes line {
-    0% {
-        width: 0px;
-    }
-    10% {
-        background: black;
-    }
-    30% {
-        opacity: 0.6;
-    }
-    50% {
-        opacity: 0.6;
-        background: black;
-    }
-    70%{
-        opacity: 0.6;
-    }
-    90%{
-        background: black;
-        opacity: 0.6;
-    }
-    100%{
-        opacity: 0.3;
-    }
+    background: #833d3d;
 }
 
 .rowStyleTM {

@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {apiCall} from "../../../../../api";
-// import {toast} from "react-toastify";
 import {useEffect,useState} from "react";
 import {toast} from "react-toastify";
 
@@ -10,7 +9,7 @@ const slice = createSlice({
         taminot: [],
         current:false,
         taminotjami:0,
-
+        oneSupplier:{}
     },
     reducers: {
         getFrom: (state, action) => {
@@ -30,6 +29,11 @@ const slice = createSlice({
             toast.success('Qarz o`chdi !')
         },
         editfrom: (state,action) => {
+            state.taminot.map((item)=>{
+                if (item.id === action.payload.id){
+                    item.name = action.payload.name
+                }
+            })
             toast.success('Diller tahrirlandi')
             state.current=!state.current
         },

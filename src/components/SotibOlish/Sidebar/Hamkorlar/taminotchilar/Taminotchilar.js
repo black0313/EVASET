@@ -10,13 +10,21 @@ import Korish from '../../../../../img/Korish.png'
 import Delete from '../../../../../img/Delete.png'
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import TaminotReducer, { getTaminot, saveTaminot, editTaminot, deleteTaminot, qarzuzishTaminot } from "../reducer/TaminotReducer";
+import TaminotReducer, {
+    getTaminot,
+    saveTaminot,
+    editTaminot,
+    deleteTaminot,
+    qarzuzishTaminot,
+    getTaminot2
+} from "../reducer/TaminotReducer";
 import users from "../../../../../reducer/users";
 import { useState } from 'react'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import QarzuzishTaminotReducer from "../reducer/QarzuzishTaminotReducer";
+import {useForm} from "react-hook-form";
 
-function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzuzishTaminot, editTaminot, deleteTaminot, taminot, users, TaminotReducer }) {
+function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotReducer, qarzuzishTaminot, editTaminot, deleteTaminot, taminot, users, TaminotReducer }) {
 
     useEffect(() => {
         getTaminot(users.businessId)
@@ -29,27 +37,12 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
         setActive(!active)
     }
 
-
     const [input, setInput] = useState(
         {
-            langv1: '',
-            telegram: '',
-            dukon: '',
-            idraqam: '',
-            login: '',
-            idplaceholder: 'ID raqami',
-            loginplaceholder: 'Mr/Mrs/Mis',
-            ismplaceholder: 'Ismi',
-            telegramLinkPlaceholder: 'Telegram link',
-            telefonRaqamPlaceholder: 'Telefon raqam',
-            ismi: '',
-            otaismi: '',
-            familiyasi: '',
             inputsearch: '',
-            tID: '',
-            taminotturi: '',
             qarzuzish: '',
-            qId: ''
+            branchId: [],
+            selectSupplier:'',
         },
     );
 
@@ -63,67 +56,27 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
         let a = { ...input }
         setInput(a)
     }
-    function taminotturi(e) {
-        input.taminotturi = e.target.value
-        let a = { ...input }
-        setInput(a)
-        console.log(input.inputsearch)
-    }
 
-
-    function changelogin(e) {
-        input.login = e.target.value
-        let a = { ...input }
-        setInput(a)
-
-    }
-
-    function changeismi(e) {
-        input.ismi = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-
-    function changeotaismi(e) {
-        input.telegram = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-
-    function changefamiliyasi(e) {
-        input.familiyasi = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-
-    function deleteTaminot2(item) {
-        deleteTaminot(item.id)
-        setTimeout(() => {
-            getTaminot(1)
-        }, 100)
-    }
+    const [editId,setEditId]=useState('')
 
     function editt(id) {
+        setEditId(id)
+        let a = TaminotReducer.taminot.filter(item=>item.id === id)
+        console.log(a)
         toggle()
-        TaminotReducer.taminot.map(item => {
-            if (item.id === id) {
-                input.ismi = item.name
-                input.familiyasi = item.phoneNumber
-                input.telegram = item.telegram
-                input.login = item.login
-                input.tID = id
-                let a = { ...input }
-                setInput(a)
-            }
-        })
+
+        setValue('name', a[0].name)
+        setValue('phoneNumber', a[0].phoneNumber)
+        setValue('telegram', a[0].telegram)
+        setValue('supplierType', a[0].supplierType)
+
+
     }
 
-    const [xisob, setxisob] = useState(0)
     let [jamixisob, setjamixisob] = useState(0)
 
     const [qarz, setqarz] = useState(false)
     const [qarzID,setqarzID] = useState('')
-
 
 
     function debt2(id){
@@ -147,67 +100,8 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
         toggle3()
     }
 
-    function saqla() {
+    const {register, setValue,reset, handleSubmit, resetField, formState: {errors}} = useForm()
 
-        if (input.ismi === "" || input.telegram === "" || input.familiyasi === "") {
-            input.ismplaceholder = "Ism kiriting..."
-            var b = document.getElementById('ism')
-            input.telefonRaqamPlaceholder = "Telefon raqam kiriting..."
-            var c = document.getElementById('telefon')
-            input.telegramLinkPlaceholder = "Link kiriting..."
-            var d = document.getElementById('telegram')
-            let a = { ...input }
-            setInput(a)
-            b.classList.add('pcolor')
-            c.classList.add('pcolor')
-            d.classList.add('pcolor')
-        }
-
-        else {
-            if (input.tID !== '') {
-                editTaminot(
-                    {
-                        name: input.ismi,
-                        phoneNumber: input.familiyasi,
-                        telegram: input.telegram,
-                        supplierType: '',
-                        businessId: users.businessId,
-                        id: input.tID
-                    }
-                )
-            } else {
-                saveTaminot({
-                    name: input.ismi,
-                    phoneNumber: input.familiyasi,
-                    telegram: input.telegram,
-                    supplierType: input.taminotturi,
-                    businessId: users.businessId,
-                })
-            }
-
-            toggle()
-            let a = { ...input }
-            setInput(a)
-            let v = { ...input }
-            setInput({
-                langv1: '',
-                telegram: '',
-                dukon: '',
-                idraqam: '',
-                login: '',
-                idplaceholder: 'ID raqami',
-                loginplaceholder: 'Mr/Mrs/Mis',
-                ismplaceholder: 'Ismi',
-                telegramLinkPlaceholder: 'Telegram link',
-                telefonRaqamPlaceholder: 'Telefon raqam',
-                ismi: '',
-                otaismi: '',
-                familiyasi: '',
-                inputsearch: '',
-                tID: '',
-            })
-        }
-    }
 
     const [ismi, setismi] = useState(true)
     const [telraqam, settelraqam] = useState(true)
@@ -251,16 +145,41 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
         deleteModaltoggle('')
     }
 
-
     function deleteModaltoggle(item) {
         setdeletemodal(!deletemodal)
         setdeletID(item)
     }
 
+    function onSubmit(data){
+        if(editId === ''){
+            save(data)
+            reset('')
+        }
+        else{
+            editTaminot({
+                ...data,businessId: users.businessId,id:editId
+            })
+            toggle()
+            reset('')
+            setEditId('')
+        }
+
+    }
+
+    function save(data){
+        saveTaminot(
+            {
+                ...data, businessId: users.businessId
+            }
+        )
+        toggle()
+    }
 
     return (
         <div>
             <div className="col-md-12 pt-4 pb-4 mt-2">
+
+
                 <div className="textHeaderTM">
                     <h2>Taminotchilar/Diller </h2>
                     <p>Barcha Taminotchilar/Diller</p>
@@ -300,7 +219,9 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
 
                                 </div>
                                 <div className="izlashBox2">
-                                    <input type="text" value={input.inputsearch} onChange={changeizlash}
+                                    <input type="text"
+
+                                           // value={input.inputsearch} onChange={changeizlash}
                                         placeholder='Izlash...' />
                                 </div>
 
@@ -363,12 +284,11 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                                 {
                                                     amallar ? <td className={'text-center'}>
                                                         {
-                                                            users.editsupplier ? <Link to={'/headerthird/taminotchilar/taxrirlash'}>
+                                                            users.editsupplier ?
                                                                 <button onClick={() => editt(item.id)} className='taxrirlash'><img
                                                                     src={Edit}
                                                                     alt="" /> Taxrirlash
-                                                                </button>
-                                                            </Link> : ''
+                                                                </button>: ''
                                                         }
 
                                                         <Link
@@ -442,6 +362,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
 
                 {active ?
                     <Modal isOpen={active} toggle={toggle}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                         <ModalHeader>
                             Yangi Qo`shish
                         </ModalHeader>
@@ -455,45 +376,61 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
                                     </div>
                                     <div className="in col-md-6 col-sm-12 mb-3">
                                         <label htmlFor={'turi'}>Taminotchi turi</label>
-                                        <input type="text" value={input.taminotturi} onChange={taminotturi} className={'form-control'} placeholder={'taminot turi'} />
+                                        <input type="text"
+                                            {...register('supplierType', {required: true})}
+                                            placeholder={errors.supplierType ? errors.supplierType?.type === "required" && "SupplierType is required":'supplierType'}
+                                               defaultValue={''}
+                                               className={'form-control'} />
                                     </div>
                                 </div>
 
                             <div className="row">
                                 <div className="col-md-6 col-sm-12 mb-3">
                                     <label htmlFor={'log1'}>Login</label>
-                                    <input type="text" value={input.login} onChange={changelogin}
-                                        className={'form-control'} placeholder={input.loginplaceholder}
+                                    <input type="text"
+
+                                        className={'form-control'}
                                         id={'log1'} />
                                 </div>
                                 <div className="col-md-6 col-sm-12 mb-3">
                                     <label htmlFor={'ism'}>Ismi</label>
-                                    <input onChange={changeismi} value={input.ismi} type="text" id={'ism'}
-                                        placeholder={input.ismplaceholder} className={'form-control'}
+                                    <input  type="text" id={'ism'}
+                                        {...register('name',{required:true})}
+                                        placeholder={errors.name ? errors.name?.type === "required" && "Name is required": 'name'}
+                                            defaultValue={''}
+                                         className={'form-control'}
                                         required="required" />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className={'col-md-6 col-sm-12 mb-3'}>
                                     <label htmlFor={'ot'}>Telegram link</label>
-                                    <input value={input.telegram} onChange={changeotaismi} id={'telegram'} type="text"
-                                        className={'form-control'} placeholder={input.telegramLinkPlaceholder} />
+                                    <input
+                                        {...register('telegram',{required:true})}
+                                        placeholder={errors.telegram ? errors.telegram?.type === "required" && "Telegram is required": 'telegram'}
+                                        id={'telegram'} type="text"
+                                        className={'form-control'} />
                                 </div>
                                 <div className={'col-md-6 col-sm-12 mb-3'}>
                                     <label htmlFor={'ot'}>Telefon raqam</label>
-                                    <input value={input.familiyasi} onChange={changefamiliyasi} type="tel"
-                                        placeholder={input.telefonRaqamPlaceholder} id={'telefon'}
+                                    <input  type="text"
+                                        {...register('phoneNumber',{required:true})}
+                                        placeholder={errors.phoneNumber ? errors.phoneNumber?.type === "required" && "Phone Num is required": 'phoneNumber'}
                                         className={'form-control'} />
                                 </div>
                             </div>
 
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'} onClick={saqla}>SAVE</button>
-                            <button className={'btn btn-outline-primary'} onClick={toggle}>CHIQISH</button>
+                            <button className={'btn btn-outline-primary'}
+                                    type={"submit"}
+                            >SAVE</button>
+                            <button type={"button"} className={'btn btn-outline-primary'} onClick={toggle}>CHIQISH</button>
                         </ModalFooter>
+                        </form>
                     </Modal> : ''
                 }
+
             </div>
         </div>
     )
@@ -501,6 +438,7 @@ function Taminotchilar({ getTaminot, saveTaminot, QarzuzishTaminotReducer, qarzu
 
 export default connect((TaminotReducer, QarzuzishTaminotReducer, users), {
     getTaminot,
+    getTaminot2,
     qarzuzishTaminot,
     saveTaminot,
     editTaminot,
