@@ -7,15 +7,14 @@ import MaxsulotlarRoyxariReducer, {
     getMaxsulotRuyxati,
     editMaxsulotRuyxati
 } from "../../reducer/MaxsulotlarRoyxariReducer";
-import {Link} from 'react-router-dom'
 import {connect} from "react-redux";
+import {useHistory} from "react-router-dom";
 import kgreducer, {getkg, savekg} from "../../../../../../reducer/kgreducer";
 import users from "../../../../../../reducer/users";
 import FirmaReducer, {getFirma, saveFirma} from "../../reducer/FirmaReducer";
 import BolimReducer, {getBolim, saveBolim} from "../../reducer/BolimReducer";
 import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer";
 import photoreducer, {savephoto} from "../../../../../../reducer/photoreducer";
-import {toast} from "react-toastify";
 import Ichkibolimred, {getichki} from "../../reducer/Ichkibolimred";
 import SoliqReducer from "../../../Settings/DukonSozlamalari/reducers/SoliqReducer";
 import Select from 'react-select'
@@ -53,32 +52,11 @@ function Taxrirlash({
     const [active2, setActive2] = useState(false)
     const [active3, setActive3] = useState(false)
 
-    const [placeholders, setPlaseholders] = useState(
-        {
-            maxsulotNomiPlaceholder: '',
-            shtrixKodPlaceholder: '',
-            bazalarPlaceholder: '',
-            miqdorPlaceholder: '',
-            soliqsizNarxPlaceholder: '',
-            soliqbilanNarxPlaceholder: '',
-            foydaPlaceholder: '',
-            sotishNarxiPlaceholder: '',
-            sotibOlishNarxiPlaceholder: '',
-        }
-    )
+
 
     const [input, setInput] = useState(
         {
-            mahsulotnomi: '',
-            shtrixkod: '',
-            //----
-            ulcovbirligi: '',
-            ulcovnomi: '',
-            ulcovqisqanomi: '',
-            //-----
-            ferma: '',
-            brandnomi: '',
-            qisqaeslatma: '',
+
             photoIds: '',
             // ----
             bazalar: [],
@@ -86,13 +64,8 @@ function Taxrirlash({
             bolim2: '',
             ogohmiqdor: '',
             //-------------
-            soliqsiznarx: 1,
-            foydafoiz: '',
-            sotishnarxi: '',
+
             mahsulotrasmi: '',
-            soliqbnnarx: 1,
-            sotibolishnarxi: '',
-            miqdorMaxsulot: '',
             muddatmaxsulot: '',
             bolimnomi: '',
             ichkibolim: '',
@@ -101,12 +74,6 @@ function Taxrirlash({
             changedate: ''
         }
     )
-
-    function mahsulotnomi(e) {
-        input.mahsulotnomi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
 
     function ichkibolim(e) {
         input.ichkibolim = e.target.value
@@ -127,18 +94,6 @@ function Taxrirlash({
         console.log(input.muddatmaxsulot)
     }
 
-    function shtrixkod(e) {
-        input.shtrixkod = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function ulcovbirligi(e) {
-        input.ulcovbirligi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
     function ulcovNomi(e) {
         input.ulcovnomi = e.target.value
         let a = {...input}
@@ -147,12 +102,6 @@ function Taxrirlash({
 
     function ulcovqisqaNomi(e) {
         input.ulcovqisqanomi = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function ferma(e) {
-        input.ferma = e.target.value
         let a = {...input}
         setInput(a)
     }
@@ -171,46 +120,6 @@ function Taxrirlash({
 
     function fermaqisqaeslatma(e) {
         input.qisqaeslatma = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function bolim(e) {
-        input.bolim = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function bolim2(e) {
-        input.bolim2 = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function ogohmiqdor(e) {
-        input.ogohmiqdor = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function foydafoiz(e) {
-        input.foydafoiz = e.target.value
-        input.sotishnarxi = parseFloat(input.sotibolishnarxi * input.foydafoiz / 100) + parseFloat(input.sotibolishnarxi)
-        let a = {...input}
-        setInput(a)
-
-    }
-
-    function sotishnarxi(e) {
-        input.sotishnarxi = e.target.value
-        input.foydafoiz = Math.round((parseFloat(input.sotishnarxi / input.sotibolishnarxi) - 1) * 100)
-        let a = {...input}
-        setInput(a)
-    }
-
-    function sotibolishnarxi(e) {
-        input.sotibolishnarxi = e.target.value
-        input.sotishnarxi = parseFloat(input.sotibolishnarxi * input.foydafoiz / 100) + parseFloat(input.sotibolishnarxi)
         let a = {...input}
         setInput(a)
     }
@@ -280,78 +189,6 @@ function Taxrirlash({
         setInput(d)
     }
 
-    function saqla() {
-        if (input.mahsulotnomi !== "" && input.shtrixkod !== "" && input.miqdorMaxsulot !== "" && input.foydafoiz !== "" && input.sotibolishnarxi !== "") {
-            if (match.params.id !== undefined) {
-                changeselect(input.selectvalue)
-                editMaxsulotRuyxati({
-                    name: input.mahsulotnomi,
-                    quantity: input.miqdorMaxsulot,
-                    barcode: input.shtrixkod,
-                    brandId: input.ferma,
-                    categoryId: input.bolim,
-                    measurementId: input.ulcovbirligi,
-                    photoIds: [input.photoID],
-                    minQuantity: input.ogohmiqdor,
-                    buyPrice: input.sotibolishnarxi,
-                    salePrice: input.sotishnarxi,
-                    tax: input.sotibolishnarxi,
-                    branchId: input.bazalar,
-                    expireDate: input.muddatmaxsulot,
-                    dueDate: null,
-                    id: match.params.id,
-                })
-            } else {
-                saveMaxsulotRuyxati(
-                    {
-                        name: input.mahsulotnomi,
-                        quantity: input.miqdorMaxsulot,
-                        barcode: input.shtrixkod,
-                        brandId: input.ferma === '' ? FirmaReducer.firmalar[0].id : input.ferma,
-                        categoryId: input.bolim === '' ? BolimReducer.bolimlar[0].id : input.bolim,
-                        measurementId: input.ulcovbirligi === '' ? kgreducer.kg[0].id : input.ulcovbirligi,
-                        photoIds: [photoreducer.photo.id],
-                        minQuantity: input.ogohmiqdor,
-                        buyPrice: input.sotibolishnarxi,
-                        salePrice: parseFloat(input.sotibolishnarxi * input.foydafoiz / 100) + parseFloat(input.sotibolishnarxi),
-                        tax: input.sotibolishnarxi,
-                        branchId: input.bazalar,
-                        expireDate: input.muddatmaxsulot,
-                        dueDate: new Date().getDate()
-                    })
-
-            }
-
-            setPlaseholders(
-                {
-                    maxsulotNomiPlaceholder: '',
-                    shtrixKodPlaceholder: '',
-                    bazalarPlaceholder: '',
-                    miqdorPlaceholder: '',
-                    soliqsizNarxPlaceholder: '',
-                    soliqbilanNarxPlaceholder: '',
-                    foydaPlaceholder: '',
-                    sotishNarxiPlaceholder: '',
-                    sotibOlishNarxiPlaceholder: '',
-                }
-            )
-        } else {
-            setPlaseholders(
-                {
-                    maxsulotNomiPlaceholder: 'Mahsulot nomini kiriting...',
-                    shtrixKodPlaceholder: 'Shtrix kodni kiriting...',
-                    bazalarPlaceholder: 'Baza nomini kiriting...',
-                    miqdorPlaceholder: 'Miqdor kiriting...',
-                    soliqsizNarxPlaceholder: 'Soliqsiz narxini kiriting...',
-                    soliqbilanNarxPlaceholder: 'Soliq bilan narxini kiriting...',
-                    foydaPlaceholder: 'Foydani kiriting...',
-                    sotishNarxiPlaceholder: 'Sotish narxini kiriting..',
-                    sotibOlishNarxiPlaceholder: 'Sotib olish narxini kiriting...',
-                }
-            )
-        }
-    }
-
     function saqlakg() {
         savekg({
             name: input.ulcovnomi,
@@ -398,6 +235,9 @@ function Taxrirlash({
         getFirma(users.businessId)
     }, [FirmaReducer.current])
 
+    useEffect(()=>{
+       getBolim(users.businessId)
+    },[])
     function changeselect(e) {
         input.selectvalue = e
         input.bazalar = []
@@ -411,9 +251,20 @@ function Taxrirlash({
 
     const {register, handleSubmit, setValue, resetField, formState: {errors}} = useForm()
 
+    function save(data){
+        saveMaxsulotRuyxati({
+            ...data, expireDate:input.muddatmaxsulot,dueDate: new Date().getDate(),
+            photoIds: [photoreducer.photo.id],branchId: input.bazalar, businessId: users.businessId
+        })
+    }
+
     function onSubmit(data) {
         console.log(data);
+        save(data)
+        history.push('/headerthird/mahsulotRuyxati/barcaMahsulot')
     }
+
+    const history = useHistory()
 
     return (
         <div className={'mt-5 contanerT'}>
@@ -430,7 +281,8 @@ function Taxrirlash({
                         <label className={'mt-3'} htmlFor={'olcov'}>O`lchov birligi</label>
                         <div className={'d-flex justify-content-between '}>
 
-                            <select name="" id={'olcov'} onChange={ulcovbirligi} value={input.ulcovbirligi}
+                            <select name="" id={'olcov'}
+                                    {...register('measurementId', {required:true})}
                                     className={'form-control'}>
                                 {
                                     kgreducer.kg.map((item, index) =>
@@ -443,7 +295,9 @@ function Taxrirlash({
                         </div>
                         <label className={'mt-3'} htmlFor={'bol'}>Bo`lim</label>
                         <div className={'d-flex select-group'}>
-                            <select name="" onChange={bolim} value={input.bolim} className={'form-control'} id={'bol'}>
+                            <select name="" className={'form-control'}
+                                    {...register('categoryId', {required:true})}
+                                    id={'bol'}>
                                 {
                                     BolimReducer.bolimlar.map(item =>
                                         <option value={item.id}>{item.name}</option>)
@@ -476,7 +330,9 @@ function Taxrirlash({
 
                         <label className='mt-3' htmlFor={'firma'}>Firma</label>
                         <div className={'d-flex'}>
-                            <select name="" value={input.ferma} onChange={ferma} id={'firma'}
+                            <select name=""
+                                    {...register('brandId', {required:true})}
+                                    id={'firma'}
                                     className={'form-control'}>
                                 {
                                     FirmaReducer.firmalar.map(item =>
@@ -488,6 +344,7 @@ function Taxrirlash({
                         <label className={'mt-3'} htmlFor={'bol2'}>Bo`lim ichida bolim</label>
                         <select name="" id={'bol2'} value={input.ichkibolim} onChange={ichkibolim}
                                 className={'form-control'}>
+
                             {
                                 Ichkibolimred.ichkibolim.filter(val => input.bolim == val.parentCategory).map(item =>
                                     <option value={item.id}>{item.name}</option>)
@@ -505,8 +362,9 @@ function Taxrirlash({
                                onChange={miqdorMaxsulot}/>
 
                         <label htmlFor="bazalar" className={'mt-3 '}>Bazalar</label>
-                        {console.log(input.selectvalue)}
-                        <Select options={branchreducer.branches} isMulti={true} class={'form-control'}
+
+                        <Select options={branchreducer.branches}
+                                isMulti={true} class={'form-control'}
                                 defaultValue={input.selectvalue} onChange={changeselect}/>
                     </div>
 
@@ -593,27 +451,24 @@ function Taxrirlash({
                                     <label htmlFor={'foy'}>Foyda foizda</label><br/>
                                     <input type="number" id={'foy'}
                                            {...register('tax')}
-                                           className='taxrirlashInputValudetion form-control'
-                                           onChange={foydafoiz}/>
+                                        placeholder={errors.tax ? errors.tax?.type === "required" && "Tax is required":'tax'}
+                                           defaultValue={''}
+                                           className='taxrirlashInputValudetion form-control'/>
                                 </td>
                                 <td>
                                     <label htmlFor={''}>Sotib olish narxi</label><br/>
                                     <input type="number" id='sotishNarxi'
-                                           placeholder={placeholders.sotibOlishNarxiPlaceholder}
-                                           className='taxrirlashInputValudetion form-control'
-                                           value={input.sotibolishnarxi}
-                                           onChange={sotibolishnarxi}/>
+                                           {...register("buyPrice", {required:true})}
+                                        placeholder={errors.buyPrice ? errors.buyPrice?.type === "required" && "buyPrice is required":'buyPrice'}
+                                           className='taxrirlashInputValudetion form-control'/>
+
                                 </td>
                                 <td>
                                     <label htmlFor={''}>Sotish narxi</label><br/>
                                     <input type="number" id='sotibOlishNarxi' className={'form-control'}
-                                           placeholder={placeholders.sotishNarxiPlaceholder}
-                                        // value={parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi)} onChange={sotishnarxi}/>
-                                        // value={input.sotibolishnarxi!==''?
-                                        //     parseFloat(input.sotibolishnarxi*input.foydafoiz/100)+parseFloat(input.sotibolishnarxi) || input.sotishnarxi :input.sotishnarxi
-                                        // }
-                                           value={input.sotishnarxi}
-                                           onChange={sotishnarxi}/>
+                                        {...register('salePrice', {required:true})}
+                                        placeholder={errors.salePrice ? errors.salePrice?.type === "required" && "salePrice is required":'salePrice'}
+                                    defaultValue={''}/>
                                     {/*<h4 className={'mt-3'}>{input.foydafoiz*input.sotibolishnarxi+ '  so`m'}</h4>*/}
                                 </td>
                             </tr>
@@ -621,13 +476,14 @@ function Taxrirlash({
                         </table>
                     </div>
                     <div className='d-flex justify-content-end'>
-                        {
-                            (input.mahsulotnomi === "" || input.shtrixkod === "" || input.miqdorMaxsulot === "" || input.foydafoiz === "" || input.sotibolishnarxi === "") ?
-                                <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button> :
-                                <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot'}>
-                                    <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button>
-                                </Link>
-                        }
+                        <button className={'btn btn-success mt-4'} type={"submit"}>Saqlash</button>
+                        {/*{*/}
+                        {/*    (input.mahsulotnomi === "" || input.shtrixkod === "" || input.miqdorMaxsulot === "" || input.foydafoiz === "" || input.sotibolishnarxi === "") ?*/}
+                        {/*        <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button> :*/}
+                        {/*        <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot'}>*/}
+                        {/*            <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button>*/}
+                        {/*        </Link>*/}
+                        {/*}*/}
                     </div>
                 </div>
             </form>
