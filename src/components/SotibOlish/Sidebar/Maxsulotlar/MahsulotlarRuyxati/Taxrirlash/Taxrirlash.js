@@ -514,7 +514,10 @@ function Taxrirlash({
                 <div className="row mt-4 p-md-3">
                     <div className={'col-md-6 col-sm-12 mb-3'}>
                         <label htmlFor={'ogoh'}>Ogohlantiruvchi miqdor</label>
-                        <input type="number" value={input.ogohmiqdor} onChange={ogohmiqdor}
+                        <input type="number"
+                               {...register('minQuantity', {required:true})}
+                               placeholder={errors.minQuantity ? errors.minQuantity?.type === "required" && "minQuantity is required":'minQuantity'}
+                               defaultValue={''}
                                className={'form-control'} id={'ogoh'}/>
                         <label htmlFor={'yaroq'} className={'mt-3'}>Mahsulot yaroqlilik muddati</label>
                         <input type="date" className={'form-control'} value={input.muddatmaxsulot}
@@ -588,8 +591,9 @@ function Taxrirlash({
                                 </td>
                                 <td>
                                     <label htmlFor={'foy'}>Foyda foizda</label><br/>
-                                    <input type="number" id={'foy'} placeholder={placeholders.foydaPlaceholder}
-                                           className='taxrirlashInputValudetion form-control' value={input.foydafoiz}
+                                    <input type="number" id={'foy'}
+                                           {...register('tax')}
+                                           className='taxrirlashInputValudetion form-control'
                                            onChange={foydafoiz}/>
                                 </td>
                                 <td>
