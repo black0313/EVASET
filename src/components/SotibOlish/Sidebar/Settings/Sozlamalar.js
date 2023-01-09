@@ -2,20 +2,29 @@ import down from '../../../../img/arrow-right2.svg'
 import {Switch,Link,Route} from 'react-router-dom'
 import mahsulot from '../../../../img/setting-2.svg'
 import './sozlamalar.css'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
-function Sozlamalar({active,sidebaractive2}) {
+function Sozlamalar({changeLink,link,sidebaractive2}) {
 
-    const [active2,setActive] = useState(false);
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'sozlamalar'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('setting')
+            style.classList.remove('seting')
+        }
+    },[link])
+
     function toggle() {
-        setActive(!active2)
+            changeLink('sozlamalar')
         if(classs===''){
             setClasss('right2')
             setfill('fill')

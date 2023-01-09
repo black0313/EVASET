@@ -1,19 +1,30 @@
 import down from '../../../../img/arrow-right2.svg'
 import './haridlar.css'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
 import {Link,Switch,Route} from 'react-router-dom'
 import {active} from "../../../../reducer/functionreducer";
 
-function Haridlar({active,sidebaractive2}) {
+function Haridlar({changeLink,link,sidebaractive2}) {
 
-    const [active2,setActive] = useState(false);
+
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'haridlar'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('haridlar')
+            style.classList.remove('haridlar2')
+        }
+    },[link])
+
     function toggle() {
+        changeLink('haridlar')
         if(classs===''){
             setClasss('right2')
             setfill('stroke')

@@ -14,7 +14,6 @@ import Savdo from "./Savdo/Savdo";
 import logo from '../../../img/LOGO.png'
 import {Route, Switch, Link} from "react-router-dom";
 import functionreducer from "../../../reducer/functionreducer";
-import {active} from "../../../reducer/functionreducer";
 import xodimReducer from "./Hodimlar/reducer/XodimReducer";
 import users from "../../../reducer/users";
 import SuperAdmin from "./SUPERADMIN/SuperAdmin";
@@ -27,12 +26,17 @@ function Sidebar({sidebaractive2}) {
     }, [])
 
     function sidebaractive() {
+        changeLink('')
         const windowWidth = window.innerWidth;
         if (windowWidth <= 1023.9) {
             sidebaractive2()
         }
     }
+   const [link,setLink] = useState('')
 
+    function changeLink(item){
+        setLink(item)
+    }
 
     return (
         <div className={`sidebar`}>
@@ -43,7 +47,7 @@ function Sidebar({sidebaractive2}) {
                 <div className={'navigation'}>
                     <div className="nav">
                         <div className="row bosh">
-                            <Link onClick={sidebaractive} to={'/headerthird/superadmin'}>
+                            <Link  onClick={sidebaractive} to={'/headerthird/superadmin'}>
                                 <div className={'d-flex align-items-center'}>
                                     <img className={'im3'} src={store} alt=""/>
                                     <h5 className={'mr sidebar-text'}>Super Admin</h5>
@@ -78,16 +82,16 @@ function Sidebar({sidebaractive2}) {
                                 </div>
                             </div>
                         </div>
-                        <Hodimlar sidebaractive2={sidebaractive2}/>
-                        <Hamkorlar sidebaractiveopen={sidebaractive2}/>
-                        <Maxsulotlar sidebaractive2={sidebaractive2}/>
-                        <Haridlar sidebaractive2={sidebaractive2}/>
-                        <Savdo sidebaractive2={sidebaractive2}/>
-                        <Baza sidebaractive2={sidebaractive2}/>
+                        <Hodimlar  link={link} changeLink={changeLink}  sidebaractive2={sidebaractive2}/>
+                        <Hamkorlar link={link} changeLink={changeLink}  sidebaractiveopen={sidebaractive2}/>
+                        <Maxsulotlar link={link} changeLink={changeLink}  sidebaractive2={sidebaractive2}/>
+                        <Haridlar link={link} changeLink={changeLink}  sidebaractive2={sidebaractive2}/>
+                        <Savdo  link={link} changeLink={changeLink}  sidebaractive2={sidebaractive2}/>
+                        <Baza link={link} changeLink={changeLink}  sidebaractive2={sidebaractive2}/>
                         {/*<MahBaza/>*/}
-                        <Xarajatlar sidebaractive2={sidebaractive2}/>
-                        <Xirsobotlar sidebaractive2={sidebaractive2}/>
-                        <Sozlamalar sidebaractive2={sidebaractive2}/>
+                        <Xarajatlar link={link} changeLink={changeLink}  sidebaractive2={sidebaractive2}/>
+                        <Xirsobotlar link={link} changeLink={changeLink}  sidebaractive2={sidebaractive2}/>
+                        <Sozlamalar link={link}  changeLink={changeLink} sidebaractive2={sidebaractive2}/>
                     </div>
                 </div>
 

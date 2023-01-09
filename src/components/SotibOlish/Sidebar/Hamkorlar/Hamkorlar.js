@@ -1,17 +1,27 @@
-import down from '../../../../img/arrow-right2.svg'
 import hamkor from '../../../../img/notification.png'
 import './hamkorlar.css'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {Link,Switch,Route} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
-function Hamkorlar({active,sidebaractiveopen}) {
+function Hamkorlar({changeLink,link,sidebaractiveopen}) {
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'hamkorlar'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('hamkor')
+            style.classList.remove('list2')
+        }
+    },[link])
+
     function toggle() {
+        changeLink('hamkorlar')
         if(classs===''){
             setClasss('right2')
             setfill('fill')
@@ -29,36 +39,11 @@ function Hamkorlar({active,sidebaractiveopen}) {
     }
     function sidebaractive(){
         const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
+        if(windowWidth <= 1023.9){
             sidebaractiveopen()
         }
-        ToggleSwitch()
-        if (activeback2===true){
-            setactiveback2(!activeback2)
-        }
     }
 
-    function sidebaractive2(){
-        const windowWidth = window.innerWidth;
-        if(windowWidth <= 767){
-            sidebaractiveopen()
-        }
-        ToggleSwitch2()
-        if (activeback===true){
-            setactiveback(!activeback)
-        }
-    }
-
-    const ToggleSwitch = () =>{
-        activeback? setactiveback(false) : setactiveback(true)
-    }
-
-    const ToggleSwitch2 = () =>{
-        activeback2? setactiveback2(false) : setactiveback2(true)
-    }
-
-    const [activeback,setactiveback] = useState(false)
-    const [activeback2,setactiveback2] = useState(false)
 
     return(
         <div className={'row list'} id={'hamkor'}>
@@ -80,9 +65,9 @@ function Hamkorlar({active,sidebaractiveopen}) {
             </div>
 
                <ul>
-                    <li className={activeback?"b3":"b4"} onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/taminotchilar'}>Taminotchilar</Link></li>
-                    <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Barcha Mijozlar</Link></li>
-                    <li className={activeback2?"b3":"b4"} onClick={sidebaractive2}><Link className={'hamkorlar'} to={'/headerthird/mijozGuruh'}>Mijozlar Guruhlari</Link></li>
+                    <li  onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/taminotchilar'}>Taminotchilar</Link></li>
+                    <li onClick={sidebaractive}><Link className={'li-text'} to={'/headerthird/mijozlarGuruhi'}>Barcha Mijozlar</Link></li>
+                    <li onClick={sidebaractive}><Link className={'hamkorlar'} to={'/headerthird/mijozGuruh'}>Mijozlar Guruhlari</Link></li>
                     {/*<li><Link className={'hamkorlar'} to={'/malumotTiklash'}>Malumotlarni tiklash</Link></li>*/}
                 </ul>
 

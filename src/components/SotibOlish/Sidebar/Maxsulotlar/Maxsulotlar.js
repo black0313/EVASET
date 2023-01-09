@@ -2,19 +2,28 @@ import down from '../../../../img/arrow-right2.svg'
 import mahsulot from '../../../../img/box.svg'
 import {connect} from "react-redux";
 import './mahsulotlar.css'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {active} from "../../../../reducer/functionreducer";
 import {Switch, Route, Link} from 'react-router-dom'
 import {getStyle} from "chart.js/helpers";
 
-function Maxsulotlar({active,sidebaractive2}) {
+function Maxsulotlar({changeLink,link,sidebaractive2}) {
 
-    const [active2, setActive] = useState(false);
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'maxsulotlar'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('mahsulot')
+            style.classList.remove('mahsulot2')
+        }
+    },[link])
     function toggle() {
+        changeLink('maxsulotlar')
         if(classs===''){
             setClasss('right2')
             setfill('fill')

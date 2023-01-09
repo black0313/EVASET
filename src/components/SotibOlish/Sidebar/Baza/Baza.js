@@ -1,12 +1,10 @@
-import down from '../../../../img/arrow-right2.svg'
 import {Link,Switch,Route} from 'react-router-dom'
-import mahsulot from '../../../../img/convert-3d-cube.svg'
 import './baza.css'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
-function Baza({active,sidebaractive2}) {
+function Baza({changeLink,link,sidebaractive2}) {
 
 
 
@@ -14,7 +12,18 @@ function Baza({active,sidebaractive2}) {
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
 
+    useEffect(()=>{
+        if (link !== 'baza'){
+            setClasss('')
+            setfill('')
+            setfontsize('')
+            let style = document.getElementById('baza')
+            style.classList.remove('baza2')
+        }
+    },[link])
+
     function toggle() {
+        changeLink('baza')
         if(classs===''){
             setClasss('right2')
             setfill('fill')
