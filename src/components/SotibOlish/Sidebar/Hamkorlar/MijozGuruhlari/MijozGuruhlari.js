@@ -39,17 +39,6 @@ function MijozGuruhlariii({
         mId: ''
     })
 
-    function name(e) {
-        input.name = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
-
-    function foiz(e) {
-        input.foiz = e.target.value
-        let a = {...input}
-        setInput(a)
-    }
 
     function search(e) {
         input.inputsearch = e.target.value
@@ -66,42 +55,14 @@ function MijozGuruhlariii({
         setInput(a)
     }
 
+    const [saveId,setSaveId] = useState('')
     function editM(id) {
+        setSaveId(id)
         toggle()
-        MijozlarGuruhReducer.mijozGuruh.map(item => {
-            if (item.id === id) {
-                input.name = item.name
-                input.foiz = item.percent
-                input.mId = id
-                let a = {...input}
-                setInput(a)
-            }
-        })
-    }
-
-    function saqla() {
-        if (input.mId !== '') {
-            editMijozLarGurux({
-                name: input.name,
-                percent: input.foiz,
-                id: input.mId
-            })
-        } else {
-            saveMijozLarGurux({
-                name: input.name,
-                percent: parseInt(input.foiz),
-                businessId: users.businessId
-            })
-            let a = {...input}
-            setInput(a)
-            setInput({
-                name: '',
-                foiz: ''
-            })
-        }
-        toggle()
-        let a = {...input}
-        setInput(a)
+        let a = MijozlarGuruhReducer.mijozGuruh.filter(i=>i.id===id)
+        setValue('name', a[0].name)
+        setValue('percent', a[0].percent)
+        setValue('businessId', a[0].businessId)
     }
 
     useEffect(() => {
@@ -133,8 +94,24 @@ function MijozGuruhlariii({
         setdeletID(item)
     }
 
+    function save(data){
+        saveMijozLarGurux({
+            ...data,businessId:users.businessId
+        })
+        reset('')
+        toggle()
+    }
     function onSubmit(data) {
-        saqla()
+        if (saveId === ''){
+            save(data)
+        }else {
+            editMijozLarGurux({
+                ...data, businessId:users.businessId
+            })
+            toggle()
+        }
+        resetField('name','')
+        resetField('percent','')
         console.log(data)
     }
 
@@ -163,11 +140,14 @@ function MijozGuruhlariii({
                                    className={'form-control'} id={'n'}/>
 
                             <label className={'mt-3'} htmlFor={'foiz'}>Foiz %</label>
-                            <input type="number" value={input.foiz} onChange={foiz} className={'form-control'}/>
+                            <input type="number"
+                                   {...register('percent', {required:true})}
+                                    placeholder={errors.name ? errors.name?.type === "required" && "Percent is required":'percent'}
+                                   className={'form-control'}/>
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
-                            <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
+                            <button className={'btn btn-outline-primary'} type={"submit"}>Saqlash</button>
+                            <button className={'btn btn-outline-primary'} type={"button"} onClick={toggle}>Chiqish</button>
                         </ModalFooter>
                     </form>
                 </Modal>

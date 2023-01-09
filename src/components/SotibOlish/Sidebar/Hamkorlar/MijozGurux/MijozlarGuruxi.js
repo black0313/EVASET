@@ -76,6 +76,7 @@ function Mijozlarguruxi({
     }
 
     const [editId, setEditId] = useState('')
+
     function editM(id) {
         toggle()
         setEditId(id)
