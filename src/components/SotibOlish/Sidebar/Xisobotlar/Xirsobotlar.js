@@ -2,7 +2,7 @@ import down from '../../../../img/arrow-right2.svg'
 import mahsulot from '../../../../img/status-up.svg'
 import './xisobotlar.css'
 import {useState,useEffect} from 'react'
-import {Switch,Link,Route} from 'react-router-dom'
+import {Switch,Link,Route,NavLink} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 
@@ -68,24 +68,24 @@ function Xirsobotlar({sidebaractive2,changeLink,link}) {
                 </svg>              </div>
 
              <ul>
-                    <Link to={'/headerthird/foydaZarar'} ><li  className={'li-text'} onClick={sidebaractive}>Foyda va zarar</li></Link>
-                    <Link to={'/headerthird/xaridlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Xaridlar hisoboti</li></Link>
-                    <Link to={'/headerthird/mijozlarXisoboti'} ><li className={'li-text'} onClick={sidebaractive}>Mijozlar hisoboti</li></Link>
-                    {/*<Link to={'/smendagiXisoboti'} className={'mahsulotXisobot'}><li>Smendagi hisobotlar</li></Link>*/}
-                    <Link to={'/headerthird/xarajatXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Xarajat hisoboti</li></Link>
-                    <Link to={'/headerthird/savdoTolov'}><li className={'li-text'} onClick={sidebaractive}>Savdodagi to`lov</li></Link>
-                    {/*<Link to={'/xaridQarz'} className={'mahsulotXisobot'}><li>Xarid u-n to`langan qarz</li></Link>*/}
-                    <Link to={'/headerthird/mahsulotXisoboti'} ><li className={'li-text'} onClick={sidebaractive}>Mahsulotlar hisoboti</li></Link>
-                    {/*<Link to={'/savdolarHisoboti'} className={'mahsulotXisobot'}><li>Savdolar hisoboti</li></Link>*/}
-                    {/*<Link to={'/savdolarHisoboti'} className={'mahsulotXisobot'}><li>Savdolar hisoboti</li></Link>*/}
-                    {/*<Link to={'/xaridlarSavdolar'} className={'mahsulotXisobot'}><li>Xaridlar va savdolar</li></Link>*/}
-                    <Link to={'/headerthird/kopSotilgan'} ><li  className={'li-text'} onClick={sidebaractive}>Ko`p sotilgan tovarlar</li></Link>
-                    <Link to={'/headerthird/otkazmalarXisoboti'} ><li className={'li-text'} onClick={sidebaractive}>O`tkazmalar hisoboti</li></Link>
-                    <Link to={'/headerthird/qoldiqlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Qoldiqlar hisoboti</li></Link>
-                    {/*<Link to={'/guruhlarXisoboti'} className={'mahsulotXisobot'}><li>Guruhlar bo`yicha hisobot</li></Link>*/}
-                    {/*<Link to={'/taminotMijoz'} className={'mahsulotXisobot'}><li>Ta`minot va mijoz hisoboti</li></Link>*/}
-                    <Link to={'/headerthird/soliqlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Soliqlar hisoboti</li></Link>
-                    {/*<Link to={'/kmDastur'} className={'mahsulotXisobot'}><li>Kimlar dasturga kirdi?</li></Link>*/}
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/foydaZarar'} ><li  className={'li-text'} onClick={sidebaractive}>Foyda va zarar</li></NavLink>
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/xaridlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Xaridlar hisoboti</li></NavLink>
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/mijozlarXisoboti'} ><li className={'li-text'} onClick={sidebaractive}>Mijozlar hisoboti</li></NavLink>
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/smendagiXisoboti'} className={'mahsulotXisobot'}><li>Smendagi hisobotlar</li></Link>*/}
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/xarajatXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Xarajat hisoboti</li></NavLink>
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/savdoTolov'}><li className={'li-text'} onClick={sidebaractive}>Savdodagi to`lov</li></NavLink>
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/xaridQarz'} className={'mahsulotXisobot'}><li>Xarid u-n to`langan qarz</li></Link>*/}
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/mahsulotXisoboti'} ><li className={'li-text'} onClick={sidebaractive}>Mahsulotlar hisoboti</li></NavLink>
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/savdolarHisoboti'} className={'mahsulotXisobot'}><li>Savdolar hisoboti</li></Link>*/}
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/savdolarHisoboti'} className={'mahsulotXisobot'}><li>Savdolar hisoboti</li></Link>*/}
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/xaridlarSavdolar'} className={'mahsulotXisobot'}><li>Xaridlar va savdolar</li></Link>*/}
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/kopSotilgan'} ><li  className={'li-text'} onClick={sidebaractive}>Ko`p sotilgan tovarlar</li></NavLink>
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/otkazmalarXisoboti'} ><li className={'li-text'} onClick={sidebaractive}>O`tkazmalar hisoboti</li></NavLink>
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/qoldiqlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Qoldiqlar hisoboti</li></NavLink>
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/guruhlarXisoboti'} className={'mahsulotXisobot'}><li>Guruhlar bo`yicha hisobot</li></Link>*/}
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/taminotMijoz'} className={'mahsulotXisobot'}><li>Ta`minot va mijoz hisoboti</li></Link>*/}
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/soliqlarXisoboti'} ><li  className={'li-text'} onClick={sidebaractive}>Soliqlar hisoboti</li></NavLink>
+                    {/*<Link className=isActive => isActive ? 'active-enter-link li-text' : 'li-text' to={'/kmDastur'} className={'mahsulotXisobot'}><li>Kimlar dasturga kirdi?</li></Link>*/}
                 </ul>
 
         </div>

@@ -1,5 +1,5 @@
 import down from '../../../../img/arrow-right2.svg'
-import {Switch,Link,Route} from 'react-router-dom'
+import {Switch,Link,Route,NavLink} from 'react-router-dom'
 import mahsulot from '../../../../img/setting-2.svg'
 import './sozlamalar.css'
 import {useState,useEffect} from 'react'
@@ -66,8 +66,8 @@ function Sozlamalar({changeLink,link,sidebaractive2}) {
             </div>
 
                 <ul style={{width:'80%'}}>
-                    <Link to={'/headerthird/dukonSozlama'} ><li   className={'li-text'} onClick={sidebaractive}>Sozlamalar</li></Link>
-                    <Link to={'/headerthird/bazalarSetting'}><li className={'li-text'} onClick={sidebaractive}>Bazalar</li></Link>
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/dukonSozlama'} ><li   className={'li-text'} onClick={sidebaractive}>Sozlamalar</li></NavLink>
+                    <NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} to={'/headerthird/bazalarSetting'}><li className={'li-text'} onClick={sidebaractive}>Bazalar</li></NavLink>
                     {/*<Link to={'/chekSetting'} className={'mahsulotSetting'}><li>Cheklar sozlamalari</li></Link>*/}
                     {/*<Link to={'/shtrixKodlar'} className={'mahsulotSetting'}><li>Shtrix kodlar sozlamalari</li></Link>*/}
                     {/*<Link to={'/printerSozlamalari'} className={'mahsulotSetting'}><li>Printer sozlamalari</li></Link>*/}

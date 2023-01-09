@@ -1,6 +1,6 @@
 import './savdo.css'
 import {useState,useEffect} from 'react'
-import {Switch,Route,Link} from 'react-router-dom'
+import {Switch,Route,Link,NavLink} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 import {savdooynasi} from "../../../../reducer/users";
@@ -74,9 +74,9 @@ function Savdo({changeLink,link,savdooynasi,sidebaractive2}) {
             </div>
 
                 <ul>
-                    <li onClick={sidebaractive}><Link to={'/headerthird/barcasavdolar'}  className={'li-text'} >Barcha Savdolar</Link></li>
-                    <li onClick={sidebaractive}><Link to={'/headerthird/mahsulotQoshish'} className={'li-text'}>Savdo qo`shish</Link></li>
-                    <li   onClick={savdod}><Link to={'/turliTavar'} className={'li-text'} >Savdo oynasi</Link></li>
+                    <li onClick={sidebaractive}><NavLink to={'/headerthird/barcasavdolar'}  className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >Barcha Savdolar</NavLink></li>
+                    <li onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotQoshish'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Savdo qo`shish</NavLink></li>
+                    <li   onClick={savdod}><NavLink to={'/turliTavar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >Savdo oynasi</NavLink></li>
 
                 </ul>
 

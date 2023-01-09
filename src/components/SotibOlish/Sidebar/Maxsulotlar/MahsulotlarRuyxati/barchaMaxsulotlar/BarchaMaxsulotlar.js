@@ -152,7 +152,7 @@ function BarchaMaxsulotlar({
                 <div className="rowStyleBR">
                     <div className="qoshish">
                         <h5>Barcha maxsulotlar</h5>
-                        <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash'}>
+                        <Link to={'/headerthird/taxrirlash'}>
                             {
                                 users.addproduct ?
                                     <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>:''

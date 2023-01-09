@@ -1,4 +1,4 @@
-import {Link,Switch,Route} from 'react-router-dom'
+import {Link,Switch,Route,NavLink} from 'react-router-dom'
 import './baza.css'
 import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
@@ -68,8 +68,8 @@ function Baza({changeLink,link,sidebaractive2}) {
             </div>
 
                 <ul>
-                    <Link to={'/headerthird/utkazmaRuyxati'} ><li className={'li-text'} onClick={sidebaractive}>O`tkazmalar ruyxati</li></Link>
-                    <Link to={'/headerthird/yangiOtkazma'} ><li className={'li-text'} onClick={sidebaractive}>Yangi o`tkazma</li></Link>
+                    <li onClick={sidebaractive}><NavLink to={'/headerthird/utkazmaRuyxati'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >O`tkazmalar ruyxati</NavLink></li>
+                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/yangiOtkazma'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >Yangi o`tkazma</NavLink></li>
                 </ul>
 
         </div>

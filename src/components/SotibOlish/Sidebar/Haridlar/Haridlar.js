@@ -2,7 +2,7 @@ import down from '../../../../img/arrow-right2.svg'
 import './haridlar.css'
 import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
-import {Link,Switch,Route} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {active} from "../../../../reducer/functionreducer";
 
 function Haridlar({changeLink,link,sidebaractive2}) {
@@ -65,8 +65,8 @@ function Haridlar({changeLink,link,sidebaractive2}) {
             </div>
 
                <ul className={'tran'}>
-                    <li className={`${sidebaractive?'ttt':'ttt2'}`} onClick={sidebaractive}><Link  to={'/headerthird/xaridlarRuyxati'} className={'li-text'}>Xaridlar ruyxati</Link></li>
-                    <li onClick={sidebaractive}><Link  to={'/headerthird/xaridQilish'} className={'li-text'}>Xarid qilish</Link></li>
+                    <li className={`${sidebaractive?'ttt':'ttt2'}`} onClick={sidebaractive}><NavLink  to={'/headerthird/xaridlarRuyxati'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Xaridlar ruyxati</NavLink></li>
+                    <li onClick={sidebaractive}><NavLink  to={'/headerthird/xaridQilish'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Xarid qilish</NavLink></li>
                     {/*<li><Link to={'/headerthird/qaytganXarid'} className={'haridClass'}>Qaytarilgan Xaridlar</Link></li>*/}
                 </ul>
 
