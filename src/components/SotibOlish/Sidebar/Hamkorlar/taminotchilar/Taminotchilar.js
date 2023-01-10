@@ -69,8 +69,6 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
         setValue('phoneNumber', a[0].phoneNumber)
         setValue('telegram', a[0].telegram)
         setValue('supplierType', a[0].supplierType)
-
-
     }
 
     let [jamixisob, setjamixisob] = useState(0)
@@ -101,7 +99,6 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
     }
 
     const {register, setValue,reset, handleSubmit, resetField, formState: {errors}} = useForm()
-
 
     const [ismi, setismi] = useState(true)
     const [telraqam, settelraqam] = useState(true)
@@ -163,7 +160,6 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
             reset('')
             setEditId('')
         }
-
     }
 
     function save(data){

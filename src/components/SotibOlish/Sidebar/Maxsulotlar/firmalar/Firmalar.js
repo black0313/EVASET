@@ -15,7 +15,7 @@ import FirmaReducer, { deleteFirma, editFirma, getFirma, saveFirma, } from "../r
 import users from "../../../../../reducer/users";
 
 function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma, FirmaReducer, }) {
-    console.log(firmalar)
+
     const [input, setInput] = useState(
         {
             view: '',
@@ -56,7 +56,6 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
         let a = { ...input }
         setInput(a)
     }
-
 
     function editB(id) {
         toggle()
