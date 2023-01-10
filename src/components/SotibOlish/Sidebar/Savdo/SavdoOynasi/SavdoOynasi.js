@@ -38,7 +38,6 @@ import XarajatTurlariReducer, { getXarajatlarTurlari } from "../../Xarajatlar/re
 import imagecom from "../../../../Imagecom";
 import Imagecom from "../../../../Imagecom";
 import ValyutaReducer, {getValyuta,changeActivecur} from "../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
-// import {optional} from "yarn/lib/cli";
 function SavdoOynasi({
     saveXarajatlar,
     getXarajatlar,
@@ -719,7 +718,6 @@ function SavdoOynasi({
                 measurementId: input.ulcovbirligi,             /*  input.ulcovbirligi,*/
                 photoIds: [1],
                 minQuantity: input.foydafoiz,
-                /*   input.foydafoiz,*/
                 buyPrice: input.sotibolishnarx,               /*   input.sotishnarxi,*/
                 salePrice: input.sotishnarxi,
                 tax: input.soliqbnnarxi,         /* input.amaldagisoliq,*/
@@ -937,7 +935,6 @@ function SavdoOynasi({
                     }
 
                 </p></div>
-                {/*{console.log(arr1)}*/}
                 <div className={'table-responsive'}>
                     <table className={'table'}>
                         <thead>
@@ -996,9 +993,6 @@ function SavdoOynasi({
                                     <option value={item.id}>{item.name}</option>)
                             }
                         </select>
-                        {
-                            console.log(input.valyutaa)
-                        }
                         <button className={'btn btn-outline-primary'} style={{lineHeight:'12px'}} onClick={toggle4}>Oxirgi savdolar</button>
                         {/*<button className={'btn btn-outline-primary'}>Hold*/}
                         <button className={'btn '} onClick={toggle} style={{lineHeight:'12px'}} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">Ushlab turish</button>
@@ -1109,11 +1103,9 @@ function SavdoOynasi({
                         </Modal>
                     </div>
                 </div>
-                {/*{console.log(PayReducer.paymethod)}*/}
                 <div className="savdoBlock">
                     <div className="savdoBlockLeft">
                         <div className="selectBox">
-                            {/*{console.log(MijozGuruxReducer.mijozgurux[0]?.id)}*/}
                             <select className="" value={input.baza} onChange={baza} name="" id="">
                                 {
                                     MijozGuruxReducer.mijozgurux.map(item =>
@@ -1555,7 +1547,6 @@ function SavdoOynasi({
                     <button onClick={clear} className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
                 </div>
                 <div className="">
-
                     <Modal isOpen={active} toggle={toggle}>
                         <ModalHeader>
                             USHLAB TURISH
@@ -1592,7 +1583,6 @@ function SavdoOynasi({
                             <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
                         </ModalFooter>
                     </Modal>
-
                     <Modal isOpen={active2} toggle={toggle2}>
                         <ModalHeader>
                             Smenadagi xisobot

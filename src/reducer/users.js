@@ -55,6 +55,7 @@ export const slice = createSlice({
                 state.authEnter = true
                 state.users = action.payload.object
                 state.businessId=action.payload.object.business.id
+                state.id = action.payload.object.id
                 localStorage.setItem('tokenname',action.payload.message)
                 console.log('ei')
 

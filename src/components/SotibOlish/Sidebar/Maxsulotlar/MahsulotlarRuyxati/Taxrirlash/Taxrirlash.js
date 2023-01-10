@@ -20,6 +20,7 @@ import SoliqReducer from "../../../Settings/DukonSozlamalari/reducers/SoliqReduc
 import Select from 'react-select'
 import {useForm} from "react-hook-form";
 import ValyutaReducer from "../../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
+import {getValue} from "@testing-library/user-event/dist/utils";
 
 function Taxrirlash({
                         ValyutaReducer,
@@ -219,6 +220,7 @@ function Taxrirlash({
     }
 
 
+
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
         getBolim(users.businessId)
@@ -249,7 +251,7 @@ function Taxrirlash({
         setInput(a)
     }
 
-    const {register, handleSubmit, setValue, resetField, formState: {errors}} = useForm()
+    const {register, handleSubmit, setValue,getValues, resetField, formState: {errors}} = useForm()
 
     function save(data){
         saveMaxsulotRuyxati({
@@ -265,6 +267,7 @@ function Taxrirlash({
     }
 
     const history = useHistory()
+
 
     return (
         <div className={'mt-5 contanerT'}>
@@ -450,15 +453,20 @@ function Taxrirlash({
                                 <td>
                                     <label htmlFor={'foy'}>Foyda foizda</label><br/>
                                     <input type="number" id={'foy'}
-                                           {...register('tax')}
-                                        placeholder={errors.tax ? errors.tax?.type === "required" && "Tax is required":'tax'}
-                                           defaultValue={''}
+                                           {...register("tax", {required:true,onChange:(e)=>{
+                                                    console.log("tax",e.target.value)
+                                                   setValue('salePrice',parseInt( e.target.value *getValues('buyPrice')/100+parseInt(getValues('buyPrice'))))
+                                               }})}
+                                           placeholder={errors.tax ? errors.tax?.type === "required" && "tax is required":'tax'}
                                            className='taxrirlashInputValudetion form-control'/>
                                 </td>
                                 <td>
                                     <label htmlFor={''}>Sotib olish narxi</label><br/>
                                     <input type="number" id='sotishNarxi'
-                                           {...register("buyPrice", {required:true})}
+                                           {...register("buyPrice", {required:true,onChange:(e)=>{
+                                                   console.log("buyPrice", e.target.value)
+                                                   setValue('salePrice',parseInt(e.target.value*getValues('tax')/100+parseInt(e.target.value)))
+                                               }})}
                                         placeholder={errors.buyPrice ? errors.buyPrice?.type === "required" && "buyPrice is required":'buyPrice'}
                                            className='taxrirlashInputValudetion form-control'/>
 
@@ -466,7 +474,9 @@ function Taxrirlash({
                                 <td>
                                     <label htmlFor={''}>Sotish narxi</label><br/>
                                     <input type="number" id='sotibOlishNarxi' className={'form-control'}
-                                        {...register('salePrice', {required:true})}
+                                        {...register('salePrice', {required:true,onChange:(e)=>{
+                                                 setValue('tax',Math.round(parseFloat(e.target.value/getValues('buyPrice')-1)*100))
+                                            }})}
                                         placeholder={errors.salePrice ? errors.salePrice?.type === "required" && "salePrice is required":'salePrice'}
                                     defaultValue={''}/>
                                     {/*<h4 className={'mt-3'}>{input.foydafoiz*input.sotibolishnarxi+ '  so`m'}</h4>*/}
