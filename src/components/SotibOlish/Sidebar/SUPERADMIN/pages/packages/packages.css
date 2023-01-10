@@ -4,7 +4,11 @@
     box-shadow: 0px 10px 20px grey;
     background-color: #FFFF;
 }
-
+.packageContainer-item{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
 .PackagesContainer .cardBlock {
    display: flex;
    flex-wrap: wrap;
@@ -50,3 +54,34 @@
 .PackagesContainer .cardBlock .card1 .editImg:hover{
     cursor: pointer;
 }
+@media screen and (max-width: 425.9px){
+    .packageContainer-item{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .packageContainer-item h4{
+        font-size: 16px;
+    }
+    .PackagesContainer .cardBlock .card1{
+        width: 100%;
+    }
+}
+@media (min-width: 426px) and (max-width: 767.9px){
+    .packageContainer-item{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .packageContainer-item h4{
+        font-size: 16px;
+    }
+    .PackagesContainer .cardBlock .card1{
+        width: 50%;
+    }
+    .cardBox p{
+        font-size: 20px;
+        padding: 2px;
+    }
+}
+

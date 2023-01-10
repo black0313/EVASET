@@ -58,7 +58,6 @@ export const slice = createSlice({
                 state.id = action.payload.object.id
                 localStorage.setItem('tokenname',action.payload.message)
                 console.log('ei')
-
                     state.users.role.permissions.map(item=>{
                     switch (item){
                         case "ADD_USER":;

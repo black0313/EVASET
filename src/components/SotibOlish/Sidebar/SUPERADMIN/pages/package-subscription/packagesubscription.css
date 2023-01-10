@@ -177,7 +177,7 @@
 @media (min-width: 769px) and (max-width: 1024.9px){
      .rowStylePageS .izlashPageS .izlashBox1{
             display: grid;
-            grid-template-columns:36% 36% 36% ;
+            grid-template-columns:25% 25% 25% 25% ;
      }
      .rowStylePageS .izlashPageS .izlashBox1 button{
             line-height: 4px;

@@ -186,8 +186,11 @@
      
 }
 
-@media (max-width: 425.9px){
-       .rowStyleSA2 .qoshishBH .sarlavha{
+@media screen and (max-width: 425.9px){
+    .rowStyleSuperAdmin .headerTextBox {
+        display: block;
+    }
+    .rowStyleSA2 .qoshishBH .sarlavha{
                font-size: 14px;
         }
         .rowStyleSA2 .izlashBH{
@@ -206,7 +209,7 @@
         .rowStyleSA2 .izlashBH .izlashBox2 input{
                width: 60%;
                margin: 8px 0px 0px 4px;
- 
+
         }
         .rowStyleSA2 .izlashBH .izlashBox1 select{
                margin-bottom: 8px;
@@ -239,7 +242,7 @@
         .rowStyleSA2 .izlashBH .izlashBox2 input{
                width: 60%;
                margin: 8px 0px 0px 4px;
- 
+
         }
         .rowStyleSA2 .izlashBH .izlashBox1 select{
                margin-bottom: 8px;
@@ -257,6 +260,9 @@
  }
  
  @media (min-width: 426px) and (max-width: 768.9px){
+     .rowStyleSuperAdmin .headerTextBox {
+         display: block;
+     }
         .rowStyleSA2 .izlashBH{
                display: block;
         }
@@ -286,7 +292,7 @@
  @media (min-width: 769px) and (max-width: 1024.9px){
         .rowStyleSA2 .izlashBH .izlashBox1{
                display: grid;
-               grid-template-columns:36% 36% 36% ;
+               grid-template-columns:25% 25% 25% 25%;
         }
         .rowStyleSA2 .izlashBH .izlashBox1 button{
                line-height: 4px;

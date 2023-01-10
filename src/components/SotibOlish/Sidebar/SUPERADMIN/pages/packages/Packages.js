@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 export default function Packages() {
 	return (
 		<div className='PackagesContainer'>
-			<div className="d-flex justify-content-between mb-4">
+			<div className="packageContainer-item">
 				<h4>Packages All Packages</h4>
-				<Link to={'/headerthird/superadmin/paskages/addpackage'}><button className='btn btn-primary mt-4'>Qo'shish</button></Link>
+				<Link to={'/headerthird/superadmin/paskages/addpackage'}><button className='btn btn-primary mt-sm-2 mt-md-4 '>Qo'shish</button></Link>
 			</div>
 			<div className="cardBlock mb-5">
 				<div className="card1 m-2">
@@ -26,7 +26,7 @@ export default function Packages() {
 						<p>Unlimited Users</p>
 						<h4 className='mt-4'>Free for 10 Yillar</h4>
 						<hr className='mt-4'/>
-						<p className='m-4'>Doimiyga ulangan</p>
+						<p className='mt-4'>Doimiyga ulangan</p>
 					</div>
 				</div>
 			</div>

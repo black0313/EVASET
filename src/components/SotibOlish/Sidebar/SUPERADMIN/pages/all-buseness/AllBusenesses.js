@@ -21,14 +21,14 @@ export default function AllBusenesses() {
                     <h5>Filtirlash</h5>
                 </div>
                 <div className="row cont">
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-sm-12">
                         <h6>Packages:</h6>
                         <select name="" id="">
                             <option value="">all</option>
                             <option value="">jjj</option>
                         </select>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-sm-12">
                         <h6>Subscription Status:</h6>
                         <select name="" id="">
                             <option value="barcasi">Barchasi</option>
@@ -36,13 +36,13 @@ export default function AllBusenesses() {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-sm-12">
                         <h6>Status:</h6>
                         <select name="" id="">
                             <option value="">Barchasi</option>
                         </select>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-sm-12">
                         <h6>Last transaction date:</h6>
                         <select name="" id="">
                             <option value="">All</option>
@@ -50,7 +50,7 @@ export default function AllBusenesses() {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-sm-12">
                         <div className="sana">
                             <h6>No transactions since:</h6>
                             <select name="" id="">
@@ -73,7 +73,7 @@ export default function AllBusenesses() {
                             <option value="">50</option>
                         </select>
                         <button><img src={CSV} alt="" /> Export CSV</button>
-                        <button><img src={Excel} alt="" /> Export Excel</button>
+                        <button ><img src={Excel} alt="" /> Export Excel</button>
                         <button><img src={Print} alt="" /> Print</button>
                         <button><img src={Pdf} alt="" />Export PDF</button>
                         <button><img src={Data} alt="" />Malumotlarni kamaytirish</button>

@@ -11,3 +11,10 @@
 .containersSuperAdmin h6{
    margin-bottom: 4px;
 }
+@media screen and (max-width: 450px) {
+    .containersSuperAdmin{
+        border-radius: 8px;
+        padding: 10px 15px;
+        background-color: #FFFF;
+    }
+}

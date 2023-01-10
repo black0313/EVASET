@@ -87,3 +87,60 @@
 .containersSuperAdmin .chartBox{
     margin-top: 60px;
 }
+@media screen and (max-width: 425.9px) {
+    .header123{
+        display: block !important;
+    }
+    .header123 h4{
+        text-align: center;
+    }
+    .containersSuperAdmin .header123 .buttonBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .containersSuperAdmin .cardBlock{
+        display: block;
+    }
+    .containersSuperAdmin .cardBlock .card1,
+    .containersSuperAdmin .cardBlock .card2,
+    .containersSuperAdmin .cardBlock .card3 {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    .chartBox h5{
+        font-size: 14px;
+    }
+    .chartBox div{
+    }
+}
+@media (min-width: 426px) and (max-width: 767.9px) {
+    .header123{
+        display: block !important;
+    }
+    .header123 h4{
+        text-align: center;
+    }
+    .containersSuperAdmin .header123 .buttonBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .containersSuperAdmin .cardBlock{
+        display: block;
+    }
+    .containersSuperAdmin .cardBlock .card1,
+    .containersSuperAdmin .cardBlock .card2,
+    .containersSuperAdmin .cardBlock .card3 {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    .chartBox h5{
+        font-size: 25px;
+    }
+    .chartBox div{
+    }
+}
+

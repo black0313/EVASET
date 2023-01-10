@@ -454,8 +454,7 @@ function Taxrirlash({
                                     <label htmlFor={'foy'}>Foyda foizda</label><br/>
                                     <input type="number" id={'foy'}
                                            {...register("tax", {required:true,onChange:(e)=>{
-                                                    console.log("tax",e.target.value)
-                                                   setValue('salePrice',parseInt( e.target.value *getValues('buyPrice')/100+parseInt(getValues('buyPrice'))))
+                                                   setValue('salePrice', parseInt( e.target.value *getValues('buyPrice')/100+parseInt(getValues('buyPrice'))))
                                                }})}
                                            placeholder={errors.tax ? errors.tax?.type === "required" && "tax is required":'tax'}
                                            className='taxrirlashInputValudetion form-control'/>
@@ -464,7 +463,6 @@ function Taxrirlash({
                                     <label htmlFor={''}>Sotib olish narxi</label><br/>
                                     <input type="number" id='sotishNarxi'
                                            {...register("buyPrice", {required:true,onChange:(e)=>{
-                                                   console.log("buyPrice", e.target.value)
                                                    setValue('salePrice',parseInt(e.target.value*getValues('tax')/100+parseInt(e.target.value)))
                                                }})}
                                         placeholder={errors.buyPrice ? errors.buyPrice?.type === "required" && "buyPrice is required":'buyPrice'}

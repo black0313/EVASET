@@ -14,7 +14,7 @@ function SuperAdmin() {
 
     return <div className="col-md-12 pb-4 pt-4">
         <div className="rowStyleSA">
-            <Link to='/headerthird/superadmin'> <button><img src={icon} alt="" /> Superadmin</button></Link>
+            <Link to='/headerthird/superadmin'> <button> Super Admin</button></Link>
             <Link to='/headerthird/superadmin/allbusenesses'> <button>All Busenesses</button></Link>
             <Link to='/headerthird/superadmin/packagesubscription'> <button>Package Subscription</button></Link>
             <Link to='/headerthird/superadmin/paskages'> <button>Paskages</button></Link>
