@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Logo from '../../img/LOGO.png'
 import './header.css'
 import {useState} from "react";
@@ -15,8 +15,17 @@ function Header() {
     }
 
     function ChangeLanguage(e){
+        setLang(e.target.value)
         i18n.changeLanguage(e.target.value)
     }
+    // const {t,i18n} = useTranslation();
+    const [lang, setLang] = useState()
+
+
+    useEffect(()=>{
+        const storageLanguage = localStorage.getItem("i18nextLng")
+        setLang(storageLanguage)
+    },[])
 
     return(
             <div className={'header__ '}>
@@ -26,7 +35,7 @@ function Header() {
                     </div>
                     <div className="header-narx">
                             <a href="Narxlar">Narxlar</a>
-                            <select name="" id="" onChange={ChangeLanguage} >
+                            <select value={lang} name="" id="" onChange={ChangeLanguage} >
                                 <option value="uz">Uzbek</option>
                                 <option value="ru">Русский</option>
                                 <option value="ki">Крилл</option>

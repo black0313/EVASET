@@ -30,6 +30,8 @@ import XaridReducer,{getXarid,getXaridCost} from "../Sidebar/Haridlar/reducer/Xa
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import TaminotReducer,{getTaminot} from "../Sidebar/Hamkorlar/reducer/TaminotReducer";
 import ValyutaReducer from "../Sidebar/Settings/DukonSozlamalari/reducers/ValyutaReducer";
+import {useTranslation} from "react-i18next";
+
 function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,TaminotReducer,getTaminot ,getMaxsulotRuyxati,getSavdolar,savdooynasi,active,activSavdo,XaridReducer,getXarid}) {
 
     useEffect(()=>{
@@ -234,6 +236,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
     const series = [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0]
     const windowscrenn = window.screen.height
 
+    const {t} = useTranslation()
 
     return (
         <div className={`third  pt-md-4  ${display} ${third}`}>
@@ -247,8 +250,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
 
                             <div className="col-md-11 col-sm-9 align-items-center">
                                 <h4 className={'kitchen2'}>X U SH - K E L I B S I Z</h4>
-                                <p className={'kitchen'}>Sizni shaxsiy boshqaruv panelida yana ko'rganimizdan juda
-                                    xursandmiz</p>
+                                <p className={'kitchen'}>{t('Third.1')}</p>
                             </div>
                         </div>
                     </div>

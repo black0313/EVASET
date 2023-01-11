@@ -12,6 +12,7 @@ import {Link} from "react-router-dom";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import ValyutaReducer,{getValyuta,changeActivecur} from "../Sidebar/Settings/DukonSozlamalari/reducers/ValyutaReducer";
 import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import {useTranslation} from "react-i18next";
 
 function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActivecur,MaxsulotlarRoyxariReducer,getMaxsulotRuyxati}) {
 
@@ -48,6 +49,21 @@ function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActive
         getValyuta(users.businessId)
     }
 
+    const {t,i18n} = useTranslation()
+    function ChangeLanguage(e){
+        setLang(e.target.value)
+        i18n.changeLanguage(e.target.value)
+    }
+
+    const [lang, setLang] = useState()
+
+
+    useEffect(()=>{
+        const storageLanguage = localStorage.getItem("i18nextLng")
+        setLang(storageLanguage)
+    },[])
+
+
     return(
         <div className={'container-fluid position-relative'}>
             <div className={'headerBox '}>
@@ -58,6 +74,18 @@ function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActive
                 </div>
                 <div className="two ">
                     <div className={'img2img3'}>
+
+                        <div className="header-narx">
+
+                            <select value={lang} className={'select-control'} name="" id="" onChange={ChangeLanguage} >
+                                <option value="uz">Uzbek</option>
+                                <option value="ru">Русский</option>
+                                <option value="ki">Крилл</option>
+                                <option value="en">English</option>
+                            </select>
+
+                        </div>
+
                         <select name="" id="" className={'form-select me-2'} onChange={valyutactiver} value={ValyutaReducer.valyutactiveID} >
                             {
                                     ValyutaReducer.valyuta.map(item=>
