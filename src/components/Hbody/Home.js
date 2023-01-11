@@ -99,7 +99,7 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
 
                         <div className="home-enter">
                             <div className="kirish-text">
-                                <h5>Kirish</h5>
+                                <h5>{t('Welcome.3')}</h5>
                                 <p className={'p'}>
                                     Evaset platformasi bilan bisnesingizni oson boshqaring !!!
                                 </p>

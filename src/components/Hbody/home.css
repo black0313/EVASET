@@ -33,7 +33,7 @@
     font-family: "Montserrat",sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 44px;
+    font-size: 34px;
     line-height: 54px;
     margin-bottom: 16px;
     color: #000000;
@@ -196,7 +196,7 @@
         margin-top: 20px;
     }
     .home-body .homeContainer .home-img .home-text h4{
-        font-size: 24px;
+        font-size: 22px;
         line-height: 16px;
     }
     .home-body .homeContainer .home-img .home-text p{
@@ -258,7 +258,7 @@
         width: 100%;
     }
     .home-body .homeContainer .home-img .home-text h4{
-        font-size: 24px;
+        font-size: 22px;
         line-height: 32px;
         margin-top: 10px;
     }

@@ -27,8 +27,9 @@ function Header() {
                     <div className="header-narx">
                             <a href="Narxlar">Narxlar</a>
                             <select name="" id="" onChange={ChangeLanguage} >
-                                <option value="uz">Uzbekcha</option>
-                                <option value="ru">Rus</option>
+                                <option value="uz">Uzbek</option>
+                                <option value="ru">Русский</option>
+                                <option value="ki">Крилл</option>
                                 <option value="en">English</option>
                             </select>
                             <button onClick={toggle}>Sotib olish</button>
