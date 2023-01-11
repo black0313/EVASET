@@ -2,17 +2,21 @@ import React from "react";
 import Logo from '../../img/LOGO.png'
 import './header.css'
 import {useState} from "react";
-import * as url from "url";
 import {ModalFooter,Modal,ModalBody,ModalHeader} from "reactstrap";
+import {useTranslation} from "react-i18next";
 
 function Header() {
 
+    const {t,i18n} = useTranslation();
     const [onRegister, setRegister] = useState(false)
 
     function toggle() {
         setRegister(!onRegister)
     }
 
+    function ChangeLanguage(e){
+        i18n.changeLanguage(e.target.value)
+    }
 
     return(
             <div className={'header__ '}>
@@ -22,10 +26,10 @@ function Header() {
                     </div>
                     <div className="header-narx">
                             <a href="Narxlar">Narxlar</a>
-                            <select name="" id="" >
-                                <option value="uzb">Uzbekcha</option>
-                                <option value="rus">Rus</option>
-                                <option value="eng">English</option>
+                            <select name="" id="" onChange={ChangeLanguage} >
+                                <option value="uz">Uzbekcha</option>
+                                <option value="ru">Rus</option>
+                                <option value="en">English</option>
                             </select>
                             <button onClick={toggle}>Sotib olish</button>
                     </div>

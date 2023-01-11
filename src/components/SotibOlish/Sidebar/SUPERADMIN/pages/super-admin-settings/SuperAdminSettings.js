@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import './superadminsettings.css'
+import imgMenu from '../../../../../../img/menu.png'
 import { Link,Switch,Route } from 'react-router-dom';
 import AdminSettings from './pagenationSettings/adminSettings/AdminSettings';
 import ApplicationSettings from './pagenationSettings/applicationSettings/ApplicationSettings';
@@ -15,7 +16,16 @@ import AddJavascriptCss from './pagenationSettings/addJavaScriptCss/AddJavascrip
 export default function SuperAdminSettings() {
 
 	const [clickButton, setClickButton] = useState('buttonsStyle')
+	const [menuClass,setMenuClass] = useState('settinButtonsBox-sm')
 
+	function ChangeClass(){
+		if (menuClass === 'settinButtonsBox-sm'){
+			setMenuClass('settinButtonsBox-sm-ts')
+		}
+		else{
+			setMenuClass('settinButtonsBox-sm')
+		}
+	}
 
 	function changeButtonStyle() {
 		setClickButton('clicButtonStyle')
@@ -28,6 +38,7 @@ export default function SuperAdminSettings() {
 				<select name="" id="" className='selectStyl'>
 					<option value="">Tanlang</option>
 				</select>
+					<img className={'superAdminMenu'} onClick={ChangeClass} src={imgMenu} alt=""/>
 			</div>
 
 			<div className="settingsBlock">
@@ -41,6 +52,18 @@ export default function SuperAdminSettings() {
 					<Link to={'/headerthird/superadmin/superadminsettings/pushersettings'}><button className={'buttonsStyle'} >Pusher Settings</button></Link>
 					<Link to={'/headerthird/superadmin/superadminsettings/addjavascriptcss'}><button className={'buttonsStyle'} >Additional Javascript and CSS</button></Link>
 				</div>
+				{/*<div className={menuClass}>*/}
+				{/*	<ul>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/adminsettings'}><li onClick={ChangeClass} id='bs' className={'liStyle'} >Super Admin Settings</li></Link>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/applicationSettings'}><li className={'liStyle'} >Application Settings</li></Link>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/emailsettings'}><li className={'liStyle'} >Email SMPT Settings</li></Link>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/paymentsettings'}><li className={'liStyle'} > Payment Gateways</li></Link>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/backup'}><li className={'liStyle'} > Backup</li></Link>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/cronsettings'}><li className={'liStyle'} > Cron Jobs</li></Link>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/pushersettings'}><li className={'liStyle'} >Pusher Settings</li></Link>*/}
+				{/*		<Link to={'/headerthird/superadmin/superadminsettings/addjavascriptcss'}><li className={'liStyle'} >Additional Javascript <br/> and CSS</li></Link>*/}
+				{/*	</ul>*/}
+				{/*</div>*/}
 				<div className="settinPages container">
 					<Switch>
 						<Route path={'/headerthird/superadmin/superadminsettings/adminsettings'} component={AdminSettings}/>

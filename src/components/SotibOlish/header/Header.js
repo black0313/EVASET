@@ -9,7 +9,6 @@ import {active} from "../../../reducer/functionreducer";
 import Calculator from "./Calculator/Calculator";
 import users from "../../../reducer/users";
 import {Link} from "react-router-dom";
-import Imagecom from "../../Imagecom";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import ValyutaReducer,{getValyuta,changeActivecur} from "../Sidebar/Settings/DukonSozlamalari/reducers/ValyutaReducer";
 import MaxsulotlarRoyxariReducer,{getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";

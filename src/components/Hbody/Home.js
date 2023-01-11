@@ -12,6 +12,7 @@ import users, {saveusers, changeerror} from "../../reducer/users";
 import axios from "axios";
 import {ModalBody, Modal, ModalFooter, ModalHeader} from "reactstrap";
 import {BaseUrl} from "../../middleware";
+import {useTranslation} from "react-i18next";
 
 
 function Home({saveusers, users, linkpost, active, changeerror}) {
@@ -24,6 +25,7 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
     const [disabled, setdisabled] = useState(false)
     const [checked, setchecked] = useState(false)
     const history = useHistory()
+    const {t,i18n} = useTranslation();
 
     function login(event) {
         setLogin(event.target.value)
@@ -34,18 +36,14 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
         setparol(event.target.value)
         changeerror()
     }
-
     function changechecked() {
         setchecked(prev => !prev)
         console.log(checked)
     }
 
-
     const [typeinput, Settype] = useState('password')
     const [placeholderp, Setplaceholderp] = useState('password')
     const [placeholderl, Setplaceholderl] = useState('login')
-    const [array, Setarray] = useState('')
-
 
     function changetypeinput() {
         if (typeinput === 'text') {
@@ -54,7 +52,6 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
             Settype('text')
         }
     }
-
     function testusers() {
         axios({
             method: 'post',
@@ -92,11 +89,10 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
                             </div>
                             <div className="home-text">
                                 <h4 className={'welcome'}>
-                                    EVASET Xush kelibsiz!
+                                    {t('Welcome.1')}
                                 </h4>
                                 <p className={'p'}>
-                                    Biznesingiz uchun ulkan samara, Biz bilan 1000+ korxonalar hamkorlikda.
-                                    Biz bilan kelajak sari !!!
+                                    {t('Welcome.2')}
                                 </p>
                             </div>
                         </div>
