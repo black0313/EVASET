@@ -28,7 +28,6 @@ function Bolimlar({editBolim,Ichkibolimred,deleteichkibolim ,getBolim, bolimlar,
         }
     )
 
-
     function view(e) {
         input.view = e.target.value
         let a = {...input}
@@ -103,16 +102,6 @@ function Bolimlar({editBolim,Ichkibolimred,deleteichkibolim ,getBolim, bolimlar,
     function koproq(){
         setvisible(prev=>prev+5)
     }
-
-    //
-    // const [deletemodal, setdeletemodal] = useState(false)
-    // const [deleteID, setdeletID] = useState('')
-    //
-    //
-    // function deleteModaltoggle(item) {
-    //     setdeletemodal(!deletemodal)
-    //     setdeletID(item)
-    // }
 
 
     const [deletemodal, setdeletemodal] = useState(false)
@@ -239,8 +228,6 @@ function Bolimlar({editBolim,Ichkibolimred,deleteichkibolim ,getBolim, bolimlar,
         </div>
     )
 }
-
-// export default connect((BolimReducer), {getBolim, saveBolim, editBolim,deleteBolim})(Bolimlar)
 
 export default connect((BolimReducer, users,Ichkibolimred), {
     getBolim,

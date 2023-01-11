@@ -363,3 +363,16 @@
     }
 }
 
+.registrBtn{
+    text-align: center;
+    cursor: pointer;
+    color: #939090;
+    width: 100%;
+    letter-spacing: 2px;
+    /*margin-left: 25%;*/
+    transition: 1s all inherit;
+}
+.registrBtn:hover{
+    color: #000;
+    border-bottom: 1px dashed #000;
+}
