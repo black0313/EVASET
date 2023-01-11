@@ -5,6 +5,14 @@
     "3":"Enter"
   },
   "Third": {
-    "1": "We look forward to seeing you again on your personal dashboard we are happy"
+    "1": "We look forward to seeing you again on your personal dashboard we are happy",
+    "2": "WELCOME",
+    "3": "Report",
+    "4": "Shop window",
+    "5": "sum",
+    "6": "TOTAL PURCHASES",
+    "7": "TOTAL TRADE",
+    "8": "DEBT FROM THE MARKET",
+    "9": "CHARGE FROM DEBTORS"
   }
 }

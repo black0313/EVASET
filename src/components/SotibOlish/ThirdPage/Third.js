@@ -42,6 +42,8 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
 
     },[ValyutaReducer.current])
 
+    const {t} = useTranslation()
+
     function savdod(){
         savdooynasi()
         activSavdo()  
@@ -172,32 +174,33 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
 
     ])
 
+
     const jami = [
         {
             number: XaridReducer.xaridlarcost.cost,
             foiz: "+10.23%",
-            text: 'JAMI XARIDLAR',
+            text: t('Third.6'),
             svg: <img className={'imgsvg'} src={shopping} alt={'shopping'}/>,
             svgfoiz: <img src={jami1} alt={'jami1'}/>
         },
         {
             number: SavdoQoshishReducer.amount ,
             foiz: "+10.23%",
-            text: 'JAMI SAVDO',
+            text: t('Third.7'),
             svg: <img className={'imgsvg'} src={jamisavdo} alt={'jamisavdo'}/>,
             svgfoiz: <img src={jami2} alt={'jami2'}/>
         },
         {
             number: XaridReducer.xaridlarcost.debt,
             foiz: "+10.23%",
-            text: 'BOZORDAN QARZIM',
+            text: t('Third.8'),
             svg: <img className={'imgsvg'} src={bozordanqarz} alt={'bozordanqarz'}/>,
             svgfoiz: <img src={jami3} alt={'jami3'}/>
         },
         {
             number: SavdoQoshishReducer.qarz,
             foiz: "+10.23%",
-            text: 'QARZDORLARDAN HAQIM',
+            text: t('Third.9'),
             svgfoiz: <img src={jami4} alt={'jami4'}/>,
             svg: <img src={qarzdorlar} className={'imgsvg'} alt={'qarzdorlar'}/>,
         },
@@ -236,7 +239,6 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
     const series = [SavdoQoshishReducer.uzcard+XaridReducer.uzcard, SavdoQoshishReducer.humo+XaridReducer.humo, SavdoQoshishReducer.naqd+XaridReducer.naqd, 0]
     const windowscrenn = window.screen.height
 
-    const {t} = useTranslation()
 
     return (
         <div className={`third  pt-md-4  ${display} ${third}`}>
@@ -249,17 +251,17 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                             </div>
 
                             <div className="col-md-11 col-sm-9 align-items-center">
-                                <h4 className={'kitchen2'}>X U SH - K E L I B S I Z</h4>
+                                <h4 className={'kitchen2'}>{t('Third.2')}</h4>
                                 <p className={'kitchen'}>{t('Third.1')}</p>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-3 col-sm-12 align-items-center d-flex justify-content-around">
                         <Link to={'/headerthird/foydaZarar'}>
-                            <button className={' kitchen-button'}>Xisobot</button>
+                            <button className={' kitchen-button'}>{t('Third.3')}</button>
                         </Link>
                         <Link to={'/turliTavar'}>
-                            <button onClick={savdod} className={'kitchen-button'}>Savdo oynasi</button>
+                            <button onClick={savdod} className={'kitchen-button'}>{t('Third.4')}</button>
                         </Link>
                     </div>
 
@@ -287,7 +289,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                                             <div
                                                 className="row pt-0 pb-0 d-flex align-items-center justify-content-between">
                                                 <div className="col-8 me-0 mt-3 mt-md-0">
-                                                    <p className={"raqam align-items-center"}>{item.number} so'm</p>
+                                                    <p className={"raqam align-items-center"}>{item.number} {t('Third.5')}</p>
                                                 </div>
                                                 <div className="col-4 text-center align-items-center">
                                                     <div
