@@ -93,9 +93,9 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
     }
     const [shophistory, setShophistory] = useState([
         {
-            name: 'Buyurtmalar',
+            name: t('Third.12'),
             jami: '1288',
-            text: 'Jami buyurtmalar',
+            text: t('Third.13'),
             foiz: '15%  oshdi',
             svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="1"
@@ -107,9 +107,9 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
             </svg>
         },
         {
-            name: 'Xaridlar',
+            name: t('Third.14'),
             jami: XaridReducer.miqdor,
-            text: "Jami haridlar",
+            text: t('Third.15'),
             foiz: '8% oshdi',
             svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="1"
@@ -314,7 +314,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                 </div>
                 <div className="row p-0 d-flex colorback mb-3 p-sm-3 rounded-3 justify-content-between">
                     <div className="col-6 col-sm-12 pt-md-4 pt-sm-4 ps-md-4 ps-sm-2">
-                        <h3 className={'diagramm-text'}>30 kunlik savdo statistikasi (so'm)</h3>
+                        <h3 className={'diagramm-text'}>{t('Third.10')}</h3>
                     </div>
                     <div
                         className="col-4 d-sm-flex   col-sm-12  pt-md-3 p-md-4 p-sm-1 offset-md-2 justify-content-md-end offset-sm-0">
@@ -322,7 +322,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                             <div className="col-12 pe-3 d-flex justify-content-md-end justify-content-center">
                                 <div className={'selects-style me-sm-4'}>
                                     <select className={'selects'} form={'select'} id="select">
-                                        <option value="1">Ushbu oy</option>
+                                        <option value="1">{t('Third.11')}</option>
                                     </select>
                                 </div>
                                 <div className={'btn-nuqta'}>
@@ -357,7 +357,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                                                     className="col-12 d-flex d-sm-flex justify-content-md-end justify-content-center">
                                                     <div className={'selects-style'}>
                                                         <select className={'selects'} name="" id="">
-                                                            <option value="1">Ushbu oy</option>
+                                                            <option value="1">{t('Third.11')}</option>
                                                         </select>
                                                     </div>
                                                     <div className={'btn-nuqta'}>
@@ -397,7 +397,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                         <div className={'p-2'}>
                             <div className="row align-items-center   p-0 pe-3 colorback  rounded-3">
                                 <div className="col-7 col-sm-12 pt-3 ps-4">
-                                    <h3 className={'diagramm-text-one mt-1'}>To'lov usullari</h3>
+                                    <h3 className={'diagramm-text-one mt-1'}>{t('Third.16')}</h3>
                                 </div>
                                 <div className="col-5 col-sm-11 pt-3 ps-3">
                                     <div className="row p-0 align-items-center">
@@ -405,7 +405,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                                             className="col-12 d-flex justify-content-md-end justify-content-center">
                                             <div className={'selects-style'}>
                                                 <select className={'selects'} name="" id="">
-                                                    <option value="1">Ushbu oy</option>
+                                                    <option value="1">{t('Third.11')}</option>
                                                 </select>
                                             </div>
                                             <div className={'btn-nuqta'}>
@@ -425,8 +425,8 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                                     />
                                 </div>
                                 <div className="col-md-12  p-3 bar-chart d-flex align-items-center mt-4">
-                                    <h4>Jami Summa:</h4>
-                                    <p>50 352 000 so'm</p>
+                                    <h4>{t('Third.17')}</h4>
+                                    <p>50 352 000 {t('Third.5')}</p>
                                 </div>
                             </div>
                         </div>
@@ -438,7 +438,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                         <div className={'pe-md-4'}>
                             <div className="row p-0 colorback">
                                 <div className="col-6 col-sm-12 col-md-12 col-mdd-8 pt-3  mb-2 ps-3">
-                                    <h3 className={'diagramm-text-one'}>Ommabop mahsulotlar</h3>
+                                    <h3 className={'diagramm-text-one'}>{t('Third.18')}</h3>
                                 </div>
                                 <div className="col-5 col-sm-11 col-md-12 col-mdd-3 pt-3 ps-3 offset-md-1 offset-lg-0">
                                     <div className="row p-0 align-items-center">
@@ -446,7 +446,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                                             className="col-12 d-flex justify-content-end justify-content-center justify-content-md-end">
                                             <div className={'selects-style'}>
                                                 <select className={'selects '} name="" id="">
-                                                    <option value="1">Ushbu oy</option>
+                                                    <option value="1">{t('Third.11')}</option>
 
                                                 </select>
                                             </div>
@@ -467,7 +467,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                         <div>
                             <div className="row p-0 colorback">
                                 <div className=" col-sm-10 col-md-10 col-mdd-8 col-lg-8 pt-md-3 ps-md-3 pt-sm-2">
-                                    <h3 className={'diagramm-text-one text-one pt-sm-2'}>Oz qolgan mahsulotlar</h3>
+                                    <h3 className={'diagramm-text-one text-one pt-sm-2'}>{t('Third.19')}</h3>
                                 </div>
                                 <div
                                     className=" col-sm-1 col-md-1 col-mdd-3 pt-md-3 col-lg-3 ps-md-3 offset-md-1 offset-lg-0">
@@ -492,7 +492,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                         <div className={''}>
                             <div className="row p-0 colorback">
                                 <div className="col-6 col-sm-12 col-md-12 col-mdd-6 pt-3 ps-3">
-                                    <h3 className={'diagramm-text-one text-one2'}>Mijozlar buyurtmasi</h3>
+                                    <h3 className={'diagramm-text-one text-one2'}>{t('Third.20')}</h3>
                                 </div>
                                 <div className="col-6 col-sm-11 col-md-12 col-mdd-6  pt-3 ps-3 pe-0">
                                     <div className="row p-0 align-items-center">
@@ -530,8 +530,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                         <div className={'pe-4'}>
                             <div className="row p-0 colorback">
                                 <div className=" col-sm-10 col-md-10 col-lg-10 pt-3 ps-3"> {/*col-6*/}
-                                    <h3 className={'diagramm-text-one diagramm-text-one-sm'}>Qarzdorlarda haqingiz
-                                        (Nasiyalar)</h3>
+                                    <h3 className={'diagramm-text-one diagramm-text-one-sm'}>{t('Third.21')}</h3>
                                 </div>
                                 <div className="col-sm-1 col-md-1 col-lg-1  pt-3 ps-3 offset-sm-1"> {/*col-5*/}
                                     <div className="row p-0 align-items-center">
@@ -552,7 +551,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                         <div>
                             <div className="row p-0 colorback">
                                 <div className="col-6 col-sm-10 col-md-10 pt-3 ps-3">
-                                    <h3 className={'diagramm-text-one diagramm-text-one-sm'}>Bozordan qarzingiz</h3>
+                                    <h3 className={'diagramm-text-one diagramm-text-one-sm'}>{t('Third.22')}</h3>
                                 </div>
                                 <div className="col-5 col-sm-1 col-md-1 pt-3 ps-3 offset-md-1">
                                     <div className="row p-0 align-items-center">

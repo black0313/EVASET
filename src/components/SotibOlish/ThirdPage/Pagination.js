@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PAGANATION.css';
 import RenderComponent from "./RenderComponent";
+import {useTranslation} from "react-i18next";
 
 function Pagination() {
     useEffect(() => {
@@ -56,6 +57,7 @@ function Pagination() {
         return new Array(3).fill().map((_, idx) => start + idx + 1);
     };
 
+    const {t} = useTranslation()
 
     return (
 
@@ -67,11 +69,11 @@ function Pagination() {
                     <table className={"table"}>
                         <thead>
                         <tr className={'justify-content-between border-0'}>
-                            <th className={'border-0 thead-padding-left'}>Mahsulot nomi</th>
-                            <th className={'border-0 '}>Kategoriya</th>
-                            <th className={'border-0 '}>Brand</th>
-                            <th className={'border-0 '}>Narxi</th>
-                            <th className={"border-0"}>Sotilganlar soni</th>
+                            <th className={'border-0 thead-padding-left'}>{t('Pagination.1')}</th>
+                            <th className={'border-0 '}>{t('Pagination.3')}</th>
+                            <th className={'border-0 '}>{t('Pagination.4')}</th>
+                            <th className={'border-0 '}>{t('Pagination.2')}</th>
+                            <th className={"border-0"}>{t('Pagination.5')}</th>
 
                         </tr>
                         </thead>

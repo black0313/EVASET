@@ -13,6 +13,35 @@
     "6": "JAMI XARIDLAR",
     "7": "JAMI SAVDO",
     "8": "BOZORDAN QARZIM",
-    "9": "QARZDORLARDAN HAQIM"
+    "9": "QARZDORLARDAN HAQIM",
+    "10": "30 kunlik savdo statistikasi (so'm)",
+    "11": "Ushbu Oy",
+    "12": "Buyurtmalar",
+    "13": "Jami buyurtmalar",
+    "14": "Xaridlar",
+    "15": "Jami Xaridlar",
+    "16": "To'lov usullari",
+    "17": "Jami summa",
+    "18": "Ommabop mahsulotlar",
+    "19": "Oz qolgan mahsulotlar",
+    "20": "Mijozlar buyurtmasi",
+    "21": "Qarzdorlarda haqingiz (Nasiyalar)",
+    "22": "Bozordan qarzingiz"
+  },
+  "Pagination":{
+    "1": "Mahsulot nomi",
+    "2": "Narxi",
+    "3": "Kategoriya",
+    "4": "Brand",
+    "5": "Sotilganlar soni",
+
+    "6": "Dell Computer Monitor",
+    "7": "Baza nomi",
+    "8": "Qolgan mahsulot",
+
+    "9": "Savdo raqami",
+    "10": "Mijoz",
+    "11": "Qarz miqdori",
+    "12": "Amal"
   }
 }

@@ -13,6 +13,35 @@
     "6": "TOTAL PURCHASES",
     "7": "TOTAL TRADE",
     "8": "DEBT FROM THE MARKET",
-    "9": "CHARGE FROM DEBTORS"
+    "9": "CHARGE FROM DEBTORS",
+    "10": "30-day sales statistics (sum)",
+    "11": "This month",
+    "12": "Orders",
+    "13": "Total orders",
+    "14": "Purchases",
+    "15": "Total purchases",
+    "16": "Pay methods",
+    "17": "Total Amount",
+    "18": "Popular products",
+    "19": "Few products left",
+    "20": "Customer order",
+    "21": "Creditors' Rights (Nations)",
+    "22": "Your debt from the market"
+  },
+  "Pagination":{
+    "1": "Product name",
+    "2": "Price",
+    "3": "Category",
+    "4": "Brand",
+    "5": "Number of sales",
+
+    "6": "Dell Computer Monitor",
+    "7": "Base name",
+    "8": "The rest of the product",
+
+    "9": "Sales number",
+    "10": "Customer",
+    "11": "Loan amount",
+    "12": "Amal"
   }
 }

@@ -7,6 +7,7 @@ import users, {savdooynasi} from "../../../reducer/users";
 import functionreducer, {active, activSavdo} from "../../../reducer/functionreducer";
 import XaridReducer, {getXarid} from "../Sidebar/Haridlar/reducer/XaridReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../Sidebar/Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import {useTranslation} from "react-i18next";
 
 function Pagination2({getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,users,}) {
     useEffect(() => {
@@ -62,6 +63,7 @@ function Pagination2({getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,users,}) {
         return new Array(3).fill().map((_, idx) => start + idx + 1);
     };
 
+    const {t} = useTranslation()
 
     return (
 
@@ -72,9 +74,9 @@ function Pagination2({getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,users,}) {
                         <table className={"table table2"}>
                             <thead>
                             <tr className={'justify-content-between border-0'}>
-                                <th className={'border-0 thead-padding-left'}>Mahsulot nomi</th>
-                                <th className={'border-0 '}>Baza</th>
-                                <th className={'border-0 '}>Qolgan mahsulot</th>
+                                <th className={'border-0 thead-padding-left'}>{t('Pagination.1')}</th>
+                                <th className={'border-0 '}>{t('Pagination.7')}</th>
+                                <th className={'border-0 '}>{t('Pagination.8')}</th>
                             </tr>
                             </thead>
                             <tbody>
