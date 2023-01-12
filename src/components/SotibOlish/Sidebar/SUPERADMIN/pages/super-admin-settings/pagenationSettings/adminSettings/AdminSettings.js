@@ -7,47 +7,47 @@ export default function AdminSettings() {
             <div className='ms-3 me-3'>
                 <h5 className='mb-3 text-center'>Super Admin Settings</h5>
                 <div className="row">
-                    <div className="col-md-6 mb-4">
-                        <h6>Biznes nomi (brend, do'kon nomi):</h6>
+                    <div className="col-md-6 col-sm-12 mb-4">
+                        <h6>Biznes nomi (do'kon nomi):</h6>
                         <input type="text" className='form-control' />
                     </div>
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 col-sm-12 mb-4">
                         <h6>Email:</h6>
                         <input type="text" className='form-control' />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 col-sm-12 mb-4">
                         <h6>Hudud:</h6>
                         <input type="text" className='form-control' />
                     </div>
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 col-sm-12 mb-4">
                         <h6>Index:</h6>
                         <input type="text" className='form-control' />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 col-sm-12 mb-4">
                         <h6>Viloyat:</h6>
                         <input type="text" className='form-control' />
                     </div>
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 col-sm-12 mb-4">
                         <h6>Shaxar:</h6>
                         <input type="text" className='form-control' />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 col-sm-12 mb-4">
                         <h6>Davlat:</h6>
                         <input type="text" className='form-control' />
                     </div>
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 col-sm-12 mb-4">
                         <h6>Min days for subscription expiry alert:</h6>
                         <input type="number" className='form-control' />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12 mb-4 mt-4">
+                    <div className="col-md-12 col-sm-12 mb-4 mt-4">
                         <label class='container d-flex align-items-center' style={{ cursor: 'pointer' }}>
                             <input type="checkbox" style={{ width: '40px', height: '20px', cursor: 'pointer' }} />
                             Biznesga asoslangan foydalanuvchi nomini yoqing

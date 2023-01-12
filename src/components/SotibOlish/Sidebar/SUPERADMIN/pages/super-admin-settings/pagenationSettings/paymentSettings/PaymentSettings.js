@@ -8,26 +8,26 @@ export default function PaymentSettings() {
             <h5 className='mb-3 text-center'>Payment Gateways</h5>
 
             <div className="row">
-                <div className="col-md-6 mb-4">
+                <div className="col-sm-12 col-md-6 mb-4">
                     <label className='container d-flex'>
                         <input type="checkbox" style={{ width: '40px', height: '20px' }} />
                         Enable Offline Payment
                     </label>
                 </div>
-                <div className="col-md-6 mb-4">
+                <div className="col-sm-12 col-md-6 mb-4">
                     <p><label htmlFor="tex">Offline payment details:</label></p>
-                    <textarea name="" id="tex" cols="50" rows="4"></textarea>
+                    <textarea name="" id="tex"  rows="4"></textarea>
                 </div>
             </div>
 
 
             <div className="row">
-                <b>Stripe:</b>
-                <div className="col-md-6 mb-4">
+                <b className={'mb-3'}>Stripe:</b>
+                <div className="col-sm-12 col-md-6 mb-4">
                     <h6>App Name:</h6>
                     <input type="text" className='form-control' />
                 </div>
-                <div className="col-md-6 mb-4">
+                <div className="col-sm-12 col-md-6 mb-4">
                     <h6>App Title:</h6>
                     <input type="text" className='form-control' />
                 </div>
@@ -35,12 +35,12 @@ export default function PaymentSettings() {
             <hr />
 
             <div className="row">
-                <b>Razorpay:</b>
-                <div className="col-md-6 mb-4">
+                <b className={'mb-3'}>Razorpay:</b>
+                <div className="col-sm-12 col-md-6 mb-4">
                     <h6>Key ID:</h6>
                     <input type="text" className='form-control' />
                 </div>
-                <div className="col-md-6 mb-4">
+                <div className="col-sm-12 col-md-6 mb-4">
                     <h6>Key Secret:</h6>
                     <input type="text" className='form-control' />
                 </div>
@@ -48,12 +48,12 @@ export default function PaymentSettings() {
 
             <hr />
             <div className="row">
-                <b>Paystack</b>
-                <div className="col-md-6 mb-4">
+                <b className={'mb-3'}>Paystack</b>
+                <div className="col-sm-12 col-md-6 mb-4">
                     <h6>Public key:</h6>
                     <input type="text" className='form-control' />
                 </div>
-                <div className="col-md-6 mb-4">
+                <div className="col-sm-12 col-md-6 mb-4">
                     <h6>Secret key:</h6>
                     <input type="text" className='form-control' />
                 </div>

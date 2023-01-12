@@ -17,9 +17,7 @@ import {useTranslation} from "react-i18next";
 
 function Home({saveusers, users, linkpost, active, changeerror}) {
 
-    useEffect(() => {
 
-    }, [])
     const [inputlogin, setLogin] = useState('')
     const [inputparol, setparol] = useState('')
     const [disabled, setdisabled] = useState(false)
