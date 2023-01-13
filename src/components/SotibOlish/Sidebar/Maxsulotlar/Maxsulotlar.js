@@ -6,12 +6,15 @@ import {useEffect, useState} from 'react'
 import {active} from "../../../../reducer/functionreducer";
 import {Switch, Route, Link, NavLink} from 'react-router-dom'
 import {getStyle} from "chart.js/helpers";
+import {useTranslation} from "react-i18next";
 
 function Maxsulotlar({changeLink,link,sidebaractive2}) {
 
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
+
+    const {t} = useTranslation()
 
     useEffect(()=>{
         if (link !== 'maxsulotlar'){
@@ -67,25 +70,25 @@ function Maxsulotlar({changeLink,link,sidebaractive2}) {
                               stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
 
-                    <h4 className={`sidebar-text ${fontsiza}`}>Maxsulotlar</h4>
+                    <h4 className={`sidebar-text ${fontsiza}`}>{t('Sidebar.9')}</h4>
                 </div>
                 <svg className={`sidebar-img  ${classs}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>            </div>
 
                 <ul>
-                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotRuyxati'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Maxsulotlar ruyxati</NavLink></li>
-                    <li    onClick={sidebaractive}><NavLink to={'/headerthird/taxrirlash'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Maxsulot qo`shish</NavLink></li>
+                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotRuyxati'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>{t('Sidebar.10')}</NavLink></li>
+                    <li    onClick={sidebaractive}><NavLink to={'/headerthird/taxrirlash'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>{t('Sidebar.11')}</NavLink></li>
                     {/*<li><Link to={'/mahsulotShtrix'} className={'mahqosh'}>Shtrix kodlar</Link></li>*/}
                     {/*<li><Link to={'/turliTavar'} className={'mahqosh'}>Turli Tavarlar</Link></li>*/}
-                    <li    onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotImporti'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Mahsulot Importi</NavLink></li>
+                    <li    onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotImporti'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>{t('Sidebar.12')}</NavLink></li>
                     {/*<li><Link to={'/mavjudImport'} className={'mahqosh'}>Mavjud miq import</Link></li>*/}
 
                     {/* <li  onClick={sidebaractive}><Link to={'/headerthird/sotuvNarxGuruhlanishi'} className={'mahqosh'}>Sotuv narxining guruhi</Link></li> */}
                     {/*<li  onClick={sidebaractive}><Link to={'/headerthird/sotuvNarxGuruhlanishi'} className={'mahqosh'}>Sotuv narxining guruhi</Link></li>*/}
                     {/*<li><Link to={'/ulcovBirliklar'} className={'mahqosh'}>O`lchov birliklar</Link></li>*/}
-                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/bolimlar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Bo`limlar</NavLink></li>
-                    <li   onClick={sidebaractive}><NavLink to={'/headerthird/firmalar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Firmalar</NavLink></li>
+                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/bolimlar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>{t('Sidebar.13')}</NavLink></li>
+                    <li   onClick={sidebaractive}><NavLink to={'/headerthird/firmalar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>{t('Sidebar.14')}</NavLink></li>
                     {/*<li><Link to={'/kafolat'} className={'mahqosh'}>Kafolatlar</Link></li>*/}
                 </ul>
 

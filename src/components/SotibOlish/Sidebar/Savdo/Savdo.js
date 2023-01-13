@@ -4,10 +4,12 @@ import {Switch,Route,Link,NavLink} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
 import {savdooynasi} from "../../../../reducer/users";
+import {useTranslation} from "react-i18next";
+
 function Savdo({changeLink,link,savdooynasi,sidebaractive2}) {
 
 
-
+    const {t} = useTranslation()
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
@@ -65,7 +67,7 @@ function Savdo({changeLink,link,savdooynasi,sidebaractive2}) {
                         <path d="M5.63904 12.75C4.44904 12.75 3.36904 12.28 2.59904 11.43C1.82904 10.58 1.46904 9.46 1.58904 8.28L1.85904 5.53C2.27904 2.48 3.64904 1.25 6.58905 1.25H9.63904C9.84904 1.25 10.049 1.34 10.199 1.5C10.349 1.66 10.409 1.87 10.389 2.08L9.68904 9.09C9.47904 11.11 7.66904 12.75 5.63904 12.75ZM6.58905 2.75C4.39904 2.75 3.66904 3.41 3.34904 5.7L3.07904 8.43C2.99904 9.19 3.22904 9.9 3.70904 10.43C4.18904 10.96 4.86904 11.25 5.63904 11.25C6.89904 11.25 8.06904 10.19 8.18904 8.94L8.80905 2.75H6.58905V2.75Z" fill="#292D32"/>
                         <path d="M14.5 22.75H9.5C9.09 22.75 8.75 22.41 8.75 22V19.5C8.75 17.4 9.9 16.25 12 16.25C14.1 16.25 15.25 17.4 15.25 19.5V22C15.25 22.41 14.91 22.75 14.5 22.75ZM10.25 21.25H13.75V19.5C13.75 18.24 13.26 17.75 12 17.75C10.74 17.75 10.25 18.24 10.25 19.5V21.25Z" fill="#292D32"/>
                     </svg>
-                    <h4 className={`sidebar-text ${fontsiza}`}>Savdo</h4>
+                    <h4 className={`sidebar-text ${fontsiza}`}>{t('Sidebar.18')}</h4>
                 </div>
                 <svg className={`sidebar-img  ${classs}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -74,9 +76,9 @@ function Savdo({changeLink,link,savdooynasi,sidebaractive2}) {
             </div>
 
                 <ul>
-                    <li onClick={sidebaractive}><NavLink to={'/headerthird/barcasavdolar'}  className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >Barcha Savdolar</NavLink></li>
-                    <li onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotQoshish'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>Savdo qo`shish</NavLink></li>
-                    <li   onClick={savdod}><NavLink to={'/turliTavar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >Savdo oynasi</NavLink></li>
+                    <li onClick={sidebaractive}><NavLink to={'/headerthird/barcasavdolar'}  className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >{t('Sidebar.19')}</NavLink></li>
+                    <li onClick={sidebaractive}><NavLink to={'/headerthird/mahsulotQoshish'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}>{t('Sidebar.20')}</NavLink></li>
+                    <li   onClick={savdod}><NavLink to={'/turliTavar'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >{t('Sidebar.21')}</NavLink></li>
 
                 </ul>
 

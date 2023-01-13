@@ -18,6 +18,7 @@ import xodimReducer from "./Hodimlar/reducer/XodimReducer";
 import users from "../../../reducer/users";
 import SuperAdmin from "./SUPERADMIN/SuperAdmin";
 import store from '../../../img/storefront-outline.svg'
+import {useTranslation} from "react-i18next";
 
 function Sidebar({sidebaractive2}) {
 
@@ -37,6 +38,8 @@ function Sidebar({sidebaractive2}) {
     function changeLink(item){
         setLink(item)
     }
+
+    const {t} = useTranslation()
 
     return (
         <div className={`sidebar`}>
@@ -77,7 +80,7 @@ function Sidebar({sidebaractive2}) {
                                                 stroke="#0044FF" stroke-width="1.5" stroke-miterlimit="10"
                                                 stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        <h4 className={'sidebar-text'}>Bosh sahifa</h4>
+                                        <h4 className={'sidebar-text'}>{t('Sidebar.1')}</h4>
                                     </Link>
                                 </div>
                             </div>

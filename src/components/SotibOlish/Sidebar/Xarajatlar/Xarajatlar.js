@@ -5,10 +5,11 @@ import './xarajatlar.css'
 import {useState, useEffect} from 'react'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
+import {useTranslation} from "react-i18next";
 
 function Xarajatlar({changeLink, link, sidebaractive2}) {
 
-
+    const {t} = useTranslation()
     const [classs, setClasss] = useState('');
     const [fill, setfill] = useState('');
     const [fontsiza, setfontsize] = useState('');
@@ -69,7 +70,7 @@ function Xarajatlar({changeLink, link, sidebaractive2}) {
                         <path d="M20 3.5L18 5.5" stroke="#3A3C40" stroke-width="1.5" stroke-linecap="round"
                               stroke-linejoin="round"/>
                     </svg>
-                    <h4 className={`sidebar-text ${fontsiza}`}>Xarajatlar</h4>
+                    <h4 className={`sidebar-text ${fontsiza}`}>{t('Sidebar.25')}</h4>
                 </div>
                 <svg className={`sidebar-img  ${classs}`} width="24" height="24" viewBox="0 0 24 24" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
@@ -80,12 +81,9 @@ function Xarajatlar({changeLink, link, sidebaractive2}) {
             </div>
 
             <ul>
-                <li  onClick={sidebaractive}><NavLink  className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}   to={'/headerthird/xarajatRuyxati'}>Xarajatlar
-                    ruyxati</NavLink></li>
-                <li onClick={sidebaractive}><NavLink  className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}  to={'/headerthird/xarajatQoshish'}>Xarajat
-                    qoshish</NavLink></li>
-                <li  onClick={sidebaractive}><NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}   to={'/headerthird/xarajatTurlari'}>Xarajat
-                    turlari</NavLink></li>
+                <li  onClick={sidebaractive}><NavLink  className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}   to={'/headerthird/xarajatRuyxati'}>{t('Sidebar.26')}</NavLink></li>
+                <li onClick={sidebaractive}><NavLink  className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}  to={'/headerthird/xarajatQoshish'}>{t('Sidebar.27')}</NavLink></li>
+                <li  onClick={sidebaractive}><NavLink className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'}   to={'/headerthird/xarajatTurlari'}>{t('Sidebar.28')}</NavLink></li>
             </ul>
 
         </div>

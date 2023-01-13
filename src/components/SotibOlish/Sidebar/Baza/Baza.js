@@ -3,11 +3,11 @@ import './baza.css'
 import {useState,useEffect} from 'react'
 import {connect} from "react-redux";
 import {active} from "../../../../reducer/functionreducer";
+import {useTranslation} from "react-i18next";
 
 function Baza({changeLink,link,sidebaractive2}) {
 
-
-
+    const {t}= useTranslation()
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');
     const [fontsiza,setfontsize] = useState('');
@@ -59,7 +59,7 @@ function Baza({changeLink,link,sidebaractive2}) {
                         <path d="M2.34961 15.45L6.31961 17.75L10.2696 15.46" stroke="#3A3C40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M6.32031 21.82V17.74" stroke="#3A3C40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M5.39 13.21L2.99001 14.54C2.45001 14.84 2 15.5999 2 16.2199V18.76C2 19.38 2.44001 20.14 2.99001 20.44L5.39 21.77C5.9 22.06 6.73999 22.06 7.25999 21.77L9.66 20.44C10.2 20.14 10.65 19.38 10.65 18.76V16.2199C10.65 15.5999 10.21 14.84 9.66 14.54L7.25999 13.21C6.73999 12.93 5.9 12.93 5.39 13.21Z" stroke="#3A3C40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>                <h4 className={`sidebar-text ${fontsiza}`}>Bazadan Bazaga</h4>
+                    </svg>                <h4 className={`sidebar-text ${fontsiza}`}>{t('Sidebar.22')}</h4>
 
                 </div>
                 <svg className={`sidebar-img  ${classs}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,8 +68,8 @@ function Baza({changeLink,link,sidebaractive2}) {
             </div>
 
                 <ul>
-                    <li onClick={sidebaractive}><NavLink to={'/headerthird/utkazmaRuyxati'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >O`tkazmalar ruyxati</NavLink></li>
-                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/yangiOtkazma'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >Yangi o`tkazma</NavLink></li>
+                    <li onClick={sidebaractive}><NavLink to={'/headerthird/utkazmaRuyxati'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >{t('Sidebar.23')}</NavLink></li>
+                    <li  onClick={sidebaractive}><NavLink to={'/headerthird/yangiOtkazma'} className={isActive => isActive ? 'active-enter-link li-text' : 'li-text'} >{t('Sidebar.24')}</NavLink></li>
                 </ul>
 
         </div>
