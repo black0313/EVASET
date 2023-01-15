@@ -21,7 +21,7 @@ import MijozlarGuruhReducer, {
     saveMijozLarGurux
 } from "../reducer/MijozlarGuruhReducer";
 import {useForm} from "react-hook-form";
-
+import {useTranslation} from "react-i18next";
 
 function MijozGuruhlariii({
                               getMijozLarGuruh,
@@ -46,6 +46,7 @@ function MijozGuruhlariii({
         setInput(a)
     }
 
+    const {t} = useTranslation()
     const [active, setactive] = useState(false)
 
     function toggle() {
@@ -118,43 +119,43 @@ function MijozGuruhlariii({
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
             <div className="textHeaderMIG ">
-                <h2>Mijozlar guruxlari</h2>
+                <h2>{t('CustomGroup.1')}</h2>
             </div>
             <div className="rowStyleMIG">
                 <div className="qoshishMIG">
-                    <h5>Barcha mijozlar guruxlari</h5>
-                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>
+                    <h5>{t('CustomGroup.2')}</h5>
+                    <button onClick={toggle} className='btn btn-primary'>+{t('Buttons.2')}</button>
                 </div>
 
                 <Modal isOpen={active} toggle={toggle}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <ModalHeader>
-                            Guruh Qo`shish
+                            {t('CustomGroup.3')}
                         </ModalHeader>
                         <ModalBody>
-                            <label htmlFor={'n'}>Guruh nomi</label>
+                            <label htmlFor={'n'}>{t('CustomGroup.4')}</label>
                             <input type="text"
                                    {...register('name', {required: true})}
                                    placeholder={errors.name ? errors.name?.type === "required" && "Name is required" : 'name'}
                                    defaultValue={''}
                                    className={'form-control'} id={'n'}/>
 
-                            <label className={'mt-3'} htmlFor={'foiz'}>Foiz %</label>
+                            <label className={'mt-3'} htmlFor={'foiz'}>{t('CustomGroup.5')} %</label>
                             <input type="number"
                                    {...register('percent', {required:true})}
                                     placeholder={errors.name ? errors.name?.type === "required" && "Percent is required":'percent'}
                                    className={'form-control'}/>
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'} type={"submit"}>Saqlash</button>
-                            <button className={'btn btn-outline-primary'} type={"button"} onClick={toggle}>Chiqish</button>
+                            <button className={'btn btn-outline-primary'} type={"submit"}>{t('Buttons.6')}</button>
+                            <button className={'btn btn-outline-primary'} type={"button"} onClick={toggle}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </form>
                 </Modal>
 
                 <div className="izlashMIG">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select name="" id="">
                             <option value="">25</option>
                             <option value="">All</option>
@@ -173,9 +174,9 @@ function MijozGuruhlariii({
                 <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
                     <table className='table table-striped table-hover mt-4'>
                         <thead>
-                        <th style={{fontSize: '17px'}}>Guruh Nomi</th>
-                        <th style={{fontSize: '17px'}}>Fozida %</th>
-                        <th style={{fontSize: '17px'}}>Amallar</th>
+                        <th style={{fontSize: '17px'}}>{t('CustomGroup.6')}</th>
+                        <th style={{fontSize: '17px'}}>{t('CustomGroup.5')} %</th>
+                        <th style={{fontSize: '17px'}}>{t('Buttons.9')}</th>
                         </thead>
                         <tbody>
                         {
@@ -183,21 +184,21 @@ function MijozGuruhlariii({
                                 <td>{item.name}</td>
                                 <td>{item.percent}</td>
                                 <td>
-                                    <button className={'btnB'} onClick={() => editM(item.id)}>Tahrirlash</button>
-                                    <button className={'btnB'} onClick={() => deleteModaltoggle(item.id)}>O`chirish
+                                    <button className={'btnB'} onClick={() => editM(item.id)}>{t('Buttons.1')}</button>
+                                    <button className={'btnB'} onClick={() => deleteModaltoggle(item.id)}>{t('Buttons.3')}
                                     </button>
                                 </td>
 
                                 <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                     <ModalBody>
-                                        <h5>Ishonchingiz komilmi ?</h5>
+                                        <h5>{t('Buttons.12')} ?</h5>
                                     </ModalBody>
                                     <ModalFooter>
                                         <button onClick={() => deleteFunc(item.id)}
-                                                className={'btn btn-outline-primary'}>O`chirish
+                                                className={'btn btn-outline-primary'}>{t('Buttons.3')}
                                         </button>
                                         <button onClick={() => deleteModaltoggle('')}
-                                                className={'btn btn-outline-primary'}>Chiqish
+                                                className={'btn btn-outline-primary'}>{t('Buttons.7')}
                                         </button>
                                     </ModalFooter>
                                 </Modal>
@@ -205,7 +206,7 @@ function MijozGuruhlariii({
                         }
                         </tbody>
                     </table>
-                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                 </div>
 
             </div>

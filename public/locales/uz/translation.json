@@ -173,6 +173,23 @@
   "Supplier": {
     "1": "Taminotchilar/Diller",
     "2": "Barcha Taminotchilar",
-    "3": "Bisnes Id"
+    "3": "Bisnes Id",
+    "4": "Yangi Qo`shish",
+    "5": "Taminotchi turi",
+    "6": "Telegram link",
+    "7": "Telefon raqam"
+  },
+  "CustomGroup": {
+    "1": "Mijozlar guruxlari",
+    "2": "Barcha mijozlar guruxlari",
+    "3": "Guruh Qo`shish",
+    "4": "Guruh nomi",
+    "5": "Foiz",
+    "6": "Guruh Nomi"
+  },
+  "CustomAll": {
+      "1": "Barcha Mijozlar",
+    "2": "Jami Qarz",
+    "3": "Qarz uzish"
   }
 }
