@@ -30,6 +30,10 @@ const slice = createSlice({
         deletefrom:(state,action)=>{
             state.current=!state.current
             toast.success('Mahsulot o`chirildi')
+        },
+        deletefromByIds:(state,action)=>{
+            state.current=!state.current
+            toast.success('Tanlangan mahsulotlar o`chirildi')
         }
     }
 });
@@ -107,6 +111,12 @@ export const deleteMaxsulotRuyxati=(data)=>apiCall({
     method:'delete',
     data,
     onSuccess: slice.actions.deletefrom.type
+})
+export const deleteMaxsulotRuyxatiByIds=(data)=>apiCall({
+    url: '/product/delete-few',
+    method:'delete',
+    data,
+    onSuccess: slice.actions.deletefromByIds.type
 })
 
 export default slice.reducer

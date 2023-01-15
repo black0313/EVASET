@@ -8,6 +8,8 @@ import Edit from '../../../../../../img/Edit.png'
 import Korish from '../../../../../../img/Korish.png'
 import Delete from '../../../../../../img/Delete.png'
 import {Switch, Link, Route} from 'react-router-dom'
+import CheckboxTree from "react-checkbox-tree"
+import 'react-checkbox-tree/lib/react-checkbox-tree.css'
 import {useState, useEffect} from "react";
 import KorishM from '../Taxrirlash/Korish'
 import {connect} from "react-redux";
@@ -16,7 +18,7 @@ import MaxsulotlarRoyxariReducer, {
     getMaxsulotRuyxati3,
     saveMaxsulotRuyxati,
     editMaxsulotRuyxati,
-    deleteMaxsulotRuyxati
+    deleteMaxsulotRuyxati, deleteMaxsulotRuyxatiByIds
 } from '../../reducer/MaxsulotlarRoyxariReducer'
 import users from "../../../../../../reducer/users";
 import FirmaReducer, {getFirma} from "../../reducer/FirmaReducer";
@@ -28,6 +30,7 @@ function BarchaMaxsulotlar({
                                users,
                                getMaxsulotRuyxati,
                                getMaxsulotRuyxati3,
+                               deleteMaxsulotRuyxatiByIds,
                                maxsulotlar,
                                MaxsulotlarRoyxariReducer,
                                deleteMaxsulotRuyxati,
@@ -54,21 +57,6 @@ function BarchaMaxsulotlar({
         setInput(a)
     }
 
-    function check(e) {
-        // MaxsulotlarRoyxariReducer.maxsulotlar.map(item=>{
-        //         if (e.target.value == item.id){
-        //             item.active = e.target.checked
-        //         }
-        //     })
-        // alert('ishladi')
-    }
-
-    function checkBarca(e) {
-        input.checkbarcha = e.target.checked
-        let a = {...input}
-        setInput(a)
-    }
-
     function izlash(e) {
         input.izlash = e.target.value
         let a = {...input}
@@ -76,9 +64,9 @@ function BarchaMaxsulotlar({
     }
 
     const [active, setActive] = useState(false)
+    const [korishId, setkorishId] = useState('')
 
-    const [korishId,setkorishId] = useState('')
-    function korishsh(id){
+    function korishsh(id) {
         setkorishId(id)
         toggle()
     }
@@ -94,11 +82,9 @@ function BarchaMaxsulotlar({
     useEffect(() => {
         getMaxsulotRuyxati(users.businessId)
     }, [MaxsulotlarRoyxariReducer.current])
-
     useEffect(() => {
         getFirma(users.businessId)
     }, [])
-
     const [mahsulot, setmahsulot] = useState(true)
     const [baza, setbaza] = useState(true)
     const [buy, setbuy] = useState(true)
@@ -116,23 +102,23 @@ function BarchaMaxsulotlar({
             qolganmahsulot: 'Qolgan mahsulot',
             firma: 'Firma',
             amallar: 'Amallar',
-            ogoh:'Eslatma miqdori',
+            ogoh: 'Eslatma miqdori',
             yaroq: 'Muddati'
         }
     ])
 
     const [malkamay, setmalkamay] = useState(false)
 
-    const [visible,setvisible] = useState(5)
+    const [visible, setvisible] = useState(5)
 
-    function koproq(){
-        setvisible(prev=>prev+5)
+    function koproq() {
+        setvisible(prev => prev + 5)
     }
 
     const [deletemodal, setdeletemodal] = useState(false)
     const [deleteID, setdeletID] = useState('')
 
-    function deleteFunc(){
+    function deleteFunc() {
         deleteMaxsulotRuyxati(deleteID)
         deleteModaltoggle('')
     }
@@ -145,22 +131,68 @@ function BarchaMaxsulotlar({
         console.log(item)
     }
 
+    const [checkArray, setCheckArray] = useState({
+        deleteIdArray: []
+    })
+
+    function checkBarca(e) {
+        if (e.target.checked === true) {
+            MaxsulotlarRoyxariReducer.maxsulotlar.forEach(item => {
+                let test = checkArray?.deleteIdArray.some(checkItem => checkItem === item.id)
+                if (!test) {
+                    checkArray.deleteIdArray.push(item.id)
+                    let b = {...checkArray}
+                    setCheckArray(b)
+                }
+            })
+        } else {
+            checkArray.deleteIdArray = []
+            let c = {...checkArray}
+            setCheckArray(c)
+        }
+        let a = {...input}
+        setInput(a)
+    }
+
+    function productCheckbox(e) {
+        let test = checkArray?.deleteIdArray.some(item => e.target.value === item)
+        if (test) {
+            checkArray.deleteIdArray.filter((item, index) => {
+                if (item === e.target.value) {
+                    checkArray.deleteIdArray.splice(index, 1)
+                    let deletingCheck = {...checkArray}
+                    setCheckArray(deletingCheck)
+                }
+            })
+        } else {
+            checkArray.deleteIdArray.push(e.target.value)
+            let a = {...checkArray}
+            setCheckArray(a)
+        }
+    }
+
+    function ManyProductDelete(){
+        deleteMaxsulotRuyxatiByIds({
+            ids:checkArray?.deleteIdArray
+        })
+    }
 
     return (
         <div>
             <div className="row">
                 <div className="rowStyleBR">
                     <div className="qoshish">
+                        {console.log(checkArray.deleteIdArray)}
                         <h5>Barcha maxsulotlar</h5>
                         <Link to={'/headerthird/taxrirlash'}>
                             {
                                 users.addproduct ?
-                                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>:''
+                                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button> : ''
                             }
                         </Link>
                     </div>
                     {
-                        users.viewproductadmin? <div>
+                        users.viewproductadmin ? <div>
                             <div className="izlashBR">
                                 <div className="izlashBox1">
                                     <p>Ko'rsatildi</p>
@@ -197,13 +229,17 @@ function BarchaMaxsulotlar({
                                 </div>
                             </div>
                             <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-                                {console.log(MaxsulotlarRoyxariReducer.maxsulotlar)}
+
                                 <table className='table table-striped table-bordered mt-4'>
                                     <thead>
                                     {
                                         headlist.map(item => <tr key={item.id}>
                                             <th>T/R</th>
-                                            <th><input checked={input.checkbarcha} onChange={checkBarca} type="checkbox"/></th>
+                                            <th>
+                                                <input
+                                                    checked={MaxsulotlarRoyxariReducer.maxsulotlar.length === checkArray.deleteIdArray.length ? true : false}
+                                                    onChange={checkBarca}
+                                                    type="checkbox"/></th>
                                             {
                                                 mahsulot ? <th>{item.product}</th> : ''
                                             }
@@ -238,81 +274,96 @@ function BarchaMaxsulotlar({
                                             } else if (val.name.toUpperCase().includes(input.izlash.toUpperCase())) {
                                                 return val
                                             }
-                                        }).splice(0,visible).map((item,index) => <tr key={item.id}>
-                                                <td>{index+1}</td>
-                                                <td><input value={item.id} onChange={check} type="checkbox"/></td>
-                                                {
-                                                    mahsulot ? <td>{item.name}</td>: ''
-                                                }
-                                                {
-                                                    baza ? <td>{item.branch?.name}</td> : ''
-                                                }
-                                                {
-                                                    buy ? <td>
-                                                        {Math.round((item.buyPrice+Number.EPSILON)*100)/100}
-                                                    </td> : ''
-                                                }
-                                                {
-                                                    sell ? <td>
-                                                        {Math.round((item.salePrice+Number.EPSILON)*100)/100}
-                                                    </td> : ''
-                                                }
-                                                {
-                                                    qolgan ? <td>{item.quantity}</td> : ''
-                                                }
-                                                {
-                                                    firma ? <td>{item.brand?.name}</td> : ''
-                                                }
-                                                <td>{item.minQuantity}</td>
-                                                <td>{item.expireDate}</td>
-                                                {
-                                                    amallar ? <td>
-                                                        {
-                                                            users.editproduct? <Link
-                                                                to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/' + item.id}>
-                                                                <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
-                                                                </button>
-                                                            </Link>:''
-                                                        }
+                                        }).splice(0, visible).map((item, index) => <tr key={item.id}>
+                                            <td>{index + 1}</td>
+                                            <td>
+                                                <input type="checkbox" value={item.id}
+                                                       checked={checkArray.deleteIdArray.some(checkIds => checkIds === item.id)}
+                                                       onChange={productCheckbox}/>
+                                            </td>
+                                            {
+                                                mahsulot ? <td>{item.name}</td> : ''
+                                            }
+                                            {
+                                                baza ? <td>{item.branch?.name}</td> : ''
+                                            }
+                                            {
+                                                buy ? <td>
+                                                    {Math.round((item.buyPrice + Number.EPSILON) * 100) / 100}
+                                                </td> : ''
+                                            }
+                                            {
+                                                sell ? <td>
+                                                    {Math.round((item.salePrice + Number.EPSILON) * 100) / 100}
+                                                </td> : ''
+                                            }
+                                            {
+                                                qolgan ? <td>{item.quantity}</td> : ''
+                                            }
+                                            {
+                                                firma ? <td>{item.brand?.name}</td> : ''
+                                            }
+                                            <td>{item.minQuantity}</td>
+                                            <td>{item.expireDate}</td>
+                                            {
+                                                amallar ? <td>
+                                                    {
+                                                        users.editproduct ? <Link
+                                                            to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/' + item.id}>
+                                                            <button className='taxrirlash'><img src={Edit}
+                                                                                                alt=""/> Taxrirlash
+                                                            </button>
+                                                        </Link> : ''
+                                                    }
 
-                                                        <button onClick={()=>korishsh(item.id)} className='korish'><img src={Korish}
-                                                                                                                        alt=""/> Ko'rish
-                                                        </button>
-                                                        {
-                                                            users.deleteproduct? <button onClick={() => deleteModaltoggle(item.id)} className='ochirish'><img
+                                                    <button onClick={() => korishsh(item.id)} className='korish'><img
+                                                        src={Korish}
+                                                        alt=""/> Ko'rish
+                                                    </button>
+                                                    {
+                                                        users.deleteproduct ?
+                                                            <button onClick={() => deleteModaltoggle(item.id)}
+                                                                    className='ochirish'><img
                                                                 src={Delete} alt=""/> O'chirish
-                                                            </button>:''
-                                                        }
+                                                            </button> : ''
+                                                    }
 
-                                                        <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
-                                                            <ModalBody>
+                                                    <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
+                                                        <ModalBody>
                                                             <h5>( X ) Ishonchingiz komilmi ?</h5>
-                                                            </ModalBody>
-                                                            <ModalFooter>
-                                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
-                                                            </ModalFooter>
-                                                        </Modal>
+                                                        </ModalBody>
+                                                        <ModalFooter>
+                                                            <button onClick={() => deleteFunc(item.id)}
+                                                                    className={'btn btn-outline-primary'}>O`chirish
+                                                            </button>
+                                                            <button onClick={() => deleteModaltoggle('')}
+                                                                    className={'btn btn-outline-primary'}>Chiqish
+                                                            </button>
+                                                        </ModalFooter>
+                                                    </Modal>
 
-                                                    </td> : ''
-                                                }
-                                            </tr>)
+                                                </td> : ''
+                                            }
+                                        </tr>)
                                     }
                                     </tbody>
                                 </table>
-                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq
+                                    ko`rish
+                                </button>
                             </div>
                             {
                                 active ? <KorishM active={active} toggle={toggle} mahsulot={korishId}/> : ''
                             }
                             <div className="btnBoshqarish mt-3">
-                                <button className='btn btn-danger buttonPage'>Belgilanganlarni o'chirish</button>
+                                <button onClick={ManyProductDelete} className='btn btn-danger buttonPage'>Belgilanganlarni o'chirish</button>
                                 <button className='btn btn-success buttonPage'>Boshqa bazaga surish</button>
                                 <button className='btn btn-primary buttonPage'>Bazadan olib tashlash</button>
-                                <button className='btn btn-warning buttonPage'>Belgilanganlarni vaqtinchalik o'chirish</button>
+                                <button className='btn btn-warning buttonPage'>Belgilanganlarni vaqtinchalik o'chirish
+                                </button>
                             </div>
 
-                        </div>:''
+                        </div> : ''
                     }
                 </div>
             </div>
@@ -327,5 +378,6 @@ export default connect((MaxsulotlarRoyxariReducer, users, FirmaReducer), {
     saveMaxsulotRuyxati,
     deleteMaxsulotRuyxati,
     editMaxsulotRuyxati,
+    deleteMaxsulotRuyxatiByIds,
     getFirma
 })(BarchaMaxsulotlar)
