@@ -11,7 +11,7 @@ import branchreducer, {getbranch} from "../../../../../../reducer/branchreducer"
 import {toast} from "react-toastify";
 import {savephoto} from "../../../../../../reducer/photoreducer";
 import Select from "react-select";
-import xodimReducer from "../../reducer/XodimReducer";
+import {useTranslation} from "react-i18next";
 
 function Taxrirlash({
                         getLavozim,
@@ -35,6 +35,7 @@ function Taxrirlash({
         }
     }, [])
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             photoid: '',
@@ -147,10 +148,10 @@ function Taxrirlash({
     return (
         <div className={' ht'}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h5 className={'text-center mt-4'}>Xodim qo`shish</h5>
+                <h5 className={'text-center mt-4'}>{t('Employ.13')}</h5>
                 <div className="row">
                     <div className="col-sm-12 col-4 mb-2">
-                        <label htmlFor={'login1'}>Login</label>
+                        <label htmlFor={'login1'}>{t('Employ.7')}</label>
                         <input type="text" id={'login1'}
                                {...register('username', {required: true})}
                                placeholder={errors.username ? errors.username?.type === "required" && "Username is required" : 'Login'}
@@ -159,7 +160,7 @@ function Taxrirlash({
                     </div>
 
                     <div className="col-sm-12 col-md-4 mb-2">
-                        <label htmlFor={'ismi'}>Ismi</label>
+                        <label htmlFor={'ismi'}>{t('Employ.8')}</label>
                         <input type="text" id={'ismi'}
                                {...register('firstName', {required: true})}
                                placeholder={errors.firstName ? errors.firstName?.type === "required" && "FirstName is required" : 'Name'}
@@ -167,7 +168,7 @@ function Taxrirlash({
                                className={'form-control'}/>
                     </div>
                     <div className="col-sm-12 col-md-4 mb-2">
-                        <label htmlFor={'login2'}>Familiyasi</label>
+                        <label htmlFor={'login2'}>{t('Employ.9')}</label>
                         <input type="text" id={'login2'}
                                {...register('lastName', {required: true})}
                                placeholder={errors.lastName ? errors.lastName?.type === "required" && "LastName is required" : 'LastName'}
@@ -176,17 +177,16 @@ function Taxrirlash({
                     </div>
                 </div>
                 <div className="col-6 d-flex justify-content-center">
-                    <button type={"submit"} className={'btn btn-outline-danger btnSaqlash'}>Saqlash</button>
+                    <button type={"submit"} className={'btn btn-outline-danger btnSaqlash'}>{t('Buttons.6')}</button>
                 </div>
             </form>
 
-            <h5 className={'text-center mt-4'}>Lavozim vakolatlari</h5>
+            <h5 className={'text-center mt-4'}>{t('Employ.14')}</h5>
 
             <div className="row mt-4 mb-5">
                 <div className="col-6 d-flex justify-content-center">
 
-                    <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>Login parol
-                        berish
+                    <button className={'btn btn-outline-primary btnLogin'} onClick={toggle}>{t('Employ.15')}
                     </button>
 
                 </div>
@@ -195,21 +195,21 @@ function Taxrirlash({
                 <Modal isOpen={active} toggle={toggle}>
                     <form onSubmit={handleSubmit2(onSubmit2)}>
                         <ModalHeader>
-                            Log / Parol
+                            {t('Employ.20')}
                         </ModalHeader>
                         <ModalBody>
-                            <label htmlFor={'log3'} className={'mt-3'}>Parol</label>
+                            <label htmlFor={'log3'} className={'mt-3'}>{t('Employ.16')}</label>
                             <input type="text"
                                    {...register2("password", {required: match.params.id ? false : true})}
                                    placeholder={errors2.password ? errors2.password.type === "required" && "Password is required" : "password"}
                                    defaultValue={''}
                                    className={'form-control'} id={'log3'}/>
-                            <label htmlFor={'log4'} className={'mt-3'}>Parolni takroran yozing</label>
+                            <label htmlFor={'log4'} className={'mt-3'}>{t('Employ.17')}</label>
                             <input type="text"
                                    {...register2("password2", {required: match.params.id ? false : true})}
                                    placeholder={errors2.password2 ? errors2.password2.type === "required" && "Password2 is required" : "password2"}
                                    className={'form-control'} id={'log4'}/>
-                            <label htmlFor={'lavozimi'} className={'mt-3'}>Lavozimi</label>
+                            <label htmlFor={'lavozimi'} className={'mt-3'}>{t('Employ.18')}</label>
                             <select id={'lavozimi'}
                                     {...register2('roleId', {required: true})}
                                     defaultValue={XodimReducer.one}
@@ -219,7 +219,7 @@ function Taxrirlash({
                                         <option value={item.id}>{item.name}</option>)
                                 }
                             </select>
-                            <h5 className={'mt-4 text-center'}>Biriktirilgan baza</h5>
+                            <h5 className={'mt-4 text-center'}>{t('Employ.19')}</h5>
 
                             <Select options={branchreducer.branches} isMulti={true}
                                     defaultValue={input.selectvalue}
@@ -229,8 +229,8 @@ function Taxrirlash({
                         </ModalBody>
                         <ModalFooter>
 
-                            <button className={'btn btn-danger btnSaqlash'} type={"submit"}>Saqla</button>
-                            <button className={'btn btn-primary btnLogin'} type={"button"} onClick={toggle}>Chiqish
+                            <button className={'btn btn-danger btnSaqlash'} type={"submit"}>{t('Buttons.6')}</button>
+                            <button className={'btn btn-primary btnLogin'} type={"button"} onClick={toggle}>{t('Buttons.7')}
                             </button>
                         </ModalFooter>
                     </form>

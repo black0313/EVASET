@@ -4,9 +4,11 @@ import UseInfo from "./useInfo/UseInfo";
 import DocNote from "./DocNote/DocNote";
 import Activate from "./Activate/Activate";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 function Korish({match}) {
 
+    const {t} = useTranslation()
     const [pic,setpic] = useState({
         rasm:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYS4ItI44R4hI66qjzhinqY5-Miyb30PelnQ&usqp=CAU'
     })
@@ -16,7 +18,7 @@ function Korish({match}) {
     return(
         <div className={'containerKorish '}>
             <div className="headerBoxK">
-                <h4 className={'text-center'}>Ko`rish</h4>
+                <h4 className={'text-center'}>{t('Buttons.4')}</h4>
                 <select name="" id="">
                     <option value="1" >Boshliq</option>
                 </select>
@@ -35,21 +37,21 @@ function Korish({match}) {
                         </div>
                         <div className="card-body">
                             <div className="bCard">
-                                <h6>Login</h6>
+                                <h6>{t('Employ.7')}</h6>
                                 <p>{login}</p>
                             </div>
                             <div className="bCard">
-                                <h6>Email</h6>
+                                <h6>{t('Employ.11')}</h6>
                                 <p>{email}</p>
                             </div>
                             <div className="bCard">
-                                <h6>Faolmi ?</h6>
+                                <h6>{t('Employ.12')} ?</h6>
                                 <p>Faol</p>
                             </div>
                         </div>
                         <div className="card-footer">
                             <Link to={'/headerthird/hodimlarruyxati/taxrirlash'}>
-                                <button className={'btn btn-primary'} style={{ width: '100%' }}>Taxrirlash</button>
+                                <button className={'btn btn-primary'} style={{ width: '100%' }}>{t('Buttons.1')}</button>
                             </Link>
                         </div>
                     </div>

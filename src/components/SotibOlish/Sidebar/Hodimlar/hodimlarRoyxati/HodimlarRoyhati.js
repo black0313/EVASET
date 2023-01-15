@@ -13,7 +13,7 @@ import {useEffect, useState} from 'react';
 import {connect} from "react-redux";
 import users from "../../../../../reducer/users";
 import XodimReducer, {getXodim, saveXodim, editXodim, deleteXodim} from "../reducer/XodimReducer";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+import {useTranslation} from "react-i18next";
 
 function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users}) {
 
@@ -43,7 +43,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
         setinSearch(a)
         console.log(inSearch.inputsearch)
     }
-
+    const {t} = useTranslation()
     const [login,setlogin] = useState(true)
     const [ism,setism] = useState(true)
     const [familiyasi,setfamiliyasi] = useState(true)
@@ -53,12 +53,12 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
 
     const [headlist,setheadlist] = useState([
         {
-            login: 'Login',
-            name: 'Ism',
-            lastName: 'Familiyasi',
-            lavozim: 'Lavozim',
-            email:' Email',
-            amallar:' Amallar'
+            login: t('Employ.7'),
+            name: t('Employ.8'),
+            lastName: t('Employ.9'),
+            lavozim: t('Employ.10'),
+            email: t('Employ.11'),
+            amallar: t('Pagination.12')
         }
     ])
 
@@ -74,17 +74,17 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
         <div className="col-md-12 pb-4 pt-4">
             <div className="textHeaderHR">
                 <div className="textBox">
-                    <h2>Hodimlar ro'yxati</h2>
-                    <p>Hodimlar boshqaruvi</p>
+                    <h2>{t('Employ.1')}</h2>
+                    <p>{t('Employ.2')}</p>
                 </div>
             </div>
             <div className="rowStyleHR">
                 <div className="qoshishHR">
-                    <h5>Barcha hodimlar</h5>
+                    <h5>{t('Employ.3')}</h5>
                     {
                         users.adduser ?
                             <Link to={'/headerthird/hodimlarruyxati/taxrirlash'}>
-                                <button className={`btn btn-primary`}>+Qo'shish</button>
+                                <button className={`btn btn-primary`}>+{t('Employ.4')}</button>
                             </Link>:''
                     }
                 </div>
@@ -93,7 +93,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                         <div>
                             <div className="izlashHR">
                                 <div className="izlashBox1">
-                                    <p>Ko'rsatildi</p>
+                                    <p>{t('Employ.5')}</p>
                                     <select name="" id="">
                                         <option value="">25</option>
                                         <option value="">1,000</option>
@@ -103,7 +103,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                     <button><img src={Excel} alt=""/>Export Excel</button>
                                     <button><img src={Print} alt=""/>Print</button>
                                     <button><img src={Pdf} alt=""/>Export PDF</button>
-                                    <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                                    <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>{t('Employ.6')}</button>
 
                                     {
                                         malkamay ? headlist.map(item => <ul className={'ul2'} key={item.id}>
@@ -118,7 +118,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
 
                                 </div>
                                 <div className="izlashBox2">
-                                    <input type="text" onChange={search} value={inSearch.inputsearch} placeholder='Izlash...'/>
+                                    <input type="text" onChange={search} value={inSearch.inputsearch} placeholder='Search...'/>
                                 </div>
                             </div>
                             <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar mb-4">
@@ -177,19 +177,19 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
                                                     amallar?<td>
                                                         {
                                                             users.edituser ?   <Link to={'/headerthird/hodimlarruyxati/taxrirlash/' + item.id}>
-                                                                <button className='taxrirlash'><img src={Edit} alt=""/>Taxrirlash</button>
+                                                                <button className='taxrirlash'><img src={Edit} alt=""/>{t('Buttons.1')}</button>
                                                             </Link>:''
                                                         }
 
 
                                                         <Link
                                                             to={'/headerthird/hodimlarruyxati/view/' + item.username + '/' + item.firstName + '/' + item.lastName}>
-                                                            <button className='korish'><img src={Korish} alt=""/> Ko'rish</button>
+                                                            <button className='korish'><img src={Korish} alt=""/> {t('Buttons.4')}</button>
                                                         </Link>
                                                         {
                                                             users.deleteuser ? <Link to={'/headerthird/hodimlarruyxati'}>
                                                                 <button onClick={() => deletex(item)} className='ochirish'><img src={Delete}
-                                                                                                                                alt=""/> O'chirish
+                                                                                                                                alt=""/> {t('Buttons.3')}
                                                                 </button>
                                                             </Link>:''
                                                         }
@@ -202,7 +202,7 @@ function HodimlarRoyhati({getXodim, deleteXodim, XodimReducer, xodimlar, users})
 
                                     </tbody>
                                 </table>
-                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                             </div>
 
                         </div>

@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import LavozimReducer, {getLavozim, saveLavozim, editLavozim, deleteLavozim} from "../reducer/LavozimReducer";
 import users from "../../../../../reducer/users";
+import {useTranslation} from "react-i18next";
 
 function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, lavozimlar,LavozimReducer}) {
 
@@ -16,6 +17,7 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
         getLavozim(users.businessId)
     }
 
+    const {t} = useTranslation()
     const [inSearch2, setInSearch2] = useState(
         {
             inputputsearch2: ''
@@ -61,16 +63,16 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
             <div className="col-md-12 pt-4 pb-4 ">
                     <div className="textHeaderL">
                         <div className="textBoxL">
-                            <h2>Lavozimlar</h2>
-                            <p>Lavozimlar boshqaruvi</p>
+                            <h2>{t('Roles.1')}</h2>
+                            <p>{t('Roles.2')}</p>
                         </div>
                     </div>
                     <div className="rowStyleL">
                         <div className="qoshish">
-                            <h5>Barcha lavozimlar</h5>
+                            <h5>{t('Roles.3')}</h5>
                             {
                                 users.addrole ? <Link to={'/headerthird/lavozimlar/taxrirlash'}>
-                                    <button className='btn btn-primary'>+Qo'shish</button>
+                                    <button className='btn btn-primary'>+{t('Buttons.2')}</button>
                                 </Link>:''
                             }
 
@@ -80,7 +82,7 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                             users.viewrole ? <div>
                                 <div className="izlashL">
                                     <div className="izlashLBox1">
-                                        <p>Ko'rsatildi</p>
+                                        <p>{t('Buttons.8')}</p>
                                         <select name="" id="">
                                             <option value="">25</option>
                                         </select>
@@ -94,8 +96,8 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                         <thead>
                                         <tr>
                                             <th>T/R</th>
-                                            <th>Lavozimlar</th>
-                                            <th>Amal</th>
+                                            <th>{t('Roles.1')}</th>
+                                            <th>{t('Buttons.9')}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -112,11 +114,11 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
                                                 <td>
                                                     {
                                                         users.editrole ?   <Link to={'/headerthird/lavozimlar/taxrirlash/'+item.id}>
-                                                            <button className='taxrirlash' ><img src={Edit} alt=""/> Taxrirlash</button>
+                                                            <button className='taxrirlash' ><img src={Edit} alt=""/> {t('Buttons.1')}</button>
                                                         </Link>:''
                                                     }
                                                     {
-                                                        users.deleterole ?<button className='ochirish' onClick={() => deletel(item)}><img src={Delete} alt=""/> O'chirish
+                                                        users.deleterole ?<button className='ochirish' onClick={() => deletel(item)}><img src={Delete} alt=""/> {t('Buttons.3')}
                                                         </button>:''
                                                     }
 
@@ -126,7 +128,7 @@ function Lavozimlar({getLavozim, saveLavozim,users, deleteLavozim, editLavozim, 
 
                                         </tbody>
                                     </table>
-                                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                                 </div>
 
                             </div>:''

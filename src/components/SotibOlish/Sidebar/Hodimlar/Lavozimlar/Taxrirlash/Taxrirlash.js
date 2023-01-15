@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import LavozimReducer, { saveLavozim, getLavozim, deleteLavozim, editLavozim } from '../../reducer/LavozimReducer'
 import { Link } from 'react-router-dom'
 import users from "../../../../../../reducer/users";
+import {useTranslation} from "react-i18next";
 
 function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, match, LavozimReducer }) {
 
@@ -115,6 +116,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
         }
     )
 
+    const {t} = useTranslation()
     const [permission, setpermission] = useState([])
 
     function changexBarchasini(e) {
@@ -785,29 +787,29 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
 
     return (
         <div className={'row mt-5'}>
-            <h4 className={'text-center'}>Lavozimni qo`shish / taxrirlash</h4>
+            <h4 className={'text-center'}>{t('Roles.4')}</h4>
             <div className="col-md-12">
                 <div className="row justify-content-center ">
                     <div className="l1 p-4 mt-5 col-sm-10 col-md-7 col-5 border">
                         <div>
-                            <label htmlFor={'l'}>Lavozim nomi</label>
+                            <label htmlFor={'l'}>{t('Roles.5')}</label>
                             <input type="text" className={'form-control mt-2'} id={'inputValudesion'} value={input.name} onChange={changename}
                                 placeholder={input.namePlacholder} />
                             <div className="ruxsat mt-4">
-                                <h5>Ruxsatnomalar</h5>
-                                <label htmlFor={'ch'}>Barchasini belgilash</label>
+                                <h5>{t('Roles.6')}</h5>
+                                <label htmlFor={'ch'}>{t('Roles.7')}</label>
                                 <input type="checkbox" checked={input.xBarchasinibelgilash} onChange={changexBarchasini}
                                     style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'ch'} />
                                 <div className={'mt-4'}>
                                     <input type="checkbox" checked={input.xodimkorish} onChange={changexodimkorish}
                                         style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'kor'} />
-                                    <label htmlFor={'kor'}>Xodimlarni korish</label>
+                                    <label htmlFor={'kor'}>{t('Roles.8')}</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" id={'qosh'} checked={input.xodimqoshish}
                                         onChange={changexodimqoshish}
                                         style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                    <label htmlFor={'qosh'}>Xodimlarni qo`shish</label>
+                                    <label htmlFor={'qosh'}>{t('Roles.9')}</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.xodimtaxrirlash}
@@ -818,169 +820,169 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                                 <div>
                                     <input type="checkbox" checked={input.xodimochirish} onChange={changexodimochirish}
                                         id={'och'} style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                    <label htmlFor={'och'}>Xodimlarni o`chirish</label>
+                                    <label htmlFor={'och'}>{t('Roles.10')}</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
-                        <label htmlFor={'l'}>Lavozimlar</label>
+                        <label htmlFor={'l'}>{t('Roles.1')}</label>
                         <div className="ruxsat mt-4">
-                            <label htmlFor={'chch'}>Barchasini belgilash</label>
+                            <label htmlFor={'chch'}>{t('Roles.7')}</label>
                             <input type="checkbox" checked={input.lBarchasinibelgilash} onChange={changelBarchasini}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'chch'} />
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.lavozimkorish} onChange={changelavozimkorish}
                                     style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'korr'} />
-                                <label htmlFor={'korr'}>Lavozimni korish</label>
+                                <label htmlFor={'korr'}>{t('Roles.11')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.lavozimqoshish} onChange={changelavozimqoshish}
                                     id={'qoshLavozim'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                <label htmlFor={'qoshLavozim'}>Lavozim qo`shish</label>
+                                <label htmlFor={'qoshLavozim'}>{t('Roles.12')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'taxLavozim'} checked={input.lavozimtaxrirlash}
                                     onChange={changelavozitaxrirlash}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'taxLavozim'}>Lavozimni taxrirlash</label>
+                                <label htmlFor={'taxLavozim'}>{t('Roles.13')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'ochLavozim'} checked={input.lavozimochirish}
                                     onChange={changelavozimochirish}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'ochLavozim'}>Lavozimni o`chirish</label>
+                                <label htmlFor={'ochLavozim'}>{t('Roles.14')}</label>
                             </div>
                         </div>
                     </div>
 
 
                     <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
-                        <label htmlFor={'l'}>Xaridlar uchun</label>
+                        <label htmlFor={'l'}>{t('Roles.15')}</label>
                         <div className="ruxsat mt-4">
-                            <label htmlFor={'xabb'}>Barchasini belgilash</label>
+                            <label htmlFor={'xabb'}>{t('Roles.7')}</label>
                             <input type="checkbox" checked={input.xaridBarchasinibelgilash} onChange={xaridBarchaBelgilash}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'xabb'} />
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.xaridKorish} onChange={xaridlarKorish}
                                     style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'xaridkorId'} />
-                                <label htmlFor={'xaridkorId'}>Xaridlarni korish</label>
+                                <label htmlFor={'xaridkorId'}>{t('Roles.16')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.xaridQoshish} onChange={changeXaridQoshish}
                                     id={'xaridQoshishL'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                <label htmlFor={'xaridQoshishL'}>Xaridlar qo`shish</label>
+                                <label htmlFor={'xaridQoshishL'}>{t('Roles.17')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'xaridTaxrirI'} checked={input.xaridTaxrirlash}
                                     onChange={xaridTaxrirlashchane}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'xaridTaxrirI'}>Xaridlarni taxrirlash</label>
+                                <label htmlFor={'xaridTaxrirI'}>{t('Roles.18')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'xaridOchirishId'} checked={input.xaridOchirish}
                                     onChange={xaridlArOchirish}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'xaridOchirishId'}>Xaridlar o`chirish</label>
+                                <label htmlFor={'xaridOchirishId'}>{t('Roles.19')}</label>
                             </div>
                         </div>
                     </div>
 
                     <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
-                        <label htmlFor={'l'}>Baza</label>
+                        <label htmlFor={'l'}>{t('Roles.20')}</label>
                         <div className="ruxsat mt-4">
-                            <label htmlFor={'barchasiBazaId'}>Barchasini belgilash</label>
+                            <label htmlFor={'barchasiBazaId'}>{t('Roles.7')}</label>
                             <input type="checkbox" checked={input.bazaBarchasinibelgilash} onChange={bazaBarchasiBelgilash}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'barchasiBazaId'} />
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.bazaKorish} onChange={bazaKorishChange}
                                     style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'bazakorId'} />
-                                <label htmlFor={'bazakorId'}>Bazalarni korish</label>
+                                <label htmlFor={'bazakorId'}>{t('Roles.21')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.bazaQoshish} onChange={bazaQoshishChange}
                                     id={'bazaQoshishId'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                <label htmlFor={'bazaQoshishId'}>Bazalar qo`shish</label>
+                                <label htmlFor={'bazaQoshishId'}>{t('Roles.22')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'bazaTaxId'} checked={input.bazaTaxrirlash}
                                     onChange={bazaTaxrirlashChange}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'bazaTaxId'}>Bazalarni taxrirlash</label>
+                                <label htmlFor={'bazaTaxId'}>{t('Roles.23')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'bazaOchirId'} checked={input.bazaOchirish}
                                     onChange={bazaOchirishlashChange}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'bazaOchirId'}>Bazalarni o'chirish</label>
+                                <label htmlFor={'bazaOchirId'}>{t('Roles.24')}</label>
                             </div>
                         </div>
                     </div>
 
                     <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
-                        <label htmlFor={'l'}>Xarajatlar</label>
+                        <label htmlFor={'l'}>{t('Roles.25')}</label>
                         <div className="ruxsat mt-4">
-                            <label htmlFor={'xarjatBarchId'}>Barchasini belgilash</label>
+                            <label htmlFor={'xarjatBarchId'}>{t('Roles.7')}</label>
                             <input type="checkbox" checked={input.xarajatlarBarchasinibelgilash} onChange={xarajatBarchaBelgilashChange}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'xarjatBarchId'} />
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.xarajatlarKorish} onChange={xarajatKorishChange}
                                     style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'xarajatKorishId'} />
-                                <label htmlFor={'xarajatKorishId'}>Xarajatlarni korish</label>
+                                <label htmlFor={'xarajatKorishId'}>{t('Roles.26')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.xarajatlarQoshish} onChange={xarajatQoshishChange}
                                     id={'xarajatQoshId'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                <label htmlFor={'xarajatQoshId'}>Xarajatlar qo'shish</label>
+                                <label htmlFor={'xarajatQoshId'}>{t('Roles.27')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'xarajatTaxId'} checked={input.xarajatlarTaxrirlash}
                                     onChange={xarajatTaxrirlashChange}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'xarajatTaxId'}>Xarajatlarni taxrirlash</label>
+                                <label htmlFor={'xarajatTaxId'}>{t('Roles.28')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'xarajatOcirId'} checked={input.xarajatlarOchirish}
                                     onChange={xarajatOchirishChange}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'xarajatOcirId'}>Xarajatlarni o`chirish</label>
+                                <label htmlFor={'xarajatOcirId'}>{t('Roles.29')}</label>
                             </div>
                         </div>
                     </div>
 
                     <div className="l1 mt-5 col-sm-10 col-5 col-md-7 p-4 border">
-                        <label htmlFor={'l'}>Savdo</label>
+                        <label htmlFor={'l'}>{t('Roles.30')}</label>
                         <div className="ruxsat mt-4">
-                            <label htmlFor={'savdoBarId'}>Barchasini belgilash</label>
+                            <label htmlFor={'savdoBarId'}>{t('Roles.7')}</label>
                             <input type="checkbox" checked={input.savdoBarchasinibelgilash} onChange={savdoBarchaBelgilashChange}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'savdoBarId'} />
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.savdoKorish} onChange={savdoKorishChange}
                                     style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'savdoKorId'} />
-                                <label htmlFor={'savdoKorId'}>Savdolarni ko'rish</label>
+                                <label htmlFor={'savdoKorId'}>{t('Roles.31')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.savdoQoshish} onChange={savdoQoshishChange}
                                     id={'savdoQoshId'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                <label htmlFor={'savdoQoshId'}>Savdolarni qo`shish</label>
+                                <label htmlFor={'savdoQoshId'}>{t('Roles.32')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'savdoTaxId'} checked={input.savdoTaxrirlash}
                                     onChange={savdoTaxrirlashChange}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'savdoTaxId'}>Savdolarni taxrirlash</label>
+                                <label htmlFor={'savdoTaxId'}>{t('Roles.33')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'savdoOchirId'} checked={input.savdoOchirish}
                                     onChange={savdoOchirishChange}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'savdoOchirId'}>Savdolarni o`chirish</label>
+                                <label htmlFor={'savdoOchirId'}>{t('Roles.34')}</label>
                             </div>
                         </div>
                     </div>
@@ -990,36 +992,36 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
 
                     <div className="l1 mt-5 p-4 col-sm-10 col-md-7 col-5 border">
                         <div>
-                            <label htmlFor={'l'}>Ta`minotchi diller</label>
+                            <label htmlFor={'l'}>{t('Roles.35')}</label>
 
                             <div className="ruxsat mt-4">
 
-                                <label htmlFor={'chDiller'}>Barchasini belgilash</label>
+                                <label htmlFor={'chDiller'}>{t('Roles.7')}</label>
                                 <input type="checkbox" checked={input.tBarchasinibelgilash} onChange={changetBarchasi}
                                     style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'chDiller'} />
 
                                 <div className={'mt-4'}>
                                     {/*<input type="radio" checked={input.lang1} onChange={changelang1} name={'radio'}*/}
                                     {/*    style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'korDiller'} />*/}
-                                    <label htmlFor={'korDiller'}>Barcha dillerlarni ko'rish</label>
+                                    <label htmlFor={'korDiller'}>{t('Roles.36')}</label>
                                 </div>
 
                                 <div>
                                     <input type="checkbox" checked={input.dillerqoshish} onChange={changedillerqoshish}
                                         id={'taxDiller'} style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                    <label htmlFor={'taxDiller'}>Dillerlarni qoshish</label>
+                                    <label htmlFor={'taxDiller'}>{t('Roles.37')}</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.dillertaxrirlash}
                                         onChange={changedillertaxrirlash} id={'ochDiller'}
                                         style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                    <label htmlFor={'ochDiller'}>Dillerlarni taxrirlash</label>
+                                    <label htmlFor={'ochDiller'}>{t('Roles.38')}</label>
                                 </div>
                                 <div>
                                     <input type="checkbox" checked={input.dillerochirish}
                                         onChange={changedillerochirish} id={'och3'}
                                         style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                    <label htmlFor={'och3'}>Dillerlarni o`chirish</label>
+                                    <label htmlFor={'och3'}>{t('Roles.39')}</label>
                                 </div>
 
                             </div>
@@ -1027,28 +1029,28 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                     </div>
 
                     <div className="l1 mt-5 p-4 col-sm-10 col-md-7 col-5  border">
-                        <label htmlFor={'l'}>Mijoz</label>
+                        <label htmlFor={'l'}>{t('Roles.40')}</label>
 
                         <div className="ruxsat mt-4">
-                            <label htmlFor={'ch1'}>Barchasini belgilash</label>
+                            <label htmlFor={'ch1'}>{t('Roles.40')}</label>
                             <input type="checkbox" checked={input.mBarchasinibelgilash} onChange={changemBarchasi}
                                 style={{ marginLeft: '10px', width: '15px', height: '15px' }} id={'ch1'} />
 
                             <div className={'mt-4'}>
                                 <input type="checkbox" checked={input.mijozqoshish} onChange={changemijozqoshish}
                                     style={{ width: '15px', height: '15px', marginTop: '4px' }} id={'kor1'} />
-                                <label htmlFor={'kor1'}>Qoshish</label>
+                                <label htmlFor={'kor1'}>{t('Roles.41')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" checked={input.mijoztaxrirlash} onChange={changemijoztaxrirlash}
                                     id={'qosh3'} style={{ width: '15px', marginTop: '10px', height: '15px' }} />
-                                <label htmlFor={'qosh3'}>Taxrirlash</label>
+                                <label htmlFor={'qosh3'}>{t('Roles.42')}</label>
                             </div>
                             <div>
                                 <input type="checkbox" id={'tax2'} checked={input.mijozochirish}
                                     onChange={changemijozochrish}
                                     style={{ width: '15px', height: '15px', marginTop: '10px' }} />
-                                <label htmlFor={'tax2'}>O`chirish</label>
+                                <label htmlFor={'tax2'}>{t('Roles.43')}</label>
                             </div>
                         </div>
 
@@ -1064,7 +1066,7 @@ function Taxrirlash({ getLavozim, editLavozim, lavozimlar, saveLavozim, users, m
                         </div>
                         :
                         <Link to={'/headerthird/lavozimlar'}>
-                            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>Saqlash</button>
+                            <button className={'btn btn-primary mt-4 ml-4'} onClick={saqla}>{t('Roles.6')}</button>
                         </Link>
                 }
             </div>

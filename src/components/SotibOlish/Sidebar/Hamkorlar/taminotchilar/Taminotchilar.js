@@ -23,6 +23,7 @@ import { useState } from 'react'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import QarzuzishTaminotReducer from "../reducer/QarzuzishTaminotReducer";
 import {useForm} from "react-hook-form";
+import {useTranslation} from "react-i18next";
 
 function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotReducer, qarzuzishTaminot, editTaminot, deleteTaminot, taminot, users, TaminotReducer }) {
 
@@ -75,7 +76,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
 
     const [qarz, setqarz] = useState(false)
     const [qarzID,setqarzID] = useState('')
-
+    const {t} =  useTranslation()
 
     function debt2(id){
         setqarzID(id)
@@ -177,21 +178,21 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
 
 
                 <div className="textHeaderTM">
-                    <h2>Taminotchilar/Diller </h2>
-                    <p>Barcha Taminotchilar/Diller</p>
+                    <h2>{t('Supplier.1')} </h2>
+                    <p>{t('Supplier.1')}</p>
                 </div>
                 <div className="rowStyleTM">
                     <div className="qoshishTM">
-                        <h5>Barcha Taminotchilar</h5>
+                        <h5>{t('Supplier.2')}</h5>
                         {
-                            users.addsupplier ? <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button> : ''
+                            users.addsupplier ? <button onClick={toggle} className='btn btn-primary'>+{t('Buttons.2')}</button> : ''
                         }
                     </div>
                     {
                         users.viewsupplier ? <div>
                             <div className="izlashTM">
                                 <div className="izlashBox1">
-                                    <p>Ko'rsatildi</p>
+                                    <p>{t('Supplier.8')}</p>
                                     <select name="" id="">
                                         <option value="">25</option>
                                         <option value="">All</option>
@@ -223,7 +224,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
 
                             </div>
                             <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-                                <div className={'mt-3 d-flex justify-content-around'}><h4>Jami: {jamixisob} So`m</h4></div>
+                                <div className={'mt-3 d-flex justify-content-around'}><h4>{t('Buttons.10')}: {jamixisob} {t('Third.5')}</h4></div>
                                 <table className='table table-striped table-hover table-condensed  table-bordered mt-4'>
                                     <thead className={'fix'}>
                                         {
@@ -283,36 +284,36 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                                                             users.editsupplier ?
                                                                 <button onClick={() => editt(item.id)} className='taxrirlash'><img
                                                                     src={Edit}
-                                                                    alt="" /> Taxrirlash
+                                                                    alt="" /> {t('Buttons.1')}
                                                                 </button>: ''
                                                         }
 
                                                         <Link
                                                             to={'/headerthird/taminotchilar/view/' + item.name + '/' + item.phone + '/' + item.telegram + '/' + item.supplier}>
-                                                            <button className='korish'><img src={Korish} alt="" /> Ko'rish</button>
+                                                            <button className='korish'><img src={Korish} alt="" /> {t('Buttons.4')}</button>
                                                         </Link>
                                                         {
 
                                                             users.deletesupplier ?
                                                                 <button onClick={() => deleteModaltoggle(item.id)} className='ochirish'><img
-                                                                    src={Delete} alt="" /> O'chirish
+                                                                    src={Delete} alt="" /> {t('Buttons.3')}
                                                                 </button> : ''
                                                         }
 
-                                                        <button className={'btnB2'} onClick={()=>debt2(item.id)}>Qarz uzish</button>
+                                                        <button className={'btnB2'} onClick={()=>debt2(item.id)}>{t('Buttons.11')}</button>
 
                                                         {/*QARZ UZISH*/}
                                                         <Modal isOpen={qarz} toggle={toggle3}>
                                                             <ModalHeader>
-                                                                Qarz uzish
+                                                                {t('Buttons.11')}
                                                             </ModalHeader>
                                                             <ModalBody>
-                                                                <label htmlFor={'m'}>Qarz uzish</label>
+                                                                <label htmlFor={'m'}>{t('Buttons.11')}</label>
                                                                 <input type="text" className={'form-control'} value={input.qarzuzish} onChange={qarzuzish} />
                                                             </ModalBody>
                                                             <ModalFooter>
-                                                                <button className={'btn btn-outline-primary'} onClick={saqlaQarz}>Saqlash</button>
-                                                                <button className={'btn btn-outline-primary'} onClick={toggle3}>Chiqish</button>
+                                                                <button className={'btn btn-outline-primary'} onClick={saqlaQarz}>{t('Buttons.6')}</button>
+                                                                <button className={'btn btn-outline-primary'} onClick={toggle3}>{t('Buttons.7')}</button>
                                                             </ModalFooter>
                                                         </Modal>
 
@@ -320,11 +321,11 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
 
                                                         <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                                             <ModalBody>
-                                                                <h5>Ishonchingiz komilmi ?</h5>
+                                                                <h5>{t('Buttons.12')} ?</h5>
                                                             </ModalBody>
                                                             <ModalFooter>
-                                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>{t('Buttons.3')}</button>
+                                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                                                             </ModalFooter>
                                                         </Modal>
                                                     </td> : ''
@@ -334,7 +335,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                                     </tbody>
                                 </table>
 
-                                <button onClick={koproq} className={'bn '}>Ko`proq ko`rish
+                                <button onClick={koproq} className={'bn '}>{t('Buttons.5')}
                                     <span className={'bn2'}> </span>
                                 </button>
 
@@ -365,7 +366,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                         <ModalBody>
                                 <div className="row">
                                     <div className={'col-md-6 col-sm-12 mb-3'}>
-                                        <label htmlFor="">Businnes Id</label>
+                                        <label htmlFor="">{t('Supplier.3')}</label>
                                         <select name="" id="" className={'form-control'} >
                                             <option value="">Tanlash</option>
                                         </select>
