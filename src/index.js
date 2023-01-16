@@ -17,7 +17,6 @@ import './index.css'
 ReactDOM.render(
 
     <Suspense fallback={(<div className={'loader'}>
-
         {/*Loading ~~~*/}
         <span className={'load'}>
             <PacmanLoader

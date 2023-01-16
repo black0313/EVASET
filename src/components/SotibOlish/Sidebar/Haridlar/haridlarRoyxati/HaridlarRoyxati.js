@@ -23,9 +23,11 @@ import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import tolovreducer, {gettolovholati} from "../../../../../reducer/tolovreducer";
 import {Modal, ModalBody, ModalFooter} from "reactstrap";
+import {useTranslation} from "react-i18next";
 
 function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovreducer, branchreducer,getbranch,getXarid2, deleteXarid, saveXarid,XaridReducer,TaminotReducer,users}) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             baza: '',
@@ -108,13 +110,13 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
 
     const [headlist,setheadlist] = useState([
         {
-            sana: 'Sana',
-            baza:'Baza',
-            diller:'Diller',
-            xaridstatus:'Xarid statusi',
-            donanarxi:'Dona narx',
-            jamisumma:'Jami summa',
-            qisqaeslatma:'Qisqa eslatma',
+            sana: t('Purchase.7'),
+            baza: t('ProductList.10'),
+            diller: t('Purchase.2'),
+            xaridstatus: t('Purchase.3'),
+            donanarxi: t('Purchase.8'),
+            jamisumma: t('Purchase.9'),
+            qisqaeslatma: t('Buttons.17'),
             amallar:'Amallar'
         }
     ])
@@ -129,14 +131,6 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
 
         let d = XaridReducer.xaridlar.length/7
         setpages(d)
-    }
-    function goToNextPage() {
-        setCurrentPage((page) => page + 1);
-        console.log(pages)
-        console.log(currentPage)
-    }
-    function goToPreviousPage() {
-        setCurrentPage((page) => page - 1);
     }
     function changePage(event) {
         const pageNumber = Number(event.target.textContent);
@@ -177,15 +171,15 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
     return (
         <div className="col-md-12 mt-2">
             <div className="textHeaderHarid">
-                <h2>Haridlar</h2>
+                <h2>{t('Purchase.1')}</h2>
             </div>
             <div className="rowStyleHarid">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="row cont">
                     <div className="col-md-6">
-                        <h6>Baza:</h6>
+                        <h6>{t('ProductList.8')}:</h6>
                         <select name="" value={input.baza} onChange={baza} id="">
                             {
                                 branchreducer.branch.map(item=><option value="barcasi">{item.name}</option>)
@@ -193,7 +187,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                         </select>
                     </div>
                     <div className="col-md-6">
-                        <h6>Diller:</h6>
+                        <h6>{t('Purchase.2')}:</h6>
                         <select name="" id="" value={input.diller} onChange={diller}>
                             <option value="barcasi">Barchasi</option>
                             {
@@ -204,13 +198,13 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <h6>Harid status:</h6>
+                        <h6>{t('Purchase.3')}:</h6>
                         <select name="" id="" value={input.xaridstatus} onChange={xaridstatus}>
                             <option value="">Barchasi</option>
                         </select>
                     </div>
                     <div className="col-md-6">
-                        <h6>To'lov status:</h6>
+                        <h6>{t('Purchase.4')}:</h6>
                         <select name="" value={input.tulovstatus} onChange={tulovstatus} id="">
                             {
                                 tolovreducer.tolovholati.map(item=><option value={item.id}>{item.status}</option>)
@@ -221,7 +215,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                 <div className="row">
                     <div className="col-md-12">
                         <div className="sana">
-                            <h6>Sanani belgilang:</h6>
+                            <h6>{t('Purchase.5')}:</h6>
                             <input type="date" onChange={sana} value={input.sana}/>
                         </div>
                     </div>
@@ -230,14 +224,14 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
 
             <div className="rowStyleBH">
                 <div className="qoshishBH">
-                    <h5>Barcha haridlar</h5>
+                    <h5>{t('Purchase.6')}</h5>
                     <Link to={'/headerthird/xaridQilish'}>
-                        <button className='btn btn-primary'>+Qo'shish</button>
+                        <button className='btn btn-primary'>+{t('Buttons.2')}</button>
                     </Link>
                 </div>
                 <div className="izlashBH">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select name="" id="" value={input.view} onChange={view}>
                             <option value="">25</option>
                             <option value="">50</option>
@@ -335,17 +329,17 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                                 {
                                     amallar?<td>
                                         <Link to={'/headerthird/xaridQilish/'+item.id}>
-                                            <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
+                                            <button className='taxrirlash'><img src={Edit} alt=""/> {t('Buttons.1')}</button>
                                         </Link>
-                                        <button className='ochirish' onClick={()=>deleteModaltoggle(item.id)}><img src={Delete} alt=""/> O'chirish</button>
+                                        <button className='ochirish' onClick={()=>deleteModaltoggle(item.id)}><img src={Delete} alt=""/> {t('Buttons.3')}</button>
 
                                         <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                             <ModalBody>
-                                                <h5>Ishonchingiz komilmi ?</h5>
+                                                <h5>{t('Buttons.12')} ?</h5>
                                             </ModalBody>
                                             <ModalFooter>
-                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                                <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>{t('Buttons.3')}</button>
+                                                <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                                             </ModalFooter>
                                         </Modal>
 
@@ -357,7 +351,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                         }
                         </tbody>
                     </table>
-                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                 </div>
 
             </div>

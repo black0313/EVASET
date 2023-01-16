@@ -20,6 +20,7 @@ import kgreducer, { getkg } from "../../../../../reducer/kgreducer";
 // import { lineHeight } from '@mui/system';
 import PayReducer, { getPay } from "../../../../../reducer/PayReducer";
 import ExchangeStatusR,{getOtkazmaStatus} from "../../../../../reducer/ExchangeStatusR";
+import {useTranslation} from "react-i18next";
 
 function Xarid({
     ExchangeStatusR,
@@ -46,6 +47,7 @@ function Xarid({
     branchreducer, getbranch, tolovreducer, gettolovholati,
 }) {
 
+    const {t} = useTranslation()
     const [active, setActive] = useState(false);
     const [active2, setActive2] = useState(false);
 
@@ -391,6 +393,7 @@ function Xarid({
         setXisob(a)
         setjamiXisob(c)
     }
+
     useEffect(() => {
         getXarid(users.businessId)
         // diller()
@@ -521,13 +524,13 @@ function Xarid({
 
         <div className='xaridQilishBox'>
             <div className={'row  mt-5 '}>
-                <h5 className={'text-center mt-3'}>XARID QILISH</h5>
+                <h5 className={'text-center mt-3'}>{t('Purchase.10')}</h5>
                 <div className="col-md-10 border mt-4 offset-1 d-flex">
                     <div className="row">
                         <div className={'col-4 col-sm-12'}>
                             <div className={'d-flex'}>
                                 <div style={{ width: '100%' }}>
-                                    <label htmlFor={'dil'}>Diller</label>
+                                    <label htmlFor={'dil'}>{t('Purchase.2')}</label>
                                     {
                                         <select name="" value={input.diller} onChange={diller} id={'dil'}
                                             className={'form-control'}>
@@ -553,11 +556,11 @@ function Xarid({
                         </div>
 
                         <div className="col-4 col-sm-12 mb-4">
-                            <label htmlFor={'qisqa'}>Qisqa eslatma</label>
+                            <label htmlFor={'qisqa'}>{t('Buttons.17')}</label>
                             <input type="text" className={'form-control'} value={input.qisqaeslatma}
                                 placeholder={placeholders.qisqaeslatmaPlaceholder} onChange={qisqaeslatma}
                                 id={'qisqa'} />
-                            <label htmlFor={'baza'} className={'mt-3'}>Baza</label>
+                            <label htmlFor={'baza'} className={'mt-3'}>{t('ProductList.8')}</label>
                             <select name="" id={'baza'} value={input.baza} onChange={baza} className={'form-control'}>
                                 {/*<option value="">Tanlash</option>*/}
                                 {
@@ -584,7 +587,7 @@ function Xarid({
                         {/*</div>*/}
 
                         <div className="col-4 col-sm-12 ">
-                            <label htmlFor={'status'}>Xarid statusi</label>
+                            <label htmlFor={'status'}>{t('Purchase.3')}</label>
                             <select name="" value={input.xaridstatusi} onChange={xaridstatusi}
                                 className={'form-control'}
                                 id={'status'}>
@@ -596,7 +599,7 @@ function Xarid({
                                 input.xaridstatusi ? "" :
                                     <p style={{ color: 'red', marginTop: '4px', lineHeight: '13px' }}>{placeholders.xaridStatusiSelectStyle}</p>
                             }
-                            <label htmlFor={'qosh'} className={'mt-4'}>Qo`shimcha Hujjat</label>
+                            <label htmlFor={'qosh'} className={'mt-4'}>{t('Purchase.11')}</label>
                             <input type="file" value={input.qoshimchahujjat} onChange={qoshimchahujjat}
                                 className={'form-control'} />
                         </div>
@@ -604,31 +607,31 @@ function Xarid({
 
                     <Modal isOpen={active} toggle={toggle} style={{ width: '90%' }}>
                         <ModalHeader>
-                            Yangi qo`shish / taxrirlash
+                            {t('Sections.8')}
                         </ModalHeader>
                         <ModalBody>
                             <div className={'text-center'}>
                                 <input type="radio" id={'radio1'} name={'l'} value={input.lang1} onChange={lang1} />
                                 <label htmlFor={'radio1'}>lang_v1.induvidial</label>
                                 <input type="radio" id={'radio2'} name={'l'} value={input.dukon} onChange={dukon} />
-                                <label htmlFor={'radio2'}>Do`kon</label>
+                                <label htmlFor={'radio2'}>{t('Purchase.12')}</label>
                             </div>
-                            <label htmlFor={'id1'}>ID Raqami</label>
+                            <label htmlFor={'id1'}>{t('Purchase.13')}</label>
                             <input type="number" className={'form-control'} value={input.idraqam} onChange={idraqam}
                                 placeholder={'ID raqami'} />
                             <div className={'d-flex justify-content-between mt-3'}>
                                 <div>
-                                    <label htmlFor={'log'}>Login</label>
+                                    <label htmlFor={'log'}>{t('Purchase.14')}</label>
                                     <input value={input.login} onChange={login} type="text" className={'form-control'}
                                         id={'log'} />
-                                    <label htmlFor={'tel'}>Tel:</label>
+                                    <label htmlFor={'tel'}>{t('Purchase.15')}:</label>
                                     <input type="number" onChange={tel} value={input.tel} className={'form-control'}
                                         id={'tel'} />
                                 </div>
                                 <div>
-                                    <label htmlFor={'ismi'}>Ismi</label>
+                                    <label htmlFor={'ismi'}>{t('Purchase.16')}</label>
                                     <input type="text" value={input.ismi} onChange={ismi} className={'form-control'} />
-                                    <label htmlFor={'ikki'}>Ikkinchi raqam</label>
+                                    <label htmlFor={'ikki'}>{t('Purchase.17')}</label>
                                     <input type="number" value={input.ikkinciraqam} onChange={ikkinciraqam}
                                         className={'form-control'} id={'ikki'} />
                                 </div>
@@ -636,28 +639,21 @@ function Xarid({
                             <hr />
                             <div className={'d-flex justify-content-between mt-3'}>
                                 <div>
-                                    <label htmlFor={'log2'}>Otasining ismi</label>
-                                    <input type="text" className={'form-control'} value={input.otaismi}
-                                        onChange={otaismi}
-                                        id={'log2'} />
-                                    <label htmlFor={'tel2'}>Telegram:</label>
+                                    <label htmlFor={'tel2'}>{t('Purchase.18')}:</label>
                                     <input type="text" className={'form-control'} value={input.telegram}
                                         onChange={telegram}
                                         id={'tel2'} />
                                 </div>
                                 <div>
-                                    <label htmlFor={'ismi2'}>Familiyasi</label>
-                                    <input type="text" className={'form-control'} value={input.familiyasi}
-                                        onChange={familiyasi} id={'ismi2'} />
-                                    <label htmlFor={'ikkii2'}>Email</label>
+                                    <label htmlFor={'ikkii2'}>{t('Purchase.19')}</label>
                                     <input type="text" className={'form-control'} value={input.email} onChange={email}
                                         id={'ikki2'} />
                                 </div>
                             </div>
                         </ModalBody>
                         <ModalFooter>
-                            <button onClick={savedealer} className={'btn btn-outline-primary'}>Saqlash</button>
-                            <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
+                            <button onClick={savedealer} className={'btn btn-outline-primary'}>{t('Buttons.6')}</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
                 </div>
@@ -676,11 +672,11 @@ function Xarid({
                                 <table className={'table mt-3 border'}>
                                     <thead>
                                         <tr>
-                                            <th>Mahsulot nomi</th>
-                                            <th>Xarid miqdori</th>
-                                            <th>Sotib olish narxi</th>
-                                            <th>Jami summa</th>
-                                            <th>Sotish narxi</th>
+                                            <th>{t('ProductEdit.2')}</th>
+                                            <th>{t('Purchase.20')}</th>
+                                            <th>{t('Purchase.21')}</th>
+                                            <th>{t('Purchase.22')}</th>
+                                            <th>{t('ProductList.12')}</th>
                                             <th>x</th>
                                         </tr>
                                     </thead>
@@ -728,20 +724,20 @@ function Xarid({
                                 </table>
                             </div>
                             <hr />
-                            <h6>Jami maxsulotlar: {xisob}</h6>
-                            <h6>Jami summa: {jamixisob}</h6>
+                            <h6>{t('Purchase.23')}: {xisob}</h6>
+                            <h6>{t('Purchase.22')}: {jamixisob}</h6>
                         </div>
                     </div>
                 </div>
 
-                <h5 className={'text-center mt-5'}>To`lov qilish</h5>
+                <h5 className={'text-center mt-5'}>{t('Purchase.24')}</h5>
                 <div className="col-md-10 offset-1 border p-4 d-flex">
                     <div className="row">
                         <div className="col-6 col-sm-12">
-                            <label htmlFor={'avans'}>Avans 0 / To`lov so`mmasi</label>
+                            <label htmlFor={'avans'}>{t('Purchase.25')}</label>
                             <input type="number" className={'form-control'} value={input.avans} placeholder={placeholders.tolovSummasiPlaceholder} onChange={avans}
                                 id={'avans'} />
-                            <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
+                            <label className={'mt-3'} htmlFor={'tol'}>{t('Purchase.26')}</label>
                             <select name="" id={'tol'} className={'form-control mb-3'} value={input.tulovusuli}
                                 onChange={tulovusuli}>
                                 {
@@ -756,10 +752,10 @@ function Xarid({
                             }
                         </div>
                         <div className="col-6 col-sm-12">
-                            <label htmlFor={'paid'}>Paid on</label>
+                            <label htmlFor={'paid'}>{t('Purchase.27')}</label>
                             <input type="date" value={input.paidon} onChange={paidon} className={'form-control'}
                                 id={'paid'} />
-                            <label htmlFor={'area1'} className={'mt-3'}>To'lov statusi</label>
+                            <label htmlFor={'area1'} className={'mt-3'}>{t('Purchase.28')}</label>
 
                             <select name="" id={'area1'} className={'form-control'} value={input.eslatma}
                                 onChange={eslatma}>
@@ -778,7 +774,7 @@ function Xarid({
                             <div className="row">
                                 <div className="col-6 col-sm-11">
                                     <div className="btnBox">
-                                        <label htmlFor={'yet'}>Yetkazib berish manzili</label>
+                                        <label htmlFor={'yet'}>{t('Purchase.29')}</label>
                                         <input type="text" id={'yet'} value={input.yetkazibberish}
                                             onChange={yetkazibberish}
                                             className={'form-control'} />
@@ -787,25 +783,25 @@ function Xarid({
                                         </button>
                                     </div>
                                     <Modal isOpen={active2} toggle={toggle2}>
-                                        <ModalHeader>Yetkazib berish</ModalHeader>
+                                        <ModalHeader>{t('Purchase.30')}</ModalHeader>
                                         <ModalBody>
                                             <label htmlFor={'l1'}>additional_experence_name</label>
                                             <input type="text" value={input.langv2} onChange={langv2}
                                                 className={'form-control'}
                                                 id={'l1'} />
-                                            <label htmlFor={'l2'} className={''}>Yetkazib berish narxi</label>
+                                            <label htmlFor={'l2'} className={''}>{t('Purchase.31')}</label>
                                             <input type="text" className={'form-control'}
                                                 value={input.yetkazibberishnarxi}
                                                 onChange={yetkazibberishnarxi} id={'l2'} />
                                         </ModalBody>
                                         <ModalFooter>
-                                            <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
-                                            <button className={'btn btn-primary'} onClick={toggle2}>Chiqish</button>
+                                            <button className={'btn btn-primary'} onClick={saqla}>{t('Buttons.6')}</button>
+                                            <button className={'btn btn-primary'} onClick={toggle2}>{t('Buttons.7')}</button>
                                         </ModalFooter>
                                     </Modal>
                                 </div>
                                 <div className="col-6 col-sm-10">
-                                    <label htmlFor={'yet2'}>(+)Yetkazib berish narxi</label>
+                                    <label htmlFor={'yet2'}>(+){t('Purchase.31')}</label>
                                     <input type="number" value={input.yetkazibberishnarxi2} placeholder={placeholders.yetkazibBerishNarxiPlaceholder}
                                         id="yetkizibBerishNarxiSelect" onChange={yetkazibberishnarxi2}
                                         className={'form-control'} />
@@ -814,14 +810,14 @@ function Xarid({
 
                         </div>
                         <div className={'col-10 col-sm-10 offset-1 mt-5 border p-4'}>
-                            <h5>Qarz miqdori!: {jamixisob - input.avans} so`m</h5>
+                            <h5>{t('Purchase.32')}!: {jamixisob - input.avans} so`m</h5>
                             {
                                 input.diller &&  input.eslatma && input.baza && input.qisqaeslatma && input.yetkazibberishnarxi2 && input.xaridmiqdori && input.donanarxi && input.donasotish ?
                                     <Link to={'/headerthird/xaridlarRuyxati'}>
-                                        <button className={'btn btn-primary'} onClick={saqla}>Saqlash</button>
+                                        <button className={'btn btn-primary'} onClick={saqla}>{t('Buttons.6')}</button>
                                     </Link>
                                     :
-                                    <button className={'btn btn-danger'} onClick={saqla}>Saqlash</button>
+                                    <button className={'btn btn-danger'} onClick={saqla}>{t('Buttons.6')}</button>
                             }
 
                         </div>

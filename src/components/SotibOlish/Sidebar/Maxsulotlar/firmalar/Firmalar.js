@@ -162,17 +162,17 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
     return (
         <div className="col-md-12 mt-2 mt-4 mb-4">
             <div className="textHeaderFR">
-                <h2>Firmalar</h2>
-                <p>Firma yoki brendlar boshqaruvi</p>
+                <h2>{t('Firms.1')}</h2>
+                <p>{t('Firms.2')}</p>
             </div>
             <div className="rowStyleFR">
                 <div className="qoshishFR">
-                    <h5 className='sarlavha'>Barcha firma va brendlar boshqaruvi</h5>
-                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>
+                    <h5 className='sarlavha'>{t('Firms.2')}</h5>
+                    <button onClick={toggle} className='btn btn-primary'>+{t('Buttons.2')}</button>
                 </div>
                 <div className="izlashFR">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select value={input.view} onChange={view} name="" id="">
                             <option value="">25</option>
                             <option value="">50</option>
@@ -194,8 +194,8 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                         <thead>
                             <tr>
                                 <th>T/R</th>
-                                <th>Firmalar</th>
-                                <th>Eslatma</th>
+                                <th>{t('Firms.1')}</th>
+                                <th>{t('Firms.3')}</th>
                                 <th>Amallar</th>
                             </tr>
                         </thead>
@@ -214,19 +214,19 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
                                     <td> </td>
                                     <td>
                                         <Link>
-                                            <button onClick={() => editB(item.id)} className='taxrirlash'><img src={Edit} alt="" /> Taxrirlash
+                                            <button onClick={() => editB(item.id)} className='taxrirlash'><img src={Edit} alt="" /> {t('Buttons.1')}
                                             </button>
                                         </Link>
-                                        <button className='ochirish' onClick={() => deleteModaltoggle(item.id)}><img src={Delete} alt="" /> O'chirish</button>
+                                        <button className='ochirish' onClick={() => deleteModaltoggle(item.id)}><img src={Delete} alt="" /> {t('Buttons.3')}</button>
                                     </td>
 
                                     <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                         <ModalBody>
-                                            <h5>Ishonchingiz komilmi ?</h5>
+                                            <h5>{t('Buttons.12')} ?</h5>
                                         </ModalBody>
                                         <ModalFooter>
-                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>{t('Buttons.3')}</button>
+                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                                         </ModalFooter>
                                     </Modal>
 
@@ -235,25 +235,25 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
 
                         </tbody>
                     </table>
-                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                 </div>
 
 
                 <Modal isOpen={active} toggle={toggle}>
                     <ModalHeader>
-                        Yangi qo`shish / taxrirlash
+                        {t('Sections.8')}
                     </ModalHeader>
                     <ModalBody>
-                        <label htmlFor={'l'}>Brand Nomi</label>
+                        <label htmlFor={'l'}>{t('Firms.4')}</label>
                         <input value={input.brandqoshish} placeholder={placeholders.brendNomiPlaceholder} onChange={brandqoshish} type="text" id={'l'}
                             className={'form-control'} />
-                        <label htmlFor={'l2'} className={'mt-3'}>Qisqa eslatma</label>
+                        <label htmlFor={'l2'} className={'mt-3'}>{t('Buttons.17')}</label>
                         <input value={input.qisqaeslatma} onChange={qisqaeslatma} type="text" className={'form-control'}
                             id={'l2'} />
                     </ModalBody>
                     <ModalFooter>
-                        <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
-                        <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
+                        <button className={'btn btn-outline-primary'} onClick={saqla}>{t('Buttons.6')}</button>
+                        <button className={'btn btn-outline-primary'} onClick={toggle}>{t('Buttons.7')}</button>
                     </ModalFooter>
                     
                 </Modal>
@@ -268,4 +268,3 @@ export default connect((FirmaReducer, users), {
     editFirma,
     deleteFirma
 })(Firmalar)
-// export default connect((FirmaReducer,users),{getFirma,saveFirma,editFirma,deleteFirma}) (Firmalar)
