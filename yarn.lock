@@ -12899,6 +12899,11 @@
     "prop-types" "^15.6.0"
     "react-transition-group" "^4.3.0"
 
+"react-spinners@^0.13.7":
+  "integrity" "sha512-mRamn56bfxWbGcacif5RT3UbeJaXi2AttjtPwSmomuv2IcxjpbfETCzdTvaQpNDk0E33ENJsStsQeKAZFuJcpA=="
+  "resolved" "https://registry.npmjs.org/react-spinners/-/react-spinners-0.13.7.tgz"
+  "version" "0.13.7"
+
 "react-to-print@^2.14.4":
   "integrity" "sha512-lpKKsmkZz1m4G1mBbJtK5qATfYzJRrgLgJ3m0LyF17Ojq22ifxw2AIgH3BROpFDNj0c057Q1dDP53kDIPLVtmw=="
   "resolved" "https://registry.npmjs.org/react-to-print/-/react-to-print-2.14.4.tgz"

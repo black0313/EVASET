@@ -119,9 +119,9 @@ function Bolimlar({
 
     const [headlist, setheadlist] = useState([
         {
-            bolim: 'Bo`limlar',
-            bolimkod: 'Bo`lim kodi',
-            qisqa: 'Qisqa malumot',
+            bolim: t('ProductList.4'),
+            bolimkod: t('Sections.7'),
+            qisqa: t('Buttons.17'),
             amallar: 'Amallar'
         }
     ])
@@ -193,47 +193,46 @@ function Bolimlar({
         <div className="col-md-12 mt-4 mb-4">
 
             <div className="textHeaderBL">
-                <h2>Bo'limlar</h2>
-                <p>Bo'limlar boshqaruvi</p>
+                <h2>{t('ProductList.4')}</h2>
+                <p>{t('Sections.1')}</p>
             </div>
             <div className="rowStyleBL">
                 <div className="qoshish">
-                    <h5>Bo'limlar</h5>
-                    <button onClick={toggle} className='btn btn-outline-dark' style={{marginLeft: '550px'}}>+ Bo`lim
-                        Qo'shish
+                    <h5>{t('ProductList.4')}</h5>
+                    <button onClick={toggle} className='btn btn-outline-dark' style={{marginLeft: '550px'}}>+ {t('Buttons.2')}
                     </button>
-                    <button onClick={toggle10} className='btn btn-outline-primary'>+ Ichki bo`lim Qo'shish</button>
+                    <button onClick={toggle10} className='btn btn-outline-primary'>+ {t('Sections.2')}</button>
                 </div>
 
                 <Modal isOpen={active10} toggle={toggle10}>
                     <ModalHeader>
-                        Bo`lim ichida bo`lim
+                        {t('Sections.2')}
                     </ModalHeader>
                     <ModalBody>
-                        <label htmlFor="">Asosiy bo`limni tanlang</label>
+                        <label htmlFor="">{t('Sections.3')}</label>
                         <select value={input.asosiybolim} onChange={asosiybolim} className={'form-control'} id="">
                             {
                                 BolimReducer.bolimlar.map(item => <option value={item.id}>{item.name}</option>)
                             }
                         </select>
 
-                        <label htmlFor={''} className={'mt-3'}>Ichki bo`lim nomi</label>
+                        <label htmlFor={''} className={'mt-3'}>{t('Sections.4')}</label>
                         <input type="text" className={'form-control'} value={input.ichkibolimnomi}
                                onChange={ichkibolimnomi}/>
 
-                        <label className={'mt-3'} htmlFor={''}>Izoh</label>
+                        <label className={'mt-3'} htmlFor={''}>{t('Sections.5')}</label>
                         <input type="text" className={'form-control'} value={input.ichkibolimdescription}
                                onChange={ichkibolimdescription}/>
                     </ModalBody>
                     <ModalFooter>
-                        <button className={'btn btn-outline-primary'} onClick={saqla2}>Saqlash</button>
-                        <button className={'btn btn-outline-primary'} onClick={toggle10}>Chiqish</button>
+                        <button className={'btn btn-outline-primary'} onClick={saqla2}>{t('Buttons.6')}</button>
+                        <button className={'btn btn-outline-primary'} onClick={toggle10}>{t('Buttons.7')}</button>
                     </ModalFooter>
                 </Modal>
 
                 <div className="izlashBL">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select name="" value={input.view} onChange={view} id="">
                             <option value="">25</option>
                             <option value="">50</option>
@@ -267,10 +266,10 @@ function Bolimlar({
                 </div>
 
                 <Link to={'/headerthird/bolimlar'}>
-                    <button className={'btn btn-danger mt-2'}>Bo`limlar</button>
+                    <button className={'btn btn-danger mt-2'}>{t('ProductList.4')}</button>
                 </Link>
                 <Link to={'/headerthird/ichkibolimlar'}>
-                    <button style={{marginLeft: '10px'}} className={'btn btn-primary mt-2'}>Ichki Bo`limlar</button>
+                    <button style={{marginLeft: '10px'}} className={'btn btn-primary mt-2'}>{t('Sections.6')}</button>
                 </Link>
 
                 <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar mb-4">
@@ -315,24 +314,24 @@ function Bolimlar({
                                         <Link>
                                             <button onClick={() => editBolimF(item.id)} className='taxrirlash'><img
                                                 src={Edit}
-                                                alt=""/> Taxrirlash
+                                                alt=""/> {t('Buttons.1')}
                                             </button>
                                         </Link>
                                         <button className='ochirish' onClick={() => deleteModaltoggle(item.id)}><img
                                             src={Delete}
-                                            alt=""/> O'chirish
+                                            alt=""/> {t('Buttons.3')}
                                         </button>
 
                                         <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                             <ModalBody>
-                                                <h5>Ishonchingiz komilmi ?</h5>
+                                                <h5>{t('Buttons.12')} ?</h5>
                                             </ModalBody>
                                             <ModalFooter>
                                                 <button onClick={() => deleteFunc(item.id)}
-                                                        className={'btn btn-outline-primary'}>O`chirish
+                                                        className={'btn btn-outline-primary'}>{t('Buttons.3')}
                                                 </button>
                                                 <button onClick={() => deleteModaltoggle('')}
-                                                        className={'btn btn-outline-primary'}>Chiqish
+                                                        className={'btn btn-outline-primary'}>{t('Buttons.7')}
                                                 </button>
                                             </ModalFooter>
                                         </Modal>
@@ -344,22 +343,22 @@ function Bolimlar({
 
                         </tbody>
                     </table>
-                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                 </div>
 
                 <Modal isOpen={active} toggle={toggle}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <ModalHeader>
-                            Yangi Qo`shish / taxrirlash
+                            {t('Sections.8')}
                         </ModalHeader>
                         <ModalBody>
-                            <label htmlFor={'bnomi'}>Bo`lim nomi</label>
+                            <label htmlFor={'bnomi'}>{t('Sections.9')}</label>
                             <input type="text" className={'form-control '}
                                    {...register('name', {required: true})}
                                    placeholder={errors.name ? errors.name?.type === "required" && "Name is required" : 'name'}
                                    id={'bnomi'}/>
 
-                            <label className={'mt-3'} htmlFor={'area'}>Qisqacha ma`lumot</label>
+                            <label className={'mt-3'} htmlFor={'area'}>{t('Buttons.17')}</label>
                             <textarea
                                 {...register('description', {required: true})}
                                 // placeholder={errors.description ? errors.description?.type === "required" && "Description is required" : 'description'}
@@ -367,8 +366,8 @@ function Bolimlar({
 
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'} type={"submit"}>Saqlash</button>
-                            <button className={'btn btn-outline-primary'} onClick={toggle} type={"button"}>Chiqish
+                            <button className={'btn btn-outline-primary'} type={"submit"}>{t('Buttons.6')}</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle} type={"button"}>{t('Buttons.7')}
                             </button>
                         </ModalFooter>
                     </form>

@@ -224,6 +224,17 @@
     "18": "Price without tax (body price)",
     "19": "Print"
   },
+  "Sections": {
+    "1": "Управление отделами",
+    "2": "Add internal section",
+    "3": "Select the main section",
+    "4": "Internal partition name",
+    "5": "Explanation",
+    "6": "Internal Departments",
+    "7": "Department code",
+    "8": "Add / edit new",
+    "9": "Section name"
+  },
   "Buttons": {
     "1": "Editing",
     "2": "Add",

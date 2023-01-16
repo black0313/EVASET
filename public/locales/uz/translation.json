@@ -226,7 +226,17 @@
     "18": "Soliqsiz narx (tan narxi)",
     "19": "Print"
   },
-
+  "Sections": {
+    "1": "Bo'limlar boshqaruvi",
+    "2": "Ichki bo`lim Qo'shish",
+    "3": "Asosiy bo`limni tanlang",
+    "4": "Ichki bo`lim nomi",
+    "5": "Izoh",
+    "6": "Ichki Bo`limlar",
+    "7": "Bo`lim kodi",
+    "8": "Yangi Qo`shish / taxrirlash",
+    "9": "Bo`lim nomi"
+  },
   "Buttons": {
     "1": "Tahrirlash",
     "2": "Qo'shish",

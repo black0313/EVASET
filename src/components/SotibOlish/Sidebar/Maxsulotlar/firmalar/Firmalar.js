@@ -13,9 +13,11 @@ import './firmalar.css'
 import { Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
 import FirmaReducer, { deleteFirma, editFirma, getFirma, saveFirma, } from "../reducer/FirmaReducer";
 import users from "../../../../../reducer/users";
+import {useTranslation} from "react-i18next";
 
 function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma, FirmaReducer, }) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             view: '',
@@ -110,8 +112,6 @@ function Firmalar({ getFirma, users, firmalar, saveFirma, editFirma, deleteFirma
     function deleteF(item) {
         deleteFirma(item.id)
     }
-
-
 
     const [active, setActive] = useState(false)
 
