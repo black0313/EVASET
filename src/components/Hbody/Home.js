@@ -8,14 +8,14 @@ import {Link, Switch, Route, Redirect, useHistory} from 'react-router-dom'
 import {connect} from "react-redux";
 import {active} from "../../reducer/functionreducer";
 import SecondPage from "../Pricing/SecondPage/SecondPage";
-import users, {saveusers, changeerror} from "../../reducer/users";
+import users, {saveusers, changeerror,rememberMe} from "../../reducer/users";
 import axios from "axios";
 import {ModalBody, Modal, ModalFooter, ModalHeader} from "reactstrap";
 import {BaseUrl} from "../../middleware";
 import {useTranslation} from "react-i18next";
 
 
-function Home({saveusers, users, linkpost, active, changeerror}) {
+function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
 
 
     const [inputlogin, setLogin] = useState('')
@@ -23,7 +23,7 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
     const [disabled, setdisabled] = useState(false)
     const [checked, setchecked] = useState(false)
     const history = useHistory()
-    const {t,i18n} = useTranslation();
+    const {t, i18n} = useTranslation();
 
     function login(event) {
         setLogin(event.target.value)
@@ -34,9 +34,11 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
         setparol(event.target.value)
         changeerror()
     }
-    function changechecked() {
-        setchecked(prev => !prev)
-        console.log(checked)
+
+    function changechecked(e) {
+        rememberMe({
+            checked:e.target.checked
+        })
     }
 
     const [typeinput, Settype] = useState('password')
@@ -50,6 +52,7 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
             Settype('text')
         }
     }
+
     function testusers() {
         axios({
             method: 'post',
@@ -72,6 +75,20 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
     function toggle() {
         setRegister(!onRegister)
     }
+
+    useEffect(() => {
+        let user = JSON.parse(localStorage.getItem('user'))
+        let tokenname = localStorage.getItem('tokenname')
+        if (user && tokenname){
+            saveusers({
+                object:user,
+
+                message: tokenname,
+                success: true
+            })
+            history.push('/headerthird')
+        }
+    }, [])
 
     return (
         <div>
@@ -115,7 +132,7 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
                                     users.error ? <span className={'error'}>Login yoki parol xato !</span> : ''
                                 }
                                 <div className="kirish-checkbox">
-                                    <input onChange={changechecked} checked={checked} type="checkbox" id={'check'}/>
+                                    <input onChange={changechecked} checked={users.rememberme} type="checkbox" id={'check'}/>
                                     <label htmlFor={'check'}>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <title>ionicons-v5-l</title>
@@ -140,21 +157,23 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
                                 <ModalHeader>
                                     <h4>Ro'yhatdan o'tish</h4>
                                 </ModalHeader><ModalHeader>
-                                    <h4>Ro'yhatdan o'tish</h4>
-                                </ModalHeader>
+                                <h4>Ro'yhatdan o'tish</h4>
+                            </ModalHeader>
                                 <ModalBody>
                                     <label htmlFor="log">Login kiritng</label>
                                     <input type="text" id={'log'} className={'form-control mt-1'}/>
 
                                     <label htmlFor="">Ismingizni kiriting</label>
-                                    <input type="text"  className={'form-control mt-1'}/>
+                                    <input type="text" className={'form-control mt-1'}/>
 
                                     <label htmlFor="password">Parolingizni kiriting</label>
                                     <input type="text" className={'form-control mt-1'}/>
                                 </ModalBody>
                                 <ModalFooter>
                                     <button className={'btn btn-primary form-control'}>Saqlash</button>
-                                    <button onClick={toggle} className={'btn btn-outline-primary form-control'}>Chiqish</button>
+                                    <button onClick={toggle}
+                                            className={'btn btn-outline-primary form-control'}>Chiqish
+                                    </button>
                                 </ModalFooter>
                             </Modal>
 
@@ -177,4 +196,4 @@ function Home({saveusers, users, linkpost, active, changeerror}) {
     )
 }
 
-export default connect((users), {saveusers, active, changeerror})(Home)
+export default connect((users), {saveusers, active, changeerror,rememberMe})(Home)

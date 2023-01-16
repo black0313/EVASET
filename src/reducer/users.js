@@ -49,15 +49,18 @@ export const slice = createSlice({
     reducers: {
         saveusers: (state, action) => {
             console.log(action.payload)
-            if (action.payload.success){
+            if (action.payload.success && action.payload.success === true ){
                 state.linkhome=!state.linkhome
                 state.linkheader=!state.linkheader
                 state.authEnter = true
                 state.users = action.payload.object
                 state.businessId=action.payload.object.business.id
                 state.id = action.payload.object.id
+                if (state.rememberme === true){
+                    localStorage.setItem('user',JSON.stringify(action.payload.object))
+                }
                 localStorage.setItem('tokenname',action.payload.message)
-                localStorage.setItem('user',JSON.stringify(action.payload.object))
+
                 console.log('ei')
                     state.users.role.permissions.map(item=>{
                     switch (item){
@@ -157,9 +160,11 @@ export const slice = createSlice({
         savdooynasi:(state,action)=>{
             state.linkheader=!state.linkheader
             state.linksavdooynasi=!state.linksavdooynasi
+        },
+        rememberMe:(state,action)=>{
+            state.rememberme = action.payload.checked
         }
-
     }
 })
-export const {changeerror,savdooynasi,saveusers} = slice.actions
+export const {changeerror,savdooynasi,saveusers,rememberMe} = slice.actions
 export default slice.reducer
