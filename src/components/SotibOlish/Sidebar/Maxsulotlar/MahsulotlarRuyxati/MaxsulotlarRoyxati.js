@@ -22,6 +22,7 @@ import kgreducer, {getkg} from "../../../../../reducer/kgreducer";
 import BolimReducer, {getBolim} from "../reducer/BolimReducer";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import {useForm} from 'react-hook-form'
+import {useTranslation} from "react-i18next";
 
 function MaxsulotlarRoyxati({
                                 getBolim,
@@ -55,6 +56,8 @@ function MaxsulotlarRoyxati({
             sotvemas: '',
         }
     )
+
+    const {t} = useTranslation()
 
     function changemaxsulotturi(e) {
         input.maxsulotturi = e.target.value
@@ -134,23 +137,23 @@ function MaxsulotlarRoyxati({
     return (
         <div className="col-md-12 mt-4 ">
             <div className="textHeaderMax">
-                <h2>Maxsulotlar</h2>
-                <p className="ms-2">Maxsulotlarni boshqarish</p>
+                <h2>{t('ProductList.1')}</h2>
+                <p className="ms-2">{t('ProductList.2')}</p>
             </div>
             <div className="rowStyleMax colorback">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="block">
                     <div className="box">
                         <div className="minBox">
-                            <h6>Maxsulot turi:</h6>
+                            <h6>{t('ProductList.3')}:</h6>
                             <select value={input.maxsulotturi} onChange={changemaxsulotturi} name="" id="">
                                 <option value="">Barchasi</option>
                             </select>
                         </div>
                         <div className="minBox">
-                            <h6>Bo'lim:</h6>
+                            <h6>{t('ProductList.4')}</h6>
                             <select value={input.bolim} onChange={changebolim} name="" id="">
                                 <option value="barchasi">Barchasi</option>
                                 {
@@ -162,7 +165,7 @@ function MaxsulotlarRoyxati({
                     </div>
                     <div className="box">
                         <div className="minBox">
-                            <h6>O'lchov birligi:</h6>
+                            <h6>{t('ProductList.5')}</h6>
                             <select name="" id="" value={input.ulcov} onChange={changeulcov}>
                                 <option value="barchasi">Barchasi</option>
                                 {
@@ -171,7 +174,7 @@ function MaxsulotlarRoyxati({
                             </select>
                         </div>
                         <div className="minBox">
-                            <h6>Soliq:</h6>
+                            <h6>{t('ProductList.6')}</h6>
                             <select name="" id="" onChange={changesoliq} value={input.soliq}>
                                 <option value="">Barchasi</option>
                             </select>
@@ -179,7 +182,7 @@ function MaxsulotlarRoyxati({
                     </div>
                     <div className="box">
                         <div className="minBox">
-                            <h6>Firma:</h6>
+                            <h6>{t('ProductList.7')}:</h6>
                             <select name="" id="" onChange={changefirma} value={input.firma}>
                                 <option value={'barchasi'}>Barchasi</option>
                                 {
@@ -188,7 +191,7 @@ function MaxsulotlarRoyxati({
                             </select>
                         </div>
                         <div className="minBox">
-                            <h6>Baza:</h6>
+                            <h6>{t('ProductList.8')}:</h6>
                             <select name="" id="" onChange={changebaza} value={input.baza}>
                                 <option value={'barchasi'}>Barchasi</option>
                                 {
@@ -210,10 +213,10 @@ function MaxsulotlarRoyxati({
                 <hr/>
                 <div className="bynBarchMax">
                     <Link to={'/headerthird/mahsulotRuyxati/barcaMahsulot/'}>
-                        <button className="btn btn-success mb-2 me-2">Barcha maxsulotlar</button>
+                        <button className="btn btn-success mb-2 me-2">{t('ProductList.1')}</button>
                     </Link>
                     <Link to={'/headerthird/mahsulotRuyxati/qoldiqXisobot'}>
-                        <button className="btn btn-primary mb-2">Qoldiqlar xisoboti</button>
+                        <button className="btn btn-primary mb-2">{t('ProductList.9')}</button>
                     </Link>
                 </div>
                 <Route path={'/headerthird/mahsulotRuyxati/barcaMahsulot/'} component={BarchaMaxsulotlar}/>

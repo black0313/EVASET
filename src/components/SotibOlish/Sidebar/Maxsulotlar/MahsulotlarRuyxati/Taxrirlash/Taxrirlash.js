@@ -21,6 +21,7 @@ import Select from 'react-select'
 import {useForm} from "react-hook-form";
 import ValyutaReducer from "../../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
 import {getValue} from "@testing-library/user-event/dist/utils";
+import {useTranslation} from "react-i18next";
 
 function Taxrirlash({
                         ValyutaReducer,
@@ -52,7 +53,7 @@ function Taxrirlash({
     const [active, setActive] = useState(false)
     const [active2, setActive2] = useState(false)
     const [active3, setActive3] = useState(false)
-
+    const {t} = useTranslation()
 
 
     const [input, setInput] = useState(
@@ -272,16 +273,16 @@ function Taxrirlash({
     return (
         <div className={'mt-5 contanerT'}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h4 className={'text-center'}>Mahsulot qo`shish / Taxrirlash</h4>
+                <h4 className={'text-center'}>{t('ProductEdit.1')}</h4>
                 <div className="row p-md-3">
                     <div className="inputs col-4 col-sm-12">
-                        <label className='mt-3' htmlFor={'maxNomi'}>Mahsulot nomi</label>
+                        <label className='mt-3' htmlFor={'maxNomi'}>{t('ProductEdit.2')}</label>
                         <input type="text"
                                {...register('name', {required: true})}
                                placeholder={errors.name ? errors.name?.type === "required" && "Name num is required" : 'name'}
                                id={'maxNomi'} className={'form-control '}/>
 
-                        <label className={'mt-3'} htmlFor={'olcov'}>O`lchov birligi</label>
+                        <label className={'mt-3'} htmlFor={'olcov'}>{t('ProductList.5')}</label>
                         <div className={'d-flex justify-content-between '}>
 
                             <select name="" id={'olcov'}
@@ -296,7 +297,7 @@ function Taxrirlash({
                             </select>
                             <h2 onClick={toggle} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
                         </div>
-                        <label className={'mt-3'} htmlFor={'bol'}>Bo`lim</label>
+                        <label className={'mt-3'} htmlFor={'bol'}>{t('ProductList.4')}</label>
                         <div className={'d-flex select-group'}>
                             <select name="" className={'form-control'}
                                     {...register('categoryId', {required:true})}
@@ -312,26 +313,26 @@ function Taxrirlash({
 
                     <Modal isOpen={bolimactive} toggle={toggle4}>
                         <ModalHeader>
-                            Bo`lim qo`shish
+                            {t('ProductEdit.3')}
                         </ModalHeader>
                         <ModalBody>
-                            <label htmlFor={'ism'}>Bo`lim nomi</label>
+                            <label htmlFor={'ism'}>{t('ProductEdit.4')}</label>
                             <input type="text" className={'form-control'} value={input.bolimnomi} onChange={bolimnomi}/>
                         </ModalBody>
                         <ModalFooter>
-                            <button onClick={saqlaBolim} className={'btn btn-outline-primary'}>Saqlash</button>
-                            <button onClick={toggle4} className={'btn btn-outline-primary'}>Chiqish</button>
+                            <button onClick={saqlaBolim} className={'btn btn-outline-primary'}>{t('Buttons.6')}</button>
+                            <button onClick={toggle4} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
                     <div className="col-4 col-sm-12">
-                        <label className='mt-3' htmlFor={'shtrixKod'}>Shtrix kod</label>
+                        <label className='mt-3' htmlFor={'shtrixKod'}>{t('ProductEdit.5')}</label>
                         <input type="number" id={'shtrixKod'}
                                {...register('barcode', {required: true})}
                             placeholder={errors.barcode ? errors.barcode?.type === "required" && "Barcode is required": 'barcode'}
                                defaultValue={''}
                                className={'form-control'}/>
 
-                        <label className='mt-3' htmlFor={'firma'}>Firma</label>
+                        <label className='mt-3' htmlFor={'firma'}>{t('ProductList.7')}</label>
                         <div className={'d-flex'}>
                             <select name=""
                                     {...register('brandId', {required:true})}
@@ -344,7 +345,7 @@ function Taxrirlash({
                             </select>
                             <h2 onClick={toggle2} className={'h2'} style={{cursor: 'pointer'}}>+</h2>
                         </div>
-                        <label className={'mt-3'} htmlFor={'bol2'}>Bo`lim ichida bolim</label>
+                        <label className={'mt-3'} htmlFor={'bol2'}>{t('ProductEdit.6')}</label>
                         <select name="" id={'bol2'} value={input.ichkibolim} onChange={ichkibolim}
                                 className={'form-control'}>
 
@@ -357,14 +358,14 @@ function Taxrirlash({
                     </div>
 
                     <div className="col-4 col-sm-12">
-                        <label htmlFor={'ppp'} className={'mt-3'}>Miqdori</label>
+                        <label htmlFor={'ppp'} className={'mt-3'}>{t('ProductEdit.7')}</label>
                         <input className={'form-control taxrirlashInputValudetion'} type="number"
                                {...register('quantity', {required:true})}
                             placeholder={errors.quantity ? errors.quantity?.type === "required" && 'Quantity is required': 'quantity'}
                                id='miqdor'
                                onChange={miqdorMaxsulot}/>
 
-                        <label htmlFor="bazalar" className={'mt-3 '}>Bazalar</label>
+                        <label htmlFor="bazalar" className={'mt-3 '}>{t('ProductList.8')}</label>
 
                         <Select options={branchreducer.branches}
                                 isMulti={true} class={'form-control'}
@@ -374,21 +375,21 @@ function Taxrirlash({
                 </div>
                 <div className="row mt-4 p-md-3">
                     <div className={'col-md-6 col-sm-12 mb-3'}>
-                        <label htmlFor={'ogoh'}>Ogohlantiruvchi miqdor</label>
+                        <label htmlFor={'ogoh'}>{t('ProductEdit.8')}</label>
                         <input type="number"
                                {...register('minQuantity', {required:true})}
                                placeholder={errors.minQuantity ? errors.minQuantity?.type === "required" && "minQuantity is required":'minQuantity'}
                                defaultValue={''}
                                className={'form-control'} id={'ogoh'}/>
-                        <label htmlFor={'yaroq'} className={'mt-3'}>Mahsulot yaroqlilik muddati</label>
+                        <label htmlFor={'yaroq'} className={'mt-3'}>{t('ProductEdit.9')}</label>
                         <input type="date" className={'form-control'} value={input.muddatmaxsulot}
                                onChange={muddatmahsulot}/>
                     </div>
 
                     <div className={'col-md-6 col-sm-12'}>
-                        <p className={"p-0 m-0"}>Mahsulot rasm qo'shish</p>
+                        <p className={"p-0 m-0"}>{t('ProductEdit.10')}</p>
                         <label htmlFor={'mahRasm'}>
-                            <p className={'btn btn-primary'}>Add img</p>
+                            <p className={'btn btn-primary'}>{t('ProductEdit.11')}</p>
                         </label>
                         <input type="file" className={'form-control d-none'} value={input.mahsulotrasmi}
                                onChange={mahsulotrasmi} id={'mahRasm'}
@@ -398,36 +399,36 @@ function Taxrirlash({
 
                 <Modal isOpen={active} toggle={toggle}>
                     <ModalHeader>
-                        Birlik qo`shish
+                        {t('ProductEdit.12')}
                     </ModalHeader>
                     <ModalBody>
-                        <label htmlFor={'nomi'}>Nomi</label>
+                        <label htmlFor={'nomi'}>{t('ProductEdit.13')}</label>
                         <input type="text" onChange={ulcovNomi} value={input.ulcovnomi} className={'form-control'}
                                id={'nomi'}/>
-                        <label htmlFor={'nomi2'} className={'mt-2'}>Qisqa nom masalan Kg,MM</label>
+                        <label htmlFor={'nomi2'} className={'mt-2'}>{t('ProductEdit.14')} Kg,MM</label>
                         <input type="text" id={'nomi2'} value={input.ulcovqisqanomi} onChange={ulcovqisqaNomi}
                                className={'form-control'}/>
                     </ModalBody>
                     <ModalFooter>
-                        <button onClick={saqlakg} className={'btn btn-primary'}>SAQLASH</button>
-                        <button className={'btn btn-primary'} onClick={toggle}>CHIQISH</button>
+                        <button onClick={saqlakg} className={'btn btn-primary'}>{t('Buttons.6')}</button>
+                        <button className={'btn btn-primary'} onClick={toggle}>{t('Buttons.7')}</button>
                     </ModalFooter>
                 </Modal>
                 <Modal isOpen={active2} toggle={toggle2}>
                     <ModalHeader>
-                        Brand qo`shish
+                        {t('ProductEdit.15')}
                     </ModalHeader>
                     <ModalBody>
-                        <label htmlFor={'nomi'}>Brand Nomi</label>
+                        <label htmlFor={'nomi'}>{t('ProductEdit.16')}</label>
                         <input onChange={fermabrandnomi} value={input.brandnomi} type="text" className={'form-control'}
                                id={'nomi'}/>
-                        <label htmlFor={'nomi2'}>Qisqa eslatma</label>
+                        <label htmlFor={'nomi2'}>{t('Buttons.17')}</label>
                         <input type="text" id={'nomi2'} onChange={fermaqisqaeslatma} value={input.qisqaeslatma}
                                className={'form-control'}/>
                     </ModalBody>
                     <ModalFooter>
-                        <button onClick={saqlabrand} className={'btn btn-primary'}>SAQLASH</button>
-                        <button className={'btn btn-primary'} onClick={toggle2}>CHIQISH</button>
+                        <button onClick={saqlabrand} className={'btn btn-primary'}>{t('Buttons.6')}</button>
+                        <button className={'btn btn-primary'} onClick={toggle2}>{t('Buttons.7')}</button>
                     </ModalFooter>
                 </Modal>
 
@@ -437,21 +438,21 @@ function Taxrirlash({
                         <table className={'table'}>
                             <thead>
                             <tr>
-                                <th>Soliq</th>
-                                <th>Foyda foizda(%)</th>
-                                <th>Sotib olish narxi</th>
-                                <th>Sotish narxi</th>
+                                <th>{t('ProductList.6')}</th>
+                                <th>{t('ProductEdit.17')}(%)</th>
+                                <th>{t('ProductList.11')}</th>
+                                <th>{t('ProductList.12')}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>
-                                    <label htmlFor={'soliqszNarx'}>Soliqsiz narx (tan narxi)</label>
+                                    <label htmlFor={'soliqszNarx'}>{t('ProductEdit.18')}</label>
                                     <h4>{input.sotibolishnarxi} {ValyutaReducer.valyutactiveName}</h4>
 
                                 </td>
                                 <td>
-                                    <label htmlFor={'foy'}>Foyda foizda</label><br/>
+                                    <label htmlFor={'foy'}>{t('ProductEdit.17')}</label><br/>
                                     <input type="number" id={'foy'}
                                            {...register("tax", {required:true,onChange:(e)=>{
                                                    setValue('salePrice', parseInt( e.target.value *getValues('buyPrice')/100+parseInt(getValues('buyPrice'))))
@@ -460,7 +461,7 @@ function Taxrirlash({
                                            className='taxrirlashInputValudetion form-control'/>
                                 </td>
                                 <td>
-                                    <label htmlFor={''}>Sotib olish narxi</label><br/>
+                                    <label htmlFor={''}>{t('ProductList.11')}</label><br/>
                                     <input type="number" id='sotishNarxi'
                                            {...register("buyPrice", {required:true,onChange:(e)=>{
                                                    setValue('salePrice',parseInt(e.target.value*getValues('tax')/100+parseInt(e.target.value)))
@@ -470,7 +471,7 @@ function Taxrirlash({
 
                                 </td>
                                 <td>
-                                    <label htmlFor={''}>Sotish narxi</label><br/>
+                                    <label htmlFor={''}>{t('ProductList.12')}</label><br/>
                                     <input type="number" id='sotibOlishNarxi' className={'form-control'}
                                         {...register('salePrice', {required:true,onChange:(e)=>{
                                                  setValue('tax',Math.round(parseFloat(e.target.value/getValues('buyPrice')-1)*100))
@@ -484,7 +485,7 @@ function Taxrirlash({
                         </table>
                     </div>
                     <div className='d-flex justify-content-end'>
-                        <button className={'btn btn-success mt-4'} type={"submit"}>Saqlash</button>
+                        <button className={'btn btn-success mt-4'} type={"submit"}>{t('Buttons.6')}</button>
                         {/*{*/}
                         {/*    (input.mahsulotnomi === "" || input.shtrixkod === "" || input.miqdorMaxsulot === "" || input.foydafoiz === "" || input.sotibolishnarxi === "") ?*/}
                         {/*        <button className={'btn btn-success mt-4'} onClick={saqla}>Saqlash</button> :*/}

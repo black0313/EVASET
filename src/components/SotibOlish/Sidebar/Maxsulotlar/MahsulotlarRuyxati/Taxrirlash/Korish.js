@@ -7,23 +7,27 @@ import MaxsulotlarRoyxariReducer, {
 } from "../../reducer/MaxsulotlarRoyxariReducer";
 import users from "../../../../../../reducer/users";
 import FirmaReducer, {getFirma} from "../../reducer/FirmaReducer";
+import {useTranslation} from "react-i18next";
 
 function Korish({active,toggle,mahsulot,MaxsulotlarRoyxariReducer,maxsulotlar}){
+
+    const {t} = useTranslation()
+
     return(
         <Modal isOpen={active} toggle={toggle}>
             <ModalHeader>
-                Korish
+                {t('Buttons.4')}
             </ModalHeader>
             <ModalBody>
                 <table className={'table'}>
                     <thead>
                         <tr>
-                            <th>Mahsulot</th>
-                            <th>Baza</th>
-                            <th>Sotib olish narxi</th>
-                            <th>Sotish narxi</th>
-                            <th>Qolgan mahsulot</th>
-                            <th>Firma</th>
+                            <th>{t('ProductList.1')}</th>
+                            <th>{t('ProductList.8')}</th>
+                            <th>{t('ProductList.11')}</th>
+                            <th>{t('ProductList.12')}</th>
+                            <th>{t('ProductList.13')}</th>
+                            <th>{t('ProductList.7')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +49,8 @@ function Korish({active,toggle,mahsulot,MaxsulotlarRoyxariReducer,maxsulotlar}){
                 </table>
             </ModalBody>
             <ModalFooter>
-                <button className={'btn btn-primary'}>Print</button>
-                <button className={'btn btn-primary'} onClick={toggle}>Chiqish</button>
+                <button className={'btn btn-primary'}>{t('ProductEdit.19')}</button>
+                <button className={'btn btn-primary'} onClick={toggle}>{t('Buttons.7')}</button>
             </ModalFooter>
         </Modal>
     )

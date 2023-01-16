@@ -110,12 +110,12 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
 
     const [headlist, setheadlist] = useState([
         {
-            name: 'Ismi',
-            phone: 'Telefon raqami',
-            telegram: 'Telegram',
-            supplier: 'Taminotchi turi',
-            debt:'Qarz',
-            amallar: 'Amallar'
+            name: t('Buttons.13'),
+            phone: t('Buttons.14'),
+            telegram: t('Buttons.15'),
+            supplier: t('Supplier.5'),
+            debt: t('Supplier.8'),
+            amallar: t('Third.5')
         }
     ])
 

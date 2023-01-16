@@ -109,11 +109,11 @@ function Mijozlarguruxi({
 
     const [headlist, setheadlist] = useState([
         {
-            name: 'Nomi',
-            phone: 'Tel raqami',
-            foiz:'Foiz %',
-            telegram: 'Telegram',
-            guruh: 'Guruh nomi',
+            name: t('Buttons.13'),
+            phone: t('Buttons.14'),
+            foiz:t('CustomGroup.5'),
+            telegram: t('Buttons.15'),
+            guruh: t('CustomAll.7'),
             amallar: 'Amallar'
         }
     ])
@@ -268,7 +268,7 @@ function Mijozlarguruxi({
                                         {
                                             telegram?<th>{item.telegram}</th>:''
                                         }
-                                        <th>Qarz</th>
+                                        <th>{t('Supplier.8')}</th>
                                         <th>{item.guruh}</th>
                                         {
                                             amallar?<th className={'text-center'}>{item.amallar}</th>:''
@@ -288,13 +288,13 @@ function Mijozlarguruxi({
                                     }).splice(0,visible).map((item,index) => <tr key={item.id}>
                                             <td>{index+1}</td>
                                             {
-                                                nomi?<td>{item.name}</td>:''
+                                                t('Buttons.13')?<td>{item.name}</td>:''
                                             }
                                             {
-                                                telraqam?<td>{item.phoneNumber}</td>:''
+                                                t('Buttons.14')?<td>{item.phoneNumber}</td>:''
                                             }
                                             {
-                                                telegram?<td>{item.telegram}</td>:''
+                                                t('Buttons.15')?<td>{item.telegram}</td>:''
                                             }
                                             <td>{item.debt}</td>
                                             <td>{input.mijozguruhnomi}</td>
@@ -354,30 +354,30 @@ function Mijozlarguruxi({
                 <Modal isOpen={active} toggle={toggle}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                     <ModalHeader>
-                        Yangi Mijoz qo`shish / taxrirlash
+                        {t('CustomAll.4')}
                     </ModalHeader>
                     <ModalBody>
-                        <label htmlFor={'nomi'}>Nomi</label>
+                        <label htmlFor={'nomi'}>{t('Buttons.13')}</label>
                         <input
                             {...register('name', {required: true})}
                             placeholder={errors.name ? errors.name?.type === "required" && "Name is required": 'name'}
                             defaultValue={''}
                             id={'nomi'} type="text"
                             className={'form-control mb-3 mt-1'}/>
-                        <label className={'mt-1'} htmlFor={'filial'}>Filialni tanlash</label>
+                        <label className={'mt-1'} htmlFor={'filial'}>{t('CustomAll.5')}</label>
                         <select name="" className={'form-control'} {...register('branchId', {required:true})}   >
                             {
                                 branchreducer.branch.map(item=>
                                     <option  value={item.id}>{item.name}</option>)
                             }
                         </select>
-                        <label className={'mt-2'} htmlFor={'tel'}>Telefon raqam</label>
+                        <label className={'mt-2'} htmlFor={'tel'}>{t('Buttons.14')}</label>
                         <input type="text" id='phoneNumberInput'
                                {...register('phoneNumber',{required:true})}
                             placeholder={errors.phoneNumber ? errors.phoneNumber?.type === "required" && "Phone num is required": 'phoneNumber'}
                                defaultValue={''}
                                 className={'form-control mb-3 mt-1'} />
-                        <label htmlFor={'foizda'}>Telegram</label>
+                        <label htmlFor={'foizda'}>{t('Buttons.15')}</label>
                         <input type="text"
                                {...register('telegram', {required:true})}
                             placeholder={errors.telegram ? errors.telegram?.type === "required" && "Telegram is required": 'telegram'}
@@ -385,7 +385,7 @@ function Mijozlarguruxi({
                                className={'form-control mb-3 mt-1'}
                                id={'foizda'}/>
 
-                        <label htmlFor={'m'}>Mijoz uchun guruh</label>
+                        <label htmlFor={'m'}>{t('CustomAll.6')}</label>
                         <select id={'m'}
                                 {...register('customerGroupId', {required:true})}
                                 className={'form-control'}>
@@ -397,8 +397,8 @@ function Mijozlarguruxi({
 
                     </ModalBody>
                     <ModalFooter>
-                        <button className={'btn btn-primary'} type={"submit"}>SAQLASH</button>
-                        <button className={'btn btn-primary'} type={"button"} onClick={toggle}>CHIQISH</button>
+                        <button className={'btn btn-primary'} type={"submit"}>{t('Buttons.6')}</button>
+                        <button className={'btn btn-primary'} type={"button"} onClick={toggle}>{t('Buttons.7')}</button>
                     </ModalFooter>
                     </form>
                 </Modal>

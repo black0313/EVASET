@@ -24,7 +24,7 @@ import users from "../../../../../../reducer/users";
 import FirmaReducer, {getFirma} from "../../reducer/FirmaReducer";
 import {useReactToPrint} from "react-to-print";
 import {Modal, ModalBody, ModalFooter} from "reactstrap";
-
+import {useTranslation} from "react-i18next";
 
 function BarchaMaxsulotlar({
                                users,
@@ -50,6 +50,7 @@ function BarchaMaxsulotlar({
         }
     )
 
+    const {t} = useTranslation()
 
     function view(e) {
         input.view = e.target.value
@@ -95,15 +96,15 @@ function BarchaMaxsulotlar({
 
     const [headlist, setheadlist] = useState([
         {
-            product: 'Mahsulot',
-            baza: 'Baza',
-            buyPrice: 'Sotib olish narxi',
-            salePrice: 'Sotish narxi',
-            qolganmahsulot: 'Qolgan mahsulot',
-            firma: 'Firma',
+            product: t('ProductList.1'),
+            baza: t('ProductList.10'),
+            buyPrice: t('ProductList.11'),
+            salePrice: t('ProductList.12'),
+            qolganmahsulot: t('ProductList.13'),
+            firma: t('ProductList.7'),
             amallar: 'Amallar',
-            ogoh: 'Eslatma miqdori',
-            yaroq: 'Muddati'
+            ogoh: t('ProductList.14'),
+            yaroq: t('ProductList.15')
         }
     ])
 
@@ -122,7 +123,6 @@ function BarchaMaxsulotlar({
         deleteMaxsulotRuyxati(deleteID)
         deleteModaltoggle('')
     }
-
 
     function deleteModaltoggle(item) {
         setdeletemodal(!deletemodal)
@@ -182,12 +182,11 @@ function BarchaMaxsulotlar({
             <div className="row">
                 <div className="rowStyleBR">
                     <div className="qoshish">
-                        {console.log(checkArray.deleteIdArray)}
-                        <h5>Barcha maxsulotlar</h5>
+                        <h5>{t('ProductList.1')}</h5>
                         <Link to={'/headerthird/taxrirlash'}>
                             {
                                 users.addproduct ?
-                                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button> : ''
+                                    <button onClick={toggle} className='btn btn-primary'>+{t('Buttons.2')}</button> : ''
                             }
                         </Link>
                     </div>
@@ -195,7 +194,7 @@ function BarchaMaxsulotlar({
                         users.viewproductadmin ? <div>
                             <div className="izlashBR">
                                 <div className="izlashBox1">
-                                    <p>Ko'rsatildi</p>
+                                    <p>{t('Buttons.8')}</p>
                                     <select name="" id="" value={input.view} onChange={view}>
                                         <option value="">25</option>
                                         <option value="">All</option>
@@ -311,33 +310,33 @@ function BarchaMaxsulotlar({
                                                         users.editproduct ? <Link
                                                             to={'/headerthird/mahsulotRuyxati/barcaMahsulot/taxrirlash/' + item.id}>
                                                             <button className='taxrirlash'><img src={Edit}
-                                                                                                alt=""/> Taxrirlash
+                                                                                                alt=""/> {t('Buttons.1')}
                                                             </button>
                                                         </Link> : ''
                                                     }
 
                                                     <button onClick={() => korishsh(item.id)} className='korish'><img
                                                         src={Korish}
-                                                        alt=""/> Ko'rish
+                                                        alt=""/> {t('Buttons.8')}
                                                     </button>
                                                     {
                                                         users.deleteproduct ?
                                                             <button onClick={() => deleteModaltoggle(item.id)}
                                                                     className='ochirish'><img
-                                                                src={Delete} alt=""/> O'chirish
+                                                                src={Delete} alt=""/> {t('Buttons.3')}
                                                             </button> : ''
                                                     }
 
                                                     <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                                         <ModalBody>
-                                                            <h5>( X ) Ishonchingiz komilmi ?</h5>
+                                                            <h5>( X ) {t('Buttons.12')} ?</h5>
                                                         </ModalBody>
                                                         <ModalFooter>
                                                             <button onClick={() => deleteFunc(item.id)}
-                                                                    className={'btn btn-outline-primary'}>O`chirish
+                                                                    className={'btn btn-outline-primary'}>{t('Buttons.3')}
                                                             </button>
                                                             <button onClick={() => deleteModaltoggle('')}
-                                                                    className={'btn btn-outline-primary'}>Chiqish
+                                                                    className={'btn btn-outline-primary'}>{t('Buttons.7')}
                                                             </button>
                                                         </ModalFooter>
                                                     </Modal>
@@ -348,18 +347,17 @@ function BarchaMaxsulotlar({
                                     }
                                     </tbody>
                                 </table>
-                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq
-                                    ko`rish
+                                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}
                                 </button>
                             </div>
                             {
                                 active ? <KorishM active={active} toggle={toggle} mahsulot={korishId}/> : ''
                             }
                             <div className="btnBoshqarish mt-3">
-                                <button onClick={ManyProductDelete} className='btn btn-danger buttonPage'>Belgilanganlarni o'chirish</button>
-                                <button className='btn btn-success buttonPage'>Boshqa bazaga surish</button>
-                                <button className='btn btn-primary buttonPage'>Bazadan olib tashlash</button>
-                                <button className='btn btn-warning buttonPage'>Belgilanganlarni vaqtinchalik o'chirish
+                                <button onClick={ManyProductDelete} className='btn btn-danger buttonPage'>{t('ProductList.16')}</button>
+                                <button className='btn btn-success buttonPage'>{t('ProductList.17')}</button>
+                                <button className='btn btn-primary buttonPage'>{t('ProductList.18')}</button>
+                                <button className='btn btn-warning buttonPage'>{t('ProductList.19')}
                                 </button>
                             </div>
 

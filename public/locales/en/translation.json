@@ -110,20 +110,6 @@
     "19": "Attached base",
     "20": "Login / Parol"
   },
-  "Buttons": {
-    "1": "Editing",
-    "2": "Add",
-    "3": "Delete",
-    "4": "View",
-    "5": "See more",
-    "6": "Save",
-    "7": "Exit",
-    "8": "Shown",
-    "9": "Amal",
-    "10": "Total",
-    "11": "Debt cancellation",
-    "12": "Are you sure"
-  },
   "Roles": {
     "1": "Roles",
     "2": "Position management",
@@ -176,7 +162,8 @@
     "4": "Add New",
     "5": "supplier type",
     "6": "Telegram Link",
-    "7": "Phone Number"
+    "7": "Phone Number",
+    "8": "Dept"
   },
   "CustomGroup": {
     "1": "Customer groups",
@@ -189,6 +176,71 @@
   "CustomAll": {
     "1": "All Customers",
     "2": "Total Debt",
-    "3": "Debt cancellation"
+    "3": "Debt cancellation",
+    "4": "Add / Edit New Customer",
+    "5": "Choose a branch",
+    "6": "Group for the client",
+    "7": "Group name"
+  },
+  "ProductList": {
+    "1": "Products",
+    "2": "Product management",
+    "3": "Product type",
+    "4": "Department",
+    "5": "Unit of measure",
+    "6": "Tax",
+    "7": "Company",
+    "8": "Base",
+    "9": "Balance Report",
+    "10": "Base",
+    "11": "Buy price",
+    "12": "Sale Price",
+    "13": "Remaining products",
+    "14": "Note amount",
+    "15": "Term",
+    "16": "Delete bookmarks",
+    "17": "Push to another base",
+    "18": "Remove from base",
+    "19": "Temporarily delete bookmarks"
+  },
+  "ProductEdit": {
+    "1": "Add / Edit product",
+    "2": "Product name",
+    "3": "Add section",
+    "4": "Section name",
+    "5": "Bar code",
+    "6": "A section within a section",
+    "7": "Amount",
+    "8": "Warning quantity",
+    "9": "Product expiration date",
+    "10": "Add a product image",
+    "11": "Add image",
+    "12": "Add unit",
+    "13": "Name",
+    "14": "Short name eg",
+    "15": "Add brand",
+    "16": "Brand name",
+    "17": "Profit in percent",
+    "18": "Price without tax (body price)",
+    "19": "Print"
+  },
+  "Buttons": {
+    "1": "Editing",
+    "2": "Add",
+    "3": "Delete",
+    "4": "View",
+    "5": "See more",
+    "6": "Save",
+    "7": "Exit",
+    "8": "Shown",
+    "9": "Amal",
+    "10": "Total",
+    "11": "Debt cancellation",
+    "12": "Are you sure",
+    "13": "name",
+    "14": "phone number",
+    "15": "telegram",
+    "16": "Filtering",
+    "17": "A quick note"
   }
 }

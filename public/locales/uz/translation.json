@@ -111,20 +111,7 @@
     "19": "Biriktirilgan baza",
     "20": "Log / Parol"
   },
-  "Buttons": {
-    "1": "Tahrirlash",
-    "2": "Qo'shish",
-    "3": "O'chirish",
-    "4": "Ko'rish",
-    "5": "Ko`proq ko`rish",
-    "6": "Saqlash",
-    "7": "Chiqish",
-    "8": "Ko'rsatildi",
-    "9": "Amal",
-    "10": "Jami",
-    "11": "Qarz uzish",
-    "12": "Ishonchingiz komilmi"
-  },
+
   "Roles": {
     "1": "Lavozimlar",
     "2": "Lavozimlar boshqaruvi",
@@ -177,7 +164,8 @@
     "4": "Yangi Qo`shish",
     "5": "Taminotchi turi",
     "6": "Telegram link",
-    "7": "Telefon raqam"
+    "7": "Telefon raqam",
+    "8": "Qarz"
   },
   "CustomGroup": {
     "1": "Mijozlar guruxlari",
@@ -190,6 +178,72 @@
   "CustomAll": {
       "1": "Barcha Mijozlar",
     "2": "Jami Qarz",
-    "3": "Qarz uzish"
+    "3": "Qarz uzish",
+    "4": "Yangi Mijoz qo`shish / taxrirlash",
+    "5": "Filialni tanlash",
+    "6": "Mijoz uchun guruh",
+    "7": "Guruh nomi"
+  },
+  "ProductList": {
+    "1": "Maxsulotlar",
+    "2": "Maxsulotlarni boshqarish",
+    "3": "Maxsulot turi",
+    "4": "Bo'lim",
+    "5": "O'lchov birligi",
+    "6": "Soliq",
+    "7": "Firma",
+    "8": "Baza",
+    "9": "Qoldiqlar xisoboti",
+    "10": "Baza",
+    "11": "Sotib olish narxi",
+    "12": "Sotish narxi",
+    "13": "Qolgan mahsulot",
+    "14": "Eslatma miqdori",
+    "15": "Muddati",
+    "16": "Belgilanganlarni o'chirish",
+    "17": "Boshqa bazaga surish",
+    "18": "Bazadan olib tashlash",
+    "19": "Belgilanganlarni vaqtinchalik o'chirish"
+  },
+  "ProductEdit": {
+    "1": "Mahsulot qo`shish / Taxrirlash",
+    "2": "Mahsulot nomi",
+    "3": "Bo`lim qo`shish",
+    "4": "Bo`lim nomi",
+    "5": "Shtrix kod",
+    "6": "Bo`lim ichida bolim",
+    "7": "Miqdori",
+    "8": "Ogohlantiruvchi miqdor",
+    "9": "Mahsulot yaroqlilik muddati",
+    "10": "Mahsulot rasm qo'shish",
+    "11": "Add img",
+    "12": "Birlik qo`shish",
+    "13": "Nomi",
+    "14": "Qisqa nom masalan",
+    "15": "Brand qo`shish",
+    "16": "Brand Nomi",
+    "17": "Foyda foizda",
+    "18": "Soliqsiz narx (tan narxi)",
+    "19": "Print"
+  },
+
+  "Buttons": {
+    "1": "Tahrirlash",
+    "2": "Qo'shish",
+    "3": "O'chirish",
+    "4": "Ko'rish",
+    "5": "Ko`proq ko`rish",
+    "6": "Saqlash",
+    "7": "Chiqish",
+    "8": "Ko'rsatildi",
+    "9": "Amal",
+    "10": "Jami",
+    "11": "Qarz uzish",
+    "12": "Ishonchingiz komilmi",
+    "13": "nomi",
+    "14": "telraqam",
+    "15": "telegram",
+    "16": "Filtirlash",
+    "17": "Qisqa eslatma"
   }
 }

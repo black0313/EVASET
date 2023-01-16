@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import BolimReducer, {deleteBolim, bolimlar, editBolim, getBolim, saveBolim,} from "../reducer/BolimReducer";
 import users from "../../../../../reducer/users";
 import ichkibolimred, {saveichkibolim, getichki} from "../reducer/Ichkibolimred";
+import {useTranslation} from "react-i18next";
 
 function Bolimlar({
                       editBolim,
@@ -27,6 +28,7 @@ function Bolimlar({
                       getichki
                   }) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             view: '',
