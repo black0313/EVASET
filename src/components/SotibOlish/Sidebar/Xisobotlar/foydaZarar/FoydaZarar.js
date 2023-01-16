@@ -15,9 +15,10 @@ import MaxsulotlarRoyxariReducer, {
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
-// import { DateRangePicker } from 'react-date-range';
-// import {addDays} from "date-fns";
-
+import {DatePicker} from 'antd'
+import moment from "moment";
+// import 'antd/dist/antd.css'
+const {RangePicker} = DatePicker
 function FoydaZarar({
                         getFoydaZarar,
                         saveFoydaZarar,
@@ -65,22 +66,14 @@ function FoydaZarar({
         getbranch(users.businessId)
     }, [])
 
-
-    const [state, setState] = useState([
-        {
-            startDate: new Date(),
-            // endDate: addDays(new Date(), 7),
-            color:'#0044ff',
-            key: 'selection'
-        }
-    ]);
-
-
+    const [dates, setDates] = useState([])
+    console.log(dates)
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderF">
                 <h2>Foyda va Zarar</h2>
             </div>
+
             <div className="rowStyleF">
                 <div className="izlashF">
                     <div className="row d-flex justify-content-between">
@@ -98,6 +91,9 @@ function FoydaZarar({
                                 <h4 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani
                                     belgilash:</h4>
                         </div>
+                        <RangePicker onChange={(values) =>{
+                            setDates(values.map(item =>{return moment(item).format('DD-MM-YYYY')}))
+                        }}/>
 
                     </div>
                 </div>

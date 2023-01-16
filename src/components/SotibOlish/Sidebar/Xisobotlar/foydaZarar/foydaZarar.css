@@ -57,9 +57,9 @@
        transition: 0.6s all ease;
 }
 .hovFoyda:hover{
-       background: linear-gradient(90deg,red,green);
-       color: #cbadad;
-       border-radius: 10px;
+       border-bottom: 1px solid black;
+       color: #1e0a0a;
+       border-radius: 5px;
 }
 .d1 ul li{
        cursor: pointer;

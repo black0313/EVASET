@@ -1,5 +1,5 @@
 import axios from "axios";
-export  const  BaseUrl = 'http://192.168.50.107:8080/api'
+export  const  BaseUrl = 'http://localhost:8080/api'
 export const api = ({dispatch}) => (next) => (action) => {
     if (action.type !== "api/apiCall") {
         next(action)
