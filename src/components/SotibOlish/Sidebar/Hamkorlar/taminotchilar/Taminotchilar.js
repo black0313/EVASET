@@ -361,7 +361,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                     <Modal isOpen={active} toggle={toggle}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                         <ModalHeader>
-                            Yangi Qo`shish
+                            {t('Supplier.4')}
                         </ModalHeader>
                         <ModalBody>
                                 <div className="row">
@@ -372,7 +372,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                                         </select>
                                     </div>
                                     <div className="in col-md-6 col-sm-12 mb-3">
-                                        <label htmlFor={'turi'}>Taminotchi turi</label>
+                                        <label htmlFor={'turi'}>{t('Supplier.5')}</label>
                                         <input type="text"
                                             {...register('supplierType', {required: true})}
                                             placeholder={errors.supplierType ? errors.supplierType?.type === "required" && "SupplierType is required":'supplierType'}
@@ -383,14 +383,14 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
 
                             <div className="row">
                                 <div className="col-md-6 col-sm-12 mb-3">
-                                    <label htmlFor={'log1'}>Login</label>
+                                    <label htmlFor={'log1'}>{t('Employ.7')}</label>
                                     <input type="text"
 
                                         className={'form-control'}
                                         id={'log1'} />
                                 </div>
                                 <div className="col-md-6 col-sm-12 mb-3">
-                                    <label htmlFor={'ism'}>Ismi</label>
+                                    <label htmlFor={'ism'}>{t('Employ.8')}</label>
                                     <input  type="text" id={'ism'}
                                         {...register('name',{required:true})}
                                         placeholder={errors.name ? errors.name?.type === "required" && "Name is required": 'name'}
@@ -401,7 +401,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                             </div>
                             <div className="row">
                                 <div className={'col-md-6 col-sm-12 mb-3'}>
-                                    <label htmlFor={'ot'}>Telegram link</label>
+                                    <label htmlFor={'ot'}>{t('Supplier.6')}</label>
                                     <input
                                         {...register('telegram',{required:true})}
                                         placeholder={errors.telegram ? errors.telegram?.type === "required" && "Telegram is required": 'telegram'}
@@ -409,7 +409,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                                         className={'form-control'} />
                                 </div>
                                 <div className={'col-md-6 col-sm-12 mb-3'}>
-                                    <label htmlFor={'ot'}>Telefon raqam</label>
+                                    <label htmlFor={'ot'}>{t('Supplier.7')}</label>
                                     <input  type="text"
                                         {...register('phoneNumber',{required:true})}
                                         placeholder={errors.phoneNumber ? errors.phoneNumber?.type === "required" && "Phone Num is required": 'phoneNumber'}
@@ -422,7 +422,7 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                             <button className={'btn btn-outline-primary'}
                                     type={"submit"}
                             >SAVE</button>
-                            <button type={"button"} className={'btn btn-outline-primary'} onClick={toggle}>CHIQISH</button>
+                            <button type={"button"} className={'btn btn-outline-primary'} onClick={toggle}>{t('Buttons.7')}</button>
                         </ModalFooter>
                         </form>
                     </Modal> : ''

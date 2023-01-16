@@ -172,6 +172,23 @@
   "Supplier": {
     "1": "Dealers/Dealers",
     "2": "All suppliers",
-    "3": "Businnes Id"
+    "3": "Businnes Id",
+    "4": "Add New",
+    "5": "supplier type",
+    "6": "Telegram Link",
+    "7": "Phone Number"
+  },
+  "CustomGroup": {
+    "1": "Customer groups",
+    "2": "All customer groups",
+    "3": "Add group",
+    "4": "Group name",
+    "5": "Percent",
+    "6": "Group Name"
+  },
+  "CustomAll": {
+    "1": "All Customers",
+    "2": "Total Debt",
+    "3": "Debt cancellation"
   }
 }

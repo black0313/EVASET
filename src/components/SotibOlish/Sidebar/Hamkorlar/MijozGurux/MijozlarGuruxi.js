@@ -20,6 +20,7 @@ import QarzuzishReducer, {qarzuzishCustomer} from "../reducer/QarzuzishReducer";
 import {deleteMijozhisobot} from "../../Xisobotlar/reducer/MijozHisobotiReducer";
 import MijozlarGuruhReducer, {getMijozLarGuruh} from "../reducer/MijozlarGuruhReducer";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import {useTranslation} from "react-i18next";
 
 function Mijozlarguruxi({
                             getMijozGurux,
@@ -38,7 +39,7 @@ function Mijozlarguruxi({
 
 
     const [active, setActive] = useState(false);
-
+    const {t} = useTranslation()
     const [plaseholders,setPlaseholders] = useState(
         {
             guruhNomiPlaseholders:'',
@@ -196,16 +197,17 @@ function Mijozlarguruxi({
         resetField('phoneNumber','')
         resetField('telegram','')
     }
+
     return (
         <div className="col-md-12 mt-2 pt-4 pb-4">
             <div className="textHeaderMIG">
-                <h2 className={'text-center'}>Barcha Mijozlar</h2>
+                <h2 className={'text-center'}>{t('CustomAll.1')}</h2>
             </div>
             <div className="rowStyleMIG">
                 <div className="qoshishMIG">
-                    <h5>Barcha mijozlar</h5>
+                    <h5>{t('CustomAll.1')}</h5>
                     {
-                        users.addcustomer?  <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>:''
+                        users.addcustomer?  <button onClick={toggle} className='btn btn-primary'>+{t('Buttons.2')}</button>:''
                     }
                 </div>
 
@@ -213,7 +215,7 @@ function Mijozlarguruxi({
                     users.viewcustomer? <div>
                         <div className="izlashMIG">
                             <div className="izlashBox1">
-                                <p>Ko'rsatildi</p>
+                                <p>{t('Buttons.8')}</p>
                                 <select name="" id="">
                                     <option value="">25</option>
                                     <option value="">50</option>
@@ -248,7 +250,7 @@ function Mijozlarguruxi({
                                 })
                             }
                             {/*<div><h4>Maxsulotlar soni: {xisob}</h4></div>*/}
-                            <div><h4>Jami Qarz: {jamixisob}  So`m</h4></div>
+                            <div><h4>{t('CustomAll.2')}: {jamixisob}  {t('Third.5')}</h4></div>
                         </div>
                         <div className="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
 
@@ -298,15 +300,15 @@ function Mijozlarguruxi({
                                             <td>{input.mijozguruhnomi}</td>
                                             <Modal isOpen={qarzuz} toggle={toggle2}>
                                                 <ModalHeader>
-                                                    Qarz uzish
+                                                    {t('CustomAll.3')}
                                                 </ModalHeader>
                                                 <ModalBody>
-                                                    <label htmlFor={'l'}>Qarz uzish</label>
+                                                    <label htmlFor={'l'}>{t('CustomAll.3')}</label>
                                                     <input type="text" className={'form-control'} value={input.qarzuzish} onChange={qarzuzish}/>
                                                 </ModalBody>
                                                 <ModalFooter>
-                                                    <button className={'btn btn-outline-primary'} onClick={()=>saqlaqarz(item)}>Saqlash</button>
-                                                    <button className={'btn btn-outline-primary'} onClick={toggle2}>Chiqish</button>
+                                                    <button className={'btn btn-outline-primary'} onClick={()=>saqlaqarz(item)}>{t('Buttons.6')}</button>
+                                                    <button className={'btn btn-outline-primary'} onClick={toggle2}>{t('Buttons.7')}</button>
                                                 </ModalFooter>
                                             </Modal>
                                             {
@@ -314,33 +316,33 @@ function Mijozlarguruxi({
                                                     {
                                                         users.editcustomer?
                                                             <button className={'btnB m-1'}
-                                                                    onClick={() => editM(item.id)}>Taxrirlash
+                                                                    onClick={() => editM(item.id)}>{t('Buttons.1')}
                                                             </button>:''
                                                     }
                                                     {
                                                         users.deletecustomer? <button className={'btnB  m-1'}
-                                                                                      onClick={() => deleteModaltoggle(item.id)}>O`chirish
+                                                                                      onClick={() => deleteModaltoggle(item.id)}>{t('Buttons.3')}
                                                         </button>:''
                                                     }
 
                                                     <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                                         <ModalBody>
-                                                            <h5>Ishonchingiz komilmi ?</h5>
+                                                            <h5>{t('Buttons.12')} ?</h5>
                                                         </ModalBody>
                                                         <ModalFooter>
-                                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>{t('Buttons.3')}</button>
+                                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                                                         </ModalFooter>
                                                     </Modal>
 
-                                                    <td><button className={'btnB mt-1'} onClick={toggle2}>Qarz uzish</button></td>
+                                                    <td><button className={'btnB mt-1'} onClick={toggle2}>{t('Buttons.3')}</button></td>
                                                 </td>:''
                                             }
                                         </tr>)
                                 }
                                 </tbody>
                             </table>
-                            <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                            <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                         </div>
 
                     </div>:''
