@@ -63,12 +63,30 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                 data: [120000, 300000, 250000, 400000, 200000, 100000, 300000]
             }],
         options: {
-
             colors: ['#0044FF', '#FF9777'],
-
             chart: {
                 height: 350,
                 type: 'area'
+            },
+            fill:{
+                colors: undefined,
+                opacity: 0.2,
+                type: 'area',
+                gradient: {
+                    type: "horizontal",
+                    shadeIntensity: 0.5,
+                    gradientToColors: undefined,
+                    inverseColors: true,
+                    opacityFrom: 0.1,
+                    opacityTo: 1,
+                    stops: [0, 50, 100],
+                },
+                pattern: {
+                    style: 'verticalLines',
+                    width: 6,
+                    height: 6,
+                    strokeWidth: 2,
+                },
             },
             dataLabels: {
                 enabled: false
@@ -77,6 +95,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                 curve: 'smooth'
             },
             yaxis: {
+                tickAmount: 5,
                 min: 0,
                 max: 500000
             },
@@ -337,7 +356,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                         <Chart
                             options={chartOptions.options}
                             series={chartOptions.series}
-                            type={'line'}
+                            type={'area'}
                             height={windowscrenn * 0.40}
                         />
                     </div>
