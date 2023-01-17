@@ -22,9 +22,11 @@ import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import {Modal, ModalBody, ModalFooter} from "reactstrap";
 import ValyutaReducer from "../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
+import {useTranslation} from "react-i18next";
 
 function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreducer,getTaminot,TaminotReducer,SavdoQoshishReducer,getSavdolar,getSavdolar2,users,getbranch,ditSavdolar,saveSavdolar}) {
 
+    const {t} = useTranslation()
     const [input,setInput] = useState(
         {
             baza:'',
@@ -171,15 +173,15 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
     return (
         <div className="col-md-12 mt-2 mb-4 mt-4 ">
             <div className="textHeader">
-                <h2>Barcha savdolar</h2>
+                <h2>{t('Trade.1')}</h2>
             </div>
             <div className="rowStyleH">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="row cont">
                     <div className="col-md-6">
-                        <h6>Baza:</h6>
+                        <h6>{t('ProductList.8')}:</h6>
                         <select name="" value={input.baza} onChange={baza} id="">
                             <option value="barcasi">Barchasi</option>
                             {
@@ -188,7 +190,7 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
                         </select>
                     </div>
                     <div className="col-md-6">
-                        <h6>Diller:</h6>
+                        <h6>{t('Purchase.2')}:</h6>
                         <select name="" value={input.diller} onChange={diller} id="" className={'form-control'}>
                             <option value={'barcasi'}>Barchasi</option>
                             <option value='noback'>No backend</option>
@@ -200,11 +202,11 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <h6>Mahsulot izlash:</h6>
+                        <h6>{t('Trade.2')}:</h6>
                         <input type="text" value={input.mahsulotizlash} onChange={mahsulotizlash} className={'form-control'}/>
                     </div>
                     <div className="col-md-6">
-                        <h6>Sanani belgilang:</h6>
+                        <h6>{t('Trade.3')}:</h6>
                         <input type="date" className={'form-control'} value={input.sananibelgilash} onChange={sananibelgilash}/>
 
                     </div>
@@ -213,8 +215,8 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
 
             <div className="rowStyleH2">
                 <div className="qoshish">
-                    <h5>Barcha savdolar</h5>
-                    <Link to={'/headerthird/mahsulotQoshish'}><button className='btn btn-primary'>+Qo'shish</button></Link>
+                    <h5>{t('Trade.1')}</h5>
+                    <Link to={'/headerthird/mahsulotQoshish'}><button className='btn btn-primary'>+{t('Buttons.2')}</button></Link>
                 </div>
                 <div className="izlashH2">
                     <div className="izlashBox1">
@@ -228,7 +230,7 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
                         <button><img src={Excel} alt="" /> Export Excel</button>
                         <button><img src={Print} alt="" /> Print</button>
                         <button><img src={Pdf} alt="" />Export PDF</button>
-                        <button> <img src={Data} alt="" />Malumotlarni kamaytirish </button>
+                        <button> <img src={Data} alt="" />{t('Buttons.18')} </button>
                     </div>
                     <div className="izlashBox2">
                         <input value={input.izlash} onChange={izlash} type="text" placeholder='Izlash...'/>
@@ -240,18 +242,18 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
                         <thead>
                         <tr>
                             {/*<th>T/R</th>*/}
-                            <th>sana</th>
-                            <th>Savdo raqami</th>
-                            <th>Mijoz</th>
-                            <th>Telefon raqami</th>
-                            <th>Baza</th>
-                            <th>To'lov statusi</th>
-                            <th>To'lov usuli</th>
-                            <th>Jami summa</th>
-                            <th>To'langan summa</th>
-                            <th>Qarz</th>
+                            <th>{t('Trade.4')}</th>
+                            <th>{t('Trade.5')}</th>
+                            <th>{t('Pagination.10')}</th>
+                            <th>{t('Purchase.15')}</th>
+                            <th>{t('ProductList.8')}</th>
+                            <th>{t('Purchase.4')}</th>
+                            <th>{t('Purchase.26')}</th>
+                            <th>{t('Purchase.22')}</th>
+                            <th>{t('Trade.6')}</th>
+                            <th>{t('Supplier.8')}</th>
                             {/*<th>Yetkazish statusi</th>*/}
-                            <th>Jami maxsulotlar</th>
+                            <th>{t('Purchase.23')}</th>
                             {/*<th>Savdogar</th>*/}
                             {/*<th>Savdo eslatmasi</th>*/}
                             {/*<th>Yetkazish manzili</th>*/}
@@ -275,16 +277,16 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
                                 <td> </td>
                                 {/*<td> </td>*/}
                                 <td>
-                                        <Link to={'/headerthird/mahsulotQoshish/'+item?.id}><button className='taxrirlash'> <img src={Edit} alt="" /> Taxrirlash</button> </Link>
-                                        <button onClick={()=>deleteModaltoggle(item.id)} className='ochirish'> <img src={Delete} alt="" /> O'chirish</button>
+                                        <Link to={'/headerthird/mahsulotQoshish/'+item?.id}><button className='taxrirlash'> <img src={Edit} alt="" /> {t('Buttons.1')}</button> </Link>
+                                        <button onClick={()=>deleteModaltoggle(item.id)} className='ochirish'> <img src={Delete} alt="" /> {t('Buttons.3')}</button>
 
                                     <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                         <ModalBody>
-                                            <h5>Ishonchingiz komilmi ?</h5>
+                                            <h5>{t('Buttons.12')} ?</h5>
                                         </ModalBody>
                                         <ModalFooter>
-                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>{t('Buttons.3')}</button>
+                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                                         </ModalFooter>
                                     </Modal>
                                 </td>
@@ -292,7 +294,7 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
                         }
                         </tbody>
                     </table>
-                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                 </div>
 
             </div>

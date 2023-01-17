@@ -35,7 +35,7 @@ import TradeHistory, { getSavdolarHistory } from "../reducer/TradeHistory";
 import { toast } from "react-toastify";
 import XarajatlarReducer, { getXarajatlar, saveXarajatlar } from "../../Xarajatlar/reducer/XarajatlarReducer";
 import XarajatTurlariReducer, { getXarajatlarTurlari } from "../../Xarajatlar/reducer/XarajatTurlariReducer";
-import imagecom from "../../../../Imagecom";
+import {useTranslation} from "react-i18next";
 import Imagecom from "../../../../Imagecom";
 import ValyutaReducer, {getValyuta,changeActivecur} from "../../Settings/DukonSozlamalari/reducers/ValyutaReducer";
 function SavdoOynasi({
@@ -54,6 +54,7 @@ function SavdoOynasi({
 
 }) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             baza: "",
@@ -128,16 +129,6 @@ function SavdoOynasi({
 
     function jamisummaxarajat(e) {
         input.jamisummaxarajat = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-    function Valyutaa(e) {
-        input.valyutaa = e.target.value
-        let a = { ...input }
-        setInput(a)
-    }
-    function inputCounter(e) {
-        input.inputCounter = e.target.value
         let a = { ...input }
         setInput(a)
     }
@@ -977,7 +968,7 @@ function SavdoOynasi({
             <div className={'savdoOynaContainers'}>
                 <div className="savdoNavbar">
                     <div className="navbarLeft d-flex">
-                        <h5>Baza</h5>
+                        <h5>{t('ProductList.8')}</h5>
                         <select name="" id="" className='bazaSelect1' onChange={setbranch} value={input.branch}>
                             {
                                 users.users.branches.map(item => <option key={item.id} value={item.id}>
@@ -993,18 +984,18 @@ function SavdoOynasi({
                                     <option value={item.id}>{item.name}</option>)
                             }
                         </select>
-                        <button className={'btn btn-outline-primary'} style={{lineHeight:'12px'}} onClick={toggle4}>Oxirgi savdolar</button>
+                        <button className={'btn btn-outline-primary'} style={{lineHeight:'12px'}} onClick={toggle4}>{t('Trade.20')}</button>
                         {/*<button className={'btn btn-outline-primary'}>Hold*/}
-                        <button className={'btn '} onClick={toggle} style={{lineHeight:'12px'}} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">Ushlab turish</button>
-                        <button onClick={toggle7} className={'btn btn-outline-primary'} style={{lineHeight:'12px'}}>+ Xarajat</button>
+                        <button className={'btn '} onClick={toggle} style={{lineHeight:'12px'}} data-tip="Bu menuda mijoz savdolari vaqtinchalik saqlanadi">{t('Trade.21')}</button>
+                        <button onClick={toggle7} className={'btn btn-outline-primary'} style={{lineHeight:'12px'}}>+ {t('Trade.22')}</button>
                         <Modal isOpen={xarajat} toggle={toggle7}>
                             <ModalHeader>
-                                Xarajat qo`shish
+                                {t('Trade.23')}
                             </ModalHeader>
                             <ModalBody>
                                 <div className="co-md-12 d-flex">
                                     <div className="col-md-6">
-                                        <label htmlFor={'baza'}>Baza</label>
+                                        <label htmlFor={'baza'}>{t('ProductList.8')}</label>
                                         <select id={'b'} className={'form-control'} value={input.bazaxarajat} onChange={bazaxarajat}>
                                             {
                                                 branchreducer.branch.map(item =>
@@ -1018,20 +1009,20 @@ function SavdoOynasi({
                                             <p className='pStyle'>{placeholders.xqBazalaceholder}</p>
                                         }
 
-                                        <label htmlFor={'q'}>Qisqa eslatma</label>
+                                        <label htmlFor={'q'}>{t('Buttons.17')}</label>
                                         <textarea id={'q'} cols="5" rows="3" className={'form-control'} value={input.qisqaeslatmaxarajat} onChange={qisqaeslatmaxarajat} placeholder={placeholders.xqQisqaEslatmaPlaceholder}> </textarea>
-                                        <label htmlFor={'tot'}>Jami summa</label>
+                                        <label htmlFor={'tot'}>{t('Purchase.22')}</label>
                                         <input type="number" id='JamPlacID' className={'form-control'} value={input.jamisummaxarajat} placeholder={placeholders.xqJamiSummaPlaceholder} onChange={jamisummaxarajat} />
                                     </div>
                                     <div className="col-md-6">
-                                        <label htmlFor={'sana'}>Sana</label>
+                                        <label htmlFor={'sana'}>{t('Trade.4')}</label>
                                         <input  type="date" value={input.sanaxarajat} onChange={sanaxarajat} className={'form-control'} />
                                         {
                                             input.sanaxarajat ? ""
                                             :
                                             <p className='pStyle'>{placeholders.xqSanaPlaceholder}</p>
                                         }
-                                        <label htmlFor={'xturi'} className={'mt-3'}>Xarajat turi</label>
+                                        <label htmlFor={'xturi'} className={'mt-3'}>{t('Trade.24')}</label>
 
                                         <select name={'xturi'} value={input.xarajatturisavdo} onChange={xarajatturisavdo} className={'form-control'}>
                                             {/*<option value="1">Tanlash</option>*/}
@@ -1048,7 +1039,7 @@ function SavdoOynasi({
                                             :
                                             <p className='pStyle'>{placeholders.xqQisqaEslatmaPlaceholder}</p>
                                         }
-                                        <label className={'mt-3'} htmlFor={'xqildi'}>Xarajat qildi</label>
+                                        <label className={'mt-3'} htmlFor={'xqildi'}>{t('Trade.25')}</label>
                                         <select id={'xqildi'} className={'form-control'}>
                                             <option value={'Tanlash'}>Tanlash</option>
                                             <option value={'boshliq'}>Boshliq</option>
@@ -1058,8 +1049,8 @@ function SavdoOynasi({
 
                             </ModalBody>
                             <ModalFooter>
-                                <button onClick={saqlaXarajat} className={'btn btn-outline-primary'}>Saqlash</button>
-                                <button onClick={toggle7} className={'btn btn-outline-primary'}>Chiqish</button>
+                                <button onClick={saqlaXarajat} className={'btn btn-outline-primary'}>{t('Buttons.6')}</button>
+                                <button onClick={toggle7} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                             </ModalFooter>
                         </Modal>
                         <ReactTooltip />
@@ -1070,19 +1061,19 @@ function SavdoOynasi({
 
                         <Modal isOpen={lastTradeActive} toggle={toggle4}>
                             <ModalHeader>
-                                <p>OXIRGI SAVDOLAR</p>
+                                <p>{t('Trade.26')}</p>
                             </ModalHeader>
                             <ModalBody>
                                 <div className={'col-md-12 '}>
                                     <div className={'d-flex justify-content-between'}>
                                         <Link to={'/headerthird/turliTavar/final'}>
-                                            <button className={'btn btn-success'}>Final</button>
+                                            <button className={'btn btn-success'}>{t('Trade.27')}</button>
                                         </Link>
                                         <Link to={'/headerthird/turliTavar/chegirma'}>
-                                            <button className={'btn btn-success'}>Chegirma</button>
+                                            <button className={'btn btn-success'}>{t('Trade.28')}</button>
                                         </Link>
                                         <Link to={'/headerthird/turliTavar/eslatma'}>
-                                            <button className={'btn btn-success'}>Eslatma</button>
+                                            <button className={'btn btn-success'}>{t('Trade.18')}</button>
                                         </Link>
                                     </div>
                                     <Switch>
@@ -1098,7 +1089,7 @@ function SavdoOynasi({
                                 </div>
                             </ModalBody>
                             <ModalFooter>
-                                <button onClick={toggle4} className={'btn btn-outline-primary'}>Chiqish</button>
+                                <button onClick={toggle4} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                             </ModalFooter>
                         </Modal>
                     </div>
@@ -1118,22 +1109,21 @@ function SavdoOynasi({
                                 placeholder={'Mahsulot nomi yoki shtrix kodini yozing'} />
 
 
-
                             <button className={'addButton'} onClick={toggle5}>+</button>
                             <Modal isOpen={openModal} toggle={toggle5}>
                                 <ModalHeader>
-                                    Maxsulot qoshish
+                                    {t('ProductEdit.1')}
                                 </ModalHeader>
                                 <ModalBody>
                                     <div className={'row'}>
                                         <div className="col-md-6 col-sm-12">
-                                            <label htmlFor={'mod'}>Mahsulot nomi</label>
+                                            <label htmlFor={'mod'}>{t('ProductEdit.2')}</label>
                                             <input type="text" value={input.modalmahsulotnomi} placeholder={placeholders.mqMaxsulotNomiPlaceholder}
                                                 onChange={modalmahsulotnomi} id={'mod'} className={'form-control mb-4'} />
                                             <div>
 
                                             </div>
-                                            <label htmlFor={'ol'}>O`lchov birligi</label>
+                                            <label htmlFor={'ol'}>{t('ProductList.5')}</label>
                                             <select className={'form-control mb-4'} name="" id={'ol'}
                                                 value={input.ulcovbirligi} onChange={ulcovbirligi}>
                                                 <option value="tanlash">Tanlash</option>
@@ -1149,7 +1139,7 @@ function SavdoOynasi({
                                                     <p style={{color:"red", fontSize:"14px",margin:"0",position:"absolute",top:'163px'}}>{placeholders.mqOlchovBirligiPlaceholder}</p>
 
                                             }
-                                            <label htmlFor={'bolim'}>Bo`lim</label>
+                                            <label htmlFor={'bolim'}>{t('ProductList.4')}</label>
                                             <select name="" id={'bolim'} className={'form-control mb-4'} value={input.bolim}
                                                 onChange={bolim}>
                                                 <option value="tanlash">Tanlash</option>
@@ -1166,14 +1156,14 @@ function SavdoOynasi({
 
                                             }
 
-                                            <label htmlFor={'sot'}>Sotish narxi</label>
+                                            <label htmlFor={'sot'}>{t('ProductList.12')}</label>
                                             <input type="text" id='sn' className={'form-control mb-4 plceholdersStylSavdoOyna'} value={input.sotishnarxi} placeholder={placeholders.mqSotishNarxiPlaceholder}
                                                 onChange={sotishnarxi} />
-                                            <label htmlFor={'shtrix'}>Shtrix kod</label>
+                                            <label htmlFor={'shtrix'}>{t('Trade.29')}</label>
                                             <input id='shtrixId' type="number" className={'form-control mb-4 plceholdersStylSavdoOyna'} value={input.shtrix} placeholder={placeholders.mqShtrixKodiPlaceholder}
                                                 onChange={shtrix} />
 
-                                            <label htmlFor={'firma'}>Firma</label>
+                                            <label htmlFor={'firma'}>{t('ProductList.7')}</label>
                                             <select name="" id={'firma'} className={'form-control mb-4'} value={input.firma}
                                                 onChange={firma}>
                                                 {/*    FIX ME*/}
@@ -1193,21 +1183,21 @@ function SavdoOynasi({
                                         </div>
 
                                         <div className="col-md-6">
-                                            <label htmlFor={'miqdor'}>Miqdor</label>
+                                            <label htmlFor={'miqdor'}>{t('ProductEdit.7')}</label>
                                             <input type="number" id={'miqdor'} className={'form-control mb-4 plceholdersStylSavdoOyna'} placeholder={placeholders.mqMiqdorPlaceholder}
                                                 value={input.miqdor} onChange={miqdor} />
-                                            <label htmlFor={'sol'}>Soliqsiz narx</label>
+                                            <label htmlFor={'sol'}>{t('Trade.30')}</label>
                                             <input type="number" className={'form-control mb-4 plceholdersStylSavdoOyna'} value={input.soliqsiznarx}
                                                 onChange={soliqsiznarx} />
-                                            <label htmlFor={'sol'}>Soliq bn narxi</label>
+                                            <label htmlFor={'sol'}>{t('Trade.31')}</label>
                                             <input id='soliqBnNId' type="number" className={'form-control mb-4 plceholdersStylSavdoOyna'} value={input.soliqbnnarxi} placeholder={placeholders.mqSoliqBilanNarxiPlaceholder}
                                                 onChange={soliqbnnarxi} />
-                                            <label htmlFor={'fo'}>Foyda foizda</label>
+                                            <label htmlFor={'fo'}>{t('Trade.32')}</label>
                                             <input id='foydaId' type="number" className={'form-control mb-4 plceholdersStylSavdoOyna'} value={input.foydafoiz} placeholder={placeholders.mqFoydaPlaceholder}
                                                 onChange={foydafoiz} />
-                                            <label htmlFor={''}>Sotish narxi soliqsiz</label>
+                                            <label htmlFor={''}>{t('Trade.33')}</label>
                                             <input id='sotishNSoliqsizId' type="number" className={'form-control mb-4 plceholdersStylSavdoOyna'} placeholder={placeholders.mqSotishNarxiPlaceholder}/> 
-                                            <label htmlFor={'nn'}>Sotib olish narxi</label>
+                                            <label htmlFor={'nn'}>{t('Purchase.21')}</label>
                                             <input id='sotibOliNId' type="number" value={input.sotibolishnarx} className={'form-control plceholdersStylSavdoOyna'} placeholder={placeholders.mqSotibOlishNarxiPlaceholder}
                                                 onChange={sotibolishnarxi} />
 
@@ -1215,8 +1205,8 @@ function SavdoOynasi({
                                     </div>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <button className={'btn btn-outline-primary'} onClick={toggle5}>Chiqish</button>
-                                    <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                                    <button className={'btn btn-outline-primary'} onClick={toggle5}>{t('Buttons.7')}</button>
+                                    <button className={'btn btn-outline-primary'} onClick={saqla}>{t('Buttons.6')}</button>
                                 </ModalFooter>
                             </Modal>
                         </div>
@@ -1225,9 +1215,9 @@ function SavdoOynasi({
                                 <thead>
                                     <tr>
                                         <th>T/R</th>
-                                        <th>Mahsulot</th>
-                                        <th className={'text-center'}>Miqdori</th>
-                                        <th>Jami</th>
+                                        <th>{t('ProductList.1')}</th>
+                                        <th className={'text-center'}>{t('ProductEdit.7')}</th>
+                                        <th>{t('Trade.14')}</th>
                                         <th>. . .</th>
                                     </tr>
                                 </thead>
@@ -1238,10 +1228,10 @@ function SavdoOynasi({
                                             <td onClick={toggle6} className={'namepointer'} style={{ marginLeft: '10px' }}>{item.name}</td>
                                             <Modal isOpen={tahrir} toggle={toggle6}>
                                                 <ModalHeader>
-                                                    Tahrir
+                                                    {t('Buttons.1')}
                                                 </ModalHeader>
                                                 <ModalBody>
-                                                    <label htmlFor={'nar'}>Narxi</label>
+                                                    <label htmlFor={'nar'}>{t('Trade.13')}</label>
                                                     <input id={'nar'} type="text" value={input.narxi} onChange={narxi} className={'form-control'} />
                                                     <div className="col-md-12 d-flex ">
                                                         <div className="col-md-6">
@@ -1251,11 +1241,11 @@ function SavdoOynasi({
                                                             </select>
                                                         </div>
                                                         <div className="col-md-6">
-                                                            <label htmlFor={'m'}>Chegirma miqdori</label>
+                                                            <label htmlFor={'m'}>{t('Trade.28')}</label>
                                                             <input type="number" value={input.chegirmamiqdor} onChange={chegirmamiqdor} className={'form-control'} />
                                                         </div>
                                                     </div>
-                                                    <label htmlFor={'te'} className={'mt-2'}>Qisqa eslatma</label>
+                                                    <label htmlFor={'te'} className={'mt-2'}>{t('Trade.18')}</label>
                                                     <textarea name="" id={'te'} cols="10" rows="3" value={input.qisqanarx} onChange={qisqanarx} className={'form-control'}> </textarea>
                                                 </ModalBody>
                                                 <ModalFooter>
@@ -1298,24 +1288,24 @@ function SavdoOynasi({
                             </table>
                         </div>
                         <div className="maxSoniBox">
-                            <h6 className='d-flex align-items-center'>Mahsulot soni:{xisob}</h6>
+                            <h6 className='d-flex align-items-center'>{t('Trade.15')}:{xisob}</h6>
                             {/*<h6>Jami:{jamixisob}</h6>*/}
-                            <h6>Jami: {jamixisob} {ValyutaReducer.valyutactiveName}</h6>
+                            <h6>{t('Trade.14')}: {jamixisob} {ValyutaReducer.valyutactiveName}</h6>
                         </div>
                         <hr style={{ margin: '2px' }} />
                         <div className={'chegirmalarBox'}>
                             <div className='d-flex'>
-                                <p>Chegirma:</p>
+                                <p>{t('Trade.28')}:</p>
                                 <img src="" alt="" />
                                 <p>0.00</p>
                             </div>
                             <div className='d-flex'>
-                                <p>Soliq:</p>
+                                <p>{t('ProductList.6')}:</p>
                                 <img src="" alt="" />
                                 <p>0.00</p>
                             </div>
                             <div className='d-flex'>
-                                <p>Yetkazib berish:</p>
+                                <p>{t('Purchase.30')}:</p>
                                 <img src="" alt="" />
                                 <p>0.00</p>
                             </div>
@@ -1325,7 +1315,7 @@ function SavdoOynasi({
                     <div className="savdoBlockRigth">
                         <div className="bazaBox">
                             <select name="" id="" onChange={setbrand} value={input.brand}>
-                                <option value="barchasi">Barcha brendlar</option>
+                                <option value="barchasi">{t('Trade.34')}</option>
                                 {
                                     FirmaReducer.firmalar.map(item => <option key={item.id} value={item.id}>
                                         {item.name}
@@ -1370,32 +1360,32 @@ function SavdoOynasi({
 
                 </div>
                 <div className="savBtnBox col-12">
-                    <button className={'col-sm-6 btn btn-primary m-1'}>Eslatma</button>
-                    <button className={'col-6 btn btn-danger m-1'}>Chegirma</button>
-                    <button onClick={toggle8} className={'col-6 btn btn-warning m-1'}>Ushlab turish</button>
+                    <button className={'col-sm-6 btn btn-primary m-1'}>{t('Trade.18')}</button>
+                    <button className={'col-6 btn btn-danger m-1'}>{t('Trade.28')}</button>
+                    <button onClick={toggle8} className={'col-6 btn btn-warning m-1'}>{t('Trade.21')}</button>
                     <Modal isOpen={ushla2} toggle={toggle8}>
                         <ModalHeader>
-                            Ushlab turish
+                            {t('Trade.21')}
                         </ModalHeader>
                         <ModalBody>
-                            <label htmlFor={'qisqa'}>ESLATMA</label>
+                            <label htmlFor={'qisqa'}>{t('Trade.18')}</label>
                             <textarea className={'form-control'} id={'qisqa'} cols="20" rows="3" value={input.eslatma} onChange={eslatma}> </textarea>
                         </ModalBody>
                         <ModalFooter>
-                            <button onClick={ushla} className={'btn btn-outline-primary'}>Saqlash</button>
-                            <button onClick={toggle8} className={'btn btn-outline-primary'}>Chiqish</button>
+                            <button onClick={ushla} className={'btn btn-outline-primary'}>{t('Buttons.6')}</button>
+                            <button onClick={toggle8} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
-                    <button onClick={kredit} className={'col-6 btn btn-outline-primary m-1'}>Kreditga sotish</button>
+                    <button onClick={kredit} className={'col-6 btn btn-outline-primary m-1'}>{t('Trade.35')}</button>
                     <Modal isOpen={activeModalkredit} toggle={kredit}>
-                        <ModalHeader>Kredit bo`limi </ModalHeader>
+                        <ModalHeader>{t('Trade.36')}</ModalHeader>
                         <ModalBody>
-                            <h3> <strong>Jami summa:</strong>  {jamixisob} </h3>
-                            <label htmlFor={'avans'}>Birinchi to`lov</label>
+                            <h3> <strong>{t('Purchase.22')}:</strong>  {jamixisob} </h3>
+                            <label htmlFor={'avans'}>{t('Trade.37')}</label>
                             <input value={input.birincitulovkredit} onChange={birincitulovkredit} type="text" className={'form-control'} />
                             <div>
                                 <div>
-                                    <h4>Muddatni kiriting</h4>
+                                    <h4>{t('Trade.38')}</h4>
                                     <div className={'d-flex justify-content-around'}>
                                         <div className={'input-group'}>
                                             <input type="text" className={'form-control'} value={input.yil} onChange={yil} />
@@ -1421,19 +1411,19 @@ function SavdoOynasi({
                                 />
                             </button>
                             {/*<button className={'btn btn-outline-primary'} onClick={UzcardTolov}>Sotish ( Chek )</button>*/}
-                            <button className={'btn btn-outline-primary'} onClick={kredit}>Chiqish</button>
+                            <button className={'btn btn-outline-primary'} onClick={kredit}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
-                    <button className={'col-6 btn btn-outline-warning  m-1'} onClick={toggle9}>Turli to`lovli</button>
+                    <button className={'col-6 btn btn-outline-warning  m-1'} onClick={toggle9}>{t('Trade.39')}</button>
 
                     <Modal isOpen={turli} toggle={toggle9}>
                         <ModalHeader>
-                            Turli tulov
+                            {t('Trade.39')}
                         </ModalHeader>
                         <ModalBody>
                             <div className={'d-flex'}>
                                 <div className={'col-md-8'}>
-                                    <label htmlFor={'turi'}>To`lov turi (NAQD)</label>
+                                    <label htmlFor={'turi'}>{t('Trade.40')}</label>
                                     <select className={'form-control'} value={input.tulovturi} onChange={tulovturi} id={'turi'}>
                                         {
                                             PayReducer.paymethod.map(item =>
@@ -1444,13 +1434,13 @@ function SavdoOynasi({
                                 </div>
 
                                 <div className={'col-md-4'}>
-                                    <label htmlFor={'miqdor'}>Tulov (Naqd)</label>
+                                    <label htmlFor={'miqdor'}>{t('Trade.41')}</label>
                                     <input type="number" value={input.tulovmiqdori} placeholder={'0'} onChange={tulovmiqdori} className={'form-control'} />
                                 </div>
                             </div>
 
                             <div style={{ width: '94%', marginLeft: '3%', marginTop: '15px' }}>
-                                <button className={'btn btn-outline-primary form-control'} onClick={toggle10}>Karta orqali to`lash</button>
+                                <button className={'btn btn-outline-primary form-control'} onClick={toggle10}>{t('Trade.42')}</button>
 
                             </div>
 
@@ -1459,7 +1449,7 @@ function SavdoOynasi({
                                     <div className={'d-flex mt-3'}>
 
                                         <div className={'col-md-8'}>
-                                            <label htmlFor={'turi'}>Karta turini tanlang (PLASTIK)</label>
+                                            <label htmlFor={'turi'}>{t('Trade.43')}</label>
                                             <select className={'form-control'} value={input.tulovturi2} onChange={tulovturi2} id={'turi'}>
                                                 {
 
@@ -1473,7 +1463,7 @@ function SavdoOynasi({
                                         </div>
 
                                         <div className={'col-md-4'}>
-                                            <label htmlFor={'miqdor'}>Tulov (Plastik)</label>
+                                            <label htmlFor={'miqdor'}>{t('Trade.44')}</label>
                                             <input type="number" value={input.tulovmiqdori2} placeholder={'0'} onChange={tulovmiqdori2} className={'form-control'} />
                                         </div>
                                     </div> : ''
@@ -1482,23 +1472,23 @@ function SavdoOynasi({
                         <ModalFooter>
                             <button onClick={() => UzcardTolovturli(1, 'Naqd')} className={'btn btn-outline-primary m-1'}>
                                 <ReactToPrint
-                                    trigger={() => <p className={'toprint '} style={{ marginBottom: '0' }}>Saqlash</p>
+                                    trigger={() => <p className={'toprint '} style={{ marginBottom: '0' }}>{t('Buttons.6')}</p>
                                     }
                                     content={() => componentRef.current}
                                 />
                             </button>
 
-                            <button className={'btn btn-outline-primary'} onClick={toggle9}>Chiqish</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle9}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
-                    <button onClick={qarz} className={'col-6 btn btn-info m-1'}>Qarzga sotish</button>
+                    <button onClick={qarz} className={'col-6 btn btn-info m-1'}>{t('Trade.45')}</button>
                     <Modal isOpen={activeqarz} toggle={qarz}>
                         <ModalHeader>
-                            Qarzga savdo qilish bo`limi
+                            {t('Trade.45')}
                         </ModalHeader>
                         <ModalBody>
-                            <h3> <strong>Jami summa:</strong>  {jamixisob} </h3>
-                            <label htmlFor={'rrr'}>Birinchi to`lov summasini kiriting</label>
+                            <h3> <strong>{t('Purchase.22')}:</strong>  {jamixisob} </h3>
+                            <label htmlFor={'rrr'}>{t('Trade.37')}</label>
                             <input type="number" placeholder={'0'} className={'form-control'} id={'rrr'} value={input.qarzamount} onChange={qarzamount} />
                             <p data-tip="Avans sifatida to`lov qilishingiz shart emas (agar to`lov qilinmasa hammasi qarz sifatida yoziladi)" className={'btn btn-outline-primary mt-2 form-control'}>BATAFSIL</p>
                             <ReactTooltip />
@@ -1507,12 +1497,12 @@ function SavdoOynasi({
                             {/*<button className={'btn btn-outline-primary'}>Saqlash</button>*/}
                             <button onClick={() => UzcardTolovQarz(2)} className={'btn btn-outline-primary'}>
                                 <ReactToPrint
-                                    trigger={() => <p style={{ marginBottom: 0 }}>Saqlash (Chek)</p>
+                                    trigger={() => <p style={{ marginBottom: 0 }}>{t('Buttons.6')} (Chek)</p>
                                     }
                                     content={() => componentRef.current}
                                 />
                             </button>
-                            <button onClick={qarz} className={'btn btn-outline-primary'}>Chiqish</button>
+                            <button onClick={qarz} className={'btn btn-outline-primary'}>{t('Trade.7')}</button>
                         </ModalFooter>
                     </Modal>
                     {
@@ -1542,23 +1532,23 @@ function SavdoOynasi({
                             }
                             content={() => componentRef.current}
                         /></button>
-                    <button className='jamiTolov m-1'>Jami to`lov:  {Math.round(((jamixisob+Number.EPSILON)*100)/100)}
+                    <button className='jamiTolov m-1'>{t('Purchase.22')}:  {Math.round(((jamixisob+Number.EPSILON)*100)/100)}
                          {ValyutaReducer.valyutactiveName}</button>
-                    <button onClick={clear} className={'qchiqish btn btn-danger m-1'}>Chiqish</button>
+                    <button onClick={clear} className={'qchiqish btn btn-danger m-1'}>{t('Buttons.7')}</button>
                 </div>
                 <div className="">
                     <Modal isOpen={active} toggle={toggle}>
                         <ModalHeader>
-                            USHLAB TURISH
+                            {t('Trade.21')}
                         </ModalHeader>
                         <ModalBody>
                             <table className={'table'}>
                                 <thead>
                                     <tr>
                                         <th>T/R</th>
-                                        <th>Eslatma</th>
-                                        <th>Miqdori</th>
-                                        <th>Jami</th>
+                                        <th>{t('Trade.18')}</th>
+                                        <th>{t('Trade.12')}</th>
+                                        <th>{t('Trade.14')}</th>
                                         <th className={'text-center'}>Amallar</th>
                                     </tr>
                                 </thead>
@@ -1580,7 +1570,7 @@ function SavdoOynasi({
                         </ModalBody>
                         <ModalFooter>
                             {/*<button onClick={savdooynakochirish} className={'btn btn-outline-primary'}>Savdo oynasiga ko`chirish</button>*/}
-                            <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
                     <Modal isOpen={active2} toggle={toggle2}>
@@ -1591,7 +1581,7 @@ function SavdoOynasi({
                             Manba Topilmadi !!!
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'} onClick={toggle2}>'Chiqish</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle2}>'{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
                     <Modal isOpen={active3} toggle={toggle3}>
@@ -1602,7 +1592,7 @@ function SavdoOynasi({
                             Manba Topilmadi !!!
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'} onClick={toggle3}>'Chiqish</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggle3}>'{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
                 </div>

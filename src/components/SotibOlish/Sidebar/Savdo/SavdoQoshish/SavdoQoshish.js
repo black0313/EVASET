@@ -12,9 +12,11 @@ import { toast } from "react-toastify";
 import MijozGuruxReducer, { getMijozGurux } from "../../Hamkorlar/reducer/MijozGuruxReducer";
 import { Link } from "react-router-dom";
 import PayReducer, { getPay } from "../../../../../reducer/PayReducer";
+import {useTranslation} from "react-i18next";
 
 function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGurux, MijozGuruxReducer, saveSavdolar, getMaxsulotRuyxati, MaxsulotlarRoyxariReducer, deleteSavdolar, match, editSavdolar, SavdoQoshishReducer, users }) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             baza: '',
@@ -273,9 +275,9 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
     return (
         <div className="savdoQBox">
             <div className={'row mt-5'}>
-                <h5 className="mt-1 text-center mb-3">Savdo qo`shish</h5>
+                <h5 className="mt-1 text-center mb-3">{t('Trade.7')}</h5>
                 <div className="col-md-4 col-sm-12 mb-3">
-                    <label htmlFor="">Baza</label>
+                    <label htmlFor="">{t('ProductList.8')}</label>
                     <select id={input.baza} onChange={baza} className={'form-control'}>
                         <option value={'tanlash'}>Tanlash</option>
                         {
@@ -285,7 +287,7 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
                 </div>
 
                 <div className="col-4 col-sm-12 mb-3 ">
-                    <label htmlFor={'mijoz'}>Mijoz</label>
+                    <label htmlFor={'mijoz'}>{t('Pagination.10')}</label>
                     {/*<input type="text" id={'mijoz'} value={input.mijoz} onChange={mijoz} className={'form-control'}/>*/}
                     <select onChange={mijoz} value={input.mijoz} className={'form-control'}>
                         <option value="tanlash">Tanlash</option>
@@ -296,7 +298,7 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
                 </div>
 
                 <div className="col-4 col-sm-12 mb-3">
-                        <label htmlFor={'muddat'}>To`lov muddati</label>
+                        <label htmlFor={'muddat'}>{t('Trade.8')}</label>
                     <div className="d-flex">
                         <input type="number" value={input.tulovmuddati} onChange={tulovmuddati} className={'form-control'} />
                         <select name="" id="" className={'form-control'} value={input.tulovmuddatitanlash} onChange={tulovmuddatitanlash}>
@@ -306,7 +308,7 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
                 </div>
                 
                 <div className="col-md-4 col-sm-12 mb-3">
-                    <label htmlFor={'stat'} >Status</label>
+                    <label htmlFor={'stat'} >{t('Trade.9')}</label>
                     <select value={input.status} onChange={status} name="" id="" className={'form-control'}>
                         <option value="">Tanlash</option>
                         {
@@ -315,24 +317,24 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
                     </select>
                 </div>
                 <div className="col-md-4 col-sm-12 mb-3">
-                    <label htmlFor={'savRaqam'}>Savdo raqami</label>
+                    <label htmlFor={'savRaqam'}>{t('Trade.5')}</label>
                     <input type="number" value={input.savdoraqami} onChange={savdoraqami} className={'form-control'} placeholder={'savdo raqami'} />
                 </div>
 
                 <div className="col-4 col-sm-12 mb-3">
-                    <label htmlFor={'savOyna'}>Savdo oynasi</label>
+                    <label htmlFor={'savOyna'}>{t('Trade.10')}</label>
                     <input type="date" value={input.savdooynasisana} onChange={savdooynasisana} className={'form-control'} />
                 </div>
 
                 <div className="col-md-6 col-sm-12 mb-3">
-                    <label htmlFor={'hisobF'} className={'mt-4'}>Xisob Faktura sxemasi</label>
+                    <label htmlFor={'hisobF'} className={'mt-4'}>{t('Trade.11')}</label>
                     <select name="" value={input.xisobfakturasxemasi} onChange={xisobfakturasxemasi} id={'hisobF'} className={'form-control'}>
                         <option value="">Default</option>
                     </select>
                 </div>
                 
                 <div className="col-md-6 col-sm-12 mb-3">
-                    <label htmlFor={'qoshim'} className={'mt-4'}>Qo`shimcha hujjat</label>
+                    <label htmlFor={'qoshim'} className={'mt-4'}>{t('Purchase.11')}</label>
                     <input type="file" value={input.qoshimchaxujjat} onChange={qoshimchaxujjat} className={'form-control'} id={'qoshim'} />
                 </div>
                 
@@ -348,10 +350,10 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
                         <table className={'table mt-4'}>
                             <thead>
                                 <tr>
-                                    <th>Mahsulot</th>
-                                    <th>Miqdori</th>
-                                    <th>Narxi</th>
-                                    <th>Jami</th>
+                                    <th>{t('ProductList.1')}</th>
+                                    <th>{t('Trade.12')}</th>
+                                    <th>{t('Trade.13')}</th>
+                                    <th>{t('Trade.14')}</th>
                                     <th>x</th>
                                 </tr>
                             </thead>
@@ -378,19 +380,19 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
                             </tbody>
                         </table>
                         <div className={'d-flex justify-content-around'}>
-                            <div><h4>Maxsulotlar soni: {xisob}</h4></div>
-                            <div><h4>Jami: {jamixisob}</h4></div>
+                            <div><h4>{t('Trade.15')} : {xisob}</h4></div>
+                            <div><h4>{t('Trade.14')}: {jamixisob}</h4></div>
                         </div>
                     </div>
                 </div>
 
                 <div className="col-md-12 mt-5 border p-4">
-                    <h5 className={'text-center mt-2'}>To`lov qilish</h5>
+                    <h5 className={'text-center mt-2'}>{t('Trade.16')}</h5>
                         <div className="row">
                             <div className="col-md-6 col-sm-12 mb-3">
-                                <label htmlFor={'avans'}>To`lov so`mmasi</label>
+                                <label htmlFor={'avans'}>{t('Trade.17')}</label>
                                 <input type="number" value={input.avans} onChange={avans} className={'form-control'} id={'avans'} placeholder={placeholders.tolovSummasiPlaceholder} />
-                                <label className={'mt-3'} htmlFor={'tol'}>To`lov usuli</label>
+                                <label className={'mt-3'} htmlFor={'tol'}>{t('Purchase.26')}</label>
                                 <select id={'tol'} className={'form-control'} value={input.tulovusuli} onChange={tulovusuli}>
                                     <option value="tanla">Tanlash</option>
                                     {
@@ -400,24 +402,24 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
                                 <p style={{ color: 'red', lineHeight: '13px', marginTop: '6px', textAlign: 'center' }}>{placeholders.tolovUsuliPlaceholder}</p>
                             </div>
                             <div className="col-md-6 col-sm-12 mb-3">
-                                <label htmlFor={'paid'}>Paid on</label>
+                                <label htmlFor={'paid'}>{t('Purchase.27')}</label>
                                 <input type="date" value={input.paidon} onChange={paidon} className={'form-control'} id={'paid'} />
-                                <label htmlFor={'area1'} className={'mt-2'}>Eslatma</label>
+                                <label htmlFor={'area1'} className={'mt-2'}>{t('Trade.18')}</label>
                                 <textarea name="" id={'area1'} cols="30" value={input.eslatma} onChange={eslatma} className={'form-control'} rows="2">
                                 </textarea>
                             </div>
                         </div>
                 </div>
                 <div className={'col-md-12 mt-5 border p-4'}>
-                    <h5>Qarz miqdori!: 0.00</h5>
+                    <h5>{t('Purchase.32')}!: 0.00</h5>
                     {
                         input.tulovusuli && input.avans ?
                             <Link to={'/headerthird/barcasavdolar'}>
-                                <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
+                                <button className={'btn btn-outline-primary'} onClick={saqla}>{t('Buttons.6')}</button>
                             </Link> :
-                            <button className={'btn btn-outline-primary m-1'} onClick={saqla}>Saqlash</button>
+                            <button className={'btn btn-outline-primary m-1'} onClick={saqla}>{t('Buttons.6')}</button>
                     }
-                    <button className={'btn btn-outline-primary m-1'}>Saqlash va chek</button>
+                    <button className={'btn btn-outline-primary m-1'}>{t('Trade.19')}</button>
                 </div>
 
             </div>
