@@ -3,8 +3,11 @@ import mahsulot from '../../../../img/3d-cube-scan.svg'
 import './mahbaza.css'
 import {Switch,Route,Link} from 'react-router-dom'
 import {useState} from 'react'
+import {useTranslation} from "react-i18next";
+
 function MahBaza() {
 
+    const {t} = useTranslation()
     const [active,setActive] = useState(false);
     const [classs,setClasss] = useState('');
     const [fill,setfill] = useState('');

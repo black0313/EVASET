@@ -322,6 +322,15 @@
     "44": "Payment (Plastic)",
     "45": "Selling on debt"
   },
+  "BaseList": {
+    "1": "Base to Base",
+    "2": "All transfers",
+    "3": "Transfer base",
+    "4": "Travel fee",
+    "5": "New transfer",
+    "6": "From base (current base)",
+    "7": "Product search"
+  },
   "Buttons": {
     "1": "Editing",
     "2": "Add",

@@ -324,6 +324,15 @@
     "44": "Tulov (Plastik)",
     "45": "Qarzga sotish"
   },
+  "BaseList": {
+    "1": "Bazadan Bazaga",
+    "2": "Barcha o'tkazmalar",
+    "3": "Baza otkaziladigan",
+    "4": "Yul haqi",
+    "5": "Yangi o`tkazma",
+    "6": "Bazadan (amaldagi baza)",
+    "7": "Mahsulot izlash"
+  },
   "Buttons": {
     "1": "Tahrirlash",
     "2": "Qo'shish",

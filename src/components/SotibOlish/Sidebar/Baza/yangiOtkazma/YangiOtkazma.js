@@ -9,10 +9,12 @@ import OtkazmaReducer,{saveOtkazma,} from "../reducer/OtkazmaReducer";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
 import ExchangeStatusR,{getOtkazmaStatus} from "../../../../../reducer/ExchangeStatusR";
+import {useTranslation} from "react-i18next";
+
 function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,users,saveOtkazma,OtkazmaReducer,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer}) {
 
 
-
+       const {t} = useTranslation()
        const [input,setInput] = useState(
            {
                   qisqaeslatma:'',
@@ -158,7 +160,6 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
        }
 
 
-
        function deleteM(ind) {
               mah.map((item, index) => {
                      if (item.id === ind) {
@@ -168,15 +169,6 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
               let ad = [...mah]
               setmah(ad)
 
-              // let b = 0
-              // let c = 0
-              // mah.map(item => {
-              //        b += item.quantity
-              //        c += (item.quantity * item.buyPrice)
-              //
-              // })
-              // setXisob(b)
-              // setjamiXisob(c)
        }
 
        useEffect(()=>{
@@ -187,16 +179,16 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
        return (
               <div className="col-md-12 mt-2">
                      <div className="textHeader">
-                            <h2>Yangi o'tkazma</h2>
+                            <h2>{t('BaseList.5')}</h2>
                      </div>
                      <div className="rowStyleM">
                             <div className="row cont">
                                    <div className="col-md-6 col-sm-12">
-                                          <h6>Qisqa eslatma:</h6>
+                                          <h6>{t('Buttons.17')}:</h6>
                                           <input value={input.qisqaeslatma} onChange={qisqaeslatma} className={'form-control'} type="text" placeholder='Eslatma...' />
                                    </div>
                                    <div className="col-md-6 col-sm-12">
-                                          <h6>Status:</h6>
+                                          <h6>{t('Trade.9')}:</h6>
                                           <select name="" id="" value={input.status} onChange={status}>
                                                  {
                                                         ExchangeStatusR.exchangestatus.map(item=>
@@ -207,7 +199,7 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
                             </div>
                             <div className="row">
                                    <div className="col-md-6 col-sm-12">
-                                          <h6>Bazadan(Amaldagi baza):</h6>
+                                          <h6>{t('BaseList.6')}:</h6>
                                           <select name="" id="" value={input.bazadan} onChange={bazadan}>
                                                  <option value="">Baza tanlash</option>
                                                  {
@@ -216,7 +208,7 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
                                           </select>
                                    </div>
                                    <div className="col-md-6 col-sm-12">
-                                          <h6>Bazaga(O'tkaziladigan baza):</h6>
+                                          <h6>{t('BaseList.3')}:</h6>
                                           <select name="" id="" value={input.bazaga} onChange={bazaga}>
                                                  <option value="">Baza tanlash</option>
 
@@ -229,7 +221,7 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
                             <div className="row">
                                    <div className="col-md-12 col-sm-12" >
                                           <div className="sana">
-                                                 <h6>Sana:</h6>
+                                                 <h6>{t('Trade.4')}:</h6>
                                                  <input type="date" value={input.sana} onChange={sana}/>
                                           </div>
                                    </div>
@@ -237,7 +229,7 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
                      </div>
                      <div className="rowStyle1">
                             <div className="qoshish">
-                                   <h5>Maxsulot izlash</h5>
+                                   <h5>{t('BaseList.7')}</h5>
                             </div>
                             <div className="row">
                                    <div className="col-md-12">
@@ -253,11 +245,11 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
                                    <table className='table table-striped table-bordered mt-4 '>
                                           <thead>
                                                  <tr>
-                                                 <th>Maxsulot</th> 
-                                                 <th>Miqdori</th> 
-                                                 <th>Narxi</th> 
-                                                 <th>Jami</th>
-                                                 <th>O'chirildi</th> 
+                                                 <th>{t('ProductList.1')}</th>
+                                                 <th>{t('ProductEdit.7')}</th>
+                                                 <th>{t('Trade.13')}</th>
+                                                 <th>{t('Trade.14')}</th>
+                                                 <th>{t('Buttons.3')}</th>
                                                  </tr>
                                           </thead>
                                           <tbody>
@@ -276,18 +268,18 @@ function YangiOtkazma({branchreducer,getbranch,ExchangeStatusR,getOtkazmaStatus,
 
                             <div className="row cont">
                                    <div className="col-md-6 col-sm-12">
-                                          <h6>Yo'lkira xaqi:</h6>
+                                          <h6>{t('BaseList.4')}:</h6>
                                           <input type="text" value={input.yulhaqi} onChange={yulhaqi}/>
                                    </div>
                                    <div className="col-md-6 col-sm-12">
-                                          <h6>Qisqa eslatma:</h6>
+                                          <h6>{t('Buttons.17')}:</h6>
                                           <input type="text" placeholder='Eslatma...' value={input.qisqaeslatmaarea} onChange={qisqaeslatmaarea}/>
                                    </div>
                             </div>
 
                             <div className='saqlash'>
                                    <Link to={'/headerthird/utkazmaRuyxati'}>
-                                          <button className='btn btn-primary' onClick={saqla}>Saqlash</button>
+                                          <button className='btn btn-primary' onClick={saqla}>{t('Buttons.6')}</button>
                                    </Link>
 
                             </div>

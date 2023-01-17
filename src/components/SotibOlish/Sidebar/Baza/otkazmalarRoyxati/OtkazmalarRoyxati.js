@@ -14,9 +14,11 @@ import {connect} from "react-redux";
 import {useEffect, useState} from "react";
 import OtkazmaReducer, {deleteOtkazma, editOtkazma, saveOtkazma, getOtkazma} from "../reducer/OtkazmaReducer";
 import users from "../../../../../reducer/users";
+import {useTranslation} from "react-i18next";
 
 function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma, match, users, OtkazmaReducer}) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             view: '',
@@ -47,13 +49,13 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma, 
 
     const [headlist, setheadlist] = useState([
         {
-            sana: 'Sana',
-            baza: 'Baza amaldagi',
-            baza2: 'Baza otkaziladigan',
-            status: 'Status',
-            yulkira: 'Yul haqi',
-            jamisumma: 'Jami summa',
-            qisqaeslatma: 'Qisqa eslatma',
+            sana: t('Trade.4'),
+            baza: t('ProductList.8'),
+            baza2: t('BaseList.3'),
+            status: t('Trade.9'),
+            yulkira: t('BaseList.4'),
+            jamisumma: t('Purchase.22'),
+            qisqaeslatma: t('Buttons.17'),
             amallar: 'Amallar'
         }
     ])
@@ -71,18 +73,18 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma, 
     return (
         <div className="col-md-12 mt-2 mt-4 mb-4 ">
             <div className="textHeader">
-                <h2>Bazadan Bazaga</h2>
+                <h2>{t('BaseList.1')}</h2>
             </div>
             <div className="rowStyleN">
                 <div className="qoshish">
-                    <h5>Barcha o'tkazmalar</h5>
+                    <h5>{t('BaseList.2')}</h5>
                     <Link to={'/headerthird/utkazmaRuyxati/taxrirlash'}>
-                        <button className='btn btn-primary'>+Qo'shish</button>
+                        <button className='btn btn-primary'>+{t('Buttons.2')}</button>
                     </Link>
                 </div>
                 <div className="izlashOR">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select name="" value={input.view} onChange={view} id="">
                             <option value="">25</option>
                             <option value="">1,000</option>
@@ -92,7 +94,7 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma, 
                         <button><img src={Excel} alt=""/> Export Excel</button>
                         <button><img src={Print} alt=""/> Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button onClick={() => setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish
+                        <button onClick={() => setmalkamay(!malkamay)}><img src={Data} alt=""/>{t('Buttons.18')}
                         </button>
 
                         {
@@ -159,10 +161,10 @@ function OtkazmalarRoyxati({getOtkazma, otkazmalar, deleteOtkazma, saveOtkazma, 
                                     {qisqaeslatma?<td>{item.description}</td>:''}
                                     {amallar?<td>
                                         <Link to={'/headerthird/utkazmaRuyxati/taxrirlash'}>
-                                            <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
+                                            <button className='taxrirlash'><img src={Edit} alt=""/> {t('Buttons.1')}</button>
                                         </Link>
                                         <button onClick={() => deleteOt(item)} className='ochirish'><img src={Delete}
-                                                                                                         alt=""/> O'chirish
+                                                                                                         alt=""/> {t('Buttons.3')}
                                         </button>
                                     </td>:''}
                                 </tr>)
