@@ -13,8 +13,11 @@ import XarajatlarReducer, {deleteXarajatlar, editXarajatlar,getXarajatlar2,getXa
 import users from '../../../../../reducer/users'
 import branchreducer ,{getbranch} from '../../../../../reducer/branchreducer'
 import {Modal, ModalBody, ModalFooter} from "reactstrap";
+import {useTranslation} from "react-i18next";
+
 function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,branchreducer,getbranch, saveXarajatlar, deleteXarajatlar, xarajatlar,XarajatlarReducer}) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             baza: '',
@@ -38,7 +41,6 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
             getXarajatlar(users.businessId)
         }
     }
-    
 
     function xarajatqildi(e) {
         input.xarajatqildi = e.target.value
@@ -117,15 +119,15 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderHRR">
-                <h2>Xarajatlar</h2>
+                <h2>{t('Expenses.1')}</h2>
             </div>
             <div className="rowStyleHRR">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="row cont">
                     <div className="col-md-6 col-sm-12">
-                        <h6>Baza:</h6>
+                        <h6>{t('ProductList.8')}:</h6>
                         <select name="" value={input.baza} onChange={baza} id="">
                             <option value="barcasi">Barchasi</option>
                            {
@@ -134,7 +136,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                         </select>
                     </div>
                     <div className="col-md-6 col-sm-12">
-                        <h6>Xarajat qildi:</h6>
+                        <h6>{t('Trade.25')}:</h6>
                         <select name="" id="" value={input.xarajatqildi} onChange={xarajatqildi}>
                             <option value="">Barchasi</option>
 
@@ -143,13 +145,13 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                 </div>
                 <div className="row">
                     <div className="col-md-6 col-sm-12">
-                        <h6>Aloqa:</h6>
+                        <h6>{t('Expenses.2')}:</h6>
                         <select name="" id="" value={input.aloqa} onChange={aloqa}>
                             <option value="">Barchasi</option>
                         </select>
                     </div>
                     <div className="col-md-6 col-sm-12">
-                        <h6>Xarajat turi:</h6>
+                        <h6>{t('Expenses.3')}:</h6>
                         <select name="" id="" value={input.xarajatturi} onChange={xarajatturi}>
                             <option value="">Barchasi</option>
                             <option value="">To'lov muddati o'tgan</option>
@@ -159,7 +161,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                 <div className="row">
                     <div className="col-md-6 col-sm-12">
                         <div className="sana">
-                            <h6>Sanani belgilang:</h6>
+                            <h6>{t('Trade.3')}:</h6>
                            
                            {
                                 <input type="date" value={input.sana+"/"+branchreducer.branch.id} onChange={sana}/>
@@ -167,7 +169,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                         </div>
                     </div>
                     <div className="col-md-6 col-sm-12">
-                        <h6>Obuna:</h6>
+                        <h6>{t('Expenses.4')}:</h6>
                         <select name="" id="" value={input.obuna} onChange={obuna}>
                             <option value="">Barchasi</option>
                             <option value=""></option>
@@ -178,14 +180,14 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
 
             <div className="rowStyleHRR2">
                 <div className="qoshish">
-                    <h5>Xarajatlar</h5>
+                    <h5>{t('Expenses.1')}</h5>
                     <Link to={'/headerthird/xarajatQoshish'}>
-                        <button className='btn btn-primary'>+Qo'shish</button>
+                        <button className='btn btn-primary'>+{t('Buttons.2')}</button>
                     </Link>
                 </div>
                 <div className="izlashHRR2">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select name="" id="" value={input.view} onChange={view}>
                             <option value="">25</option>
                             <option value="">All</option>
@@ -194,7 +196,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                         <button><img src={Excel} alt=""/> Export Excel</button>
                         <button><img src={Print} alt=""/> Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                        <button><img src={Data} alt=""/>{t('Buttons.18')}</button>
                     </div>
                     <div className="izlashBox2">
                         <input type="text" placeholder='Izlash...' value={input.izlash} onChange={izlash}/>
@@ -205,18 +207,18 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                     <table className='table table-striped table-bordered mt-4 '>
                         <thead>
                         <tr>
-                            <th>sana</th>
-                            <th>Savdo raqami</th>
-                            <th>Baza</th>
-                            <th>To'lov statusi</th>
+                            <th>{t('Trade.4')}</th>
+                            <th>{t('Trade.5')}</th>
+                            <th>{t('ProductList.8')}</th>
+                            <th>{t('Purchase.4')}</th>
                             {/*<th>To'lov usuli</th>*/}
                             {/*<th>Jami summa</th>*/}
-                            <th>To'langan summa</th>
-                            <th>Qarz</th>
+                            <th>{t('Expenses.5')}</th>
+                            <th>{t('Supplier.8')}</th>
                             {/*<th>Yetkazish statusi</th>*/}
-                            <th>Jami summa</th>
-                            <th>Savdogar</th>
-                            <th>Savdo eslatmasi</th>
+                            <th>{t('Expenses.6')}</th>
+                            <th>{t('Expenses.7')}</th>
+                            <th>{t('Expenses.8')}</th>
                             {/*<th>Yetkazish manzili</th>*/}
                             <th>Amallar</th>
                         </tr>
@@ -233,9 +235,6 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                             }).map(item => <tr key={item.id}>
                                 <td>{item.date}</td>
                                 <td>{item.id}</td>
-                                {/*<td>{item.branch}</td>*/}
-                                {/*<td>-</td>*/}
-                                {/*<td>-</td>*/}
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
@@ -245,17 +244,17 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                                 <td>{item.description}</td>
                                 <td>
                                     <Link to={'/headerthird/xarajatQoshish/'+item.id}>
-                                        <button className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash</button>
+                                        <button className='taxrirlash'><img src={Edit} alt=""/> {t('Buttons.1')}</button>
                                     </Link>
-                                    <button className='ochirish' onClick={()=>deleteModaltoggle(item.id)}><img src={Delete} alt=""/> O'chirish</button>
+                                    <button className='ochirish' onClick={()=>deleteModaltoggle(item.id)}><img src={Delete} alt=""/> {t('Buttons.3')}</button>
 
                                     <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                         <ModalBody>
-                                            <h5>Ishonchingiz komilmi ?</h5>
+                                            <h5>{t('Buttons.12')} ?</h5>
                                         </ModalBody>
                                         <ModalFooter>
-                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>{t('Buttons.3')}</button>
+                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                                         </ModalFooter>
                                     </Modal>
                                 </td>
@@ -264,7 +263,7 @@ function XarajatlarRoyxati({getXarajatlar,getXarajatlar2,getXarajatlar3, users,b
                         }
                         </tbody>
                     </table>
-                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                    <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
                 </div>
 
             </div>

@@ -17,8 +17,11 @@ import MaxsulotlarRoyxariReducer, {
     getMaxsulotRuyxati,
     saveMaxsulotRuyxati
 } from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
+import {useTranslation} from "react-i18next";
+
 function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,summa,eslatma,getMaxsulotRuyxati}) {
 
+    const {t} = useTranslation()
     const [inputvalue,setInputvalue] = useState(
         {
             baza:'',
@@ -66,8 +69,6 @@ function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,su
         getMaxsulotRuyxati()
     },[])
 
-    // const {mijoz,dukon,summa,eslatma} = props.match.params
-
     const [active,setActive] = useState(false)
 
     function toggle(){
@@ -77,19 +78,19 @@ function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,su
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeader">
-                <h2>Maxsulotlar xisoboti</h2>
+                <h2>{t('Sidebar.35')}</h2>
             </div>
             <div className="rowStyleMax">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="row cont">
                     <div className="col-6 col-sm-12">
-                        <h6>Diller:</h6>
+                        <h6>{t('Purchase.2')}:</h6>
                         <input value={inputvalue.baza} onChange={baza} type="text" placeholder='Diller nomi...' className={'inpStyl'}/>
                     </div>
                     <div className="col-6 col-sm-12">
-                        <h6>Xarid sanasi:</h6>
+                        <h6>{t('ExpenseReport')}:</h6>
                         <select name="" id="" value={inputvalue.xaridsanasi} onChange={xaridsanasi} className={'inpStyl'}>
                             <option value="">Bugun</option>
                             <option value="">Kecha</option>
@@ -114,7 +115,7 @@ function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,su
                         </select>
                     </div>
                     <div className="col-6 col-sm-12">
-                        <h6>Sanani belgilang:</h6>
+                        <h6>{t('Profit.2')}:</h6>
                         <select name="" id="" className={'inpStyl'} value={inputvalue.sananibelgilang} onChange={sananibelgilang}>
                             <option value="">Bugun</option>
                             <option value="">Kecha</option>
@@ -134,13 +135,13 @@ function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,su
             <div className="rowStyleMax2">
 
                 <div className="qoshish mt-4">
-                    <h5>Barcha savdolar</h5>
+                    <h5>{t('PurchaseList.9')}</h5>
                     {/*<Link to={'/third/xarajatlarRuyxati/xarajatqoshish'}><button className='btn btn-primary'>+Qo'shish</button></Link>*/}
                 </div>
 
                 <div className="izlashMax2">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select name="" id="" value={inputvalue.view} onChange={view}>
                             <option value="">25</option>
                             <option value="">50</option>
@@ -154,7 +155,7 @@ function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,su
                         <button><img src={Excel} alt="" /> Export Excel</button>
                         <button><img src={Print} alt="" /> Print</button>
                         <button><img src={Pdf} alt="" />Export PDF</button>
-                        <button> <img src={Data} alt="" />Malumotlarni kamaytirish </button>
+                        <button> <img src={Data} alt="" />{t('Buttons.18')} </button>
                     </div>
                     <div className="izlashBox2">
                         <input type="text" placeholder='Izlash...' value={inputvalue.izlash} onChange={izlash}/>
@@ -164,20 +165,20 @@ function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,su
                     <table className='table table-striped table-bordered mt-4 '>
                         <thead>
                         <tr>
-                            <th>Maxsulot</th>
-                            <th>Shtrix kod</th>
-                            <th>Qisqa malumot</th>
-                            <th>Xarid sanasi</th>
-                            <th>Purchase</th>
-                            <th>Diller</th>
-                            <th>Xarid qilingan narx</th>
+                            <th>{t('ProductEdit.2')}</th>
+                            <th>{t('ExpenseReport.7')}</th>
+                            <th>{t('Buttons.17')}</th>
+                            <th>{t('ExpenseReport.8')}</th>
+                            <th>{t('Sidebar.15')}</th>
+                            <th>{t('Purchase.2')}</th>
+                            <th>{t('Purchase.21')}</th>
                             {/*<th>Sana</th>*/}
-                            <th>Savdo</th>
-                            <th>Mijoz</th>
-                            <th>Baza</th>
-                            <th>Miqdori</th>
-                            <th>Sotish narxi</th>
-                            <th>Jami</th>
+                            <th>{t('Trade.1')}</th>
+                            <th>{t('CustomAll.1')}</th>
+                            <th>{t('ProductList.8')}</th>
+                            <th>{t('ProductEdit.7')}</th>
+                            <th>{t('ExpenseReport.9')}</th>
+                            <th>{t('Trade.14')}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -203,13 +204,6 @@ function MaxsulotXisoboti({getMaxsulotxisobot,MaxsulotlarRoyxariReducer,dukon,su
                     </table>
                 </div>
 
-
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
-                </div>
             </div>
         </div>
     )

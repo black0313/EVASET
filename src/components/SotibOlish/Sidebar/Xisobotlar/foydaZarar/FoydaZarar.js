@@ -17,6 +17,7 @@ import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import {DatePicker} from 'antd'
 import moment from "moment";
+import {useTranslation} from "react-i18next";
 // import 'antd/dist/antd.css'
 const {RangePicker} = DatePicker
 function FoydaZarar({
@@ -30,6 +31,7 @@ function FoydaZarar({
                         users
                     }) {
 
+    const {t} = useTranslation()
     const [input, setInput] = useState(
         {
             branchId: 1,
@@ -71,14 +73,14 @@ function FoydaZarar({
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderF">
-                <h2>Foyda va Zarar</h2>
+                <h2>{t('Profit.1')}</h2>
             </div>
 
             <div className="rowStyleF">
                 <div className="izlashF">
                     <div className="row d-flex justify-content-between">
                         <div className="col-md-4 col-sm-12">
-                            <h6>Baza tanlash:</h6>
+                            <h6>{t('ProductList.8')}:</h6>
                             <select value={input.branch} onChange={branch} name="" id="">
                                 <option value="barcasi">Barchasi</option>
                                 {
@@ -88,8 +90,7 @@ function FoydaZarar({
                             </select>
                         </div>
                         <div className="col-md-4 col-sm-12 d-flex align-items-center">
-                                <h4 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>Aniq sanani
-                                    belgilash:</h4>
+                                <h4 style={{cursor: 'pointer'}} className={'hovFoyda'} onClick={toggle2}>{t('Profit.2')}:</h4>
                         </div>
                         <RangePicker onChange={(values) =>{
                             setDates(values.map(item =>{return moment(item).format('DD-MM-YYYY')}))
@@ -102,12 +103,12 @@ function FoydaZarar({
                         <thead>
                         <tr>
                             <th>T/r</th>
-                            <th>Nomi</th>
-                            <th>Maxsulot sotib olish narxi(sum)</th>
-                            <th>Maxsulot sotish narxi(sum)</th>
-                            <th>Umumiy qoladigan foyda(sum)</th>
-                            <th>Qilingan xarajat</th>
-                            <th>Sof foyda(sum)</th>
+                            <th>{t('Expenses.11')}</th>
+                            <th>{t('Profit.3')}</th>
+                            <th>{t('Profit.4')}</th>
+                            <th>{t('Profit.5')}</th>
+                            <th>{t('Profit.6')}</th>
+                            <th>{t('Profit.7')}</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -22,9 +22,11 @@ import users from "../../../../../reducer/users";
 import TaminotReducer, {getTaminot, getTaminot2} from "../../Hamkorlar/reducer/TaminotReducer";
 import MaxsulotlarRoyxariReducer, {getMaxsulotRuyxati} from "../../Maxsulotlar/reducer/MaxsulotlarRoyxariReducer";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {useTranslation} from "react-i18next";
 
 function XaridlarXisoboti({branchreducer,getXarid2,users,getTaminot2,getbranch,TaminotReducer,getTaminot,getMaxsulotRuyxati,MaxsulotlarRoyxariReducer,XaridReducer,getXarid}) {
 
+    const {t} = useTranslation()
     const [input,setInput] = useState(
         {
             baza:'',
@@ -133,15 +135,15 @@ getXarid2(users.businessId)
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderXH">
-                <h2>Xaridlar hisoboti</h2>
+                <h2>{t('PurchaseList.1')}</h2>
             </div>
             <div className="rowStyleXH">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="row cont">
                     <div className="col-md-6">
-                        <h6>Baza:</h6>
+                        <h6>{t('Buttons.8')}:</h6>
                         <select name="" value={input.baza} onChange={baza} id="" className='inputData'>
 
                             <option value="barcasi">Barchasi</option>
@@ -153,7 +155,7 @@ getXarid2(users.businessId)
                         </select>
                     </div>
                     <div className="col-md-6">
-                        <h6>Diller:</h6>
+                        <h6>{t('Purchase.2')}:</h6>
                         <select name="" value={input.diller} onChange={diller} id="" className={'inputData'}>
                             {
                                 TaminotReducer.taminot.map(item=> <option value={item.id}>{item.name}</option>)
@@ -163,11 +165,11 @@ getXarid2(users.businessId)
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <h6>Mahsulot izlash:</h6>
+                        <h6>{t('PurchaseList.2')}</h6>
                         <input type="text" value={input.mahsulotizlash} onChange={mahsulotizlash} placeholder="Mahsulot nomi" className={'inputData'}/>
                     </div>
                     <div className="col-md-6">
-                        <h6>Sanani belgilang:</h6>
+                        <h6>{t('Trade.3')}:</h6>
                         <input type="date" className={'inputData'} value={input.sananibelgilash} onChange={sananibelgilash}/>
 
                     </div>
@@ -179,7 +181,7 @@ getXarid2(users.businessId)
 
                 <div className="izlashXH2">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select name="" id="" value={input.view} onChange={view}>
                             <option value="">25</option>
                             <option value="">50</option>
@@ -188,7 +190,7 @@ getXarid2(users.businessId)
                         <button><img src={Excel} alt="" /> Export Excel</button>
                         <button><img src={Print} alt="" /> Print</button>
                         <button><img src={Pdf} alt="" />Export PDF</button>
-                        <button> <img src={Data} alt="" />Malumotlarni kamaytirish </button>
+                        <button> <img src={Data} alt="" />{t('Buttons.18')}</button>
                     </div>
                     <div className="izlashBox2">
                         <input value={input.izlash} onChange={izlash} type="text" placeholder='Izlash...'/>
@@ -199,12 +201,12 @@ getXarid2(users.businessId)
                         <thead>
                         <tr>
                             <th>T/R</th>
-                            <th>Maxsulot</th>
+                            <th>{t('Sidebar.9')}</th>
                             {/*<th>Shtrix kod</th>*/}
-                            <th>Diller</th>
-                            <th>Yetkazish narxi</th>
-                            <th>Qarz</th>
-                            <th>Qarzni to`lash</th>
+                            <th>{t('Purchase.2')}</th>
+                            <th>{t('Purchase.31')}</th>
+                            <th>{t('Supplier.8')}</th>
+                            <th>{t('Buttons.11')}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -223,9 +225,7 @@ getXarid2(users.businessId)
                                             {item.product.name}
                                         </td>)
                                     }
-                                {/*<td>{item.purchaseProductList.map(item=><td key={item.id}>*/}
-                                {/*    {item.product.barcode}*/}
-                                {/*</td>)}</td>*/}
+
                                 <td>
                                     {item.dealer.name}
                                 </td>
@@ -235,7 +235,7 @@ getXarid2(users.businessId)
                                 <td>-</td>
                                 <td>
                                     <button onClick={toggleQarz} className={'btnQarz'}>
-                                        Qarzni to`lash
+                                        {t('Buttons.11')}
                                     </button>
                                 </td>
                             </tr>)
@@ -244,26 +244,20 @@ getXarid2(users.businessId)
                     </table>
                     <Modal isOpen={qarz} toggle={toggleQarz}>
                         <ModalHeader>
-                            Qarz uzish
+                            {t('Buttons.11')}
                         </ModalHeader>
                         <ModalBody>
-                            <h3>Umumiy Qarz</h3>
-                            <label htmlFor={'qarz'}>So`mmani kiriting</label>
+                            <h3>{t('PurchaseList.3')}</h3>
+                            <label htmlFor={'qarz'}>{t('PurchaseList.4')}</label>
                             <input value={input.qarz} onChange={qarzfunction} type="number" className={'form-control'}/>
                         </ModalBody>
                         <ModalFooter>
-                            <button className={'btn btn-outline-primary'}>Saqlash</button>
-                            <button className={'btn btn-outline-primary'} onClick={toggleQarz}>Chiqish</button>
+                            <button className={'btn btn-outline-primary'}>{t('Buttons.6')}</button>
+                            <button className={'btn btn-outline-primary'} onClick={toggleQarz}>{t('Buttons.7')}</button>
                         </ModalFooter>
                     </Modal>
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
-                </div>
             </div>
         </div>
     )

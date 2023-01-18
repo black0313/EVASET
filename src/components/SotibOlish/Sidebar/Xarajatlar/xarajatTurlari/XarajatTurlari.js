@@ -21,6 +21,7 @@ import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import XodimReducer from "../../Hodimlar/reducer/XodimReducer";
 import users from "../../../../../reducer/users";
 import XarajatlarReducer, {editXarajatlar, getXarajatlar, saveXarajatlar,} from "../reducer/XarajatlarReducer";
+import {useTranslation} from "react-i18next";
 
 function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branchreducer,getbranch, xarajatturlari,saveXarajatlarTurlari, deleteXarajatlarTurlari}) {
 
@@ -55,6 +56,7 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
         console.log('uuuuuhbbhu')
     }
 
+    const {t} = useTranslation()
     useEffect(() => {
         getXarajatlarTurlari(users.businessId)
     }, [XarajatTurlariReducer.counter])
@@ -99,17 +101,16 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderXRT">
-                <h2>Xarajat turlari</h2>
-                <p>Xarajat turlari boshqarmasi</p>
+                <h2>{t('Expenses.3')}</h2>
             </div>
             <div className="rowStyleXRT ">
                 <div className="qoshish">
                     <h5>Barcha turlash</h5>
-                    <button onClick={toggle} className='btn btn-primary'>+Qo'shish</button>
+                    <button onClick={toggle} className='btn btn-primary'>+{t('Buttons.2')}</button>
                 </div>
                 <div className="izlashXRT">
                     <div className="izlashBox1">
-                        <p>Ko'rsatildi</p>
+                        <p>{t('Buttons.8')}</p>
                         <select value={input.view} onChange={view} name="" id="">
                             <option value="">25</option>
                             <option value="">50</option>
@@ -120,7 +121,7 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                         <button><img src={Excel} alt=""/> Export Excel</button>
                         <button><img src={Print} alt=""/> Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                        <button><img src={Data} alt=""/>{t('Buttons.18')}</button>
                     </div>
                     <div className="izlashBox2">
                         <input type="text" value={input.izlash} onChange={izlash} placeholder='Izlash...'/>
@@ -130,9 +131,9 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                     <table className='table table-striped table-bordered mt-4'>
                         <thead>
                         <tr>
-                            <th>Bo'limlar</th>
+                            <th>{t('ProductList.4')}</th>
                             {/*<th>Bo'lim kodi</th>*/}
-                            <th>Qisqa malumot</th>
+                            <th>{t('Buttons.17')}</th>
                             <th>Amallar</th>
                         </tr>
                         </thead>
@@ -153,17 +154,17 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
                                     {/*<td>{item.business.description}</td>*/}
                                     <td>-</td>
                                 <td>
-                                    <button onClick={toggle} className='taxrirlash'><img src={Edit} alt=""/> Taxrirlash
+                                    <button onClick={toggle} className='taxrirlash'><img src={Edit} alt=""/> {t('Buttons.1')}
                                     </button>
-                                    <button onClick={()=>deleteModaltoggle(item.id)} className='ochirish'><img src={Delete} alt=""/> O'chirish</button>
+                                    <button onClick={()=>deleteModaltoggle(item.id)} className='ochirish'><img src={Delete} alt=""/> {t('Buttons.3')}</button>
 
                                     <Modal isOpen={deletemodal} toggle={deleteModaltoggle}>
                                         <ModalBody>
-                                            <h5>Ishonchingiz komilmi ?</h5>
+                                            <h5>{t('Buttons.12')} ?</h5>
                                         </ModalBody>
                                         <ModalFooter>
-                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>O`chirish</button>
-                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>Chiqish</button>
+                                            <button onClick={() => deleteFunc(item.id) } className={'btn btn-outline-primary'}>{t('Buttons.3')}</button>
+                                            <button onClick={()=>deleteModaltoggle('')} className={'btn btn-outline-primary'}>{t('Buttons.7')}</button>
                                         </ModalFooter>
                                     </Modal>
 
@@ -176,17 +177,17 @@ function XarajatTurlari({getXarajatlarTurlari,XarajatTurlariReducer,users, branc
 
                 <Modal isOpen={active} toggle={toggle}>
                     <ModalHeader>
-                        Yangi qo`shish / taxrirlash
+                        {t('Sections.8')}
                     </ModalHeader>
                     <ModalBody>
-                        <label htmlFor={'nomi'}>Nomi</label>
+                        <label htmlFor={'nomi'}>{t('Expenses.11')}</label>
                         <input type="text" value={input.nomi} onChange={nomi} className={'form-control'} id={'nomi'}/>
-                        <label htmlFor={'nomi2'} className={'mt-3'}>Kodi</label>
+                        <label htmlFor={'nomi2'} className={'mt-3'}>{t('Expenses.12')}</label>
                         <input type="text" value={input.kodi} onChange={kodi} className={'form-control'} id={'nomi2'}/>
                     </ModalBody>
                     <ModalFooter>
-                        <button className={'btn btn-outline-primary'} onClick={saqla}>Saqlash</button>
-                        <button className={'btn btn-outline-primary'} onClick={toggle}>Chiqish</button>
+                        <button className={'btn btn-outline-primary'} onClick={saqla}>{t('Buttons.6')}</button>
+                        <button className={'btn btn-outline-primary'} onClick={toggle}>{t('Buttons.7')}</button>
                     </ModalFooter>
                 </Modal>
 

@@ -331,6 +331,52 @@
     "6": "From base (current base)",
     "7": "Product search"
   },
+  "Expenses": {
+    "1": "Expenses",
+    "2": "Communication",
+    "3": "Type of expense",
+    "4": "Subscription",
+    "5": "Paid amount",
+    "6": "Total amount",
+    "7": "Merchant",
+    "8": "Trade note",
+    "9": "Add cost",
+    "10": "Current tax",
+    "11": "Name",
+    "12": "Cody"
+  },
+  "Profit": {
+    "1": "PROFIT AND LOSS",
+    "2": "Set a specific date",
+    "3": "Product buy price (soum)",
+    "4": "Product sales price (amount)",
+    "5": "Total Retained Earnings (Amount)",
+    "6": "Cost incurred",
+    "7": "Chistaya pribyl (amount)"
+  },
+  "PurchaseList": {
+    "1": "Отчет о покупке",
+    "2": "Product search",
+    "3": "General Debt",
+    "4": "Enter the amount",
+    "5": "Customer report",
+    "6": "Customer",
+    "7": "Total sales revenue",
+    "8": "Total costs",
+    "9": "Sales",
+    "10": "Share sales"
+  },
+  "ExpenseReport": {
+    "1": "Expense report",
+    "2": "Total costs",
+    "3": "Payment in trade",
+    "4": "Payment amount",
+    "5": "Trade",
+    "6": "Date of Purchase",
+    "7": "Bar-code",
+    "8": "Date of purchase",
+    "9": "Selling price"
+  },
   "Buttons": {
     "1": "Editing",
     "2": "Add",

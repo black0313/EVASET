@@ -59,7 +59,6 @@
     "12": "Mahsulot Importi",
     "13": "Bo`limlar",
     "14": "Firmalar",
-
     "15": "Xaridlar",
     "16": "Xaridlar ruyxati",
     "17": "Xarid qilish",
@@ -70,7 +69,6 @@
     "22": "Bazadan Bazaga",
     "23": "O`tkazmalar ruyxati",
     "24": "Yangi o`tkazma",
-
     "25": "Xarajatlar",
     "26": "Xarajatlar ruyxati",
     "27": "Xarajat qoshish",
@@ -332,6 +330,52 @@
     "5": "Yangi o`tkazma",
     "6": "Bazadan (amaldagi baza)",
     "7": "Mahsulot izlash"
+  },
+  "Expenses": {
+    "1": "Xarajatlar",
+    "2": "Aloqa",
+    "3": "Xarajat turi",
+    "4": "Obuna",
+    "5": "To'langan summa",
+    "6": "Jami summa",
+    "7": "Savdogar",
+    "8": "Savdo eslatmasi",
+    "9": "Xarajat qo`shish",
+    "10": "Amaldagi soliq",
+    "11": "Nomi",
+    "12": "Kodi"
+  },
+  "Profit": {
+    "1": "Foyda va Zarar",
+    "2": "Aniq sanani belgilash",
+    "3": "Maxsulot sotib olish narxi(sum)",
+    "4": "Maxsulot sotish narxi(sum)",
+    "5": "Umumiy qoladigan foyda(sum)",
+    "6": "Qilingan xarajat",
+    "7": "Sof foyda(sum)"
+  },
+  "PurchaseList": {
+    "1": "Xaridlar hisoboti",
+    "2": "Mahsulot izlash",
+    "3": "Umumiy Qarz",
+    "4": "So`mmani kiriting",
+    "5": "Mijozlar xisoboti",
+    "6": "Mijoz",
+    "7": "Jami sotuvlar bo`yicha daromad",
+    "8": "Jami xarajatlar",
+    "9": "Savdolar",
+    "10": "Ulushli savdolar"
+  },
+  "ExpenseReport": {
+    "1": "Xarajatlar xisoboti",
+    "2": "Jami xarajatlar",
+    "3": "Savdodagi to'lov",
+    "4": "Tulov so`mmasi",
+    "5": "Savdo",
+    "6": "Xarid sanasi",
+    "7": "Shtrix kod",
+    "8": "Xarid sanasi",
+    "9": "Sotish narxi"
   },
   "Buttons": {
     "1": "Tahrirlash",

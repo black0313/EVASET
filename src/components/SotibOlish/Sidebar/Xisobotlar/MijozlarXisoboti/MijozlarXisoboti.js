@@ -19,9 +19,11 @@ import users from "../../../../../reducer/users";
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
 import SavdoQoshishReducer, {getSavdolar} from "../../Savdo/reducer/SavdoQoshishReducer";
 import MijozGuruxReducer from "../../Hamkorlar/reducer/MijozGuruxReducer";
+import {useTranslation} from "react-i18next";
 
 function MijozlarXisoboti({XodimReducer,MijozGuruxReducer,SavdoQoshishReducer,getXodim,users,getSavdolar,getbranch}) {
 
+    const {t} = useTranslation()
     const [inputvalue,setinputvalue] = useState(
         {
             baza:'',
@@ -74,15 +76,15 @@ function MijozlarXisoboti({XodimReducer,MijozGuruxReducer,SavdoQoshishReducer,ge
     return (
         <div className="col-md-12 mt-4 mb-4">
             <div className="textHeaderMIX">
-                <h2>Mijozlar xisobot</h2>
+                <h2>{t('PurchaseList.5')}</h2>
             </div>
             <div className="rowStyleMIX">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="row cont">
                     <div className="col-md-12">
-                        <h6>Xodim:</h6>
+                        <h6>{t('Sidebar.4')}:</h6>
                         <select className='inptData' value={inputvalue.xodim} onChange={xodim} id="">
                             {
                                 XodimReducer.xodimlar.map(item=> <option value={item.id}>{item.username}</option>)
@@ -95,7 +97,7 @@ function MijozlarXisoboti({XodimReducer,MijozGuruxReducer,SavdoQoshishReducer,ge
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <h6>Mijoz:</h6>
+                        <h6>{t('PurchaseList.6')}:</h6>
                         <select  id="" value={inputvalue.mijozId} onChange={mijozId} className={'inptData'}>
                             {
                                 MijozGuruxReducer.mijozgurux.map(item => <option value={item.id}>{item.name}</option>)
@@ -103,7 +105,7 @@ function MijozlarXisoboti({XodimReducer,MijozGuruxReducer,SavdoQoshishReducer,ge
                         </select>
                     </div>
                     <div className="col-md-6">
-                        <h6>Sanani belgilang:</h6>
+                        <h6>{t('Trade.3')}:</h6>
                         <select name="" id="" className={'inptData'} value={inputvalue.sananibelgilang} onChange={sananibelgilang}>
                             <option value="">Bugun</option>
 
@@ -118,16 +120,16 @@ function MijozlarXisoboti({XodimReducer,MijozGuruxReducer,SavdoQoshishReducer,ge
             <div className="rowSty">
                 <div className="col-md-12">
                     <h5>Summary</h5>
-                    <h3>{SavdoQoshishReducer.amount} - Jami sotuvlar bo`yicha daromad: ( backend-backend = backend )</h3>
-                    <h3>Jami xarajatlar: ( backend )</h3>
+                    <h3>{SavdoQoshishReducer.amount} - {t('PurchaseList.7')}: </h3>
+                    <h3>{t('PurchaseList.8')}: </h3>
                 </div>
             </div>
 
             <div className="rowStyleMIX2">
                 <div className={'btnBoxPage'}>
-                    <Link to={'/headerthird/mijozlarXisoboti/1'}><button className={'btnPagenesion'}>Savdolar</button></Link>
-                    <Link to={'/headerthird/mijozlarXisoboti/2'}><button className={'btnPagenesion'}>Ulushli savdolar</button></Link>
-                    <Link to={'/headerthird/mijozlarXisoboti/3'}><button className={'btnPagenesion'}>Xarajatlar</button></Link>
+                    <Link to={'/headerthird/mijozlarXisoboti/1'}><button className={'btnPagenesion'}>{t('PurchaseList.9')}</button></Link>
+                    <Link to={'/headerthird/mijozlarXisoboti/2'}><button className={'btnPagenesion'}>{t('PurchaseList.10')}</button></Link>
+                    <Link to={'/headerthird/mijozlarXisoboti/3'}><button className={'btnPagenesion'}>{t('Trade.22')}</button></Link>
                     {/*<Link to={'/headerthird/mijozlarXisoboti/4'}><button className={'btnPagenesion'}>Mijozlar bn ishlash</button></Link>*/}
                 </div>
 
@@ -142,7 +144,7 @@ function MijozlarXisoboti({XodimReducer,MijozGuruxReducer,SavdoQoshishReducer,ge
                 <Route path={'/headerthird/mijozlarXisoboti/3'} component={Xarajatlar3}/>
                 <Route path={'/headerthird/mijozlarXisoboti/4'} component={MijozlarBnIshlash}/>
 
-                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>Ko`proq ko`rish</button>
+                <button onClick={koproq} className={'btn btn-outline-danger form-control'}>{t('Buttons.5')}</button>
 
             </div>
         </div>
