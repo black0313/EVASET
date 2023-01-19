@@ -375,7 +375,10 @@
     "6": "Date of Purchase",
     "7": "Bar-code",
     "8": "Date of purchase",
-    "9": "Selling price"
+    "9": "Selling price",
+    "10": "Best selling products",
+    "11": "Product number",
+    "12": "Product type"
   },
   "Buttons": {
     "1": "Editing",

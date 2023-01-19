@@ -375,8 +375,12 @@
     "6": "Xarid sanasi",
     "7": "Shtrix kod",
     "8": "Xarid sanasi",
-    "9": "Sotish narxi"
+    "9": "Sotish narxi",
+    "10": "Ko`p sotilgan mahsulotlar",
+    "11": "Mahsulot soni",
+    "12": "Maxsulot turi"
   },
+
   "Buttons": {
     "1": "Tahrirlash",
     "2": "Qo'shish",

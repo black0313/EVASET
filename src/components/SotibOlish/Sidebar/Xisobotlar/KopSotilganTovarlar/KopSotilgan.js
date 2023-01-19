@@ -13,8 +13,11 @@ import {connect} from 'react-redux'
 import KopsotilgantovarlarReducer, {getKopsotilgan,saveKopsotilgan,editKopsotilgan,deleteKopsotilgan} from '../reducer/KopsotilgantovarlarReducer'
 import {useEffect,useState} from 'react'
 import branchreducer, {getbranch} from "../../../../../reducer/branchreducer";
+import {useTranslation} from "react-i18next";
+
 function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
 
+    const {t} = useTranslation()
     useEffect(()=>{
         getKopsotilgan()
     },[])
@@ -129,15 +132,15 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
     return (
         <div className="col-md-12 mt-4 ">
             <div className="textHeader">
-                <h2>Ko`p sotilgan mahsulotlar</h2>
+                <h2>{t('ExpenseReport.10')}</h2>
             </div>
             <div className="rowStyleKS">
                 <div className="qoshish">
-                    <h5>Filtirlash</h5>
+                    <h5>{t('Buttons.16')}</h5>
                 </div>
                 <div className="row">
                     <div className="col-6 col-sm-12">
-                        <h6>Baza:</h6>
+                        <h6>{t('ProductList.8')}:</h6>
                         {
                             branchreducer.branch.filter(val=>{
                                 if (inputvalue.baza===''){
@@ -152,17 +155,16 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
                         <input value={inputvalue.baza} onChange={baza} placeholder='Baza nomi...' type="text" className={'inputSelectStyl'}/>
                     </div>
                     <div className="col-6 col-sm-12">
-                        <h6>Bo`lim:</h6>
+                        <h6>{t('ProductList.4')}:</h6>
                         <select name="" value={inputvalue.bolim} onChange={bolim} id="" className='inputSelectStyl' >
                             <option value="">Bugun</option>
                             <option value="">Kecha</option>
-                            <option value="">Oxirgi 7 kun</option>
                         </select>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-6 col-sm-12">
-                        <h6>Bo`lim ichida bo`lim:</h6>
+                        <h6>{t('ProductEdit.6')}:</h6>
                         <select name="" id="" className='inputSelectStyl' value={inputvalue.bolim2} onChange={bolim2}>
                             <option value="">Tanlash</option>
                             <option value="">Shefir zavod</option>
@@ -170,11 +172,10 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
                         </select>
                     </div>
                     <div className="col-6 col-sm-12">
-                        <h6>Ferma:</h6>
+                        <h6>{t('ProductList.7')}:</h6>
                         <select name="" className='inputSelectStyl'  id="" value={inputvalue.firma} onChange={firma}>
                             <option value="">Bugun</option>
                             <option value="">Kecha</option>
-
                             <option value="" onClick={toggle}>Siz istagan sana</option>
                         </select>
                     </div>
@@ -184,7 +185,7 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
 
                     <div className="row">
                         <div className="col-3 col-sm-12">
-                            <label htmlFor={'olcov1'}>O`lchov birligi</label>
+                            <label htmlFor={'olcov1'}>{t('ProductList.5')}</label>
                             <select name="" id={'olcov1'} className='inputSelectStyl' value={inputvalue.ulcovbirligi} onChange={ulcovbirligi}>
                                 <option value="">Barchasi</option>
                                 <option value="">Pc(s)</option>
@@ -193,27 +194,22 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
                             </select>
                         </div>
                         <div className="col-3 col-sm-12">
-                            <label htmlFor={'olcov2'}>Sanani belgilang</label>
+                            <label htmlFor={'olcov2'}>{t('Profit.2')}</label>
                             <select name="" className='inputSelectStyl' id={'olcov2'} onChange={sananiblegilang} value={inputvalue.sananiblegilang}>
                                 <option value="#">Sanani belgilang</option>
                                 <option value="#">Bugun</option>
                                 <option value="#">Kecha</option>
-                                <option value="#">Oxirgi 7 kun</option>
-                                <option value="#">Oxirgi oy</option>
-                                <option value="#">Oxirgi yil</option>
-                                <option value="#">Siz istagan sana</option>
                             </select>
                         </div>
                         <div className="col-3 col-sm-12">
-                            <label htmlFor={'olcov3'}>Mahsulot soni</label>
+                            <label htmlFor={'olcov3'}>{t('ExpenseReport.11')}</label>
                             <input type="text" id={'olcov3'}  placeholder='Mahsulot soni...' className={'inputSelectStyl'} value={inputvalue.numofproduct} onChange={numofproduct}/>
                         </div>
                         <div className="col-3 col-sm-12">
-                            <label htmlFor={'olcov4'} >Maxsulot turi</label>
+                            <label htmlFor={'olcov4'} >{t('ExpenseReport.12')}</label>
                             <select name="" className='inputSelectStyl' id={'olcov4'} value={inputvalue.maxsulotturi} onChange={maxsulotturi}>
                                 <option value="#">Barchasi</option>
                                 <option value="#">Bir tuliq</option>
-                                <option value="#">Turli xil</option>
                             </select>
                         </div>
                     </div>
@@ -234,12 +230,6 @@ function KopSotilgan({mijoz,dukon,summa,eslatma,getbranch,branchreducer}) {
 
                 </div>
 
-                <p>Ko'rsatildi 1 ta sahifa 1 va yana 1 ta sahifa bor</p>
-                <div className='sahifalar'>
-                    <button>Ortga</button>
-                    <button>1</button>
-                    <button>Oldinga</button>
-                </div>
             </div>
         </div>
     )
