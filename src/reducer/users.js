@@ -48,7 +48,6 @@ export const slice = createSlice({
     },
     reducers: {
         saveusers: (state, action) => {
-            console.log(action.payload)
             if (action.payload.success && action.payload.success === true ){
                 state.linkhome=!state.linkhome
                 state.linkheader=!state.linkheader
@@ -61,7 +60,6 @@ export const slice = createSlice({
                 }
                 localStorage.setItem('tokenname',action.payload.message)
 
-                console.log('ei')
                     state.users.role.permissions.map(item=>{
                     switch (item){
                         case "ADD_USER":;

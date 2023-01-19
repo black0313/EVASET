@@ -127,6 +127,9 @@ function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActive
                                 </Modal>
                             </div>
                         </div>
+                        {
+                            users.users.firstName
+                        }
                         <Link to={'/headerthird/profil'} > <img src={Arrow} alt="" /> </Link>
                     </div>
                 </div>

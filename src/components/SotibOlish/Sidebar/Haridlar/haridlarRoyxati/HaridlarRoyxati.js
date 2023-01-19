@@ -141,10 +141,10 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
         const endIndex = startIndex + 7;
         return XaridReducer.xaridlar.slice(startIndex, endIndex);
     };
-    const getPaginationGroup = () => {
-        let start = Math.floor((currentPage - 1) / 1) * 1;
-        return new Array(1).fill().map((_, idx) => start + idx + 1);
-    };
+    // const getPaginationGroup = () => {
+    //     let start = Math.floor((currentPage - 1) / 1) * 1;
+    //     return new Array(1).fill().map((_, idx) => start + idx + 1);
+    // };
 
     const [visible,setvisible] = useState(5)
 
@@ -240,7 +240,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                         <button><img src={Excel} alt=""/> Export Excel</button>
                         <button><img src={Print} alt=""/> Print</button>
                         <button><img src={Pdf} alt=""/>Export PDF</button>
-                        <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>Malumotlarni kamaytirish</button>
+                        <button onClick={()=>setmalkamay(!malkamay)}><img src={Data} alt=""/>{t('Buttons.18')}</button>
 
                         {
                             malkamay ? headlist.map(item => <ul className={'ul23'} key={item.id}>
@@ -316,7 +316,7 @@ function HaridlarRoyxati({getXarid,getTaminot,getXarid3,gettolovholati,tolovredu
                                 {
                                     xaridstatus3?<td>{item.purchaseStatus.status}</td>:''
                                 }
-                                {/*<td></td>*/}
+
                                 {
                                     donanarxi?<td></td>:''
                                 }

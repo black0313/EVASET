@@ -11,7 +11,6 @@ const slice = createSlice({
     },
     reducers: {
         getFrom: (state, action) => {
-                console.log(action.payload)
             if(action.payload.success===true){
                 state.maxsulotlar = action.payload.object
             }

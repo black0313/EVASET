@@ -46,11 +46,9 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
 
     function savdod(){
         savdooynasi()
-        activSavdo()  
-        // active()
+        activSavdo()
     }
 
-    const [amount,setamount] = useState(0)
     const [third, setThird] = useState('')
     const chartOptions = {
         series: [
@@ -199,7 +197,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
             number: XaridReducer.xaridlarcost.cost,
             foiz: "+10.23%",
             text: t('Third.6'),
-            svg: <img className={'imgsvg'} src={shopping} alt={'shopping'}/>,
+            svg: <img width={"10"} className={'imgsvg'} src={shopping} alt={'shopping'}/>,
             svgfoiz: <img src={jami1} alt={'jami1'}/>
         },
         {

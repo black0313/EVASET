@@ -42,13 +42,8 @@ import Dukon from "./Sidebar/Settings/DukonSozlamalari/Dukon";
 import SoliqlarXisoboti from "./Sidebar/Xisobotlar/soliqlarXisoboti/SoliqlarXisoboti";
 import Bazalar from './Sidebar/Settings/bazalar/Bazalar'
 import SozlamalarBtn from './Sidebar/Settings/bazalar/SozlamalarBtn'
-import Yangiotkazma from './Sidebar/Baza/otkazmalarRoyxati/taxrirlash/Taxrirlash'
-import Dukon1 from './Sidebar/Settings/DukonSozlamalari/dukon/Dukon1'
-import Soliq from './Sidebar/Settings/DukonSozlamalari/soliq/Soliq'
 import BarchaSavdolar from "./Sidebar/Savdo/BarcaSavdolar/BarchaSavdolar";
 import Profil from "./header/Profil";
-import SavdoOyna from "./Sidebar/Settings/DukonSozlamalari/SavdoOynasi/SavdoOyna";
-import MijozGuruhlari from "./Sidebar/Hamkorlar/MijozGuruhlari/MijozGuruhlari";
 import MijozGuruhlariii from "./Sidebar/Hamkorlar/MijozGuruhlari/MijozGuruhlari";
 import MahsulotImport from "./Sidebar/Maxsulotlar/MahsulotlarImporti/MahsulotImport";
 import SuperAdmin from "./Sidebar/SUPERADMIN/SuperAdmin";
@@ -65,7 +60,6 @@ function Headerthird() {
             setClassSidebar('home-sidebar-active')
         }
         else{
-
             setClassheader('headerthird')
             setClassSidebar('home-sidebar')
         }

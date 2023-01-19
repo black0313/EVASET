@@ -82,13 +82,13 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
         if (user && tokenname){
             saveusers({
                 object:user,
-
                 message: tokenname,
                 success: true
             })
             history.push('/headerthird')
         }
     }, [])
+
 
     return (
         <div>
@@ -116,7 +116,7 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
                             <div className="kirish-text">
                                 <h5>{t('Welcome.3')}</h5>
                                 <p className={'p'}>
-                                    Evaset platformasi bilan bisnesingizni oson boshqaring !!!
+                                    {t('Welcome.4')}
                                 </p>
                             </div>
                             <div className={`kirish-input`}>
@@ -129,7 +129,7 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
                                     <img onClick={changetypeinput} src={eye} alt=""/>
                                 </div>
                                 {
-                                    users.error ? <span className={'error'}>Login yoki parol xato !</span> : ''
+                                    users.error ? <span className={'error'}>{t('Welcome.5')} !</span> : ''
                                 }
                                 <div className="kirish-checkbox">
                                     <input onChange={changechecked} checked={users.rememberme} type="checkbox" id={'check'}/>
@@ -143,40 +143,39 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
                                     <div className="login">
                                         <label style={{cursor: 'pointer', color: 'gray'}} htmlFor={'check'}>Meni eslab
                                             qol</label>
-                                        <a href="">Parolni unutdingizmi?</a>
+                                        <a href="">{t('Welcome.6')}</a>
                                     </div>
 
                                 </div>
                                 <button onClick={testusers} disabled={disabled}
-                                        className={'btn mb-2 btn-primary form-control kirish'}>Kirish
+                                        className={'btn mb-2 btn-primary form-control kirish'}>{t('Welcome.7')}
                                 </button>
-                                <span className={'registrBtn'} onClick={toggle}>Ro'yhatdan o'tish</span>
+                                <span className={'registrBtn'} onClick={toggle}>{t('Welcome.8')}</span>
                             </div>
 
                             <Modal className={'form-control'} isOpen={onRegister} toggle={toggle}>
                                 <ModalHeader>
-                                    <h4>Ro'yhatdan o'tish</h4>
+                                    <h4>{t('Welcome.8')}</h4>
                                 </ModalHeader><ModalHeader>
-                                <h4>Ro'yhatdan o'tish</h4>
+                                <h4>{t('Welcome.8')}</h4>
                             </ModalHeader>
                                 <ModalBody>
-                                    <label htmlFor="log">Login kiritng</label>
+                                    <label htmlFor="log">{t('Welcome.9')}</label>
                                     <input type="text" id={'log'} className={'form-control mt-1'}/>
 
-                                    <label htmlFor="">Ismingizni kiriting</label>
+                                    <label htmlFor="">{t('Welcome.10')}</label>
                                     <input type="text" className={'form-control mt-1'}/>
 
-                                    <label htmlFor="password">Parolingizni kiriting</label>
+                                    <label htmlFor="password">{t('Welcome.11')}</label>
                                     <input type="text" className={'form-control mt-1'}/>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <button className={'btn btn-primary form-control'}>Saqlash</button>
+                                    <button className={'btn btn-primary form-control'}>{t('Buttons.6')}</button>
                                     <button onClick={toggle}
-                                            className={'btn btn-outline-primary form-control'}>Chiqish
+                                            className={'btn btn-outline-primary form-control'}>{t('Buttons.7')}
                                     </button>
                                 </ModalFooter>
                             </Modal>
-
                         </div>
                     </div>
                 </div>

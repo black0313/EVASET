@@ -2,7 +2,23 @@
   "Welcome": {
     "1": "Welcome to Evaset",
     "2": "Great results for your business, 1000+ companies cooperate with us. To the future with us !!!",
-    "3":"Enter"
+    "3": "Enter",
+    "4": "Easily manage your business with the Evaset platform !!!",
+    "5": "Incorrect login or password",
+    "6": "Forgot your password?",
+    "7": "Enter",
+    "8": "Registration",
+    "9": "Enter your login",
+    "10": "Enter your name",
+    "11": "Enter your password",
+    "12": "Current password",
+    "13": "New password",
+    "14": "Add a picture",
+    "15": "Prices",
+    "16": "Purchase",
+    "17": "Enter your login",
+    "18": "Enter your name",
+    "19": "Enter your password"
   },
   "Third": {
     "1": "We look forward to seeing you again on your personal dashboard we are happy",
@@ -59,7 +75,6 @@
     "12": "Product Import",
     "13": "Departments",
     "14": "Firms",
-
     "15": "Purchases",
     "16": "Shopping list",
     "17": "Shopping",
