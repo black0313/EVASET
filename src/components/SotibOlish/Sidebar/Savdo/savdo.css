@@ -1,8 +1,10 @@
-.mahsulot .imgDiv{
+ .imgDiv{
+    width: 100%;
     display: flex;
     margin-left: 0;
     margin-top: 15px;
     align-items: center;
+    justify-content: space-between;
 }
 .mahsulot h6{
     margin-left: 10px;
@@ -24,7 +26,7 @@
 }
 .list ul{
     display: block;
-    margin-left: 15%;
+
 }
 .mahsulot ul li .mahqosh{
     color: #3f3c3c;

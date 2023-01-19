@@ -64,9 +64,8 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
         }).then(function (res) {
             saveusers(res.data)
             history.push('/headerthird')
-
         }).catch(function (err) {
-            saveusers({...err, success: false})
+            saveusers({...err})
         })
     }
 

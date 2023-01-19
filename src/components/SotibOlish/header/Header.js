@@ -78,10 +78,10 @@ function Header({active,sidebarfunc,users,getValyuta,ValyutaReducer,changeActive
                         <div className="header-narx">
 
                             <select value={lang} className={'select-control'} name="" id="" onChange={ChangeLanguage} >
-                                <option value="uz">Uzbek</option>
-                                <option value="ru">Русский</option>
-                                <option value="ki">Крилл</option>
-                                <option value="en">English</option>
+                                <option value="uz">Uz</option>
+                                <option value="ru">Ру</option>
+                                <option value="ki">Кр</option>
+                                <option value="en">En</option>
                             </select>
 
                         </div>
