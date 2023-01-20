@@ -4,6 +4,7 @@ import './header.css'
 import {useState} from "react";
 import {ModalFooter,Modal,ModalBody,ModalHeader} from "reactstrap";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 function Header() {
 
@@ -11,7 +12,7 @@ function Header() {
     const [onRegister, setRegister] = useState(false)
 
     function toggle() {
-        setRegister(!onRegister)
+
     }
 
     function ChangeLanguage(e){
@@ -40,29 +41,9 @@ function Header() {
                                 <option value="ki">Крилл</option>
                                 <option value="en">English</option>
                             </select>
-                            <button onClick={toggle}>{t('Welcome.16')}</button>
+                           <Link to={'register'}><button onClick={toggle}>{t('Welcome.16')}</button></Link>
                     </div>
-                    <Modal className={'form-control'} isOpen={onRegister} toggle={toggle}>
-                        <ModalHeader>
-                            <h4>{t('Welcome.8')}</h4>
-                        </ModalHeader><ModalHeader>
-                            <h4>{t('Welcome.8')}</h4>
-                        </ModalHeader>
-                        <ModalBody>
-                            <label htmlFor="log">{t('Welcome.17')}</label>
-                            <input type="text" id={'log'} className={'form-control mt-1'}/>
 
-                            <label htmlFor="">{t('Welcome.18')}</label>
-                            <input type="text"  className={'form-control mt-1'}/>
-
-                            <label htmlFor="password">{t('Welcome.19')}</label>
-                            <input type="text" className={'form-control mt-1'}/>
-                        </ModalBody>
-                        <ModalFooter>
-                            <button className={'btn btn-primary form-control'}>{t('Buttons.6')}</button>
-                            <button onClick={toggle} className={'btn btn-outline-primary form-control'}>{t('Buttons.7')}</button>
-                        </ModalFooter>
-                    </Modal>
                 </div>
             </div>
 

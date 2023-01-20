@@ -1,0 +1,20 @@
+.register-header{
+    background-color: #ffffff;
+    z-index: 10000;
+    padding: 30px 135px 30px 135px;
+    width: 100%;
+}
+.registerImg{
+    width:600px;
+    height: 500px;
+}
+.registerImg_picture{
+    width: 100%;
+}
+.register-Form{
+    padding: 2rem 10rem 0 0rem  !important;
+}
+.register-input{
+    padding: 10px;
+    margin-bottom: 10px;
+}

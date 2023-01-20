@@ -18,7 +18,10 @@
     "16": "Sotib olish",
     "17": "Login kiritng",
     "18": "Ismingizni kiriting",
-    "19": "Parolingizni kiriting"
+    "19": "Parolingizni kiriting",
+    "20": "Men allaqachon ro'yhatdan o'tganman",
+    "21": "Roʻyxatdan oʻtish",
+    "22": "Parolni tasdiqlang"
   },
   "Third": {
     "1": "Sizni shaxsiy boshqaruv panelida yana ko'rganimizdan juda xursandmiz",
@@ -125,7 +128,6 @@
     "19": "Biriktirilgan baza",
     "20": "Log / Parol"
   },
-
   "Roles": {
     "1": "Lavozimlar",
     "2": "Lavozimlar boshqaruvi",
@@ -396,7 +398,12 @@
     "11": "Mahsulot soni",
     "12": "Maxsulot turi"
   },
-
+  "Tariffs": {
+    "1": "Oddiy, shaffof narxlash",
+    "2": "Istalgan vaqtda shartnomani bekor qilish",
+    "3": "Oylik",
+    "4": "Yillik"
+  },
   "Buttons": {
     "1": "Tahrirlash",
     "2": "Qo'shish",

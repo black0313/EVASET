@@ -6,6 +6,8 @@ import {Route, Switch, Link, Redirect} from "react-router-dom";
 import Headerthird from "./components/SotibOlish/headerthird";
 import users from "./reducer/users";
 import SavdoOynasi from "./components/SotibOlish/Sidebar/Savdo/SavdoOynasi/SavdoOynasi";
+import Register from "./components/Hbody/Register";
+import SecondPage from "./components/Pricing/SecondPage/SecondPage";
 
 
 function App({users}) {
@@ -20,6 +22,8 @@ function App({users}) {
             <div>
                 <Switch>
                     <Route path={'/login'} component={Home}/>
+                    <Route path={'/register'} component={Register} />
+                    <Route path={'/tariffs'} component={SecondPage}/>
                     {
                         auth ? <Route path={'/'}>
                                 <Route path={'/headerthird'} component={Headerthird}/>

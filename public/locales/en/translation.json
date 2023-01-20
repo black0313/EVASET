@@ -18,7 +18,10 @@
     "16": "Purchase",
     "17": "Enter your login",
     "18": "Enter your name",
-    "19": "Enter your password"
+    "19": "Enter your password",
+    "20": "I am already registered",
+    "21": "Sign up",
+    "22": "Confirm Password"
   },
   "Third": {
     "1": "We look forward to seeing you again on your personal dashboard we are happy",
@@ -394,6 +397,12 @@
     "10": "Best selling products",
     "11": "Product number",
     "12": "Product type"
+  },
+  "Tariffs": {
+    "1": "Simple, transparent pricing",
+    "2": "Cancellation of the contract at any time",
+    "3": "Monthly",
+    "4": "Annually"
   },
   "Buttons": {
     "1": "Editing",

@@ -99,7 +99,7 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
                     <div className="homeContainer">
                         <div className={"home-img"}>
                             <div className="imgContainer">
-                                <img src={img} alt=""/>
+                                <img src={img} alt="img"/>
                             </div>
                             <div className="home-text">
                                 <h4 className={'welcome'}>
@@ -110,7 +110,6 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
                                 </p>
                             </div>
                         </div>
-
                         <div className="home-enter">
                             <div className="kirish-text">
                                 <h5>{t('Welcome.3')}</h5>
@@ -149,47 +148,39 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
                                 <button onClick={testusers} disabled={disabled}
                                         className={'btn mb-2 btn-primary form-control kirish'}>{t('Welcome.7')}
                                 </button>
-                                <span className={'registrBtn'} onClick={toggle}>{t('Welcome.8')}</span>
+                                <Link to={'/register'} className={'registrBtn'} >{t('Welcome.8')}</Link>
                             </div>
 
-                            <Modal className={'form-control'} isOpen={onRegister} toggle={toggle}>
-                                <ModalHeader>
-                                    <h4>{t('Welcome.8')}</h4>
-                                </ModalHeader><ModalHeader>
-                                <h4>{t('Welcome.8')}</h4>
-                            </ModalHeader>
-                                <ModalBody>
-                                    <label htmlFor="log">{t('Welcome.9')}</label>
-                                    <input type="text" id={'log'} className={'form-control mt-1'}/>
+                            {/*<Modal className={'form-control'} isOpen={onRegister} toggle={toggle}>*/}
+                            {/*    <ModalHeader>*/}
+                            {/*        <h4>{t('Welcome.8')}</h4>*/}
+                            {/*    </ModalHeader><ModalHeader>*/}
+                            {/*    <h4>{t('Welcome.8')}</h4>*/}
+                            {/*</ModalHeader>*/}
+                            {/*    <ModalBody>*/}
+                            {/*        <label htmlFor="log">{t('Welcome.9')}</label>*/}
+                            {/*        <input type="text" id={'log'} className={'form-control mt-1'}/>*/}
 
-                                    <label htmlFor="">{t('Welcome.10')}</label>
-                                    <input type="text" className={'form-control mt-1'}/>
+                            {/*        <label htmlFor="">{t('Welcome.10')}</label>*/}
+                            {/*        <input type="text" className={'form-control mt-1'}/>*/}
 
-                                    <label htmlFor="password">{t('Welcome.11')}</label>
-                                    <input type="text" className={'form-control mt-1'}/>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <button className={'btn btn-primary form-control'}>{t('Buttons.6')}</button>
-                                    <button onClick={toggle}
-                                            className={'btn btn-outline-primary form-control'}>{t('Buttons.7')}
-                                    </button>
-                                </ModalFooter>
-                            </Modal>
+                            {/*        <label htmlFor="password">{t('Welcome.11')}</label>*/}
+                            {/*        <input type="text" className={'form-control mt-1'}/>*/}
+                            {/*    </ModalBody>*/}
+                            {/*    <ModalFooter>*/}
+                            {/*        <button className={'btn btn-primary form-control'}>{t('Buttons.6')}</button>*/}
+                            {/*        <button onClick={toggle}*/}
+                            {/*                className={'btn btn-outline-primary form-control'}>{t('Buttons.7')}*/}
+                            {/*        </button>*/}
+                            {/*    </ModalFooter>*/}
+                            {/*</Modal>*/}
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className={'mt-5'}>
                     <Bottom/>
                 </div>
-
-                <div>
-                    <div className="col-md-12">
-                        <SecondPage/>
-                    </div>
-                </div>
             </div>
-            <Switch>
-            </Switch>
         </div>
     )
 }
