@@ -370,26 +370,27 @@ function Taxrirlash({
                         <Select options={branchreducer.branches}
                                 isMulti={true} class={'form-control'}
                                 defaultValue={input.selectvalue} onChange={changeselect}/>
-                    </div>
-
-                </div>
-                <div className="row mt-4 p-md-3">
-                    <div className={'col-md-6 col-sm-12 mb-3'}>
-                        <label htmlFor={'ogoh'}>{t('ProductEdit.8')}</label>
+                        <label htmlFor={'ogoh'} className={'mt-4'}>{t('ProductEdit.8')}</label>
                         <input type="number"
                                {...register('minQuantity', {required:true})}
                                placeholder={errors.minQuantity ? errors.minQuantity?.type === "required" && "minQuantity is required":'minQuantity'}
                                defaultValue={''}
                                className={'form-control'} id={'ogoh'}/>
-                        <label htmlFor={'yaroq'} className={'mt-3'}>{t('ProductEdit.9')}</label>
+                    </div>
+
+                </div>
+                <div className="row mt-4 p-md-3">
+                    <div className={'col-md-6 col-sm-12 mb-3'}>
+
+                        <label htmlFor={'yaroq'}>{t('ProductEdit.9')}</label>
                         <input type="date" className={'form-control'} value={input.muddatmaxsulot}
                                onChange={muddatmahsulot}/>
                     </div>
 
                     <div className={'col-md-6 col-sm-12'}>
                         <p className={"p-0 m-0"}>{t('ProductEdit.10')}</p>
-                        <label htmlFor={'mahRasm'}>
-                            <p className={'btn btn-primary'}>{t('ProductEdit.11')}</p>
+                        <label htmlFor={'mahRasm'} style={{width:"100%"}}>
+                            <p className={'btn btn-outline-primary form-control'}>{t('ProductEdit.10')}</p>
                         </label>
                         <input type="file" className={'form-control d-none'} value={input.mahsulotrasmi}
                                onChange={mahsulotrasmi} id={'mahRasm'}
