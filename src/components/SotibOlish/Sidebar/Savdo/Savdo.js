@@ -58,7 +58,7 @@ function Savdo({changeLink,link,savdooynasi,sidebaractive2}) {
 
     return(
         <div className={'row list'} id={'savdo'}>
-            <div className="imgDiv" onClick={toggle}>
+            <div className="imgDiv " onClick={toggle}>
                 <div className={'d-flex align-items-center'}>
                     <svg className={`sidebar-img2 ${fill}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.6998 22.7487H9.29977C4.35977 22.7487 2.25977 20.6387 2.25977 15.7087V11.2188C2.25977 10.8088 2.59977 10.4688 3.00977 10.4688C3.41977 10.4688 3.75977 10.8088 3.75977 11.2188V15.7087C3.75977 19.7987 5.20977 21.2487 9.29977 21.2487H14.6898C18.7798 21.2487 20.2298 19.7987 20.2298 15.7087V11.2188C20.2298 10.8088 20.5698 10.4688 20.9798 10.4688C21.3898 10.4688 21.7298 10.8088 21.7298 11.2188V15.7087C21.7398 20.6387 19.6298 22.7487 14.6998 22.7487Z" fill="#292D32"/>
@@ -72,7 +72,6 @@ function Savdo({changeLink,link,savdooynasi,sidebaractive2}) {
                 <svg className={`sidebar-img  ${classs}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.91016 19.92L15.4302 13.4C16.2002 12.63 16.2002 11.37 15.4302 10.6L8.91016 4.07999" stroke="#3A3C40" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-
             </div>
 
                 <ul>

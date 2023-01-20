@@ -7,38 +7,11 @@ const slice = createSlice({
     initialState: {
         savdolar: [],
         amount:0,
-        qarz:0,
-        uzcard:0,
-        naqd:0,
-        humo:0,
     },
     reducers: {
         getFrom: (state, action) => {
             state.savdolar = action.payload.object
-            let amount=0
-            let qarz=0
-            let uzcard=0
-            let naqd=0
-            let humo=0
-                action.payload.object.map(item=>{
-                        amount+=item.amountPaid
-                    qarz+=item.loan
-                    if (item.payMethod.id===2){
-                        uzcard+=item.amountPaid
-                    }
-                    else if(item.payMethod.id===1){
-                        naqd+=item.amountPaid
-                    }
-                    else if(item.payMethod.id===3){
-                        humo+=item.amountPaid
-                    }
-                    },
-                )
-                state.amount=amount
-            state.qarz=qarz
-            state.uzcard=uzcard
-            state.humo=humo
-            state.naqd=naqd
+
         },
         savefrom: (state,action) => {
             state.savdolar.unshift(action.payload.object)

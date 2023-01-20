@@ -283,13 +283,13 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                     </div>
 
                 </div>
-                <div className="row p-0 mb-3 d-flex justify-content-between justify-content-sm-around jami">
+                <div className="row p-0 mb-3 border-box d-flex justify-content-between justify-content-sm-around jami">
                     {
                         jami.map((item, index) =>
                             <div key={item.id}
-                                 className="col-3 col-sm-12  col-md-6 cardd-2 d-flex justify-content-center margin">
-                                <div className={'p-2'}>
-                                    <div className="row p-0 colorback">
+                                 className="col-3 col-sm-12 p-2 border-box col-md-6 cardd-2 d-flex justify-content-center">
+                                <div className={'p-1'}>
+                                    <div className="row p-0 colorback m-0" >
                                         <div className="col-12 margin">
 
                                             <div
@@ -350,7 +350,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
                     </div>
                     <div className="col-12">
                     </div>
-                    <div className="row justify-content-between text-end ps-4 table-responsive">
+                    <div className="row justify-content-between text-end px-0 ps-1 table-responsive">
                         <Chart
                             options={chartOptions.options}
                             series={chartOptions.series}

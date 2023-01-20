@@ -26,3 +26,6 @@ body{
     color:#0a53be;
     font-weight: bold;
 }
+.border-box{
+    box-sizing: border-box;
+}

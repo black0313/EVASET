@@ -170,12 +170,44 @@ function BarchaMaxsulotlar({
             setCheckArray(a)
         }
     }
-
     function ManyProductDelete(){
         deleteMaxsulotRuyxatiByIds({
             ids:checkArray?.deleteIdArray
         })
     }
+    const [excelActive,SetExcelActive] = useState(false)
+
+    function excelToggle(){
+        SetExcelActive(!excelActive)
+    }
+
+    const [excelData,setExcelData] = useState(null)
+    const [excelFile,setExcelFile] = useState(null)
+    const [excelFileError,setExcelFileError] = useState(null)
+
+    const fileType = ['application/vnd.ms-excel']
+
+    function handleExcel(e){
+        let selectedFile = e.target.files[0];
+        if(selectedFile){
+            if (selectedFile&&fileType.includes(selectedFile.type)){
+                let reader = new FileReader();
+                reader.readAsArrayBuffer(selectedFile);
+                reader.onload=(e)=>{
+                    setExcelFileError(null)
+                    setExcelFile(e.target.result);
+                }
+            }
+            else{
+                setExcelFileError('Please select only excel file types')
+                setExcelFile(null)
+            }
+        }else {
+            console.log('plz select your file')
+        }
+    }
+
+
 
     return (
         <div>
@@ -189,6 +221,7 @@ function BarchaMaxsulotlar({
                                     <button onClick={toggle} className='btn btn-primary'>+{t('Buttons.2')}</button> : ''
                             }
                         </Link>
+                        {/*<input type={"file"} onChange={handleExcel} className='form-control'/>*/}
                     </div>
                     {
                         users.viewproductadmin ? <div>
@@ -365,6 +398,9 @@ function BarchaMaxsulotlar({
                     }
                 </div>
             </div>
+            <Modal isOpen={excelActive}  toggle={excelToggle}>
+                 <h2>Excel</h2>
+            </Modal>
         </div>
     )
 }
