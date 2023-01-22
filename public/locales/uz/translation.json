@@ -404,6 +404,13 @@
     "3": "Oylik",
     "4": "Yillik"
   },
+  "Main": {
+    "1": "Xizmatni tez va oson sotib olish",
+    "2": "Xizmatni sotib olish uchun quyidagi ma’lumotlarni to’ldiring",
+    "3": "Do’kon ma’lumotlari",
+    "4": "Do’kon sozlamalari",
+    "5": "Mijoz ma’lumotlari"
+  },
   "Buttons": {
     "1": "Tahrirlash",
     "2": "Qo'shish",

@@ -197,7 +197,7 @@ function Third({display,users,getXaridCost,ValyutaReducer, SavdoQoshishReducer,T
             number: XaridReducer.xaridlarcost.cost,
             foiz: "+10.23%",
             text: t('Third.6'),
-            svg: <img width={"10"} className={'imgsvg'} src={shopping} alt={'shopping'}/>,
+            svg: <img  className={'imgsvg'} src={shopping} alt={'shopping'}/>,
             svgfoiz: <img src={jami1} alt={'jami1'}/>
         },
         {

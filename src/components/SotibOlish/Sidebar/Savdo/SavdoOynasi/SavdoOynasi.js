@@ -364,6 +364,7 @@ function SavdoOynasi({
     const [countId, setcountId] = useState(1)
     const [ushla2, setushla2] = useState(false)
     const [ushlanumber, setushlanumber] = useState('')
+
     function toggle8() {
         if (arr1.length === 0) {
             toast.warn("Mahsulot qo'shing !")
@@ -373,7 +374,6 @@ function SavdoOynasi({
         }
 
     }
-
     function ushla() {
         if (ushlanumber === '') {
             ushlabtur.push({ id: countId, array: arr1, description: input.eslatma, jami: jamixisob, jamimiqdori: xisob })
@@ -420,7 +420,6 @@ function SavdoOynasi({
         setxisob(a)
         setjamixisob(c)
     }
-
     function savdooynakochirish(id) {
         ushlabtur.filter(val => {
             if (id == val.id) {
@@ -441,7 +440,6 @@ function SavdoOynasi({
 
         toggle()
     }
-
     function pushesh(val) {
         let order = false
         arr1.map(item => {
@@ -461,7 +459,6 @@ function SavdoOynasi({
 
       xisobkitob()
     }
-
     function changeCount(e,id){
         arr1.map(item => {
             if (item.id === id) {
@@ -482,8 +479,6 @@ function SavdoOynasi({
         setarr1(a)
       xisobkitob()
     }
-
-
     function setCount(id) {
         arr1.map(item => {
             if (item.id === id) {
@@ -505,7 +500,6 @@ function SavdoOynasi({
        xisobkitob()
 
     }
-
     function sMinus(id) {
         arr1.map(item => {
             if (item.id === id) {
@@ -610,7 +604,6 @@ function SavdoOynasi({
 
 
     }
-
     function UzcardTolovturli(naqd, type) {
 
         if (naqd == 4) {
@@ -646,7 +639,6 @@ function SavdoOynasi({
         getMaxsulotRuyxatibranch(users.users.branches[0].id)
 
     }
-
     function UzcardTolovQarz(naqd) {
         console.log(input.qarzamount)
         if (naqd == 4) {
@@ -686,7 +678,6 @@ function SavdoOynasi({
         getMaxsulotRuyxatibranch(users.users.branches[0].id)
 
     }
-
     const [activeqarz, setactiveqarz] = useState(false)
 
     function qarz() {

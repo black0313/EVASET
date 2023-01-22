@@ -5,6 +5,7 @@ import BigCard from "../bigCard/BigCard";
 import Logo from "../../../img/LOGO.png";
 import React, {useState} from "react";
 import {useTranslation} from "react-i18next";
+import Header from "../../header/Header";
 
 function SecondPage() {
 
@@ -17,29 +18,13 @@ function SecondPage() {
     return(
         <div>
             <div>
-                <div  className={'register-header'}>
-                    <div className=" d-flex justify-content-between">
-                        <div className="image__ ">
-                            <a href=""><img src={Logo} alt=""/></a>
-                        </div>
-                        <div>
-                            <select className={'form-control'} value={lang} style={{cursor:"pointer"}} name="" id="" onChange={ChangeLanguage} >
-                                <option value="uz">Uzbek</option>
-                                <option value="ru">Русский</option>
-                                <option value="ki">Крилл</option>
-                                <option value="en">English</option>
-                            </select>
-
-                        </div>
-
-                    </div>
-                </div>
+               <Header/>
             </div>
             <div className={`container secondpage`}>
                 <div className={'row'}>
                     <div className="col-md-12">
                         <div className="text">
-                            <h4>{t("Tariffs.1")}</h4>
+                            <h1>{t("Tariffs.1")}</h1>
                             <p>{t("Tariffs.2")}</p>
                         </div>
 

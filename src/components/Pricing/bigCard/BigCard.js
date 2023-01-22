@@ -1,5 +1,6 @@
 import './BigCard.css'
 import img from '../../../img/tick-circle.png'
+import {Link} from 'react-router-dom'
 function BigCard() {
 
     return(
@@ -17,9 +18,9 @@ function BigCard() {
 
                 <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
 
-                <button className={'btn btn-outline-primary form-control'}>
+                <Link to={'/shopdetails'}><button   className={'btn btn-outline-primary form-control'}>
                     Tarifni ulash
-                </button>
+                </button></Link>
 
                 <div className="ch">
                     <img src={img} alt=""/>

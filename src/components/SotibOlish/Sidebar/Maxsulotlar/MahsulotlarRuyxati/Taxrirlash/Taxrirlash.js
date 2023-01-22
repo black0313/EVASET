@@ -208,6 +208,7 @@ function Taxrirlash({
             businessId: users.businessId,
         })
         toggle4()
+        input.bolimnomi = ''
     }
 
     function saqlabrand() {
@@ -240,7 +241,7 @@ function Taxrirlash({
 
     useEffect(()=>{
        getBolim(users.businessId)
-    },[])
+    },[BolimReducer.current])
     function changeselect(e) {
         input.selectvalue = e
         input.bazalar = []

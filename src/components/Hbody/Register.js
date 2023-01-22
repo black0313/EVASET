@@ -29,9 +29,9 @@ function Register(props) {
         <div>
             <div>
                 <div  className={'register-header'}>
-                    <div className=" d-flex justify-content-between">
-                        <div className="image__ ">
-                            <a href=""><img src={Logo} alt=""/></a>
+                    <div className=" d-flex justify-content-between align-item-center">
+                        <div className="image__">
+                            <img src={Logo} alt=""/>
                         </div>
                         <div>
                             <select className={'form-control'} value={lang} style={{cursor:"pointer"}} name="" id="" onChange={ChangeLanguage} >
@@ -47,10 +47,8 @@ function Register(props) {
                 </div>
             </div>
             <div className={'container'}>
-
-
                 <div className={'row'}>
-                    <div className={'col-md-6 register-Form'}>
+                    <div className={'col-sm-12 col-md-6  register-Form'}>
                         <form action="">
                         <div className={'text-center'}>
                             <h4>{t('Welcome.8')}</h4>

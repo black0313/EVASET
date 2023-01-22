@@ -1,9 +1,12 @@
 .row .col-md-12 .text{
     text-align: center;
 }
+
 .row .col-md-12 .text p{
+
     margin-top: 1%;
 }
+
 .switch{
     display: flex;
     text-align: center;

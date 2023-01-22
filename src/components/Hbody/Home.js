@@ -148,7 +148,7 @@ function Home({saveusers, users, linkpost, active, changeerror,rememberMe}) {
                                 <button onClick={testusers} disabled={disabled}
                                         className={'btn mb-2 btn-primary form-control kirish'}>{t('Welcome.7')}
                                 </button>
-                                <Link to={'/register'} className={'registrBtn'} >{t('Welcome.8')}</Link>
+                                {/*<Link to={'/register'} className={'registrBtn'} >{t('Welcome.8')}</Link>*/}
                             </div>
 
                             {/*<Modal className={'form-control'} isOpen={onRegister} toggle={toggle}>*/}

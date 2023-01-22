@@ -34,14 +34,14 @@ function Header() {
                         <a href=""><img src={Logo} alt=""/></a>
                     </div>
                     <div className="header-narx">
-                            <a href="Narxlar">{t('Welcome.15')}</a>
+                            <Link to={'/tariffs'}>{t('Welcome.15')}</Link>
                             <select value={lang} style={{cursor:"pointer"}} name="" id="" onChange={ChangeLanguage} >
                                 <option value="uz">Uzbek</option>
                                 <option value="ru">Русский</option>
                                 <option value="ki">Крилл</option>
                                 <option value="en">English</option>
                             </select>
-                           <Link to={'register'}><button onClick={toggle}>{t('Welcome.16')}</button></Link>
+                           <Link to={'/tariffs'}><button onClick={toggle}>{t('Welcome.16')}</button></Link>
                     </div>
 
                 </div>

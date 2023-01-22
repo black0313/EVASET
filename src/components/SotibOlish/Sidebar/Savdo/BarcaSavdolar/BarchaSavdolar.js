@@ -272,9 +272,10 @@ function BarchaSavdolar({getSavdolar3,ValyutaReducer,deleteSavdolar,branchreduce
                                 <td>{item?.paymentStatus?.status}</td>
                                 <td>{item?.payMethod?.type}</td>
                                 <td>{item?.totalSum}</td>
-                                <td>{item?.amountPaid}</td>
-                                <td>{item?.loan}</td>
-                                <td> </td>
+                                <td>{item?.avans}</td>
+                                <td>{item?.totalSum - item?.avans}</td>
+                                <td>{item?.tradeProductList[0].tradedQuantity
+                                } </td>
                                 {/*<td> </td>*/}
                                 <td>
                                         <Link to={'/headerthird/mahsulotQoshish/'+item?.id}><button className='taxrirlash'> <img src={Edit} alt="" /> {t('Buttons.1')}</button> </Link>

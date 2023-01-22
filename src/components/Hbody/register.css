@@ -12,9 +12,25 @@
     width: 100%;
 }
 .register-Form{
-    padding: 2rem 10rem 0 0rem  !important;
+    padding: 2rem 5rem 0 5rem  !important;
 }
 .register-input{
     padding: 10px;
     margin-bottom: 10px;
 }
+@media screen and (max-width: 425.9px) {
+    .image__  img{
+        width: 140px;
+    }
+    .register-header{
+        padding: 20px;
+    }
+    .registerImg{
+        display: none;
+    }
+    .register-Form{
+        padding: 1.2rem  !important;
+    }
+}
+
+

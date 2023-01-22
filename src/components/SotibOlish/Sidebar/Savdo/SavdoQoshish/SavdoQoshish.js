@@ -221,26 +221,21 @@ function SavdoQoshish({ getbranch, branchreducer, getPay, PayReducer, getMijozGu
             })
         } else {
             if (input.tulovusuli && input.avans) {
-                mah.map(item => {
+
                     saveSavdolar(
                         {
-                            customerId: 1,
+                            customerId: input.mijoz,
                             payDate: "2020-10-10",
-                            userId: 1,
-                            productTraderDto: [
-                                {
-                                    tradedQuantity: item.counter,
-                                    productTradeId: item.id
-                                }
-                            ],
-                            branchId: item.branch.id,
+                            userId: users.id,
+                            productTraderDto:mah,
+                            branchId: input.baza,
                             payMethodId: input.tulovusuli,
                             amountPaid: input.avans,
-                            currencyId: 1,
-                            addressId: 1
-                        },
+                            currencyId: input.tulovusuli,
+                            addressId: users.users.branches[0].address.id,
+                            businessId:users.businessId
+                        }
                     )
-                })
             }
             else {
                 setPlaceholders(

@@ -404,6 +404,13 @@
     "3": "Monthly",
     "4": "Annually"
   },
+  "Main": {
+    "1": "Fast and convenient shopping service",
+    "2": "Fill in the following information to purchase the service",
+    "3": "Store Information",
+    "4": "Store settings",
+    "5": "Customer Information"
+  },
   "Buttons": {
     "1": "Editing",
     "2": "Add",
