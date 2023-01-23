@@ -42,7 +42,7 @@ function UserDetails(props) {
                             </Link>
                         </div>
                         <div className={'col-md-3'}>
-                            <Link to={'/'}>
+                            <Link to={'/paymentDetails'}>
                                 <button className={'btn-logo-add btn-logo-continue'}>
                                    A'zo bo'lish
                                 </button>

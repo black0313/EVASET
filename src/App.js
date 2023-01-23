@@ -11,6 +11,7 @@ import SecondPage from "./components/Pricing/SecondPage/SecondPage";
 import ShopInfo from "./components/Pricing/ShopInfo/ShopInfo";
 import TaxInfo from "./components/Pricing/ShopInfo/TaxInfo";
 import UserDetails from "./components/Pricing/ShopInfo/UserDetails";
+import PaymentDetails from "./components/Pricing/ShopInfo/PaymentDetails";
 
 
 function App({users}) {
@@ -29,6 +30,7 @@ function App({users}) {
                     <Route path={'/shopdetails'} component={ShopInfo}/>
                     <Route path={'/taxDetails'} component={TaxInfo}/>
                     <Route path={'/userDetails'} component={UserDetails}/>
+                    <Route path={'/paymentDetails'} component={PaymentDetails}/>
                     <Route path={'/tariffs'} component={SecondPage}/>
 
                     {

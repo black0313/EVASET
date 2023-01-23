@@ -365,12 +365,12 @@ function Taminotchilar({ getTaminot, saveTaminot,getTaminot2, QarzuzishTaminotRe
                         </ModalHeader>
                         <ModalBody>
                                 <div className="row">
-                                    <div className={'col-md-6 col-sm-12 mb-3'}>
-                                        <label htmlFor="">{t('Supplier.3')}</label>
-                                        <select name="" id="" className={'form-control'} >
-                                            <option value="">Tanlash</option>
-                                        </select>
-                                    </div>
+                                    {/*<div className={'col-md-6 col-sm-12 mb-3'}>*/}
+                                    {/*    <label htmlFor="">{t('Supplier.3')}</label>*/}
+                                    {/*    <select name="" id="" className={'form-control'} >*/}
+                                    {/*        <option value="">Tanlash</option>*/}
+                                    {/*    </select>*/}
+                                    {/*</div>*/}
                                     <div className="in col-md-6 col-sm-12 mb-3">
                                         <label htmlFor={'turi'}>{t('Supplier.5')}</label>
                                         <input type="text"
