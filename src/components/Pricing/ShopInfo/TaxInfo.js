@@ -13,37 +13,37 @@ function TaxInfo(props) {
             <Main/>
             <div className={'container mt-5 mb-5'}>
                 <form action="" className={'shopinfo-form'}>
-                    <div className="col-md-6">
+                    <div className="col-sm-12 col-md-6">
                         <input className={'shopinfo-input'} type="text" placeholder={"Soliq nomi"}/>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-sm-12 col-md-6">
                         <input className={'shopinfo-input'} type="text" placeholder={"Tartib raqami"}/>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-sm-12 col-md-6">
                         <input className={'shopinfo-input'} type="text" placeholder={"Soliq nomi"}/>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-sm-12 col-md-6">
                         <input className={'shopinfo-input'} type="text" placeholder={"Tartib raqami"}/>
                     </div>
-                    <div className={'col-md-6'}>
+                    <div className={'col-sm-12 col-md-6'}>
                         <select className={'shopinfo-input shopInfo-select'}  name="">
                             <option value="">Hisobot yil boshlanadigan oy*</option>
                         </select>
                     </div>
-                    <div className={'col-md-6'}>
+                    <div className={'col-sm-12 col-md-6'}>
                         <select className={'shopinfo-input shopInfo-select'}  name="">
-                            <option value="">Savdolar usullari(tushunmasangiz tegmang)*</option>
+                            <option value="">Savdolar usullari*</option>
                         </select>
                     </div>
-                    <div className={'col-md-12 d-flex align-items-center justify-content-end'}>
-                        <div className={'col-md-3'}>
+                    <div className={'col-md-12 col-sm-12 d-flex justify-content-end'}>
+                        <div className={'col-sm-6 col-md-3 col-lg-3'}>
                             <Link to={'/shopdetails'}>
                                 <button className={'btn-logo-add btn-logo-back'}>
                                    Ortga
                                 </button>
                             </Link>
                         </div>
-                        <div className={'col-md-3'}>
+                        <div className={'col-sm-6 col-md-3 col-lg-3'}>
                             <Link to={'/userDetails'}>
                                 <button className={'btn-logo-add btn-logo-continue'}>
                                     Davom etish

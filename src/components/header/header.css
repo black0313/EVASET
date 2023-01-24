@@ -4,10 +4,26 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0px;
-    justify-content: space-between;
+    justify-content: end;
+    column-gap: 2rem;
 }
-
+.change-lang-select{
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #A1AFCA;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #A1AFCA;
+    outline: none;
+    letter-spacing: 1px;
+    -webkit-appearance: none;
+    background: #FFFFFF url(Vector.png);
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
 .colorback {
     background: #FFFFFF;
     border: 1px solid #E3E6EB;
@@ -57,7 +73,6 @@
 
 .header__{
     background-color: #ffffff;
-
     padding: 28px 135px 28px 135px;
     width: 100%;
 }
@@ -75,9 +90,11 @@
         align-items: center;
     }
     .header__ .homebody{
-        display: block;
+       display: block;
     }
     .header__ .homebody .header-narx{
+        display: flex;
+        justify-content: center;
         width: 100%;
     }
     .header__ .homebody .header-narx select{
@@ -89,7 +106,7 @@
         border-radius: 4px;
         padding: 0px;
         font-family: "Montserrat" ,sans-serif;
-        font-size: 12px;
+        font-size: 10px;
         display: flex;
         padding: 4px;
         align-items: center;
@@ -97,14 +114,25 @@
         border: 1px solid #0044FF ;
         color: #0044FF;
     }
+    .image__{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
 }
-
-@media (min-width: 426px) and (max-width: 768.9px){
+@media (min-width: 426px) and (max-width: 767.9px){
     .header__{
-        padding: 28px 4% 28px 4%;
+        padding: 28px 1% 28px 1%;
+    }
+    .homebody{
+        padding: 0;
+        display: flex;
+        justify-content:center;
+        width: 100%;
     }
     .header__ .homebody .header-narx{
         width: 50%;
+        column-gap: 0.7rem;
     }
     .header__ .homebody .header-narx a{
         font-size: 12px;
@@ -115,20 +143,31 @@
     }
     .header__ .homebody .header-narx button{
         font-size: 12px;
-        padding: 4px;
+        padding: 2px;
     }
     .header__ .homebody .image__ a img{
         width: 80%;
         height: 80%;
     }
-    
 
+    .change-lang-select{
+        padding: 12px;
+        -webkit-appearance: none;
+        background: #FFFFFF url(Vector.png);
+        background-size: 10px;
+        background-repeat: no-repeat;
+        background-position: 94%;
+    }
 
 }
 
-@media (min-width: 769px) and (max-width: 1024px){
+@media (min-width: 768px) and (max-width: 1024px){
     .header__{
-        padding: 28px 5% 28px 5% ;
+        padding: 28px 5%;
+    }
+    .header__ .homebody .header-narx button{
+        font-size: 12px;
+        padding: 2px;
     }
 }
     

@@ -35,13 +35,13 @@ function Header() {
                     </div>
                     <div className="header-narx">
                             <Link to={'/tariffs'}>{t('Welcome.15')}</Link>
-                            <select value={lang} style={{cursor:"pointer"}} name="" id="" onChange={ChangeLanguage} >
+                            <select value={lang} className={'change-lang-select'} name="" id="" onChange={ChangeLanguage} >
                                 <option value="uz">Uzbek</option>
                                 <option value="ru">Русский</option>
                                 <option value="ki">Крилл</option>
                                 <option value="en">English</option>
                             </select>
-                           <Link to={'/tariffs'}><button onClick={toggle}>{t('Welcome.16')}</button></Link>
+                           <Link to={'/tariffs'}><button className={'header-btn'} onClick={toggle}>{t('Welcome.16')}</button></Link>
                     </div>
 
                 </div>

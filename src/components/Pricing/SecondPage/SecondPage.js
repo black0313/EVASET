@@ -16,12 +16,12 @@ function SecondPage() {
     }
     const [lang, setLang] = useState()
     return(
-        <div>
+        <>
             <div>
                <Header/>
             </div>
             <div className={`container secondpage`}>
-                <div className={'row'}>
+                <div className={'row mt-2 m-0'}>
                     <div className="col-md-12">
                         <div className="text">
                             <h1>{t("Tariffs.1")}</h1>
@@ -41,7 +41,7 @@ function SecondPage() {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row m-0">
                     <div className="col-md-12 f">
                         <div className='fBox'>
                             <div className="c1">
@@ -61,7 +61,7 @@ function SecondPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
 
     )
 }

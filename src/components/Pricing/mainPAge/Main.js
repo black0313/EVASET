@@ -14,15 +14,15 @@ function Main(props) {
     return (
         <>
             <div className={`container mt-5 secondpage`}>
-                <div className={'row'}>
+                <div className={'row m-0'}>
                     <div className="col-md-12">
                         <div className="text">
                             <h1>{t("Main.1")}</h1>
                             <p>{t("Main.2")}</p>
                         </div>
 
-                        <div className="main-active">
-                            <div>
+                        <div className="main-active ">
+                            <div className={'main-check-container'}>
                                 <input checked={
                                     location.pathname === "/shopdetails" ||
                                     location.pathname === "/userDetails" ||
@@ -35,7 +35,7 @@ function Main(props) {
                                     <p>{t('Main.3')}</p>
                                 </label>
                             </div>
-                            <div>
+                            <div className={'main-check-container'}>
                                 <input checked={
                                     location.pathname === "/userDetails" ||
                                     location.pathname === "/taxDetails" ? false : true
@@ -47,7 +47,7 @@ function Main(props) {
                                     <p>{t('Main.4')}</p>
                                 </label>
                             </div>
-                            <div>
+                            <div className={'main-check-container'}>
                                 <input checked={
                                     location.pathname === "/userDetails" ? false : true
                                 } type="checkbox" id={'Cus'} disabled={true}/>
